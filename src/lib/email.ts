@@ -1,7 +1,15 @@
 import { Resend } from 'resend';
 import type { LeadScore } from './lead-scoring';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) {
+    const key = process.env.RESEND_API_KEY;
+    if (!key) throw new Error('RESEND_API_KEY is not set');
+    _resend = new Resend(key);
+  }
+  return _resend;
+}
 
 interface ContactDetails {
   first_name: string;
@@ -77,7 +85,7 @@ export async function sendConfirmationEmail(contact: ContactDetails): Promise<vo
 </body>
 </html>`;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: 'VoltSol Energy <hello@voltsolenergy.com>',
     to: contact.email,
     subject: 'We received your request — VoltSol Energy',
@@ -141,7 +149,7 @@ export async function sendSalesAlertEmail(contact: ContactDetails): Promise<void
 
   const subject = `[LEAD] ${score} ${contact.first_name} ${contact.last_name} — ${campaignLabel}`;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: 'VoltSol Alerts <alerts@voltsolenergy.com>',
     to: salesEmail,
     subject,

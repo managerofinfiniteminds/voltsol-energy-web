@@ -27,9 +27,10 @@ export async function GET(req: NextRequest) {
   const lead_score = searchParams.get('lead_score');
   const campaign_id = searchParams.get('campaign_id');
 
-  let rows;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let rows: any[];
   if (!status && !lead_score && !campaign_id) {
-    rows = await sql`
+    rows = (await sql`
       SELECT c.id, c.first_name, c.last_name, c.email, c.phone,
              c.street_address, c.city, c.state, c.zip,
              c.owns_home, c.monthly_bill, c.best_contact_time,
@@ -38,9 +39,9 @@ export async function GET(req: NextRequest) {
       FROM contacts c
       LEFT JOIN campaigns cam ON cam.id = c.campaign_id
       ORDER BY c.created_at DESC
-    `;
+    `) as any[];
   } else if (status && !lead_score && !campaign_id) {
-    rows = await sql`
+    rows = (await sql`
       SELECT c.id, c.first_name, c.last_name, c.email, c.phone,
              c.street_address, c.city, c.state, c.zip,
              c.owns_home, c.monthly_bill, c.best_contact_time,
@@ -50,9 +51,9 @@ export async function GET(req: NextRequest) {
       LEFT JOIN campaigns cam ON cam.id = c.campaign_id
       WHERE c.status = ${status}
       ORDER BY c.created_at DESC
-    `;
+    `) as any[];
   } else if (!status && lead_score && !campaign_id) {
-    rows = await sql`
+    rows = (await sql`
       SELECT c.id, c.first_name, c.last_name, c.email, c.phone,
              c.street_address, c.city, c.state, c.zip,
              c.owns_home, c.monthly_bill, c.best_contact_time,
@@ -62,9 +63,9 @@ export async function GET(req: NextRequest) {
       LEFT JOIN campaigns cam ON cam.id = c.campaign_id
       WHERE c.lead_score = ${lead_score}
       ORDER BY c.created_at DESC
-    `;
+    `) as any[];
   } else {
-    rows = await sql`
+    rows = (await sql`
       SELECT c.id, c.first_name, c.last_name, c.email, c.phone,
              c.street_address, c.city, c.state, c.zip,
              c.owns_home, c.monthly_bill, c.best_contact_time,
@@ -73,7 +74,7 @@ export async function GET(req: NextRequest) {
       FROM contacts c
       LEFT JOIN campaigns cam ON cam.id = c.campaign_id
       ORDER BY c.created_at DESC
-    `;
+    `) as any[];
   }
 
   const headers = [

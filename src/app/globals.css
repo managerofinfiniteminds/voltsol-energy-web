@@ -2,14 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --navy: #0F172A;
-  --gold: #F59E0B;
-}
+@layer base {
+  :root {
+    --navy: #0F172A;
+    --navy-800: #1E293B;
+    --navy-700: #334155;
+    --gold: #F59E0B;
+    --gold-400: #FBBF24;
+    --gold-600: #D97706;
+  }
 
-body {
-  background-color: var(--navy);
-  color: #ffffff;
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--navy);
+    color: #f8fafc;
+    font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #F59E0B;
+    color: #0F172A;
+  }
+
+  :focus-visible {
+    outline: 2px solid #F59E0B;
+    outline-offset: 2px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Mobile-first: account for sticky bottom CTA */
+  body {
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      padding-bottom: 0;
+    }
+  }
 }
 
 /* Custom scrollbar for dark theme */

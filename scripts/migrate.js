@@ -2,7 +2,7 @@
 // Run: node scripts/migrate.js
 // Requires NEON_DATABASE_URL in .env.local or environment
 
-const { readFileSync } = require('fs');
+const { readFileSync, readdirSync } = require('fs');
 const { join } = require('path');
 
 // Load .env.local manually
@@ -31,28 +31,37 @@ async function migrate() {
   }
 
   const sql = neon(databaseUrl);
-  const sqlFile = readFileSync(join(__dirname, '..', 'sql', '001_init.sql'), 'utf8');
+  const sqlDir = join(__dirname, '..', 'sql');
+  // Run all .sql files in sorted order (001_init.sql, 002_lead_engine.sql, ...)
+  const sqlFiles = readdirSync(sqlDir)
+    .filter(f => f.endsWith('.sql'))
+    .sort();
 
-  // Split on semicolons and run each statement
-  const statements = sqlFile
-    .split(';')
-    .map(s => s.trim())
-    .filter(s => s.length > 0);
+  for (const filename of sqlFiles) {
+    const filePath = join(sqlDir, filename);
+    const sqlContent = readFileSync(filePath, 'utf8');
 
-  console.log(`Running ${statements.length} SQL statements...`);
+    // Split on semicolons and run each statement
+    const statements = sqlContent
+      .split(';')
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
 
-  for (const statement of statements) {
-    try {
-      await sql(statement);
-      console.log('  OK:', statement.slice(0, 60).replace(/\n/g, ' ') + '...');
-    } catch (err) {
-      console.error('  FAIL:', statement.slice(0, 60));
-      console.error('  Error:', err.message);
-      process.exit(1);
+    console.log(`\n[${filename}] Running ${statements.length} statements...`);
+
+    for (const statement of statements) {
+      try {
+        await sql(statement);
+        console.log('  OK:', statement.slice(0, 60).replace(/\n/g, ' ') + '...');
+      } catch (err) {
+        console.error('  FAIL:', statement.slice(0, 60));
+        console.error('  Error:', err.message);
+        process.exit(1);
+      }
     }
   }
 
-  console.log('\nMigration complete!');
+  console.log('\nAll migrations complete!');
 }
 
 migrate().catch(err => {

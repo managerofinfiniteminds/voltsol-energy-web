@@ -43,11 +43,19 @@ const schema = z.object({
   state: z.string().min(1, 'State is required').max(50),
   zip: z.string().min(5, 'ZIP code is required').max(10),
   owns_home: z.enum(['Yes, I own it', 'No, I rent', 'Not sure']),
-  monthly_bill: z.enum(['Under $100', '$100–$200', '$200–$300', '$300+']),
-  best_contact_time: z.enum(['Morning (8am–12pm)', 'Afternoon (12–5pm)', 'Evening (5–8pm)', 'Weekends']),
+  monthly_bill: z.enum(['Under $100', '$100\u2013$200', '$200\u2013$300', '$300+']),
+  best_contact_time: z.enum(['Morning (8am\u201312pm)', 'Afternoon (12\u20135pm)', 'Evening (5\u20138pm)', 'Weekends']),
   notes: z.string().max(2000).optional(),
   campaign_code: z.string().max(50).optional(),
   website: z.string().optional(), // honeypot
+  // Phase 3 attribution fields (all optional — backward compatible)
+  source:            z.string().max(50).optional(),
+  rep:               z.string().max(100).optional(),
+  utm_source:        z.string().max(120).optional(),
+  utm_medium:        z.string().max(120).optional(),
+  utm_campaign:      z.string().max(120).optional(),
+  referrer:          z.string().max(2000).optional(),
+  estimated_savings: z.number().int().nonnegative().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -102,6 +110,13 @@ export async function POST(req: NextRequest) {
     monthly_bill: data.monthly_bill,
     best_contact_time: data.best_contact_time,
     notes: data.notes?.trim() || null,
+    source:            data.source?.trim() || null,
+    rep:               data.rep?.trim() || null,
+    utm_source:        data.utm_source?.trim() || null,
+    utm_medium:        data.utm_medium?.trim() || null,
+    utm_campaign:      data.utm_campaign?.trim() || null,
+    referrer:          data.referrer?.trim() || null,
+    estimated_savings: data.estimated_savings ?? null,
   };
 
   // Look up campaign
@@ -126,17 +141,39 @@ export async function POST(req: NextRequest) {
         first_name, last_name, email, phone,
         street_address, city, state, zip,
         owns_home, monthly_bill, best_contact_time,
-        notes, campaign_id, lead_score
+        notes, campaign_id, lead_score,
+        source, rep, utm_source, utm_medium, utm_campaign,
+        referrer, estimated_savings
       ) VALUES (
         ${sanitized.first_name}, ${sanitized.last_name}, ${sanitized.email}, ${sanitized.phone},
         ${sanitized.street_address}, ${sanitized.city}, ${sanitized.state}, ${sanitized.zip},
         ${sanitized.owns_home}, ${sanitized.monthly_bill}, ${sanitized.best_contact_time},
-        ${sanitized.notes}, ${campaign_id}, ${lead_score}
+        ${sanitized.notes}, ${campaign_id}, ${lead_score},
+        ${sanitized.source}, ${sanitized.rep}, ${sanitized.utm_source}, ${sanitized.utm_medium}, ${sanitized.utm_campaign},
+        ${sanitized.referrer}, ${sanitized.estimated_savings}
       )
       RETURNING id, created_at
     `;
     insertedId = rows[0].id;
     const createdAt = rows[0].created_at;
+
+    // Insert lead_created event for funnel analytics (non-blocking)
+    sql`
+      INSERT INTO lead_events (
+        event_type, campaign_code, source, rep,
+        utm_source, utm_medium, utm_campaign,
+        meta
+      ) VALUES (
+        'lead_created',
+        ${data.campaign_code ?? null},
+        ${sanitized.source},
+        ${sanitized.rep},
+        ${sanitized.utm_source},
+        ${sanitized.utm_medium},
+        ${sanitized.utm_campaign},
+        ${JSON.stringify({ contact_id: insertedId, lead_score })}
+      )
+    `.catch((err: unknown) => console.error('lead_created event insert failed:', err));
 
     // Send emails (non-blocking — errors don't fail the request)
     const contactForEmail = {

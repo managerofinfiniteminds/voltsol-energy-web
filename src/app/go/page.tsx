@@ -1,4 +1,4 @@
-import IntakeForm from '@/components/IntakeForm';
+import QuoteForm from '@/components/QuoteForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,7 +31,7 @@ export default function GoPage() {
 
         <div className="bg-slate-900/80 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl">
           <h2 className="text-xl font-bold text-white mb-6">Your Free Solar Estimate</h2>
-          <IntakeForm />
+          <QuoteForm />
         </div>
 
         {phone && (

@@ -6,7 +6,9 @@ import {
   StatCounter,
 } from "@/components/ui";
 import { EnergyFlowDiagram } from "@/components/EnergyFlowDiagram";
-import IntakeForm from "@/components/IntakeForm";
+import QuoteForm from "@/components/QuoteForm";
+import SavingsEstimator from "@/components/SavingsEstimator";
+import PageTracker from "@/components/PageTracker";
 import {
   Shield,
   Zap,
@@ -19,6 +21,7 @@ import {
 export default function HomePage() {
   return (
     <>
+      <PageTracker />
       {/* ========== 1. HERO ========== */}
       <Section className="relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">
         <Container>
@@ -358,6 +361,9 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      {/* ========== 5b. SAVINGS ESTIMATOR ========== */}
+      <SavingsEstimator />
+
       {/* ========== 6. MEET HUGO ========== */}
       <Section alt id="about">
         <Container>
@@ -423,7 +429,7 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-2xl border border-white/10 bg-navy-800 p-6 sm:p-8">
-              <IntakeForm campaignCode="home" />
+              <QuoteForm campaignCode="home" />
             </div>
           </Reveal>
         </Container>

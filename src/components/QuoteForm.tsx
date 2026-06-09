@@ -631,9 +631,10 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
 
       {/* Privacy note */}
       <p className="mt-4 text-xs text-slate-500 text-center leading-relaxed">
-        By submitting, you agree to our{' '}
-        <a href="#" className="text-slate-400 hover:text-gold underline">Privacy Policy</a>.
-        VoltSol Energy will not sell your information.
+        By submitting, you agree to be contacted about solar services and accept
+        our{' '}
+        <a href="/privacy" className="text-slate-400 hover:text-gold underline">Privacy Policy</a>.
+        VoltSol Energy will never sell your information.
       </p>
     </div>
   );

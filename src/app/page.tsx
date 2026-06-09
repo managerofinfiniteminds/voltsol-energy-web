@@ -215,8 +215,7 @@ export default function HomePage() {
             {/* EG4 Hybrid Inverter */}
             <Reveal delay={0.1}>
               <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6">
-                {/* IMAGE: eg4-flexboss18-inverter */}
-                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500">
+                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500 border border-dashed border-slate-600" role="img" aria-label="EG4 FlexBOSS18 Inverter product photo">
                   [IMAGE: EG4 FlexBOSS18 Inverter]
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
@@ -237,8 +236,7 @@ export default function HomePage() {
             {/* EG4 WallMount Battery */}
             <Reveal delay={0.2}>
               <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6">
-                {/* IMAGE: eg4-wallmount-battery */}
-                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500">
+                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500 border border-dashed border-slate-600" role="img" aria-label="EG4 WallMount Battery product photo">
                   [IMAGE: EG4 WallMount Battery]
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
@@ -259,8 +257,7 @@ export default function HomePage() {
             {/* EG4 Mini-Split Heat Pump */}
             <Reveal delay={0.3}>
               <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6 sm:col-span-2 lg:col-span-1">
-                {/* IMAGE: eg4-mini-split-heat-pump */}
-                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500">
+                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500 border border-dashed border-slate-600" role="img" aria-label="EG4 Mini-Split Heat Pump product photo">
                   [IMAGE: EG4 Mini-Split Heat Pump]
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
@@ -293,7 +290,7 @@ export default function HomePage() {
                   key={label}
                   className="flex items-center gap-2 text-sm text-slate-400"
                 >
-                  <Icon className="h-4 w-4 text-gold" />
+                  <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
                   <span>{label}</span>
                 </div>
               ))}
@@ -370,8 +367,7 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Reveal>
               <div>
-                {/* IMAGE: hugo-portrait */}
-                <div className="mx-auto flex aspect-[3/4] max-w-sm items-center justify-center rounded-2xl bg-navy border border-white/10 text-sm text-slate-500">
+                <div className="mx-auto flex aspect-[3/4] max-w-sm items-center justify-center rounded-2xl bg-navy border border-dashed border-slate-600 text-sm text-slate-500" role="img" aria-label="Hugo, VoltSol Energy installer">
                   [IMAGE: hugo-portrait]
                 </div>
               </div>

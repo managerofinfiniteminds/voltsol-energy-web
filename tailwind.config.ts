@@ -43,6 +43,30 @@ const config: Config = {
       transitionDuration: {
         DEFAULT: "200ms",
       },
+      keyframes: {
+        "reveal-up": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "reveal-down": {
+          "0%": { opacity: "0", transform: "translateY(-24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "reveal-left": {
+          "0%": { opacity: "0", transform: "translateX(24px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "reveal-right": {
+          "0%": { opacity: "0", transform: "translateX(-24px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "reveal-up": "reveal-up 0.5s ease-out backwards",
+        "reveal-down": "reveal-down 0.5s ease-out backwards",
+        "reveal-left": "reveal-left 0.5s ease-out backwards",
+        "reveal-right": "reveal-right 0.5s ease-out backwards",
+      },
     },
   },
   plugins: [],

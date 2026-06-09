@@ -2,13 +2,17 @@ import { getCampaignByCode } from '@/lib/campaigns';
 import QuoteForm from '@/components/QuoteForm';
 
 interface Props {
-  params: { code: string };
+  params:       { code: string };
+  searchParams: { src?: string; source?: string; rep?: string };
 }
 
 export const dynamic = 'force-dynamic';
 
-export default async function CampaignPage({ params }: Props) {
+export default async function CampaignPage({ params, searchParams }: Props) {
   const code = params.code?.toUpperCase() ?? '';
+  // Normalise: support both ?src= and ?source=
+  const source = searchParams.src ?? searchParams.source;
+  const rep    = searchParams.rep;
   let campaign = null;
 
   if (code) {
@@ -61,7 +65,7 @@ export default async function CampaignPage({ params }: Props) {
         {/* Form card */}
         <div className="bg-slate-900/80 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl">
           <h2 className="text-xl font-bold text-white mb-6">Your Free Solar Estimate</h2>
-          <QuoteForm campaignCode={code || undefined} />
+          <QuoteForm campaignCode={code || undefined} source={source} rep={rep} />
         </div>
 
         {phone && (

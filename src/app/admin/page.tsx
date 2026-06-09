@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Contact {
   id: number;
@@ -81,6 +82,7 @@ export default function AdminDashboard() {
   const [newCampaign, setNewCampaign] = useState({ code: '', name: '', source_type: 'door_knock' });
   const [campaignError, setCampaignError] = useState('');
   const [campaignSuccess, setCampaignSuccess] = useState('');
+  const [qrReps, setQrReps] = useState<Record<number, string>>({});
 
   const fetchContacts = useCallback(async () => {
     const params = new URLSearchParams();
@@ -177,9 +179,20 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-[#0F172A] text-white">
       {/* Top nav */}
       <header className="bg-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 flex items-center justify-between">
-        <div className="text-xl font-extrabold text-amber-400">VoltSol Leads</div>
+        <div className="flex items-center gap-6">
+          <div className="text-xl font-extrabold text-amber-400">VoltSol Leads</div>
+          <nav className="hidden sm:flex items-center gap-4 text-sm">
+            <span className="text-amber-400 font-semibold">Leads</span>
+            <Link href="/admin/dashboard" className="text-slate-400 hover:text-white transition">Analytics</Link>
+          </nav>
+        </div>
         <button onClick={handleLogout} className="text-sm text-slate-400 hover:text-white transition">Sign Out</button>
       </header>
+      {/* Mobile nav */}
+      <nav className="sm:hidden flex border-b border-slate-700 bg-slate-900">
+        <span className="flex-1 py-3 text-center text-sm text-amber-400 font-semibold border-b-2 border-amber-400">Leads</span>
+        <Link href="/admin/dashboard" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Analytics</Link>
+      </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
@@ -377,28 +390,64 @@ export default function AdminDashboard() {
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-slate-700">
-                  {['Code', 'Name', 'Source', 'Leads', 'Active'].map(h => (
+                  {['Code', 'Name', 'Source', 'Leads', 'Active', 'QR Code'].map(h => (
                     <th key={h} className="text-left text-xs font-medium text-slate-400 uppercase tracking-wider px-3 py-2">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {campaigns.map(c => (
-                  <tr key={c.id} className="border-b border-slate-800">
-                    <td className="px-3 py-3 font-mono text-amber-400 font-medium">{c.code}</td>
-                    <td className="px-3 py-3 text-white">{c.name}</td>
-                    <td className="px-3 py-3 text-slate-400">{c.source_type}</td>
-                    <td className="px-3 py-3 text-slate-300">{c.lead_count}</td>
-                    <td className="px-3 py-3">
-                      <button
-                        onClick={() => toggleCampaign(c.id, !c.is_active)}
-                        className={`text-xs font-medium px-3 py-1 rounded-full border transition ${c.is_active ? 'bg-green-900/40 text-green-300 border-green-700 hover:bg-green-900/60' : 'bg-slate-800 text-slate-400 border-slate-600 hover:bg-slate-700'}`}
-                      >
-                        {c.is_active ? 'Active' : 'Inactive'}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {campaigns.map(c => {
+                  const rep = qrReps[c.id] ?? '';
+                  const qrSrc = `/api/qr?code=${encodeURIComponent(c.code)}${rep ? `&rep=${encodeURIComponent(rep)}` : ''}`;
+                  const downloadHref = qrSrc;
+                  return (
+                    <tr key={c.id} className="border-b border-slate-800 align-top">
+                      <td className="px-3 py-3 font-mono text-amber-400 font-medium">{c.code}</td>
+                      <td className="px-3 py-3 text-white">{c.name}</td>
+                      <td className="px-3 py-3 text-slate-400">{c.source_type}</td>
+                      <td className="px-3 py-3 text-slate-300">{c.lead_count}</td>
+                      <td className="px-3 py-3">
+                        <button
+                          onClick={() => toggleCampaign(c.id, !c.is_active)}
+                          className={`text-xs font-medium px-3 py-1 rounded-full border transition ${c.is_active ? 'bg-green-900/40 text-green-300 border-green-700 hover:bg-green-900/60' : 'bg-slate-800 text-slate-400 border-slate-600 hover:bg-slate-700'}`}
+                        >
+                          {c.is_active ? 'Active' : 'Inactive'}
+                        </button>
+                      </td>
+                      <td className="px-3 py-3">
+                        <div className="flex items-start gap-3">
+                          {/* QR preview — dynamic API-generated SVG, Next/Image not applicable */}
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={qrSrc}
+                            alt={`QR for ${c.code}`}
+                            width={72}
+                            height={72}
+                            className="rounded border border-slate-600 bg-white"
+                          />
+                          <div className="flex flex-col gap-2">
+                            {/* Per-rep field */}
+                            <input
+                              type="text"
+                              value={rep}
+                              onChange={e => setQrReps(prev => ({ ...prev, [c.id]: e.target.value }))}
+                              placeholder="Rep name (optional)"
+                              className="bg-slate-800 border border-slate-600 rounded px-2 py-1 text-xs text-white w-36 focus:outline-none focus:ring-1 focus:ring-amber-400"
+                            />
+                            {/* Download link */}
+                            <a
+                              href={downloadHref}
+                              download={`qr-${c.code}${rep ? `-${rep}` : ''}.svg`}
+                              className="text-xs text-amber-400 hover:text-amber-300 underline transition"
+                            >
+                              Download SVG
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

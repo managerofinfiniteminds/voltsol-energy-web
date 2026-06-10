@@ -44,10 +44,10 @@ export default function HomePage() {
             className="object-cover object-center"
             quality={90}
           />
-          {/* Dark gradient overlay — top heavy so text reads, fades to transparent at bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/70 to-navy/95" />
-          {/* Subtle warm rim on the right to let the sun glow bleed through */}
-          <div className="absolute inset-0 bg-gradient-to-l from-amber-900/20 to-transparent" />
+          {/* Dark gradient overlay — light enough to show the photo, dark enough at top for text */}
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/40 to-navy/80" />
+          {/* Warm amber glow from the sun side */}
+          <div className="absolute inset-0 bg-gradient-to-l from-amber-800/10 to-transparent" />
         </div>
         <Container className="relative">
           <Reveal immediate>

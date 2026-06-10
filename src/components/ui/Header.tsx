@@ -21,12 +21,12 @@ export function Header() {
         {/* Logo */}
         <a href="/" className="flex items-center gap-3" aria-label="VoltSol Energy — Home">
           <Image
-            src="/images/voltsol-logo-badge.jpg"
+            src="/images/voltsol-mark.svg"
             alt="VoltSol Energy"
-            width={120}
-            height={120}
+            width={80}
+            height={80}
             priority
-            className="h-[4.5rem] w-[4.5rem] rounded-full sm:h-20 sm:w-20"
+            className="h-16 w-16 sm:h-20 sm:w-20"
           />
           <span className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
             <span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span>

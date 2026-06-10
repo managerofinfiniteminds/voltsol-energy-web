@@ -19,11 +19,11 @@ export function Footer() {
           <div className="max-w-xs">
             <a href="/" className="flex items-center gap-3" aria-label="VoltSol Energy — Home">
               <Image
-                src="/images/voltsol-logo-badge.jpg"
+                src="/images/voltsol-mark.svg"
                 alt="VoltSol Energy"
-                width={120}
-                height={120}
-                className="h-16 w-16 rounded-full"
+                width={80}
+                height={80}
+                className="h-14 w-14"
               />
               <span className="font-display text-2xl font-bold tracking-tight">
                 <span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span>

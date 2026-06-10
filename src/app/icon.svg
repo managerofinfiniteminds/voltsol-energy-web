@@ -1,16 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <defs>
-    <clipPath id="fav-squares">
-      <rect x="3" y="3" width="90" height="90" rx="13"/>
-      <rect x="107" y="3" width="90" height="90" rx="13"/>
-      <rect x="3" y="107" width="90" height="90" rx="13"/>
-      <rect x="107" y="107" width="90" height="90" rx="13"/>
-    </clipPath>
-  </defs>
-  <rect x="3" y="3" width="90" height="90" rx="13" fill="#F97316"/>
-  <rect x="107" y="3" width="90" height="90" rx="13" fill="#FBBF24"/>
-  <rect x="3" y="107" width="90" height="90" rx="13" fill="#1E3A8A"/>
-  <rect x="107" y="107" width="90" height="90" rx="13" fill="#3B82F6"/>
-  <path clip-path="url(#fav-squares)" fill="#FFFFFF"
-    d="M62 28 H196 V62 H120 L48 138 H138 V172 H4 V138 H80 L152 62 H62 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <rect width="1000" height="1000" fill="#040D1C"/>
+  <path fill="#fefe66" d="M458.24,874.38c-.59,0-.87-.16-1.2-.38l192.72-397.96-184.83-1.92,152.21-302.75,192.08,1.16-101.45,191.79c.37.56.59.53,1.17.53l192.08-.13c.72,0,1.14-.06,1.46.3.16.19-.2.51-.6,1l-412.95,508.83-30.7-.46Z"/>
+  <path fill="#6698cb" d="M383.21,871.7L96.03,174.01c1.67-.03,2.9.82,4.67.46l175.91-2.48,204.95,497.64-98.36,202.06Z"/>
 </svg>

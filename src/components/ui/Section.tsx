@@ -14,7 +14,7 @@ export function Section({ children, className, alt, id }: SectionProps) {
     <section
       id={id}
       className={cn(
-        "py-16 sm:py-20 lg:py-24",
+        "py-20 sm:py-24 lg:py-28",
         alt ? "bg-navy-800" : "bg-navy",
         className
       )}

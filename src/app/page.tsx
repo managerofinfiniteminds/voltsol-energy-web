@@ -15,16 +15,12 @@ import {
   Zap,
   RefreshCw,
   Droplets,
-  Award,
   BadgeCheck,
   MapPin,
   Wrench,
   Phone,
   Star,
   Check,
-  TrendingUp,
-  Lock,
-  AlertTriangle,
   CalendarCheck,
 } from "lucide-react";
 
@@ -78,27 +74,15 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* Pull quote */}
-          <Reveal delay={0.3} immediate>
-            <div className="mx-auto mt-12 max-w-3xl text-center lg:mt-16">
-              <p className="font-display text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl">
-                The average Northern California home pays $247/mo to PG&amp;E.
-              </p>
-              <p className="mt-4 font-display text-xl font-bold text-gold sm:text-2xl">
-                Ours pay nothing.
-              </p>
-            </div>
-          </Reveal>
-
           {/* Trust strip */}
-          <Reveal delay={0.4} immediate>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300 sm:text-sm">
+          <Reveal delay={0.3} immediate>
+            <div className="mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300 sm:text-sm lg:mt-20">
               <span>Licensed</span>
-              <span aria-hidden="true" className="text-gold/40">&middot;</span>
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70" />
               <span>Local</span>
-              <span aria-hidden="true" className="text-gold/40">&middot;</span>
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70" />
               <span>Off-Grid Capable</span>
-              <span aria-hidden="true" className="text-gold/40">&middot;</span>
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70" />
               <span>No Pressure</span>
             </div>
           </Reveal>
@@ -166,42 +150,34 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:gap-8">
+          <div className="mt-14 grid gap-6 sm:grid-cols-3 lg:gap-8">
             <Reveal delay={0.1}>
-              <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-6 lg:p-8">
+              <div className="h-full rounded-xl border-t-2 border-t-red-400/70 bg-navy-800/50 p-8">
                 <h3 className="font-display text-lg font-bold text-red-400">
                   PG&amp;E Forever
                 </h3>
-                <ul className="mt-4 space-y-3 text-blue-100">
+                <ul className="mt-5 space-y-3 text-blue-100">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-red-400" aria-hidden="true">&times;</span>
-                    Rates only go up &mdash; year after year
+                    Rates only go up
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-red-400" aria-hidden="true">&times;</span>
-                    Blackouts aren&rsquo;t your choice
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 text-red-400" aria-hidden="true">&times;</span>
-                    You pay even when the power goes out
+                    You pay even during blackouts
                   </li>
                 </ul>
               </div>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="rounded-xl border border-amber/20 bg-amber/5 p-6 lg:p-8">
+              <div className="h-full rounded-xl border-t-2 border-t-amber-400/70 bg-navy-800/50 p-8">
                 <h3 className="font-display text-lg font-bold text-amber-400">
                   Typical Solar
                 </h3>
-                <ul className="mt-4 space-y-3 text-blue-100">
+                <ul className="mt-5 space-y-3 text-blue-100">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-amber-400" aria-hidden="true">&times;</span>
-                    $40k loan before you flip a switch
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 text-amber-400" aria-hidden="true">&times;</span>
-                    Still grid-tied &mdash; still at PG&amp;E&rsquo;s mercy
+                    $40k loan, still grid-tied
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-amber-400" aria-hidden="true">&times;</span>
@@ -212,26 +188,18 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.3}>
-              <div className="rounded-xl border border-gold/40 bg-gold/5 p-6 lg:p-8">
+              <div className="h-full rounded-xl border-t-2 border-t-gold bg-navy-800/50 p-8">
                 <h3 className="font-display text-lg font-bold text-gold">
                   VoltSol Energy
                 </h3>
-                <ul className="mt-4 space-y-3 text-blue-100">
+                <ul className="mt-5 space-y-3 text-blue-100">
                   <li className="flex items-start gap-2">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                    Under $10,000 total
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                    Off-grid capable &mdash; truly independent
+                    Under $10,000 &mdash; off-grid capable
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
                     Power stays on in every blackout
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                    Hugo answers the phone
                   </li>
                 </ul>
               </div>
@@ -260,68 +228,44 @@ export default function HomePage() {
         </div>
         <Container className="relative">
           <Reveal>
-            <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-red-400">
-              The Clock Is Running
+            <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-gold/70">
+              Why Now
             </p>
-            <h2 className="mt-4 text-center font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              PG&amp;E raised rates 10.5% this year.{" "}
-              <span className="text-red-400">Again.</span>
+            <h2 className="text-center font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+              The clock is <span className="text-red-400">running.</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-blue-300">
-              Grid-tied solar is broken in California. Off-grid isn&rsquo;t.
-            </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:gap-8">
+          <div className="mt-14 grid gap-6 text-center sm:grid-cols-3 lg:gap-8">
             <Reveal delay={0.1}>
-              <div className="flex h-full flex-col rounded-xl border border-red-500/25 bg-red-950/20 p-6 lg:p-8">
-                <TrendingUp className="h-6 w-6 text-red-400" aria-hidden="true" />
-                <h3 className="mt-4 font-display text-lg font-bold text-red-400">
-                  Rate Hike &mdash; 2026
-                </h3>
-                <p className="mt-3 flex-1 leading-relaxed text-blue-100">
-                  PG&amp;E&rsquo;s baseline rate jumped 10.5% this year &mdash;
-                  from $0.38 to $0.42/kWh. The decade trend: up roughly 80%
-                  since 2015. There is no sign of it stopping.
+              <div className="h-full rounded-xl border-t-2 border-t-red-400/70 bg-navy-800/50 p-8">
+                <p className="font-display text-5xl font-bold text-red-400 sm:text-6xl">
+                  10.5%
                 </p>
-                <p className="mt-4 text-xs text-blue-300/60">
-                  Source: CPUC rate filings, 2026
+                <p className="mt-3 text-blue-300">
+                  PG&amp;E rate hike &mdash; 2026
                 </p>
               </div>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="flex h-full flex-col rounded-xl border border-amber/30 bg-amber/5 p-6 lg:p-8">
-                <Lock className="h-6 w-6 text-amber-400" aria-hidden="true" />
-                <h3 className="mt-4 font-display text-lg font-bold text-amber-400">
-                  The $24 Trap
-                </h3>
-                <p className="mt-3 flex-1 leading-relaxed text-blue-100">
-                  PG&amp;E&rsquo;s new fixed Base Charge (~$24/month) can&rsquo;t
-                  be offset &mdash; not with solar panels, not with batteries,
-                  not with efficiency. It&rsquo;s permanent, and it ratchets up
-                  with every rate case.
+              <div className="h-full rounded-xl border-t-2 border-t-amber-400/70 bg-navy-800/50 p-8">
+                <p className="font-display text-5xl font-bold text-amber-400 sm:text-6xl">
+                  $24/mo
                 </p>
-                <p className="mt-4 text-xs text-blue-300/60">
-                  Source: CPUC Decision, 2024
+                <p className="mt-3 text-blue-300">
+                  Fixed charge that solar can&rsquo;t touch
                 </p>
               </div>
             </Reveal>
 
             <Reveal delay={0.3}>
-              <div className="flex h-full flex-col rounded-xl border border-red-500/25 bg-red-950/20 p-6 lg:p-8">
-                <AlertTriangle className="h-6 w-6 text-red-400" aria-hidden="true" />
-                <h3 className="mt-4 font-display text-lg font-bold text-red-400">
-                  Grid Solar Died
-                </h3>
-                <p className="mt-3 flex-1 leading-relaxed text-blue-100">
-                  NEM 3.0 cut grid-tied solar export credits by ~75% &mdash;
-                  payback periods ballooned from 6 years to 12&ndash;15.
-                  SunPower, Sunnova, and Freedom Forever have all filed for
-                  bankruptcy since.
+              <div className="h-full rounded-xl border-t-2 border-t-red-400/70 bg-navy-800/50 p-8">
+                <p className="font-display text-5xl font-bold text-red-400 sm:text-6xl">
+                  3<span className="text-3xl sm:text-4xl"> bankruptcies</span>
                 </p>
-                <p className="mt-4 text-xs text-blue-300/60">
-                  Source: CPUC Decision 22-12-056; public bankruptcy filings
+                <p className="mt-3 text-blue-300">
+                  SunPower &middot; Sunnova &middot; Freedom Forever &mdash; all gone
                 </p>
               </div>
             </Reveal>
@@ -329,15 +273,10 @@ export default function HomePage() {
 
           {/* Gold CTA band */}
           <Reveal delay={0.3}>
-            <div className="mt-12 rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 p-8 text-center lg:p-10">
+            <div className="mt-14 rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 p-8 text-center lg:p-10">
               <p className="font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
-                The only solar that&rsquo;s truly immune:{" "}
-                <span className="text-gold">off-grid capable.</span>
-              </p>
-              <p className="mt-3 text-lg text-blue-100">
-                No export credits needed. No Base Charge owed. The 30% federal
-                tax credit is still on the table in 2026 &mdash; and VoltSol
-                installs it for under $10,000.
+                Off-grid-capable solar.{" "}
+                <span className="text-gold">Under $10,000.</span>
               </p>
               <div className="mt-6 flex justify-center">
                 <Button href="/book" size="lg">
@@ -386,7 +325,7 @@ export default function HomePage() {
               {
                 step: "03",
                 title: "LIVE ON IT",
-                desc: "Inverter + mini-split heat pump run your home — heating and cooling included — on stored sun.",
+                desc: "Your home runs on stored sun — heating and cooling included.",
               },
             ].map((item, i) => (
               <Reveal key={item.step} delay={0.1 * (i + 1)}>
@@ -414,18 +353,18 @@ export default function HomePage() {
       <Section alt id="systems">
         <Container>
           <Reveal>
+            <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-gold/70">
+              The System
+            </p>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Built on EG4 &mdash;{" "}
-              <span className="text-gold">
-                one system, one installer, one call.
-              </span>
+              Built on <span className="text-gold">EG4.</span>
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* EG4 Hybrid Inverter */}
             <Reveal delay={0.1}>
-              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-blue-400/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6">
+              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-blue-400/40 bg-navy-800/40 p-7">
                 <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-white/95 p-4">
                   <Image
                     src="/images/eg4-flexboss18.webp"
@@ -435,24 +374,23 @@ export default function HomePage() {
                     className="h-full w-auto object-contain"
                   />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
+                <h3 className="mt-5 font-display text-xl font-bold text-gold-400">
                   EG4 Hybrid Inverter
                 </h3>
-                <p className="mt-1 text-sm text-blue-300">
-                  FlexBOSS18 &mdash; the brain of the system.
+                <p className="mt-1 text-sm italic text-blue-300/80">
+                  The brain of the system.
                 </p>
-                <ul className="mt-4 space-y-2 text-sm text-blue-100">
-                  <li>13kW continuous, up to 18kW solar input</li>
-                  <li>10kW battery output</li>
-                  <li>EMP-hardened, 10-year warranty</li>
-                  <li>Phone monitoring via EG4 Connect</li>
+                <ul className="mt-5 space-y-2 text-sm text-blue-100">
+                  <li>18 kW solar input</li>
+                  <li>13 kW continuous output</li>
+                  <li>10-year warranty</li>
                 </ul>
               </div>
             </Reveal>
 
             {/* EG4 WallMount Battery */}
             <Reveal delay={0.2}>
-              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-gold/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6">
+              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-gold/40 bg-navy-800/40 p-7">
                 <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-white/95 p-4">
                   <Image
                     src="/images/eg4-wallmount-battery.webp"
@@ -462,24 +400,23 @@ export default function HomePage() {
                     className="h-full w-auto object-contain"
                   />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
+                <h3 className="mt-5 font-display text-xl font-bold text-gold-400">
                   EG4 WallMount Battery
                 </h3>
-                <p className="mt-1 text-sm text-blue-300">
+                <p className="mt-1 text-sm italic text-blue-300/80">
                   Store the sun.
                 </p>
-                <ul className="mt-4 space-y-2 text-sm text-blue-100">
-                  <li>14.3 kWh stackable LiFePO4</li>
-                  <li>IP65 weatherproof (indoor/outdoor)</li>
-                  <li>8,000-cycle life</li>
-                  <li>10kW power output</li>
+                <ul className="mt-5 space-y-2 text-sm text-blue-100">
+                  <li>8,000-cycle LiFePO4</li>
+                  <li>14.3 kWh stackable</li>
+                  <li>IP65 weatherproof</li>
                 </ul>
               </div>
             </Reveal>
 
             {/* EG4 Mini-Split Heat Pump */}
             <Reveal delay={0.3}>
-              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-blue-400/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:col-span-2 lg:col-span-1">
+              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-blue-400/40 bg-navy-800/40 p-7 sm:col-span-2 lg:col-span-1">
                 <div className="aspect-[4/3] overflow-hidden rounded-lg">
                   <Image
                     src="/images/eg4-minisplit.svg"
@@ -489,42 +426,20 @@ export default function HomePage() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
+                <h3 className="mt-5 font-display text-xl font-bold text-gold-400">
                   EG4 Mini-Split Heat Pump
                 </h3>
-                <p className="mt-1 text-sm text-blue-300">
+                <p className="mt-1 text-sm italic text-blue-300/80">
                   Comfort on sunlight.
                 </p>
-                <ul className="mt-4 space-y-2 text-sm text-blue-100">
-                  <li>Heats AND cools</li>
-                  <li>Hybrid solar AC/DC operation</li>
-                  <li>Ultra-efficient inverter compressor</li>
-                  <li>Biggest energy hog &mdash; now runs on stored sun</li>
+                <ul className="mt-5 space-y-2 text-sm text-blue-100">
+                  <li>Heats and cools</li>
+                  <li>Hybrid solar AC/DC</li>
+                  <li>Runs on stored sun</li>
                 </ul>
               </div>
             </Reveal>
           </div>
-
-          {/* Proof badges */}
-          <Reveal delay={0.4}>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-              {[
-                { icon: Zap, label: "Off-Grid Capable" },
-                { icon: Shield, label: "EMP-Hardened" },
-                { icon: RefreshCw, label: "8,000+ Cycles" },
-                { icon: Droplets, label: "IP65 Weatherproof" },
-                { icon: Award, label: "10-Year Warranty" },
-              ].map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-2 text-sm text-blue-300"
-                >
-                  <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </Container>
       </Section>
 
@@ -532,12 +447,13 @@ export default function HomePage() {
       <Section alt className="border-t border-blue-900/30">
         <Container className="text-center">
           <Reveal>
-            <h2 className="font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Serving <span className="text-gold">Northern California</span>
-            </h2>
-            <p className="mt-4 text-lg text-blue-300">
-              Local installer. No middlemen. Hugo comes to you.
+            <p className="mb-3 text-xs uppercase tracking-[0.2em] text-gold/70">
+              Where We Work
             </p>
+            <h2 className="font-display text-4xl font-bold sm:text-5xl lg:text-6xl">
+              <span className="text-gold">Northern California</span>
+            </h2>
+            <p className="mt-4 text-lg text-blue-300">Hugo comes to you.</p>
           </Reveal>
 
           <Reveal delay={0.1}>
@@ -634,12 +550,9 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="mx-auto mt-8 max-w-xl text-lg text-blue-100">
-              At ~$300/mo to PG&amp;E, it can pay for itself in about 3 years
-              &mdash; then the power&rsquo;s free for decades.
-            </p>
-            <p className="mt-4 text-xs text-blue-300/60">
-              Typical system. Final pricing confirmed in your free estimate.
+            <p className="mx-auto mt-10 max-w-xl text-lg text-blue-100">
+              At $300/mo to PG&amp;E, most systems pay for themselves in under
+              3 years.
             </p>
           </Reveal>
         </Container>
@@ -651,44 +564,40 @@ export default function HomePage() {
       />
 
       {/* ========== 5a. TESTIMONIALS ========== */}
-      <Section alt className="relative overflow-hidden">
-        {/* Decorative giant quotation mark */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-10 left-4 select-none font-display text-[16rem] leading-none text-gold/5 sm:text-[24rem]"
-        >
-          &ldquo;
-        </span>
-        <Container className="relative">
+      <Section alt>
+        <Container>
           <Reveal>
+            <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-gold/70">
+              What Customers Say
+            </p>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
               Real homes. <span className="text-gold">Real numbers.</span>
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8">
+          <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:gap-8">
             {[
               {
                 quote:
-                  "Our PG&E bill went from $340 a month to almost nothing. But what sold us was the battery — we had a 2-day outage last winter and our house never lost power. Neighbors were in the dark. We were watching Netflix.",
+                  "Our PG&E bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.",
                 name: "Maria S.",
                 city: "Sacramento",
               },
               {
                 quote:
-                  "I got a quote from SunPower for $38,000. Hugo came out, assessed our place, and said he could do the whole thing for under ten thousand. I thought he was joking. He wasn't. Best decision we've made for this house.",
+                  "SunPower quoted $38,000. Hugo did the whole thing for under ten grand.",
                 name: "David R.",
                 city: "Fresno",
               },
               {
                 quote:
-                  "I didn't even know the mini-split heat pump was part of it. Hugo explained that heating and cooling is where most people's electricity goes, so he includes it in the system. First summer with no AC bill. First winter with no gas bill. I tell everyone.",
+                  "First summer with no AC bill. First winter with no gas bill.",
                 name: "Carmen L.",
                 city: "Stockton",
               },
             ].map((t, i) => (
               <Reveal key={t.name} delay={0.1 * (i + 1)}>
-                <figure className="flex h-full flex-col rounded-xl border border-navy-500/30 bg-gradient-to-br from-navy-700 to-navy-800 p-6 lg:p-8">
+                <figure className="flex h-full flex-col rounded-xl border-t-2 border-t-gold/60 bg-navy-800/50 p-8">
                   <div
                     className="flex gap-1 text-gold"
                     role="img"
@@ -702,14 +611,8 @@ export default function HomePage() {
                       />
                     ))}
                   </div>
-                  <span
-                    className="mt-4 font-display text-5xl leading-none text-gold"
-                    aria-hidden="true"
-                  >
-                    &ldquo;
-                  </span>
-                  <blockquote className="mt-2 flex-1 leading-relaxed text-blue-100">
-                    {t.quote}
+                  <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-blue-100">
+                    &ldquo;{t.quote}&rdquo;
                   </blockquote>
                   <figcaption className="mt-6 font-display font-bold text-white">
                     {t.name}{" "}
@@ -738,31 +641,19 @@ export default function HomePage() {
               {[
                 {
                   q: "Is $10,000 really an all-in price?",
-                  a: "Yes. It includes Tier-1 solar panels, EG4 battery bank, FlexBOSS18 hybrid inverter, EG4 mini-split heat pump, and full installation. Final price depends on your home — get a free estimate and we'll show you the exact number.",
-                },
-                {
-                  q: "How is this so much cheaper than traditional solar?",
-                  a: "Traditional installers stack commissions, financing fees, and contractor markups. VoltSol buys EG4 commercial-grade equipment direct, and Hugo does every install personally. No sales floor. No middleman markup. The savings come to you.",
+                  a: "Yes — panels, battery, inverter, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home.",
                 },
                 {
                   q: "Do I still need the grid at all?",
-                  a: "Not if you don't want it. VoltSol systems are off-grid capable. Most customers stay grid-tied as a backup — but the option to cut it entirely is yours.",
+                  a: "Not if you don't want it. Most customers keep it as backup — cutting it entirely is your call.",
                 },
                 {
                   q: "What happens during a blackout?",
-                  a: "Nothing changes in your house. The EG4 system switches to island mode in milliseconds — lights stay on, AC keeps running, fridge stays cold. Your neighbors notice. You don't.",
-                },
-                {
-                  q: "How long does installation take?",
-                  a: "Most residential installations complete in one to two days.",
-                },
-                {
-                  q: "Does this work in Northern California's climate?",
-                  a: "Perfectly. The system handles both extreme heat — Fresno summers included — and cold Sierra foothills winters. The mini-split heat pumps are rated to operate well below freezing.",
+                  a: "Nothing. The system switches to battery in milliseconds — your neighbors notice, you don't.",
                 },
                 {
                   q: "What's the payback period?",
-                  a: "At $300/month in PG&E bills, typically 2.5 to 3 years. After that, power is essentially free for 25+ years.",
+                  a: "At $300/month in PG&E bills, typically under 3 years. After that, power is essentially free for 25+ years.",
                 },
               ].map((item) => (
                 <details
@@ -830,14 +721,8 @@ export default function HomePage() {
                   Meet <span className="text-gold">Hugo</span>
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                  Your installer. Northern California local. No high-pressure
-                  sales floor, no financing traps &mdash; just the right system,
-                  installed right, by the person who stands behind it.
-                </p>
-                <p className="mt-4 text-blue-300">
                   Hugo designs and installs every VoltSol system personally.
-                  When you call, he picks up. When something needs attention, he
-                  shows up.
+                  When you call, he picks up.
                 </p>
 
                 {/* Credentials */}
@@ -871,11 +756,8 @@ export default function HomePage() {
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
               Find out what your home{" "}
-              <span className="text-gold">could do.</span>
+              <span className="text-gold">could save.</span>
             </h2>
-            <p className="mt-4 text-center text-blue-300">
-              Get a free, no-pressure estimate tailored to your property.
-            </p>
           </Reveal>
 
           <Reveal delay={0.1}>

@@ -11,7 +11,7 @@ function getResend(): Resend {
 }
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://voltsolenergy.com';
-const HUGO_EMAIL = process.env.SALES_ALERT_EMAIL || 'hugo@voltsolenergy.com';
+const HUGO_EMAIL = process.env.SALES_ALERT_EMAIL || 'info@voltsolenergy.com';
 
 export interface AppointmentEmailDetails {
   first_name: string;
@@ -96,7 +96,7 @@ export async function sendAppointmentConfirmationEmail(appt: AppointmentEmailDet
         <a href="${magicLink}" style="display:inline-block;background:#F59E0B;color:#040D1C;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:15px;">View or Manage Your Appointment</a>
       </div>
       <p style="margin:0;color:#475569;line-height:1.6;font-size:14px;">
-        Questions? Reply to this email or reach Hugo directly at <a href="mailto:hugo@voltsolenergy.com" style="color:#F59E0B;">hugo@voltsolenergy.com</a>.
+        Questions? Reply to this email or reach Hugo directly at <a href="mailto:info@voltsolenergy.com" style="color:#F59E0B;">info@voltsolenergy.com</a>.
       </p>`;
 
   await getResend().emails.send({
@@ -153,7 +153,7 @@ export async function sendCancellationEmail(appt: AppointmentEmailDetails): Prom
         <a href="${SITE_URL}/book" style="display:inline-block;background:#F59E0B;color:#040D1C;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:15px;">Book a New Appointment</a>
       </div>
       <p style="margin:0;color:#475569;line-height:1.6;font-size:14px;">
-        Questions? Reply to this email or reach Hugo at <a href="mailto:hugo@voltsolenergy.com" style="color:#F59E0B;">hugo@voltsolenergy.com</a>.
+        Questions? Reply to this email or reach Hugo at <a href="mailto:info@voltsolenergy.com" style="color:#F59E0B;">info@voltsolenergy.com</a>.
       </p>`;
 
   await getResend().emails.send({

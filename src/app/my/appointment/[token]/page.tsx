@@ -228,8 +228,8 @@ export default function AppointmentDashboard({
               <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-blue-300">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
                 Text or call Hugo, or email{" "}
-                <a href="mailto:hugo@voltsolenergy.com" className="text-gold hover:underline">
-                  hugo@voltsolenergy.com
+                <a href="mailto:info@voltsolenergy.com" className="text-gold hover:underline">
+                  info@voltsolenergy.com
                 </a>
                 . Or cancel below and book a new time anytime.
               </p>

@@ -139,7 +139,7 @@ export async function POST(req: NextRequest) {
       sendAppointmentAlertEmail(emailDetails).then(subject =>
         sql`
           INSERT INTO communication_log (appointment_id, contact_id, type, to_email, subject)
-          VALUES (${appointment.id}, ${contactId}, 'appointment_alert', ${process.env.SALES_ALERT_EMAIL || 'hugo@voltsolenergy.com'}, ${subject})
+          VALUES (${appointment.id}, ${contactId}, 'appointment_alert', ${process.env.SALES_ALERT_EMAIL || 'info@voltsolenergy.com'}, ${subject})
         `
       ),
     ]).then(results => {

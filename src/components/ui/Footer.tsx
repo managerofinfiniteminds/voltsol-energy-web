@@ -33,10 +33,10 @@ export function Footer() {
               Clean energy, built to last.
             </p>
             <a
-              href="mailto:hugo@voltsolenergy.com"
+              href="mailto:info@voltsolenergy.com"
               className="mt-3 inline-block text-sm text-slate-400 transition-colors hover:text-white"
             >
-              hugo@voltsolenergy.com
+              info@voltsolenergy.com
             </a>
           </div>
 

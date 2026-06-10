@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 interface Contact {
   id: number;
@@ -159,11 +158,6 @@ export default function AdminDashboard() {
     fetch('/api/admin/campaigns').then(r => r.json()).then(setCampaigns);
   }
 
-  async function handleLogout() {
-    await fetch('/api/admin/logout', { method: 'POST' });
-    router.push('/admin/login');
-  }
-
   function buildExportUrl() {
     const params = new URLSearchParams();
     if (filterStatus) params.set('status', filterStatus);
@@ -176,26 +170,7 @@ export default function AdminDashboard() {
     new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
-      {/* Top nav */}
-      <header className="bg-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <div className="text-xl font-extrabold text-amber-400">VoltSol Leads</div>
-          <nav className="hidden sm:flex items-center gap-4 text-sm">
-            <span className="text-amber-400 font-semibold">Leads</span>
-            <Link href="/admin/dashboard" className="text-slate-400 hover:text-white transition">Analytics</Link>
-            <Link href="/admin/schedule" className="text-slate-400 hover:text-white transition">Schedule</Link>
-          </nav>
-        </div>
-        <button onClick={handleLogout} className="text-sm text-slate-400 hover:text-white transition">Sign Out</button>
-      </header>
-      {/* Mobile nav */}
-      <nav className="sm:hidden flex border-b border-slate-700 bg-slate-900">
-        <span className="flex-1 py-3 text-center text-sm text-amber-400 font-semibold border-b-2 border-amber-400">Leads</span>
-        <Link href="/admin/dashboard" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Analytics</Link>
-        <Link href="/admin/schedule" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Schedule</Link>
-      </nav>
-
+    <div className="text-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
         {/* Stats bar */}

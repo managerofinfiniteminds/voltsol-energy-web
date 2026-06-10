@@ -85,7 +85,7 @@ export default function BookingFlow() {
     const lastDay = new Date(viewYear, viewMonth + 1, 0).getDate();
     const to = toISODate(viewYear, viewMonth, lastDay);
     try {
-      const res = await fetch(`/api/slots?from=${from}&to=${to}`);
+      const res = await fetch(`/api/slots?from=${from}&to=${to}`, { cache: "no-store" });
       if (!res.ok) throw new Error("bad status");
       setSlots((await res.json()) as Slot[]);
     } catch {

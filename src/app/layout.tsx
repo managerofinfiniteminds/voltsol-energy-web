@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { displayFont, bodyFont } from "@/lib/fonts";
-import { Header } from "@/components/ui/Header";
-import { Footer } from "@/components/ui/Footer";
-import { StickyMobileCTA } from "@/components/ui/StickyMobileCTA";
+import { SiteHeader, SiteFooter } from "@/components/ui/SiteChrome";
 import "./globals.css";
 
 const siteUrl = "https://voltsolenergy.com";
@@ -74,12 +72,11 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Header />
+        <SiteHeader />
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <Footer />
-        <StickyMobileCTA />
+        <SiteFooter />
       </body>
     </html>
   );

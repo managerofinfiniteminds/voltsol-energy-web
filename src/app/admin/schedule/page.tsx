@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -289,12 +288,15 @@ export default function SchedulePage() {
 
   const monthParam = `${viewYear}-${pad(viewMonth + 1)}`;
 
-  const loadData = useCallback(async () => {
-    setLoading(true);
+  // silent=true refreshes data in place without blanking the UI —
+  // used after slot/appointment mutations so the calendar and open
+  // day panel update immediately.
+  const loadData = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true);
     setError('');
     const [slotsRes, apptsRes] = await Promise.all([
-      fetch(`/api/admin/slots?month=${monthParam}`),
-      fetch(`/api/admin/appointments?month=${monthParam}`),
+      fetch(`/api/admin/slots?month=${monthParam}`, { cache: 'no-store' }),
+      fetch(`/api/admin/appointments?month=${monthParam}`, { cache: 'no-store' }),
     ]);
     if (slotsRes.status === 401 || apptsRes.status === 401) {
       router.push('/admin/login');
@@ -350,7 +352,7 @@ export default function SchedulePage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
-    await loadData();
+    await loadData(true);
     setBusy(false);
   }
 
@@ -361,7 +363,7 @@ export default function SchedulePage() {
       const data = (await res.json()) as { error?: string };
       alert(data.error || 'Failed to delete slot.');
     }
-    await loadData();
+    await loadData(true);
     setBusy(false);
   }
 
@@ -372,13 +374,8 @@ export default function SchedulePage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status }),
     });
-    await loadData();
+    await loadData(true);
     setBusy(false);
-  }
-
-  async function handleLogout() {
-    await fetch('/api/admin/logout', { method: 'POST' });
-    router.push('/admin/login');
   }
 
   // Calendar grid math
@@ -393,27 +390,7 @@ export default function SchedulePage() {
   const dayAppts = selectedDate ? (apptsByDate.get(selectedDate) ?? []) : [];
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
-      {/* Header */}
-      <header className="bg-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <div className="text-xl font-extrabold text-amber-400">VoltSol Schedule</div>
-          <nav className="hidden sm:flex items-center gap-4 text-sm">
-            <Link href="/admin" className="text-slate-400 hover:text-white transition">Leads</Link>
-            <Link href="/admin/dashboard" className="text-slate-400 hover:text-white transition">Dashboard</Link>
-            <span className="text-amber-400 font-semibold">Schedule</span>
-          </nav>
-        </div>
-        <button onClick={handleLogout} className="text-sm text-slate-400 hover:text-white transition">Sign Out</button>
-      </header>
-
-      {/* Mobile nav */}
-      <nav className="sm:hidden flex border-b border-slate-700 bg-slate-900">
-        <Link href="/admin" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Leads</Link>
-        <Link href="/admin/dashboard" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Dashboard</Link>
-        <span className="flex-1 py-3 text-center text-sm text-amber-400 font-semibold border-b-2 border-amber-400">Schedule</span>
-      </nav>
-
+    <div className="text-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
         {/* Toolbar */}
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -434,7 +411,7 @@ export default function SchedulePage() {
               &rarr;
             </button>
           </div>
-          <AddWeekForm onCreated={loadData} />
+          <AddWeekForm onCreated={() => loadData(true)} />
         </div>
 
         {error && (
@@ -543,7 +520,7 @@ export default function SchedulePage() {
                       ))}
                     </div>
                     <div className="mt-3">
-                      <AddSlotForm date={selectedDate} onCreated={loadData} />
+                      <AddSlotForm date={selectedDate} onCreated={() => loadData(true)} />
                     </div>
                   </div>
 

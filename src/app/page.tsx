@@ -33,13 +33,21 @@ export default function HomePage() {
     <>
       <PageTracker />
       {/* ========== 1. HERO ========== */}
-      <Section className="hero-bg relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">
-        {/* Decorative layer: solar rays + rings */}
+      <Section className="relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">
+        {/* Hero background image */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="solar-rays absolute inset-x-0 top-0 h-[480px]" />
-          <div className="absolute -left-32 top-24 h-96 w-96 rounded-full border border-blue-400/10" />
-          <div className="absolute -right-40 -top-24 h-[480px] w-[480px] rounded-full border-2 border-blue-500/10" />
-          <div className="absolute right-1/4 top-1/2 h-72 w-72 rounded-full bg-blue-700/5 blur-3xl" />
+          <Image
+            src="/images/hero-sunset.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            quality={90}
+          />
+          {/* Dark gradient overlay — top heavy so text reads, fades to transparent at bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/70 to-navy/95" />
+          {/* Subtle warm rim on the right to let the sun glow bleed through */}
+          <div className="absolute inset-0 bg-gradient-to-l from-amber-900/20 to-transparent" />
         </div>
         <Container className="relative">
           <Reveal immediate>

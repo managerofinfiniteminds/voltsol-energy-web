@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Container } from "./Container";
 
 const footerLinks = [
@@ -11,19 +12,19 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-navy py-12 sm:py-16">
+    <footer className="border-t border-blue-900/40 bg-navy py-12 sm:py-16">
       <Container>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
-            <a
-              href="/"
-              className="font-display text-xl font-bold text-white"
-            >
-              <span className="text-gold" aria-hidden="true">
-                &#9889;
-              </span>{" "}
-              VoltSol Energy
+            <a href="/" className="inline-block" aria-label="VoltSol Energy — Home">
+              <Image
+                src="/images/voltsol-logo-horizontal.svg"
+                alt="VoltSol Energy"
+                width={175}
+                height={30}
+                className="h-7 w-auto"
+              />
             </a>
             <p className="mt-3 text-sm leading-relaxed text-slate-400">
               Clean energy, built to last.
@@ -50,7 +51,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
+        <div className="mt-10 flex flex-col items-center gap-2 border-t border-blue-900/40 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
           <span>&copy; 2026 VoltSol Energy, LLC. All rights reserved.</span>
           <span>CSLB License #TBD &middot; Northern California</span>
         </div>

@@ -52,10 +52,10 @@ function MobileFlow({ animated }: { animated: boolean }) {
       </defs>
 
       {/* Connection lines */}
-      <path d={sunToPanels} stroke="#334155" strokeWidth="2" fill="none" />
-      <path d={panelsToInverter} stroke="#334155" strokeWidth="2" fill="none" />
-      <path d={inverterToBattery} stroke="#334155" strokeWidth="2" fill="none" />
-      <path d={inverterToHome} stroke="#334155" strokeWidth="2" fill="none" />
+      <path d={sunToPanels} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
+      <path d={panelsToInverter} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
+      <path d={inverterToBattery} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
+      <path d={inverterToHome} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
 
       {/* Sun */}
       <circle cx="150" cy="35" r="22" fill="#D97706" opacity="0.2" />
@@ -65,13 +65,13 @@ function MobileFlow({ animated }: { animated: boolean }) {
       </text>
 
       {/* Panels */}
-      <rect x="110" y="120" width="80" height="50" rx="6" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="110" y="120" width="80" height="50" rx="6" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="150" y="148" textAnchor="middle" className="fill-ink font-display text-[11px] font-semibold">
         Solar Panels
       </text>
 
       {/* Inverter */}
-      <rect x="100" y="235" width="100" height="50" rx="6" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="100" y="235" width="100" height="50" rx="6" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="150" y="257" textAnchor="middle" className="fill-gold-400 font-display text-[10px] font-bold">
         EG4
       </text>
@@ -80,7 +80,7 @@ function MobileFlow({ animated }: { animated: boolean }) {
       </text>
 
       {/* Battery */}
-      <rect x="35" y="350" width="90" height="50" rx="6" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="35" y="350" width="90" height="50" rx="6" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="80" y="372" textAnchor="middle" className="fill-gold-400 font-display text-[10px] font-bold">
         EG4
       </text>
@@ -89,7 +89,7 @@ function MobileFlow({ animated }: { animated: boolean }) {
       </text>
 
       {/* Home */}
-      <rect x="175" y="350" width="90" height="50" rx="6" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="175" y="350" width="90" height="50" rx="6" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="220" y="372" textAnchor="middle" className="fill-ink font-display text-[10px] font-semibold">
         Home +
       </text>
@@ -142,10 +142,10 @@ function DesktopFlow({ animated }: { animated: boolean }) {
       </defs>
 
       {/* Connection lines */}
-      <path d={sunToPanels} stroke="#334155" strokeWidth="2" fill="none" />
-      <path d={panelsToInverter} stroke="#334155" strokeWidth="2" fill="none" />
-      <path d={inverterToBattery} stroke="#334155" strokeWidth="2" fill="none" />
-      <path d={inverterToHome} stroke="#334155" strokeWidth="2" fill="none" />
+      <path d={sunToPanels} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
+      <path d={panelsToInverter} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
+      <path d={inverterToBattery} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
+      <path d={inverterToHome} stroke="#1D4ED8" strokeOpacity="0.55" strokeWidth="2" fill="none" />
 
       {/* Sun */}
       <circle cx="60" cy="150" r="30" fill="#D97706" opacity="0.2" />
@@ -155,13 +155,13 @@ function DesktopFlow({ animated }: { animated: boolean }) {
       </text>
 
       {/* Panels */}
-      <rect x="190" y="120" width="120" height="60" rx="8" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="190" y="120" width="120" height="60" rx="8" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="250" y="155" textAnchor="middle" className="fill-ink font-display text-[13px] font-semibold">
         Solar Panels
       </text>
 
       {/* Inverter */}
-      <rect x="390" y="115" width="120" height="70" rx="8" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="390" y="115" width="120" height="70" rx="8" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="450" y="145" textAnchor="middle" className="fill-gold-400 font-display text-[12px] font-bold">
         EG4
       </text>
@@ -170,7 +170,7 @@ function DesktopFlow({ animated }: { animated: boolean }) {
       </text>
 
       {/* Battery */}
-      <rect x="580" y="55" width="140" height="60" rx="8" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="580" y="55" width="140" height="60" rx="8" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="650" y="82" textAnchor="middle" className="fill-gold-400 font-display text-[12px] font-bold">
         EG4 Battery
       </text>
@@ -179,7 +179,7 @@ function DesktopFlow({ animated }: { animated: boolean }) {
       </text>
 
       {/* Home */}
-      <rect x="580" y="185" width="140" height="60" rx="8" fill="#1E293B" stroke="#F59E0B" strokeWidth="1.5" />
+      <rect x="580" y="185" width="140" height="60" rx="8" fill="#0C2040" stroke="#F59E0B" strokeWidth="1.5" />
       <text x="650" y="212" textAnchor="middle" className="fill-ink font-display text-[12px] font-semibold">
         Home +
       </text>

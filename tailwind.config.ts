@@ -14,10 +14,12 @@ const config: Config = {
       },
       colors: {
         navy: {
-          DEFAULT: "#0F172A",
-          900: "#0F172A",
-          800: "#1E293B",
-          700: "#334155",
+          DEFAULT: "#040D1C", // deepest bg
+          900: "#040D1C",
+          800: "#071628", // section alt bg
+          700: "#0C2040", // card bg
+          600: "#0F2D5A", // card border area
+          500: "#1D4ED8", // electric blue accent
         },
         gold: {
           DEFAULT: "#F59E0B",
@@ -25,9 +27,28 @@ const config: Config = {
           400: "#FBBF24",
           600: "#D97706",
         },
+        amber: {
+          DEFAULT: "#F97316", // from logo top-left
+          300: "#FCD34D",
+          400: "#FB923C",
+          500: "#F59E0B",
+          700: "#B45309",
+          800: "#92400E",
+          900: "#78350F",
+          950: "#451A03",
+        },
+        blue: {
+          DEFAULT: "#2563EB", // royal blue
+          100: "#DBEAFE",
+          300: "#93C5FD", // light blue
+          400: "#60A5FA", // sky blue
+          500: "#3B82F6",
+          700: "#1D4ED8",
+          900: "#1E3A8A", // deep navy blue (from logo)
+        },
         // Semantic tokens
-        bg: "#0F172A",
-        surface: "#1E293B",
+        bg: "#040D1C",
+        surface: "#071628",
         ink: "#F8FAFC",
         muted: "#94A3B8",
         accent: "#F59E0B",

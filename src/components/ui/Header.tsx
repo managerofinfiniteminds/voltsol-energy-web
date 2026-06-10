@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Container } from "./Container";
 import { Button } from "./Button";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "How It Works", href: "#how" },
@@ -16,17 +16,18 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-t-2 border-t-gold/60 border-b border-b-blue-900/50 bg-navy/80 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between sm:h-20">
         {/* Logo */}
-        <a
-          href="/"
-          className="flex items-center gap-2 font-display text-xl font-bold tracking-tight text-white sm:text-2xl"
-        >
-          <span className="text-gold" aria-hidden="true">
-            &#9889;
-          </span>
-          VoltSol Energy
+        <a href="/" className="flex items-center" aria-label="VoltSol Energy — Home">
+          <Image
+            src="/images/voltsol-logo-horizontal.svg"
+            alt="VoltSol Energy"
+            width={175}
+            height={30}
+            priority
+            className="h-7 w-auto sm:h-8"
+          />
         </a>
 
         {/* Desktop nav */}
@@ -38,7 +39,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
+              className="nav-link text-sm font-medium text-slate-300 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -62,7 +63,7 @@ export function Header() {
       {/* Mobile menu */}
       {open && (
         <nav
-          className="border-t border-white/10 bg-navy md:hidden"
+          className="border-t border-blue-900/50 bg-navy/95 backdrop-blur-md md:hidden"
           aria-label="Mobile navigation"
         >
           <Container className="flex flex-col gap-4 py-6">

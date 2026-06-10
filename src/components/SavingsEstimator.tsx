@@ -133,7 +133,7 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
             See your{' '}
             <span className="text-gold">real numbers.</span>
           </h2>
-          <p className="mt-3 text-slate-400 text-lg">
+          <p className="mt-3 text-blue-300 text-lg">
             Drag to your current monthly PG&amp;E bill.
           </p>
         </div>
@@ -141,11 +141,11 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
         {/* Slider */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-slate-400">$50/mo</span>
+            <span className="text-sm text-blue-300">$50/mo</span>
             <span className="font-display text-2xl font-bold text-white">
-              ${bill}<span className="text-lg text-slate-400">/mo</span>
+              ${bill}<span className="text-lg text-blue-300">/mo</span>
             </span>
-            <span className="text-sm text-slate-400">$600/mo</span>
+            <span className="text-sm text-blue-300">$600/mo</span>
           </div>
           <input
             type="range"
@@ -156,7 +156,7 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
             onChange={handleSlider}
             aria-label="Monthly PG&E bill amount"
             className="w-full h-3 appearance-none rounded-full cursor-pointer
-              bg-slate-700
+              bg-navy-600
               [&::-webkit-slider-thumb]:appearance-none
               [&::-webkit-slider-thumb]:w-6
               [&::-webkit-slider-thumb]:h-6
@@ -172,7 +172,7 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
               [&::-moz-range-thumb]:cursor-pointer
             "
             style={{
-              background: `linear-gradient(to right, #F5B800 0%, #F5B800 ${((bill - 50) / 550) * 100}%, #334155 ${((bill - 50) / 550) * 100}%, #334155 100%)`,
+              background: `linear-gradient(to right, #F59E0B 0%, #F59E0B ${((bill - 50) / 550) * 100}%, #0F2D5A ${((bill - 50) / 550) * 100}%, #0F2D5A 100%)`,
             }}
           />
         </div>
@@ -193,14 +193,14 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
             <p className="font-display text-2xl sm:text-3xl font-bold text-gold">
               Under $10k
             </p>
-            <p className="text-xs text-slate-500 mt-0.5">one-time</p>
+            <p className="text-xs text-blue-300/60 mt-0.5">one-time</p>
           </div>
 
           {/* 25-yr PGE total */}
           <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-5 text-center">
             <p className="text-xs uppercase tracking-wider text-red-400 mb-1">
               25-yr PG&amp;E total
-              <span className="block text-slate-500 normal-case tracking-normal mt-0.5">
+              <span className="block text-blue-300/60 normal-case tracking-normal mt-0.5">
                 w/ ~6%/yr rate increases
               </span>
             </p>
@@ -215,13 +215,13 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
             <p className="font-display text-2xl sm:text-3xl font-bold text-emerald-300 tabular-nums">
               ${animatedSavings.toLocaleString()}
             </p>
-            <p className="text-xs text-slate-500 mt-0.5">over 25 years</p>
+            <p className="text-xs text-blue-300/60 mt-0.5">over 25 years</p>
           </div>
         </div>
 
         {/* Payback + CTA */}
         <div className="text-center">
-          <p className="text-slate-300 text-lg mb-6">
+          <p className="text-blue-100 text-lg mb-6">
             At ${bill}/mo, your system could pay for itself in{' '}
             <span className="font-bold text-white">{payback} year{payback !== 1 ? 's' : ''}</span>
             &nbsp;&mdash; then the power is free.
@@ -229,12 +229,12 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
 
           <button
             onClick={handleCta}
-            className="inline-flex items-center gap-2 bg-gold hover:bg-amber-300 text-navy font-bold text-lg px-8 py-4 rounded-xl transition-colors duration-200 shadow-lg shadow-gold/20"
+            className="cta-glow inline-flex items-center gap-2 bg-gold hover:bg-gold-400 text-navy font-bold text-lg px-8 py-4 rounded-xl transition-colors duration-200"
           >
             Get my exact number
           </button>
 
-          <p className="mt-4 text-xs text-slate-500">
+          <p className="mt-4 text-xs text-blue-300/60">
             *Estimate based on ${SYSTEM_COST.toLocaleString()} system cost and {(PGE_ANNUAL_INCREASE * 100).toFixed(0)}%/yr PG&amp;E average increase.
             {' '}Exact pricing confirmed in your free quote.
           </p>

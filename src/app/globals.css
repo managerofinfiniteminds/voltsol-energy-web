@@ -4,12 +4,18 @@
 
 @layer base {
   :root {
-    --navy: #0F172A;
-    --navy-800: #1E293B;
-    --navy-700: #334155;
+    --navy: #040D1C;
+    --navy-800: #071628;
+    --navy-700: #0C2040;
+    --navy-600: #0F2D5A;
+    --navy-500: #1D4ED8;
     --gold: #F59E0B;
     --gold-400: #FBBF24;
     --gold-600: #D97706;
+    --amber: #F97316;
+    --blue: #2563EB;
+    --blue-400: #60A5FA;
+    --blue-900: #1E3A8A;
   }
 
   html {
@@ -32,9 +38,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+
   ::selection {
     background-color: #F59E0B;
-    color: #0F172A;
+    color: #040D1C;
   }
 
   :focus-visible {
@@ -64,19 +79,19 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1E293B;
+  background: #071628;
 }
 ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #0F2D5A;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #1D4ED8;
 }
 
 /* Select option styling */
 select option {
-  background: #1E293B;
+  background: #0C2040;
   color: #ffffff;
 }
 
@@ -88,6 +103,102 @@ select option {
 }
 .faq-item[open] .faq-content {
   max-height: 24rem;
+}
+.faq-item[open] {
+  border-left: 4px solid rgba(245, 158, 11, 0.3);
+  background: linear-gradient(135deg, #0C2040 0%, #071628 100%);
+}
+
+/* ─── Decorative graphic elements ─────────────────────────────────────── */
+
+/* Hero: dark radial gradient + diagonal grid pattern */
+.hero-bg {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(96, 165, 250, 0.04) 0px,
+      rgba(96, 165, 250, 0.04) 1px,
+      transparent 1px,
+      transparent 32px
+    ),
+    radial-gradient(ellipse at 50% 0%, #0C2040 0%, #071628 40%, #040D1C 100%);
+}
+
+/* Solar rays emanating from top of hero */
+.solar-rays {
+  background: repeating-conic-gradient(
+    from 168deg at 50% -10%,
+    rgba(251, 191, 36, 0.08) 0deg 1.5deg,
+    transparent 1.5deg 12deg
+  );
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+}
+
+/* Stats strip: subtle solar-panel grid texture */
+.solar-grid-texture {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(96, 165, 250, 0.05) 0px,
+      rgba(96, 165, 250, 0.05) 1px,
+      transparent 1px,
+      transparent 56px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(96, 165, 250, 0.05) 0px,
+      rgba(96, 165, 250, 0.05) 1px,
+      transparent 1px,
+      transparent 56px
+    );
+}
+
+/* Service area pills: gold-to-blue gradient border */
+.gradient-pill {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#0C2040, #0C2040) padding-box,
+    linear-gradient(to right, #3B82F6, #FBBF24) border-box;
+}
+
+/* Technology cards: electric blue glow on hover */
+.tech-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.tech-card:hover {
+  box-shadow: 0 0 32px rgba(37, 99, 235, 0.25);
+}
+
+/* The Number: glow halo behind the price */
+.number-glow {
+  text-shadow: 0 0 48px rgba(245, 158, 11, 0.35);
+}
+
+/* Primary CTA shimmer/glow */
+.cta-glow {
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.cta-glow:hover {
+  box-shadow: 0 0 36px rgba(251, 191, 36, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Header nav links: animated underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(to right, #FBBF24, #60A5FA);
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Animation delay utilities for Reveal component */

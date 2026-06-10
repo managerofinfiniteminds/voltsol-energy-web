@@ -236,17 +236,17 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
       {/* Progress bar */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-slate-300">
+          <span className="text-sm font-medium text-blue-100">
             Step {step} of {TOTAL_STEPS}
           </span>
-          <span className="text-sm text-slate-500">
+          <span className="text-sm text-blue-300/60">
             {step === 1 && 'Home ownership'}
             {step === 2 && 'Monthly bill'}
             {step === 3 && 'Your address'}
             {step === 4 && 'Contact info'}
           </span>
         </div>
-        <div className="h-1.5 rounded-full bg-slate-700 overflow-hidden" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
+        <div className="h-1.5 rounded-full bg-navy-600 overflow-hidden" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={TOTAL_STEPS}>
           <div
             className="h-full rounded-full bg-gold transition-all duration-300"
             style={{ width: `${progress}%` }}
@@ -286,7 +286,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       'w-full flex items-center gap-4 p-5 rounded-xl border-2 text-left transition-all duration-150',
                       form.owns_home === opt.value
                         ? 'border-gold bg-gold/10 text-white'
-                        : 'border-slate-600 bg-slate-800/50 text-slate-300 hover:border-slate-400 hover:bg-slate-700/50'
+                        : 'border-blue-900 bg-navy-700/50 text-blue-100 hover:border-blue-400 hover:bg-navy-600/50'
                     )}
                   >
                     <span className="text-2xl" aria-hidden="true">{opt.icon}</span>
@@ -309,7 +309,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
               <legend className="text-xl font-bold text-white mb-2">
                 What&apos;s your average monthly PG&amp;E bill?
               </legend>
-              <p className="text-slate-400 text-sm mb-6">This helps us size your system correctly.</p>
+              <p className="text-blue-300 text-sm mb-6">This helps us size your system correctly.</p>
               <div className="grid grid-cols-2 gap-3" role="group" aria-label="Monthly bill options">
                 {MONTHLY_BILL_OPTIONS.map(opt => (
                   <button
@@ -321,11 +321,11 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       'flex flex-col items-center justify-center p-5 rounded-xl border-2 text-center transition-all duration-150',
                       form.monthly_bill === opt.value
                         ? 'border-gold bg-gold/10 text-white'
-                        : 'border-slate-600 bg-slate-800/50 text-slate-300 hover:border-slate-400 hover:bg-slate-700/50'
+                        : 'border-blue-900 bg-navy-700/50 text-blue-100 hover:border-blue-400 hover:bg-navy-600/50'
                     )}
                   >
                     <span className="font-bold text-xl leading-tight">{opt.label}</span>
-                    <span className="text-xs text-slate-400 mt-1">{opt.sub}</span>
+                    <span className="text-xs text-blue-300 mt-1">{opt.sub}</span>
                     {form.monthly_bill === opt.value && (
                       <span className="mt-2 text-gold text-sm" aria-hidden="true">✓ Selected</span>
                     )}
@@ -342,10 +342,10 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
           {step === 3 && (
             <div>
               <h3 className="text-xl font-bold text-white mb-2">What&apos;s your address?</h3>
-              <p className="text-slate-400 text-sm mb-6">We&apos;ll use this to check sun exposure and local incentives.</p>
+              <p className="text-blue-300 text-sm mb-6">We&apos;ll use this to check sun exposure and local incentives.</p>
               <div className="space-y-4">
                 <div>
-                  <label htmlFor="street_address" className="block text-sm font-medium text-slate-300 mb-1">
+                  <label htmlFor="street_address" className="block text-sm font-medium text-blue-100 mb-1">
                     Street Address <span className="text-gold">*</span>
                   </label>
                   <input
@@ -357,8 +357,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     placeholder="123 Main St"
                     autoComplete="street-address"
                     className={cn(
-                      'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                      errors.street_address ? 'border-red-500' : 'border-slate-600'
+                      'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                      errors.street_address ? 'border-red-500' : 'border-blue-900'
                     )}
                   />
                   {errors.street_address && (
@@ -367,7 +367,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                 </div>
 
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-slate-300 mb-1">
+                  <label htmlFor="city" className="block text-sm font-medium text-blue-100 mb-1">
                     City <span className="text-gold">*</span>
                   </label>
                   <input
@@ -379,8 +379,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     placeholder="Sacramento"
                     autoComplete="address-level2"
                     className={cn(
-                      'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                      errors.city ? 'border-red-500' : 'border-slate-600'
+                      'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                      errors.city ? 'border-red-500' : 'border-blue-900'
                     )}
                   />
                   {errors.city && (
@@ -390,7 +390,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="state" className="block text-sm font-medium text-slate-300 mb-1">
+                    <label htmlFor="state" className="block text-sm font-medium text-blue-100 mb-1">
                       State <span className="text-gold">*</span>
                     </label>
                     <input
@@ -403,8 +403,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       maxLength={2}
                       autoComplete="address-level1"
                       className={cn(
-                        'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base uppercase',
-                        errors.state ? 'border-red-500' : 'border-slate-600'
+                        'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base uppercase',
+                        errors.state ? 'border-red-500' : 'border-blue-900'
                       )}
                     />
                     {errors.state && (
@@ -412,7 +412,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     )}
                   </div>
                   <div>
-                    <label htmlFor="zip" className="block text-sm font-medium text-slate-300 mb-1">
+                    <label htmlFor="zip" className="block text-sm font-medium text-blue-100 mb-1">
                       ZIP <span className="text-gold">*</span>
                     </label>
                     <input
@@ -426,8 +426,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       inputMode="numeric"
                       autoComplete="postal-code"
                       className={cn(
-                        'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                        errors.zip ? 'border-red-500' : 'border-slate-600'
+                        'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                        errors.zip ? 'border-red-500' : 'border-blue-900'
                       )}
                     />
                     {errors.zip && (
@@ -443,11 +443,11 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
           {step === 4 && (
             <div>
               <h3 className="text-xl font-bold text-white mb-2">How do we reach you?</h3>
-              <p className="text-slate-400 text-sm mb-6">Your info is never sold. We&apos;ll reach out within 24 hours.</p>
+              <p className="text-blue-300 text-sm mb-6">Your info is never sold. We&apos;ll reach out within 24 hours.</p>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="first_name" className="block text-sm font-medium text-slate-300 mb-1">
+                    <label htmlFor="first_name" className="block text-sm font-medium text-blue-100 mb-1">
                       First Name <span className="text-gold">*</span>
                     </label>
                     <input
@@ -459,8 +459,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       placeholder="Jane"
                       autoComplete="given-name"
                       className={cn(
-                        'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                        errors.first_name ? 'border-red-500' : 'border-slate-600'
+                        'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                        errors.first_name ? 'border-red-500' : 'border-blue-900'
                       )}
                     />
                     {errors.first_name && (
@@ -468,7 +468,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     )}
                   </div>
                   <div>
-                    <label htmlFor="last_name" className="block text-sm font-medium text-slate-300 mb-1">
+                    <label htmlFor="last_name" className="block text-sm font-medium text-blue-100 mb-1">
                       Last Name <span className="text-gold">*</span>
                     </label>
                     <input
@@ -480,8 +480,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       placeholder="Smith"
                       autoComplete="family-name"
                       className={cn(
-                        'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                        errors.last_name ? 'border-red-500' : 'border-slate-600'
+                        'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                        errors.last_name ? 'border-red-500' : 'border-blue-900'
                       )}
                     />
                     {errors.last_name && (
@@ -491,7 +491,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-blue-100 mb-1">
                     Email <span className="text-gold">*</span>
                   </label>
                   <input
@@ -504,8 +504,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     autoComplete="email"
                     inputMode="email"
                     className={cn(
-                      'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                      errors.email ? 'border-red-500' : 'border-slate-600'
+                      'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                      errors.email ? 'border-red-500' : 'border-blue-900'
                     )}
                   />
                   {errors.email && (
@@ -514,7 +514,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-1">
+                  <label htmlFor="phone" className="block text-sm font-medium text-blue-100 mb-1">
                     Phone <span className="text-gold">*</span>
                   </label>
                   <input
@@ -527,8 +527,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     autoComplete="tel"
                     inputMode="tel"
                     className={cn(
-                      'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                      errors.phone ? 'border-red-500' : 'border-slate-600'
+                      'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                      errors.phone ? 'border-red-500' : 'border-blue-900'
                     )}
                   />
                   {errors.phone && (
@@ -537,7 +537,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                 </div>
 
                 <div>
-                  <label htmlFor="best_contact_time" className="block text-sm font-medium text-slate-300 mb-1">
+                  <label htmlFor="best_contact_time" className="block text-sm font-medium text-blue-100 mb-1">
                     Best time to reach you <span className="text-gold">*</span>
                   </label>
                   <select
@@ -546,9 +546,9 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     value={form.best_contact_time}
                     onChange={handleChange}
                     className={cn(
-                      'w-full bg-slate-800 border rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-                      errors.best_contact_time ? 'border-red-500' : 'border-slate-600',
-                      !form.best_contact_time ? 'text-slate-500' : ''
+                      'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                      errors.best_contact_time ? 'border-red-500' : 'border-blue-900',
+                      !form.best_contact_time ? 'text-blue-300/60' : ''
                     )}
                   >
                     <option value="" disabled>Select a time...</option>
@@ -562,8 +562,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                 </div>
 
                 <div>
-                  <label htmlFor="notes" className="block text-sm font-medium text-slate-300 mb-1">
-                    Additional notes <span className="text-slate-500 font-normal">(optional)</span>
+                  <label htmlFor="notes" className="block text-sm font-medium text-blue-100 mb-1">
+                    Additional notes <span className="text-blue-300/60 font-normal">(optional)</span>
                   </label>
                   <textarea
                     id="notes"
@@ -572,7 +572,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     onChange={handleChange}
                     rows={2}
                     placeholder="Anything else you'd like us to know?"
-                    className="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold transition resize-none text-base"
+                    className="w-full bg-navy-700 border border-blue-900 rounded-xl px-4 py-3 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition resize-none text-base"
                   />
                 </div>
               </div>
@@ -592,7 +592,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
               <button
                 type="button"
                 onClick={handleBack}
-                className="px-6 py-3 rounded-xl border border-slate-600 text-slate-300 hover:border-slate-400 hover:text-white transition font-medium"
+                className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium"
               >
                 Back
               </button>
@@ -602,7 +602,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
               <button
                 type="button"
                 onClick={handleNext}
-                className="flex-1 bg-gold hover:bg-amber-300 text-navy font-bold text-lg py-4 rounded-xl transition-colors duration-200 shadow-lg"
+                className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors duration-200"
               >
                 Continue
               </button>
@@ -610,7 +610,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
               <button
                 type="submit"
                 disabled={submitting}
-                className="flex-1 bg-gold hover:bg-amber-300 disabled:bg-amber-800 disabled:cursor-not-allowed text-navy font-bold text-lg py-4 rounded-xl transition-colors duration-200 shadow-lg"
+                className="cta-glow flex-1 bg-gold hover:bg-gold-400 disabled:bg-gold-600/50 disabled:cursor-not-allowed text-navy font-bold text-lg py-4 rounded-xl transition-colors duration-200"
               >
                 {submitting ? (
                   <span className="flex items-center justify-center gap-2">
@@ -630,10 +630,10 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
       </div>
 
       {/* Privacy note */}
-      <p className="mt-4 text-xs text-slate-500 text-center leading-relaxed">
+      <p className="mt-4 text-xs text-blue-300/60 text-center leading-relaxed">
         By submitting, you agree to be contacted about solar services and accept
         our{' '}
-        <a href="/privacy" className="text-slate-400 hover:text-gold underline">Privacy Policy</a>.
+        <a href="/privacy" className="text-blue-300 hover:text-gold underline">Privacy Policy</a>.
         VoltSol Energy will never sell your information.
       </p>
     </div>

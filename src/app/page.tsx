@@ -29,18 +29,27 @@ export default function HomePage() {
     <>
       <PageTracker />
       {/* ========== 1. HERO ========== */}
-      <Section className="relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">
-        <Container>
+      <Section className="hero-bg relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">
+        {/* Decorative layer: solar rays + rings */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="solar-rays absolute inset-x-0 top-0 h-[480px]" />
+          <div className="absolute -left-32 top-24 h-96 w-96 rounded-full border border-blue-400/10" />
+          <div className="absolute -right-40 -top-24 h-[480px] w-[480px] rounded-full border-2 border-blue-500/10" />
+          <div className="absolute right-1/4 top-1/2 h-72 w-72 rounded-full bg-blue-700/5 blur-3xl" />
+        </div>
+        <Container className="relative">
           <Reveal immediate>
             <h1 className="font-display text-4xl font-bold uppercase leading-[1.1] tracking-tight sm:text-5xl lg:text-7xl">
               The sun doesn&rsquo;t
               <br />
-              <span className="text-gold">send a bill.</span>
+              <span className="bg-gradient-to-r from-amber-400 to-gold bg-clip-text text-transparent">
+                send a bill.
+              </span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.1} immediate>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100 sm:text-xl">
               How Northern California families are cutting the cord on PG&amp;E
               &mdash; for less than the cost of a used car.
             </p>
@@ -71,7 +80,7 @@ export default function HomePage() {
 
           {/* Trust strip */}
           <Reveal delay={0.4} immediate>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-slate-400 sm:text-sm">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300 sm:text-sm">
               <span>Licensed</span>
               <span aria-hidden="true" className="text-gold/40">&middot;</span>
               <span>Local</span>
@@ -84,10 +93,16 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      {/* Gradient separator: hero → social proof */}
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
       {/* ========== 1a. SOCIAL PROOF BAR ========== */}
-      <div className="border-y border-white/5 bg-navy-800/60 py-6">
+      <div className="bg-navy-800/60 py-6">
         <Container>
-          <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
+          <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-blue-300/60">
             Built with technology from
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
@@ -100,7 +115,7 @@ export default function HomePage() {
             ].map(({ icon: Icon, label }) => (
               <span
                 key={label}
-                className="flex items-center gap-2 text-sm font-medium text-slate-400"
+                className="flex items-center gap-2 text-sm font-medium text-blue-300"
               >
                 <Icon className="h-4 w-4 text-gold/60" aria-hidden="true" />
                 {label}
@@ -111,8 +126,13 @@ export default function HomePage() {
       </div>
 
       {/* ========== 1b. STATS STRIP ========== */}
-      <section className="border-y border-gold/15 bg-navy-900 py-10 sm:py-12">
+      <section className="solar-grid-texture border-y border-gold/15 bg-navy py-10 sm:py-12">
         <Container>
+          <div className="mb-6 flex items-center justify-center gap-3" aria-hidden="true">
+            <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold/40" />
+            <Zap className="h-4 w-4 text-gold/60" />
+            <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold/40" />
+          </div>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             <StatCounter value={8000} suffix="+" label="Battery Cycles" />
             <StatCounter value={10} suffix="-Year" label="Warranty" />
@@ -128,7 +148,7 @@ export default function HomePage() {
           <Reveal>
             <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               Your power bill keeps climbing.{" "}
-              <span className="text-slate-400">
+              <span className="text-blue-300">
                 And &ldquo;normal solar&rdquo; ties you right back to the grid.
               </span>
             </h2>
@@ -140,7 +160,7 @@ export default function HomePage() {
                 <h3 className="font-display text-lg font-bold text-red-400">
                   PG&amp;E Forever
                 </h3>
-                <ul className="mt-4 space-y-3 text-slate-300">
+                <ul className="mt-4 space-y-3 text-blue-100">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-red-400" aria-hidden="true">&times;</span>
                     Rates only go up &mdash; year after year
@@ -158,11 +178,11 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="rounded-xl border border-amber-500/20 bg-amber-950/10 p-6 lg:p-8">
+              <div className="rounded-xl border border-amber/20 bg-amber/5 p-6 lg:p-8">
                 <h3 className="font-display text-lg font-bold text-amber-400">
                   Typical Solar
                 </h3>
-                <ul className="mt-4 space-y-3 text-slate-300">
+                <ul className="mt-4 space-y-3 text-blue-100">
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-amber-400" aria-hidden="true">&times;</span>
                     $40k loan before you flip a switch
@@ -184,7 +204,7 @@ export default function HomePage() {
                 <h3 className="font-display text-lg font-bold text-gold">
                   VoltSol Energy
                 </h3>
-                <ul className="mt-4 space-y-3 text-slate-300">
+                <ul className="mt-4 space-y-3 text-blue-100">
                   <li className="flex items-start gap-2">
                     <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
                     Under $10,000 total
@@ -214,6 +234,11 @@ export default function HomePage() {
           </Reveal>
         </Container>
       </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
 
       {/* ========== 3. HOW IT WORKS ========== */}
       <Section id="how">
@@ -257,13 +282,18 @@ export default function HomePage() {
                   <h3 className="mt-2 font-display text-xl font-bold">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-slate-400">{item.desc}</p>
+                  <p className="mt-2 text-blue-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
         </Container>
       </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
 
       {/* ========== 4. THE TECHNOLOGY ========== */}
       <Section alt id="systems">
@@ -280,7 +310,7 @@ export default function HomePage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* EG4 Hybrid Inverter */}
             <Reveal delay={0.1}>
-              <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6">
+              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-blue-400/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6">
                 <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-white/95 p-4">
                   <Image
                     src="/images/eg4-flexboss18.webp"
@@ -293,10 +323,10 @@ export default function HomePage() {
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
                   EG4 Hybrid Inverter
                 </h3>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-blue-300">
                   FlexBOSS18 &mdash; the brain of the system.
                 </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
+                <ul className="mt-4 space-y-2 text-sm text-blue-100">
                   <li>13kW continuous, up to 18kW solar input</li>
                   <li>10kW battery output</li>
                   <li>EMP-hardened, 10-year warranty</li>
@@ -307,7 +337,7 @@ export default function HomePage() {
 
             {/* EG4 WallMount Battery */}
             <Reveal delay={0.2}>
-              <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6">
+              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-gold/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6">
                 <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-white/95 p-4">
                   <Image
                     src="/images/eg4-wallmount-battery.webp"
@@ -320,10 +350,10 @@ export default function HomePage() {
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
                   EG4 WallMount Battery
                 </h3>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-blue-300">
                   Store the sun.
                 </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
+                <ul className="mt-4 space-y-2 text-sm text-blue-100">
                   <li>14.3 kWh stackable LiFePO4</li>
                   <li>IP65 weatherproof (indoor/outdoor)</li>
                   <li>8,000-cycle life</li>
@@ -334,7 +364,7 @@ export default function HomePage() {
 
             {/* EG4 Mini-Split Heat Pump */}
             <Reveal delay={0.3}>
-              <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6 sm:col-span-2 lg:col-span-1">
+              <div className="tech-card flex flex-col rounded-xl border border-navy-500/30 border-t-2 border-t-blue-400/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:col-span-2 lg:col-span-1">
                 <div className="aspect-[4/3] overflow-hidden rounded-lg">
                   <Image
                     src="/images/eg4-minisplit.svg"
@@ -347,10 +377,10 @@ export default function HomePage() {
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
                   EG4 Mini-Split Heat Pump
                 </h3>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-blue-300">
                   Comfort on sunlight.
                 </p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
+                <ul className="mt-4 space-y-2 text-sm text-blue-100">
                   <li>Heats AND cools</li>
                   <li>Hybrid solar AC/DC operation</li>
                   <li>Ultra-efficient inverter compressor</li>
@@ -372,7 +402,7 @@ export default function HomePage() {
               ].map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-2 text-sm text-slate-400"
+                  className="flex items-center gap-2 text-sm text-blue-300"
                 >
                   <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
                   <span>{label}</span>
@@ -384,13 +414,13 @@ export default function HomePage() {
       </Section>
 
       {/* ========== 4b. SERVICE AREA ========== */}
-      <Section alt className="border-t border-white/5">
+      <Section alt className="border-t border-blue-900/30">
         <Container className="text-center">
           <Reveal>
             <h2 className="font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
               Serving <span className="text-gold">Northern California</span>
             </h2>
-            <p className="mt-4 text-lg text-slate-400">
+            <p className="mt-4 text-lg text-blue-300">
               Local installer. No middlemen. Hugo comes to you.
             </p>
           </Reveal>
@@ -419,7 +449,7 @@ export default function HomePage() {
               ].map((city) => (
                 <li
                   key={city}
-                  className="rounded-full border border-gold/40 bg-navy px-4 py-1.5 text-sm font-medium text-slate-200"
+                  className="gradient-pill rounded-full px-4 py-1.5 text-sm font-medium text-blue-100"
                 >
                   {city}
                 </li>
@@ -433,25 +463,37 @@ export default function HomePage() {
       <Section>
         <Container className="text-center">
           <Reveal>
-            <p className="text-lg text-slate-400">
+            <p className="text-lg text-blue-300">
               Total system cost
             </p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="mt-4">
-              <span className="font-display text-5xl font-bold text-gold sm:text-6xl lg:text-7xl">
-                Under{" "}
-              </span>
-              <StatCounter
-                value={10000}
-                prefix="$"
-                label=""
-                className="inline-block"
+            <div className="mt-4 flex items-center justify-center gap-4 sm:gap-6">
+              <span
+                aria-hidden="true"
+                className="hidden h-px w-16 bg-gradient-to-r from-transparent to-gold/50 sm:block lg:w-24"
               />
-              <span className="font-display text-5xl font-bold text-gold sm:text-6xl lg:text-7xl">
-                .
-              </span>
+              <div className="number-glow">
+                <span className="font-display text-5xl font-bold sm:text-6xl lg:text-7xl">
+                  <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">
+                    Under{" "}
+                  </span>
+                </span>
+                <StatCounter
+                  value={10000}
+                  prefix="$"
+                  label=""
+                  className="inline-block"
+                />
+                <span className="font-display text-5xl font-bold text-gold sm:text-6xl lg:text-7xl">
+                  .
+                </span>
+              </div>
+              <span
+                aria-hidden="true"
+                className="hidden h-px w-16 bg-gradient-to-l from-transparent to-gold/50 sm:block lg:w-24"
+              />
             </div>
           </Reveal>
 
@@ -461,7 +503,7 @@ export default function HomePage() {
                 <p className="font-display text-2xl font-bold text-red-400">
                   $40,000+
                 </p>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-blue-300">
                   Traditional solar &mdash; loan, still grid-tied
                 </p>
               </div>
@@ -469,7 +511,7 @@ export default function HomePage() {
                 <p className="font-display text-2xl font-bold text-gold">
                   Under $10,000
                 </p>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="mt-1 text-sm text-blue-300">
                   VoltSol / EG4 &mdash; off-grid capable
                 </p>
               </div>
@@ -477,20 +519,32 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="mx-auto mt-8 max-w-xl text-lg text-slate-300">
+            <p className="mx-auto mt-8 max-w-xl text-lg text-blue-100">
               At ~$300/mo to PG&amp;E, it can pay for itself in about 3 years
               &mdash; then the power&rsquo;s free for decades.
             </p>
-            <p className="mt-4 text-xs text-slate-500">
+            <p className="mt-4 text-xs text-blue-300/60">
               Typical system. Final pricing confirmed in your free estimate.
             </p>
           </Reveal>
         </Container>
       </Section>
 
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
       {/* ========== 5a. TESTIMONIALS ========== */}
-      <Section alt>
-        <Container>
+      <Section alt className="relative overflow-hidden">
+        {/* Decorative giant quotation mark */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-10 left-4 select-none font-display text-[16rem] leading-none text-gold/5 sm:text-[24rem]"
+        >
+          &ldquo;
+        </span>
+        <Container className="relative">
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
               Real homes. <span className="text-gold">Real numbers.</span>
@@ -519,7 +573,7 @@ export default function HomePage() {
               },
             ].map((t, i) => (
               <Reveal key={t.name} delay={0.1 * (i + 1)}>
-                <figure className="flex h-full flex-col rounded-xl border border-white/10 bg-navy p-6 lg:p-8">
+                <figure className="flex h-full flex-col rounded-xl border border-navy-500/30 bg-gradient-to-br from-navy-700 to-navy-800 p-6 lg:p-8">
                   <div
                     className="flex gap-1 text-gold"
                     role="img"
@@ -539,12 +593,12 @@ export default function HomePage() {
                   >
                     &ldquo;
                   </span>
-                  <blockquote className="mt-2 flex-1 leading-relaxed text-slate-300">
+                  <blockquote className="mt-2 flex-1 leading-relaxed text-blue-100">
                     {t.quote}
                   </blockquote>
                   <figcaption className="mt-6 font-display font-bold text-white">
                     {t.name}{" "}
-                    <span className="font-sans text-sm font-normal text-slate-400">
+                    <span className="font-sans text-sm font-normal text-blue-300">
                       &mdash; {t.city}
                     </span>
                   </figcaption>
@@ -598,7 +652,7 @@ export default function HomePage() {
               ].map((item) => (
                 <details
                   key={item.q}
-                  className="faq-item group rounded-xl border border-white/10 bg-navy-800"
+                  className="faq-item group rounded-xl border border-navy-500/30 bg-navy-800"
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-display font-bold text-white sm:p-6 [&::-webkit-details-marker]:hidden">
                     {item.q}
@@ -623,7 +677,7 @@ export default function HomePage() {
                     </span>
                   </summary>
                   <div className="faq-content">
-                    <p className="px-5 pb-5 leading-relaxed text-slate-300 sm:px-6 sm:pb-6">
+                    <p className="px-5 pb-5 leading-relaxed text-blue-100 sm:px-6 sm:pb-6">
                       {item.a}
                     </p>
                   </div>
@@ -643,7 +697,7 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Reveal>
               <div>
-                <div className="mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-2xl border border-white/10">
+                <div className="mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-2xl border border-navy-500/40">
                   <Image
                     src="/images/hugo-portrait.svg"
                     alt="Hugo, VoltSol Energy installer"
@@ -660,12 +714,12 @@ export default function HomePage() {
                 <h2 className="font-display text-3xl font-bold sm:text-4xl">
                   Meet <span className="text-gold">Hugo</span>
                 </h2>
-                <p className="mt-4 text-lg leading-relaxed text-slate-300">
+                <p className="mt-4 text-lg leading-relaxed text-blue-100">
                   Your installer. Northern California local. No high-pressure
                   sales floor, no financing traps &mdash; just the right system,
                   installed right, by the person who stands behind it.
                 </p>
-                <p className="mt-4 text-slate-400">
+                <p className="mt-4 text-blue-300">
                   Hugo designs and installs every VoltSol system personally.
                   When you call, he picks up. When something needs attention, he
                   shows up.
@@ -681,10 +735,10 @@ export default function HomePage() {
                   ].map(({ icon: Icon, label }) => (
                     <div
                       key={label}
-                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-navy p-4"
+                      className="flex items-center gap-3 rounded-xl border border-navy-500/30 bg-gradient-to-br from-navy-700 to-navy-800 p-4"
                     >
                       <Icon className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-                      <span className="text-sm font-medium text-slate-200">
+                      <span className="text-sm font-medium text-blue-100">
                         {label}
                       </span>
                     </div>
@@ -704,13 +758,13 @@ export default function HomePage() {
               Find out what your home{" "}
               <span className="text-gold">could do.</span>
             </h2>
-            <p className="mt-4 text-center text-slate-400">
+            <p className="mt-4 text-center text-blue-300">
               Get a free, no-pressure estimate tailored to your property.
             </p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="mt-10 rounded-2xl border border-white/10 bg-navy-800 p-6 sm:p-8">
+            <div className="mt-10 rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:p-8">
               <QuoteForm campaignCode="home" />
             </div>
           </Reveal>

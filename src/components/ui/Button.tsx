@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "blue";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,11 +15,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-gold text-navy font-semibold hover:bg-gold-400 active:bg-gold-600 focus-visible:ring-gold/50",
+    "cta-glow bg-gold text-navy font-semibold hover:bg-gold-400 active:bg-gold-600 focus-visible:ring-gold/50",
   secondary:
     "border-2 border-gold text-gold hover:bg-gold/10 active:bg-gold/20 focus-visible:ring-gold/50",
   ghost:
     "text-slate-300 hover:text-white hover:bg-white/10 focus-visible:ring-white/30",
+  blue: "bg-blue text-white font-semibold hover:bg-blue-400 active:bg-blue-700 focus-visible:ring-blue/50",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

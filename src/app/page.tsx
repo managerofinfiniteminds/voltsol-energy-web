@@ -769,16 +769,15 @@ export default function HomePage() {
           <Reveal delay={0.2}>
             <div className="mt-8 rounded-2xl border border-gold/30 bg-gold/5 p-6 text-center sm:p-8">
               <p className="font-display text-lg font-bold text-white">
-                Prefer to pick a time that works for you?
+                Pick a time that works for you.
               </p>
               <p className="mt-2 text-sm text-blue-300">
-                Skip the phone tag &mdash; book your free estimate appointment
-                directly on Hugo&rsquo;s calendar.
+                Hugo can meet with you via Zoom call at your convenience &mdash; no pressure, no obligation.
               </p>
               <div className="mt-5 flex justify-center">
                 <Button href="/book" variant="secondary">
                   <CalendarCheck className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Book an Appointment
+                  Book a Time
                 </Button>
               </div>
             </div>

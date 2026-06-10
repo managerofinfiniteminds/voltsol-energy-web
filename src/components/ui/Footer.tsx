@@ -26,8 +26,7 @@ export function Footer() {
                 className="h-16 w-16 rounded-full"
               />
               <span className="font-display text-2xl font-bold tracking-tight">
-                <span className="text-white">Volt</span><span className="text-gold">Sol</span>
-                <span className="ml-1.5 text-xl font-semibold text-blue-300">Energy</span>
+                <span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span>
               </span>
             </a>
             <p className="mt-3 text-sm leading-relaxed text-slate-400">

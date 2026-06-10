@@ -29,8 +29,7 @@ export function Header() {
             className="h-[4.5rem] w-[4.5rem] rounded-full sm:h-20 sm:w-20"
           />
           <span className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-            <span className="text-white">Volt</span><span className="text-gold">Sol</span>
-            <span className="ml-1.5 text-xl font-semibold text-blue-300 sm:text-2xl">Energy</span>
+            <span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span>
           </span>
         </a>
 

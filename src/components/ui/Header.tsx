@@ -17,20 +17,20 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-t-2 border-t-gold/60 border-b border-b-blue-900/50 bg-navy/80 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between sm:h-20">
+      <Container className="flex h-20 items-center justify-between sm:h-24">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5" aria-label="VoltSol Energy — Home">
+        <a href="/" className="flex items-center gap-3" aria-label="VoltSol Energy — Home">
           <Image
             src="/images/voltsol-logo-badge.jpg"
             alt="VoltSol Energy"
-            width={40}
-            height={40}
+            width={120}
+            height={120}
             priority
-            className="h-9 w-9 rounded-full sm:h-10 sm:w-10"
+            className="h-[4.5rem] w-[4.5rem] rounded-full sm:h-20 sm:w-20"
           />
-          <span className="font-display text-lg font-bold tracking-tight sm:text-xl">
+          <span className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
             <span className="text-white">Volt</span><span className="text-gold">Sol</span>
-            <span className="ml-1 hidden text-sm font-normal text-blue-300 sm:inline">Energy</span>
+            <span className="ml-1.5 text-xl font-semibold text-blue-300 sm:text-2xl">Energy</span>
           </span>
         </a>
 

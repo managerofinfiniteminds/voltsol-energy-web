@@ -17,17 +17,17 @@ export function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
-            <a href="/" className="flex items-center gap-2.5" aria-label="VoltSol Energy — Home">
+            <a href="/" className="flex items-center gap-3" aria-label="VoltSol Energy — Home">
               <Image
                 src="/images/voltsol-logo-badge.jpg"
                 alt="VoltSol Energy"
-                width={48}
-                height={48}
-                className="h-10 w-10 rounded-full"
+                width={120}
+                height={120}
+                className="h-16 w-16 rounded-full"
               />
-              <span className="font-display text-lg font-bold tracking-tight">
+              <span className="font-display text-2xl font-bold tracking-tight">
                 <span className="text-white">Volt</span><span className="text-gold">Sol</span>
-                <span className="ml-1 text-sm font-normal text-blue-300">Energy</span>
+                <span className="ml-1.5 text-xl font-semibold text-blue-300">Energy</span>
               </span>
             </a>
             <p className="mt-3 text-sm leading-relaxed text-slate-400">

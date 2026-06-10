@@ -806,11 +806,11 @@ export default function HomePage() {
               <div>
                 <div className="mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-2xl border border-navy-500/40">
                   <Image
-                    src="/images/hugo-portrait.svg"
-                    alt="Hugo, VoltSol Energy installer"
+                    src="/images/hugo-portrait.jpg"
+                    alt="Hugo, VoltSol Energy founder and installer"
                     width={600}
                     height={800}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-top"
                   />
                 </div>
               </div>

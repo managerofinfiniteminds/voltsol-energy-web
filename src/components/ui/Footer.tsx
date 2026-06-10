@@ -52,7 +52,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
           <span>&copy; 2026 VoltSol Energy, LLC. All rights reserved.</span>
-          <span>Northern California</span>
+          <span>CSLB License #TBD &middot; Northern California</span>
         </div>
       </Container>
     </footer>

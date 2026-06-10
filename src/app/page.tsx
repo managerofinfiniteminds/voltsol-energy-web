@@ -84,6 +84,32 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      {/* ========== 1a. SOCIAL PROOF BAR ========== */}
+      <div className="border-y border-white/5 bg-navy-800/60 py-6">
+        <Container>
+          <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
+            Built with technology from
+          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            {[
+              { icon: Zap, label: "EG4 Electronics" },
+              { icon: BadgeCheck, label: "UL Certified" },
+              { icon: RefreshCw, label: "LiFePO4 Certified" },
+              { icon: Droplets, label: "IP65 Rated" },
+              { icon: Shield, label: "EMP-Hardened" },
+            ].map(({ icon: Icon, label }) => (
+              <span
+                key={label}
+                className="flex items-center gap-2 text-sm font-medium text-slate-400"
+              >
+                <Icon className="h-4 w-4 text-gold/60" aria-hidden="true" />
+                {label}
+              </span>
+            ))}
+          </div>
+        </Container>
+      </div>
+
       {/* ========== 1b. STATS STRIP ========== */}
       <section className="border-y border-gold/15 bg-navy-900 py-10 sm:py-12">
         <Container>
@@ -560,6 +586,10 @@ export default function HomePage() {
                 {
                   q: "How long does installation take?",
                   a: "Most residential installations complete in one to two days.",
+                },
+                {
+                  q: "Does this work in Northern California's climate?",
+                  a: "Perfectly. The system handles both extreme heat — Fresno summers included — and cold Sierra foothills winters. The mini-split heat pumps are rated to operate well below freezing.",
                 },
                 {
                   q: "What's the payback period?",

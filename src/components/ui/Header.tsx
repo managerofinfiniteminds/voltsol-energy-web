@@ -19,15 +19,19 @@ export function Header() {
     <header className="sticky top-0 z-50 border-t-2 border-t-gold/60 border-b border-b-blue-900/50 bg-navy/80 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between sm:h-20">
         {/* Logo */}
-        <a href="/" className="flex items-center" aria-label="VoltSol Energy — Home">
+        <a href="/" className="flex items-center gap-2.5" aria-label="VoltSol Energy — Home">
           <Image
-            src="/images/voltsol-logo-horizontal.svg"
+            src="/images/voltsol-logo-badge.jpg"
             alt="VoltSol Energy"
-            width={175}
-            height={30}
+            width={40}
+            height={40}
             priority
-            className="h-7 w-auto sm:h-8"
+            className="h-9 w-9 rounded-full sm:h-10 sm:w-10"
           />
+          <span className="font-display text-lg font-bold tracking-tight sm:text-xl">
+            <span className="text-white">Volt</span><span className="text-gold">Sol</span>
+            <span className="ml-1 hidden text-sm font-normal text-blue-300 sm:inline">Energy</span>
+          </span>
         </a>
 
         {/* Desktop nav */}

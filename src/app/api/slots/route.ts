@@ -18,10 +18,10 @@ export async function GET(req: NextRequest) {
 
   try {
     const rows = await sql`
-      SELECT id, slot_date, start_time, end_time, label
+      SELECT id, slot_date::text as slot_date, start_time::text, end_time::text, label
       FROM availability_slots
-      WHERE slot_date >= ${from}
-        AND slot_date <= ${to}
+      WHERE slot_date >= ${from}::date
+        AND slot_date <= ${to}::date
         AND is_available = true
         AND current_bookings < max_bookings
         AND slot_date >= CURRENT_DATE

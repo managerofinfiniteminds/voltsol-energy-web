@@ -198,6 +198,7 @@ export default function AnalyticsDashboard() {
           <nav className="hidden sm:flex items-center gap-4 text-sm">
             <Link href="/admin" className="text-slate-400 hover:text-white transition">Leads</Link>
             <span className="text-amber-400 font-semibold">Dashboard</span>
+            <Link href="/admin/schedule" className="text-slate-400 hover:text-white transition">Schedule</Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -216,6 +217,7 @@ export default function AnalyticsDashboard() {
       <nav className="sm:hidden flex border-b border-slate-700 bg-slate-900">
         <Link href="/admin" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Leads</Link>
         <span className="flex-1 py-3 text-center text-sm text-amber-400 font-semibold border-b-2 border-amber-400">Dashboard</span>
+        <Link href="/admin/schedule" className="flex-1 py-3 text-center text-sm text-slate-400 hover:text-white transition">Schedule</Link>
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">

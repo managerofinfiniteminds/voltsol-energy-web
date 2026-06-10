@@ -44,7 +44,7 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <Button href="#quote" size="sm">
+          <Button href="/book" size="sm">
             Get My Quote
           </Button>
         </nav>
@@ -77,7 +77,7 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <Button href="#quote" onClick={() => setOpen(false)}>
+            <Button href="/book" onClick={() => setOpen(false)}>
               Get My Quote
             </Button>
           </Container>

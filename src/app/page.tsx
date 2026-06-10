@@ -22,6 +22,10 @@ import {
   Phone,
   Star,
   Check,
+  TrendingUp,
+  Lock,
+  AlertTriangle,
+  CalendarCheck,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -57,7 +61,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2} immediate>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button href="#quote" size="lg">
+              <Button href="/book" size="lg">
                 Get My Free Estimate
               </Button>
               <Button href="#how" variant="ghost" size="lg">
@@ -231,6 +235,109 @@ export default function HomePage() {
               What if you didn&rsquo;t need the grid{" "}
               <span className="text-gold">at all?</span>
             </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
+      {/* ========== 2b. THE CLOCK IS RUNNING (URGENCY) ========== */}
+      <Section className="relative overflow-hidden border-y border-red-500/15">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -right-32 top-0 h-96 w-96 rounded-full bg-red-500/5 blur-3xl" />
+          <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-amber/5 blur-3xl" />
+        </div>
+        <Container className="relative">
+          <Reveal>
+            <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-red-400">
+              The Clock Is Running
+            </p>
+            <h2 className="mt-4 text-center font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+              PG&amp;E raised rates 10.5% this year.{" "}
+              <span className="text-red-400">Again.</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-blue-300">
+              Grid-tied solar is broken in California. Off-grid isn&rsquo;t.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:gap-8">
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-xl border border-red-500/25 bg-red-950/20 p-6 lg:p-8">
+                <TrendingUp className="h-6 w-6 text-red-400" aria-hidden="true" />
+                <h3 className="mt-4 font-display text-lg font-bold text-red-400">
+                  Rate Hike &mdash; 2026
+                </h3>
+                <p className="mt-3 flex-1 leading-relaxed text-blue-100">
+                  PG&amp;E&rsquo;s baseline rate jumped 10.5% this year &mdash;
+                  from $0.38 to $0.42/kWh. The decade trend: up roughly 80%
+                  since 2015. There is no sign of it stopping.
+                </p>
+                <p className="mt-4 text-xs text-blue-300/60">
+                  Source: CPUC rate filings, 2026
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <div className="flex h-full flex-col rounded-xl border border-amber/30 bg-amber/5 p-6 lg:p-8">
+                <Lock className="h-6 w-6 text-amber-400" aria-hidden="true" />
+                <h3 className="mt-4 font-display text-lg font-bold text-amber-400">
+                  The $24 Trap
+                </h3>
+                <p className="mt-3 flex-1 leading-relaxed text-blue-100">
+                  PG&amp;E&rsquo;s new fixed Base Charge (~$24/month) can&rsquo;t
+                  be offset &mdash; not with solar panels, not with batteries,
+                  not with efficiency. It&rsquo;s permanent, and it ratchets up
+                  with every rate case.
+                </p>
+                <p className="mt-4 text-xs text-blue-300/60">
+                  Source: CPUC Decision, 2024
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="flex h-full flex-col rounded-xl border border-red-500/25 bg-red-950/20 p-6 lg:p-8">
+                <AlertTriangle className="h-6 w-6 text-red-400" aria-hidden="true" />
+                <h3 className="mt-4 font-display text-lg font-bold text-red-400">
+                  Grid Solar Died
+                </h3>
+                <p className="mt-3 flex-1 leading-relaxed text-blue-100">
+                  NEM 3.0 cut grid-tied solar export credits by ~75% &mdash;
+                  payback periods ballooned from 6 years to 12&ndash;15.
+                  SunPower, Sunnova, and Freedom Forever have all filed for
+                  bankruptcy since.
+                </p>
+                <p className="mt-4 text-xs text-blue-300/60">
+                  Source: CPUC Decision 22-12-056; public bankruptcy filings
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Gold CTA band */}
+          <Reveal delay={0.3}>
+            <div className="mt-12 rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 p-8 text-center lg:p-10">
+              <p className="font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
+                The only solar that&rsquo;s truly immune:{" "}
+                <span className="text-gold">off-grid capable.</span>
+              </p>
+              <p className="mt-3 text-lg text-blue-100">
+                No export credits needed. No Base Charge owed. The 30% federal
+                tax credit is still on the table in 2026 &mdash; and VoltSol
+                installs it for under $10,000.
+              </p>
+              <div className="mt-6 flex justify-center">
+                <Button href="/book" size="lg">
+                  <CalendarCheck className="mr-2 h-5 w-5" aria-hidden="true" />
+                  Book a Free Estimate
+                </Button>
+              </div>
+            </div>
           </Reveal>
         </Container>
       </Section>
@@ -766,6 +873,24 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:p-8">
               <QuoteForm campaignCode="home" />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-8 rounded-2xl border border-gold/30 bg-gold/5 p-6 text-center sm:p-8">
+              <p className="font-display text-lg font-bold text-white">
+                Prefer to pick a time that works for you?
+              </p>
+              <p className="mt-2 text-sm text-blue-300">
+                Skip the phone tag &mdash; book your free estimate appointment
+                directly on Hugo&rsquo;s calendar.
+              </p>
+              <div className="mt-5 flex justify-center">
+                <Button href="/book" variant="secondary">
+                  <CalendarCheck className="mr-2 h-5 w-5" aria-hidden="true" />
+                  Book an Appointment
+                </Button>
+              </div>
             </div>
           </Reveal>
         </Container>

@@ -80,6 +80,16 @@ select option {
   color: #ffffff;
 }
 
+/* FAQ accordion: CSS-only smooth expand via max-height */
+.faq-item .faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.faq-item[open] .faq-content {
+  max-height: 24rem;
+}
+
 /* Animation delay utilities for Reveal component */
 @layer utilities {
   .animation-delay-0 { animation-delay: 0ms; }

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="EG4 hybrid solar mini-split heat pump illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="unit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#475569"/>
+      <stop offset="0.4" stop-color="#334155"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="goldbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#F59E0B" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <!-- indoor unit -->
+  <rect x="160" y="120" width="480" height="170" rx="36" fill="url(#unit)" stroke="#475569" stroke-width="2"/>
+  <rect x="160" y="120" width="480" height="170" rx="36" fill="none" stroke="#F59E0B" stroke-opacity="0.25" stroke-width="1"/>
+
+  <!-- gold accent line -->
+  <rect x="200" y="150" width="400" height="5" rx="2.5" fill="url(#goldbar)"/>
+
+  <!-- display -->
+  <rect x="540" y="176" width="64" height="36" rx="8" fill="#0F172A" stroke="#475569"/>
+  <text x="572" y="200" text-anchor="middle" font-family="ui-monospace, monospace" font-size="17" fill="#FBBF24">72°</text>
+
+  <!-- brand -->
+  <text x="200" y="202" font-family="system-ui, sans-serif" font-weight="800" font-size="20" fill="#F8FAFC">EG4<tspan fill="#F59E0B"> Mini-Split</tspan></text>
+  <text x="200" y="222" font-family="system-ui, sans-serif" font-size="10" letter-spacing="2" fill="#94A3B8">HYBRID SOLAR AC/DC</text>
+
+  <!-- louver vent -->
+  <rect x="190" y="246" width="420" height="22" rx="11" fill="#0F172A" stroke="#475569"/>
+  <g stroke="#334155" stroke-width="2">
+    <line x1="240" y1="250" x2="240" y2="264"/>
+    <line x1="300" y1="250" x2="300" y2="264"/>
+    <line x1="360" y1="250" x2="360" y2="264"/>
+    <line x1="420" y1="250" x2="420" y2="264"/>
+    <line x1="480" y1="250" x2="480" y2="264"/>
+    <line x1="540" y1="250" x2="540" y2="264"/>
+  </g>
+
+  <!-- cool airflow waves -->
+  <g fill="none" stroke="#38BDF8" stroke-width="3.5" stroke-linecap="round" opacity="0.75">
+    <path d="M260 320 q20 18 0 36 q-20 18 0 36"/>
+    <path d="M330 320 q20 18 0 36 q-20 18 0 36"/>
+  </g>
+  <!-- warm airflow waves -->
+  <g fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" opacity="0.85">
+    <path d="M470 320 q20 18 0 36 q-20 18 0 36"/>
+    <path d="M540 320 q20 18 0 36 q-20 18 0 36"/>
+  </g>
+  <text x="296" y="436" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="2" fill="#38BDF8" opacity="0.9">COOL</text>
+  <text x="506" y="436" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="2" fill="#F59E0B">HEAT</text>
+
+  <!-- sun feed -->
+  <circle cx="116" cy="468" r="22" fill="#F59E0B" opacity="0.9"/>
+  <g stroke="#F59E0B" stroke-width="3" stroke-linecap="round" opacity="0.8">
+    <line x1="116" y1="428" x2="116" y2="414"/>
+    <line x1="116" y1="508" x2="116" y2="522"/>
+    <line x1="76" y1="468" x2="62" y2="468"/>
+    <line x1="156" y1="468" x2="170" y2="468"/>
+    <line x1="88" y1="440" x2="78" y2="430"/>
+    <line x1="144" y1="440" x2="154" y2="430"/>
+    <line x1="88" y1="496" x2="78" y2="506"/>
+    <line x1="144" y1="496" x2="154" y2="506"/>
+  </g>
+  <path d="M170 468 q120 0 160 -40" fill="none" stroke="#F59E0B" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- comfort tagline -->
+  <text x="640" y="520" text-anchor="end" font-family="system-ui, sans-serif" font-weight="700" font-size="16" fill="#94A3B8">Comfort on <tspan fill="#F59E0B">sunlight.</tspan></text>
+</svg>

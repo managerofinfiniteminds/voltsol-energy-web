@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="EG4 WallMount battery illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#334155"/>
+      <stop offset="0.5" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="goldbar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBBF24"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#F59E0B" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+
+  <ellipse cx="400" cy="552" rx="200" ry="18" fill="#000" opacity="0.35"/>
+
+  <!-- battery cabinet -->
+  <rect x="280" y="56" width="240" height="488" rx="20" fill="url(#body)" stroke="#475569" stroke-width="2"/>
+  <rect x="280" y="56" width="240" height="488" rx="20" fill="none" stroke="#F59E0B" stroke-opacity="0.25" stroke-width="1"/>
+
+  <!-- gold side energy strip -->
+  <rect x="296" y="84" width="10" height="432" rx="5" fill="url(#goldbar)"/>
+
+  <!-- charge level segments -->
+  <g>
+    <rect x="330" y="96"  width="160" height="56" rx="8" fill="#F59E0B" opacity="0.9"/>
+    <rect x="330" y="164" width="160" height="56" rx="8" fill="#F59E0B" opacity="0.75"/>
+    <rect x="330" y="232" width="160" height="56" rx="8" fill="#F59E0B" opacity="0.55"/>
+    <rect x="330" y="300" width="160" height="56" rx="8" fill="#1E293B" stroke="#475569"/>
+  </g>
+  <text x="410" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="800" font-size="20" fill="#0F172A">100%</text>
+
+  <!-- spec plate -->
+  <rect x="316" y="380" width="168" height="84" rx="10" fill="#0F172A" stroke="#475569"/>
+  <text x="400" y="412" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="800" font-size="20" fill="#F8FAFC">EG4<tspan fill="#F59E0B"> WallMount</tspan></text>
+  <text x="400" y="434" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="1.5" fill="#94A3B8">14.3 kWh LiFePO4</text>
+  <text x="400" y="452" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" letter-spacing="2" fill="#64748B">IP65 ALL-WEATHER</text>
+
+  <!-- status LED -->
+  <circle cx="400" cy="500" r="7" fill="#22C55E"/>
+  <circle cx="400" cy="500" r="12" fill="none" stroke="#22C55E" stroke-opacity="0.4"/>
+
+  <!-- bolt emblem -->
+  <path d="M398 250 L378 296 L396 296 L384 338 L424 282 L404 282 L420 250 Z" fill="#0F172A" opacity="0.85"/>
+
+  <!-- moon + stars: stores power for night -->
+  <path d="M132 130 a40 40 0 1 0 36 58 a32 32 0 0 1 -36 -58 Z" fill="#FBBF24" opacity="0.85"/>
+  <circle cx="190" cy="100" r="3" fill="#FBBF24" opacity="0.7"/>
+  <circle cx="160" cy="220" r="2.5" fill="#FBBF24" opacity="0.5"/>
+  <circle cx="110" cy="250" r="2" fill="#FBBF24" opacity="0.6"/>
+
+  <!-- cycle arrows -->
+  <g fill="none" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" opacity="0.85">
+    <path d="M636 280 a52 52 0 1 1 -16 -72"/>
+  </g>
+  <path d="M608 196 L640 200 L622 228 Z" fill="#F59E0B" opacity="0.85"/>
+  <text x="640" y="312" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#94A3B8">8,000+</text>
+  <text x="640" y="330" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" letter-spacing="2" fill="#64748B">CYCLES</text>
+</svg>

@@ -6,7 +6,7 @@ const footerLinks = [
   { label: "How It Works", href: "/#how" },
   { label: "Technology", href: "/#systems" },
   { label: "Get a Quote", href: "/#quote" },
-  { label: "Privacy", href: "/privacy" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 export function Footer() {
@@ -28,6 +28,12 @@ export function Footer() {
             <p className="mt-3 text-sm leading-relaxed text-slate-400">
               Clean energy, built to last.
             </p>
+            <a
+              href="mailto:hugo@voltsolenergy.com"
+              className="mt-3 inline-block text-sm text-slate-400 transition-colors hover:text-white"
+            >
+              hugo@voltsolenergy.com
+            </a>
           </div>
 
           {/* Nav */}
@@ -44,8 +50,9 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-slate-500">
-          &copy; 2026 VoltSol Energy, LLC. All rights reserved.
+        <div className="mt-10 flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
+          <span>&copy; 2026 VoltSol Energy, LLC. All rights reserved.</span>
+          <span>Northern California</span>
         </div>
       </Container>
     </footer>

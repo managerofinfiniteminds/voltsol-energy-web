@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-label="Illustrated portrait of Hugo, VoltSol Energy installer">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.36" r="0.55">
+      <stop offset="0" stop-color="#F59E0B" stop-opacity="0.22"/>
+      <stop offset="0.7" stop-color="#F59E0B" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E2B68C"/>
+      <stop offset="1" stop-color="#C99868"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#475569"/>
+      <stop offset="1" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="vest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#bg)"/>
+
+  <!-- sun halo behind subject -->
+  <circle cx="300" cy="290" r="220" fill="url(#halo)"/>
+  <circle cx="300" cy="290" r="170" fill="none" stroke="#F59E0B" stroke-opacity="0.18" stroke-width="2"/>
+
+  <!-- panel grid backdrop hint -->
+  <g stroke="#334155" stroke-width="1.5" opacity="0.5">
+    <line x1="40" y1="640" x2="200" y2="560"/>
+    <line x1="60" y1="680" x2="240" y2="590"/>
+    <line x1="80" y1="600" x2="120" y2="700"/>
+    <line x1="140" y1="572" x2="180" y2="668"/>
+  </g>
+
+  <!-- ===== figure ===== -->
+  <!-- torso / work shirt -->
+  <path d="M120 800 C120 640 190 560 300 560 C410 560 480 640 480 800 Z" fill="url(#shirt)"/>
+  <!-- hi-vis vest panels -->
+  <path d="M170 800 C172 670 215 596 268 572 L268 800 Z" fill="url(#vest)" opacity="0.92"/>
+  <path d="M430 800 C428 670 385 596 332 572 L332 800 Z" fill="url(#vest)" opacity="0.92"/>
+  <!-- reflective stripes -->
+  <path d="M196 800 C198 690 222 626 252 596 L252 614 C226 646 212 700 212 800 Z" fill="#F8FAFC" opacity="0.85"/>
+  <path d="M404 800 C402 690 378 626 348 596 L348 614 C374 646 388 700 388 800 Z" fill="#F8FAFC" opacity="0.85"/>
+  <!-- shirt collar -->
+  <path d="M268 566 L300 600 L332 566 L332 596 L300 626 L268 596 Z" fill="#1E293B"/>
+
+  <!-- neck -->
+  <rect x="272" y="496" width="56" height="76" rx="24" fill="url(#skin)"/>
+
+  <!-- head -->
+  <ellipse cx="300" cy="420" rx="92" ry="104" fill="url(#skin)"/>
+  <!-- ears -->
+  <ellipse cx="208" cy="430" rx="14" ry="22" fill="#C99868"/>
+  <ellipse cx="392" cy="430" rx="14" ry="22" fill="#C99868"/>
+
+  <!-- hard hat -->
+  <path d="M196 392 C196 314 242 270 300 270 C358 270 404 314 404 392 Z" fill="url(#vest)"/>
+  <rect x="180" y="384" width="240" height="24" rx="12" fill="#D97706"/>
+  <rect x="284" y="276" width="32" height="112" rx="14" fill="#FBBF24" opacity="0.6"/>
+
+  <!-- face -->
+  <g fill="#1E293B">
+    <ellipse cx="266" cy="438" rx="9" ry="11"/>
+    <ellipse cx="334" cy="438" rx="9" ry="11"/>
+  </g>
+  <!-- brows -->
+  <path d="M248 416 q18 -10 36 -4" fill="none" stroke="#7C5A3A" stroke-width="6" stroke-linecap="round"/>
+  <path d="M316 412 q18 -6 36 4" fill="none" stroke="#7C5A3A" stroke-width="6" stroke-linecap="round"/>
+  <!-- nose -->
+  <path d="M300 446 q-8 22 2 30" fill="none" stroke="#B07F50" stroke-width="5" stroke-linecap="round"/>
+  <!-- warm smile -->
+  <path d="M262 492 q38 30 76 0" fill="none" stroke="#8A5A30" stroke-width="7" stroke-linecap="round"/>
+  <!-- light beard -->
+  <path d="M226 470 C232 540 268 566 300 566 C332 566 368 540 374 470 C360 530 332 548 300 548 C268 548 240 530 226 470 Z" fill="#7C5A3A" opacity="0.5"/>
+
+  <!-- bolt badge on vest -->
+  <circle cx="300" cy="700" r="34" fill="#0F172A" stroke="#F59E0B" stroke-width="3"/>
+  <path d="M300 678 L286 706 L298 706 L290 724 L316 696 L302 696 L312 678 Z" fill="#F59E0B"/>
+</svg>

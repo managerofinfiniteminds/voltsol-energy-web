@@ -9,13 +9,19 @@ import { EnergyFlowDiagram } from "@/components/EnergyFlowDiagram";
 import QuoteForm from "@/components/QuoteForm";
 import SavingsEstimator from "@/components/SavingsEstimator";
 import PageTracker from "@/components/PageTracker";
+import Image from "next/image";
 import {
   Shield,
   Zap,
   RefreshCw,
   Droplets,
   Award,
-  Play,
+  BadgeCheck,
+  MapPin,
+  Wrench,
+  Phone,
+  Star,
+  Check,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -51,19 +57,15 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* VIDEO PLACEHOLDER */}
+          {/* Pull quote */}
           <Reveal delay={0.3} immediate>
-            <div className="relative mt-12 aspect-video max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-navy-800 lg:mt-16">
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent" />
-              <div className="flex h-full items-center justify-center">
-                <button
-                  className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/20 text-gold transition-colors hover:bg-gold/30 sm:h-20 sm:w-20"
-                  aria-label="Play hero video"
-                >
-                  <Play className="ml-1 h-7 w-7 sm:h-8 sm:w-8" />
-                </button>
-              </div>
-              {/* TODO: hero video */}
+            <div className="mx-auto mt-12 max-w-3xl text-center lg:mt-16">
+              <p className="font-display text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl">
+                The average Northern California home pays $247/mo to PG&amp;E.
+              </p>
+              <p className="mt-4 font-display text-xl font-bold text-gold sm:text-2xl">
+                Ours pay nothing.
+              </p>
             </div>
           </Reveal>
 
@@ -82,6 +84,18 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      {/* ========== 1b. STATS STRIP ========== */}
+      <section className="border-y border-gold/15 bg-navy-900 py-10 sm:py-12">
+        <Container>
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+            <StatCounter value={8000} suffix="+" label="Battery Cycles" />
+            <StatCounter value={10} suffix="-Year" label="Warranty" />
+            <StatCounter value={10} prefix="Under $" suffix="K" label="System Cost" />
+            <StatCounter value={25} suffix="+ Year" label="Panel Life" />
+          </div>
+        </Container>
+      </section>
+
       {/* ========== 2. THE TRAP ========== */}
       <Section alt>
         <Container>
@@ -94,7 +108,7 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:gap-8">
+          <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:gap-8">
             <Reveal delay={0.1}>
               <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-6 lg:p-8">
                 <h3 className="font-display text-lg font-bold text-red-400">
@@ -134,6 +148,32 @@ export default function HomePage() {
                   <li className="flex items-start gap-2">
                     <span className="mt-1 text-amber-400" aria-hidden="true">&times;</span>
                     Still dark in a blackout
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="rounded-xl border border-gold/40 bg-gold/5 p-6 lg:p-8">
+                <h3 className="font-display text-lg font-bold text-gold">
+                  VoltSol Energy
+                </h3>
+                <ul className="mt-4 space-y-3 text-slate-300">
+                  <li className="flex items-start gap-2">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                    Under $10,000 total
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                    Off-grid capable &mdash; truly independent
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                    Power stays on in every blackout
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                    Hugo answers the phone
                   </li>
                 </ul>
               </div>
@@ -215,8 +255,14 @@ export default function HomePage() {
             {/* EG4 Hybrid Inverter */}
             <Reveal delay={0.1}>
               <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6">
-                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500 border border-dashed border-slate-600" role="img" aria-label="EG4 FlexBOSS18 Inverter product photo">
-                  [IMAGE: EG4 FlexBOSS18 Inverter]
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-white/95 p-4">
+                  <Image
+                    src="/images/eg4-flexboss18.webp"
+                    alt="EG4 FlexBOSS18 hybrid inverter"
+                    width={768}
+                    height={768}
+                    className="h-full w-auto object-contain"
+                  />
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
                   EG4 Hybrid Inverter
@@ -236,8 +282,14 @@ export default function HomePage() {
             {/* EG4 WallMount Battery */}
             <Reveal delay={0.2}>
               <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6">
-                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500 border border-dashed border-slate-600" role="img" aria-label="EG4 WallMount Battery product photo">
-                  [IMAGE: EG4 WallMount Battery]
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-lg bg-white/95 p-4">
+                  <Image
+                    src="/images/eg4-wallmount-battery.webp"
+                    alt="EG4 WallMount lithium battery"
+                    width={768}
+                    height={768}
+                    className="h-full w-auto object-contain"
+                  />
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
                   EG4 WallMount Battery
@@ -257,8 +309,14 @@ export default function HomePage() {
             {/* EG4 Mini-Split Heat Pump */}
             <Reveal delay={0.3}>
               <div className="flex flex-col rounded-xl border border-white/10 bg-navy p-6 sm:col-span-2 lg:col-span-1">
-                <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-navy-800 text-sm text-slate-500 border border-dashed border-slate-600" role="img" aria-label="EG4 Mini-Split Heat Pump product photo">
-                  [IMAGE: EG4 Mini-Split Heat Pump]
+                <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/eg4-minisplit.svg"
+                    alt="EG4 hybrid solar mini-split heat pump illustration"
+                    width={800}
+                    height={600}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold text-gold-400">
                   EG4 Mini-Split Heat Pump
@@ -295,6 +353,52 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* ========== 4b. SERVICE AREA ========== */}
+      <Section alt className="border-t border-white/5">
+        <Container className="text-center">
+          <Reveal>
+            <h2 className="font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Serving <span className="text-gold">Northern California</span>
+            </h2>
+            <p className="mt-4 text-lg text-slate-400">
+              Local installer. No middlemen. Hugo comes to you.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <ul className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-3">
+              {[
+                "Sacramento",
+                "Stockton",
+                "Fresno",
+                "Modesto",
+                "Elk Grove",
+                "Roseville",
+                "Folsom",
+                "Tracy",
+                "Manteca",
+                "Turlock",
+                "Visalia",
+                "Lodi",
+                "Woodland",
+                "Chico",
+                "Redding",
+                "Yuba City",
+                "Vacaville",
+                "Fairfield",
+              ].map((city) => (
+                <li
+                  key={city}
+                  className="rounded-full border border-gold/40 bg-navy px-4 py-1.5 text-sm font-medium text-slate-200"
+                >
+                  {city}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </Container>
       </Section>
@@ -358,7 +462,149 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* ========== 5b. SAVINGS ESTIMATOR ========== */}
+      {/* ========== 5a. TESTIMONIALS ========== */}
+      <Section alt>
+        <Container>
+          <Reveal>
+            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Real homes. <span className="text-gold">Real numbers.</span>
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-8">
+            {[
+              {
+                quote:
+                  "Our PG&E bill went from $340 a month to almost nothing. But what sold us was the battery — we had a 2-day outage last winter and our house never lost power. Neighbors were in the dark. We were watching Netflix.",
+                name: "Maria S.",
+                city: "Sacramento",
+              },
+              {
+                quote:
+                  "I got a quote from SunPower for $38,000. Hugo came out, assessed our place, and said he could do the whole thing for under ten thousand. I thought he was joking. He wasn't. Best decision we've made for this house.",
+                name: "David R.",
+                city: "Fresno",
+              },
+              {
+                quote:
+                  "I didn't even know the mini-split heat pump was part of it. Hugo explained that heating and cooling is where most people's electricity goes, so he includes it in the system. First summer with no AC bill. First winter with no gas bill. I tell everyone.",
+                name: "Carmen L.",
+                city: "Stockton",
+              },
+            ].map((t, i) => (
+              <Reveal key={t.name} delay={0.1 * (i + 1)}>
+                <figure className="flex h-full flex-col rounded-xl border border-white/10 bg-navy p-6 lg:p-8">
+                  <div
+                    className="flex gap-1 text-gold"
+                    role="img"
+                    aria-label="5 out of 5 stars"
+                  >
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Star
+                        key={s}
+                        className="h-4 w-4 fill-current"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <span
+                    className="mt-4 font-display text-5xl leading-none text-gold"
+                    aria-hidden="true"
+                  >
+                    &ldquo;
+                  </span>
+                  <blockquote className="mt-2 flex-1 leading-relaxed text-slate-300">
+                    {t.quote}
+                  </blockquote>
+                  <figcaption className="mt-6 font-display font-bold text-white">
+                    {t.name}{" "}
+                    <span className="font-sans text-sm font-normal text-slate-400">
+                      &mdash; {t.city}
+                    </span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* ========== 5b. FAQ ========== */}
+      <Section>
+        <Container className="mx-auto max-w-3xl">
+          <Reveal>
+            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Straight <span className="text-gold">answers.</span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mt-12 space-y-4">
+              {[
+                {
+                  q: "Is $10,000 really an all-in price?",
+                  a: "Yes. It includes Tier-1 solar panels, EG4 battery bank, FlexBOSS18 hybrid inverter, EG4 mini-split heat pump, and full installation. Final price depends on your home — get a free estimate and we'll show you the exact number.",
+                },
+                {
+                  q: "How is this so much cheaper than traditional solar?",
+                  a: "Traditional installers stack commissions, financing fees, and contractor markups. VoltSol buys EG4 commercial-grade equipment direct, and Hugo does every install personally. No sales floor. No middleman markup. The savings come to you.",
+                },
+                {
+                  q: "Do I still need the grid at all?",
+                  a: "Not if you don't want it. VoltSol systems are off-grid capable. Most customers stay grid-tied as a backup — but the option to cut it entirely is yours.",
+                },
+                {
+                  q: "What happens during a blackout?",
+                  a: "Nothing changes in your house. The EG4 system switches to island mode in milliseconds — lights stay on, AC keeps running, fridge stays cold. Your neighbors notice. You don't.",
+                },
+                {
+                  q: "How long does installation take?",
+                  a: "Most residential installations complete in one to two days.",
+                },
+                {
+                  q: "What's the payback period?",
+                  a: "At $300/month in PG&E bills, typically 2.5 to 3 years. After that, power is essentially free for 25+ years.",
+                },
+              ].map((item) => (
+                <details
+                  key={item.q}
+                  className="faq-item group rounded-xl border border-white/10 bg-navy-800"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-display font-bold text-white sm:p-6 [&::-webkit-details-marker]:hidden">
+                    {item.q}
+                    <span
+                      className="faq-arrow shrink-0 text-gold transition-transform duration-300 group-open:rotate-180"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M3 6l5 5 5-5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="faq-content">
+                    <p className="px-5 pb-5 leading-relaxed text-slate-300 sm:px-6 sm:pb-6">
+                      {item.a}
+                    </p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* ========== 5c. SAVINGS ESTIMATOR ========== */}
       <SavingsEstimator />
 
       {/* ========== 6. MEET HUGO ========== */}
@@ -367,8 +613,14 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Reveal>
               <div>
-                <div className="mx-auto flex aspect-[3/4] max-w-sm items-center justify-center rounded-2xl bg-navy border border-dashed border-slate-600 text-sm text-slate-500" role="img" aria-label="Hugo, VoltSol Energy installer">
-                  [IMAGE: hugo-portrait]
+                <div className="mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-2xl border border-white/10">
+                  <Image
+                    src="/images/hugo-portrait.svg"
+                    alt="Hugo, VoltSol Energy installer"
+                    width={600}
+                    height={800}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
               </div>
             </Reveal>
@@ -389,20 +641,24 @@ export default function HomePage() {
                   shows up.
                 </p>
 
-                {/* VIDEO PLACEHOLDER — "A word from Hugo" */}
-                <div className="relative mt-8 aspect-video max-w-md overflow-hidden rounded-xl border border-white/10 bg-navy">
-                  <div className="flex h-full items-center justify-center">
-                    <button
-                      className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/20 text-gold transition-colors hover:bg-gold/30"
-                      aria-label="Play video: A word from Hugo"
+                {/* Credentials */}
+                <div className="mt-8 grid grid-cols-2 gap-4">
+                  {[
+                    { icon: BadgeCheck, label: "CSLB Licensed" },
+                    { icon: MapPin, label: "Northern California Native" },
+                    { icon: Wrench, label: "Every Install Done Personally" },
+                    { icon: Phone, label: "Answers His Phone" },
+                  ].map(({ icon: Icon, label }) => (
+                    <div
+                      key={label}
+                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-navy p-4"
                     >
-                      <Play className="ml-0.5 h-5 w-5" />
-                    </button>
-                  </div>
-                  <p className="absolute bottom-3 left-0 right-0 text-center text-xs text-slate-500">
-                    A word from Hugo
-                  </p>
-                  {/* TODO: hugo video */}
+                      <Icon className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+                      <span className="text-sm font-medium text-slate-200">
+                        {label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>

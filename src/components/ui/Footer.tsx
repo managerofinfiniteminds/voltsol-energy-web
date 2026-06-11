@@ -6,6 +6,8 @@ import { Container } from "./Container";
 const footerLinks = [
   { label: "How It Works", href: "/#how" },
   { label: "Technology", href: "/#systems" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Book an Estimate", href: "/book" },
   { label: "Get a Quote", href: "/#quote" },
   { label: "Privacy Policy", href: "/privacy" },
 ];
@@ -56,7 +58,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-blue-900/40 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
           <span>&copy; 2026 VoltSol Energy, LLC. All rights reserved.</span>
-          <span>CSLB License #TBD &middot; Northern California</span>
+          <span>CSLB License # pending &middot; Northern California</span>
         </div>
       </Container>
     </footer>

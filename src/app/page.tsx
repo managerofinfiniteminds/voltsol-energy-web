@@ -24,6 +24,43 @@ import {
   CalendarCheck,
 } from "lucide-react";
 
+const faqItems = [
+  {
+    q: "What does a system cost, and what's included?",
+    a: "Under $10,000 all-in — solar panels, EG4 hybrid inverter, EG4 LiFePO4 battery, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home.",
+  },
+  {
+    q: "What's the difference between off-grid and grid-tie solar?",
+    a: "Grid-tie solar feeds power back to PG&E and shuts off during blackouts — you stay dependent on the utility. Our systems are off-grid capable: the battery runs your home directly, so you can keep the grid as backup or cut it entirely.",
+  },
+  {
+    q: "Do I need permits?",
+    a: "Yes, and we handle them. Permitting and county paperwork are included in every install — you don't file a single form.",
+  },
+  {
+    q: "How long do the batteries last?",
+    a: "EG4 LiFePO4 batteries are rated for 8,000 cycles — roughly 20 years of daily use — and carry a 10-year manufacturer warranty.",
+  },
+  {
+    q: "How long does installation take?",
+    a: "Most installs are done in 1–2 days. From your free estimate to power-on is typically 2–4 weeks, depending on county permit turnaround.",
+  },
+  {
+    q: "Do you offer financing?",
+    a: "Because the whole system is under $10,000, most customers skip the $40k solar loan entirely. Financing options are available — ask Hugo during your free estimate.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function HomePage() {
   return (
     <>
@@ -575,28 +612,34 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:gap-8">
+          {/* PLACEHOLDER testimonials — replace with real customer quotes */}
+          {/* Mobile: horizontal snap-scroll carousel; lg+: 3-column grid */}
+          <div className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
             {[
               {
                 quote:
                   "Our PG&E bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.",
                 name: "Maria S.",
-                city: "Sacramento",
+                city: "Redding",
               },
               {
                 quote:
                   "SunPower quoted $38,000. Hugo did the whole thing for under ten grand.",
                 name: "David R.",
-                city: "Fresno",
+                city: "Chico",
               },
               {
                 quote:
                   "First summer with no AC bill. First winter with no gas bill.",
                 name: "Carmen L.",
-                city: "Stockton",
+                city: "Grass Valley",
               },
             ].map((t, i) => (
-              <Reveal key={t.name} delay={0.1 * (i + 1)}>
+              <Reveal
+                key={t.name}
+                delay={0.1 * (i + 1)}
+                className="w-[85%] shrink-0 snap-center sm:w-[60%] lg:w-auto"
+              >
                 <figure className="flex h-full flex-col rounded-xl border-t-2 border-t-gold/60 bg-navy-800/50 p-8">
                   <div
                     className="flex gap-1 text-gold"
@@ -628,7 +671,11 @@ export default function HomePage() {
       </Section>
 
       {/* ========== 5b. FAQ ========== */}
-      <Section>
+      <Section id="faq">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
         <Container className="mx-auto max-w-3xl">
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
@@ -638,24 +685,7 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <div className="mt-12 space-y-4">
-              {[
-                {
-                  q: "Is $10,000 really an all-in price?",
-                  a: "Yes — panels, battery, inverter, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home.",
-                },
-                {
-                  q: "Do I still need the grid at all?",
-                  a: "Not if you don't want it. Most customers keep it as backup — cutting it entirely is your call.",
-                },
-                {
-                  q: "What happens during a blackout?",
-                  a: "Nothing. The system switches to battery in milliseconds — your neighbors notice, you don't.",
-                },
-                {
-                  q: "What's the payback period?",
-                  a: "At $300/month in PG&E bills, typically under 3 years. After that, power is essentially free for 25+ years.",
-                },
-              ].map((item) => (
+              {faqItems.map((item) => (
                 <details
                   key={item.q}
                   className="faq-item group rounded-xl border border-navy-500/30 bg-navy-800"

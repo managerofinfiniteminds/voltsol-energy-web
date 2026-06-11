@@ -33,6 +33,18 @@ interface Campaign {
   lead_count: number;
 }
 
+interface Appointment {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  status: string;
+  slot_date: string | null;
+  start_time: string | null;
+  end_time: string | null;
+}
+
 interface Stats {
   total: number;
   hot: number;
@@ -40,7 +52,7 @@ interface Stats {
   this_week: number;
 }
 
-const STATUS_OPTIONS = ['new', 'contacted', 'qualified', 'converted', 'closed'];
+const STATUS_OPTIONS = ['new', 'contacted', 'quoted', 'won', 'lost'];
 const SCORE_OPTIONS = ['hot_lead', 'standard', 'low_priority'];
 
 function ScoreBadge({ score }: { score: Contact['lead_score'] }) {
@@ -57,9 +69,9 @@ function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, string> = {
     new: 'bg-blue-900/40 text-blue-300 border-blue-700',
     contacted: 'bg-purple-900/40 text-purple-300 border-purple-700',
-    qualified: 'bg-amber-900/40 text-amber-300 border-amber-700',
-    converted: 'bg-green-900/40 text-green-300 border-green-700',
-    closed: 'bg-slate-800 text-slate-400 border-slate-600',
+    quoted: 'bg-amber-900/40 text-amber-300 border-amber-700',
+    won: 'bg-green-900/40 text-green-300 border-green-700',
+    lost: 'bg-slate-800 text-slate-400 border-slate-600',
   };
   return (
     <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium border capitalize ${colors[status] || colors.new}`}>
@@ -68,10 +80,42 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+function AppointmentStatusBadge({ status }: { status: string }) {
+  const colors: Record<string, string> = {
+    confirmed: 'bg-green-900/40 text-green-300 border-green-700',
+    completed: 'bg-slate-800 text-slate-400 border-slate-600',
+    cancelled: 'bg-red-900/40 text-red-300 border-red-700',
+    no_show: 'bg-amber-900/40 text-amber-300 border-amber-700',
+  };
+  return (
+    <span className={`inline-flex shrink-0 px-2 py-0.5 rounded-full text-xs font-medium border capitalize ${colors[status] || colors.confirmed}`}>
+      {status.replace('_', ' ')}
+    </span>
+  );
+}
+
+function formatSlot(a: Appointment): string {
+  if (!a.slot_date) return '—';
+  const date = new Date(a.slot_date).toLocaleDateString('en-US', {
+    weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC',
+  });
+  const fmtTime = (t: string | null) => {
+    if (!t) return '';
+    const [h, m] = t.split(':').map(Number);
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const hr = h % 12 || 12;
+    return `${hr}:${String(m).padStart(2, '0')} ${ampm}`;
+  };
+  const start = fmtTime(a.start_time);
+  const end = fmtTime(a.end_time);
+  return start ? `${date}, ${start}${end ? ` – ${end}` : ''}` : date;
+}
+
 export default function AdminDashboard() {
   const router = useRouter();
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState('');
@@ -104,6 +148,9 @@ export default function AdminDashboard() {
       fetchContacts(),
       fetch('/api/admin/campaigns').then(r => r.json()).then(setCampaigns),
       fetch('/api/admin/stats').then(r => r.json()).then(setStats),
+      fetch('/api/admin/appointments').then(r => r.json()).then(data => {
+        if (Array.isArray(data)) setAppointments(data);
+      }),
     ]);
     setLoading(false);
   }, [fetchContacts]);
@@ -125,6 +172,15 @@ export default function AdminDashboard() {
     setContacts(prev => prev.map(c => c.id === id ? { ...c, status } : c));
     // Refresh stats
     fetch('/api/admin/stats').then(r => r.json()).then(setStats);
+  }
+
+  async function updateNotes(id: number, notes: string) {
+    await fetch('/api/admin/contacts', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, notes }),
+    });
+    setContacts(prev => prev.map(c => c.id === id ? { ...c, notes } : c));
   }
 
   async function toggleCampaign(id: number, is_active: boolean) {
@@ -165,6 +221,12 @@ export default function AdminDashboard() {
     if (filterCampaign) params.set('campaign_id', filterCampaign);
     return `/api/admin/export?${params}`;
   }
+
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+  const upcomingAppointments = appointments.filter(
+    a => a.slot_date && new Date(a.slot_date).getTime() >= todayStart.getTime() && a.status !== 'cancelled'
+  );
 
   const formatDate = (iso: string) =>
     new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
@@ -293,9 +355,16 @@ export default function AdminDashboard() {
                               <div><span className="text-slate-400">Monthly Bill:</span> <span className="text-white">{contact.monthly_bill}</span></div>
                               <div><span className="text-slate-400">Best Time:</span> <span className="text-white">{contact.best_contact_time}</span></div>
                               <div><span className="text-slate-400">Campaign:</span> <span className="text-white">{contact.campaign_name ?? '—'}</span></div>
-                              {contact.notes && (
-                                <div className="col-span-3"><span className="text-slate-400">Notes:</span> <span className="text-white">{contact.notes}</span></div>
-                              )}
+                              <div className="col-span-2 sm:col-span-3">
+                                <label className="text-slate-400 block mb-1">Notes</label>
+                                <textarea
+                                  defaultValue={contact.notes ?? ''}
+                                  onBlur={e => { if (e.target.value !== (contact.notes ?? '')) updateNotes(contact.id, e.target.value); }}
+                                  rows={2}
+                                  placeholder="Add notes…"
+                                  className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
+                                />
+                              </div>
                             </div>
                           </td>
                         </tr>
@@ -336,9 +405,16 @@ export default function AdminDashboard() {
                         <div><span className="text-slate-400 text-xs block">Monthly Bill</span><span className="text-white text-xs">{contact.monthly_bill}</span></div>
                         <div><span className="text-slate-400 text-xs block">Best Time</span><span className="text-white text-xs">{contact.best_contact_time}</span></div>
                         <div><span className="text-slate-400 text-xs block">Campaign</span><span className="text-white text-xs">{contact.campaign_name ?? '—'}</span></div>
-                        {contact.notes && (
-                          <div className="col-span-2"><span className="text-slate-400 text-xs block">Notes</span><span className="text-white text-xs">{contact.notes}</span></div>
-                        )}
+                      </div>
+                      <div>
+                        <label className="text-xs text-slate-400 block mb-1">Notes</label>
+                        <textarea
+                          defaultValue={contact.notes ?? ''}
+                          onBlur={e => { if (e.target.value !== (contact.notes ?? '')) updateNotes(contact.id, e.target.value); }}
+                          rows={2}
+                          placeholder="Add notes…"
+                          className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
+                        />
                       </div>
                       <div>
                         <label className="text-xs text-slate-400 block mb-1">Update Status</label>
@@ -358,12 +434,126 @@ export default function AdminDashboard() {
           </>
         )}
 
+        {/* Upcoming Appointments */}
+        <section className="bg-slate-900 border border-slate-700 rounded-2xl p-6">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-lg font-bold text-white">Upcoming Appointments</h2>
+            <a href="/admin/schedule" className="text-sm text-amber-400 hover:text-amber-300 underline">
+              Manage schedule
+            </a>
+          </div>
+
+          {upcomingAppointments.length === 0 ? (
+            <p className="text-slate-400 text-sm py-4">No upcoming appointments.</p>
+          ) : (
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-700">
+                      {['Name', 'Phone', 'Email', 'Date / Time', 'Status'].map(h => (
+                        <th key={h} className="text-left text-xs font-medium text-slate-400 uppercase tracking-wider px-3 py-2">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcomingAppointments.map(a => (
+                      <tr key={a.id} className="border-b border-slate-800">
+                        <td className="px-3 py-3 font-medium text-white">{a.first_name} {a.last_name}</td>
+                        <td className="px-3 py-3 text-slate-300">
+                          <a href={`tel:${a.phone.replace(/\D/g, '')}`} className="hover:text-amber-400">{a.phone}</a>
+                        </td>
+                        <td className="px-3 py-3">
+                          <a href={`mailto:${a.email}`} className="text-amber-400 hover:underline">{a.email}</a>
+                        </td>
+                        <td className="px-3 py-3 text-slate-300">{formatSlot(a)}</td>
+                        <td className="px-3 py-3"><AppointmentStatusBadge status={a.status} /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile cards */}
+              <div className="md:hidden space-y-3">
+                {upcomingAppointments.map(a => (
+                  <div key={a.id} className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="font-semibold text-white">{a.first_name} {a.last_name}</div>
+                        <div className="text-slate-300 text-sm mt-0.5">{formatSlot(a)}</div>
+                        <div className="mt-1.5 flex flex-col gap-0.5 text-xs">
+                          <a href={`tel:${a.phone.replace(/\D/g, '')}`} className="text-slate-400 hover:text-amber-400 py-1">{a.phone}</a>
+                          <a href={`mailto:${a.email}`} className="text-amber-400 hover:underline py-1">{a.email}</a>
+                        </div>
+                      </div>
+                      <AppointmentStatusBadge status={a.status} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </section>
+
         {/* Campaign Management */}
         <section className="bg-slate-900 border border-slate-700 rounded-2xl p-6">
           <h2 className="text-lg font-bold text-white mb-5">Campaign Management</h2>
 
-          {/* Campaign list */}
-          <div className="overflow-x-auto mb-6">
+          {/* Campaign list — mobile cards */}
+          <div className="md:hidden space-y-3 mb-6">
+            {campaigns.map(c => {
+              const rep = qrReps[c.id] ?? '';
+              const qrSrc = `/api/qr?code=${encodeURIComponent(c.code)}${rep ? `&rep=${encodeURIComponent(rep)}` : ''}`;
+              return (
+                <div key={c.id} className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-4 space-y-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="font-mono text-amber-400 font-medium">{c.code}</div>
+                      <div className="text-white text-sm mt-0.5">{c.name}</div>
+                      <div className="text-slate-400 text-xs mt-0.5">{c.source_type} &middot; {c.lead_count} leads</div>
+                    </div>
+                    <button
+                      onClick={() => toggleCampaign(c.id, !c.is_active)}
+                      className={`shrink-0 text-xs font-medium px-3 py-2 rounded-full border transition ${c.is_active ? 'bg-green-900/40 text-green-300 border-green-700' : 'bg-slate-800 text-slate-400 border-slate-600'}`}
+                    >
+                      {c.is_active ? 'Active' : 'Inactive'}
+                    </button>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={qrSrc}
+                      alt={`QR for ${c.code}`}
+                      width={72}
+                      height={72}
+                      className="rounded border border-slate-600 bg-white"
+                    />
+                    <div className="flex flex-col gap-2 flex-1">
+                      <input
+                        type="text"
+                        value={rep}
+                        onChange={e => setQrReps(prev => ({ ...prev, [c.id]: e.target.value }))}
+                        placeholder="Rep name (optional)"
+                        className="bg-slate-800 border border-slate-600 rounded px-3 py-2 text-sm text-white w-full focus:outline-none focus:ring-1 focus:ring-amber-400"
+                      />
+                      <a
+                        href={qrSrc}
+                        download={`qr-${c.code}${rep ? `-${rep}` : ''}.svg`}
+                        className="text-xs text-amber-400 hover:text-amber-300 underline transition py-1"
+                      >
+                        Download SVG
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Campaign list — desktop table */}
+          <div className="hidden md:block overflow-x-auto mb-6">
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-slate-700">

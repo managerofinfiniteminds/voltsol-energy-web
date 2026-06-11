@@ -137,22 +137,20 @@ function AttrTable({
 
 // ─── Pipeline column ─────────────────────────────────────────────────────────
 
-const PIPELINE_ORDER = ['new', 'contacted', 'qualified', 'estimate_booked', 'converted', 'closed'];
+const PIPELINE_ORDER = ['new', 'contacted', 'quoted', 'won', 'lost'];
 const PIPELINE_LABELS: Record<string, string> = {
-  new:             'New',
-  contacted:       'Contacted',
-  qualified:       'Qualified',
-  estimate_booked: 'Est. Booked',
-  converted:       'Converted',
-  closed:          'Closed',
+  new:       'New',
+  contacted: 'Contacted',
+  quoted:    'Quoted',
+  won:       'Won',
+  lost:      'Lost',
 };
 const PIPELINE_COLORS: Record<string, string> = {
-  new:             'border-blue-500 bg-blue-900/20',
-  contacted:       'border-purple-500 bg-purple-900/20',
-  qualified:       'border-amber-500 bg-amber-900/20',
-  estimate_booked: 'border-teal-500 bg-teal-900/20',
-  converted:       'border-green-500 bg-green-900/20',
-  closed:          'border-slate-600 bg-slate-800/40',
+  new:       'border-blue-500 bg-blue-900/20',
+  contacted: 'border-purple-500 bg-purple-900/20',
+  quoted:    'border-amber-500 bg-amber-900/20',
+  won:       'border-green-500 bg-green-900/20',
+  lost:      'border-slate-600 bg-slate-800/40',
 };
 
 // ─── Main component ───────────────────────────────────────────────────────────

@@ -61,9 +61,35 @@ const faqJsonLd = {
   })),
 };
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "VoltSol Energy",
+  description:
+    "Off-grid solar installations for Northern California homes — EG4 battery, inverter, and mini-split systems under $10,000.",
+  url: "https://voltsolenergy.com",
+  email: "info@voltsolenergy.com",
+  image: "https://voltsolenergy.com/og-image.png",
+  priceRange: "Under $10,000",
+  areaServed: {
+    "@type": "Place",
+    name: "Northern California",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "CA",
+    addressCountry: "US",
+  },
+  knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <PageTracker />
       {/* ========== 1. HERO ========== */}
       <Section className="relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">

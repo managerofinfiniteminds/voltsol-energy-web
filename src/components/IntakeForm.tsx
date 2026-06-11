@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import SuccessScreen from './SuccessScreen';
+import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 
 interface IntakeFormProps {
   campaignCode?: string;
@@ -31,14 +32,8 @@ const CONTACT_TIME_OPTIONS = [
   'Weekends',
 ];
 
-function validatePhone(phone: string): boolean {
-  const digits = phone.replace(/\D/g, '');
-  return digits.length === 10 || (digits.length === 11 && digits[0] === '1');
-}
-
-function validateEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+const validatePhone = isValidUSPhone;
+const validateEmail = isValidEmail;
 
 export default function IntakeForm({ campaignCode }: IntakeFormProps) {
   const [form, setForm] = useState({
@@ -63,10 +58,18 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    const next = name === 'phone' ? formatPhoneInput(value) : value;
+    setForm(prev => ({ ...prev, [name]: next }));
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+  }
+
+  // Show field-level errors when leaving a field
+  function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    const { name } = e.target;
+    const errs = validate();
+    setErrors(prev => ({ ...prev, [name]: errs[name] ?? '' }));
   }
 
   function validate(): FormErrors {
@@ -169,6 +172,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
             name="first_name"
             value={form.first_name}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="Jane"
             className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.first_name ? 'border-red-500' : 'border-slate-600'}`}
           />
@@ -183,6 +187,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
             name="last_name"
             value={form.last_name}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="Smith"
             className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.last_name ? 'border-red-500' : 'border-slate-600'}`}
           />
@@ -200,6 +205,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
           name="email"
           value={form.email}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="jane@example.com"
           autoComplete="email"
           className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.email ? 'border-red-500' : 'border-slate-600'}`}
@@ -217,6 +223,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
           name="phone"
           value={form.phone}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="(530) 555-0100"
           autoComplete="tel"
           className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.phone ? 'border-red-500' : 'border-slate-600'}`}
@@ -234,6 +241,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
           name="street_address"
           value={form.street_address}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="123 Main St"
           autoComplete="street-address"
           className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.street_address ? 'border-red-500' : 'border-slate-600'}`}
@@ -252,6 +260,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
             name="city"
             value={form.city}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="Sacramento"
             autoComplete="address-level2"
             className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.city ? 'border-red-500' : 'border-slate-600'}`}
@@ -267,6 +276,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
             name="state"
             value={form.state}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="CA"
             maxLength={2}
             autoComplete="address-level1"
@@ -283,6 +293,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
             name="zip"
             value={form.zip}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="95814"
             maxLength={10}
             autoComplete="postal-code"
@@ -378,7 +389,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
       {/* Submit */}
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || Object.keys(validate()).length > 0}
         className="w-full bg-amber-400 hover:bg-amber-300 disabled:bg-amber-800 disabled:cursor-not-allowed text-navy font-bold text-lg py-4 rounded-xl transition-colors duration-200 shadow-lg"
       >
         {submitting ? (

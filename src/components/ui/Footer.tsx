@@ -48,7 +48,7 @@ export function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-slate-400 transition-colors hover:text-white"
+                className="inline-block py-1.5 text-sm text-slate-400 transition-colors hover:text-white"
               >
                 {link.label}
               </a>

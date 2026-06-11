@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Check, Clock, CalendarDays, Mail } from "lucide-react";
+import { formatPhoneInput, isValidUSPhone, isValidEmail } from "@/lib/form-validation";
 
 interface Slot {
   id: string;
@@ -62,6 +63,21 @@ function formatLongDate(iso: string): string {
 
 const inputClass =
   "w-full rounded-lg border border-navy-500/50 bg-navy-800 px-4 py-3 text-white placeholder:text-blue-300/40 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold";
+const inputErrorClass =
+  "w-full rounded-lg border border-red-500 bg-navy-800 px-4 py-3 text-white placeholder:text-blue-300/40 focus:border-red-400 focus:outline-none focus:ring-1 focus:ring-red-400";
+
+type FieldErrors = Partial<Record<"first_name" | "last_name" | "email" | "phone", string>>;
+
+function validateBookingForm(form: FormState): FieldErrors {
+  const errs: FieldErrors = {};
+  if (!form.first_name.trim()) errs.first_name = "First name is required";
+  if (!form.last_name.trim()) errs.last_name = "Last name is required";
+  if (!form.email.trim()) errs.email = "Email is required";
+  else if (!isValidEmail(form.email)) errs.email = "Please enter a valid email";
+  if (form.phone.trim() && !isValidUSPhone(form.phone))
+    errs.phone = "Please enter a valid 10-digit US phone number";
+  return errs;
+}
 
 export default function BookingFlow() {
   const today = useMemo(() => new Date(), []);
@@ -74,6 +90,7 @@ export default function BookingFlow() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -128,9 +145,20 @@ export default function BookingFlow() {
   const atCurrentMonth =
     viewYear === today.getFullYear() && viewMonth === today.getMonth();
 
+  // Show a field's error when the user leaves it
+  function handleFieldBlur(field: keyof FieldErrors) {
+    const errs = validateBookingForm(form);
+    setFieldErrors(prev => ({ ...prev, [field]: errs[field] }));
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!selectedSlot) return;
+    const errs = validateBookingForm(form);
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
+      return;
+    }
     setSubmitting(true);
     setSubmitError("");
     try {
@@ -200,7 +228,7 @@ export default function BookingFlow() {
         <button
           type="button"
           onClick={() => setSelectedSlot(null)}
-          className="flex items-center gap-1 text-sm font-medium text-blue-300 hover:text-white"
+          className="flex min-h-[44px] items-center gap-1 text-sm font-medium text-blue-300 hover:text-white"
         >
           <ChevronLeft className="h-4 w-4" aria-hidden="true" />
           Pick a different time
@@ -229,10 +257,19 @@ export default function BookingFlow() {
                 id="bk-first"
                 required
                 maxLength={100}
-                className={inputClass}
+                autoComplete="given-name"
+                className={fieldErrors.first_name ? inputErrorClass : inputClass}
                 value={form.first_name}
-                onChange={(e) => setForm({ ...form, first_name: e.target.value })}
+                onChange={(e) => {
+                  setForm({ ...form, first_name: e.target.value });
+                  if (fieldErrors.first_name) setFieldErrors(prev => ({ ...prev, first_name: undefined }));
+                }}
+                onBlur={() => handleFieldBlur("first_name")}
+                aria-invalid={!!fieldErrors.first_name}
               />
+              {fieldErrors.first_name && (
+                <p className="mt-1 text-sm text-red-400" role="alert">{fieldErrors.first_name}</p>
+              )}
             </div>
             <div>
               <label htmlFor="bk-last" className="mb-1.5 block text-sm font-medium text-blue-100">
@@ -242,10 +279,19 @@ export default function BookingFlow() {
                 id="bk-last"
                 required
                 maxLength={100}
-                className={inputClass}
+                autoComplete="family-name"
+                className={fieldErrors.last_name ? inputErrorClass : inputClass}
                 value={form.last_name}
-                onChange={(e) => setForm({ ...form, last_name: e.target.value })}
+                onChange={(e) => {
+                  setForm({ ...form, last_name: e.target.value });
+                  if (fieldErrors.last_name) setFieldErrors(prev => ({ ...prev, last_name: undefined }));
+                }}
+                onBlur={() => handleFieldBlur("last_name")}
+                aria-invalid={!!fieldErrors.last_name}
               />
+              {fieldErrors.last_name && (
+                <p className="mt-1 text-sm text-red-400" role="alert">{fieldErrors.last_name}</p>
+              )}
             </div>
           </div>
           <div>
@@ -257,10 +303,20 @@ export default function BookingFlow() {
               type="email"
               required
               maxLength={255}
-              className={inputClass}
+              autoComplete="email"
+              inputMode="email"
+              className={fieldErrors.email ? inputErrorClass : inputClass}
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) => {
+                setForm({ ...form, email: e.target.value });
+                if (fieldErrors.email) setFieldErrors(prev => ({ ...prev, email: undefined }));
+              }}
+              onBlur={() => handleFieldBlur("email")}
+              aria-invalid={!!fieldErrors.email}
             />
+            {fieldErrors.email && (
+              <p className="mt-1 text-sm text-red-400" role="alert">{fieldErrors.email}</p>
+            )}
           </div>
           <div>
             <label htmlFor="bk-phone" className="mb-1.5 block text-sm font-medium text-blue-100">
@@ -270,10 +326,21 @@ export default function BookingFlow() {
               id="bk-phone"
               type="tel"
               maxLength={20}
-              className={inputClass}
+              autoComplete="tel"
+              inputMode="tel"
+              placeholder="(530) 555-0100"
+              className={fieldErrors.phone ? inputErrorClass : inputClass}
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(e) => {
+                setForm({ ...form, phone: formatPhoneInput(e.target.value) });
+                if (fieldErrors.phone) setFieldErrors(prev => ({ ...prev, phone: undefined }));
+              }}
+              onBlur={() => handleFieldBlur("phone")}
+              aria-invalid={!!fieldErrors.phone}
             />
+            {fieldErrors.phone && (
+              <p className="mt-1 text-sm text-red-400" role="alert">{fieldErrors.phone}</p>
+            )}
           </div>
           <div>
             <label htmlFor="bk-address" className="mb-1.5 block text-sm font-medium text-blue-100">
@@ -322,7 +389,7 @@ export default function BookingFlow() {
 
           <button
             type="submit"
-            disabled={submitting}
+            disabled={submitting || Object.keys(validateBookingForm(form)).length > 0}
             className="cta-glow w-full rounded-lg bg-gold px-8 py-4 text-lg font-semibold text-navy transition-colors hover:bg-gold-400 disabled:pointer-events-none disabled:opacity-50"
           >
             {submitting ? "Booking..." : "Confirm My Appointment"}
@@ -354,7 +421,7 @@ export default function BookingFlow() {
             onClick={() => changeMonth(-1)}
             disabled={atCurrentMonth}
             aria-label="Previous month"
-            className="rounded-lg border border-navy-500/50 p-2 text-blue-300 transition-colors hover:text-white disabled:pointer-events-none disabled:opacity-30"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-navy-500/50 text-blue-300 transition-colors hover:text-white disabled:pointer-events-none disabled:opacity-30"
           >
             <ChevronLeft className="h-4 w-4" aria-hidden="true" />
           </button>
@@ -362,7 +429,7 @@ export default function BookingFlow() {
             type="button"
             onClick={() => changeMonth(1)}
             aria-label="Next month"
-            className="rounded-lg border border-navy-500/50 p-2 text-blue-300 transition-colors hover:text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-navy-500/50 text-blue-300 transition-colors hover:text-white"
           >
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </button>
@@ -401,10 +468,10 @@ export default function BookingFlow() {
               aria-pressed={isSelected}
               className={
                 isSelected
-                  ? "rounded-lg bg-gold py-2.5 text-sm font-bold text-navy"
+                  ? "min-h-[44px] rounded-lg bg-gold py-2.5 text-sm font-bold text-navy"
                   : hasSlots
-                    ? "rounded-lg border border-gold/40 bg-gold/10 py-2.5 text-sm font-semibold text-gold transition-colors hover:bg-gold/20"
-                    : "rounded-lg py-2.5 text-sm text-blue-300/30"
+                    ? "min-h-[44px] rounded-lg border border-gold/40 bg-gold/10 py-2.5 text-sm font-semibold text-gold transition-colors hover:bg-gold/20"
+                    : "min-h-[44px] rounded-lg py-2.5 text-sm text-blue-300/30"
               }
             >
               {day}

@@ -5,6 +5,7 @@ import { captureAttribution, getAttribution, getBillPrefill } from '@/lib/attrib
 import { track } from '@/lib/track';
 import SuccessScreen from './SuccessScreen';
 import { cn } from '@/lib/utils';
+import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 const TOTAL_STEPS = 4;
@@ -51,14 +52,8 @@ interface FormErrors {
 }
 
 // ─── Validation helpers ─────────────────────────────────────────────────────
-function validatePhone(phone: string): boolean {
-  const digits = phone.replace(/\D/g, '');
-  return digits.length === 10 || (digits.length === 11 && digits[0] === '1');
-}
-
-function validateEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+const validatePhone = isValidUSPhone;
+const validateEmail = isValidEmail;
 
 function validateStep(step: number, form: FormState): FormErrors {
   const errs: FormErrors = {};
@@ -143,8 +138,16 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    const next = name === 'phone' ? formatPhoneInput(value) : value;
+    setForm(prev => ({ ...prev, [name]: next }));
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  }
+
+  // Show field-level errors when leaving a field
+  function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    const { name } = e.target;
+    const errs = validateStep(step, { ...form, [name]: e.target.value });
+    setErrors(prev => ({ ...prev, [name]: errs[name] ?? '' }));
   }
 
   function handleCardSelect(field: 'owns_home' | 'monthly_bill', value: string) {
@@ -230,6 +233,8 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
   }
 
   const progress = (step / TOTAL_STEPS) * 100;
+  const submitDisabled =
+    submitting || (step === TOTAL_STEPS && Object.keys(validateStep(TOTAL_STEPS, form)).length > 0);
 
   return (
     <div>
@@ -354,6 +359,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     name="street_address"
                     value={form.street_address}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     placeholder="123 Main St"
                     autoComplete="street-address"
                     className={cn(
@@ -376,6 +382,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     name="city"
                     value={form.city}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     placeholder="Sacramento"
                     autoComplete="address-level2"
                     className={cn(
@@ -399,6 +406,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       name="state"
                       value={form.state}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="CA"
                       maxLength={2}
                       autoComplete="address-level1"
@@ -421,6 +429,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       name="zip"
                       value={form.zip}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="95814"
                       maxLength={10}
                       inputMode="numeric"
@@ -456,6 +465,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       name="first_name"
                       value={form.first_name}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="Jane"
                       autoComplete="given-name"
                       className={cn(
@@ -477,6 +487,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                       name="last_name"
                       value={form.last_name}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="Smith"
                       autoComplete="family-name"
                       className={cn(
@@ -500,6 +511,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     name="email"
                     value={form.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     placeholder="jane@example.com"
                     autoComplete="email"
                     inputMode="email"
@@ -523,6 +535,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     placeholder="(530) 555-0100"
                     autoComplete="tel"
                     inputMode="tel"
@@ -545,6 +558,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     name="best_contact_time"
                     value={form.best_contact_time}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     className={cn(
                       'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
                       errors.best_contact_time ? 'border-red-500' : 'border-blue-900',
@@ -609,7 +623,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
             ) : (
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitDisabled}
                 className="cta-glow flex-1 bg-gold hover:bg-gold-400 disabled:bg-gold-600/50 disabled:cursor-not-allowed text-navy font-bold text-lg py-4 rounded-xl transition-colors duration-200"
               >
                 {submitting ? (

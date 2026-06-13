@@ -5,6 +5,7 @@ import { sql } from '@/lib/db';
 import { getCampaignByCode } from '@/lib/campaigns';
 import { scoreLead } from '@/lib/lead-scoring';
 import { sendConfirmationEmail, sendSalesAlertEmail } from '@/lib/email';
+import { insertEngineLead } from '@/lib/engine-ingest';
 
 // In-memory rate limiter: ip -> list of timestamps
 const rateLimitMap = new Map<string, number[]>();
@@ -193,6 +194,35 @@ export async function POST(req: NextRequest) {
         }
       });
     });
+
+    // Dual-write to engine_leads (non-blocking — errors don't fail the request)
+    insertEngineLead({
+      firstName: sanitized.first_name,
+      lastName: sanitized.last_name,
+      email: sanitized.email,
+      phone: sanitized.phone,
+      streetAddress: sanitized.street_address,
+      city: sanitized.city,
+      state: sanitized.state,
+      zip: sanitized.zip,
+      ownsHome: sanitized.owns_home,
+      monthlyBill: sanitized.monthly_bill,
+      notes: sanitized.notes,
+      sourceConsumer: 'voltsol_site',
+      sourcePage: data.campaign_code ? `/go/${data.campaign_code}` : '/',
+      attribution: {
+        utm_source: sanitized.utm_source,
+        utm_medium: sanitized.utm_medium,
+        utm_campaign: sanitized.utm_campaign,
+        referrer: sanitized.referrer,
+      },
+      consent: {
+        version: '1.0',
+        form_id: 'site_quote_form',
+        wording: 'By submitting this form, I consent to receive calls and texts from VoltSol Energy at the phone number provided.',
+      },
+      ipAddress: ip,
+    }).catch((err: unknown) => console.error('[inquiries] engine_leads insert failed:', err));
   } catch (err) {
     console.error('DB insert failed:', err);
     return NextResponse.json({ error: 'Failed to save your request. Please try again.' }, { status: 500 });

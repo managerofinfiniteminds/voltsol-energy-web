@@ -3,6 +3,8 @@ export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { sql } from '@/lib/db';
+import { insertEngineLead } from '@/lib/engine-ingest';
+import { TimelineSchema, UtilitySchema, RoofShadeSchema } from '@/lib/engine-enums';
 
 // ── Rate limiting (in-memory, same pattern as /api/inquiries) ──────────────
 const rateLimitMap = new Map<string, number[]>();
@@ -45,6 +47,10 @@ const schema = z.object({
   city:             z.string().min(1).max(100).optional(),
   owns_home:        z.enum(['Yes, I own it', 'No, I rent', 'Not sure']),
   monthly_bill:     z.enum(['Under $100', '$100–$200', '$200–$300', '$300+']),
+  // New qualifying fields (optional, canonical values)
+  timeline:         z.union([TimelineSchema, z.literal('')]).optional(),
+  utility:          z.union([UtilitySchema, z.literal('')]).optional(),
+  roof_shade:       z.union([RoofShadeSchema, z.literal('')]).optional(),
   website:          z.string().optional(),           // honeypot
   market_slug:      z.string().max(300).optional(),  // e.g. solar/california/placer-county/roseville
   vertical:         z.string().max(50).optional(),
@@ -131,7 +137,7 @@ export async function POST(req: NextRequest) {
   // Determine owner_reserved_until (15-min owner window)
   const ownerReservedUntil = new Date(Date.now() + 15 * 60 * 1000).toISOString();
 
-  // Insert lead
+  // Insert lead into marketplace_leads (legacy)
   let insertedId: number;
   try {
     const rows = await sql`
@@ -157,6 +163,31 @@ export async function POST(req: NextRequest) {
       RETURNING id
     `;
     insertedId = rows[0].id;
+
+    // Dual-write to engine_leads (non-blocking — errors don't fail the request)
+    insertEngineLead({
+      firstName,
+      lastName,
+      email,
+      phone,
+      city,
+      state: 'california',
+      ownsHome: data.owns_home,
+      monthlyBill: data.monthly_bill,
+      timeline: data.timeline || null,
+      utility: data.utility || null,
+      roofShade: data.roof_shade || null,
+      intent,
+      sourceConsumer: 'seo_city_page',
+      sourcePage,
+      vertical,
+      consent: {
+        version: data.consent_version,
+        form_id: data.consent_form_id,
+        wording: data.consent_wording,
+      },
+      ipAddress: ip,
+    }).catch((err: unknown) => console.error('[market/leads] engine_leads insert failed:', err));
   } catch (err) {
     console.error('[market/leads] DB insert failed:', err);
     return NextResponse.json(

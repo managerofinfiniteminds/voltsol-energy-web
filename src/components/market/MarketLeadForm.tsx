@@ -2,7 +2,15 @@
 
 import { useState, FormEvent } from 'react';
 import { ConsentCheckbox, useConsentField, CONSENT_WORDING, CONSENT_VERSION, CONSENT_FORM_ID } from '@/components/market/ConsentCheckbox';
-import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
+import { formatPhoneInput } from '@/lib/form-validation';
+import {
+  TIMELINE_VALUES,
+  TIMELINE_LABELS,
+  UTILITY_VALUES,
+  UTILITY_LABELS,
+  ROOF_SHADE_VALUES,
+  ROOF_SHADE_LABELS,
+} from '@/lib/engine-enums';
 
 interface MarketLeadFormProps {
   marketSlug: string;  // e.g. "solar/california/placer-county/roseville"
@@ -37,6 +45,9 @@ export function MarketLeadForm({ marketSlug, city, county, utility }: MarketLead
       city:          city,
       owns_home:     fd.get('owns_home') as string,
       monthly_bill:  fd.get('monthly_bill') as string,
+      timeline:      fd.get('timeline') as string || '',
+      utility:       fd.get('utility') as string || '',
+      roof_shade:    fd.get('roof_shade') as string || '',
       website:       fd.get('website') as string, // honeypot
       market_slug:   marketSlug,
       vertical:      'solar',
@@ -182,6 +193,55 @@ export function MarketLeadForm({ marketSlug, city, county, utility }: MarketLead
           <option value="$100–$200">$100–$200</option>
           <option value="$200–$300">$200–$300</option>
           <option value="$300+">$300+</option>
+        </select>
+      </div>
+
+      {/* Optional qualifying fields */}
+      <div>
+        <label htmlFor="mp-timeline" className="mb-1 block text-sm font-medium text-gray-700">
+          When are you looking to go solar?
+        </label>
+        <select
+          id="mp-timeline"
+          name="timeline"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        >
+          <option value="">Select…</option>
+          {TIMELINE_VALUES.map(v => (
+            <option key={v} value={v}>{TIMELINE_LABELS[v]}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="mp-utility" className="mb-1 block text-sm font-medium text-gray-700">
+          Your electric utility
+        </label>
+        <select
+          id="mp-utility"
+          name="utility"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        >
+          <option value="">Select…</option>
+          {UTILITY_VALUES.map(v => (
+            <option key={v} value={v}>{UTILITY_LABELS[v]}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="mp-shade" className="mb-1 block text-sm font-medium text-gray-700">
+          How much shade does your roof get?
+        </label>
+        <select
+          id="mp-shade"
+          name="roof_shade"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        >
+          <option value="">Select…</option>
+          {ROOF_SHADE_VALUES.map(v => (
+            <option key={v} value={v}>{ROOF_SHADE_LABELS[v]}</option>
+          ))}
         </select>
       </div>
 

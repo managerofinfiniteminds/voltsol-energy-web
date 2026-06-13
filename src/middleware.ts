@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Feature flags (read directly from env for Edge runtime)
+const PARTNER_SIGNUP = process.env.FLAG_PARTNER_SIGNUP === 'true';
+
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -11,8 +14,17 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // Protect /app/* marketplace routes (but not /app/login)
-  if (pathname.startsWith('/app/') && !pathname.startsWith('/app/login')) {
+  // Gate /app/signup behind PARTNER_SIGNUP flag (redirect to login when disabled)
+  if (pathname.startsWith('/app/signup') && !PARTNER_SIGNUP) {
+    return NextResponse.redirect(new URL('/app/login', req.url));
+  }
+
+  // Protect /app/* marketplace routes (but not /app/login or /app/signup)
+  if (
+    pathname.startsWith('/app/') &&
+    !pathname.startsWith('/app/login') &&
+    !pathname.startsWith('/app/signup')
+  ) {
     const token = req.cookies.get('mp_session')?.value;
     if (!token) {
       return NextResponse.redirect(new URL('/app/login', req.url));

@@ -1,6 +1,6 @@
 # VoltSol Lead Marketplace — Build Progress
 
-## Status: P0 Complete ✓ — P1 Next
+## Status: P1 Complete ✓ — P2 Next
 
 ---
 
@@ -35,17 +35,34 @@ All migrations run in sorted order — 005 will run after existing 001–004.
 
 ---
 
-## Next: P1 — SEO Supply Engine
+### P1 — SEO Supply Engine ✓
+- `src/lib/market-data.ts` — static config for 24 NorCal solar market cities across 6 counties
+  (Placer, Sacramento, El Dorado, Nevada, Yolo, Solano); mirrors seed data; used by generateStaticParams
+  and page template at build time (no DB dep)
+- `scripts/seed-markets.js` — idempotent seed (INSERT … ON CONFLICT DO NOTHING) for
+  `marketplace_markets`; run with `node scripts/seed-markets.js`
+- `src/components/market/MarketLeadForm.tsx` — client form; phone formatting via form-validation lib;
+  ConsentCheckbox integrated; posts to /api/market/leads
+- `src/app/market/[vertical]/[state]/[region]/[city]/page.tsx` — 24 pages statically built;
+  title/meta/OG per city; LocalBusiness + Service + BreadcrumbList JSON-LD; internal mesh links
+  (nearby cities + other counties); sticky lead form aside
+- `src/app/api/market/leads/route.ts` — validate (Zod), honeypot, rate-limit (5/15min),
+  score (hot=3cr/std=2cr/low=1cr), consent_json stored verbatim, owner_reserved_until set (+15min),
+  market_id resolved from slug (non-fatal if not seeded)
+- `src/app/sitemap.ts` — extended with all 24 market pages + marketplace legal pages
+- Build: `npm run build` passes clean ✓ (24 city pages generated as SSG)
+
+---
+
+## Next: P2 — Claim Core
 
 ### Tasks
-- [ ] Seed script for `marketplace_markets` — NorCal solar counties (Placer, Sacramento,
-      El Dorado, Nevada, Yolo, Solano) → cities with slug, utility (PG&E/SMUD), local_data_json estimates
-- [ ] Programmatic SEO route `src/app/market/[vertical]/[state]/[region]/[city]/page.tsx`
-      with generateStaticParams, LocalBusiness/Service JSON-LD, breadcrumbs, internal mesh links,
-      lead capture form + ConsentCheckbox
-- [ ] Lead intake API `src/app/api/market/leads/route.ts` — validate, honeypot, rate-limit,
-      score, store with market_id/consent_json
-- [ ] Sitemap additions for programmatic pages
+- [ ] Lead pool service with `FOR UPDATE SKIP LOCKED` atomic FCFS claiming
+- [ ] Eligibility filter: geo scope ∩ vertical ∩ tier gating
+- [ ] Owner reserve window (15 min) enforced; disclosed in UI
+- [ ] credit_ledger spend on claim — atomic balance check → claim → decrement → commit in 1 tx
+- [ ] Pool UI `src/app/app/pool/page.tsx`
+- [ ] Claim API `src/app/api/market/claim/route.ts`
 
 ---
 

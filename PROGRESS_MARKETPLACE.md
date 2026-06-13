@@ -1,6 +1,7 @@
+PRODUCT_COMPLETE
 # VoltSol Lead Marketplace — Build Progress
 
-## Status: P4 Complete ✓ — P5 Next
+## Status: ALL PHASES COMPLETE ✓
 
 ---
 
@@ -126,12 +127,12 @@ All migrations run in sorted order — 005 will run after existing 001–004.
 
 ---
 
-## Next: P5 — Proof + Polish
-
-### Tasks
-- [ ] Seed demo leads into pool for end-to-end testing
-- [ ] MARKETPLACE.md — setup guide, env vars, migrations, Stripe wiring, owner ops
-- [ ] Final `npm run build` clean → write `PRODUCT_COMPLETE`
+### P5 — Proof + Polish ✓
+- `scripts/seed-demo-leads.js` — 8 synthetic demo leads (3 hot, 3 standard, 2 low priority)
+  across 6 counties; idempotent (skips existing by email); all @example-test.com
+- `MARKETPLACE.md` — full setup guide: env vars, migration sequence, Stripe wiring,
+  credit system table, owner operations, dispute flow, SEO pages, demo testing
+- Final `npm run build` passes clean ✓ (54 pages, zero errors)
 
 ---
 

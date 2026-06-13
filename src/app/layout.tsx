@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { displayFont, bodyFont } from "@/lib/fonts";
-import { SiteHeader, SiteFooter } from "@/components/ui/SiteChrome";
+import { SiteHeader, SiteFooter, SiteStickyCTA } from "@/components/ui/SiteChrome";
 import "./globals.css";
 
 const siteUrl = "https://voltsolenergy.com";
@@ -77,6 +77,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <SiteStickyCTA />
       </body>
     </html>
   );

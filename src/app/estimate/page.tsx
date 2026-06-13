@@ -44,7 +44,7 @@ export default function EstimatePage() {
             <div className="mt-5 flex justify-center">
               <Button href="/book" size="lg">
                 <CalendarCheck className="mr-2 h-5 w-5" aria-hidden="true" />
-                Book My Free Estimate
+                Get My Free Estimate
               </Button>
             </div>
           </div>

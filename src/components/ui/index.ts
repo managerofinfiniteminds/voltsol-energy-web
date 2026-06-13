@@ -5,3 +5,4 @@ export { Reveal } from "./Reveal";
 export { StatCounter } from "./StatCounter";
 export { Header } from "./Header";
 export { Footer } from "./Footer";
+export { StickyCTA } from "./StickyCTA";

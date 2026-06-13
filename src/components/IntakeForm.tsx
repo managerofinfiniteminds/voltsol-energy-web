@@ -401,7 +401,7 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
             Submitting...
           </span>
         ) : (
-          'Get My Free Solar Estimate'
+          'Get My Free Estimate'
         )}
       </button>
 

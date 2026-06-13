@@ -344,7 +344,7 @@ export default function HomePage() {
               <div className="mt-6 flex justify-center">
                 <Button href="/book" size="lg">
                   <CalendarCheck className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Book a Free Estimate
+                  Get My Free Estimate
                 </Button>
               </div>
             </div>
@@ -833,7 +833,7 @@ export default function HomePage() {
               <div className="mt-5 flex justify-center">
                 <Button href="/book" variant="secondary">
                   <CalendarCheck className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Book a Time
+                  Get My Free Estimate
                 </Button>
               </div>
             </div>

@@ -48,7 +48,7 @@ export function Header() {
             </a>
           ))}
           <Button href="/book" size="sm">
-            Get My Quote
+            Get My Free Estimate
           </Button>
         </nav>
 
@@ -81,7 +81,7 @@ export function Header() {
               </a>
             ))}
             <Button href="/book" onClick={() => setOpen(false)}>
-              Get My Quote
+              Get My Free Estimate
             </Button>
           </Container>
         </nav>

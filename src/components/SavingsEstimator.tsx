@@ -231,7 +231,7 @@ export default function SavingsEstimator({ className }: SavingsEstimatorProps) {
             onClick={handleCta}
             className="cta-glow inline-flex items-center gap-2 bg-gold hover:bg-gold-400 text-navy font-bold text-lg px-8 py-4 rounded-xl transition-colors duration-200"
           >
-            Get my exact number
+            Get My Free Estimate
           </button>
 
           <p className="mt-4 text-xs text-blue-300/60">

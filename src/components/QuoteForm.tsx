@@ -635,7 +635,7 @@ export default function QuoteForm({ campaignCode, source, rep }: QuoteFormProps)
                     Submitting...
                   </span>
                 ) : (
-                  'Get My Free Solar Estimate'
+                  'Get My Free Estimate'
                 )}
               </button>
             )}

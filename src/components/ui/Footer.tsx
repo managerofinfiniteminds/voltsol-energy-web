@@ -7,7 +7,7 @@ const footerLinks = [
   { label: "How It Works", href: "/#how" },
   { label: "Technology", href: "/#systems" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Book an Estimate", href: "/book" },
+  { label: "Get My Free Estimate", href: "/book" },
   { label: "Get a Quote", href: "/#quote" },
   { label: "Privacy Policy", href: "/privacy" },
 ];

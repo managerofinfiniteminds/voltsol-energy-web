@@ -6,7 +6,7 @@ import { CalendarCheck, Home, FileText } from "lucide-react";
 export const metadata: Metadata = {
   title: "Book a Free Estimate — VoltSol Energy",
   description:
-    "Pick a time that works for you. Hugo comes to your home, assesses your property, and builds a custom off-grid solar proposal. Free, no pressure.",
+    "Pick a time that works for you. A VoltSol representative meets with you over an interactive Google Meet session, reviews your property, and builds a custom off-grid solar proposal. Free, no pressure.",
 };
 
 export default function BookPage() {
@@ -22,8 +22,8 @@ export default function BookPage() {
             Book your <span className="text-gold">free estimate.</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-center text-lg text-blue-300">
-            Pick a time that works for you. Hugo comes to your home &mdash; no
-            pressure, no obligation.
+            Pick a time that works for you. Meet a VoltSol representative in an
+            interactive Google Meet session &mdash; no pressure, no obligation.
           </p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_280px] lg:gap-12">
@@ -39,8 +39,9 @@ export default function BookPage() {
                   <li className="flex items-start gap-3">
                     <Home className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
                     <span className="text-sm leading-relaxed text-blue-100">
-                      Hugo assesses your actual home &mdash; roof, panel
-                      placement, energy use &mdash; not a satellite guess.
+                      A VoltSol representative reviews your actual home &mdash;
+                      roof, panel placement, energy use &mdash; live over Google
+                      Meet, not a satellite guess.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">

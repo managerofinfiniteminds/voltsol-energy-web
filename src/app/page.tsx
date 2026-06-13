@@ -828,7 +828,7 @@ export default function HomePage() {
                 Pick a time that works for you.
               </p>
               <p className="mt-2 text-sm text-blue-300">
-                Hugo can meet with you via Zoom call at your convenience &mdash; no pressure, no obligation.
+                A VoltSol representative can meet with you in an interactive Google Meet session at your convenience &mdash; no pressure, no obligation.
               </p>
               <div className="mt-5 flex justify-center">
                 <Button href="/book" variant="secondary">

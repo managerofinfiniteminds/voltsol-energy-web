@@ -38,8 +38,8 @@ export default function EstimatePage() {
               Ready for the exact number for your home?
             </p>
             <p className="mt-2 text-sm text-blue-300">
-              Book a free Zoom estimate with Hugo &mdash; no pressure, no
-              obligation.
+              Book a free estimate with a VoltSol representative &mdash; an
+              interactive Google Meet session, no pressure, no obligation.
             </p>
             <div className="mt-5 flex justify-center">
               <Button href="/book" size="lg">

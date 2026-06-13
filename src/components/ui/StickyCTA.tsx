@@ -50,7 +50,7 @@ export function StickyCTA() {
               <p className="text-sm font-medium text-blue-100">
                 Off-grid solar under $10K — free estimate, no obligation
               </p>
-              <Button href="/book" size="sm">
+              <Button href="/start" size="sm">
                 Get My Free Estimate
               </Button>
             </div>
@@ -62,7 +62,7 @@ export function StickyCTA() {
       <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
         <div className="bg-navy/95 backdrop-blur-md border-t border-gold/20 shadow-lg">
           <div className="px-4 py-3">
-            <Button href="/book" size="lg" fullWidth>
+            <Button href="/start" size="lg" fullWidth>
               Get My Free Estimate
             </Button>
           </div>

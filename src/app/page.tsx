@@ -128,12 +128,15 @@ export default function HomePage() {
 
           <Reveal delay={0.2} immediate>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button href="/book" size="lg">
+              <Button href="/start" size="lg">
                 Get My Free Estimate
               </Button>
-              <Button href="#how" variant="ghost" size="lg">
-                See How It Works
-              </Button>
+              <a
+                href="#how"
+                className="inline-flex items-center justify-center text-sm font-medium text-slate-300 transition-colors hover:text-white py-3"
+              >
+                &darr; See How It Works
+              </a>
             </div>
           </Reveal>
 

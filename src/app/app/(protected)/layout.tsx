@@ -17,6 +17,7 @@ export default async function ProtectedAppLayout({ children }: { children: React
           <nav className="flex gap-5 text-sm">
             <Link href="/app/pool"      className="text-slate-300 hover:text-white transition">Lead Pool</Link>
             <Link href="/app/dashboard" className="text-slate-300 hover:text-white transition">My Leads</Link>
+            <Link href="/app/billing"   className="text-slate-300 hover:text-white transition">Billing</Link>
           </nav>
         </div>
 

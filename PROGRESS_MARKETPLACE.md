@@ -1,6 +1,6 @@
 # VoltSol Lead Marketplace — Build Progress
 
-## Status: P2 Complete ✓ — P3 Next
+## Status: P3 Complete ✓ — P4 Next
 
 ---
 
@@ -85,17 +85,30 @@ All migrations run in sorted order — 005 will run after existing 001–004.
 
 ---
 
-## Next: P3 — Stripe Money
+### P3 — Stripe Money ✓
+- `src/lib/stripe.ts` — `getStripe()` returns null (with console.warn) when `STRIPE_SECRET_KEY` absent; all Stripe paths guarded
+- `src/app/api/market/stripe/checkout/route.ts` — POST `{type, planId}`: subscription or credit pack Checkout; creates/reuses Stripe customer
+- `src/app/api/market/stripe/portal/route.ts` — POST → Customer Portal session redirect
+- `src/app/api/market/stripe/webhook/route.ts` — signature verification + handlers:
+  - `checkout.session.completed (subscription)` → upsert marketplace_subscriptions
+  - `checkout.session.completed (payment/pack)` → grant credits idempotently, record transaction
+  - `invoice.paid` → grant monthly subscription credits idempotently, update period_end
+  - `customer.subscription.deleted` → mark canceled
+  - `customer.subscription.updated` → sync status + period_end
+- `src/app/api/market/billing/route.ts` — GET billing summary (balance, tier, plans, packs, stripeConfigured)
+- `src/app/app/(protected)/billing/page.tsx` — client billing UI: plan cards, credit packs, Manage Billing portal button
+- Protected layout nav updated with Billing link
+- Build: `npm run build` passes clean ✓ (51 pages)
+
+---
+
+## Next: P4 — Subscriber UX + Auth
 
 ### Tasks
-- [ ] Stripe Checkout session creation (recurring subscriptions)
-- [ ] Stripe Checkout session creation (one-time credit packs)
-- [ ] Customer Portal redirect
-- [ ] Webhook handler `src/app/api/market/stripe/webhook/route.ts`:
-  - `invoice.paid` → grant monthly subscription credits
-  - `checkout.session.completed` (pack) → grant pack credits
-  - `customer.subscription.deleted` → update subscription status
-- [ ] Guard all Stripe calls when keys absent (graceful no-op + console warning)
+- [ ] Signup page + `POST /api/market/auth/signup`
+- [ ] Onboarding: set geo + vertical preference
+- [ ] Dashboard: outcome tracking (open/won/lost PATCH on claims), dispute path
+- [ ] Owner role: network/markets config, see-everything admin view
 
 ---
 

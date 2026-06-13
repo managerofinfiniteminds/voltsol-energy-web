@@ -18,6 +18,10 @@ export default async function ProtectedAppLayout({ children }: { children: React
             <Link href="/app/pool"      className="text-slate-300 hover:text-white transition">Lead Pool</Link>
             <Link href="/app/dashboard" className="text-slate-300 hover:text-white transition">My Leads</Link>
             <Link href="/app/billing"   className="text-slate-300 hover:text-white transition">Billing</Link>
+            <Link href="/app/onboarding" className="text-slate-300 hover:text-white transition">Settings</Link>
+            {session.isOwner && (
+              <Link href="/app/admin" className="text-amber-400 hover:text-amber-300 transition font-medium">Admin</Link>
+            )}
           </nav>
         </div>
 

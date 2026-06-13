@@ -1,6 +1,6 @@
 # VoltSol Lead Marketplace — Build Progress
 
-## Status: P3 Complete ✓ — P4 Next
+## Status: P4 Complete ✓ — P5 Next
 
 ---
 
@@ -102,13 +102,36 @@ All migrations run in sorted order — 005 will run after existing 001–004.
 
 ---
 
-## Next: P4 — Subscriber UX + Auth
+---
+
+### P4 — Subscriber UX + Auth ✓
+- `sql/006_marketplace_prefs.sql` — adds `geo_counties TEXT[]`, `verticals TEXT[]`, `onboarding_complete BOOL` to `marketplace_tenants`; adds `resolution TEXT` to `marketplace_disputes`
+- `src/app/api/market/auth/signup/route.ts` — creates tenant + user atomically; sets session cookie; redirects to `/app/onboarding`
+- `src/app/app/(auth)/signup/page.tsx` — signup form (company, email, password + confirm); links back to login
+- `src/app/api/market/tenant/prefs/route.ts` — GET/PATCH geo_counties, verticals, onboarding_complete
+- `src/app/app/(protected)/onboarding/page.tsx` — client UI: pick counties (or All NorCal); loads existing prefs; saves + redirects to pool
+- `src/app/api/market/claims/[id]/route.ts` — PATCH outcome (open/won/lost) + notes, verified against tenant ownership
+- `src/app/api/market/disputes/route.ts` — POST dispute; cap 3/30 days; marks claim status = disputed; prevents duplicates
+- `src/components/market/DashboardClient.tsx` — client component: optimistic outcome toggles (Open/Won/Lost buttons per row), Dispute modal with reason/description, pending badge
+- `src/app/app/(protected)/dashboard/page.tsx` — updated to use DashboardClient (server fetches, client interactivity)
+- `src/app/api/market/admin/credits/route.ts` — owner-only POST to manually grant/deduct credits
+- `src/app/api/market/admin/disputes/[id]/route.ts` — owner-only PATCH to approve/deny disputes; approved → credit refund ledger entry
+- `src/app/app/(protected)/admin/page.tsx` — owner-only server page: fetches all tenants (w/ balance/tier/claimed count), recent leads, all disputes
+- `src/components/market/OwnerAdminClient.tsx` — tabbed UI: Tenants (credit grant modal), Leads table, Disputes (approve/deny inline)
+- Protected layout: added Settings (onboarding) + Admin (owner-only) nav links
+- Login page: "Sign up" link added
+- Pool service (`market-pool.ts`): `getAvailableLeads` now accepts `geoCounties` — filters by `marketplace_markets.region` when non-empty; owner bypasses all filters
+- Pool page: fetches tenant's `geo_counties` from DB and passes to `getAvailableLeads`
+- Build: `npm run build` passes clean ✓ (54 pages)
+
+---
+
+## Next: P5 — Proof + Polish
 
 ### Tasks
-- [ ] Signup page + `POST /api/market/auth/signup`
-- [ ] Onboarding: set geo + vertical preference
-- [ ] Dashboard: outcome tracking (open/won/lost PATCH on claims), dispute path
-- [ ] Owner role: network/markets config, see-everything admin view
+- [ ] Seed demo leads into pool for end-to-end testing
+- [ ] MARKETPLACE.md — setup guide, env vars, migrations, Stripe wiring, owner ops
+- [ ] Final `npm run build` clean → write `PRODUCT_COMPLETE`
 
 ---
 

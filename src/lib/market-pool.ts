@@ -69,21 +69,25 @@ export async function getTenantCreditBalance(tenantId: number): Promise<number> 
  * Get available leads from the pool.
  * - Respects owner reserve window (owner sees all; others see only after window expires)
  * - Tier gating: hot_lead only accessible to Pro / Market Leader
+ * - Geo filter: if tenant has geo_counties set, only show leads from those counties
  * - Contact info intentionally excluded — revealed only after claiming
  */
 export async function getAvailableLeads(options: {
   tenantId: number;
   isOwner: boolean;
   tier: SubscriptionTier;
+  geoCounties?: string[];  // empty = all counties
   vertical?: string;
   limit?: number;
   offset?: number;
 }): Promise<PoolLead[]> {
-  const { isOwner, tier, vertical = 'solar', limit = 25, offset = 0 } = options;
-  const canSeeHot = isOwner || tier === 'pro' || tier === 'market';
+  const { isOwner, tier, geoCounties = [], vertical = 'solar', limit = 25, offset = 0 } = options;
+  const canSeeHot    = isOwner || tier === 'pro' || tier === 'market';
+  // When geoCounties is empty, no geo filter is applied
+  const hasGeoFilter = geoCounties.length > 0;
 
   if (isOwner) {
-    // Owner sees all leads regardless of status (full visibility)
+    // Owner sees all leads regardless of status or geo (full visibility)
     return sql`
       SELECT
         l.id, l.market_id, l.vertical, l.city, l.state,
@@ -99,7 +103,25 @@ export async function getAvailableLeads(options: {
   }
 
   if (canSeeHot) {
-    // Pro / Market Leader: all unclaimed leads after reserve window
+    if (hasGeoFilter) {
+      return sql`
+        SELECT
+          l.id, l.market_id, l.vertical, l.city, l.state,
+          l.owns_home, l.monthly_bill, l.score, l.credit_cost,
+          l.source_page, l.intent, l.status, l.owner_reserved_until, l.created_at,
+          m.city AS market_city, m.region AS market_region, m.slug AS market_slug
+        FROM marketplace_leads l
+        LEFT JOIN marketplace_markets m ON m.id = l.market_id
+        LEFT JOIN marketplace_lead_claims c ON c.lead_id = l.id
+        WHERE l.vertical = ${vertical}
+          AND c.id IS NULL
+          AND (l.status = 'available' OR (l.status = 'owner_reserved' AND l.owner_reserved_until < NOW()))
+          AND (l.market_id IS NULL OR m.region = ANY(${geoCounties}::text[]))
+        ORDER BY CASE l.score WHEN 'hot_lead' THEN 1 WHEN 'standard' THEN 2 ELSE 3 END, l.created_at DESC
+        LIMIT ${limit} OFFSET ${offset}
+      ` as Promise<PoolLead[]>;
+    }
+    // Pro / Market Leader, all counties
     return sql`
       SELECT
         l.id, l.market_id, l.vertical, l.city, l.state,
@@ -111,18 +133,32 @@ export async function getAvailableLeads(options: {
       LEFT JOIN marketplace_lead_claims c ON c.lead_id = l.id
       WHERE l.vertical = ${vertical}
         AND c.id IS NULL
-        AND (
-          l.status = 'available'
-          OR (l.status = 'owner_reserved' AND l.owner_reserved_until < NOW())
-        )
-      ORDER BY
-        CASE l.score WHEN 'hot_lead' THEN 1 WHEN 'standard' THEN 2 ELSE 3 END,
-        l.created_at DESC
+        AND (l.status = 'available' OR (l.status = 'owner_reserved' AND l.owner_reserved_until < NOW()))
+      ORDER BY CASE l.score WHEN 'hot_lead' THEN 1 WHEN 'standard' THEN 2 ELSE 3 END, l.created_at DESC
       LIMIT ${limit} OFFSET ${offset}
     ` as Promise<PoolLead[]>;
   }
 
   // Starter tier: exclude hot_lead
+  if (hasGeoFilter) {
+    return sql`
+      SELECT
+        l.id, l.market_id, l.vertical, l.city, l.state,
+        l.owns_home, l.monthly_bill, l.score, l.credit_cost,
+        l.source_page, l.intent, l.status, l.owner_reserved_until, l.created_at,
+        m.city AS market_city, m.region AS market_region, m.slug AS market_slug
+      FROM marketplace_leads l
+      LEFT JOIN marketplace_markets m ON m.id = l.market_id
+      LEFT JOIN marketplace_lead_claims c ON c.lead_id = l.id
+      WHERE l.vertical = ${vertical}
+        AND l.score != 'hot_lead'
+        AND c.id IS NULL
+        AND (l.status = 'available' OR (l.status = 'owner_reserved' AND l.owner_reserved_until < NOW()))
+        AND (l.market_id IS NULL OR m.region = ANY(${geoCounties}::text[]))
+      ORDER BY l.created_at DESC
+      LIMIT ${limit} OFFSET ${offset}
+    ` as Promise<PoolLead[]>;
+  }
   return sql`
     SELECT
       l.id, l.market_id, l.vertical, l.city, l.state,
@@ -135,10 +171,7 @@ export async function getAvailableLeads(options: {
     WHERE l.vertical = ${vertical}
       AND l.score != 'hot_lead'
       AND c.id IS NULL
-      AND (
-        l.status = 'available'
-        OR (l.status = 'owner_reserved' AND l.owner_reserved_until < NOW())
-      )
+      AND (l.status = 'available' OR (l.status = 'owner_reserved' AND l.owner_reserved_until < NOW()))
     ORDER BY l.created_at DESC
     LIMIT ${limit} OFFSET ${offset}
   ` as Promise<PoolLead[]>;

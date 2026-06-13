@@ -3,9 +3,11 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function MarketLoginPage() {
+export default function MarketSignupPage() {
+  const [company,  setCompany]  = useState('');
   const [email,    setEmail]    = useState('');
   const [password, setPassword] = useState('');
+  const [confirm,  setConfirm]  = useState('');
   const [error,    setError]    = useState('');
   const [loading,  setLoading]  = useState(false);
   const router = useRouter();
@@ -13,19 +15,29 @@ export default function MarketLoginPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError('');
+
+    if (password !== confirm) {
+      setError('Passwords do not match.');
+      return;
+    }
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters.');
+      return;
+    }
+
     setLoading(true);
     try {
-      const res = await fetch('/api/market/auth/login', {
+      const res = await fetch('/api/market/auth/signup', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ email, password }),
+        body:    JSON.stringify({ company, email, password }),
       });
       if (res.ok) {
-        router.push('/app/pool');
+        router.push('/app/onboarding');
         router.refresh();
       } else {
         const data = await res.json().catch(() => ({}));
-        setError((data as { error?: string }).error || 'Login failed. Please try again.');
+        setError((data as { error?: string }).error || 'Signup failed. Please try again.');
       }
     } catch {
       setError('Connection error. Please try again.');
@@ -43,16 +55,28 @@ export default function MarketLoginPage() {
         </div>
 
         <div className="bg-[#071628] border border-blue-900/40 rounded-2xl p-8 shadow-2xl">
-          <h1 className="text-xl font-bold text-white mb-6">Sign In</h1>
+          <h1 className="text-xl font-bold text-white mb-6">Create Account</h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Company Name</label>
+              <input
+                type="text"
+                value={company}
+                onChange={e => setCompany(e.target.value)}
+                autoFocus
+                required
+                className="w-full bg-[#0C2040] border border-blue-900/50 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
+                placeholder="Acme Solar"
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                autoFocus
                 required
                 className="w-full bg-[#0C2040] border border-blue-900/50 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
                 placeholder="you@company.com"
@@ -65,6 +89,19 @@ export default function MarketLoginPage() {
                 type="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                required
+                minLength={8}
+                className="w-full bg-[#0C2040] border border-blue-900/50 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
+                placeholder="8+ characters"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Confirm Password</label>
+              <input
+                type="password"
+                value={confirm}
+                onChange={e => setConfirm(e.target.value)}
                 required
                 className="w-full bg-[#0C2040] border border-blue-900/50 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"
               />
@@ -81,15 +118,15 @@ export default function MarketLoginPage() {
               disabled={loading}
               className="w-full bg-amber-400 hover:bg-amber-300 disabled:opacity-60 text-[#040D1C] font-bold py-3 rounded-xl transition-colors"
             >
-              {loading ? 'Signing in…' : 'Sign In'}
+              {loading ? 'Creating account…' : 'Create Account'}
             </button>
           </form>
         </div>
 
         <p className="text-center text-slate-600 text-xs mt-6">
-          Don&apos;t have an account?{' '}
-          <a href="/app/signup" className="text-slate-400 hover:text-white">
-            Sign up
+          Already have an account?{' '}
+          <a href="/app/login" className="text-slate-400 hover:text-white">
+            Sign in
           </a>
         </p>
       </div>

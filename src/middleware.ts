@@ -3,12 +3,19 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Protect /admin routes (but not /admin/login or /api/admin/login)
+  // Protect /admin routes (but not /admin/login)
   if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
     const session = req.cookies.get('admin_session')?.value;
     if (session !== 'authenticated') {
-      const loginUrl = new URL('/admin/login', req.url);
-      return NextResponse.redirect(loginUrl);
+      return NextResponse.redirect(new URL('/admin/login', req.url));
+    }
+  }
+
+  // Protect /app/* marketplace routes (but not /app/login)
+  if (pathname.startsWith('/app/') && !pathname.startsWith('/app/login')) {
+    const token = req.cookies.get('mp_session')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/app/login', req.url));
     }
   }
 
@@ -16,5 +23,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/app/:path*'],
 };

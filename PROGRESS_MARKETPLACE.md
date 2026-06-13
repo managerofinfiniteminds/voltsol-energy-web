@@ -1,6 +1,6 @@
 # VoltSol Lead Marketplace — Build Progress
 
-## Status: P1 Complete ✓ — P2 Next
+## Status: P2 Complete ✓ — P3 Next
 
 ---
 
@@ -54,15 +54,48 @@ All migrations run in sorted order — 005 will run after existing 001–004.
 
 ---
 
-## Next: P2 — Claim Core
+### P2 — Claim Core ✓
+- `src/lib/market-pool.ts` — pool service:
+  - `getAvailableLeads()` — respects owner reserve window, tier gating (hot = Pro+ only),
+    sorted by score then recency; owner sees all leads regardless of status
+  - `claimLead()` — single CTE atomic FCFS: FOR UPDATE SKIP LOCKED → balance check →
+    INSERT claim (ON CONFLICT DO NOTHING as final safeguard) → UPDATE lead status → INSERT ledger debit
+  - `getTenantCreditBalance()` — sum of credit_ledger deltas
+  - `getTenantTier()` — active subscription tier (starter/pro/market/none)
+  - `getTenantClaimedLeads()` — full contact info + outcome for tenant's claimed leads
+- `src/lib/market-auth.ts` — session helpers:
+  - `getMarketSession()` — reads `mp_session` cookie, DB lookup with expiry check
+  - `hashPassword()` / `verifyPassword()` — scrypt-based with random salt, constant-time compare
+- `src/app/api/market/auth/login/route.ts` — email/password login → set `mp_session` cookie (7d, HttpOnly)
+- `src/app/api/market/auth/logout/route.ts` — clear DB session token + delete cookie
+- `src/app/api/market/claim/route.ts` — auth required; tier-gates hot leads; calls claimLead();
+  returns contact info on success
+- `src/app/app/(auth)/login/page.tsx` — marketplace login page at `/app/login`
+- `src/app/app/(protected)/layout.tsx` — server layout: redirects to /app/login if no session;
+  renders nav with plan badge and sign-out
+- `src/app/app/(protected)/pool/page.tsx` — server component; fetches leads + balance + tier
+- `src/app/app/(protected)/dashboard/page.tsx` — claimed leads table with contact info + outcome badge
+- `src/components/market/PoolClient.tsx` — client component:
+  - Lead cards (anonymized pre-claim: score, location, bill range, owns-home, age)
+  - Claim button with credit cost; disabled if insufficient credits or in owner window
+  - After claim: reveals full contact (name, email, phone) inline
+  - Credit balance updates optimistically
+- `src/middleware.ts` — updated to protect `/app/*` (redirects to `/app/login` if no `mp_session` cookie)
+- Build: `npm run build` passes clean ✓ (47 pages)
+
+---
+
+## Next: P3 — Stripe Money
 
 ### Tasks
-- [ ] Lead pool service with `FOR UPDATE SKIP LOCKED` atomic FCFS claiming
-- [ ] Eligibility filter: geo scope ∩ vertical ∩ tier gating
-- [ ] Owner reserve window (15 min) enforced; disclosed in UI
-- [ ] credit_ledger spend on claim — atomic balance check → claim → decrement → commit in 1 tx
-- [ ] Pool UI `src/app/app/pool/page.tsx`
-- [ ] Claim API `src/app/api/market/claim/route.ts`
+- [ ] Stripe Checkout session creation (recurring subscriptions)
+- [ ] Stripe Checkout session creation (one-time credit packs)
+- [ ] Customer Portal redirect
+- [ ] Webhook handler `src/app/api/market/stripe/webhook/route.ts`:
+  - `invoice.paid` → grant monthly subscription credits
+  - `checkout.session.completed` (pack) → grant pack credits
+  - `customer.subscription.deleted` → update subscription status
+- [ ] Guard all Stripe calls when keys absent (graceful no-op + console warning)
 
 ---
 
@@ -78,3 +111,8 @@ None currently.
 - Consent stored verbatim: wording, version, timestamp, IP in consent_json JSONB
 - No Prisma — raw SQL via existing `src/lib/db.ts` neon client
 - Stripe keys guarded: build passes when absent (keys only needed at runtime)
+- Tier gating: hot_lead only available to Pro / Market Leader tiers; Starter gets standard + low_priority
+- Geo scope: all tenants see all leads in P2 (geo filtering deferred to P4 onboarding)
+- Auth: session token stored in marketplace_users.session_token; cookie `mp_session` (HttpOnly, 7d)
+- Middleware: cookie-presence check only (no DB call); full validation in server components/routes
+- Route groups: /app/(auth)/login (public) vs /app/(protected)/* (auth-gated layout)

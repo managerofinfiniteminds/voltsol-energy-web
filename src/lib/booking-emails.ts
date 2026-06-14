@@ -178,3 +178,33 @@ export async function sendCancellationEmail(appt: AppointmentEmailDetails): Prom
   });
   return subject;
 }
+
+/**
+ * Send a magic-link login email to an admin.
+ */
+export async function sendAdminLoginEmail(email: string, token: string): Promise<void> {
+  const magicLink = `${SITE_URL}/admin/auth/${token}`;
+  const subject = 'Your VoltSol Admin login link';
+
+  const body = `
+      <h1 style="margin:0 0 16px 0;font-size:22px;color:#040D1C;">Admin Login Request</h1>
+      <p style="margin:0 0 16px 0;color:#475569;line-height:1.6;">
+        Click the button below to log in to VoltSol Admin.
+      </p>
+      <div style="text-align:center;margin:24px 0;">
+        <a href="${magicLink}" style="display:inline-block;background:#F59E0B;color:#040D1C;font-weight:700;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:16px;">Log in to VoltSol Admin</a>
+      </div>
+      <p style="margin:0 0 16px 0;color:#475569;line-height:1.6;font-size:14px;">
+        This link expires in 15 minutes and can be used once.
+      </p>
+      <p style="margin:0;color:#94a3b8;line-height:1.6;font-size:13px;">
+        If you didn't request this login link, you can safely ignore this email.
+      </p>`;
+
+  await getResend().emails.send({
+    from: 'VoltSol Admin <hello@voltsolenergy.com>',
+    to: email,
+    subject,
+    html: emailShell(body),
+  });
+}

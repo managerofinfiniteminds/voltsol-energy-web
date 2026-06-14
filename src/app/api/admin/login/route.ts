@@ -1,23 +1,70 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { isWhitelistedAdmin, createLoginToken } from '@/lib/admin-auth';
+import { sendAdminLoginEmail } from '@/lib/booking-emails';
 
-export async function POST(req: NextRequest) {
-  const { password } = await req.json();
+// Rate limiting: max 5 requests per email per 15 minutes
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 
-  if (password !== process.env.ADMIN_PASSWORD) {
-    return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
+function checkRateLimit(email: string): boolean {
+  const now = Date.now();
+  const key = email.toLowerCase();
+  const entry = rateLimitMap.get(key);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
   }
 
-  const cookieStore = cookies();
-  cookieStore.set('admin_session', 'authenticated', {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24, // 24 hours
-    path: '/',
-  });
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return false;
+  }
 
+  entry.count++;
+  return true;
+}
+
+export async function POST(req: NextRequest) {
+  let body: { email?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
+
+  const email = body.email?.trim().toLowerCase();
+  if (!email || typeof email !== 'string') {
+    return NextResponse.json({ error: 'Email is required' }, { status: 400 });
+  }
+
+  // Basic email format validation
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
+  }
+
+  // Check rate limit (apply to all emails to prevent enumeration timing attacks)
+  if (!checkRateLimit(email)) {
+    // Still return generic success to prevent enumeration
+    return NextResponse.json({ success: true });
+  }
+
+  // Check if email is whitelisted - but always return same response (anti-enumeration)
+  const whitelisted = await isWhitelistedAdmin(email);
+
+  if (whitelisted) {
+    try {
+      // Create one-time login token
+      const token = await createLoginToken(email);
+      // Send magic link email
+      await sendAdminLoginEmail(email, token);
+    } catch (err) {
+      console.error('[admin/login] Failed to send magic link:', err);
+      // Still return success to prevent enumeration
+    }
+  }
+
+  // Always return the same generic success response
   return NextResponse.json({ success: true });
 }
-// rebuild Mon May 18 23:16:38 PDT 2026

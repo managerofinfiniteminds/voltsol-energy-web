@@ -9,6 +9,7 @@ import {
   ClipboardList,
   XCircle,
   CheckCircle2,
+  Video,
 } from "lucide-react";
 
 interface Appointment {
@@ -26,17 +27,30 @@ interface Appointment {
   label: string | null;
 }
 
-function formatTime(time: string): string {
-  const [hRaw, mRaw] = time.split(":");
+function formatTime(time: string | null | undefined): string | null {
+  if (!time || typeof time !== "string") return null;
+  const parts = time.split(":");
+  if (parts.length < 2) return null;
+  const [hRaw, mRaw] = parts;
   const h = Number(hRaw);
+  if (isNaN(h) || h < 0 || h > 23) return null;
   const ampm = h >= 12 ? "PM" : "AM";
   const h12 = h % 12 === 0 ? 12 : h % 12;
   return `${h12}:${mRaw} ${ampm}`;
 }
 
-function formatLongDate(iso: string): string {
-  const [y, m, d] = iso.slice(0, 10).split("-").map(Number);
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-US", {
+function formatLongDate(iso: string | null | undefined): string | null {
+  if (!iso || typeof iso !== "string") return null;
+  const match = iso.slice(0, 10).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return null;
+  const [, yStr, mStr, dStr] = match;
+  const y = Number(yStr);
+  const m = Number(mStr);
+  const d = Number(dStr);
+  if (isNaN(y) || isNaN(m) || isNaN(d) || m < 1 || m > 12 || d < 1 || d > 31) return null;
+  const date = new Date(Date.UTC(y, m - 1, d));
+  if (isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -177,13 +191,13 @@ export default function AppointmentDashboard({
           </div>
 
           <div className="mt-6 space-y-4">
-            {appt.slot_date && (
+            {appt.slot_date && formatLongDate(appt.slot_date) && (
               <div className="flex items-start gap-3">
                 <CalendarDays className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
                 <span className="text-blue-100">{formatLongDate(appt.slot_date)}</span>
               </div>
             )}
-            {appt.start_time && appt.end_time && (
+            {appt.start_time && appt.end_time && formatTime(appt.start_time) && formatTime(appt.end_time) && (
               <div className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
                 <span className="text-blue-100">
@@ -191,6 +205,13 @@ export default function AppointmentDashboard({
                 </span>
               </div>
             )}
+            <div className="flex items-start gap-3">
+              <Video className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+              <span className="text-blue-100">
+                Google Meet (video call)
+                {/* TODO: Display generated Meet link here once available */}
+              </span>
+            </div>
             {appt.address && (
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
@@ -214,10 +235,11 @@ export default function AppointmentDashboard({
                 What to expect
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-blue-100">
-                Hugo will arrive with equipment specs and build you a custom
-                proposal on the spot. He&rsquo;ll call ahead to confirm. No
-                pressure, no obligation &mdash; the estimate is free either
-                way.
+                Your estimate is a Google Meet video call. Hugo will share his
+                screen and walk you through your roof layout, your PG&amp;E
+                savings, and a custom proposal &mdash; live. No pressure, no
+                obligation &mdash; the estimate is free either way. Your Google
+                Meet link will appear here and be emailed before your appointment.
               </p>
             </div>
 

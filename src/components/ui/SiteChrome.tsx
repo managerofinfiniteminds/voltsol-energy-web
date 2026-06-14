@@ -4,6 +4,17 @@ import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { StickyCTA } from "./StickyCTA";
+import type { FooterLink } from "@/lib/site-config";
+
+interface FooterProps {
+  ctaText?: string;
+  tagline?: string;
+  email?: string;
+  copyrightYear?: string;
+  copyrightRights?: string;
+  legalLine?: string;
+  links?: FooterLink[];
+}
 
 // Customer-facing chrome — hidden on admin pages, which use their own layout.
 function isAdmin(pathname: string | null): boolean {
@@ -21,10 +32,10 @@ export function SiteHeader({ ctaText }: { ctaText?: string }) {
   return <Header ctaText={ctaText} />;
 }
 
-export function SiteFooter({ ctaText }: { ctaText?: string }) {
+export function SiteFooter(props: FooterProps) {
   const pathname = usePathname();
   if (isAdmin(pathname)) return null;
-  return <Footer ctaText={ctaText} />;
+  return <Footer {...props} />;
 }
 
 export function SiteStickyCTA({ ctaText }: { ctaText?: string }) {

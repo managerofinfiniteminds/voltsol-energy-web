@@ -79,7 +79,15 @@ export default async function RootLayout({
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <SiteFooter ctaText={ctaText} />
+        <SiteFooter
+          ctaText={ctaText}
+          tagline={cfg.footer_tagline}
+          email={cfg.footer_email}
+          copyrightYear={cfg.footer_copyright_year}
+          copyrightRights={cfg.footer_copyright_rights}
+          legalLine={cfg.footer_legal_line}
+          links={cfg.footer_links}
+        />
         <SiteStickyCTA ctaText={ctaText} />
       </body>
     </html>

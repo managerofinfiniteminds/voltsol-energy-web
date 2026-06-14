@@ -38,6 +38,11 @@ export interface FaqItem {
   a: string;
 }
 
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
 export interface HomeConfig {
   // Global
   cta_button_text: string;
@@ -101,6 +106,14 @@ export interface HomeConfig {
   faqs: FaqItem[];
   final_cta_headline: string;
   final_cta_subtext: string;
+
+  // Footer
+  footer_tagline: string;
+  footer_email: string;
+  footer_copyright_year: string;
+  footer_copyright_rights: string;
+  footer_legal_line: string;
+  footer_links: FooterLink[];
 }
 
 // ============ DEFAULTS ============
@@ -163,6 +176,13 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   faq_headline_gold: 'answers.',
   final_cta_headline: 'Ready to cut the cord on PG&E?',
   final_cta_subtext: 'Get a free, no-obligation estimate — see exactly what your home could save.',
+
+  // Footer
+  footer_tagline: 'Clean energy, built to last.',
+  footer_email: 'info@voltsolenergy.com',
+  footer_copyright_year: '2026',
+  footer_copyright_rights: 'LLC. All rights reserved.',
+  footer_legal_line: 'CSLB License # pending · Northern California',
 };
 
 const ARRAY_DEFAULTS = {
@@ -178,6 +198,14 @@ const ARRAY_DEFAULTS = {
     { quote: 'First summer with no AC bill. First winter with no gas bill.', name: 'Carmen L.', city: 'Grass Valley' },
   ] as Testimonial[],
   about_credentials: ['CSLB Licensed', 'Northern California Native', 'Every Install Done Personally', 'Answers His Phone'] as string[],
+  footer_links: [
+    { label: 'How It Works', href: '/#how' },
+    { label: 'Technology', href: '/#systems' },
+    { label: 'FAQ', href: '/#faq' },
+    { label: 'Get My Free Estimate', href: '/book' },
+    { label: 'Get a Quote', href: '/#quote' },
+    { label: 'Privacy Policy', href: '/privacy' },
+  ] as FooterLink[],
   faqs: [
     { q: "What does a system cost, and what's included?", a: "Under $10,000 all-in — solar panels, EG4 hybrid inverter, EG4 LiFePO4 battery, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home." },
     { q: "What's the difference between off-grid and grid-tie solar?", a: "Grid-tie solar feeds power back to PG&E and shuts off during blackouts — you stay dependent on the utility. Our systems are off-grid capable: the battery runs your home directly, so you can keep the grid as backup or cut it entirely." },
@@ -208,7 +236,7 @@ const DEFAULTS: NumberSectionConfig = {
 };
 
 // All allowed keys for whitelist
-const ARRAY_KEYS = ['hero_trust', 'how_steps', 'testimonials', 'about_credentials', 'faqs'] as const;
+const ARRAY_KEYS = ['hero_trust', 'how_steps', 'testimonials', 'about_credentials', 'faqs', 'footer_links'] as const;
 const ALL_KEYS = [...Object.keys(SCALAR_DEFAULTS), ...ARRAY_KEYS];
 
 // ============ HELPERS ============
@@ -279,6 +307,7 @@ export async function getHomeConfig(): Promise<HomeConfig> {
     const testimonials = safeParseJson<Testimonial[]>(dbValues.testimonials, ARRAY_DEFAULTS.testimonials);
     const about_credentials = safeParseJson<string[]>(dbValues.about_credentials, ARRAY_DEFAULTS.about_credentials);
     const faqs = safeParseJson<FaqItem[]>(dbValues.faqs, ARRAY_DEFAULTS.faqs);
+    const footer_links = safeParseJson<FooterLink[]>(dbValues.footer_links, ARRAY_DEFAULTS.footer_links);
 
     return {
       ...scalars,
@@ -287,6 +316,7 @@ export async function getHomeConfig(): Promise<HomeConfig> {
       testimonials,
       about_credentials,
       faqs,
+      footer_links,
     } as HomeConfig;
   } catch {
     // DB error — return full defaults

@@ -19,6 +19,11 @@ interface FaqItem {
   a: string;
 }
 
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
 function safeParseJson<T>(value: string | undefined, fallback: T): T {
   if (!value) return fallback;
   try {
@@ -41,6 +46,7 @@ export default function AdminConfigPage() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [aboutCredentials, setAboutCredentials] = useState<string[]>([]);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
+  const [footerLinks, setFooterLinks] = useState<FooterLink[]>([]);
 
   async function fetchConfig() {
     try {
@@ -55,6 +61,7 @@ export default function AdminConfigPage() {
       setTestimonials(safeParseJson<Testimonial[]>(data.config.testimonials, []));
       setAboutCredentials(safeParseJson<string[]>(data.config.about_credentials, []));
       setFaqs(safeParseJson<FaqItem[]>(data.config.faqs, []));
+      setFooterLinks(safeParseJson<FooterLink[]>(data.config.footer_links, []));
 
       setError('');
     } catch {
@@ -84,6 +91,7 @@ export default function AdminConfigPage() {
       testimonials: JSON.stringify(testimonials),
       about_credentials: JSON.stringify(aboutCredentials),
       faqs: JSON.stringify(faqs),
+      footer_links: JSON.stringify(footerLinks),
     };
 
     try {
@@ -867,6 +875,117 @@ export default function AdminConfigPage() {
                       className={textareaClass}
                     />
                   </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ========== FOOTER ========== */}
+          <div className={sectionClass}>
+            <h2 className={sectionTitleClass}>Footer</h2>
+
+            <div className="space-y-4">
+              <label className="block">
+                <span className={labelClass}>Tagline</span>
+                <input
+                  type="text"
+                  value={config.footer_tagline}
+                  onChange={e => updateField('footer_tagline', e.target.value)}
+                  className={inputClass}
+                />
+              </label>
+              <label className="block">
+                <span className={labelClass}>Contact Email</span>
+                <input
+                  type="text"
+                  value={config.footer_email}
+                  onChange={e => updateField('footer_email', e.target.value)}
+                  className={inputClass}
+                />
+              </label>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className={labelClass}>Copyright Year</span>
+                  <input
+                    type="text"
+                    value={config.footer_copyright_year}
+                    onChange={e => updateField('footer_copyright_year', e.target.value)}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block">
+                  <span className={labelClass}>Copyright Rights Text</span>
+                  <input
+                    type="text"
+                    value={config.footer_copyright_rights}
+                    onChange={e => updateField('footer_copyright_rights', e.target.value)}
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+              <label className="block">
+                <span className={labelClass}>Legal Line (CSLB / region)</span>
+                <input
+                  type="text"
+                  value={config.footer_legal_line}
+                  onChange={e => updateField('footer_legal_line', e.target.value)}
+                  className={inputClass}
+                />
+              </label>
+
+              {/* Footer Links */}
+              <div>
+                <span className={labelClass}>Footer Links</span>
+                <div className="mt-2 space-y-3">
+                  {footerLinks.map((link, i) => (
+                    <div key={i} className="p-4 border border-slate-700 rounded-lg">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-medium text-gold">Link {i + 1}</span>
+                        <button
+                          type="button"
+                          onClick={() => setFooterLinks(footerLinks.filter((_, j) => j !== i))}
+                          className="text-red-400 hover:text-red-300 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <label className="block">
+                          <span className={labelClass}>Label</span>
+                          <input
+                            type="text"
+                            value={link.label}
+                            onChange={e => {
+                              const updated = [...footerLinks];
+                              updated[i] = { ...link, label: e.target.value };
+                              setFooterLinks(updated);
+                            }}
+                            className={inputClass}
+                          />
+                        </label>
+                        <label className="block">
+                          <span className={labelClass}>URL / Anchor</span>
+                          <input
+                            type="text"
+                            value={link.href}
+                            onChange={e => {
+                              const updated = [...footerLinks];
+                              updated[i] = { ...link, href: e.target.value };
+                              setFooterLinks(updated);
+                            }}
+                            className={inputClass}
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setFooterLinks([...footerLinks, { label: '', href: '' }])}
+                    className="text-amber-400 hover:text-amber-300 text-sm font-medium"
+                  >
+                    + Add Link
+                  </button>
                 </div>
               </div>
             </div>

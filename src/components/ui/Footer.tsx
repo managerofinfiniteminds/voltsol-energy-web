@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { Container } from "./Container";
+import type { FooterLink } from "@/lib/site-config";
 
-const footerLinks = [
+const DEFAULT_LINKS: FooterLink[] = [
   { label: "How It Works", href: "/#how" },
   { label: "Technology", href: "/#systems" },
   { label: "FAQ", href: "/#faq" },
@@ -12,11 +13,31 @@ const footerLinks = [
   { label: "Privacy Policy", href: "/privacy" },
 ];
 
-export function Footer({ ctaText }: { ctaText?: string }) {
-  const cta = ctaText || "Get My Free Estimate";
-  const links = footerLinks.map((l) =>
-    l.href === "/book" ? { ...l, label: cta } : l
-  );
+interface FooterProps {
+  ctaText?: string;
+  tagline?: string;
+  email?: string;
+  copyrightYear?: string;
+  copyrightRights?: string;
+  legalLine?: string;
+  links?: FooterLink[];
+}
+
+export function Footer({
+  ctaText,
+  tagline = "Clean energy, built to last.",
+  email = "info@voltsolenergy.com",
+  copyrightYear = "2026",
+  copyrightRights = "LLC. All rights reserved.",
+  legalLine = "CSLB License # pending · Northern California",
+  links,
+}: FooterProps) {
+  const baseLinks = links && links.length ? links : DEFAULT_LINKS;
+  // If a CTA override is set, relabel the /book link to match site-wide CTA.
+  const navLinks = ctaText
+    ? baseLinks.map((l) => (l.href === "/book" ? { ...l, label: ctaText } : l))
+    : baseLinks;
+
   return (
     <footer className="border-t border-blue-900/40 bg-navy py-12 sm:py-16">
       <Container>
@@ -36,19 +57,19 @@ export function Footer({ ctaText }: { ctaText?: string }) {
               </span>
             </a>
             <p className="mt-3 text-sm leading-relaxed text-slate-400">
-              Clean energy, built to last.
+              {tagline}
             </p>
             <a
-              href="mailto:info@voltsolenergy.com"
+              href={`mailto:${email}`}
               className="mt-3 inline-block text-sm text-slate-400 transition-colors hover:text-white"
             >
-              info@voltsolenergy.com
+              {email}
             </a>
           </div>
 
           {/* Nav */}
           <nav aria-label="Footer navigation" className="flex flex-col gap-3">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -61,8 +82,8 @@ export function Footer({ ctaText }: { ctaText?: string }) {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-blue-900/40 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
-          <span>&copy; 2026 <span className="font-semibold"><span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span></span>, LLC. All rights reserved.</span>
-          <span>CSLB License # pending &middot; Northern California</span>
+          <span>&copy; {copyrightYear} <span className="font-semibold"><span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span></span>, {copyrightRights}</span>
+          <span>{legalLine}</span>
         </div>
       </Container>
     </footer>

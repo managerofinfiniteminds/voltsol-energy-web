@@ -44,7 +44,7 @@ export default async function SeoStrategyPage() {
             <div>
               <h3 className="font-semibold text-white mb-2">Vision</h3>
               <p className="text-blue-300 text-sm leading-relaxed">
-                VoltSol will own organic search for "EG4 solar" and "off-grid solar under $10k" in Northern California by Q4 2026, capturing the Jan 1, 2027 tax urgency spike.
+                VoltSol will own organic search for &ldquo;EG4 solar&rdquo; and &ldquo;off-grid solar under $10k&rdquo; in Northern California by Q4 2026, capturing the Jan 1, 2027 tax urgency spike.
               </p>
             </div>
             <div>

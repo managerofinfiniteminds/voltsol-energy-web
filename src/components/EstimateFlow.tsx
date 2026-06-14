@@ -23,8 +23,9 @@ import type { PricingTier } from '@/lib/site-config';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const TOTAL_STEPS = 9; // Steps 0-8
-const UTILITY_ANNUAL_INCREASE = 0.06;
-const SYSTEM_YEARS = 25;
+const UTILITY_ANNUAL_INCREASE = 0.05; // conservative, stated to the user
+const HORIZON_YEARS = 10;              // credible window for apples-to-apples comparison
+const SYSTEM_LIFE_YEARS = 25;          // panels last 25+ yrs (qualitative reference only)
 
 // Fallback tier pricing — used only if CMS tiers aren't passed in.
 const DEFAULT_TIER_PRICING: { name: string; price: string }[] = [
@@ -150,9 +151,10 @@ function billToMonthlyValue(bill: MonthlyBill): number {
   }
 }
 
-function calcUtility25yr(monthlyBill: number): number {
+// Total utility spend over `years`, assuming a modest annual rate increase.
+function calcUtilityCost(monthlyBill: number, years: number): number {
   const r = 1 + UTILITY_ANNUAL_INCREASE;
-  const factor = (Math.pow(r, SYSTEM_YEARS) - 1) / (r - 1);
+  const factor = (Math.pow(r, years) - 1) / (r - 1);
   return Math.round(monthlyBill * 12 * factor);
 }
 
@@ -374,13 +376,13 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     // Track estimate_revealed when moving from step 5 to 6
     if (step === 5) {
       const monthlyValue = form.monthly_bill ? billToMonthlyValue(form.monthly_bill) : 300;
-      const utility25yr = calcUtility25yr(monthlyValue);
+      const utilityHorizon = calcUtilityCost(monthlyValue, HORIZON_YEARS);
       const idx = form.monthly_bill ? billToTierIndex(form.monthly_bill) : 1;
       const tierPrice = (tiers && tiers.length ? tiers : DEFAULT_TIER_PRICING)[
         Math.min(idx, (tiers && tiers.length ? tiers.length : DEFAULT_TIER_PRICING.length) - 1)
       ].price;
       const { high } = parsePriceRange(tierPrice);
-      const savingsVal = Math.max(0, utility25yr - high);
+      const savingsVal = Math.max(0, utilityHorizon - high);
       track('estimate_revealed', { bill_band: form.monthly_bill, estimate_range: savingsVal });
     }
 
@@ -547,10 +549,12 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
   const systemName = selectedTier.name;        // e.g. "High Noon"
   const { low: sysLow, high: sysHigh } = parsePriceRange(systemPriceLabel);
   const monthlyValue = form.monthly_bill ? billToMonthlyValue(form.monthly_bill) : 300;
-  const utility25yr = calcUtility25yr(monthlyValue);
-  // Conservative: subtract the HIGH end of the system price so projected savings don't overstate.
-  const potentialSavings = Math.max(0, utility25yr - sysHigh);
+  // Apples-to-apples: total energy cost over the SAME window, both paths.
+  const utilityHorizonCost = calcUtilityCost(monthlyValue, HORIZON_YEARS);
+  // Conservative: subtract the HIGH end of the system price so savings don't overstate.
+  const netSavings = Math.max(0, utilityHorizonCost - sysHigh);
   const payback = calcPayback(monthlyValue, sysHigh);
+  const ratePct = Math.round(UTILITY_ANNUAL_INCREASE * 100);
 
   // Progress indicator
   const progress = ((step + 1) / TOTAL_STEPS) * 100;
@@ -810,42 +814,43 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
           <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gold/15 mb-4">
             <Zap className="h-8 w-8 text-gold" />
           </div>
-          <h2 className="text-2xl font-bold text-white mb-2">Here&apos;s what you could save</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">Here&apos;s how the math works out</h2>
           <p className="text-blue-300 text-sm mb-8">
-            Based on a ${monthlyValue}/mo utility bill and the <span className="text-gold font-semibold">{systemName}</span> system
+            Your energy cost over the next {HORIZON_YEARS} years, two ways — based on a ${monthlyValue}/mo bill and the <span className="text-gold font-semibold">{systemName}</span> system
           </p>
 
+          {/* Apples-to-apples: total cost of energy over the SAME window, both paths */}
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-5">
               <p className="text-xs uppercase tracking-wider text-red-400 mb-1">
-                25 yrs of utility bills
+                Staying on your utility
               </p>
               <p className="font-display text-2xl font-bold text-red-300">
-                ${utility25yr.toLocaleString()}
+                ${utilityHorizonCost.toLocaleString()}
               </p>
-              <p className="text-[11px] text-blue-300/70 mt-1">If you keep paying the utility</p>
+              <p className="text-[11px] text-blue-300/70 mt-1">{HORIZON_YEARS} yrs of bills, and still climbing</p>
             </div>
             <div className="rounded-xl border border-gold/30 bg-gold/5 p-5">
-              <p className="text-xs uppercase tracking-wider text-gold mb-1">{systemName} system</p>
+              <p className="text-xs uppercase tracking-wider text-gold mb-1">Going solar with VoltSol</p>
               <p className="font-display text-2xl font-bold text-gold">{systemPriceLabel}</p>
-              <p className="text-[11px] text-blue-300/70 mt-1">All-in: panels + install</p>
+              <p className="text-[11px] text-blue-300/70 mt-1">One-time — then your energy is yours</p>
             </div>
           </div>
 
           <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-6 mb-6">
             <p className="text-xs uppercase tracking-wider text-emerald-400 mb-1">
-              Your potential 25-year savings
+              You could keep about
             </p>
             <p className="font-display text-4xl font-bold text-emerald-300">
-              up to ${potentialSavings.toLocaleString()}
+              ${netSavings.toLocaleString()}
             </p>
             <p className="text-sm text-blue-300 mt-2">
-              That&apos;s money you&apos;d otherwise hand your utility company. Pays for itself in ~{payback} years — then the power is yours.
+              over {HORIZON_YEARS} years instead of sending it to the utility. Pays for itself in about {payback} years — and keeps saving across the {SYSTEM_LIFE_YEARS}+ year life of the system.
             </p>
           </div>
 
           <p className="text-xs text-blue-300/70 italic mb-6 leading-relaxed">
-            These are potential savings estimates, not a quote. Actual numbers depend on your home, usage, and a free site inspection. Utility costs assume a 6%/yr rate increase over 25 years.
+            Estimate only — not a quote. This compares {HORIZON_YEARS} years of utility bills (assuming a modest {ratePct}%/yr increase) against your one-time system cost. Your actual numbers depend on your home and energy use, confirmed at a free site inspection.
           </p>
 
           <p className="text-sm text-blue-300 mb-6">

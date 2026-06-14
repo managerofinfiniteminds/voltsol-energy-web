@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/track";
 import { forwardRef } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "blue";
@@ -11,6 +12,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   fullWidth?: boolean;
   href?: string;
+  /** When set, fires a cta_click event with this location on click */
+  trackLocation?: string;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -38,6 +41,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       children,
       href,
+      trackLocation,
+      onClick,
       ...props
     },
     ref
@@ -53,16 +58,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className
     );
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+      if (trackLocation) {
+        track("cta_click", { location: trackLocation });
+      }
+      if (onClick && "button" in e.currentTarget) {
+        (onClick as React.MouseEventHandler<HTMLButtonElement>)(e as React.MouseEvent<HTMLButtonElement>);
+      }
+    };
+
     if (href) {
       return (
-        <a href={href} className={classes}>
+        <a href={href} className={classes} onClick={handleClick}>
           {children}
         </a>
       );
     }
 
     return (
-      <button ref={ref} className={classes} {...props}>
+      <button ref={ref} className={classes} onClick={handleClick} {...props}>
         {children}
       </button>
     );

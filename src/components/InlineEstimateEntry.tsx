@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { track } from '@/lib/track';
 
 // Bill options matching EstimateFlow Step 0
 const BILL_OPTIONS = [
@@ -15,7 +15,11 @@ const BILL_OPTIONS = [
 export default function InlineEstimateEntry() {
   const router = useRouter();
 
-  function handleSelect(bill: string) {
+  function handleSelect(bill: string, label: string) {
+    // Track the CTA click
+    track('cta_click', { location: 'inline_capture', bill_band: bill, label });
+    track('flow_step_complete', { step_index: 0, answer: { monthly_bill: bill } });
+
     // Navigate to /start with the bill preselected via query param
     router.push(`/start?bill=${encodeURIComponent(bill)}`);
   }
@@ -26,7 +30,7 @@ export default function InlineEstimateEntry() {
         <button
           key={opt.value}
           type="button"
-          onClick={() => handleSelect(opt.value)}
+          onClick={() => handleSelect(opt.value, opt.label)}
           className={cn(
             'flex flex-col items-center justify-center p-5 rounded-xl border-2 text-center transition-all duration-150',
             'border-blue-900 bg-navy-700/50 text-blue-100 hover:border-gold hover:bg-gold/10 hover:text-white'

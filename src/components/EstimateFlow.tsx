@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef, FormEvent } from 're
 import { ChevronLeft, ChevronRight, Check, Clock, CalendarDays, Mail, Zap } from 'lucide-react';
 import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 import { cn } from '@/lib/utils';
+import { track } from '@/lib/track';
 import {
   MONTHLY_BILL_VALUES,
   MONTHLY_BILL_LABELS,
@@ -211,6 +212,33 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
 
   const stepRef = useRef<HTMLDivElement>(null);
 
+  // Step labels for tracking
+  const stepNames = [
+    'monthly_bill',
+    'home_ownership',
+    'roof_shade',
+    'timeline',
+    'utility',
+    'estimate_reveal',
+    'contact',
+    'calendar',
+    'confirmation',
+  ];
+
+  // Track step views and flow_abandon on unmount
+  useEffect(() => {
+    track('flow_step_view', { step_index: step, step_name: stepNames[step] });
+  }, [step]);
+
+  useEffect(() => {
+    // Track abandon on unmount if not completed (step < 8)
+    return () => {
+      if (step < 8 && step >= 1) {
+        track('flow_abandon', { last_step_index: step });
+      }
+    };
+  }, [step]);
+
   // Load slots when entering Step 7
   const loadSlots = useCallback(async () => {
     setSlotsLoading(true);
@@ -303,6 +331,25 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
       return;
     }
     setErrors({});
+
+    // Track step completion with answer
+    const stepAnswers: Record<number, unknown> = {
+      0: { monthly_bill: form.monthly_bill },
+      1: { owns_home: form.owns_home },
+      2: { roof_shade: form.roof_shade },
+      3: { timeline: form.timeline },
+      4: { utility: form.utility },
+    };
+    track('flow_step_complete', { step_index: step, answer: stepAnswers[step] });
+
+    // Track estimate_revealed when moving from step 5 to 6
+    if (step === 5) {
+      const monthlyValue = form.monthly_bill ? billToMonthlyValue(form.monthly_bill) : 300;
+      const pge25yr = calcPge25yr(monthlyValue);
+      const savingsVal = Math.max(0, pge25yr - SYSTEM_COST);
+      track('estimate_revealed', { bill_band: form.monthly_bill, estimate_range: savingsVal });
+    }
+
     setStep(s => s + 1);
     stepRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -382,6 +429,20 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
       }
 
       setLeadId(data.id);
+
+      // Track lead_capture event
+      track('lead_capture', {
+        lead_id: data.id,
+        signals: {
+          monthly_bill: form.monthly_bill,
+          owns_home: form.owns_home,
+          timeline: form.timeline,
+          utility: form.utility,
+          roof_shade: form.roof_shade,
+        },
+      });
+      track('flow_step_complete', { step_index: 6, answer: { contact_captured: true } });
+
       setStep(7); // Move to calendar
     } catch {
       setServerError('Network error. Please check your connection and try again.');
@@ -424,6 +485,14 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
       }
 
       setBooked(true);
+
+      // Track booking_completed event
+      track('booking_completed', {
+        lead_id: leadId,
+        slot_time: `${selectedDate} ${selectedSlot.start_time}`,
+      });
+      track('flow_step_complete', { step_index: 7, answer: { booked: true } });
+
       setStep(8);
     } catch {
       setBookingError('Network error. Please try again.');
@@ -432,6 +501,7 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
   }
 
   function skipCalendar() {
+    track('flow_step_complete', { step_index: 7, answer: { booked: false, skipped: true } });
     setStep(8);
   }
 

@@ -8,6 +8,7 @@ import {
 import { EnergyFlowDiagram } from "@/components/EnergyFlowDiagram";
 import InlineEstimateEntry from "@/components/InlineEstimateEntry";
 import PageTracker from "@/components/PageTracker";
+import ScrollDepthTracker from "@/components/ScrollDepthTracker";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -84,6 +85,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
       <PageTracker />
+      <ScrollDepthTracker />
 
       {/* ========== SECTION 1: HERO ========== */}
       <Section className="relative overflow-hidden pt-12 sm:pt-16 lg:pt-20">
@@ -121,7 +123,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2} immediate>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button href="/start" size="lg">
+              <Button href="/start" size="lg" trackLocation="hero">
                 Get My Free Estimate
               </Button>
               <a
@@ -238,7 +240,7 @@ export default function HomePage() {
               3 years.
             </p>
             <div className="mt-6 flex justify-center">
-              <Button href="/start" size="lg">
+              <Button href="/start" size="lg" trackLocation="stats">
                 Get My Free Estimate
               </Button>
             </div>
@@ -301,7 +303,7 @@ export default function HomePage() {
 
           <Reveal delay={0.4}>
             <div className="mt-12 flex justify-center">
-              <Button href="/start" size="lg">
+              <Button href="/start" size="lg" trackLocation="how_it_works">
                 Get My Free Estimate
               </Button>
             </div>
@@ -412,7 +414,7 @@ export default function HomePage() {
 
           <Reveal delay={0.4}>
             <div className="mt-12 flex justify-center">
-              <Button href="/start" size="lg">
+              <Button href="/start" size="lg" trackLocation="proof">
                 Get My Free Estimate
               </Button>
             </div>
@@ -485,7 +487,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-8">
-                  <Button href="/start" size="lg">
+                  <Button href="/start" size="lg" trackLocation="about">
                     Get My Free Estimate
                   </Button>
                 </div>
@@ -562,7 +564,7 @@ export default function HomePage() {
                 Get a free, no-obligation estimate — see exactly what your home could save.
               </p>
               <div className="mt-6 flex justify-center">
-                <Button href="/start" size="lg">
+                <Button href="/start" size="lg" trackLocation="bottom">
                   Get My Free Estimate
                 </Button>
               </div>

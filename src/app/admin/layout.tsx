@@ -68,8 +68,8 @@ function AdminNav() {
         </div>
       </header>
 
-      {/* Mobile nav — logo only */}
-      <div className="flex items-center border-b border-slate-700 bg-slate-900 sm:hidden py-2 px-4">
+      {/* Mobile nav — logo + branding */}
+      <div className="flex items-center gap-3 border-b border-slate-700 bg-slate-900 sm:hidden py-3 px-4">
         <Image
           src="/images/voltsol-mark.svg"
           alt="VoltSol Energy"
@@ -77,6 +77,7 @@ function AdminNav() {
           height={40}
           className="h-8 w-8"
         />
+        <span className="text-sm font-semibold text-white">VoltSol</span>
       </div>
       
       {/* Mobile tab nav — below logo */}

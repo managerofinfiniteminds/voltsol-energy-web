@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { displayFont, bodyFont } from "@/lib/fonts";
 import { SiteHeader, SiteFooter, SiteStickyCTA } from "@/components/ui/SiteChrome";
+import { getHomeConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const siteUrl = "https://voltsolenergy.com";
@@ -55,11 +56,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cfg = await getHomeConfig();
+  const ctaText = cfg.cta_button_text;
   return (
     <html
       lang="en"
@@ -72,12 +75,12 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteHeader />
+        <SiteHeader ctaText={ctaText} />
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <SiteFooter />
-        <SiteStickyCTA />
+        <SiteFooter ctaText={ctaText} />
+        <SiteStickyCTA ctaText={ctaText} />
       </body>
     </html>
   );

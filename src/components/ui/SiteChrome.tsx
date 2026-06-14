@@ -15,20 +15,20 @@ function showStickyCTA(pathname: string | null): boolean {
   return pathname === "/" || pathname === "/start";
 }
 
-export function SiteHeader() {
+export function SiteHeader({ ctaText }: { ctaText?: string }) {
   const pathname = usePathname();
   if (isAdmin(pathname)) return null;
-  return <Header />;
+  return <Header ctaText={ctaText} />;
 }
 
-export function SiteFooter() {
+export function SiteFooter({ ctaText }: { ctaText?: string }) {
   const pathname = usePathname();
   if (isAdmin(pathname)) return null;
-  return <Footer />;
+  return <Footer ctaText={ctaText} />;
 }
 
-export function SiteStickyCTA() {
+export function SiteStickyCTA({ ctaText }: { ctaText?: string }) {
   const pathname = usePathname();
   if (isAdmin(pathname) || !showStickyCTA(pathname)) return null;
-  return <StickyCTA />;
+  return <StickyCTA ctaText={ctaText} />;
 }

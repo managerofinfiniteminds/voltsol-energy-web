@@ -12,8 +12,9 @@ const navLinks = [
   { label: "About", href: "#about" },
 ];
 
-export function Header() {
+export function Header({ ctaText }: { ctaText?: string }) {
   const [open, setOpen] = useState(false);
+  const cta = ctaText || "Get My Free Estimate";
 
   return (
     <header className="sticky top-0 z-50 border-t-2 border-t-gold/60 border-b border-b-blue-900/50 bg-navy/80 backdrop-blur-md">
@@ -48,7 +49,7 @@ export function Header() {
             </a>
           ))}
           <Button href="/book" size="sm">
-            Get My Free Estimate
+            {cta}
           </Button>
         </nav>
 
@@ -81,7 +82,7 @@ export function Header() {
               </a>
             ))}
             <Button href="/book" onClick={() => setOpen(false)}>
-              Get My Free Estimate
+              {cta}
             </Button>
           </Container>
         </nav>

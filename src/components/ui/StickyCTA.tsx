@@ -12,8 +12,9 @@ import { Button } from "./Button";
  * Uses IntersectionObserver to detect when hero exits viewport.
  * CSS-visible by default when shown (no opacity:0 animation traps).
  */
-export function StickyCTA() {
+export function StickyCTA({ ctaText }: { ctaText?: string }) {
   const [visible, setVisible] = useState(false);
+  const cta = ctaText || "Get My Free Estimate";
 
   useEffect(() => {
     // Look for the hero section - we'll observe its exit from viewport
@@ -51,7 +52,7 @@ export function StickyCTA() {
                 Off-grid solar under $10K — free estimate, no obligation
               </p>
               <Button href="/start" size="sm">
-                Get My Free Estimate
+                {cta}
               </Button>
             </div>
           </div>
@@ -63,7 +64,7 @@ export function StickyCTA() {
         <div className="bg-navy/95 backdrop-blur-md border-t border-gold/20 shadow-lg">
           <div className="px-4 py-3">
             <Button href="/start" size="lg" fullWidth>
-              Get My Free Estimate
+              {cta}
             </Button>
           </div>
         </div>

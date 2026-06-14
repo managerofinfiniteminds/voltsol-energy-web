@@ -12,7 +12,11 @@ const footerLinks = [
   { label: "Privacy Policy", href: "/privacy" },
 ];
 
-export function Footer() {
+export function Footer({ ctaText }: { ctaText?: string }) {
+  const cta = ctaText || "Get My Free Estimate";
+  const links = footerLinks.map((l) =>
+    l.href === "/book" ? { ...l, label: cta } : l
+  );
   return (
     <footer className="border-t border-blue-900/40 bg-navy py-12 sm:py-16">
       <Container>
@@ -44,7 +48,7 @@ export function Footer() {
 
           {/* Nav */}
           <nav aria-label="Footer navigation" className="flex flex-col gap-3">
-            {footerLinks.map((link) => (
+            {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}

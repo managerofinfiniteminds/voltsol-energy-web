@@ -206,7 +206,10 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(rows);
   } catch (err) {
-    console.error('[admin/leads] GET failed:', err);
-    return NextResponse.json({ error: 'Failed to fetch leads' }, { status: 500 });
+    const error_msg = err instanceof Error ? err.message : String(err);
+    const error_stack = err instanceof Error ? err.stack : '';
+    console.error('[admin/leads] GET failed:', error_msg);
+    console.error('[admin/leads] Stack:', error_stack);
+    return NextResponse.json({ error: 'Failed to fetch leads', details: error_msg }, { status: 500 });
   }
 }

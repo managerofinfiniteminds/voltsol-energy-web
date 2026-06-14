@@ -50,19 +50,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  // Check if email is whitelisted - but always return same response (anti-enumeration)
-  const whitelisted = await isWhitelistedAdmin(email);
+  // Check if email is whitelisted and send login link - handle all errors
+  try {
+    // Check if email is whitelisted - but always return same response (anti-enumeration)
+    const whitelisted = await isWhitelistedAdmin(email);
 
-  if (whitelisted) {
-    try {
+    if (whitelisted) {
       // Create one-time login token
       const token = await createLoginToken(email);
       // Send magic link email
       await sendAdminLoginEmail(email, token);
-    } catch (err) {
-      console.error('[admin/login] Failed to send magic link:', err);
-      // Still return success to prevent enumeration
     }
+  } catch (err) {
+    console.error('[admin/login] Error processing login:', err);
+    // Still return success to prevent enumeration
   }
 
   // Always return the same generic success response

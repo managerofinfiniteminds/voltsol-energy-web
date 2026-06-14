@@ -32,7 +32,7 @@ function AdminNav() {
               className="h-8 w-8 flex-shrink-0"
             />
             <span className="font-display text-lg font-bold">
-              <span className="text-white">Volt</span><span className="text-amber-400">Sol</span>
+              <span className="text-white">Volt</span><span className="text-amber-400">Sol</span><span className="text-white"> Energy</span>
             </span>
           </div>
           <nav className="items-center gap-4 text-sm flex">
@@ -83,7 +83,7 @@ function AdminNav() {
           className="h-8 w-8"
         />
         <span className="text-sm font-semibold">
-          <span className="text-white">Volt</span><span className="text-amber-400">Sol</span>
+          <span className="text-white">Volt</span><span className="text-amber-400">Sol</span><span className="text-white"> Energy</span>
         </span>
       </div>
       

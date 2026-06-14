@@ -95,13 +95,17 @@ export async function POST(req: NextRequest) {
     `;
     const contactId: number | null = contacts.length > 0 ? contacts[0].id : null;
 
-    // Create appointment
+    // Create appointment with token expiry (slot_date + 30 days, or fallback to now + 90 days)
+    const tokenExpiryInterval = slot.slot_date
+      ? `${String(slot.slot_date).slice(0, 10)}::date + INTERVAL '30 days'`
+      : `now() + INTERVAL '90 days'`;
     const appts = await sql`
-      INSERT INTO appointments (slot_id, contact_id, first_name, last_name, email, phone, address, notes)
+      INSERT INTO appointments (slot_id, contact_id, first_name, last_name, email, phone, address, notes, token_expires_at)
       VALUES (
         ${data.slot_id}, ${contactId},
         ${data.first_name.trim()}, ${data.last_name.trim()}, ${email},
-        ${data.phone?.trim() || null}, ${data.address?.trim() || null}, ${data.notes?.trim() || null}
+        ${data.phone?.trim() || null}, ${data.address?.trim() || null}, ${data.notes?.trim() || null},
+        ${slot.slot_date ? new Date(new Date(slot.slot_date).getTime() + 30 * 24 * 60 * 60 * 1000) : new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)}
       )
       RETURNING id, magic_token
     `;

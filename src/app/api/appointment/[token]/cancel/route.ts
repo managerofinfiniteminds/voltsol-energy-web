@@ -19,6 +19,7 @@ export async function POST(
       SELECT
         a.id, a.slot_id, a.contact_id, a.first_name, a.last_name, a.email,
         a.phone, a.address, a.notes, a.status, a.magic_token,
+        a.token_expires_at, a.token_revoked,
         s.slot_date, s.start_time, s.end_time
       FROM appointments a
       LEFT JOIN availability_slots s ON s.id = a.slot_id
@@ -28,6 +29,14 @@ export async function POST(
       return NextResponse.json({ error: 'Not found' }, { status: 404 });
     }
     const appt = rows[0];
+
+    // Check token revocation/expiry — return 404 to not leak which
+    if (appt.token_revoked === true) {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    }
+    if (appt.token_expires_at && new Date(appt.token_expires_at) < new Date()) {
+      return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    }
 
     if (appt.status === 'cancelled') {
       return NextResponse.json({ success: true, status: 'cancelled' });

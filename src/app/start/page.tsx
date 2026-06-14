@@ -9,11 +9,12 @@ export const metadata: Metadata = {
 };
 
 interface StartPageProps {
-  searchParams: { campaign?: string };
+  searchParams: { campaign?: string; bill?: string };
 }
 
 export default function StartPage({ searchParams }: StartPageProps) {
   const campaignCode = searchParams.campaign;
+  const initialBill = searchParams.bill;
 
   return (
     <Section className="hero-bg relative overflow-hidden py-12 sm:py-16">
@@ -37,7 +38,7 @@ export default function StartPage({ searchParams }: StartPageProps) {
 
           {/* Flow container */}
           <div className="rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:p-8">
-            <EstimateFlow campaignCode={campaignCode} />
+            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} />
           </div>
 
           {/* Trust bar */}

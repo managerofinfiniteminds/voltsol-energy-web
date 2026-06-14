@@ -106,6 +106,7 @@ interface FieldErrors {
 // ─── Props ────────────────────────────────────────────────────────────────────
 interface EstimateFlowProps {
   campaignCode?: string;
+  initialBill?: string;
 }
 
 // ─── Helper functions ─────────────────────────────────────────────────────────
@@ -161,11 +162,19 @@ function formatLongDate(iso: string): string {
   });
 }
 
+// Valid bill values for validation
+const VALID_BILLS = ['lt_100', '100_200', '200_300', 'gt_300'] as const;
+
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function EstimateFlow({ campaignCode }: EstimateFlowProps) {
-  const [step, setStep] = useState(0);
+export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlowProps) {
+  // If initialBill is provided and valid, start at step 1 with bill pre-filled
+  const validInitialBill = initialBill && VALID_BILLS.includes(initialBill as MonthlyBill)
+    ? (initialBill as MonthlyBill)
+    : '';
+
+  const [step, setStep] = useState(validInitialBill ? 1 : 0);
   const [form, setForm] = useState<FlowState>({
-    monthly_bill: '',
+    monthly_bill: validInitialBill,
     owns_home: '',
     roof_shade: '',
     timeline: '',

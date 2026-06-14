@@ -26,10 +26,18 @@ export interface AppointmentEmailDetails {
   end_time: string; // HH:MM:SS
 }
 
-/** Format a YYYY-MM-DD date string without timezone shifting. */
-export function formatSlotDate(slotDate: string): string {
-  const [y, m, d] = slotDate.slice(0, 10).split('-').map(Number);
+/** Format a YYYY-MM-DD date string without timezone shifting. Returns empty string on invalid input. */
+export function formatSlotDate(slotDate: string | null | undefined): string {
+  if (!slotDate || typeof slotDate !== 'string') return '';
+  const match = slotDate.slice(0, 10).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return '';
+  const [, yStr, mStr, dStr] = match;
+  const y = Number(yStr);
+  const m = Number(mStr);
+  const d = Number(dStr);
+  if (isNaN(y) || isNaN(m) || isNaN(d) || m < 1 || m > 12 || d < 1 || d > 31) return '';
   const date = new Date(Date.UTC(y, m - 1, d));
+  if (isNaN(date.getTime())) return '';
   return date.toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
@@ -39,10 +47,14 @@ export function formatSlotDate(slotDate: string): string {
   });
 }
 
-/** Format an HH:MM:SS time string as h:MM AM/PM. */
-export function formatSlotTime(time: string): string {
-  const [hRaw, mRaw] = time.split(':');
+/** Format an HH:MM:SS time string as h:MM AM/PM. Returns empty string on invalid input. */
+export function formatSlotTime(time: string | null | undefined): string {
+  if (!time || typeof time !== 'string') return '';
+  const parts = time.split(':');
+  if (parts.length < 2) return '';
+  const [hRaw, mRaw] = parts;
   const h = Number(hRaw);
+  if (isNaN(h) || h < 0 || h > 23) return '';
   const ampm = h >= 12 ? 'PM' : 'AM';
   const h12 = h % 12 === 0 ? 12 : h % 12;
   return `${h12}:${mRaw} ${ampm}`;
@@ -56,6 +68,7 @@ function emailShell(body: string): string {
 <body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <div style="max-width:600px;margin:0 auto;padding:24px 16px;">
     <div style="background:#040D1C;border-radius:12px 12px 0 0;padding:32px 24px;text-align:center;">
+      <img src="${SITE_URL}/images/voltsol-email-mark.png" width="48" height="48" alt="VoltSol Energy" style="display:block;margin:0 auto 10px;">
       <div style="font-size:28px;font-weight:800;color:#F59E0B;letter-spacing:-0.5px;">VoltSol Energy</div>
       <div style="font-size:13px;color:#94a3b8;margin-top:4px;">Northern California Solar</div>
     </div>
@@ -84,13 +97,14 @@ export async function sendAppointmentConfirmationEmail(appt: AppointmentEmailDet
       </p>
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:24px 0;">
         <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;width:30%;">Date</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">${dateStr}</td></tr>
-          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Time</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">${timeStr}</td></tr>
-          ${appt.address ? `<tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Address</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">${appt.address}</td></tr>` : ''}
+          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;width:30%;">Date</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">${dateStr || 'To be confirmed'}</td></tr>
+          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Time</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">${timeStr || 'To be confirmed'}</td></tr>
+          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Format</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">Google Meet (video link sent before your call)</td></tr>
+          ${appt.address ? `<tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Property</td><td style="padding:4px 0;color:#040D1C;font-size:14px;font-weight:600;">${appt.address}</td></tr>` : ''}
         </table>
       </div>
       <p style="margin:0 0 16px 0;color:#475569;line-height:1.6;">
-        Hugo will arrive ready to assess your home and build you a custom proposal. No pressure, no obligation. He'll call ahead to confirm.
+        Your estimate is a quick 30–45 min Google Meet video call. Hugo will walk through your roof, your PG&amp;E bill, and a custom savings proposal — screen-shared, live. No pressure, no obligation. You'll receive a Google Meet link before your appointment.
       </p>
       <div style="text-align:center;margin:24px 0;">
         <a href="${magicLink}" style="display:inline-block;background:#F59E0B;color:#040D1C;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:15px;">View or Manage Your Appointment</a>

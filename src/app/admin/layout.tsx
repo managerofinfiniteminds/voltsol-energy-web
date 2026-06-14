@@ -22,14 +22,19 @@ function AdminNav() {
     <>
       <header className="hidden sm:flex items-center justify-between border-b border-slate-700 bg-slate-900 px-4 py-4 sm:px-6">
         <div className="flex items-center gap-4">
-          {/* Logo mark only */}
-          <Image
-            src="/images/voltsol-mark.svg"
-            alt="VoltSol Energy"
-            width={50}
-            height={50}
-            className="h-8 w-8 flex-shrink-0"
-          />
+          {/* Logo + branding */}
+          <div className="flex items-center gap-2">
+            <Image
+              src="/images/voltsol-mark.svg"
+              alt="VoltSol Energy"
+              width={50}
+              height={50}
+              className="h-8 w-8 flex-shrink-0"
+            />
+            <span className="font-display text-lg font-bold">
+              <span className="text-white">Volt</span><span className="text-amber-400">Sol</span>
+            </span>
+          </div>
           <nav className="items-center gap-4 text-sm flex">
             {NAV_LINKS.map(link =>
               pathname === link.href ? (
@@ -77,7 +82,9 @@ function AdminNav() {
           height={40}
           className="h-8 w-8"
         />
-        <span className="text-sm font-semibold text-white">VoltSol</span>
+        <span className="text-sm font-semibold">
+          <span className="text-white">Volt</span><span className="text-amber-400">Sol</span>
+        </span>
       </div>
       
       {/* Mobile tab nav — below logo */}

@@ -50,7 +50,9 @@ export default function AdminLoginPage() {
               <path className="st0" d="M382.27,878.66c-2.41,4.95-6.09,4.83-8.18-.26L90.71,189.97c1.67-.03,2.9.82,4.67.46l165.91-2.34c5.5-.08,11.71,4.02,13.81,9.11l197.34,479.14c2.09,5.09,1.84,13.29-.57,18.24l-89.6,184.08Z"/>
             </svg>
           </div>
-          <div className="text-3xl font-extrabold text-amber-400">VoltSol Energy</div>
+          <div className="text-3xl font-extrabold">
+            <span className="text-white">Volt</span><span className="text-amber-400">Sol</span><span className="text-white"> Energy</span>
+          </div>
           <div className="text-slate-400 text-sm mt-1">Admin Dashboard</div>
         </div>
 

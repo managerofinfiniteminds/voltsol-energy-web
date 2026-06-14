@@ -20,7 +20,7 @@ function AdminNav() {
 
   return (
     <>
-      <header className="flex items-center justify-between border-b border-slate-700 bg-slate-900 px-4 py-4 sm:px-6">
+      <header className="hidden sm:flex items-center justify-between border-b border-slate-700 bg-slate-900 px-4 py-4 sm:px-6">
         <div className="flex items-center gap-4">
           {/* Logo mark only */}
           <Image
@@ -30,7 +30,7 @@ function AdminNav() {
             height={50}
             className="h-8 w-8 flex-shrink-0"
           />
-          <nav className="hidden items-center gap-4 text-sm sm:flex">
+          <nav className="items-center gap-4 text-sm flex">
             {NAV_LINKS.map(link =>
               pathname === link.href ? (
                 <span key={link.href} className="font-semibold text-amber-400">

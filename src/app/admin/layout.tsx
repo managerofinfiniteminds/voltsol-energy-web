@@ -21,25 +21,15 @@ function AdminNav() {
   return (
     <>
       <header className="flex items-center justify-between border-b border-slate-700 bg-slate-900 px-4 py-4 sm:px-6">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            {/* Logo mark */}
-            <div className="w-6 h-6 flex-shrink-0 hidden sm:block">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <defs>
-                  <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#F59E0B" />
-                    <stop offset="100%" stopColor="#DC2626" />
-                  </linearGradient>
-                </defs>
-                {/* Orange bolt / forward slash */}
-                <path d="M16 2L6 16h8l2 14L28 8h-8L16 2Z" fill="url(#boltGrad)" />
-                {/* White left sweep */}
-                <path d="M2 16h8l-2 6H6l2-6Z" fill="white" />
-              </svg>
-            </div>
-            <span className="text-sm font-semibold text-white hidden sm:inline">Admin</span>
-          </div>
+        <div className="flex items-center gap-4">
+          {/* Logo mark only */}
+          <Image
+            src="/images/voltsol-mark.svg"
+            alt="VoltSol Energy"
+            width={50}
+            height={50}
+            className="h-8 w-8 flex-shrink-0"
+          />
           <nav className="hidden items-center gap-4 text-sm sm:flex">
             {NAV_LINKS.map(link =>
               pathname === link.href ? (
@@ -81,19 +71,14 @@ function AdminNav() {
       {/* Mobile nav */}
       <nav className="flex items-center border-b border-slate-700 bg-slate-900 sm:hidden">
         {/* Mobile logo */}
-        <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center border-r border-slate-700">
-          <div className="w-5 h-5">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <defs>
-                <linearGradient id="boltGradMobile" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F59E0B" />
-                  <stop offset="100%" stopColor="#DC2626" />
-                </linearGradient>
-              </defs>
-              <path d="M16 2L6 16h8l2 14L28 8h-8L16 2Z" fill="url(#boltGradMobile)" />
-              <path d="M2 16h8l-2 6H6l2-6Z" fill="white" />
-            </svg>
-          </div>
+        <div className="flex-shrink-0 px-4 py-2 border-r border-slate-700">
+          <Image
+            src="/images/voltsol-mark.svg"
+            alt="VoltSol Energy"
+            width={40}
+            height={40}
+            className="h-10 w-10"
+          />
         </div>
         <div className="flex flex-1">
           {NAV_LINKS.map(link =>

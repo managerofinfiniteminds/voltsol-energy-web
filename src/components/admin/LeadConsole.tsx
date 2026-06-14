@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { HelpPanel } from './HelpPanel';
+import { Hint } from './Hint';
 import {
   OWNS_HOME_LABELS,
   MONTHLY_BILL_LABELS,
@@ -122,6 +124,7 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
   const [notes, setNotes] = useState(lead.notes ?? '');
   const [saving, setSaving] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [showNewCardHint, setShowNewCardHint] = useState(false);
 
   const hasChanges =
     status !== lead.status ||
@@ -151,7 +154,10 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
       {/* Header */}
       <div className="flex items-start justify-between gap-3 border-b border-slate-800 px-4 py-3">
         <div className="flex items-center gap-3">
-          <ScoreBadge score={lead.score} />
+          <div className="flex items-center gap-1">
+            <ScoreBadge score={lead.score} />
+            <Hint text="🔴 HOT = owns home + high bill + ready soon. Call first. 🟡 Standard = real lead, less urgent. ⚪ Low = missing info or unlikely. Last." />
+          </div>
           <div>
             <span className="text-sm font-medium text-white">
               {lead.first_name} {lead.last_name}
@@ -166,7 +172,7 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
         </span>
       </div>
 
-      {/* Contact */}
+      {/* Contact + Help hint for new cards */}
       <div className="border-b border-slate-800 px-4 py-3">
         <div className="flex flex-wrap gap-4 text-sm">
           <a
@@ -184,6 +190,13 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
             <span className="truncate">{lead.email}</span>
           </a>
         </div>
+        {lead.status === 'new' && (
+          <div className="mt-2 text-xs text-slate-500">
+            <Hint text="This is a new lead. Tap the phone or email above to reach out to them right now.">
+              <span className="text-slate-500 hover:text-slate-300">New card — tap phone or email to start →</span>
+            </Hint>
+          </div>
+        )}
       </div>
 
       {/* Signals */}
@@ -195,13 +208,16 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
       <div className="px-4 py-3 space-y-3">
         <div className="flex flex-wrap items-end gap-3">
           <div>
-            <label className="block text-xs text-slate-400 mb-1">Status</label>
+            <label className="block text-xs text-slate-400 mb-1 flex items-center gap-1">
+              Status
+              <Hint text="Where this lead stands: • New — nobody's contacted them yet. • Contacted — you reached out. • Quoted — you sent a price. • Won — they bought. 🎉 (Add amount in Sale $.) • Lost — not happening. Keep this updated so you always know your next move." />
+            </label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as LeadStatus)}
               className="bg-slate-800 border border-slate-600 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
             >
-              {LEAD_STATUS_VALUES.map((s) => (
+              {LEAD_STATUS_VALUES.filter((s) => s !== 'stale').map((s) => (
                 <option key={s} value={s} className="capitalize">
                   {s}
                 </option>
@@ -209,7 +225,10 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
             </select>
           </div>
           <div>
-            <label className="block text-xs text-slate-400 mb-1">Sale $</label>
+            <label className="block text-xs text-slate-400 mb-1 flex items-center gap-1">
+              Sale $
+              <Hint text="Dollar value of deal once Won. Lets you see total sales." />
+            </label>
             <input
               type="number"
               value={saleValue}
@@ -351,6 +370,9 @@ export function LeadConsole() {
 
   return (
     <div className="space-y-6">
+      {/* Help panel */}
+      <HelpPanel />
+
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
         <div className="rounded-xl border border-slate-700 bg-slate-900 p-4">
@@ -377,7 +399,7 @@ export function LeadConsole() {
             className="bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-amber-400"
           >
             <option value="">All</option>
-            {LEAD_STATUS_VALUES.map((s) => (
+            {LEAD_STATUS_VALUES.filter((s) => s !== 'stale').map((s) => (
               <option key={s} value={s} className="capitalize">
                 {s}
               </option>
@@ -429,8 +451,7 @@ export function LeadConsole() {
         </div>
       ) : leads.length === 0 ? (
         <div className="rounded-xl border border-slate-700 bg-slate-900 p-8 text-center text-slate-400">
-          No leads found. Leads will appear here after engine migration 007 is run and data is
-          backfilled.
+          No leads yet. New leads from website and ads appear auto—newest and hottest at top.
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

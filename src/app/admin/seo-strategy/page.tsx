@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { Container } from "@/components/ui";
-import { isWhitelistedAdmin } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
   title: "SEO Strategy — VoltSol Admin",
   description: "Strategic SEO domination plan for EG4 solar in Northern California",
 };
 
-export default async function SeoStrategyPage() {
-  // Auth check (will redirect if not authenticated via middleware)
-  const authenticated = await isWhitelistedAdmin("");
-  
-  if (!authenticated) {
-    redirect("/admin/login");
-  }
+export default function SeoStrategyPage() {
+  // Auth check is handled by middleware for /admin/* routes
+  // If we reach this page, the user is already authenticated
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-navy-900 to-navy-800 py-12 sm:py-16 lg:py-20">

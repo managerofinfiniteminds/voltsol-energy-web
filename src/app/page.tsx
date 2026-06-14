@@ -5,7 +5,6 @@ import {
   Container,
   Button,
   Reveal,
-  StatCounter,
 } from "@/components/ui";
 import { EnergyFlowDiagram } from "@/components/EnergyFlowDiagram";
 import { getHomeConfig } from "@/lib/site-config";
@@ -29,11 +28,11 @@ const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   name: "VoltSol Energy",
   description:
-    "Off-grid solar installations for Northern California homes — EG4 battery, inverter, and mini-split systems under $10,000.",
+    "Off-grid solar installations for Northern California homes — EG4 battery, inverter, and solar-powered mini-split systems from $8,700.",
   url: "https://voltsolenergy.com",
   email: "info@voltsolenergy.com",
   image: "https://voltsolenergy.com/og-image.png",
-  priceRange: "Under $10,000",
+  priceRange: "$8,700–$16,000",
   areaServed: {
     "@type": "Place",
     name: "Northern California",
@@ -149,93 +148,140 @@ export default async function HomePage() {
         className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
       />
 
-      {/* ========== SECTION 2: THE NUMBER (price early) + STATS ========== */}
-      <Section>
-        <Container className="text-center">
+      {/* ========== SECTION 2: PRICING TIERS ========== */}
+      <Section id="pricing">
+        <Container>
           <Reveal immediate>
-            <p className="text-lg text-blue-300">{cfg.number_section_label}</p>
-          </Reveal>
-
-          <Reveal delay={0.1} immediate>
-            <div className="mt-4 flex items-center justify-center gap-4 sm:gap-6">
-              <span
-                aria-hidden="true"
-                className="hidden h-px w-16 bg-gradient-to-r from-transparent to-gold/50 sm:block lg:w-24"
-              />
-              <div className="number-glow">
-                <span className="font-display text-5xl font-bold sm:text-6xl lg:text-7xl">
-                  <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">
-                    {cfg.number_headline_prefix}{" "}
-                  </span>
-                </span>
-                <StatCounter
-                  value={Number(cfg.number_headline_value) || 10000}
-                  prefix="$"
-                  label=""
-                  className="inline-block"
-                />
-                <span className="font-display text-5xl font-bold text-gold sm:text-6xl lg:text-7xl">
-                  .
-                </span>
-              </div>
-              <span
-                aria-hidden="true"
-                className="hidden h-px w-16 bg-gradient-to-l from-transparent to-gold/50 sm:block lg:w-24"
-              />
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="mx-auto mt-10 grid max-w-2xl gap-6 sm:grid-cols-2">
-              <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-6">
-                <p className="font-display text-2xl font-bold text-red-400">
-                  {cfg.compare_bad_amount}
-                </p>
-                <p className="mt-1 text-sm text-blue-300">
-                  {cfg.compare_bad_caption}
-                </p>
-              </div>
-              <div className="rounded-xl border border-gold/30 bg-gold/5 p-6">
-                <p className="font-display text-2xl font-bold text-gold">
-                  {cfg.compare_good_amount}
-                </p>
-                <p className="mt-1 text-sm text-blue-300">
-                  {cfg.compare_good_caption}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Stats merged in */}
-          <Reveal delay={0.3}>
-            <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_1_value}</p>
-                <p className="mt-1 text-sm text-blue-300">{cfg.stat_1_label}</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_2_value}</p>
-                <p className="mt-1 text-sm text-blue-300">{cfg.stat_2_label}</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_3_value}</p>
-                <p className="mt-1 text-sm text-blue-300">{cfg.stat_3_label}</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_4_value}</p>
-                <p className="mt-1 text-sm text-blue-300">{cfg.stat_4_label}</p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.4}>
-            <p className="mx-auto mt-10 max-w-xl text-lg text-blue-100">
-              {cfg.number_payback_line}
+            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+              {cfg.tiers_headline_pre}
+              <span className="text-gold">{cfg.tiers_headline_gold}</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-blue-200">
+              {cfg.tiers_subhead}
             </p>
-            <div className="mt-6 flex justify-center">
-              <Button href="/start" size="lg" trackLocation="stats">
-                {cfg.cta_button_text}
-              </Button>
+          </Reveal>
+
+          {/* Pricing Tier Cards */}
+          <Reveal delay={0.1}>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {cfg.pricing_tiers.map((tier, i) => {
+                const isPopular = tier.popular;
+                const trackId = `tier_${tier.name.toLowerCase().replace(/\s+/g, '_')}`;
+                return (
+                  <div
+                    key={tier.name}
+                    className={`relative flex flex-col rounded-2xl border p-6 transition-transform ${
+                      isPopular
+                        ? 'border-gold bg-gradient-to-b from-gold/10 to-navy-800 ring-1 ring-gold/40 lg:scale-105 lg:-my-2 lg:py-8 shadow-[0_0_30px_rgba(245,158,11,0.15)]'
+                        : 'border-navy-500/40 bg-navy-800/60'
+                    }`}
+                  >
+                    {isPopular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span className="rounded-full bg-gold px-4 py-1 text-xs font-bold uppercase tracking-wider text-navy">
+                          {cfg.tiers_popular_label}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Icon & Name */}
+                    <div className="text-center">
+                      <span className="text-4xl" role="img" aria-label={tier.name}>
+                        {tier.icon}
+                      </span>
+                      <h3 className="mt-2 font-display text-xl font-bold text-white">
+                        {tier.name}
+                      </h3>
+                      <p className="mt-1 text-sm text-blue-300">{tier.tagline}</p>
+                    </div>
+
+                    {/* Price */}
+                    <div className="mt-5 text-center">
+                      <p className={`font-display text-2xl font-bold ${isPopular ? 'text-gold' : 'text-gold/90'}`}>
+                        {tier.price}
+                      </p>
+                      <p className="mt-1 text-xs text-blue-400">{tier.system}</p>
+                    </div>
+
+                    {/* Coverage & Panels */}
+                    <div className="mt-4 flex justify-center gap-4 text-xs">
+                      <span className="rounded-full border border-blue-500/30 bg-blue-950/40 px-3 py-1 text-blue-200">
+                        {tier.coverage}
+                      </span>
+                      <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-gold">
+                        {tier.panels}
+                      </span>
+                    </div>
+
+                    {/* Features */}
+                    <ul className="mt-5 flex-1 space-y-2">
+                      {tier.features.map((feat, fi) => (
+                        <li key={fi} className="flex items-start gap-2 text-sm text-blue-100">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <div className="mt-6">
+                      <Button
+                        href="/start"
+                        size="sm"
+                        variant={isPopular ? 'primary' : 'secondary'}
+                        trackLocation={trackId}
+                        className="w-full"
+                      >
+                        {cfg.cta_button_text}
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+
+          {/* Disclaimer */}
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-10 max-w-2xl text-center text-sm italic text-blue-300/80">
+              {cfg.tiers_disclaimer}
+            </p>
+          </Reveal>
+
+          {/* Glossary */}
+          <Reveal delay={0.3}>
+            <div className="mx-auto mt-12 max-w-3xl">
+              <details className="group rounded-xl border border-navy-500/30 bg-navy-800/50">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-display font-bold text-white sm:p-6 [&::-webkit-details-marker]:hidden">
+                  {cfg.tiers_glossary_label}
+                  <span
+                    className="shrink-0 text-gold transition-transform duration-300 group-open:rotate-180"
+                    aria-hidden="true"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M3 6l5 5 5-5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="border-t border-navy-500/30 px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+                  <dl className="space-y-4">
+                    {cfg.tiers_glossary.map((item) => (
+                      <div key={item.term}>
+                        <dt className="font-display font-bold text-gold">{item.term}</dt>
+                        <dd className="mt-1 text-sm leading-relaxed text-blue-100">
+                          {item.definition}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </details>
             </div>
           </Reveal>
         </Container>

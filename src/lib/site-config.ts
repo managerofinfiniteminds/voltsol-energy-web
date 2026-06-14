@@ -43,6 +43,23 @@ export interface FooterLink {
   href: string;
 }
 
+export interface PricingTier {
+  name: string;
+  icon: string;
+  system: string;
+  price: string;
+  coverage: string;
+  panels: string;
+  tagline: string;
+  features: string[];
+  popular: boolean;
+}
+
+export interface GlossaryItem {
+  term: string;
+  definition: string;
+}
+
 export interface HomeConfig {
   // Global
   cta_button_text: string;
@@ -58,7 +75,7 @@ export interface HomeConfig {
   hero_tax_banner_link_text: string;
   hero_tax_banner_link_url: string;
 
-  // Section 2: The Number (existing)
+  // Section 2: The Number (legacy, kept for back-compat)
   number_section_label: string;
   number_headline_prefix: string;
   number_headline_value: string;
@@ -75,6 +92,16 @@ export interface HomeConfig {
   stat_4_value: string;
   stat_4_label: string;
   number_payback_line: string;
+
+  // Section 2: Pricing Tiers (replaces The Number on homepage)
+  tiers_headline_pre: string;
+  tiers_headline_gold: string;
+  tiers_subhead: string;
+  tiers_popular_label: string;
+  tiers_disclaimer: string;
+  tiers_glossary_label: string;
+  pricing_tiers: PricingTier[];
+  tiers_glossary: GlossaryItem[];
 
   // Section 3: How It Works
   how_headline_pre: string;
@@ -132,7 +159,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   hero_tax_banner_link_text: 'Learn more',
   hero_tax_banner_link_url: '/resources/california-solar-tax-exclusion-2024.pdf',
 
-  // Section 2: The Number
+  // Section 2: The Number (legacy, kept for back-compat)
   number_section_label: 'Total system cost',
   number_headline_prefix: 'Under',
   number_headline_value: '10000',
@@ -149,6 +176,14 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   stat_4_value: '1–2 Day',
   stat_4_label: 'Install',
   number_payback_line: 'At $300/mo to PG&E, most systems pay for themselves in under 3 years.',
+
+  // Section 2: Pricing Tiers (replaces The Number on homepage)
+  tiers_headline_pre: 'Pick your ',
+  tiers_headline_gold: 'power.',
+  tiers_subhead: 'Four systems, sized to your home. Every price is all-in — solar panels and installation included.',
+  tiers_popular_label: 'Most Popular',
+  tiers_disclaimer: 'These are starting estimates that include solar panels and installation. Every home is different — your exact price is locked in after a quick, free site inspection.',
+  tiers_glossary_label: 'Solar terms, in plain English',
 
   // Section 3: How It Works
   how_headline_pre: 'Make it. Store it. ',
@@ -213,6 +248,19 @@ const ARRAY_DEFAULTS = {
     { q: "How long do the batteries last?", a: "EG4 LiFePO4 batteries are rated for 8,000 cycles — roughly 20 years of daily use — and carry a 10-year manufacturer warranty." },
     { q: "How long does installation take?", a: "Most installs are done in 1–2 days. From your free estimate to power-on is typically 2–4 weeks, depending on county permit turnaround." },
   ] as FaqItem[],
+  pricing_tiers: [
+    { name: 'First Light', icon: '☀️', system: '12K single-zone mini-split', price: '$8,700–$9,500', coverage: '600–700 sq ft', panels: '3 solar panels', tagline: 'One room, dialed in.', features: ['1-ton single-zone unit', 'Best for your main living area', 'A couple of box fans spread comfort nicely', '5-year warranty'], popular: false },
+    { name: 'Sunbeam', icon: '🌤️', system: '24K single-zone mini-split', price: '~$11,000', coverage: '1,000–1,350 sq ft', panels: '6 solar panels', tagline: "Hugo's own setup.", features: ['2-ton single-zone unit', 'Great for a large open living space', 'One powerful air handler', '5-year warranty'], popular: false },
+    { name: 'High Noon', icon: '🔆', system: '24K multizone (2–3 heads)', price: '$12,000–$15,000', coverage: '1,250–1,500 sq ft', panels: '6–8 solar panels', tagline: 'Whole-home comfort.', features: ['Up to 3 independent air handlers (min. 2)', 'Living room + bedrooms on separate zones', 'Combined output up to 36K BTU', '5-year warranty'], popular: true },
+    { name: 'Solar Flare', icon: '🌟', system: '36K multizone (2–4 heads)', price: '$13,500–$16,000', coverage: '1,500–2,000 sq ft', panels: '7–9 solar panels', tagline: 'Maximum coverage.', features: ['Up to 4 independent air handlers (min. 2)', 'Sized for larger multi-room homes', 'Combined output up to 40K BTU', '5-year warranty'], popular: false },
+  ] as PricingTier[],
+  tiers_glossary: [
+    { term: 'Mini-split', definition: 'A ductless heating + cooling system. An outdoor unit connects to one or more indoor "air handlers" — no ductwork needed.' },
+    { term: 'Air handler (head)', definition: 'The indoor wall unit that delivers heated or cooled air to a room. More heads = more rooms covered independently.' },
+    { term: 'Single-zone vs. multizone', definition: 'Single-zone runs one air handler. Multizone runs several off one system, each controlled separately.' },
+    { term: 'BTU (12K / 24K / 36K)', definition: 'A measure of heating/cooling power. 12K = 12,000 BTU ≈ 1 ton. Higher numbers cover more square footage.' },
+    { term: 'Zone', definition: 'An independently controlled area of your home — e.g., living room vs. bedroom.' },
+  ] as GlossaryItem[],
 };
 
 // For back-compat with existing getNumberSectionConfig
@@ -236,7 +284,7 @@ const DEFAULTS: NumberSectionConfig = {
 };
 
 // All allowed keys for whitelist
-const ARRAY_KEYS = ['hero_trust', 'how_steps', 'testimonials', 'about_credentials', 'faqs', 'footer_links'] as const;
+const ARRAY_KEYS = ['hero_trust', 'how_steps', 'testimonials', 'about_credentials', 'faqs', 'footer_links', 'pricing_tiers', 'tiers_glossary'] as const;
 const ALL_KEYS = [...Object.keys(SCALAR_DEFAULTS), ...ARRAY_KEYS];
 
 // ============ HELPERS ============
@@ -308,6 +356,8 @@ export async function getHomeConfig(): Promise<HomeConfig> {
     const about_credentials = safeParseJson<string[]>(dbValues.about_credentials, ARRAY_DEFAULTS.about_credentials);
     const faqs = safeParseJson<FaqItem[]>(dbValues.faqs, ARRAY_DEFAULTS.faqs);
     const footer_links = safeParseJson<FooterLink[]>(dbValues.footer_links, ARRAY_DEFAULTS.footer_links);
+    const pricing_tiers = safeParseJson<PricingTier[]>(dbValues.pricing_tiers, ARRAY_DEFAULTS.pricing_tiers);
+    const tiers_glossary = safeParseJson<GlossaryItem[]>(dbValues.tiers_glossary, ARRAY_DEFAULTS.tiers_glossary);
 
     return {
       ...scalars,
@@ -317,6 +367,8 @@ export async function getHomeConfig(): Promise<HomeConfig> {
       about_credentials,
       faqs,
       footer_links,
+      pricing_tiers,
+      tiers_glossary,
     } as HomeConfig;
   } catch {
     // DB error — return full defaults

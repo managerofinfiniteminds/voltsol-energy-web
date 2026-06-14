@@ -24,6 +24,23 @@ interface FooterLink {
   href: string;
 }
 
+interface PricingTier {
+  name: string;
+  icon: string;
+  system: string;
+  price: string;
+  coverage: string;
+  panels: string;
+  tagline: string;
+  features: string[];
+  popular: boolean;
+}
+
+interface GlossaryItem {
+  term: string;
+  definition: string;
+}
+
 function safeParseJson<T>(value: string | undefined, fallback: T): T {
   if (!value) return fallback;
   try {
@@ -47,6 +64,8 @@ export default function AdminConfigPage() {
   const [aboutCredentials, setAboutCredentials] = useState<string[]>([]);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [footerLinks, setFooterLinks] = useState<FooterLink[]>([]);
+  const [pricingTiers, setPricingTiers] = useState<PricingTier[]>([]);
+  const [tiersGlossary, setTiersGlossary] = useState<GlossaryItem[]>([]);
 
   async function fetchConfig() {
     try {
@@ -62,6 +81,8 @@ export default function AdminConfigPage() {
       setAboutCredentials(safeParseJson<string[]>(data.config.about_credentials, []));
       setFaqs(safeParseJson<FaqItem[]>(data.config.faqs, []));
       setFooterLinks(safeParseJson<FooterLink[]>(data.config.footer_links, []));
+      setPricingTiers(safeParseJson<PricingTier[]>(data.config.pricing_tiers, []));
+      setTiersGlossary(safeParseJson<GlossaryItem[]>(data.config.tiers_glossary, []));
 
       setError('');
     } catch {
@@ -92,6 +113,8 @@ export default function AdminConfigPage() {
       about_credentials: JSON.stringify(aboutCredentials),
       faqs: JSON.stringify(faqs),
       footer_links: JSON.stringify(footerLinks),
+      pricing_tiers: JSON.stringify(pricingTiers),
+      tiers_glossary: JSON.stringify(tiersGlossary),
     };
 
     try {
@@ -307,130 +330,281 @@ export default function AdminConfigPage() {
             </div>
           </div>
 
-          {/* ========== SECTION 2: THE NUMBER ========== */}
+          {/* ========== SECTION 2: PRICING TIERS ========== */}
           <div className={sectionClass}>
-            <h2 className={sectionTitleClass}>Section 2: The Number</h2>
+            <h2 className={sectionTitleClass}>Section 2: Pricing Tiers</h2>
 
             <div className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className={labelClass}>Headline (pre)</span>
+                  <input
+                    type="text"
+                    value={config.tiers_headline_pre}
+                    onChange={e => updateField('tiers_headline_pre', e.target.value)}
+                    className={inputClass}
+                  />
+                </label>
+                <label className="block">
+                  <span className={labelClass}>Headline (gold)</span>
+                  <input
+                    type="text"
+                    value={config.tiers_headline_gold}
+                    onChange={e => updateField('tiers_headline_gold', e.target.value)}
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+
               <label className="block">
-                <span className={labelClass}>Section Label</span>
-                <input
-                  type="text"
-                  value={config.number_section_label}
-                  onChange={e => updateField('number_section_label', e.target.value)}
-                  className={inputClass}
+                <span className={labelClass}>Subhead</span>
+                <textarea
+                  value={config.tiers_subhead}
+                  onChange={e => updateField('tiers_subhead', e.target.value)}
+                  rows={2}
+                  className={textareaClass}
                 />
               </label>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
-                  <span className={labelClass}>Headline Prefix</span>
+                  <span className={labelClass}>Popular Badge Label</span>
                   <input
                     type="text"
-                    value={config.number_headline_prefix}
-                    onChange={e => updateField('number_headline_prefix', e.target.value)}
+                    value={config.tiers_popular_label}
+                    onChange={e => updateField('tiers_popular_label', e.target.value)}
                     className={inputClass}
                   />
                 </label>
                 <label className="block">
-                  <span className={labelClass}>Number (numeric only)</span>
+                  <span className={labelClass}>Glossary Section Label</span>
                   <input
                     type="text"
-                    value={config.number_headline_value}
-                    onChange={e => updateField('number_headline_value', e.target.value)}
+                    value={config.tiers_glossary_label}
+                    onChange={e => updateField('tiers_glossary_label', e.target.value)}
                     className={inputClass}
                   />
                 </label>
               </div>
 
-              {/* Comparison Cards */}
-              <div className="space-y-4">
-                <div className="p-4 border border-red-500/30 rounded-lg bg-red-950/20">
-                  <p className="text-sm font-medium text-red-400 mb-3">Bad Option (Left Card)</p>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="block">
-                      <span className={labelClass}>Amount</span>
-                      <input
-                        type="text"
-                        value={config.compare_bad_amount}
-                        onChange={e => updateField('compare_bad_amount', e.target.value)}
-                        className={inputClass}
-                      />
-                    </label>
-                    <label className="block">
-                      <span className={labelClass}>Caption</span>
-                      <input
-                        type="text"
-                        value={config.compare_bad_caption}
-                        onChange={e => updateField('compare_bad_caption', e.target.value)}
-                        className={inputClass}
-                      />
-                    </label>
-                  </div>
-                </div>
-                <div className="p-4 border border-amber-400/30 rounded-lg bg-amber-950/20">
-                  <p className="text-sm font-medium text-amber-400 mb-3">Good Option (Right Card)</p>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="block">
-                      <span className={labelClass}>Amount</span>
-                      <input
-                        type="text"
-                        value={config.compare_good_amount}
-                        onChange={e => updateField('compare_good_amount', e.target.value)}
-                        className={inputClass}
-                      />
-                    </label>
-                    <label className="block">
-                      <span className={labelClass}>Caption</span>
-                      <input
-                        type="text"
-                        value={config.compare_good_caption}
-                        onChange={e => updateField('compare_good_caption', e.target.value)}
-                        className={inputClass}
-                      />
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div>
-                <p className="text-sm font-medium text-slate-300 mb-3">Stats (4)</p>
-                <div className="space-y-3">
-                  {[1, 2, 3, 4].map(n => (
-                    <div key={n} className="grid gap-3 sm:grid-cols-2 p-3 border border-slate-700 rounded-lg">
-                      <label className="block">
-                        <span className={labelClass}>Stat {n} Value</span>
-                        <input
-                          type="text"
-                          value={config[`stat_${n}_value`]}
-                          onChange={e => updateField(`stat_${n}_value`, e.target.value)}
-                          className={inputClass}
-                        />
-                      </label>
-                      <label className="block">
-                        <span className={labelClass}>Stat {n} Label</span>
-                        <input
-                          type="text"
-                          value={config[`stat_${n}_label`]}
-                          onChange={e => updateField(`stat_${n}_label`, e.target.value)}
-                          className={inputClass}
-                        />
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               <label className="block">
-                <span className={labelClass}>Payback Line</span>
+                <span className={labelClass}>Disclaimer</span>
                 <textarea
-                  value={config.number_payback_line}
-                  onChange={e => updateField('number_payback_line', e.target.value)}
+                  value={config.tiers_disclaimer}
+                  onChange={e => updateField('tiers_disclaimer', e.target.value)}
                   rows={2}
                   className={textareaClass}
                 />
               </label>
+
+              {/* Pricing Tiers Array */}
+              <div>
+                <span className={labelClass}>Pricing Tiers</span>
+                <div className="mt-2 space-y-4">
+                  {pricingTiers.map((tier, i) => (
+                    <div key={i} className={`p-4 border rounded-lg ${tier.popular ? 'border-amber-400/50 bg-amber-950/20' : 'border-slate-700'}`}>
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-medium text-gold">Tier {i + 1}: {tier.name || 'Untitled'}</span>
+                        <button
+                          type="button"
+                          onClick={() => setPricingTiers(pricingTiers.filter((_, j) => j !== i))}
+                          className="text-red-400 hover:text-red-300 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="grid gap-3 sm:grid-cols-3">
+                          <label className="block">
+                            <span className={labelClass}>Name</span>
+                            <input
+                              type="text"
+                              value={tier.name}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, name: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                          <label className="block">
+                            <span className={labelClass}>Icon (emoji)</span>
+                            <input
+                              type="text"
+                              value={tier.icon}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, icon: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                          <label className="block">
+                            <span className={labelClass}>Price</span>
+                            <input
+                              type="text"
+                              value={tier.price}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, price: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                        </div>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <label className="block">
+                            <span className={labelClass}>System</span>
+                            <input
+                              type="text"
+                              value={tier.system}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, system: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                          <label className="block">
+                            <span className={labelClass}>Tagline</span>
+                            <input
+                              type="text"
+                              value={tier.tagline}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, tagline: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                        </div>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <label className="block">
+                            <span className={labelClass}>Coverage</span>
+                            <input
+                              type="text"
+                              value={tier.coverage}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, coverage: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                          <label className="block">
+                            <span className={labelClass}>Panels</span>
+                            <input
+                              type="text"
+                              value={tier.panels}
+                              onChange={e => {
+                                const updated = [...pricingTiers];
+                                updated[i] = { ...tier, panels: e.target.value };
+                                setPricingTiers(updated);
+                              }}
+                              className={inputClass}
+                            />
+                          </label>
+                        </div>
+                        <label className="block">
+                          <span className={labelClass}>Features (one per line)</span>
+                          <textarea
+                            value={tier.features.join('\n')}
+                            onChange={e => {
+                              const updated = [...pricingTiers];
+                              updated[i] = { ...tier, features: e.target.value.split('\n').filter(f => f.trim()) };
+                              setPricingTiers(updated);
+                            }}
+                            rows={4}
+                            className={textareaClass}
+                          />
+                        </label>
+                        <label className="flex items-center gap-3">
+                          <input
+                            type="checkbox"
+                            checked={tier.popular}
+                            onChange={e => {
+                              const updated = [...pricingTiers];
+                              updated[i] = { ...tier, popular: e.target.checked };
+                              setPricingTiers(updated);
+                            }}
+                            className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-amber-400 focus:ring-amber-400"
+                          />
+                          <span className={labelClass}>Mark as &quot;Most Popular&quot; (highlighted tier)</span>
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setPricingTiers([...pricingTiers, { name: '', icon: '', system: '', price: '', coverage: '', panels: '', tagline: '', features: [], popular: false }])}
+                    className="text-amber-400 hover:text-amber-300 text-sm font-medium"
+                  >
+                    + Add Tier
+                  </button>
+                </div>
+              </div>
+
+              {/* Glossary Array */}
+              <div>
+                <span className={labelClass}>Glossary Terms</span>
+                <div className="mt-2 space-y-3">
+                  {tiersGlossary.map((item, i) => (
+                    <div key={i} className="p-4 border border-slate-700 rounded-lg">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-medium text-gold">Term {i + 1}</span>
+                        <button
+                          type="button"
+                          onClick={() => setTiersGlossary(tiersGlossary.filter((_, j) => j !== i))}
+                          className="text-red-400 hover:text-red-300 text-sm"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <div className="space-y-3">
+                        <label className="block">
+                          <span className={labelClass}>Term</span>
+                          <input
+                            type="text"
+                            value={item.term}
+                            onChange={e => {
+                              const updated = [...tiersGlossary];
+                              updated[i] = { ...item, term: e.target.value };
+                              setTiersGlossary(updated);
+                            }}
+                            className={inputClass}
+                          />
+                        </label>
+                        <label className="block">
+                          <span className={labelClass}>Definition</span>
+                          <textarea
+                            value={item.definition}
+                            onChange={e => {
+                              const updated = [...tiersGlossary];
+                              updated[i] = { ...item, definition: e.target.value };
+                              setTiersGlossary(updated);
+                            }}
+                            rows={2}
+                            className={textareaClass}
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setTiersGlossary([...tiersGlossary, { term: '', definition: '' }])}
+                    className="text-amber-400 hover:text-amber-300 text-sm font-medium"
+                  >
+                    + Add Term
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

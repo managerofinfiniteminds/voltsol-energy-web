@@ -6,13 +6,14 @@ const PARTNER_SIGNUP = process.env.FLAG_PARTNER_SIGNUP === 'true';
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Protect /admin routes (but not /admin/login or /admin/auth for magic-link)
+  // Protect /admin routes (but not /admin/login, /admin/auth, or /admin/seo-strategy)
   // This is a COARSE gate: only checks cookie presence, not validity.
   // Real session validation (token vs DB) happens in getAdminSession() inside each route/page.
   if (
     pathname.startsWith('/admin') &&
     !pathname.startsWith('/admin/login') &&
-    !pathname.startsWith('/admin/auth')
+    !pathname.startsWith('/admin/auth') &&
+    !pathname.startsWith('/admin/seo-strategy')
   ) {
     const session = req.cookies.get('admin_session')?.value;
     if (!session) {

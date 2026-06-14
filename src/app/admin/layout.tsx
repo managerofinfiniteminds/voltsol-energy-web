@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "Contacts", href: "/admin" },
   { label: "Analytics", href: "/admin/dashboard" },
   { label: "Schedule", href: "/admin/schedule" },
+  { label: "Admins", href: "/admin/settings" },
 ];
 
 function AdminNav() {
@@ -84,8 +85,8 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
 
-  // Login page is fully standalone — no nav at all.
-  if (pathname?.startsWith("/admin/login")) {
+  // Login and auth pages are fully standalone — no nav at all.
+  if (pathname?.startsWith("/admin/login") || pathname?.startsWith("/admin/auth")) {
     return <>{children}</>;
   }
 

@@ -1,15 +1,10 @@
 export const dynamic = 'force-dynamic';
 
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { sql } from '@/lib/db';
 import { LeadStatusSchema } from '@/lib/engine-enums';
-
-function isAuthenticated(): boolean {
-  const session = cookies().get('admin_session')?.value;
-  return session === 'authenticated';
-}
+import { isAdmin } from '@/lib/admin-auth';
 
 const patchSchema = z.object({
   status: LeadStatusSchema.optional(),
@@ -25,7 +20,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  if (!isAuthenticated()) {
+  if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -110,7 +105,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  if (!isAuthenticated()) {
+  if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

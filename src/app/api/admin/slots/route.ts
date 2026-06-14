@@ -1,18 +1,13 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import { z } from 'zod';
 import { sql } from '@/lib/db';
-
-function isAuthenticated(): boolean {
-  const cookieStore = cookies();
-  return cookieStore.get('admin_session')?.value === 'authenticated';
-}
+import { isAdmin } from '@/lib/admin-auth';
 
 const MONTH_RE = /^\d{4}-\d{2}$/;
 
 export async function GET(req: NextRequest) {
-  if (!isAuthenticated()) {
+  if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -51,7 +46,7 @@ const postSchema = z.union([
 ]);
 
 export async function POST(req: NextRequest) {
-  if (!isAuthenticated()) {
+  if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

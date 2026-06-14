@@ -1,13 +1,8 @@
 export const dynamic = 'force-dynamic';
 
-import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
-
-function isAuthenticated(): boolean {
-  const session = cookies().get('admin_session')?.value;
-  return session === 'authenticated';
-}
+import { isAdmin } from '@/lib/admin-auth';
 
 /**
  * GET /api/admin/leads
@@ -15,7 +10,7 @@ function isAuthenticated(): boolean {
  * Query params: status, score, city
  */
 export async function GET(req: NextRequest) {
-  if (!isAuthenticated()) {
+  if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

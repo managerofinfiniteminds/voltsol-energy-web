@@ -799,6 +799,21 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
             </p>
           </div>
 
+          {/* Tax Deadline Alert */}
+          <div className="rounded-lg border border-gold/30 bg-gradient-to-r from-amber-900/20 to-gold/5 p-5 mb-6">
+            <div className="flex gap-3">
+              <span className="flex-shrink-0 text-gold text-lg">⚡</span>
+              <div className="text-left">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-1">
+                  California Tax Advantage
+                </p>
+                <p className="text-sm text-blue-100 leading-relaxed">
+                  Systems completed by <strong>January 1, 2027</strong> qualify for the property tax exclusion. That&apos;s permanent savings on your annual property tax. <a href="/resources/california-solar-tax-exclusion-2024.pdf" target="_blank" rel="noopener noreferrer" className="font-medium text-gold hover:text-gold-300 underline">Learn more</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <p className="text-sm text-blue-300 mb-6">
             Want the exact number for your home? Enter your contact info on the next screen.
           </p>

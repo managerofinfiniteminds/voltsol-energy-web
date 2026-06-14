@@ -147,6 +147,15 @@ export default function HomePage() {
               <span>No Pressure</span>
             </div>
           </Reveal>
+
+          {/* 2027 Tax Deadline Banner */}
+          <Reveal delay={0.4} immediate>
+            <div className="mt-10 rounded-lg bg-gradient-to-r from-amber-900/40 to-gold/10 border border-gold/30 px-6 py-4 sm:px-8 sm:py-5">
+              <p className="text-center text-sm font-medium text-gold sm:text-base">
+                <strong>California Tax Advantage:</strong> Systems completed by January 1, 2027 qualify for the property tax exclusion. <a href="/resources/california-solar-tax-exclusion-2024.pdf" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-amber-300">Learn more</a>.
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 

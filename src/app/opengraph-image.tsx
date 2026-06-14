@@ -51,7 +51,7 @@ export default function OGImage() {
             marginBottom: 24,
           }}
         >
-          Off-Grid Solar Under $10k
+          Off-Grid Solar from $8,700
         </div>
         <div
           style={{

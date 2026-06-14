@@ -10,27 +10,27 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "VoltSol Energy — Off-Grid Solar Under $10k | Northern California",
+      "VoltSol Energy — Off-Grid Solar from $8,700 | Northern California",
     template: "%s — VoltSol Energy",
   },
   description:
-    "Off-grid solar installations for Northern California homes — EG4 battery + inverter + mini-split systems under $10,000. Free estimate, no pressure.",
+    "Off-grid solar installations for Northern California homes — EG4 battery + inverter + solar-powered mini-split systems starting at $8,700. Free estimate, no pressure.",
   keywords: [
     "off-grid solar",
     "Northern California solar",
     "EG4 solar",
     "solar battery storage",
-    "solar under $10k",
+    "affordable off-grid solar",
     "off-grid EG4",
     "solar lead generation",
-    "PG&E alternative",
+    "utility bill alternative",
     "solar installation NorCal",
     "FlexBOSS18 inverter",
   ],
   openGraph: {
-    title: "VoltSol Energy — Off-Grid Solar Under $10k | Northern California",
+    title: "VoltSol Energy — Off-Grid Solar from $8,700 | Northern California",
     description:
-      "Off-grid solar installations for Northern California homes — EG4 battery + inverter + mini-split systems under $10,000. Free estimate, no pressure.",
+      "Off-grid solar installations for Northern California homes — EG4 battery + inverter + solar-powered mini-split systems starting at $8,700. Free estimate, no pressure.",
     siteName: "VoltSol Energy",
     url: siteUrl,
     type: "website",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VoltSol Energy — Off-Grid Solar Under $10k",
+    title: "VoltSol Energy — Off-Grid Solar from $8,700",
     description:
-      "Off-grid solar for Northern California homes. EG4 systems under $10k. Free estimate.",
+      "Off-grid solar for Northern California homes. EG4 systems from $8,700. Free estimate.",
     images: ["/og-image.png"],
   },
   alternates: {

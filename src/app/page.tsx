@@ -132,14 +132,6 @@ export default async function HomePage() {
             </div>
           </Reveal>
 
-          {/* 2027 Tax Deadline Banner */}
-          <Reveal delay={0.4} immediate>
-            <div className="mt-10 rounded-lg bg-gradient-to-r from-amber-900/40 to-gold/10 border border-gold/30 px-6 py-4 sm:px-8 sm:py-5">
-              <p className="text-center text-sm font-medium text-gold sm:text-base">
-                <strong>{cfg.hero_tax_banner_label}</strong>{cfg.hero_tax_banner_body}<a href={cfg.hero_tax_banner_link_url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-amber-300">{cfg.hero_tax_banner_link_text}</a>.
-              </p>
-            </div>
-          </Reveal>
         </Container>
       </Section>
 

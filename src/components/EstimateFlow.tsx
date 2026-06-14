@@ -19,12 +19,40 @@ import {
   type Utility,
   type RoofShade,
 } from '@/lib/engine-enums';
+import type { PricingTier } from '@/lib/site-config';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const TOTAL_STEPS = 9; // Steps 0-8
-const SYSTEM_COST = 9_500;
-const PGE_ANNUAL_INCREASE = 0.06;
+const UTILITY_ANNUAL_INCREASE = 0.06;
 const SYSTEM_YEARS = 25;
+
+// Fallback tier pricing — used only if CMS tiers aren't passed in.
+const DEFAULT_TIER_PRICING: { name: string; price: string }[] = [
+  { name: 'First Light', price: '$8,700–$9,500' },
+  { name: 'Sunbeam', price: '~$11,000' },
+  { name: 'High Noon', price: '$12,000–$15,000' },
+  { name: 'Solar Flare', price: '$13,500–$16,000' },
+];
+
+// Map the bill band the user selected to the system tier that fits it.
+function billToTierIndex(bill: MonthlyBill): number {
+  switch (bill) {
+    case 'lt_100': return 0;  // First Light  (12K single-zone)
+    case '100_200': return 1; // Sunbeam      (24K single-zone)
+    case '200_300': return 2; // High Noon    (24K multizone)
+    case 'gt_300': return 3;  // Solar Flare  (36K multizone)
+    default: return 1;
+  }
+}
+
+// Pull the low/high dollar figures out of a tier price string like "$12,000–$15,000".
+function parsePriceRange(price: string): { low: number; high: number } {
+  const nums = (price.match(/[\d,]+/g) || [])
+    .map(n => Number(n.replace(/,/g, '')))
+    .filter(n => n > 0);
+  if (!nums.length) return { low: 9500, high: 9500 };
+  return { low: Math.min(...nums), high: Math.max(...nums) };
+}
 
 // Extended monthly bill options for better UX (spec says <$150, $150-300, $300-500, $500+)
 const BILL_OPTIONS: { value: MonthlyBill; label: string; sub: string }[] = [
@@ -108,6 +136,7 @@ interface FieldErrors {
 interface EstimateFlowProps {
   campaignCode?: string;
   initialBill?: string;
+  tiers?: PricingTier[];
 }
 
 // ─── Helper functions ─────────────────────────────────────────────────────────
@@ -121,16 +150,16 @@ function billToMonthlyValue(bill: MonthlyBill): number {
   }
 }
 
-function calcPge25yr(monthlyBill: number): number {
-  const r = 1 + PGE_ANNUAL_INCREASE;
+function calcUtility25yr(monthlyBill: number): number {
+  const r = 1 + UTILITY_ANNUAL_INCREASE;
   const factor = (Math.pow(r, SYSTEM_YEARS) - 1) / (r - 1);
   return Math.round(monthlyBill * 12 * factor);
 }
 
-function calcPayback(monthlyBill: number): number {
+function calcPayback(monthlyBill: number, systemCost: number): number {
   const annual = monthlyBill * 12;
   if (annual <= 0) return 0;
-  return Math.round((SYSTEM_COST / annual) * 10) / 10;
+  return Math.round((systemCost / annual) * 10) / 10;
 }
 
 // Calendar helpers (from BookingFlow)
@@ -167,7 +196,7 @@ function formatLongDate(iso: string): string {
 const VALID_BILLS = ['lt_100', '100_200', '200_300', 'gt_300'] as const;
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlowProps) {
+export default function EstimateFlow({ campaignCode, initialBill, tiers }: EstimateFlowProps) {
   // If initialBill is provided and valid, start at step 1 with bill pre-filled
   const validInitialBill = initialBill && VALID_BILLS.includes(initialBill as MonthlyBill)
     ? (initialBill as MonthlyBill)
@@ -345,8 +374,13 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
     // Track estimate_revealed when moving from step 5 to 6
     if (step === 5) {
       const monthlyValue = form.monthly_bill ? billToMonthlyValue(form.monthly_bill) : 300;
-      const pge25yr = calcPge25yr(monthlyValue);
-      const savingsVal = Math.max(0, pge25yr - SYSTEM_COST);
+      const utility25yr = calcUtility25yr(monthlyValue);
+      const idx = form.monthly_bill ? billToTierIndex(form.monthly_bill) : 1;
+      const tierPrice = (tiers && tiers.length ? tiers : DEFAULT_TIER_PRICING)[
+        Math.min(idx, (tiers && tiers.length ? tiers.length : DEFAULT_TIER_PRICING.length) - 1)
+      ].price;
+      const { high } = parsePriceRange(tierPrice);
+      const savingsVal = Math.max(0, utility25yr - high);
       track('estimate_revealed', { bill_band: form.monthly_bill, estimate_range: savingsVal });
     }
 
@@ -505,11 +539,18 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
     setStep(8);
   }
 
-  // Calculate estimate for Step 5
+  // Calculate estimate for Step 5 — driven by the user's bill choice + CMS tier pricing (no hardcoded cost)
+  const tierList = tiers && tiers.length ? tiers : DEFAULT_TIER_PRICING;
+  const tierIdx = form.monthly_bill ? billToTierIndex(form.monthly_bill) : 1;
+  const selectedTier = tierList[Math.min(tierIdx, tierList.length - 1)];
+  const systemPriceLabel = selectedTier.price; // e.g. "$12,000–$15,000"
+  const systemName = selectedTier.name;        // e.g. "High Noon"
+  const { low: sysLow, high: sysHigh } = parsePriceRange(systemPriceLabel);
   const monthlyValue = form.monthly_bill ? billToMonthlyValue(form.monthly_bill) : 300;
-  const pge25yr = calcPge25yr(monthlyValue);
-  const savings = Math.max(0, pge25yr - SYSTEM_COST);
-  const payback = calcPayback(monthlyValue);
+  const utility25yr = calcUtility25yr(monthlyValue);
+  // Conservative: subtract the HIGH end of the system price so projected savings don't overstate.
+  const potentialSavings = Math.max(0, utility25yr - sysHigh);
+  const payback = calcPayback(monthlyValue, sysHigh);
 
   // Progress indicator
   const progress = ((step + 1) / TOTAL_STEPS) * 100;
@@ -558,7 +599,7 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
       {step === 0 && (
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">
-            What&apos;s your average monthly PG&amp;E bill?
+            What&apos;s your average monthly utility bill?
           </h2>
           <p className="text-blue-300 text-sm mb-6">This helps us size your system correctly.</p>
           <div className="grid grid-cols-2 gap-3">
@@ -769,50 +810,43 @@ export default function EstimateFlow({ campaignCode, initialBill }: EstimateFlow
           <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gold/15 mb-4">
             <Zap className="h-8 w-8 text-gold" />
           </div>
-          <h2 className="text-2xl font-bold text-white mb-2">Here&apos;s your ballpark estimate</h2>
-          <p className="text-blue-300 text-sm mb-8">Based on your ${monthlyValue}/mo bill</p>
+          <h2 className="text-2xl font-bold text-white mb-2">Here&apos;s what you could save</h2>
+          <p className="text-blue-300 text-sm mb-8">
+            Based on a ${monthlyValue}/mo utility bill and the <span className="text-gold font-semibold">{systemName}</span> system
+          </p>
 
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-5">
               <p className="text-xs uppercase tracking-wider text-red-400 mb-1">
-                25-yr PG&amp;E cost
+                25 yrs of utility bills
               </p>
               <p className="font-display text-2xl font-bold text-red-300">
-                ${pge25yr.toLocaleString()}
+                ${utility25yr.toLocaleString()}
               </p>
+              <p className="text-[11px] text-blue-300/70 mt-1">If you keep paying the utility</p>
             </div>
             <div className="rounded-xl border border-gold/30 bg-gold/5 p-5">
-              <p className="text-xs uppercase tracking-wider text-gold mb-1">VoltSol system</p>
-              <p className="font-display text-2xl font-bold text-gold">Under $10k</p>
+              <p className="text-xs uppercase tracking-wider text-gold mb-1">{systemName} system</p>
+              <p className="font-display text-2xl font-bold text-gold">{systemPriceLabel}</p>
+              <p className="text-[11px] text-blue-300/70 mt-1">All-in: panels + install</p>
             </div>
           </div>
 
           <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-6 mb-6">
             <p className="text-xs uppercase tracking-wider text-emerald-400 mb-1">
-              Potential savings
+              Your potential 25-year savings
             </p>
             <p className="font-display text-4xl font-bold text-emerald-300">
-              ${savings.toLocaleString()}
+              up to ${potentialSavings.toLocaleString()}
             </p>
             <p className="text-sm text-blue-300 mt-2">
-              Payback in ~{payback} years, then the power is free
+              That&apos;s money you&apos;d otherwise hand your utility company. Pays for itself in ~{payback} years — then the power is yours.
             </p>
           </div>
 
-          {/* Tax Deadline Alert */}
-          <div className="rounded-lg border border-gold/30 bg-gradient-to-r from-amber-900/20 to-gold/5 p-5 mb-6">
-            <div className="flex gap-3">
-              <span className="flex-shrink-0 text-gold text-lg">⚡</span>
-              <div className="text-left">
-                <p className="text-xs font-semibold uppercase tracking-wider text-gold mb-1">
-                  California Tax Advantage
-                </p>
-                <p className="text-sm text-blue-100 leading-relaxed">
-                  Systems completed by <strong>January 1, 2027</strong> qualify for the property tax exclusion. That&apos;s permanent savings on your annual property tax. <a href="/resources/california-solar-tax-exclusion-2024.pdf" target="_blank" rel="noopener noreferrer" className="font-medium text-gold hover:text-gold-300 underline">Learn more</a>.
-                </p>
-              </div>
-            </div>
-          </div>
+          <p className="text-xs text-blue-300/70 italic mb-6 leading-relaxed">
+            These are potential savings estimates, not a quote. Actual numbers depend on your home, usage, and a free site inspection. Utility costs assume a 6%/yr rate increase over 25 years.
+          </p>
 
           <p className="text-sm text-blue-300 mb-6">
             Want the exact number for your home? Enter your contact info on the next screen.

@@ -1,20 +1,24 @@
 import type { Metadata } from 'next';
 import { Section, Container } from '@/components/ui';
 import EstimateFlow from '@/components/EstimateFlow';
+import { getHomeConfig } from '@/lib/site-config';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Get Your Free Estimate — VoltSol Energy',
   description:
-    'Answer a few quick questions and get your personalized off-grid solar estimate. Under $10,000 all-in for Northern California homes.',
+    'Answer a few quick questions and get your personalized off-grid solar estimate for your Northern California home.',
 };
 
 interface StartPageProps {
   searchParams: { campaign?: string; bill?: string };
 }
 
-export default function StartPage({ searchParams }: StartPageProps) {
+export default async function StartPage({ searchParams }: StartPageProps) {
   const campaignCode = searchParams.campaign;
   const initialBill = searchParams.bill;
+  const cfg = await getHomeConfig();
 
   return (
     <Section className="hero-bg relative overflow-hidden py-12 sm:py-16">
@@ -38,7 +42,7 @@ export default function StartPage({ searchParams }: StartPageProps) {
 
           {/* Flow container */}
           <div className="rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:p-8">
-            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} />
+            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} tiers={cfg.pricing_tiers} />
           </div>
 
           {/* Trust bar */}
@@ -47,7 +51,7 @@ export default function StartPage({ searchParams }: StartPageProps) {
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/40" />
             <span>No pressure</span>
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/40" />
-            <span>Under $10K</span>
+            <span>Solar from $8,700</span>
           </div>
         </div>
       </Container>

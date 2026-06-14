@@ -152,7 +152,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   // Section 1: Hero
   hero_headline_line1: "The sun doesn't",
   hero_headline_line2: 'send a bill.',
-  hero_subhead: 'How Northern California families are cutting the cord on PG&E — for less than the cost of a used car.',
+  hero_subhead: 'How Northern California families are cutting the cord on their utility — for less than the cost of a used car.',
   hero_cta_secondary: 'See How It Works',
   hero_tax_banner_label: 'California Tax Advantage:',
   hero_tax_banner_body: ' Systems completed by January 1, 2027 qualify for the property tax exclusion. ',
@@ -175,7 +175,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   stat_3_label: 'Panel Life',
   stat_4_value: '1–2 Day',
   stat_4_label: 'Install',
-  number_payback_line: 'At $300/mo to PG&E, most systems pay for themselves in under 3 years.',
+  number_payback_line: 'At $300/mo to your utility, most systems pay for themselves in under 3 years.',
 
   // Section 2: Pricing Tiers (replaces The Number on homepage)
   tiers_headline_pre: 'Pick your ',
@@ -193,7 +193,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   estimate_headline_pre: 'See your ',
   estimate_headline_gold: 'ballpark savings',
   estimate_headline_post: ' in seconds',
-  estimate_subtext: 'Tap your monthly PG&E bill below to get started.',
+  estimate_subtext: 'Tap your monthly utility bill below to get started.',
 
   // Section 5: Proof / Testimonials
   proof_eyebrow: 'What Customers Say',
@@ -209,7 +209,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   // Section 7: FAQ + Bottom CTA
   faq_headline_pre: 'Straight ',
   faq_headline_gold: 'answers.',
-  final_cta_headline: 'Ready to cut the cord on PG&E?',
+  final_cta_headline: 'Ready to cut the cord on your utility?',
   final_cta_subtext: 'Get a free, no-obligation estimate — see exactly what your home could save.',
 
   // Footer
@@ -228,7 +228,7 @@ const ARRAY_DEFAULTS = {
     { step: '03', title: 'LIVE ON IT', desc: 'Your home runs on stored sun — heating and cooling included.' },
   ] as HowStep[],
   testimonials: [
-    { quote: 'Our PG&E bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.', name: 'Maria S.', city: 'Redding' },
+    { quote: 'Our utility bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.', name: 'Maria S.', city: 'Redding' },
     { quote: 'SunPower quoted $38,000. Hugo did the whole thing for under ten grand.', name: 'David R.', city: 'Chico' },
     { quote: 'First summer with no AC bill. First winter with no gas bill.', name: 'Carmen L.', city: 'Grass Valley' },
   ] as Testimonial[],
@@ -242,8 +242,8 @@ const ARRAY_DEFAULTS = {
     { label: 'Privacy Policy', href: '/privacy' },
   ] as FooterLink[],
   faqs: [
-    { q: "What does a system cost, and what's included?", a: "Under $10,000 all-in — solar panels, EG4 hybrid inverter, EG4 LiFePO4 battery, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home." },
-    { q: "What's the difference between off-grid and grid-tie solar?", a: "Grid-tie solar feeds power back to PG&E and shuts off during blackouts — you stay dependent on the utility. Our systems are off-grid capable: the battery runs your home directly, so you can keep the grid as backup or cut it entirely." },
+    { q: "What does a system cost, and what's included?", a: "Systems start at $8,700 all-in — solar panels, EG4 hybrid inverter, EG4 LiFePO4 battery, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home." },
+    { q: "What's the difference between off-grid and grid-tie solar?", a: "Grid-tie solar feeds power back to the utility and shuts off during blackouts — you stay dependent on them. Our systems are off-grid capable: the battery runs your home directly, so you can keep the grid as backup or cut it entirely." },
     { q: "Do I need permits?", a: "Yes, and we handle them. Permitting and county paperwork are included in every install — you don't file a single form." },
     { q: "How long do the batteries last?", a: "EG4 LiFePO4 batteries are rated for 8,000 cycles — roughly 20 years of daily use — and carry a 10-year manufacturer warranty." },
     { q: "How long does installation take?", a: "Most installs are done in 1–2 days. From your free estimate to power-on is typically 2–4 weeks, depending on county permit turnaround." },

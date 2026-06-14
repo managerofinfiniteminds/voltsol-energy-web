@@ -6,7 +6,10 @@ function getDb(): ReturnType<typeof neon> {
   if (!_sql) {
     const url = process.env.NEON_DATABASE_URL || process.env.DATABASE_URL;
     if (!url) throw new Error('NEON_DATABASE_URL or DATABASE_URL is not set');
-    _sql = neon(url);
+    // Disable Next.js fetch caching on DB reads. The Neon serverless driver
+    // queries via fetch(), which Next caches even on force-dynamic routes —
+    // that would serve stale config and break live (no-deploy) CMS edits.
+    _sql = neon(url, { fetchOptions: { cache: 'no-store' } });
   }
   return _sql;
 }

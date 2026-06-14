@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import {
   Section,
   Container,
@@ -6,6 +8,7 @@ import {
   StatCounter,
 } from "@/components/ui";
 import { EnergyFlowDiagram } from "@/components/EnergyFlowDiagram";
+import { getHomeConfig } from "@/lib/site-config";
 import InlineEstimateEntry from "@/components/InlineEstimateEntry";
 import PageTracker from "@/components/PageTracker";
 import ScrollDepthTracker from "@/components/ScrollDepthTracker";
@@ -20,40 +23,6 @@ import {
   Check,
   Zap,
 } from "lucide-react";
-
-// Trimmed to 5 FAQs per spec
-const faqItems = [
-  {
-    q: "What does a system cost, and what's included?",
-    a: "Under $10,000 all-in — solar panels, EG4 hybrid inverter, EG4 LiFePO4 battery, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home.",
-  },
-  {
-    q: "What's the difference between off-grid and grid-tie solar?",
-    a: "Grid-tie solar feeds power back to PG&E and shuts off during blackouts — you stay dependent on the utility. Our systems are off-grid capable: the battery runs your home directly, so you can keep the grid as backup or cut it entirely.",
-  },
-  {
-    q: "Do I need permits?",
-    a: "Yes, and we handle them. Permitting and county paperwork are included in every install — you don't file a single form.",
-  },
-  {
-    q: "How long do the batteries last?",
-    a: "EG4 LiFePO4 batteries are rated for 8,000 cycles — roughly 20 years of daily use — and carry a 10-year manufacturer warranty.",
-  },
-  {
-    q: "How long does installation take?",
-    a: "Most installs are done in 1–2 days. From your free estimate to power-on is typically 2–4 weeks, depending on county permit turnaround.",
-  },
-];
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -77,7 +46,23 @@ const localBusinessJsonLd = {
   knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],
 };
 
-export default function HomePage() {
+// Fixed icon array for Hugo's credentials (order matches ARRAY_DEFAULTS)
+const credentialIcons = [BadgeCheck, MapPin, Wrench, Phone];
+
+export default async function HomePage() {
+  const cfg = await getHomeConfig();
+
+  // Build FAQ JSON-LD from config
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: cfg.faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <>
       <script
@@ -106,31 +91,30 @@ export default function HomePage() {
           {/* immediate prop ensures opacity:1 base - no invisible hero trap */}
           <Reveal immediate>
             <h1 className="font-display text-4xl font-bold uppercase leading-[1.1] tracking-tight sm:text-5xl lg:text-7xl">
-              The sun doesn&rsquo;t
+              {cfg.hero_headline_line1}
               <br />
               <span className="bg-gradient-to-r from-amber-400 to-gold bg-clip-text text-transparent">
-                send a bill.
+                {cfg.hero_headline_line2}
               </span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.1} immediate>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100 sm:text-xl">
-              How Northern California families are cutting the cord on PG&amp;E
-              &mdash; for less than the cost of a used car.
+              {cfg.hero_subhead}
             </p>
           </Reveal>
 
           <Reveal delay={0.2} immediate>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button href="/start" size="lg" trackLocation="hero">
-                Get My Free Estimate
+                {cfg.cta_button_text}
               </Button>
               <a
                 href="#how"
                 className="inline-flex items-center justify-center text-sm font-medium text-slate-300 transition-colors hover:text-white py-3"
               >
-                &darr; See How It Works
+                &darr; {cfg.hero_cta_secondary}
               </a>
             </div>
           </Reveal>
@@ -138,13 +122,14 @@ export default function HomePage() {
           {/* Trust strip merged beneath hero */}
           <Reveal delay={0.3} immediate>
             <div className="mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300 sm:text-sm lg:mt-20">
-              <span>Licensed</span>
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70" />
-              <span>Local</span>
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70" />
-              <span>Off-Grid Capable</span>
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70" />
-              <span>No Pressure</span>
+              {cfg.hero_trust.map((badge, i) => (
+                <span key={badge} className="flex items-center gap-6">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70 -ml-6" />
+                  )}
+                  <span>{badge}</span>
+                </span>
+              ))}
             </div>
           </Reveal>
 
@@ -152,7 +137,7 @@ export default function HomePage() {
           <Reveal delay={0.4} immediate>
             <div className="mt-10 rounded-lg bg-gradient-to-r from-amber-900/40 to-gold/10 border border-gold/30 px-6 py-4 sm:px-8 sm:py-5">
               <p className="text-center text-sm font-medium text-gold sm:text-base">
-                <strong>California Tax Advantage:</strong> Systems completed by January 1, 2027 qualify for the property tax exclusion. <a href="/resources/california-solar-tax-exclusion-2024.pdf" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-amber-300">Learn more</a>.
+                <strong>{cfg.hero_tax_banner_label}</strong>{cfg.hero_tax_banner_body}<a href={cfg.hero_tax_banner_link_url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-amber-300">{cfg.hero_tax_banner_link_text}</a>.
               </p>
             </div>
           </Reveal>
@@ -168,7 +153,7 @@ export default function HomePage() {
       <Section>
         <Container className="text-center">
           <Reveal immediate>
-            <p className="text-lg text-blue-300">Total system cost</p>
+            <p className="text-lg text-blue-300">{cfg.number_section_label}</p>
           </Reveal>
 
           <Reveal delay={0.1} immediate>
@@ -180,11 +165,11 @@ export default function HomePage() {
               <div className="number-glow">
                 <span className="font-display text-5xl font-bold sm:text-6xl lg:text-7xl">
                   <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">
-                    Under{" "}
+                    {cfg.number_headline_prefix}{" "}
                   </span>
                 </span>
                 <StatCounter
-                  value={10000}
+                  value={Number(cfg.number_headline_value) || 10000}
                   prefix="$"
                   label=""
                   className="inline-block"
@@ -204,18 +189,18 @@ export default function HomePage() {
             <div className="mx-auto mt-10 grid max-w-2xl gap-6 sm:grid-cols-2">
               <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-6">
                 <p className="font-display text-2xl font-bold text-red-400">
-                  $40,000+
+                  {cfg.compare_bad_amount}
                 </p>
                 <p className="mt-1 text-sm text-blue-300">
-                  Traditional solar &mdash; loan, still grid-tied
+                  {cfg.compare_bad_caption}
                 </p>
               </div>
               <div className="rounded-xl border border-gold/30 bg-gold/5 p-6">
                 <p className="font-display text-2xl font-bold text-gold">
-                  Under $10,000
+                  {cfg.compare_good_amount}
                 </p>
                 <p className="mt-1 text-sm text-blue-300">
-                  VoltSol / EG4 &mdash; off-grid capable
+                  {cfg.compare_good_caption}
                 </p>
               </div>
             </div>
@@ -225,32 +210,31 @@ export default function HomePage() {
           <Reveal delay={0.3}>
             <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">
               <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">8,000+</p>
-                <p className="mt-1 text-sm text-blue-300">Battery Cycles</p>
+                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_1_value}</p>
+                <p className="mt-1 text-sm text-blue-300">{cfg.stat_1_label}</p>
               </div>
               <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">10-Year</p>
-                <p className="mt-1 text-sm text-blue-300">Warranty</p>
+                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_2_value}</p>
+                <p className="mt-1 text-sm text-blue-300">{cfg.stat_2_label}</p>
               </div>
               <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">25+ Year</p>
-                <p className="mt-1 text-sm text-blue-300">Panel Life</p>
+                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_3_value}</p>
+                <p className="mt-1 text-sm text-blue-300">{cfg.stat_3_label}</p>
               </div>
               <div className="text-center">
-                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">1–2 Day</p>
-                <p className="mt-1 text-sm text-blue-300">Install</p>
+                <p className="font-display text-3xl font-bold text-gold sm:text-4xl">{cfg.stat_4_value}</p>
+                <p className="mt-1 text-sm text-blue-300">{cfg.stat_4_label}</p>
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.4}>
             <p className="mx-auto mt-10 max-w-xl text-lg text-blue-100">
-              At $300/mo to PG&amp;E, most systems pay for themselves in under
-              3 years.
+              {cfg.number_payback_line}
             </p>
             <div className="mt-6 flex justify-center">
               <Button href="/start" size="lg" trackLocation="stats">
-                Get My Free Estimate
+                {cfg.cta_button_text}
               </Button>
             </div>
           </Reveal>
@@ -267,8 +251,8 @@ export default function HomePage() {
         <Container>
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Make it. Store it.{" "}
-              <span className="text-gold">Live on it.</span>
+              {cfg.how_headline_pre}
+              <span className="text-gold">{cfg.how_headline_gold}</span>
             </h2>
           </Reveal>
 
@@ -279,23 +263,7 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            {[
-              {
-                step: "01",
-                title: "MAKE IT",
-                desc: "Solar panels turn free sunlight into power.",
-              },
-              {
-                step: "02",
-                title: "STORE IT",
-                desc: "EG4 battery banks it for night and blackouts.",
-              },
-              {
-                step: "03",
-                title: "LIVE ON IT",
-                desc: "Your home runs on stored sun — heating and cooling included.",
-              },
-            ].map((item, i) => (
+            {cfg.how_steps.map((item, i) => (
               <Reveal key={item.step} delay={0.1 * (i + 1)}>
                 <div className="text-center">
                   <span className="font-display text-sm font-bold text-gold">
@@ -313,7 +281,7 @@ export default function HomePage() {
           <Reveal delay={0.4}>
             <div className="mt-12 flex justify-center">
               <Button href="/start" size="lg" trackLocation="how_it_works">
-                Get My Free Estimate
+                {cfg.cta_button_text}
               </Button>
             </div>
           </Reveal>
@@ -335,10 +303,10 @@ export default function HomePage() {
               <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold/40" />
             </div>
             <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              See your <span className="text-gold">ballpark savings</span> in seconds
+              {cfg.estimate_headline_pre}<span className="text-gold">{cfg.estimate_headline_gold}</span>{cfg.estimate_headline_post}
             </h2>
             <p className="mt-3 text-blue-300">
-              Tap your monthly PG&amp;E bill below to get started.
+              {cfg.estimate_subtext}
             </p>
           </Reveal>
 
@@ -360,34 +328,15 @@ export default function HomePage() {
         <Container>
           <Reveal>
             <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-gold/70">
-              What Customers Say
+              {cfg.proof_eyebrow}
             </p>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Real homes. <span className="text-gold">Real numbers.</span>
+              {cfg.proof_headline_pre}<span className="text-gold">{cfg.proof_headline_gold}</span>
             </h2>
           </Reveal>
 
           <div className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
-            {[
-              {
-                quote:
-                  "Our PG&E bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.",
-                name: "Maria S.",
-                city: "Redding",
-              },
-              {
-                quote:
-                  "SunPower quoted $38,000. Hugo did the whole thing for under ten grand.",
-                name: "David R.",
-                city: "Chico",
-              },
-              {
-                quote:
-                  "First summer with no AC bill. First winter with no gas bill.",
-                name: "Carmen L.",
-                city: "Grass Valley",
-              },
-            ].map((t, i) => (
+            {cfg.testimonials.map((t, i) => (
               <Reveal
                 key={t.name}
                 delay={0.1 * (i + 1)}
@@ -424,7 +373,7 @@ export default function HomePage() {
           <Reveal delay={0.4}>
             <div className="mt-12 flex justify-center">
               <Button href="/start" size="lg" trackLocation="proof">
-                Get My Free Estimate
+                {cfg.cta_button_text}
               </Button>
             </div>
           </Reveal>
@@ -457,31 +406,28 @@ export default function HomePage() {
             <Reveal delay={0.1}>
               <div>
                 <h2 className="font-display text-3xl font-bold sm:text-4xl">
-                  Meet <span className="text-gold">Hugo</span>
+                  {cfg.about_headline_pre}<span className="text-gold">{cfg.about_headline_gold}</span>
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-blue-100">
-                  Hugo designs and installs every VoltSol system personally.
-                  When you call, he picks up.
+                  {cfg.about_body}
                 </p>
 
                 {/* Credentials */}
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                  {[
-                    { icon: BadgeCheck, label: "CSLB Licensed" },
-                    { icon: MapPin, label: "Northern California Native" },
-                    { icon: Wrench, label: "Every Install Done Personally" },
-                    { icon: Phone, label: "Answers His Phone" },
-                  ].map(({ icon: Icon, label }) => (
-                    <div
-                      key={label}
-                      className="flex items-center gap-3 rounded-xl border border-navy-500/30 bg-gradient-to-br from-navy-700 to-navy-800 p-4"
-                    >
-                      <Icon className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-                      <span className="text-sm font-medium text-blue-100">
-                        {label}
-                      </span>
-                    </div>
-                  ))}
+                  {cfg.about_credentials.map((label, i) => {
+                    const Icon = credentialIcons[i] || BadgeCheck;
+                    return (
+                      <div
+                        key={label}
+                        className="flex items-center gap-3 rounded-xl border border-navy-500/30 bg-gradient-to-br from-navy-700 to-navy-800 p-4"
+                      >
+                        <Icon className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+                        <span className="text-sm font-medium text-blue-100">
+                          {label}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 {/* Equipment link (replaces tech section) */}
@@ -491,13 +437,13 @@ export default function HomePage() {
                     className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:text-gold-400"
                   >
                     <Check className="h-4 w-4" aria-hidden="true" />
-                    Built on EG4 — See the equipment
+                    {cfg.about_equipment_link}
                   </Link>
                 </div>
 
                 <div className="mt-8">
                   <Button href="/start" size="lg" trackLocation="about">
-                    Get My Free Estimate
+                    {cfg.cta_button_text}
                   </Button>
                 </div>
               </div>
@@ -520,13 +466,13 @@ export default function HomePage() {
         <Container className="mx-auto max-w-3xl">
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Straight <span className="text-gold">answers.</span>
+              {cfg.faq_headline_pre}<span className="text-gold">{cfg.faq_headline_gold}</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="mt-12 space-y-4">
-              {faqItems.map((item) => (
+              {cfg.faqs.map((item) => (
                 <details
                   key={item.q}
                   className="faq-item group rounded-xl border border-navy-500/30 bg-navy-800"
@@ -567,14 +513,14 @@ export default function HomePage() {
           <Reveal delay={0.2}>
             <div className="mt-14 rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 p-8 text-center lg:p-10">
               <p className="font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
-                Ready to cut the cord on PG&amp;E?
+                {cfg.final_cta_headline}
               </p>
               <p className="mt-3 text-blue-300">
-                Get a free, no-obligation estimate — see exactly what your home could save.
+                {cfg.final_cta_subtext}
               </p>
               <div className="mt-6 flex justify-center">
                 <Button href="/start" size="lg" trackLocation="bottom">
-                  Get My Free Estimate
+                  {cfg.cta_button_text}
                 </Button>
               </div>
             </div>

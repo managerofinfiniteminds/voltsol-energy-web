@@ -7,6 +7,7 @@ import Image from "next/image";
 const NAV_LINKS = [
   { label: "Leads", href: "/admin" },
   { label: "Schedule", href: "/admin/schedule" },
+  { label: "Config", href: "/admin/config" },
 ];
 
 function AdminNav() {

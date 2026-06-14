@@ -8,7 +8,7 @@ import {
   marketPageHref,
   marketSlug,
 } from '@/lib/market-data';
-import { MarketLeadForm } from '@/components/market/MarketLeadForm';
+import { CalendarCheck, Check, Shield, Phone } from 'lucide-react';
 
 // Build all static paths from the market config — no DB needed at build time.
 export function generateStaticParams() {
@@ -50,6 +50,9 @@ export default function MarketCityPage({ params }: PageProps) {
 
   const { city: cityData, region: regionData } = market;
   const slug = marketSlug(params);
+
+  // Campaign code for attribution
+  const campaignCode = `market-${cityData.citySlug}`;
 
   // Nearby cities in the same county (excluding current)
   const nearbyCities = regionData.cities
@@ -279,8 +282,8 @@ export default function MarketCityPage({ params }: PageProps) {
               )}
             </div>
 
-            {/* Right: lead form */}
-            <aside className="lg:col-span-2" aria-label="Solar quote request form">
+            {/* Right: CTA card → /start */}
+            <aside className="lg:col-span-2" aria-label="Solar quote request">
               <div className="sticky top-6 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
                 <h2 className="text-lg font-bold text-gray-900">
                   Free Solar Quote — {cityData.city}
@@ -288,14 +291,37 @@ export default function MarketCityPage({ params }: PageProps) {
                 <p className="mt-1 text-sm text-gray-500">
                   No cost. No obligation. One local contractor.
                 </p>
-                <div className="mt-5">
-                  <MarketLeadForm
-                    marketSlug={slug}
-                    city={cityData.city}
-                    county={regionData.county}
-                    utility={cityData.utility}
-                  />
+
+                {/* Trust signals */}
+                <ul className="mt-5 space-y-3">
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                    Licensed installer
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <Shield className="h-4 w-4 text-blue-500" aria-hidden="true" />
+                    No pressure, no obligation
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <Phone className="h-4 w-4 text-blue-500" aria-hidden="true" />
+                    Local NorCal team
+                  </li>
+                </ul>
+
+                {/* Primary CTA */}
+                <div className="mt-6">
+                  <Link
+                    href={`/start?campaign=${encodeURIComponent(campaignCode)}`}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
+                  >
+                    <CalendarCheck className="h-5 w-5" aria-hidden="true" />
+                    Get My Free Estimate
+                  </Link>
                 </div>
+
+                <p className="mt-4 text-center text-xs text-gray-400">
+                  Takes under 2 minutes. Your info is only shared with one local contractor.
+                </p>
               </div>
             </aside>
           </div>

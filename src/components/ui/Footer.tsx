@@ -33,9 +33,11 @@ export function Footer({
   links,
 }: FooterProps) {
   const baseLinks = links && links.length ? links : DEFAULT_LINKS;
-  // If a CTA override is set, relabel the /book link to match site-wide CTA.
+  // If a CTA override is set, relabel the estimate link to match site-wide CTA.
   const navLinks = ctaText
-    ? baseLinks.map((l) => (l.href === "/book" ? { ...l, label: ctaText } : l))
+    ? baseLinks.map((l) =>
+        l.href === "/start" || l.href === "/book" ? { ...l, label: ctaText } : l
+      )
     : baseLinks;
 
   return (

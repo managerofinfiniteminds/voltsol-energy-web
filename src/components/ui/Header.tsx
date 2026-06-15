@@ -48,7 +48,7 @@ export function Header({ ctaText }: { ctaText?: string }) {
               {link.label}
             </a>
           ))}
-          <Button href="/book" size="sm">
+          <Button href="/start" size="sm">
             {cta}
           </Button>
         </nav>
@@ -81,7 +81,7 @@ export function Header({ ctaText }: { ctaText?: string }) {
                 {link.label}
               </a>
             ))}
-            <Button href="/book" onClick={() => setOpen(false)}>
+            <Button href="/start" onClick={() => setOpen(false)}>
               {cta}
             </Button>
           </Container>

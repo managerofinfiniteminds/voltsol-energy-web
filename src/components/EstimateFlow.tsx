@@ -826,6 +826,72 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
               {errors.phone && <p className="mt-1 text-sm text-red-400" role="alert">{errors.phone}</p>}
             </div>
 
+            {/* Service address — helps VoltSol pre-check the roof before reaching out */}
+            <div>
+              <label htmlFor="street_address" className="block text-sm font-medium text-blue-100 mb-1">
+                Home Address <span className="text-blue-300/60 font-normal">(optional)</span>
+              </label>
+              <input
+                id="street_address"
+                type="text"
+                name="street_address"
+                value={form.street_address}
+                onChange={handleChange}
+                placeholder="123 Solar Way"
+                autoComplete="address-line1"
+                className={cn(
+                  'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+                  errors.street_address ? 'border-red-500' : 'border-blue-900'
+                )}
+              />
+              {errors.street_address && <p className="mt-1 text-sm text-red-400" role="alert">{errors.street_address}</p>}
+            </div>
+
+            <div className="grid grid-cols-6 gap-3">
+              <div className="col-span-3">
+                <label htmlFor="city" className="block text-sm font-medium text-blue-100 mb-1">City</label>
+                <input
+                  id="city"
+                  type="text"
+                  name="city"
+                  value={form.city}
+                  onChange={handleChange}
+                  placeholder="Sacramento"
+                  autoComplete="address-level2"
+                  className="w-full bg-navy-700 border border-blue-900 rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base"
+                />
+              </div>
+              <div className="col-span-1">
+                <label htmlFor="state" className="block text-sm font-medium text-blue-100 mb-1">State</label>
+                <input
+                  id="state"
+                  type="text"
+                  name="state"
+                  value={form.state}
+                  onChange={handleChange}
+                  placeholder="CA"
+                  maxLength={2}
+                  autoComplete="address-level1"
+                  className="w-full bg-navy-700 border border-blue-900 rounded-xl px-3 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base uppercase"
+                />
+              </div>
+              <div className="col-span-2">
+                <label htmlFor="zip" className="block text-sm font-medium text-blue-100 mb-1">ZIP</label>
+                <input
+                  id="zip"
+                  type="text"
+                  name="zip"
+                  value={form.zip}
+                  onChange={handleChange}
+                  placeholder="95814"
+                  inputMode="numeric"
+                  maxLength={10}
+                  autoComplete="postal-code"
+                  className="w-full bg-navy-700 border border-blue-900 rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base"
+                />
+              </div>
+            </div>
+
             {/* Consent checkbox */}
             <div className="rounded-lg border border-navy-500 bg-navy-700/50 p-4">
               <label className="flex items-start gap-3 cursor-pointer">

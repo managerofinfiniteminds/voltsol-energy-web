@@ -119,13 +119,16 @@ export default async function HomePage() {
 
           {/* Trust strip merged beneath hero */}
           <Reveal delay={0.3} immediate>
-            <div className="mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300 sm:text-sm lg:mt-20">
+            <div className="mt-14 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300 sm:text-sm lg:mt-20">
               {cfg.hero_trust.map((badge, i) => (
-                <span key={badge} className="flex items-center gap-6">
+                <span key={badge} className="flex items-center gap-x-4">
                   {i > 0 && (
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/70 -ml-6" />
+                    <span
+                      aria-hidden="true"
+                      className="h-1 w-1 shrink-0 rounded-full bg-gold/60"
+                    />
                   )}
-                  <span>{badge}</span>
+                  <span className="whitespace-nowrap">{badge}</span>
                 </span>
               ))}
             </div>

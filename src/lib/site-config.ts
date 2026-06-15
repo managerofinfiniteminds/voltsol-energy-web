@@ -224,7 +224,7 @@ const ARRAY_DEFAULTS = {
   hero_trust: ['Licensed', 'Local', 'Off-Grid Capable', 'No Pressure'] as string[],
   how_steps: [
     { step: '01', title: 'MAKE IT', desc: 'Solar panels turn free sunlight into power.' },
-    { step: '02', title: 'STORE IT', desc: 'EG4 battery banks it for night and blackouts.' },
+    { step: '02', title: 'STORE IT', desc: 'A home battery banks it for night and blackouts.' },
     { step: '03', title: 'LIVE ON IT', desc: 'Your home runs on stored sun — heating and cooling included.' },
   ] as HowStep[],
   testimonials: [

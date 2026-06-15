@@ -133,7 +133,20 @@ export default async function TechnologyPage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-navy-500/40 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
+              <Image
+                src="/images/tech-two-paths.jpg"
+                alt="Comparison diagram: ordinary solar sends power on a long path through an inverter, the grid, and your meter before reaching your AC; the VoltSol way sends solar power directly into your home."
+                width={1376}
+                height={768}
+                className="h-auto w-full"
+                sizes="(max-width: 896px) 100vw, 896px"
+              />
+            </div>
+          </Reveal>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
             {/* Everyone else */}
             <Reveal>
               <div className="h-full rounded-2xl border border-white/10 bg-navy-700/40 p-8">

@@ -150,8 +150,8 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   cta_button_text: 'Get My Free Estimate',
 
   // Section 1: Hero
-  hero_headline_line1: "The sun doesn't",
-  hero_headline_line2: 'send a bill.',
+  hero_headline_line1: 'Make it. Store it.',
+  hero_headline_line2: 'Live on it.',
   hero_subhead: 'How Northern California families are cutting the cord on their utility — for less than the cost of a used car.',
   hero_cta_secondary: 'See How It Works',
   hero_tax_banner_label: 'California Tax Advantage:',
@@ -213,7 +213,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   final_cta_subtext: 'Get a free, no-obligation estimate — see exactly what your home could save.',
 
   // Footer
-  footer_tagline: 'Clean energy, built to last.',
+  footer_tagline: 'Make it. Store it. Live on it.',
   footer_email: 'info@voltsolenergy.com',
   footer_copyright_year: '2026',
   footer_copyright_rights: 'LLC. All rights reserved.',

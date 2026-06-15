@@ -41,9 +41,9 @@ export function Footer({
   return (
     <footer className="border-t border-blue-800/50 bg-navy-700 py-12 sm:py-16">
       <Container>
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col items-center gap-8 text-center sm:flex-row sm:items-start sm:justify-between sm:text-left">
           {/* Brand */}
-          <div className="max-w-xs">
+          <div className="flex max-w-xs flex-col items-center sm:items-start">
             <a href="/" className="flex items-center gap-3" aria-label="VoltSol Energy — Home">
               <Image
                 src="/images/voltsol-mark.svg"
@@ -68,7 +68,7 @@ export function Footer({
           </div>
 
           {/* Nav */}
-          <nav aria-label="Footer navigation" className="flex flex-col gap-3">
+          <nav aria-label="Footer navigation" className="flex flex-col items-center gap-3 sm:items-start">
             {navLinks.map((link) => (
               <a
                 key={link.href}

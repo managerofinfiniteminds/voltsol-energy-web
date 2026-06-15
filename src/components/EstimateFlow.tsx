@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef, FormEvent } from 'react';
-import { ChevronLeft, ChevronRight, Check, Clock, CalendarDays, Mail, Zap } from 'lucide-react';
+import { useState, useEffect, useRef, FormEvent } from 'react';
+import { Check, Mail, Zap } from 'lucide-react';
 import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 import { cn } from '@/lib/utils';
 import { track } from '@/lib/track';
@@ -22,7 +22,7 @@ import {
 import type { PricingTier } from '@/lib/site-config';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const TOTAL_STEPS = 9; // Steps 0-8
+const TOTAL_STEPS = 8; // Steps 0-7 (0-6 input, 7 confirmation). Calendar/booking removed — VoltSol contacts the lead directly.
 const UTILITY_ANNUAL_INCREASE = 0.05; // conservative, stated to the user
 const HORIZON_YEARS = 10;              // credible window for apples-to-apples comparison
 const SYSTEM_LIFE_YEARS = 25;          // panels last 25+ yrs (qualitative reference only)
@@ -97,14 +97,6 @@ const CONSENT_WORDING =
   'I understand my consent is not a condition of purchase. Message and data rates may apply.';
 
 // ─── Slot types (reused from BookingFlow) ─────────────────────────────────────
-interface Slot {
-  id: string;
-  slot_date: string;
-  start_time: string;
-  end_time: string;
-  label: string;
-}
-
 // ─── Form state ───────────────────────────────────────────────────────────────
 interface FlowState {
   // Qualifying signals
@@ -165,35 +157,6 @@ function calcPayback(monthlyBill: number, systemCost: number): number {
 }
 
 // Calendar helpers (from BookingFlow)
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-function pad(n: number): string {
-  return String(n).padStart(2, '0');
-}
-
-function toISODate(year: number, month: number, day: number): string {
-  return `${year}-${pad(month + 1)}-${pad(day)}`;
-}
-
-function formatTime(time: string): string {
-  const [hRaw, mRaw] = time.split(':');
-  const h = Number(hRaw);
-  const ampm = h >= 12 ? 'PM' : 'AM';
-  const h12 = h % 12 === 0 ? 12 : h % 12;
-  return `${h12}:${mRaw} ${ampm}`;
-}
-
-function formatLongDate(iso: string): string {
-  const [y, m, d] = iso.split('-').map(Number);
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  });
-}
-
 // Valid bill values for validation
 const VALID_BILLS = ['lt_100', '100_200', '200_300', 'gt_300'] as const;
 
@@ -228,19 +191,6 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
   const [serverError, setServerError] = useState('');
   const [leadId, setLeadId] = useState<number | null>(null);
 
-  // Calendar state (Step 7)
-  const today = useMemo(() => new Date(), []);
-  const [viewYear, setViewYear] = useState(today.getFullYear());
-  const [viewMonth, setViewMonth] = useState(today.getMonth());
-  const [slots, setSlots] = useState<Slot[]>([]);
-  const [slotsLoading, setSlotsLoading] = useState(false);
-  const [slotsError, setSlotsError] = useState('');
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
-  const [bookingSubmitting, setBookingSubmitting] = useState(false);
-  const [bookingError, setBookingError] = useState('');
-  const [booked, setBooked] = useState(false);
-
   const stepRef = useRef<HTMLDivElement>(null);
 
   // Step labels for tracking
@@ -252,7 +202,6 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     'utility',
     'estimate_reveal',
     'contact',
-    'calendar',
     'confirmation',
   ];
 
@@ -276,58 +225,11 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
   useEffect(() => {
     // Track abandon on unmount if not completed (step < 8)
     return () => {
-      if (step < 8 && step >= 1) {
+      if (step < 7 && step >= 1) {
         track('flow_abandon', { last_step_index: step });
       }
     };
   }, [step]);
-
-  // Load slots when entering Step 7
-  const loadSlots = useCallback(async () => {
-    setSlotsLoading(true);
-    setSlotsError('');
-    const from = toISODate(viewYear, viewMonth, 1);
-    const lastDay = new Date(viewYear, viewMonth + 1, 0).getDate();
-    const to = toISODate(viewYear, viewMonth, lastDay);
-    try {
-      const res = await fetch(`/api/slots?from=${from}&to=${to}`, { cache: 'no-store' });
-      if (!res.ok) throw new Error('bad status');
-      setSlots((await res.json()) as Slot[]);
-    } catch {
-      setSlotsError("Couldn't load availability. Please try again.");
-    }
-    setSlotsLoading(false);
-  }, [viewYear, viewMonth]);
-
-  useEffect(() => {
-    if (step === 7) {
-      loadSlots();
-    }
-  }, [step, loadSlots]);
-
-  const slotsByDate = useMemo(() => {
-    const map = new Map<string, Slot[]>();
-    for (const slot of slots) {
-      const key = String(slot.slot_date).slice(0, 10);
-      const list = map.get(key) ?? [];
-      list.push(slot);
-      map.set(key, list);
-    }
-    return map;
-  }, [slots]);
-
-  function changeMonth(delta: number) {
-    let m = viewMonth + delta;
-    let y = viewYear;
-    if (m < 0) { m = 11; y -= 1; }
-    else if (m > 11) { m = 0; y += 1; }
-    setViewYear(y);
-    setViewMonth(m);
-    setSelectedDate(null);
-    setSelectedSlot(null);
-  }
-
-  const atCurrentMonth = viewYear === today.getFullYear() && viewMonth === today.getMonth();
 
   // Field handlers
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
@@ -418,7 +320,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
     // Honeypot check
     if (form.website.trim()) {
-      setStep(8); // Silently succeed
+      setStep(7); // Silently succeed
       return;
     }
 
@@ -489,66 +391,11 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       });
       track('flow_step_complete', { step_index: 6, answer: { contact_captured: true } });
 
-      setStep(7); // Move to calendar
+      setStep(7); // Move to confirmation — VoltSol follows up directly
     } catch {
       setServerError('Network error. Please check your connection and try again.');
     }
     setSubmitting(false);
-  }
-
-  // Book appointment at Step 7
-  async function handleBook() {
-    if (!selectedSlot || !leadId) return;
-    setBookingSubmitting(true);
-    setBookingError('');
-
-    try {
-      const res = await fetch('/api/book', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          slot_id: selectedSlot.id,
-          first_name: form.first_name,
-          last_name: form.last_name,
-          email: form.email,
-          phone: form.phone,
-          address: form.street_address,
-          notes: form.notes,
-          website: '', // honeypot
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        setBookingError(data.error || 'Something went wrong. Please try again.');
-        if (res.status === 409) {
-          setSelectedSlot(null);
-          loadSlots();
-        }
-        setBookingSubmitting(false);
-        return;
-      }
-
-      setBooked(true);
-
-      // Track booking_completed event
-      track('booking_completed', {
-        lead_id: leadId,
-        slot_time: `${selectedDate} ${selectedSlot.start_time}`,
-      });
-      track('flow_step_complete', { step_index: 7, answer: { booked: true } });
-
-      setStep(8);
-    } catch {
-      setBookingError('Network error. Please try again.');
-    }
-    setBookingSubmitting(false);
-  }
-
-  function skipCalendar() {
-    track('flow_step_complete', { step_index: 7, answer: { booked: false, skipped: true } });
-    setStep(8);
   }
 
   // Calculate estimate for Step 5 — driven by the user's bill choice + CMS tier pricing (no hardcoded cost)
@@ -578,7 +425,6 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     'Utility',
     'Your estimate',
     'Contact info',
-    'Book a time',
     'Confirmation',
   ];
 
@@ -586,7 +432,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
   return (
     <div className="mx-auto max-w-xl scroll-mt-28 sm:scroll-mt-32" ref={stepRef}>
       {/* Progress bar */}
-      {step < 8 && (
+      {step < 7 && (
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-100">
@@ -1020,193 +866,26 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
         </form>
       )}
 
-      {/* ─── Step 7: Calendar (optional) ─── */}
-      {step === 7 && !booked && (
-        <div>
-          <h2 className="text-2xl font-bold text-white mb-2">Want a VoltSol rep to walk you through it?</h2>
-          <p className="text-blue-300 text-sm mb-6">
-            Pick a time for a 20-min Google Meet — or skip and we&apos;ll email your breakdown.
-          </p>
-
-          {selectedSlot && selectedDate ? (
-            // Confirm selected slot
-            <div className="rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6">
-              <button
-                type="button"
-                onClick={() => setSelectedSlot(null)}
-                className="flex min-h-[44px] items-center gap-1 text-sm font-medium text-blue-300 hover:text-white mb-4"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Pick a different time
-              </button>
-
-              <div className="flex items-center gap-3 rounded-xl border border-gold/30 bg-gold/5 p-4 mb-6">
-                <Clock className="h-5 w-5 shrink-0 text-gold" />
-                <div>
-                  <p className="font-display font-bold text-white">{formatLongDate(selectedDate)}</p>
-                  <p className="text-sm text-blue-300">
-                    {formatTime(selectedSlot.start_time)} – {formatTime(selectedSlot.end_time)}
-                  </p>
-                </div>
-              </div>
-
-              {bookingError && (
-                <p className="mb-4 rounded-lg border border-red-500/40 bg-red-950/30 px-4 py-3 text-sm text-red-300">
-                  {bookingError}
-                </p>
-              )}
-
-              <button
-                type="button"
-                onClick={handleBook}
-                disabled={bookingSubmitting}
-                className="cta-glow w-full bg-gold hover:bg-gold-400 disabled:bg-gold-600/50 text-navy font-bold text-lg py-4 rounded-xl transition-colors"
-              >
-                {bookingSubmitting ? 'Booking...' : 'Book My Meet'}
-              </button>
-            </div>
-          ) : (
-            // Calendar picker
-            <div className="rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="flex items-center gap-2 font-display text-lg font-bold text-white">
-                  <CalendarDays className="h-5 w-5 text-gold" />
-                  {new Date(viewYear, viewMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                </h3>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => changeMonth(-1)}
-                    disabled={atCurrentMonth}
-                    aria-label="Previous month"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-navy-500/50 text-blue-300 hover:text-white disabled:opacity-30"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => changeMonth(1)}
-                    aria-label="Next month"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-navy-500/50 text-blue-300 hover:text-white"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-
-              {slotsError && (
-                <p className="mb-4 rounded-lg border border-red-500/40 bg-red-950/30 px-4 py-3 text-sm text-red-300">
-                  {slotsError}
-                </p>
-              )}
-
-              <div className="grid grid-cols-7 gap-1 text-center">
-                {WEEKDAYS.map(d => (
-                  <div key={d} className="py-2 text-xs font-semibold uppercase tracking-wider text-blue-300/60">
-                    {d}
-                  </div>
-                ))}
-                {Array.from({ length: new Date(viewYear, viewMonth, 1).getDay() }).map((_, i) => (
-                  <div key={`pad-${i}`} />
-                ))}
-                {Array.from({ length: new Date(viewYear, viewMonth + 1, 0).getDate() }).map((_, i) => {
-                  const day = i + 1;
-                  const iso = toISODate(viewYear, viewMonth, day);
-                  const hasSlots = slotsByDate.has(iso);
-                  const isSelected = selectedDate === iso;
-                  return (
-                    <button
-                      key={iso}
-                      type="button"
-                      disabled={!hasSlots}
-                      onClick={() => setSelectedDate(isSelected ? null : iso)}
-                      aria-pressed={isSelected}
-                      className={cn(
-                        'min-h-[44px] rounded-lg py-2.5 text-sm',
-                        isSelected
-                          ? 'bg-gold font-bold text-navy'
-                          : hasSlots
-                            ? 'border border-gold/40 bg-gold/10 font-semibold text-gold hover:bg-gold/20'
-                            : 'text-blue-300/30'
-                      )}
-                    >
-                      {day}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {slotsLoading && (
-                <p className="mt-6 text-center text-sm text-blue-300">Loading availability...</p>
-              )}
-
-              {!slotsLoading && slots.length === 0 && !slotsError && (
-                <p className="mt-6 text-center text-sm text-blue-300">
-                  No openings this month — try the next one.
-                </p>
-              )}
-
-              {selectedDate && (
-                <div className="mt-6 border-t border-navy-500/40 pt-6">
-                  <h4 className="font-display font-bold text-white">{formatLongDate(selectedDate)}</h4>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    {(slotsByDate.get(selectedDate) ?? []).map(slot => (
-                      <button
-                        key={slot.id}
-                        type="button"
-                        onClick={() => setSelectedSlot(slot)}
-                        className="flex items-center justify-between rounded-xl border border-navy-500/50 bg-navy-800 px-4 py-3 text-left hover:border-gold/60 hover:bg-gold/5"
-                      >
-                        <span className="font-semibold text-white">
-                          {formatTime(slot.start_time)} – {formatTime(slot.end_time)}
-                        </span>
-                        <span className="text-xs text-blue-300">{slot.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          <button
-            type="button"
-            onClick={skipCalendar}
-            className="mt-4 w-full text-center text-sm text-blue-300 hover:text-white py-3"
-          >
-            Just send me the breakdown &rarr;
-          </button>
-        </div>
-      )}
-
-      {/* ─── Step 8: Confirmation ─── */}
-      {step === 8 && (
+      {/* ─── Step 7: Confirmation ─── VoltSol follows up directly (no self-serve booking) */}
+      {step === 7 && (
         <div className="text-center">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold/15 mb-4">
             <Check className="h-7 w-7 text-gold" />
           </div>
           <h2 className="text-2xl font-bold text-white mb-2">
-            {booked ? "You're booked!" : "Your estimate is on the way!"}
+            You&apos;re all set — VoltSol will be in touch.
           </h2>
-          {booked && selectedSlot && selectedDate ? (
-            <p className="text-blue-100 mb-6">
-              {formatLongDate(selectedDate)}
-              <br />
-              {formatTime(selectedSlot.start_time)} – {formatTime(selectedSlot.end_time)}
-            </p>
-          ) : (
-            <p className="text-blue-100 mb-6">
-              Check your email — we&apos;ll send your personalized estimate shortly.
-            </p>
-          )}
+          <p className="text-blue-100 mb-6">
+            Thanks{form.first_name ? `, ${form.first_name}` : ''}! We&apos;ve got your details. A VoltSol
+            rep will reach out shortly to walk you through your personalized estimate and answer
+            any questions — no pressure, no obligation.
+          </p>
 
           <div className="mx-auto max-w-md rounded-xl border border-navy-500/40 bg-navy-800 p-5 text-left">
             <div className="flex items-start gap-3">
               <Mail className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
               <p className="text-sm leading-relaxed text-blue-100">
-                {booked
-                  ? "We've sent a confirmation email with your Google Meet link. A VoltSol rep will reach out to confirm."
-                  : "A VoltSol rep will follow up with your complete estimate and answer any questions."}
+                Keep an eye on your inbox and phone — we typically respond within one business day.
               </p>
             </div>
           </div>

@@ -180,7 +180,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   // Section 2: Pricing Tiers (replaces The Number on homepage)
   tiers_headline_pre: 'Pick your ',
   tiers_headline_gold: 'power.',
-  tiers_subhead: 'Four systems, sized to your home. Every price is all-in — solar panels and installation included.',
+  tiers_subhead: 'Five systems, sized to your home. Every price is all-in — solar panels and installation included.',
   tiers_popular_label: 'Most Popular',
   tiers_disclaimer: 'These are starting estimates that include solar panels and installation. Every home is different — your exact price is locked in after a quick, free site inspection.',
   tiers_glossary_label: 'Solar terms, in plain English',
@@ -253,6 +253,7 @@ const ARRAY_DEFAULTS = {
     { name: 'Sunbeam', icon: '🌤️', system: '24K single-zone mini-split', price: '~$11,000', coverage: '1,000–1,350 sq ft', panels: '6 solar panels', tagline: "Hugo's own setup.", features: ['2-ton single-zone unit', 'Great for a large open living space', 'One powerful air handler', '5-year warranty'], popular: false },
     { name: 'High Noon', icon: '🔆', system: '24K multizone (2–3 heads)', price: '$12,000–$15,000', coverage: '1,250–1,500 sq ft', panels: '6–8 solar panels', tagline: 'Whole-home comfort.', features: ['Up to 3 independent air handlers (min. 2)', 'Living room + bedrooms on separate zones', 'Combined output up to 36K BTU', '5-year warranty'], popular: true },
     { name: 'Solar Flare', icon: '🌟', system: '36K multizone (2–4 heads)', price: '$13,500–$16,000', coverage: '1,500–2,000 sq ft', panels: '7–9 solar panels', tagline: 'Maximum coverage.', features: ['Up to 4 independent air handlers (min. 2)', 'Sized for larger multi-room homes', 'Combined output up to 40K BTU', '5-year warranty'], popular: false },
+    { name: 'Super Nova', icon: '💫', system: 'Fully custom system', price: 'Custom', coverage: '2,000+ sq ft', panels: '10+ solar panels', tagline: 'Built entirely around you.', features: ['Custom-sized to your exact home', 'As many air handlers as you need', 'Designed after a free site inspection', '5-year warranty'], popular: false },
   ] as PricingTier[],
   tiers_glossary: [
     { term: 'Mini-split', definition: 'A ductless heating + cooling system. An outdoor unit connects to one or more indoor "air handlers" — no ductwork needed.' },

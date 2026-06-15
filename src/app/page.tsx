@@ -155,7 +155,7 @@ export default async function HomePage() {
 
           {/* Pricing Tier Cards */}
           <Reveal delay={0.1}>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {cfg.pricing_tiers.map((tier, i) => {
                 const isPopular = tier.popular;
                 const trackId = `tier_${tier.name.toLowerCase().replace(/\s+/g, '_')}`;

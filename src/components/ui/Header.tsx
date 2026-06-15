@@ -7,9 +7,9 @@ import { Container } from "./Container";
 import { Button } from "./Button";
 
 const navLinks = [
-  { label: "How It Works", href: "#how" },
-  { label: "Technology", href: "/technology" },
-  { label: "About", href: "#about" },
+  { label: "How It Works", href: "/technology" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "About", href: "/#about" },
 ];
 
 export function Header({ ctaText }: { ctaText?: string }) {

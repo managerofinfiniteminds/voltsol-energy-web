@@ -5,11 +5,11 @@ import { Container } from "./Container";
 import type { FooterLink } from "@/lib/site-config";
 
 const DEFAULT_LINKS: FooterLink[] = [
-  { label: "How It Works", href: "/#how" },
-  { label: "Technology", href: "/technology" },
+  { label: "How It Works", href: "/technology" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "About", href: "/#about" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Get My Free Estimate", href: "/book" },
-  { label: "Get a Quote", href: "/#quote" },
+  { label: "Get My Free Estimate", href: "/start" },
   { label: "Privacy Policy", href: "/privacy" },
 ];
 

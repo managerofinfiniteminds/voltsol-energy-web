@@ -139,6 +139,136 @@ export default async function HomePage() {
         className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
       />
 
+      {/* ========== SECTION 3: HOW IT WORKS ========== */}
+      <Section alt id="how">
+        <Container>
+          <Reveal>
+            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+              {cfg.how_headline_pre}
+              <span className="text-gold">{cfg.how_headline_gold}</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-blue-200">
+              Ordinary solar sends power on a long round-trip through the grid.
+              Ours sends sunlight straight into your heating and cooling &mdash;
+              free all day, and still running in a blackout.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 lg:mt-16">
+              <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-navy-500/40 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
+                <Image
+                  src="/images/how-it-works-system.jpg"
+                  alt="Complete solar, battery storage, and mini-split heating and cooling system: rooftop solar charges battery storage, which powers the outdoor condenser and zoned indoor air handlers across the living room, home office, and guest room."
+                  width={1376}
+                  height={768}
+                  className="h-auto w-full"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            {cfg.how_steps.map((item, i) => (
+              <Reveal key={item.step} delay={0.1 * (i + 1)}>
+                <div className="text-center">
+                  <span className="font-display text-sm font-bold text-gold">
+                    {item.step}
+                  </span>
+                  <h3 className="mt-2 font-display text-xl font-bold">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-blue-300">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.4}>
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button href="/start" size="lg" trackLocation="how_it_works">
+                {cfg.cta_button_text}
+              </Button>
+              <Link
+                href="/technology"
+                className="inline-flex items-center gap-2 text-sm font-medium text-gold transition-colors hover:text-gold-400"
+              >
+                See how the technology works &rarr;
+              </Link>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
+      {/* ========== SECTION 5: PROOF (Testimonials) ========== */}
+      <Section alt>
+        <Container>
+          <Reveal>
+            <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-gold/70">
+              {cfg.proof_eyebrow}
+            </p>
+            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+              {cfg.proof_headline_pre}<span className="text-gold">{cfg.proof_headline_gold}</span>
+            </h2>
+          </Reveal>
+
+          <div className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
+            {cfg.testimonials.map((t, i) => (
+              <Reveal
+                key={t.name}
+                delay={0.1 * (i + 1)}
+                className="w-[85%] shrink-0 snap-center sm:w-[60%] lg:w-auto"
+              >
+                <figure className="flex h-full flex-col rounded-xl border-t-2 border-t-gold/60 bg-navy-800/50 p-8">
+                  <div
+                    className="flex gap-1 text-gold"
+                    role="img"
+                    aria-label="5 out of 5 stars"
+                  >
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Star
+                        key={s}
+                        className="h-4 w-4 fill-current"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-blue-100">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6 font-display font-bold text-white">
+                    {t.name}{" "}
+                    <span className="font-sans text-sm font-normal text-blue-300">
+                      &mdash; {t.city}
+                    </span>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.4}>
+            <div className="mt-12 flex justify-center">
+              <Button href="/start" size="lg" trackLocation="proof">
+                {cfg.cta_button_text}
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
       {/* ========== SECTION 2: PRICING TIERS ========== */}
       <Section id="pricing">
         <Container>
@@ -283,155 +413,6 @@ export default async function HomePage() {
         className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
       />
 
-      {/* ========== SECTION 3: HOW IT WORKS ========== */}
-      <Section alt id="how">
-        <Container>
-          <Reveal>
-            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              {cfg.how_headline_pre}
-              <span className="text-gold">{cfg.how_headline_gold}</span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="mt-12 lg:mt-16">
-              <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-navy-500/40 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
-                <Image
-                  src="/images/how-it-works-system.jpg"
-                  alt="Complete solar, battery storage, and mini-split heating and cooling system: rooftop solar charges battery storage, which powers the outdoor condenser and zoned indoor air handlers across the living room, home office, and guest room."
-                  width={1376}
-                  height={768}
-                  className="h-auto w-full"
-                  sizes="(max-width: 1024px) 100vw, 1024px"
-                  priority
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            {cfg.how_steps.map((item, i) => (
-              <Reveal key={item.step} delay={0.1 * (i + 1)}>
-                <div className="text-center">
-                  <span className="font-display text-sm font-bold text-gold">
-                    {item.step}
-                  </span>
-                  <h3 className="mt-2 font-display text-xl font-bold">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-blue-300">{item.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.4}>
-            <div className="mt-12 flex justify-center">
-              <Button href="/start" size="lg" trackLocation="how_it_works">
-                {cfg.cta_button_text}
-              </Button>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-
-      <div
-        aria-hidden="true"
-        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
-      />
-
-      {/* ========== SECTION 4: INLINE ESTIMATE ENTRY (EstimateFlow Step 0) ========== */}
-      <Section className="solar-grid-texture border-y border-gold/15">
-        <Container className="mx-auto max-w-2xl text-center">
-          <Reveal immediate>
-            <div className="mb-6 flex items-center justify-center gap-3" aria-hidden="true">
-              <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold/40" />
-              <Zap className="h-5 w-5 text-gold" />
-              <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold/40" />
-            </div>
-            <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
-              {cfg.estimate_headline_pre}<span className="text-gold">{cfg.estimate_headline_gold}</span>{cfg.estimate_headline_post}
-            </h2>
-            <p className="mt-3 text-blue-300">
-              {cfg.estimate_subtext}
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.1} immediate>
-            <div className="mt-8">
-              <InlineEstimateEntry />
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-
-      <div
-        aria-hidden="true"
-        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
-      />
-
-      {/* ========== SECTION 5: PROOF (Testimonials) ========== */}
-      <Section alt>
-        <Container>
-          <Reveal>
-            <p className="mb-3 text-center text-xs uppercase tracking-[0.2em] text-gold/70">
-              {cfg.proof_eyebrow}
-            </p>
-            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              {cfg.proof_headline_pre}<span className="text-gold">{cfg.proof_headline_gold}</span>
-            </h2>
-          </Reveal>
-
-          <div className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
-            {cfg.testimonials.map((t, i) => (
-              <Reveal
-                key={t.name}
-                delay={0.1 * (i + 1)}
-                className="w-[85%] shrink-0 snap-center sm:w-[60%] lg:w-auto"
-              >
-                <figure className="flex h-full flex-col rounded-xl border-t-2 border-t-gold/60 bg-navy-800/50 p-8">
-                  <div
-                    className="flex gap-1 text-gold"
-                    role="img"
-                    aria-label="5 out of 5 stars"
-                  >
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <Star
-                        key={s}
-                        className="h-4 w-4 fill-current"
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-blue-100">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-6 font-display font-bold text-white">
-                    {t.name}{" "}
-                    <span className="font-sans text-sm font-normal text-blue-300">
-                      &mdash; {t.city}
-                    </span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.4}>
-            <div className="mt-12 flex justify-center">
-              <Button href="/start" size="lg" trackLocation="proof">
-                {cfg.cta_button_text}
-              </Button>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-
-      <div
-        aria-hidden="true"
-        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
-      />
-
       {/* ========== SECTION 6: MEET HUGO + CSLB (condensed) ========== */}
       <Section id="about">
         <Container>
@@ -496,6 +477,36 @@ export default async function HomePage() {
               </div>
             </Reveal>
           </div>
+        </Container>
+      </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
+      {/* ========== SECTION 4: INLINE ESTIMATE ENTRY (EstimateFlow Step 0) ========== */}
+      <Section className="solar-grid-texture border-y border-gold/15">
+        <Container className="mx-auto max-w-2xl text-center">
+          <Reveal immediate>
+            <div className="mb-6 flex items-center justify-center gap-3" aria-hidden="true">
+              <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold/40" />
+              <Zap className="h-5 w-5 text-gold" />
+              <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold/40" />
+            </div>
+            <h2 className="font-display text-2xl font-bold sm:text-3xl lg:text-4xl">
+              {cfg.estimate_headline_pre}<span className="text-gold">{cfg.estimate_headline_gold}</span>{cfg.estimate_headline_post}
+            </h2>
+            <p className="mt-3 text-blue-300">
+              {cfg.estimate_subtext}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1} immediate>
+            <div className="mt-8">
+              <InlineEstimateEntry />
+            </div>
+          </Reveal>
         </Container>
       </Section>
 

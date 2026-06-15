@@ -162,7 +162,7 @@ export default async function HomePage() {
                 return (
                   <div
                     key={tier.name}
-                    className={`relative flex w-full flex-col rounded-2xl border p-6 transition-transform sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1.2rem)] ${
+                    className={`relative flex w-full flex-col rounded-2xl border p-6 transition-transform sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] lg:max-w-[360px] ${
                       isPopular
                         ? 'border-gold bg-gradient-to-b from-gold/10 to-navy-800 ring-1 ring-gold/40 lg:scale-105 lg:-my-2 lg:py-8 shadow-[0_0_30px_rgba(245,158,11,0.15)]'
                         : 'border-navy-500/40 bg-navy-800/60'

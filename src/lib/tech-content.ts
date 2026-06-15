@@ -62,7 +62,7 @@ const en: TechContent = {
     "Most solar takes the long way around — through an inverter, out to the grid, past your meter, and back. Ours sends sunlight straight into your heating and cooling. Free all day. Still running when the power's out.",
   hero_tagline_make: 'Make it.',
   hero_tagline_store: 'Store it.',
-  hero_tagline_live: 'Live on it.',
+  hero_tagline_live: 'Live on it.™',
   hero_cta: 'See if my home qualifies',
 
   s2_h2_pre: 'Same sun.',
@@ -183,7 +183,7 @@ const es: TechContent = {
     'La mayoría de la energía solar toma el camino largo — pasa por un inversor, sale a la red eléctrica, cruza tu medidor y regresa. La nuestra envía la luz del sol directamente a tu calefacción y aire acondicionado. Gratis todo el día. Y sigue funcionando cuando se va la luz.',
   hero_tagline_make: 'Genérala.',
   hero_tagline_store: 'Almacénala.',
-  hero_tagline_live: 'Vive de ella.',
+  hero_tagline_live: 'Vive de ella.™',
   hero_cta: 'Ver si mi casa califica',
 
   s2_h2_pre: 'El mismo sol.',

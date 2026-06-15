@@ -99,7 +99,7 @@ function MobileFlow({ animated }: { animated: boolean }) {
 
       {/* Labels */}
       <text x="150" y="475" textAnchor="middle" className="fill-muted text-[10px]">
-        Make it. Store it. Live on it.
+        Make it. Store it. Live on it.™
       </text>
 
       {/* Animated dots */}

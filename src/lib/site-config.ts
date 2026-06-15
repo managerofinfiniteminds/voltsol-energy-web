@@ -151,7 +151,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
 
   // Section 1: Hero
   hero_headline_line1: 'Make it. Store it.',
-  hero_headline_line2: 'Live on it.',
+  hero_headline_line2: 'Live on it.™',
   hero_subhead: 'How families are cutting the cord on their utility — for less than the cost of a used car.',
   hero_cta_secondary: 'See How It Works',
   hero_tax_banner_label: 'Tax Advantage:',
@@ -187,7 +187,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
 
   // Section 3: How It Works
   how_headline_pre: 'Make it. Store it. ',
-  how_headline_gold: 'Live on it.',
+  how_headline_gold: 'Live on it.™',
 
   // Section 4: Inline Estimate
   estimate_headline_pre: 'See your ',
@@ -213,7 +213,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   final_cta_subtext: 'Get a free, no-obligation estimate — see exactly what your home could save.',
 
   // Footer
-  footer_tagline: 'Make it. Store it. Live on it.',
+  footer_tagline: 'Make it. Store it. Live on it.™',
   footer_email: 'info@voltsolenergy.com',
   footer_copyright_year: '2026',
   footer_copyright_rights: 'LLC. All rights reserved.',

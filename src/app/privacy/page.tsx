@@ -254,7 +254,7 @@ export default function PrivacyPage() {
               Email:{" "}
               <a href="mailto:info@voltsolenergy.com">info@voltsolenergy.com</a>
             </li>
-            <li>VoltSol Energy, LLC &middot; Northern California</li>
+            <li>VoltSol Energy, LLC</li>
           </ul>
 
           <p className="mt-8 text-xs text-slate-500 border-t border-slate-700 pt-6">

@@ -45,7 +45,7 @@ export default function GoPage() {
       </main>
 
       <footer className="border-t border-navy-600 py-6 text-center text-blue-300/60 text-xs">
-        &copy; {new Date().getFullYear()} VoltSol Energy &mdash; Northern California &mdash;{' '}
+        &copy; {new Date().getFullYear()} VoltSol Energy &mdash;{' '}
         <a href="https://voltsolenergy.com" className="hover:text-gold">voltsolenergy.com</a>
       </footer>
     </div>

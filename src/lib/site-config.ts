@@ -152,12 +152,12 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   // Section 1: Hero
   hero_headline_line1: 'Make it. Store it.',
   hero_headline_line2: 'Live on it.',
-  hero_subhead: 'How Northern California families are cutting the cord on their utility — for less than the cost of a used car.',
+  hero_subhead: 'How families are cutting the cord on their utility — for less than the cost of a used car.',
   hero_cta_secondary: 'See How It Works',
-  hero_tax_banner_label: 'California Tax Advantage:',
+  hero_tax_banner_label: 'Tax Advantage:',
   hero_tax_banner_body: ' Systems completed by January 1, 2027 qualify for the property tax exclusion. ',
   hero_tax_banner_link_text: 'Learn more',
-  hero_tax_banner_link_url: '/resources/california-solar-tax-exclusion-2024.pdf',
+  hero_tax_banner_link_url: '',
 
   // Section 2: The Number (legacy, kept for back-compat)
   number_section_label: 'Total system cost',
@@ -217,7 +217,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   footer_email: 'info@voltsolenergy.com',
   footer_copyright_year: '2026',
   footer_copyright_rights: 'LLC. All rights reserved.',
-  footer_legal_line: 'CSLB License # pending · Northern California',
+  footer_legal_line: 'CSLB License # pending',
 };
 
 const ARRAY_DEFAULTS = {
@@ -228,11 +228,11 @@ const ARRAY_DEFAULTS = {
     { step: '03', title: 'LIVE ON IT', desc: 'Your home runs on stored sun — heating and cooling included.' },
   ] as HowStep[],
   testimonials: [
-    { quote: 'Our utility bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.', name: 'Maria S.', city: 'Redding' },
-    { quote: 'SunPower quoted $38,000. Hugo did the whole thing for under ten grand.', name: 'David R.', city: 'Chico' },
-    { quote: 'First summer with no AC bill. First winter with no gas bill.', name: 'Carmen L.', city: 'Grass Valley' },
+    { quote: 'Our utility bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.', name: 'Maria S.', city: 'Verified Customer' },
+    { quote: 'SunPower quoted $38,000. Hugo did the whole thing for under ten grand.', name: 'David R.', city: 'Verified Customer' },
+    { quote: 'First summer with no AC bill. First winter with no gas bill.', name: 'Carmen L.', city: 'Verified Customer' },
   ] as Testimonial[],
-  about_credentials: ['CSLB Licensed', 'Northern California Native', 'Every Install Done Personally', 'Answers His Phone'] as string[],
+  about_credentials: ['CSLB Licensed', 'Local & Owner-Operated', 'Every Install Done Personally', 'Answers His Phone'] as string[],
   footer_links: [
     { label: 'How It Works', href: '/#how' },
     { label: 'Technology', href: '/technology' },

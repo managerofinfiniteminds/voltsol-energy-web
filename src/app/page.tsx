@@ -27,18 +27,17 @@ const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   name: "VoltSol Energy",
   description:
-    "Off-grid solar installations for Northern California homes — EG4 battery, inverter, and solar-powered mini-split systems from $8,700.",
+    "Off-grid solar installations for your home — EG4 battery, inverter, and solar-powered mini-split systems from $8,700.",
   url: "https://voltsolenergy.com",
   email: "info@voltsolenergy.com",
   image: "https://voltsolenergy.com/og-image.png",
   priceRange: "$8,700–$16,000",
   areaServed: {
-    "@type": "Place",
-    name: "Northern California",
+    "@type": "Country",
+    name: "United States",
   },
   address: {
     "@type": "PostalAddress",
-    addressRegion: "CA",
     addressCountry: "US",
   },
   knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],

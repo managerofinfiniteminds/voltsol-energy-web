@@ -2,7 +2,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "VoltSol Energy — Off-Grid Solar for Northern California";
+export const alt = "VoltSol Energy — Off-Grid Solar";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -62,8 +62,8 @@ export default function OGImage() {
             lineHeight: 1.5,
           }}
         >
-          EG4 battery + inverter + mini-split systems for Northern California
-          homes. Free estimate, no pressure.
+          EG4 battery + inverter + mini-split systems for your
+          home. Free estimate, no pressure.
         </div>
         <div
           style={{

@@ -10,27 +10,27 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "VoltSol Energy — Off-Grid Solar from $8,700 | Northern California",
+      "VoltSol Energy — Off-Grid Solar from $8,700",
     template: "%s — VoltSol Energy",
   },
   description:
-    "Off-grid solar installations for Northern California homes — EG4 battery + inverter + solar-powered mini-split systems starting at $8,700. Free estimate, no pressure.",
+    "Off-grid solar installations for your home — EG4 battery + inverter + solar-powered mini-split systems starting at $8,700. Free estimate, no pressure.",
   keywords: [
     "off-grid solar",
-    "Northern California solar",
+    "residential solar",
     "EG4 solar",
     "solar battery storage",
     "affordable off-grid solar",
     "off-grid EG4",
     "solar lead generation",
     "utility bill alternative",
-    "solar installation NorCal",
+    "solar installation",
     "FlexBOSS18 inverter",
   ],
   openGraph: {
-    title: "VoltSol Energy — Off-Grid Solar from $8,700 | Northern California",
+    title: "VoltSol Energy — Off-Grid Solar from $8,700",
     description:
-      "Off-grid solar installations for Northern California homes — EG4 battery + inverter + solar-powered mini-split systems starting at $8,700. Free estimate, no pressure.",
+      "Off-grid solar installations for your home — EG4 battery + inverter + solar-powered mini-split systems starting at $8,700. Free estimate, no pressure.",
     siteName: "VoltSol Energy",
     url: siteUrl,
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "VoltSol Energy — Off-Grid Solar for Northern California",
+        alt: "VoltSol Energy — Off-Grid Solar",
       },
     ],
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "VoltSol Energy — Off-Grid Solar from $8,700",
     description:
-      "Off-grid solar for Northern California homes. EG4 systems from $8,700. Free estimate.",
+      "Off-grid solar for your home. EG4 systems from $8,700. Free estimate.",
     images: ["/og-image.png"],
   },
   alternates: {

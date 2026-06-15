@@ -10,13 +10,10 @@ import {
   MONTHLY_BILL_LABELS,
   TIMELINE_VALUES,
   TIMELINE_LABELS,
-  UTILITY_VALUES,
-  UTILITY_LABELS,
   ROOF_SHADE_VALUES,
   ROOF_SHADE_LABELS,
   type MonthlyBill,
   type Timeline,
-  type Utility,
   type RoofShade,
 } from '@/lib/engine-enums';
 import type { PricingTier } from '@/lib/site-config';
@@ -82,13 +79,6 @@ const TIMELINE_OPTIONS: { value: Timeline; label: string }[] = [
   { value: 'exploring', label: 'Just exploring' },
 ];
 
-const UTILITY_OPTIONS: { value: Utility; label: string }[] = [
-  { value: 'pge', label: 'PG&E' },
-  { value: 'smud', label: 'SMUD' },
-  { value: 'sce', label: 'SCE' },
-  { value: 'other', label: 'Other' },
-];
-
 // TCPA Consent
 const CONSENT_VERSION = '2.0';
 const CONSENT_FORM_ID = 'estimate-flow-v1';
@@ -104,7 +94,7 @@ interface FlowState {
   owns_home: 'own' | 'rent' | '';
   roof_shade: RoofShade | 'unsure' | '';
   timeline: Timeline | '';
-  utility: Utility | '';
+  utility: string;
   // Contact
   first_name: string;
   last_name: string;
@@ -173,7 +163,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     owns_home: '',
     roof_shade: '',
     timeline: '',
-    utility: 'pge', // Pre-filled for NorCal
+    utility: '',
     first_name: '',
     last_name: '',
     email: '',
@@ -256,7 +246,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     if (s === 1 && !form.owns_home) errs.owns_home = 'Please select an option';
     if (s === 2 && !form.roof_shade) errs.roof_shade = 'Please select an option';
     if (s === 3 && !form.timeline) errs.timeline = 'Please select when';
-    if (s === 4 && !form.utility) errs.utility = 'Please select your utility';
+    if (s === 4 && !form.utility.trim()) errs.utility = 'Please enter your electric utility';
     if (s === 6) {
       if (!form.first_name.trim()) errs.first_name = 'First name is required';
       if (!form.last_name.trim()) errs.last_name = 'Last name is required';
@@ -630,26 +620,21 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {/* ─── Step 4: Utility ─── */}
       {step === 4 && (
         <div>
-          <h2 className="text-2xl font-bold text-white mb-6">Who&apos;s your utility?</h2>
-          <div className="space-y-3">
-            {UTILITY_OPTIONS.map(opt => (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => handleSelect('utility', opt.value)}
-                aria-pressed={form.utility === opt.value}
-                className={cn(
-                  'w-full flex items-center justify-between p-5 rounded-xl border-2 text-left transition-all duration-150',
-                  form.utility === opt.value
-                    ? 'border-gold bg-gold/10 text-white'
-                    : 'border-blue-900 bg-navy-700/50 text-blue-100 hover:border-blue-400 hover:bg-navy-600/50'
-                )}
-              >
-                <span className="font-semibold text-lg">{opt.label}</span>
-                {form.utility === opt.value && <Check className="h-5 w-5 text-gold" />}
-              </button>
-            ))}
-          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Who&apos;s your electric utility?</h2>
+          <p className="text-blue-300 text-sm mb-6">Whoever sends your monthly power bill.</p>
+          <input
+            id="utility"
+            type="text"
+            name="utility"
+            value={form.utility}
+            onChange={handleChange}
+            placeholder="e.g. your power company"
+            autoComplete="off"
+            className={cn(
+              'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
+              errors.utility ? 'border-red-500' : 'border-blue-900'
+            )}
+          />
           {errors.utility && (
             <p className="mt-2 text-sm text-red-400" role="alert">{errors.utility}</p>
           )}

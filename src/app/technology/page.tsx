@@ -320,7 +320,7 @@ export default async function TechnologyPage() {
               {
                 icon: Flame,
                 title: "Handles a heat wave and a cold snap",
-                desc: "Keeps cooling in triple-digit heat and keeps heating when it drops near freezing — true four-season comfort for NorCal.",
+                desc: "Keeps cooling in triple-digit heat and keeps heating when it drops near freezing — true four-season comfort.",
               },
               {
                 icon: Volume2,

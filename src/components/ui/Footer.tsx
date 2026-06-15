@@ -29,7 +29,7 @@ export function Footer({
   email = "info@voltsolenergy.com",
   copyrightYear = "2026",
   copyrightRights = "LLC. All rights reserved.",
-  legalLine = "CSLB License # pending · Northern California",
+  legalLine = "CSLB License # pending",
   links,
 }: FooterProps) {
   const baseLinks = links && links.length ? links : DEFAULT_LINKS;

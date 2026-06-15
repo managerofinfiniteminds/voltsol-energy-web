@@ -30,7 +30,7 @@ export default async function CampaignPage({ params, searchParams }: Props) {
       {/* Header */}
       <header className="px-6 py-6 text-center border-b border-navy-600">
         <div className="text-3xl font-extrabold text-gold tracking-tight font-display">VoltSol Energy</div>
-        <div className="text-sm text-blue-300 mt-1">Northern California Solar</div>
+        <div className="text-sm text-blue-300 mt-1">Off-Grid Solar</div>
       </header>
 
       <main className="max-w-2xl mx-auto px-4 pb-16">

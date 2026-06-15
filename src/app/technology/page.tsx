@@ -302,8 +302,8 @@ export default async function TechnologyPage() {
         <Container>
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Built to handle a{" "}
-              <span className="text-gold">California year</span>
+              Built to handle{" "}
+              <span className="text-gold">all four seasons</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-blue-200">
               Real performance, in plain English.

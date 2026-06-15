@@ -841,7 +841,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
                   name="city"
                   value={form.city}
                   onChange={handleChange}
-                  placeholder="Sacramento"
+                  placeholder="Your city"
                   autoComplete="address-level2"
                   className="w-full bg-navy-700 border border-blue-900 rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base"
                 />

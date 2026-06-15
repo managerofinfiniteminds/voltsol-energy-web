@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import { Button } from "./Button";
 
 /**
- * StickyCTA — persistent CTA bar that appears after hero scrolls out of view.
+ * StickyCTA — persistent mobile CTA bar that appears after the hero scrolls out of view.
  *
- * Mobile: fixed bottom bar
- * Desktop: slides in from top as compact bar
+ * Mobile only: fixed bottom bar (thumb-reachable).
+ * Desktop intentionally has NO sticky bar — the site header already keeps a
+ * persistent CTA button visible, so a second top bar would be redundant.
  *
- * Uses IntersectionObserver to detect when hero exits viewport.
- * CSS-visible by default when shown (no opacity:0 animation traps).
+ * Uses IntersectionObserver to detect when the hero exits the viewport.
  */
 export function StickyCTA({ ctaText }: { ctaText?: string }) {
   const [visible, setVisible] = useState(false);
@@ -42,33 +42,15 @@ export function StickyCTA({ ctaText }: { ctaText?: string }) {
   if (!visible) return null;
 
   return (
-    <>
-      {/* Desktop: top bar below header */}
-      <div className="fixed top-20 sm:top-24 left-0 right-0 z-40 hidden md:block">
-        <div className="bg-navy/95 backdrop-blur-md border-b border-gold/20 shadow-lg">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-14 items-center justify-between">
-              <p className="text-sm font-medium text-blue-100">
-                Off-grid solar under $10K — free estimate, no obligation
-              </p>
-              <Button href="/start" size="sm">
-                {cta}
-              </Button>
-            </div>
-          </div>
+    /* Mobile only: fixed bottom bar. No desktop bar — header CTA covers it. */
+    <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
+      <div className="bg-navy/95 backdrop-blur-md border-t border-gold/20 shadow-lg">
+        <div className="px-4 py-3">
+          <Button href="/start" size="lg" fullWidth>
+            {cta}
+          </Button>
         </div>
       </div>
-
-      {/* Mobile: fixed bottom bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
-        <div className="bg-navy/95 backdrop-blur-md border-t border-gold/20 shadow-lg">
-          <div className="px-4 py-3">
-            <Button href="/start" size="lg" fullWidth>
-              {cta}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }

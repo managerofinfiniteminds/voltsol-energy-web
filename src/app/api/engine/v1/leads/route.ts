@@ -13,6 +13,11 @@ import {
   mapMonthlyBill,
 } from '@/lib/engine-enums';
 import { scoreLead } from '@/lib/engine-scoring';
+import { sendConfirmationEmail, sendSalesAlertEmail } from '@/lib/email';
+import {
+  MONTHLY_BILL_LABELS,
+  TIMELINE_LABELS,
+} from '@/lib/engine-enums';
 
 // ── Rate limiting (in-memory, same pattern as /api/market/leads) ─────────────
 const rateLimitMap = new Map<string, number[]>();
@@ -238,6 +243,43 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+
+  // Send emails (non-blocking — errors don't fail the request).
+  // Confirmation to the lead + alert to sales@. Uses shared Resend lib.
+  const billLabel = monthlyBill
+    ? (MONTHLY_BILL_LABELS as Record<string, string>)[monthlyBill] ?? monthlyBill
+    : '—';
+  const timelineLabel = timeline
+    ? (TIMELINE_LABELS as Record<string, string>)[timeline as string] ?? String(timeline)
+    : '—';
+  const contactForEmail = {
+    first_name: firstName,
+    last_name: lastName,
+    email,
+    phone,
+    street_address: streetAddress || '',
+    city: city || '',
+    state: state || '',
+    zip: zip || '',
+    owns_home: ownsHome === 'own' ? 'Yes' : ownsHome === 'rent' ? 'No (renting)' : '—',
+    monthly_bill: billLabel,
+    best_contact_time: timelineLabel,
+    notes: notes,
+    lead_score: score,
+    campaign_name: attributionJson?.utm_campaign || undefined,
+    created_at: new Date().toISOString(),
+  };
+
+  Promise.allSettled([
+    sendConfirmationEmail(contactForEmail),
+    sendSalesAlertEmail(contactForEmail),
+  ]).then((results) => {
+    results.forEach((r, i) => {
+      if (r.status === 'rejected') {
+        console.error(`[engine/v1/leads] Email ${i} failed:`, r.reason);
+      }
+    });
+  });
 
   return NextResponse.json({ ok: true, id: insertedId, score });
 }

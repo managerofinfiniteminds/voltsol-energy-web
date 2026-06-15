@@ -17,6 +17,7 @@ export function Header({ ctaText, locale = "en" }: { ctaText?: string; locale?: 
     { label: t.nav_how, href: "/technology" },
     { label: t.nav_pricing, href: "/#pricing" },
     { label: t.nav_about, href: "/#about" },
+    { label: t.nav_contact, href: "/contact" },
   ];
 
   return (

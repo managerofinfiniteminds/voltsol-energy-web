@@ -156,3 +156,63 @@ export async function sendSalesAlertEmail(contact: ContactDetails): Promise<void
     html,
   });
 }
+
+interface ContactMessage {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  created_at?: string;
+}
+
+/**
+ * Sends a general contact-form message to the sales inbox.
+ * Recipient is SALES_ALERT_EMAIL (defaults to info@voltsolenergy.com).
+ * Hugo's personal address is never used or exposed.
+ */
+export async function sendContactMessageEmail(msg: ContactMessage): Promise<void> {
+  const salesEmail = process.env.SALES_ALERT_EMAIL || 'info@voltsolenergy.com';
+  const submittedAt = msg.created_at
+    ? new Date(msg.created_at).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+    : new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' });
+
+  const safe = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="max-width:600px;margin:0 auto;padding:24px 16px;">
+    <div style="background:#0F172A;border-radius:12px 12px 0 0;padding:24px;text-align:center;">
+      <div style="font-size:24px;font-weight:800;color:#F59E0B;">VoltSol Energy</div>
+      <div style="font-size:14px;color:#94a3b8;margin-top:4px;">New Contact Message</div>
+    </div>
+    <div style="background:#ffffff;padding:24px;border:1px solid #e2e8f0;border-top:none;">
+      <table style="width:100%;border-collapse:collapse;">
+        <tr><td style="padding:6px 0;color:#64748b;font-size:14px;width:30%;">Name</td><td style="padding:6px 0;color:#0F172A;font-size:14px;font-weight:600;">${safe(msg.name)}</td></tr>
+        <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Email</td><td style="padding:6px 0;font-size:14px;"><a href="mailto:${safe(msg.email)}" style="color:#F59E0B;font-weight:600;">${safe(msg.email)}</a></td></tr>
+        ${msg.phone ? `<tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Phone</td><td style="padding:6px 0;font-size:14px;"><a href="tel:${msg.phone.replace(/\D/g, '')}" style="color:#F59E0B;font-weight:600;">${safe(msg.phone)}</a></td></tr>` : ''}
+        <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Submitted</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${submittedAt} PT</td></tr>
+      </table>
+      <div style="margin-top:20px;padding:16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;color:#0F172A;font-size:14px;line-height:1.6;white-space:pre-wrap;">${safe(msg.message)}</div>
+      <div style="margin-top:20px;">
+        <a href="mailto:${safe(msg.email)}" style="display:inline-block;background:#F59E0B;color:#0F172A;font-weight:700;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:14px;">Reply</a>
+      </div>
+    </div>
+    <div style="background:#f1f5f9;border-radius:0 0 12px 12px;padding:12px 24px;text-align:center;border:1px solid #e2e8f0;border-top:none;">
+      <div style="font-size:12px;color:#94a3b8;">VoltSol Energy | Contact Form</div>
+    </div>
+  </div>
+</body>
+</html>`;
+
+  await getResend().emails.send({
+    from: 'VoltSol Contact <hello@voltsolenergy.com>',
+    to: salesEmail,
+    reply_to: msg.email,
+    subject: `[CONTACT] ${msg.name}`,
+    html,
+  });
+}

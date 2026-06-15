@@ -28,8 +28,26 @@ export interface Dict {
   nav_how: string;
   nav_pricing: string;
   nav_about: string;
+  nav_contact: string;
   lang_label_en: string;
   lang_label_es: string;
+
+  // Contact page
+  contact_h1: string;
+  contact_intro: string;
+  contact_label_name: string;
+  contact_label_email: string;
+  contact_label_phone: string;
+  contact_label_phone_opt: string;
+  contact_label_message: string;
+  contact_submit: string;
+  contact_sending: string;
+  contact_success: string;
+  contact_error: string;
+  contact_info_heading: string;
+  contact_phone_label: string;
+  contact_address_label: string;
+  contact_email_label: string;
 
   // Estimate flow — step labels (progress)
   step_bill: string;
@@ -147,6 +165,22 @@ const en: Dict = {
   nav_how: 'How It Works',
   nav_pricing: 'Pricing',
   nav_about: 'About',
+  nav_contact: 'Contact',
+  contact_h1: 'Get in Touch',
+  contact_intro: "Questions about going solar? Send us a message and we'll get back to you.",
+  contact_label_name: 'Name',
+  contact_label_email: 'Email',
+  contact_label_phone: 'Phone',
+  contact_label_phone_opt: 'Phone (optional)',
+  contact_label_message: 'Message',
+  contact_submit: 'Send Message',
+  contact_sending: 'Sending…',
+  contact_success: "Thanks — your message is on its way. We'll be in touch soon.",
+  contact_error: 'Something went wrong. Please try again or email us directly.',
+  contact_info_heading: 'Contact Information',
+  contact_phone_label: 'Phone',
+  contact_address_label: 'Address',
+  contact_email_label: 'Email',
   lang_label_en: 'EN',
   lang_label_es: 'ES',
 
@@ -258,6 +292,22 @@ const es: Dict = {
   nav_how: 'Cómo Funciona',
   nav_pricing: 'Precios',
   nav_about: 'Nosotros',
+  nav_contact: 'Contacto',
+  contact_h1: 'Contáctanos',
+  contact_intro: '¿Tienes preguntas sobre la energía solar? Envíanos un mensaje y te responderemos.',
+  contact_label_name: 'Nombre',
+  contact_label_email: 'Correo electrónico',
+  contact_label_phone: 'Teléfono',
+  contact_label_phone_opt: 'Teléfono (opcional)',
+  contact_label_message: 'Mensaje',
+  contact_submit: 'Enviar Mensaje',
+  contact_sending: 'Enviando…',
+  contact_success: 'Gracias — tu mensaje va en camino. Te contactaremos pronto.',
+  contact_error: 'Algo salió mal. Inténtalo de nuevo o escríbenos directamente.',
+  contact_info_heading: 'Información de Contacto',
+  contact_phone_label: 'Teléfono',
+  contact_address_label: 'Dirección',
+  contact_email_label: 'Correo',
   lang_label_en: 'EN',
   lang_label_es: 'ES',
 

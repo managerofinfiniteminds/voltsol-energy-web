@@ -141,6 +141,11 @@ export interface HomeConfig {
   footer_copyright_rights: string;
   footer_legal_line: string;
   footer_links: FooterLink[];
+
+  // Contact info (editable placeholders)
+  contact_phone: string;
+  contact_address: string;
+  contact_email: string;
 }
 
 // ============ DEFAULTS ============
@@ -218,6 +223,9 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   footer_copyright_year: '2026',
   footer_copyright_rights: 'LLC. All rights reserved.',
   footer_legal_line: 'CSLB License # pending',
+  contact_phone: '(555) 123-4567',
+  contact_address: '123 Solar Way, Suite 100, Your City, CA 95000',
+  contact_email: 'sales@voltsolenergy.com',
 };
 
 const ARRAY_DEFAULTS = {

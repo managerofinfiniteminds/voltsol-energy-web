@@ -36,21 +36,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     type: "website",
     locale: "en_US",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "VoltSol Energy — Off-Grid Solar",
-      },
-    ],
+    // og:image is auto-generated from src/app/opengraph-image.tsx (real VoltSol logo card)
   },
   twitter: {
     card: "summary_large_image",
     title: "VoltSol Energy — Off-Grid Solar from $8,700",
     description:
       "Off-grid solar for your home. EG4 systems from $8,700. Free estimate.",
-    images: ["/og-image.png"],
+    // twitter:image also auto-uses the generated opengraph-image card
   },
   alternates: {
     canonical: siteUrl,

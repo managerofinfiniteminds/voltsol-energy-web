@@ -6,7 +6,6 @@ import {
   Button,
   Reveal,
 } from "@/components/ui";
-import { EnergyFlowDiagram } from "@/components/EnergyFlowDiagram";
 import { getHomeConfig } from "@/lib/site-config";
 import InlineEstimateEntry from "@/components/InlineEstimateEntry";
 import PageTracker from "@/components/PageTracker";
@@ -296,7 +295,17 @@ export default async function HomePage() {
 
           <Reveal delay={0.2}>
             <div className="mt-12 lg:mt-16">
-              <EnergyFlowDiagram />
+              <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-navy-500/40 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
+                <Image
+                  src="/images/how-it-works-system.jpg"
+                  alt="Complete solar, battery storage, and mini-split heating and cooling system: rooftop solar charges battery storage, which powers the outdoor condenser and zoned indoor air handlers across the living room, home office, and guest room."
+                  width={1376}
+                  height={768}
+                  className="h-auto w-full"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority
+                />
+              </div>
             </div>
           </Reveal>
 

@@ -261,6 +261,18 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     track('flow_step_view', { step_index: step, step_name: stepNames[step] });
   }, [step]);
 
+  // Scroll the new step into view AFTER it renders, clearing the sticky header.
+  // scroll-mt-* on the stepRef element provides the header offset so the
+  // heading isn't tucked under the fixed nav on desktop or mobile.
+  const didMountRef = useRef(false);
+  useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true; // don't auto-scroll on initial load
+      return;
+    }
+    stepRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [step]);
+
   useEffect(() => {
     // Track abandon on unmount if not completed (step < 8)
     return () => {
@@ -387,13 +399,11 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     }
 
     setStep(s => s + 1);
-    stepRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function handleBack() {
     setErrors({});
     setStep(s => s - 1);
-    stepRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Submit lead at Step 6
@@ -574,7 +584,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
   // ─── Render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="mx-auto max-w-xl" ref={stepRef}>
+    <div className="mx-auto max-w-xl scroll-mt-28 sm:scroll-mt-32" ref={stepRef}>
       {/* Progress bar */}
       {step < 8 && (
         <div className="mb-6">

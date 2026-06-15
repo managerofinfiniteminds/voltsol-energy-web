@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Section, Container } from '@/components/ui';
 import EstimateFlow from '@/components/EstimateFlow';
 import { getHomeConfig } from '@/lib/site-config';
+import { getLocale } from '@/lib/locale';
+import { getDict } from '@/lib/i18n';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +20,9 @@ interface StartPageProps {
 export default async function StartPage({ searchParams }: StartPageProps) {
   const campaignCode = searchParams.campaign;
   const initialBill = searchParams.bill;
-  const cfg = await getHomeConfig();
+  const locale = getLocale();
+  const t = getDict(locale);
+  const cfg = await getHomeConfig(locale);
 
   return (
     <Section className="hero-bg relative overflow-hidden py-12 sm:py-16">
@@ -33,23 +37,23 @@ export default async function StartPage({ searchParams }: StartPageProps) {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="font-display text-3xl font-bold leading-tight sm:text-4xl">
-              Get Your <span className="text-gold">Free Estimate</span>
+              {t.start_h1_pre} <span className="text-gold">{t.start_h1_gold}</span>
             </h1>
             <p className="mt-3 text-blue-300">
-              Answer a few quick questions to see what you could save.
+              {t.start_sub}
             </p>
           </div>
 
           {/* Flow container */}
           <div className="rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:p-8">
-            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} tiers={cfg.pricing_tiers} />
+            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} tiers={cfg.pricing_tiers} locale={locale} />
           </div>
 
           {/* Trust bar */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-wider text-blue-300/60">
-            <span>Free estimate</span>
+            <span>{t.trust_free}</span>
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/40" />
-            <span>No pressure</span>
+            <span>{t.trust_no_pressure}</span>
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/40" />
             <span>Solar from $8,700</span>
           </div>

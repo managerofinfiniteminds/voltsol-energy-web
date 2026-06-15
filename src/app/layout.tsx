@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { displayFont, bodyFont } from "@/lib/fonts";
 import { SiteHeader, SiteFooter, SiteStickyCTA } from "@/components/ui/SiteChrome";
 import { getHomeConfig } from "@/lib/site-config";
+import { getLocale } from "@/lib/locale";
 import "./globals.css";
 
 const siteUrl = "https://voltsolenergy.com";
@@ -61,11 +62,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cfg = await getHomeConfig();
+  const locale = getLocale();
+  const cfg = await getHomeConfig(locale);
   const ctaText = cfg.cta_button_text;
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${displayFont.variable} ${bodyFont.variable}`}
     >
       <body className="flex min-h-screen flex-col">
@@ -75,7 +77,7 @@ export default async function RootLayout({
         >
           Skip to content
         </a>
-        <SiteHeader ctaText={ctaText} />
+        <SiteHeader ctaText={ctaText} locale={locale} />
         <main id="main-content" className="flex-1">
           {children}
         </main>
@@ -88,7 +90,7 @@ export default async function RootLayout({
           legalLine={cfg.footer_legal_line}
           links={cfg.footer_links}
         />
-        <SiteStickyCTA ctaText={ctaText} />
+        <SiteStickyCTA ctaText={ctaText} locale={locale} />
       </body>
     </html>
   );

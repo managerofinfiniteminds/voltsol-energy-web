@@ -1,9 +1,11 @@
 import EstimateFlow from '@/components/EstimateFlow';
+import { getLocale } from '@/lib/locale';
 
 export const dynamic = 'force-dynamic';
 
 export default function GoPage() {
   const phone = process.env.VOLTSOL_PHONE;
+  const locale = getLocale();
 
   return (
     <div className="min-h-screen bg-navy text-white">
@@ -31,7 +33,7 @@ export default function GoPage() {
 
         <div className="bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-500/40 rounded-2xl p-6 sm:p-8 shadow-2xl">
           <h2 className="text-xl font-bold text-white mb-6 font-display">Your Free Solar Estimate</h2>
-          <EstimateFlow />
+          <EstimateFlow locale={locale} />
         </div>
 
         {phone && (

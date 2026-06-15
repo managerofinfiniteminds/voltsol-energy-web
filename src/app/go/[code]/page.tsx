@@ -1,5 +1,6 @@
 import { getCampaignByCode } from '@/lib/campaigns';
 import EstimateFlow from '@/components/EstimateFlow';
+import { getLocale } from '@/lib/locale';
 
 interface Props {
   params:       { code: string };
@@ -65,7 +66,7 @@ export default async function CampaignPage({ params, searchParams }: Props) {
         {/* Form card with EstimateFlow */}
         <div className="bg-gradient-to-br from-navy-700 to-navy-800 border border-navy-500/40 rounded-2xl p-6 sm:p-8 shadow-2xl">
           <h2 className="text-xl font-bold text-white mb-6 font-display">Your Free Solar Estimate</h2>
-          <EstimateFlow campaignCode={code || undefined} />
+          <EstimateFlow campaignCode={code || undefined} locale={getLocale()} />
         </div>
 
         {phone && (

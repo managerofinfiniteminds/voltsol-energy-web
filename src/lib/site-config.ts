@@ -335,13 +335,33 @@ export async function getNumberSectionConfig(): Promise<NumberSectionConfig> {
 /**
  * Get the full homepage config with all sections.
  * Falls back to defaults if DB is unavailable.
+ *
+ * Locale-aware: when locale='es', any key with a Spanish mirror row
+ * (`<key>_es`) is used instead of the English value. Missing Spanish
+ * rows transparently fall back to English, so a partially-translated
+ * site never shows blanks. English ('en') ignores all `_es` rows.
  */
-export async function getHomeConfig(): Promise<HomeConfig> {
+export async function getHomeConfig(locale: 'en' | 'es' = 'en'): Promise<HomeConfig> {
   try {
     const rows = await sql`SELECT key, value FROM site_config`;
-    const dbValues: Record<string, string> = {};
+    const dbAll: Record<string, string> = {};
     for (const row of rows) {
-      dbValues[row.key] = row.value;
+      dbAll[row.key] = row.value;
+    }
+
+    // Build the effective value map. For Spanish, prefer `<key>_es` when
+    // present and non-empty, otherwise fall back to the English row.
+    const pick = (key: string): string | undefined => {
+      if (locale === 'es') {
+        const es = dbAll[`${key}_es`];
+        if (es !== undefined && es !== '') return es;
+      }
+      return dbAll[key];
+    };
+    const dbValues: Record<string, string> = {};
+    for (const key of [...Object.keys(SCALAR_DEFAULTS), ...ARRAY_KEYS]) {
+      const v = pick(key);
+      if (v !== undefined) dbValues[key] = v;
     }
 
     // Merge scalar values

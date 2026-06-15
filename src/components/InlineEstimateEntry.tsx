@@ -3,17 +3,18 @@
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { track } from '@/lib/track';
+import { getDict } from '@/lib/i18n';
+import type { Locale } from '@/lib/locale';
 
-// Bill options matching EstimateFlow Step 0
-const BILL_OPTIONS = [
-  { value: 'lt_100', label: 'Under $150', sub: 'Light usage' },
-  { value: '100_200', label: '$150–$300', sub: 'Average home' },
-  { value: '200_300', label: '$300–$500', sub: 'Higher usage' },
-  { value: 'gt_300', label: '$500+', sub: 'Very high usage' },
-] as const;
-
-export default function InlineEstimateEntry() {
+export default function InlineEstimateEntry({ locale = 'en' }: { locale?: Locale }) {
   const router = useRouter();
+  const t = getDict(locale);
+  const BILL_OPTIONS = [
+    { value: 'lt_100', label: t.bill_lt_100, sub: t.bill_lt_100_sub },
+    { value: '100_200', label: t.bill_100_200, sub: t.bill_100_200_sub },
+    { value: '200_300', label: t.bill_200_300, sub: t.bill_200_300_sub },
+    { value: 'gt_300', label: t.bill_gt_300, sub: t.bill_gt_300_sub },
+  ] as const;
 
   function handleSelect(bill: string, label: string) {
     // Track the CTA click

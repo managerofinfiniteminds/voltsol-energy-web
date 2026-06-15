@@ -7,6 +7,7 @@ import {
   Reveal,
 } from "@/components/ui";
 import { getHomeConfig } from "@/lib/site-config";
+import { getLocale } from "@/lib/locale";
 import InlineEstimateEntry from "@/components/InlineEstimateEntry";
 import PageTracker from "@/components/PageTracker";
 import ScrollDepthTracker from "@/components/ScrollDepthTracker";
@@ -21,6 +22,16 @@ import {
   Check,
   Zap,
 } from "lucide-react";
+import type { Metadata } from "next";
+import { getDict } from "@/lib/i18n";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = getDict(getLocale());
+  return {
+    title: t.meta_home_title,
+    description: t.meta_home_desc,
+  };
+}
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -47,7 +58,8 @@ const localBusinessJsonLd = {
 const credentialIcons = [BadgeCheck, MapPin, Wrench, Phone];
 
 export default async function HomePage() {
-  const cfg = await getHomeConfig();
+  const locale = getLocale();
+  const cfg = await getHomeConfig(locale);
 
   // Build FAQ JSON-LD from config
   const faqJsonLd = {
@@ -506,7 +518,7 @@ export default async function HomePage() {
 
           <Reveal delay={0.1} immediate>
             <div className="mt-8">
-              <InlineEstimateEntry />
+              <InlineEstimateEntry locale={locale} />
             </div>
           </Reveal>
         </Container>

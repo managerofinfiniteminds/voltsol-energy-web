@@ -5,6 +5,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { StickyCTA } from "./StickyCTA";
 import type { FooterLink } from "@/lib/site-config";
+import type { Locale } from "@/lib/locale";
 
 interface FooterProps {
   ctaText?: string;
@@ -26,10 +27,10 @@ function showStickyCTA(pathname: string | null): boolean {
   return pathname === "/" || pathname === "/start";
 }
 
-export function SiteHeader({ ctaText }: { ctaText?: string }) {
+export function SiteHeader({ ctaText, locale }: { ctaText?: string; locale?: Locale }) {
   const pathname = usePathname();
   if (isAdmin(pathname)) return null;
-  return <Header ctaText={ctaText} />;
+  return <Header ctaText={ctaText} locale={locale} />;
 }
 
 export function SiteFooter(props: FooterProps) {
@@ -38,7 +39,7 @@ export function SiteFooter(props: FooterProps) {
   return <Footer {...props} />;
 }
 
-export function SiteStickyCTA({ ctaText }: { ctaText?: string }) {
+export function SiteStickyCTA({ ctaText }: { ctaText?: string; locale?: Locale }) {
   const pathname = usePathname();
   if (isAdmin(pathname) || !showStickyCTA(pathname)) return null;
   return <StickyCTA ctaText={ctaText} />;

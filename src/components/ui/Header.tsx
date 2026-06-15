@@ -5,16 +5,19 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Container } from "./Container";
 import { Button } from "./Button";
+import { LangToggle } from "./LangToggle";
+import { getDict } from "@/lib/i18n";
+import type { Locale } from "@/lib/locale";
 
-const navLinks = [
-  { label: "How It Works", href: "/technology" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "About", href: "/#about" },
-];
-
-export function Header({ ctaText }: { ctaText?: string }) {
+export function Header({ ctaText, locale = "en" }: { ctaText?: string; locale?: Locale }) {
   const [open, setOpen] = useState(false);
-  const cta = ctaText || "Get My Free Estimate";
+  const t = getDict(locale);
+  const cta = ctaText || t.submit_cta;
+  const navLinks = [
+    { label: t.nav_how, href: "/technology" },
+    { label: t.nav_pricing, href: "/#pricing" },
+    { label: t.nav_about, href: "/#about" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 border-t-2 border-t-gold/60 border-b border-b-blue-900/50 bg-navy/80 backdrop-blur-md">
@@ -51,6 +54,7 @@ export function Header({ ctaText }: { ctaText?: string }) {
           <Button href="/start" size="sm">
             {cta}
           </Button>
+          <LangToggle current={locale} />
         </nav>
 
         {/* Mobile hamburger */}
@@ -84,6 +88,9 @@ export function Header({ ctaText }: { ctaText?: string }) {
             <Button href="/start" onClick={() => setOpen(false)}>
               {cta}
             </Button>
+            <div className="pt-2">
+              <LangToggle current={locale} />
+            </div>
           </Container>
         </nav>
       )}

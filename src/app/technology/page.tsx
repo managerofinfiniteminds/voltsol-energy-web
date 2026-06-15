@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, Container, Button, Reveal } from "@/components/ui";
 import { getHomeConfig } from "@/lib/site-config";
+import { getLocale } from "@/lib/locale";
+import { getTechContent } from "@/lib/tech-content";
+import { getDict } from "@/lib/i18n";
 import PageTracker from "@/components/PageTracker";
 import ScrollDepthTracker from "@/components/ScrollDepthTracker";
 import {
@@ -23,18 +26,19 @@ import {
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "How It's Different — Solar That Powers Your Home Directly | VoltSol Energy",
-  description:
-    "Most solar sends power on a round-trip through the grid. Our hybrid DC system sends sunlight straight into your heating and cooling — free all day, and it keeps running in a blackout. See how the technology works.",
-  alternates: { canonical: "https://voltsolenergy.com/technology" },
-  openGraph: {
-    title: "The Only System Where the Sun Powers Your Home Directly",
-    description:
-      "Hybrid DC solar mini-split: sunlight goes straight into your AC. 100% daytime energy savings on sunny days — and comfort that survives a blackout.",
-    url: "https://voltsolenergy.com/technology",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = getDict(getLocale());
+  return {
+    title: `${t.meta_tech_title} | VoltSol Energy`,
+    description: t.meta_tech_desc,
+    alternates: { canonical: "https://voltsolenergy.com/technology" },
+    openGraph: {
+      title: t.meta_tech_title,
+      description: t.meta_tech_desc,
+      url: "https://voltsolenergy.com/technology",
+    },
+  };
+}
 
 const techArticleJsonLd = {
   "@context": "https://schema.org",
@@ -51,7 +55,9 @@ const techArticleJsonLd = {
 };
 
 export default async function TechnologyPage() {
-  const cfg = await getHomeConfig();
+  const locale = getLocale();
+  const cfg = await getHomeConfig(locale);
+  const tc = getTechContent(locale);
   const cta = cfg.cta_button_text || "Get My Free Estimate";
 
   return (
@@ -73,32 +79,29 @@ export default async function TechnologyPage() {
           <div className="mx-auto max-w-3xl text-center">
             <Reveal immediate>
               <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-sm font-semibold text-gold">
-                <Zap className="h-4 w-4" /> The Technology
+                <Zap className="h-4 w-4" /> {tc.badge}
               </span>
             </Reveal>
             <Reveal immediate delay={0.1}>
               <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-                The only system where the sun powers your home{" "}
-                <span className="text-gold">directly.</span>
+                {tc.hero_h1_pre}{" "}
+                <span className="text-gold">{tc.hero_h1_gold}</span>
               </h1>
             </Reveal>
             <Reveal immediate delay={0.2}>
               <p className="mt-6 text-lg text-blue-200 sm:text-xl">
-                Most solar takes the long way around — through an inverter, out
-                to the grid, past your meter, and back. Ours sends sunlight{" "}
-                <strong className="text-white">straight into your heating and cooling.</strong>{" "}
-                Free all day. Still running when the power&apos;s out.
+                {tc.hero_p}
               </p>
             </Reveal>
             <Reveal immediate delay={0.3}>
               <p className="mt-6 font-display text-xl font-bold tracking-tight text-white sm:text-2xl">
-                Make it. <span className="text-gold">Store it.</span> Live on it.
+                {tc.hero_tagline_make} <span className="text-gold">{tc.hero_tagline_store}</span> {tc.hero_tagline_live}
               </p>
             </Reveal>
             <Reveal immediate delay={0.4}>
               <div className="mt-8 flex justify-center">
                 <Button href="/start" size="lg" trackLocation="technology_hero">
-                  See if my home qualifies
+                  {tc.hero_cta}
                 </Button>
               </div>
             </Reveal>
@@ -125,11 +128,10 @@ export default async function TechnologyPage() {
         <Container>
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Same sun. <span className="text-gold">Shorter path.</span>
+              {tc.s2_h2_pre} <span className="text-gold">{tc.s2_h2_gold}</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-blue-200">
-              Why ordinary solar still leaves you tied to the utility — and how
-              we cut the cord.
+              {tc.s2_sub}
             </p>
           </Reveal>
 
@@ -155,19 +157,14 @@ export default async function TechnologyPage() {
                     <Grid3x3 className="h-5 w-5" />
                   </span>
                   <h3 className="font-display text-xl font-bold text-blue-200">
-                    Ordinary solar
+                    {tc.s2_bad_title}
                   </h3>
                 </div>
                 <p className="mt-4 font-mono text-sm text-blue-300">
-                  Panels → inverter → grid → meter → back to your house → AC
+                  {tc.s2_bad_path}
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-blue-200">
-                  {[
-                    "Every conversion loses energy along the way",
-                    "You're still buying power back from the utility",
-                    "Rates and rules can change on you anytime",
-                    "When the grid goes down, your AC goes down with it",
-                  ].map((t) => (
+                  {tc.s2_bad_points.map((t) => (
                     <li key={t} className="flex gap-3">
                       <X className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
                       <span>{t}</span>
@@ -185,19 +182,14 @@ export default async function TechnologyPage() {
                     <Zap className="h-5 w-5" />
                   </span>
                   <h3 className="font-display text-xl font-bold text-white">
-                    The VoltSol way
+                    {tc.s2_good_title}
                   </h3>
                 </div>
                 <p className="mt-4 font-mono text-sm text-gold">
-                  Panels → straight into your AC. That&apos;s it.
+                  {tc.s2_good_path}
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-blue-100">
-                  {[
-                    "Solar plugs directly into the system — no round trip",
-                    "100% daytime energy savings on sunny days",
-                    "A battery banks the extra for night and outages",
-                    "Keeps your home comfortable even in a blackout",
-                  ].map((t) => (
+                  {tc.s2_good_points.map((t) => (
                     <li key={t} className="flex gap-3">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                       <span>{t}</span>
@@ -215,32 +207,13 @@ export default async function TechnologyPage() {
         <Container>
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              How it actually works
+              {tc.s3_h2}
             </h2>
           </Reveal>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-3">
-            {[
-              {
-                icon: Sun,
-                step: "01",
-                title: "MAKE IT",
-                desc: "Rooftop panels turn free sunlight into power and feed it straight into the system — no inverter middleman skimming energy off the top.",
-              },
-              {
-                icon: Battery,
-                step: "02",
-                title: "STORE IT",
-                desc: "A home battery banks the extra power for nighttime and blackouts, so the sun you caught at noon still cools your house at midnight.",
-              },
-              {
-                icon: Home,
-                step: "03",
-                title: "LIVE ON IT",
-                desc: "Whole-home heating and cooling runs on stored sun — comfortable, quiet, and on sunny days, powered entirely by the panels on your roof.",
-              },
-            ].map((s, i) => {
-              const Icon = s.icon;
+            {tc.s3_steps.map((s, i) => {
+              const Icon = [Sun, Battery, Home][i];
               return (
                 <Reveal key={s.step} delay={0.1 * (i + 1)}>
                   <div className="relative h-full rounded-2xl border border-white/10 bg-navy-700/40 p-8 text-center">
@@ -276,20 +249,16 @@ export default async function TechnologyPage() {
                 100%
               </p>
               <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">
-                daytime energy savings on sunny days
+                {tc.s4_stat_caption}
               </h2>
               <p className="mt-6 text-lg text-blue-200">
-                When the sun&apos;s out, your heating and cooling can run on{" "}
-                <strong className="text-white">$0 of utility power.</strong>{" "}
-                That&apos;s the difference between renting electricity and making
-                your own — and it&apos;s why so many homeowners watch their bill
-                fall toward zero.
+                {tc.s4_p}
               </p>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="mt-8 flex justify-center">
                 <Button href="/start" size="lg" trackLocation="technology_savings">
-                  See your potential savings
+                  {tc.s4_cta}
                 </Button>
               </div>
             </Reveal>
@@ -302,48 +271,17 @@ export default async function TechnologyPage() {
         <Container>
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Built to handle{" "}
-              <span className="text-gold">all four seasons</span>
+              {tc.s5_h2_pre}{" "}
+              <span className="text-gold">{tc.s5_h2_gold}</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-blue-200">
-              Real performance, in plain English.
+              {tc.s5_sub}
             </p>
           </Reveal>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: Home,
-                title: "Cools a whole home, sips power",
-                desc: "Up to 36,000 BTU across as many as 4 rooms — about 2,000 sq ft — at an efficiency rating (SEER2 up to 22.5) that puts it among the most efficient systems made.",
-              },
-              {
-                icon: Flame,
-                title: "Handles a heat wave and a cold snap",
-                desc: "Keeps cooling in triple-digit heat and keeps heating when it drops near freezing — true four-season comfort.",
-              },
-              {
-                icon: Volume2,
-                title: "Whisper quiet indoors",
-                desc: "As low as 29 dB on the indoor units — quieter than a library reading room. You'll forget it's running.",
-              },
-              {
-                icon: Leaf,
-                title: "Cleaner refrigerant",
-                desc: "Uses modern R32 refrigerant — more efficient and lower environmental impact than the older blends in most legacy AC systems.",
-              },
-              {
-                icon: Wrench,
-                title: "Smart install, lower cost",
-                desc: "Quick-connect, pre-charged lines mean a faster, cleaner installation — less labor on the bill, no torch-and-vacuum guesswork.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Backed for the long haul",
-                desc: "Covered by a manufacturer limited warranty, installed by a licensed local pro who stands behind the work.",
-              },
-            ].map((c, i) => {
-              const Icon = c.icon;
+            {tc.s5_cards.map((c, i) => {
+              const Icon = [Home, Flame, Volume2, Leaf, Wrench, ShieldCheck][i];
               return (
                 <Reveal key={c.title} delay={0.05 * (i + 1)}>
                   <div className="h-full rounded-2xl border border-white/10 bg-navy-700/40 p-7">
@@ -369,34 +307,16 @@ export default async function TechnologyPage() {
         <Container>
           <Reveal>
             <h2 className="text-center font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Right-sized for{" "}
-              <span className="text-gold">your home</span>
+              {tc.s6_h2_pre}{" "}
+              <span className="text-gold">{tc.s6_h2_gold}</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-blue-200">
-              One outdoor unit can run two to four indoor zones. We match each
-              room to the right size — so you never overpay for capacity you
-              won&apos;t use.
+              {tc.s6_sub}
             </p>
           </Reveal>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {[
-              {
-                size: "12K",
-                room: "Bedrooms",
-                area: "300–500 sq ft",
-              },
-              {
-                size: "18K",
-                room: "Living rooms & kitchens",
-                area: "600–800 sq ft",
-              },
-              {
-                size: "24K",
-                room: "Great rooms & shops",
-                area: "1,000–1,250 sq ft",
-              },
-            ].map((z, i) => (
+            {tc.s6_zones.map((z, i) => (
               <Reveal key={z.size} delay={0.1 * (i + 1)}>
                 <div className="h-full rounded-2xl border border-white/10 bg-navy-700/40 p-8 text-center">
                   <p className="font-display text-4xl font-bold text-gold">
@@ -424,7 +344,7 @@ export default async function TechnologyPage() {
               <details className="group rounded-2xl border border-white/10 bg-navy-700/40 p-6 sm:p-8">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                   <span className="font-display text-xl font-bold">
-                    The full specs
+                    {tc.specs_summary}
                   </span>
                   <span className="text-sm font-medium text-gold transition-transform group-open:rotate-180">
                     ▾
@@ -432,31 +352,16 @@ export default async function TechnologyPage() {
                 </summary>
                 <div className="mt-6 space-y-6 text-sm text-blue-200">
                   <p>
-                    VoltSol systems are built on{" "}
+                    {tc.specs_intro_pre}
                     <strong className="text-white">
-                      EG4 Hybrid AC/DC mini-split
-                    </strong>{" "}
-                    technology — single-zone (12K / 24K) and multizone (24K /
-                    36K) configurations with direct solar DC input.
+                      {tc.specs_intro_bold}
+                    </strong>
+                    {tc.specs_intro_post}
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">
                       <tbody>
-                        {[
-                          ["Capacity", "12,000 – 36,000 BTU/h"],
-                          ["Zones (multizone)", "2 to 4 indoor air handlers"],
-                          ["Coverage", "Up to ~2,000 sq ft"],
-                          ["Efficiency", "SEER2 up to 22.5 · Energy Star"],
-                          ["Heating efficiency", "COP up to 14.3"],
-                          ["Solar DC input", "90 – 410 VDC direct to unit"],
-                          ["Rated PV", "Up to 2,200W (single) / 4,400W (multizone)"],
-                          ["Refrigerant", "R32"],
-                          ["Cooling op. range", "Down to extreme heat (to ~125–131°F outdoor)"],
-                          ["Heating op. range", "Down to ~5°F outdoor"],
-                          ["Indoor noise", "As low as 29 dB(A)"],
-                          ["Install", "Plug-N-Cool quick-connect, pre-charged line set"],
-                          ["Warranty", "5-year limited (manufacturer)"],
-                        ].map(([k, v]) => (
+                        {tc.specs_rows.map(([k, v]) => (
                           <tr key={k} className="border-b border-white/5">
                             <th className="py-2 pr-4 font-medium text-blue-300">
                               {k}
@@ -468,9 +373,7 @@ export default async function TechnologyPage() {
                     </table>
                   </div>
                   <p className="text-xs text-blue-400">
-                    Specs reflect EG4 Hybrid Mini-Split AC/DC product family.
-                    Exact configuration and performance depend on your home; your
-                    free estimate confirms the system sized for you.
+                    {tc.specs_footnote}
                   </p>
                 </div>
               </details>
@@ -488,12 +391,10 @@ export default async function TechnologyPage() {
                 <Plug className="h-7 w-7" />
               </span>
               <h2 className="mt-6 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-                See your home running on sunlight
+                {tc.cta_h2}
               </h2>
               <p className="mt-5 text-lg text-blue-200">
-                Licensed. Local. No pressure. Answer a few quick questions and
-                we&apos;ll show you the system — and the savings — sized for your
-                home.
+                {tc.cta_p}
               </p>
             </Reveal>
             <Reveal delay={0.2}>
@@ -507,7 +408,7 @@ export default async function TechnologyPage() {
                   variant="secondary"
                   trackLocation="technology_how"
                 >
-                  Back to How It Works
+                  {tc.cta_back}
                 </Button>
               </div>
             </Reveal>

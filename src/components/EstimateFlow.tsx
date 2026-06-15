@@ -17,6 +17,8 @@ import {
   type RoofShade,
 } from '@/lib/engine-enums';
 import type { PricingTier } from '@/lib/site-config';
+import { getDict } from '@/lib/i18n';
+import type { Locale } from '@/lib/locale';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const TOTAL_STEPS = 8; // Steps 0-7 (0-6 input, 7 confirmation). Calendar/booking removed — VoltSol contacts the lead directly.
@@ -120,6 +122,7 @@ interface EstimateFlowProps {
   campaignCode?: string;
   initialBill?: string;
   tiers?: PricingTier[];
+  locale?: Locale;
 }
 
 // ─── Helper functions ─────────────────────────────────────────────────────────
@@ -151,7 +154,31 @@ function calcPayback(monthlyBill: number, systemCost: number): number {
 const VALID_BILLS = ['lt_100', '100_200', '200_300', 'gt_300'] as const;
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function EstimateFlow({ campaignCode, initialBill, tiers }: EstimateFlowProps) {
+export default function EstimateFlow({ campaignCode, initialBill, tiers, locale = 'en' }: EstimateFlowProps) {
+  const t = getDict(locale);
+  // Locale-aware option arrays (values stay constant; only labels translate).
+  const BILL_OPTIONS_L: { value: MonthlyBill; label: string; sub: string }[] = [
+    { value: 'lt_100', label: t.bill_lt_100, sub: t.bill_lt_100_sub },
+    { value: '100_200', label: t.bill_100_200, sub: t.bill_100_200_sub },
+    { value: '200_300', label: t.bill_200_300, sub: t.bill_200_300_sub },
+    { value: 'gt_300', label: t.bill_gt_300, sub: t.bill_gt_300_sub },
+  ];
+  const OWNS_HOME_OPTIONS_L = [
+    { value: 'own', label: t.owns_yes },
+    { value: 'rent', label: t.owns_no },
+  ];
+  const ROOF_SHADE_OPTIONS_L: { value: RoofShade | 'unsure'; label: string }[] = [
+    { value: 'full_sun', label: t.shade_full_sun },
+    { value: 'some_shade', label: t.shade_some },
+    { value: 'mostly_shaded', label: t.shade_lots },
+    { value: 'unsure', label: t.shade_unsure },
+  ];
+  const TIMELINE_OPTIONS_L: { value: Timeline; label: string }[] = [
+    { value: 'asap', label: t.timeline_asap },
+    { value: '1_3mo', label: t.timeline_1_3 },
+    { value: '3_6mo', label: t.timeline_3_6 },
+    { value: 'exploring', label: t.timeline_exploring },
+  ];
   // If initialBill is provided and valid, start at step 1 with bill pre-filled
   const validInitialBill = initialBill && VALID_BILLS.includes(initialBill as MonthlyBill)
     ? (initialBill as MonthlyBill)
@@ -170,7 +197,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
     phone: '',
     street_address: '',
     city: '',
-    state: 'CA',
+    state: '',
     zip: '',
     notes: '',
     consented: false,
@@ -242,19 +269,19 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
   // Validation
   function validateStep(s: number): FieldErrors {
     const errs: FieldErrors = {};
-    if (s === 0 && !form.monthly_bill) errs.monthly_bill = 'Please select your bill range';
-    if (s === 1 && !form.owns_home) errs.owns_home = 'Please select an option';
-    if (s === 2 && !form.roof_shade) errs.roof_shade = 'Please select an option';
-    if (s === 3 && !form.timeline) errs.timeline = 'Please select when';
-    if (s === 4 && !form.utility.trim()) errs.utility = 'Please enter your electric utility';
+    if (s === 0 && !form.monthly_bill) errs.monthly_bill = t.err_bill;
+    if (s === 1 && !form.owns_home) errs.owns_home = t.err_select;
+    if (s === 2 && !form.roof_shade) errs.roof_shade = t.err_select;
+    if (s === 3 && !form.timeline) errs.timeline = t.err_when;
+    if (s === 4 && !form.utility.trim()) errs.utility = t.err_utility;
     if (s === 6) {
-      if (!form.first_name.trim()) errs.first_name = 'First name is required';
-      if (!form.last_name.trim()) errs.last_name = 'Last name is required';
-      if (!form.email.trim()) errs.email = 'Email is required';
-      else if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email';
-      if (!form.phone.trim()) errs.phone = 'Phone is required';
-      else if (!isValidUSPhone(form.phone)) errs.phone = 'Please enter a valid phone number';
-      if (!form.consented) errs.consented = 'Please agree to receive your estimate';
+      if (!form.first_name.trim()) errs.first_name = t.err_first;
+      if (!form.last_name.trim()) errs.last_name = t.err_last;
+      if (!form.email.trim()) errs.email = t.err_email_req;
+      else if (!isValidEmail(form.email)) errs.email = t.err_email;
+      if (!form.phone.trim()) errs.phone = t.err_phone_req;
+      else if (!isValidUSPhone(form.phone)) errs.phone = t.err_phone;
+      if (!form.consented) errs.consented = t.err_consent;
     }
     return errs;
   }
@@ -352,7 +379,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
       if (!res.ok) {
         if (res.status === 429) {
-          setServerError(data.error ?? 'Too many requests. Please try again later.');
+          setServerError(locale === 'es' ? t.err_ratelimit : (data.error ?? 'Too many requests. Please try again later.'));
         } else if (data.details) {
           const fieldErrs: FieldErrors = {};
           for (const [field, msgs] of Object.entries(data.details)) {
@@ -360,7 +387,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
           }
           setErrors(fieldErrs);
         } else {
-          setServerError(data.error ?? 'Something went wrong. Please try again.');
+          setServerError(locale === 'es' ? t.err_generic : (data.error ?? 'Something went wrong. Please try again.'));
         }
         setSubmitting(false);
         return;
@@ -383,7 +410,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
       setStep(7); // Move to confirmation — VoltSol follows up directly
     } catch {
-      setServerError('Network error. Please check your connection and try again.');
+      setServerError(t.err_network);
     }
     setSubmitting(false);
   }
@@ -408,15 +435,19 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
   // Step labels for progress
   const stepLabels = [
-    'Monthly bill',
-    'Home ownership',
-    'Roof shade',
-    'Timeline',
-    'Utility',
-    'Your estimate',
-    'Contact info',
-    'Confirmation',
+    t.step_bill,
+    t.step_owns,
+    t.step_shade,
+    t.step_timeline,
+    t.step_utility,
+    t.step_estimate,
+    t.step_contact,
+    t.step_confirm,
   ];
+
+  const stepCounterText = locale === 'es'
+    ? `Paso ${step + 1} de ${TOTAL_STEPS}`
+    : `Step ${step + 1} of ${TOTAL_STEPS}`;
 
   // ─── Render ─────────────────────────────────────────────────────────────────
   return (
@@ -426,7 +457,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-100">
-              Step {step + 1} of {TOTAL_STEPS}
+              {stepCounterText}
             </span>
             <span className="text-sm text-blue-300/60">{stepLabels[step]}</span>
           </div>
@@ -449,11 +480,11 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {step === 0 && (
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">
-            What&apos;s your average monthly utility bill?
+            {t.q_bill}
           </h2>
-          <p className="text-blue-300 text-sm mb-6">This helps us size your system correctly.</p>
+          <p className="text-blue-300 text-sm mb-6">{t.q_bill_sub}</p>
           <div className="grid grid-cols-2 gap-3">
-            {BILL_OPTIONS.map(opt => (
+            {BILL_OPTIONS_L.map(opt => (
               <button
                 key={opt.value}
                 type="button"
@@ -483,7 +514,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
               onClick={handleNext}
               className="cta-glow w-full bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors"
             >
-              Continue
+              {t.continue}
             </button>
           </div>
         </div>
@@ -492,9 +523,9 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {/* ─── Step 1: Owns Home ─── */}
       {step === 1 && (
         <div>
-          <h2 className="text-2xl font-bold text-white mb-6">Do you own your home?</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">{t.q_owns}</h2>
           <div className="space-y-3">
-            {OWNS_HOME_OPTIONS.map(opt => (
+            {OWNS_HOME_OPTIONS_L.map(opt => (
               <button
                 key={opt.value}
                 type="button"
@@ -517,7 +548,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
           )}
           {form.owns_home === 'rent' && (
             <p className="mt-4 text-sm text-blue-300 bg-navy-700 rounded-lg p-4">
-              We mostly help homeowners, but we can still send you helpful information about solar options for renters.
+              {t.renter_notice}
             </p>
           )}
           <div className="mt-6 flex gap-3">
@@ -526,14 +557,14 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
               onClick={handleBack}
               className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium"
             >
-              Back
+              {t.back}
             </button>
             <button
               type="button"
               onClick={handleNext}
               className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors"
             >
-              Continue
+              {t.continue}
             </button>
           </div>
         </div>
@@ -543,10 +574,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {step === 2 && (
         <div>
           <h2 className="text-2xl font-bold text-white mb-6">
-            How much sun/shade does your roof get?
+            {t.q_shade}
           </h2>
           <div className="space-y-3">
-            {ROOF_SHADE_OPTIONS.map(opt => (
+            {ROOF_SHADE_OPTIONS_L.map(opt => (
               <button
                 key={opt.value}
                 type="button"
@@ -569,10 +600,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
           )}
           <div className="mt-6 flex gap-3">
             <button type="button" onClick={handleBack} className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium">
-              Back
+              {t.back}
             </button>
             <button type="button" onClick={handleNext} className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors">
-              Continue
+              {t.continue}
             </button>
           </div>
         </div>
@@ -582,10 +613,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {step === 3 && (
         <div>
           <h2 className="text-2xl font-bold text-white mb-6">
-            When are you looking to make a change?
+            {t.q_timeline}
           </h2>
           <div className="space-y-3">
-            {TIMELINE_OPTIONS.map(opt => (
+            {TIMELINE_OPTIONS_L.map(opt => (
               <button
                 key={opt.value}
                 type="button"
@@ -608,10 +639,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
           )}
           <div className="mt-6 flex gap-3">
             <button type="button" onClick={handleBack} className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium">
-              Back
+              {t.back}
             </button>
             <button type="button" onClick={handleNext} className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors">
-              Continue
+              {t.continue}
             </button>
           </div>
         </div>
@@ -620,15 +651,15 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {/* ─── Step 4: Utility ─── */}
       {step === 4 && (
         <div>
-          <h2 className="text-2xl font-bold text-white mb-2">Who&apos;s your electric utility?</h2>
-          <p className="text-blue-300 text-sm mb-6">Whoever sends your monthly power bill.</p>
+          <h2 className="text-2xl font-bold text-white mb-2">{t.q_utility}</h2>
+          <p className="text-blue-300 text-sm mb-6">{t.q_utility_sub}</p>
           <input
             id="utility"
             type="text"
             name="utility"
             value={form.utility}
             onChange={handleChange}
-            placeholder="e.g. your power company"
+            placeholder={t.utility_placeholder}
             autoComplete="off"
             className={cn(
               'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
@@ -640,10 +671,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
           )}
           <div className="mt-6 flex gap-3">
             <button type="button" onClick={handleBack} className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium">
-              Back
+              {t.back}
             </button>
             <button type="button" onClick={handleNext} className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors">
-              Continue
+              {t.continue}
             </button>
           </div>
         </div>
@@ -700,7 +731,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
           <div className="flex gap-3">
             <button type="button" onClick={handleBack} className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium">
-              Back
+              {t.back}
             </button>
             <button type="button" onClick={handleNext} className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors">
               Get My Full Estimate
@@ -712,8 +743,8 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
       {/* ─── Step 6: Contact ─── */}
       {step === 6 && (
         <form onSubmit={handleSubmitLead} noValidate>
-          <h2 className="text-2xl font-bold text-white mb-2">Where do we send your estimate?</h2>
-          <p className="text-blue-300 text-sm mb-6">We&apos;ll never sell your info.</p>
+          <h2 className="text-2xl font-bold text-white mb-2">{t.contact_headline}</h2>
+          <p className="text-blue-300 text-sm mb-6">{t.contact_sub}</p>
 
           {/* Honeypot */}
           <div style={{ display: 'none' }} aria-hidden="true">
@@ -731,7 +762,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="first_name" className="block text-sm font-medium text-blue-100 mb-1">
-                  First Name <span className="text-gold">*</span>
+                  {t.label_first} <span className="text-gold">*</span>
                 </label>
                 <input
                   id="first_name"
@@ -750,7 +781,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
               </div>
               <div>
                 <label htmlFor="last_name" className="block text-sm font-medium text-blue-100 mb-1">
-                  Last Name <span className="text-gold">*</span>
+                  {t.label_last} <span className="text-gold">*</span>
                 </label>
                 <input
                   id="last_name"
@@ -771,7 +802,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-blue-100 mb-1">
-                Email <span className="text-gold">*</span>
+                {t.label_email} <span className="text-gold">*</span>
               </label>
               <input
                 id="email"
@@ -792,7 +823,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-blue-100 mb-1">
-                Phone <span className="text-gold">*</span>
+                {t.label_phone} <span className="text-gold">*</span>
               </label>
               <input
                 id="phone"
@@ -814,7 +845,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
             {/* Service address — helps VoltSol pre-check the roof before reaching out */}
             <div>
               <label htmlFor="street_address" className="block text-sm font-medium text-blue-100 mb-1">
-                Home Address <span className="text-blue-300/60 font-normal">(optional)</span>
+                {t.label_address} <span className="text-blue-300/60 font-normal">{t.optional}</span>
               </label>
               <input
                 id="street_address"
@@ -834,7 +865,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
             <div className="grid grid-cols-6 gap-3">
               <div className="col-span-3">
-                <label htmlFor="city" className="block text-sm font-medium text-blue-100 mb-1">City</label>
+                <label htmlFor="city" className="block text-sm font-medium text-blue-100 mb-1">{t.label_city}</label>
                 <input
                   id="city"
                   type="text"
@@ -847,7 +878,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
                 />
               </div>
               <div className="col-span-1">
-                <label htmlFor="state" className="block text-sm font-medium text-blue-100 mb-1">State</label>
+                <label htmlFor="state" className="block text-sm font-medium text-blue-100 mb-1">{t.label_state}</label>
                 <input
                   id="state"
                   type="text"
@@ -861,7 +892,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
                 />
               </div>
               <div className="col-span-2">
-                <label htmlFor="zip" className="block text-sm font-medium text-blue-100 mb-1">ZIP</label>
+                <label htmlFor="zip" className="block text-sm font-medium text-blue-100 mb-1">{t.label_zip}</label>
                 <input
                   id="zip"
                   type="text"
@@ -888,7 +919,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
                   className="mt-1 h-4 w-4 flex-shrink-0 rounded border-blue-900 accent-gold"
                   aria-required="true"
                 />
-                <span className="text-xs text-blue-200 leading-relaxed">{CONSENT_WORDING}</span>
+                <span className="text-xs text-blue-200 leading-relaxed">{locale === 'es' ? t.consent : CONSENT_WORDING}</span>
               </label>
               {errors.consented && (
                 <p className="mt-2 text-xs text-red-400" role="alert">{errors.consented}</p>
@@ -904,14 +935,14 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
 
           <div className="mt-6 flex gap-3">
             <button type="button" onClick={handleBack} className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium">
-              Back
+              {t.back}
             </button>
             <button
               type="submit"
               disabled={submitting}
               className="cta-glow flex-1 bg-gold hover:bg-gold-400 disabled:bg-gold-600/50 disabled:cursor-not-allowed text-navy font-bold text-lg py-4 rounded-xl transition-colors"
             >
-              {submitting ? 'Sending...' : 'Get My Free Estimate'}
+              {submitting ? t.sending : t.submit_cta}
             </button>
           </div>
         </form>
@@ -924,19 +955,17 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
             <Check className="h-7 w-7 text-gold" />
           </div>
           <h2 className="text-2xl font-bold text-white mb-2">
-            You&apos;re all set — VoltSol will be in touch.
+            {t.confirm_headline}
           </h2>
           <p className="text-blue-100 mb-6">
-            Thanks{form.first_name ? `, ${form.first_name}` : ''}! We&apos;ve got your details. A VoltSol
-            rep will reach out shortly to walk you through your personalized estimate and answer
-            any questions — no pressure, no obligation.
+            {t.confirm_thanks_pre}{form.first_name ? `, ${form.first_name}` : ''}{t.confirm_thanks_post}
           </p>
 
           <div className="mx-auto max-w-md rounded-xl border border-navy-500/40 bg-navy-800 p-5 text-left">
             <div className="flex items-start gap-3">
               <Mail className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
               <p className="text-sm leading-relaxed text-blue-100">
-                Keep an eye on your inbox and phone — we typically respond within one business day.
+                {t.confirm_inbox}
               </p>
             </div>
           </div>
@@ -945,7 +974,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers }: Estim
             href="/"
             className="mt-8 inline-block text-sm font-medium text-gold hover:text-gold-400"
           >
-            &larr; Back to home
+            &larr; {t.back_to_home}
           </a>
         </div>
       )}

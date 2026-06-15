@@ -1054,6 +1054,46 @@ export default function AdminConfigPage() {
             </div>
           </div>
 
+          {/* ========== CONTACT INFO ========== */}
+          <div className={sectionClass}>
+            <h2 className={sectionTitleClass}>Contact Information</h2>
+            <p className="mb-4 text-sm text-slate-400">
+              Shown on the Contact page. Form submissions are emailed to the sales inbox.
+            </p>
+            <div className="space-y-4">
+              <label className="block">
+                <span className={labelClass}>Phone</span>
+                <input
+                  type="text"
+                  value={config.contact_phone ?? ''}
+                  onChange={e => updateField('contact_phone', e.target.value)}
+                  className={inputClass}
+                  placeholder="(555) 123-4567"
+                />
+              </label>
+              <label className="block">
+                <span className={labelClass}>Address</span>
+                <input
+                  type="text"
+                  value={config.contact_address ?? ''}
+                  onChange={e => updateField('contact_address', e.target.value)}
+                  className={inputClass}
+                  placeholder="123 Solar Way, Suite 100, Your City, CA 95000"
+                />
+              </label>
+              <label className="block">
+                <span className={labelClass}>Public Contact Email (shown on page)</span>
+                <input
+                  type="text"
+                  value={config.contact_email ?? ''}
+                  onChange={e => updateField('contact_email', e.target.value)}
+                  className={inputClass}
+                  placeholder="sales@voltsolenergy.com"
+                />
+              </label>
+            </div>
+          </div>
+
           {/* ========== FOOTER ========== */}
           <div className={sectionClass}>
             <h2 className={sectionTitleClass}>Footer</h2>

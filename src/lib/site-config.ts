@@ -204,7 +204,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   about_headline_pre: 'Meet ',
   about_headline_gold: 'Hugo',
   about_body: 'Hugo designs and installs every VoltSol system personally. When you call, he picks up.',
-  about_equipment_link: 'Built on EG4 — See the equipment',
+  about_equipment_link: 'See how the technology works',
 
   // Section 7: FAQ + Bottom CTA
   faq_headline_pre: 'Straight ',
@@ -235,7 +235,7 @@ const ARRAY_DEFAULTS = {
   about_credentials: ['CSLB Licensed', 'Northern California Native', 'Every Install Done Personally', 'Answers His Phone'] as string[],
   footer_links: [
     { label: 'How It Works', href: '/#how' },
-    { label: 'Technology', href: '/#systems' },
+    { label: 'Technology', href: '/technology' },
     { label: 'FAQ', href: '/#faq' },
     { label: 'Get My Free Estimate', href: '/book' },
     { label: 'Get a Quote', href: '/#quote' },

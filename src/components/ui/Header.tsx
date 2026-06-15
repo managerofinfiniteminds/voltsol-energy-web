@@ -8,7 +8,7 @@ import { Button } from "./Button";
 
 const navLinks = [
   { label: "How It Works", href: "#how" },
-  { label: "Technology", href: "#systems" },
+  { label: "Technology", href: "/technology" },
   { label: "About", href: "#about" },
 ];
 

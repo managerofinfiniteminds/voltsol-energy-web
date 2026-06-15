@@ -480,7 +480,7 @@ export default async function HomePage() {
                 {/* Equipment link (replaces tech section) */}
                 <div className="mt-8">
                   <Link
-                    href="#systems"
+                    href="/technology"
                     className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:text-gold-400"
                   >
                     <Check className="h-4 w-4" aria-hidden="true" />

@@ -6,7 +6,7 @@ import type { FooterLink } from "@/lib/site-config";
 
 const DEFAULT_LINKS: FooterLink[] = [
   { label: "How It Works", href: "/#how" },
-  { label: "Technology", href: "/#systems" },
+  { label: "Technology", href: "/technology" },
   { label: "FAQ", href: "/#faq" },
   { label: "Get My Free Estimate", href: "/book" },
   { label: "Get a Quote", href: "/#quote" },

@@ -39,7 +39,7 @@ export function Footer({
     : baseLinks;
 
   return (
-    <footer className="border-t border-blue-900/40 bg-navy py-12 sm:py-16">
+    <footer className="border-t border-blue-900/40 bg-navy-800 py-12 sm:py-16">
       <Container>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}

@@ -155,14 +155,14 @@ export default async function HomePage() {
 
           {/* Pricing Tier Cards */}
           <Reveal delay={0.1}>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <div className="mt-12 flex flex-wrap justify-center gap-6">
               {cfg.pricing_tiers.map((tier, i) => {
                 const isPopular = tier.popular;
                 const trackId = `tier_${tier.name.toLowerCase().replace(/\s+/g, '_')}`;
                 return (
                   <div
                     key={tier.name}
-                    className={`relative flex flex-col rounded-2xl border p-6 transition-transform ${
+                    className={`relative flex w-full flex-col rounded-2xl border p-6 transition-transform sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1.2rem)] ${
                       isPopular
                         ? 'border-gold bg-gradient-to-b from-gold/10 to-navy-800 ring-1 ring-gold/40 lg:scale-105 lg:-my-2 lg:py-8 shadow-[0_0_30px_rgba(245,158,11,0.15)]'
                         : 'border-navy-500/40 bg-navy-800/60'

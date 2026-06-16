@@ -68,16 +68,16 @@ function emailShell(body: string): string {
 <body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <div style="max-width:600px;margin:0 auto;padding:24px 16px;">
     <div style="background:#040D1C;border-radius:12px 12px 0 0;padding:32px 24px;text-align:center;">
-      <img src="${SITE_URL}/images/voltsol-email-mark.png" width="48" height="48" alt="VoltSol Energy" style="display:block;margin:0 auto 10px;">
-      <div style="font-size:28px;font-weight:800;color:#F59E0B;letter-spacing:-0.5px;">VoltSol Energy</div>
-      <div style="font-size:13px;color:#94a3b8;margin-top:4px;">Northern California Solar</div>
+      <img src="${SITE_URL}/images/voltsol-email-mark.png" width="56" height="56" alt="VoltSol Energy" style="display:block;margin:0 auto 12px;border:0;outline:none;">
+      <div style="font-size:28px;font-weight:800;letter-spacing:-0.5px;"><span style="color:#ffffff;">Volt</span><span style="color:#F49527;">Sol</span><span style="color:#ffffff;"> Energy</span></div>
+      <div style="font-size:13px;color:#94a3b8;margin-top:6px;">Make it. Store it. Live on it.&#8482;</div>
     </div>
     <div style="background:#ffffff;padding:32px 24px;border:1px solid #e2e8f0;border-top:none;">
       ${body}
     </div>
     <div style="background:#f1f5f9;border-radius:0 0 12px 12px;padding:16px 24px;text-align:center;border:1px solid #e2e8f0;border-top:none;">
-      <div style="font-size:13px;color:#64748b;">VoltSol Energy &nbsp;|&nbsp; <a href="${SITE_URL}" style="color:#F59E0B;text-decoration:none;">voltsolenergy.com</a></div>
-      <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Clean energy, built to last.</div>
+      <div style="font-size:13px;color:#64748b;"><span style="color:#0F172A;font-weight:700;">Volt</span><span style="color:#F49527;font-weight:700;">Sol</span><span style="color:#0F172A;font-weight:700;"> Energy</span> &nbsp;|&nbsp; <a href="${SITE_URL}" style="color:#F49527;text-decoration:none;">voltsolenergy.com</a></div>
+      <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Make it. Store it. Live on it.&#8482;</div>
     </div>
   </div>
 </body>

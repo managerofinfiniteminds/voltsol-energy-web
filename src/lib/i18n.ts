@@ -29,6 +29,7 @@ export interface Dict {
   nav_pricing: string;
   nav_about: string;
   nav_contact: string;
+  nav_documents: string;
   lang_label_en: string;
   lang_label_es: string;
 
@@ -167,6 +168,7 @@ const en: Dict = {
   nav_pricing: 'Pricing',
   nav_about: 'About',
   nav_contact: 'Contact',
+  nav_documents: 'Documents',
   contact_h1: 'Get in Touch',
   contact_intro: "Questions about going solar? Send us a message and we'll get back to you.",
   contact_label_name: 'Name',
@@ -295,6 +297,7 @@ const es: Dict = {
   nav_pricing: 'Precios',
   nav_about: 'Nosotros',
   nav_contact: 'Contacto',
+  nav_documents: 'Documentos',
   contact_h1: 'Contáctanos',
   contact_intro: '¿Tienes preguntas sobre la energía solar? Envíanos un mensaje y te responderemos.',
   contact_label_name: 'Nombre',

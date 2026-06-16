@@ -1088,7 +1088,7 @@ export default function AdminConfigPage() {
                   value={config.contact_email ?? ''}
                   onChange={e => updateField('contact_email', e.target.value)}
                   className={inputClass}
-                  placeholder="sales@voltsolenergy.com"
+                  placeholder="info@voltsolenergy.com"
                 />
               </label>
             </div>

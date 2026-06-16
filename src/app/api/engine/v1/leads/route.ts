@@ -245,7 +245,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Send emails (non-blocking — errors don't fail the request).
-  // Confirmation to the lead + alert to sales@. Uses shared Resend lib.
+  // Confirmation to the lead + alert to info@. Uses shared Resend lib.
   const billLabel = monthlyBill
     ? (MONTHLY_BILL_LABELS as Record<string, string>)[monthlyBill] ?? monthlyBill
     : '—';

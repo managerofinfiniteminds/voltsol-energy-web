@@ -225,7 +225,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   footer_legal_line: 'CSLB License #1148585',
   contact_phone: '(530) 228-1019',
   contact_address: '356 Gladstone Cmns, Chico, CA 95973',
-  contact_email: 'sales@voltsolenergy.com',
+  contact_email: 'info@voltsolenergy.com',
 };
 
 const ARRAY_DEFAULTS = {

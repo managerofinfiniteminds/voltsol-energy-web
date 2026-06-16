@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import { Check, Mail, Zap } from 'lucide-react';
 import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
+import AddressAutocomplete, { type AddressParts } from './AddressAutocomplete';
 import { cn } from '@/lib/utils';
 import { track } from '@/lib/track';
 import {
@@ -264,6 +265,18 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
   function handleSelect(field: keyof FlowState, value: string) {
     setForm(prev => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }));
+  }
+
+  // Mapbox autocomplete → fill street + city/state/zip in one shot.
+  function handleAddressSelect(parts: AddressParts) {
+    setForm(prev => ({
+      ...prev,
+      street_address: parts.street || prev.street_address,
+      city: parts.city || prev.city,
+      state: parts.state || prev.state,
+      zip: parts.zip || prev.zip,
+    }));
+    setErrors(prev => ({ ...prev, street_address: '', city: '', state: '', zip: '' }));
   }
 
   // Validation
@@ -847,14 +860,16 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
               <label htmlFor="street_address" className="block text-sm font-medium text-blue-100 mb-1">
                 {t.label_address} <span className="text-blue-300/60 font-normal">{t.optional}</span>
               </label>
-              <input
+              <AddressAutocomplete
                 id="street_address"
-                type="text"
-                name="street_address"
                 value={form.street_address}
-                onChange={handleChange}
+                onStreetChange={(v) => {
+                  setForm(prev => ({ ...prev, street_address: v }));
+                  if (errors.street_address) setErrors(prev => ({ ...prev, street_address: '' }));
+                }}
+                onSelect={handleAddressSelect}
                 placeholder="123 Solar Way"
-                autoComplete="address-line1"
+                inputName="street_address"
                 className={cn(
                   'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
                   errors.street_address ? 'border-red-500' : 'border-blue-900'

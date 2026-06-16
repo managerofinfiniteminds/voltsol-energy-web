@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import SuccessScreen from './SuccessScreen';
+import AddressAutocomplete, { type AddressParts } from './AddressAutocomplete';
 import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 
 interface IntakeFormProps {
@@ -63,6 +64,18 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+  }
+
+  // Mapbox autocomplete → fill street + city/state/zip in one shot.
+  function handleAddressSelect(parts: AddressParts) {
+    setForm(prev => ({
+      ...prev,
+      street_address: parts.street || prev.street_address,
+      city: parts.city || prev.city,
+      state: parts.state || prev.state,
+      zip: parts.zip || prev.zip,
+    }));
+    setErrors(prev => ({ ...prev, street_address: '', city: '', state: '', zip: '' }));
   }
 
   // Show field-level errors when leaving a field
@@ -236,14 +249,16 @@ export default function IntakeForm({ campaignCode }: IntakeFormProps) {
         <label className="block text-sm font-medium text-slate-300 mb-1">
           Street Address <span className="text-amber-400">*</span>
         </label>
-        <input
-          type="text"
-          name="street_address"
+        <AddressAutocomplete
           value={form.street_address}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          onStreetChange={(v) => {
+            setForm(prev => ({ ...prev, street_address: v }));
+            if (errors.street_address) setErrors(prev => ({ ...prev, street_address: '' }));
+          }}
+          onSelect={handleAddressSelect}
+          onBlur={() => setErrors(prev => ({ ...prev, street_address: validate().street_address ?? '' }))}
           placeholder="123 Main St"
-          autoComplete="street-address"
+          inputName="street_address"
           className={`w-full bg-slate-800 border rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${errors.street_address ? 'border-red-500' : 'border-slate-600'}`}
         />
         {errors.street_address && <p className="mt-1 text-sm text-red-400">{errors.street_address}</p>}

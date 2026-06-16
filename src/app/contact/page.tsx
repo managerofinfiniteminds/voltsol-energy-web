@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section, Container } from "@/components/ui";
-import { Phone, MapPin, Mail } from "lucide-react";
+import { Phone, MapPin, Mail, BadgeCheck } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import { getHomeConfig } from "@/lib/site-config";
 import { getLocale } from "@/lib/locale";
@@ -25,6 +25,7 @@ export default async function ContactPage() {
   const phone = cfg.contact_phone;
   const address = cfg.contact_address;
   const email = cfg.contact_email;
+  const legalLine = cfg.footer_legal_line;
   const phoneDigits = phone.replace(/\D/g, "");
 
   return (
@@ -67,6 +68,15 @@ export default async function ContactPage() {
                   <a href={`mailto:${email}`} className="text-white hover:text-gold">{email}</a>
                 </div>
               </li>
+              {legalLine ? (
+                <li className="flex items-start gap-3">
+                  <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                  <div>
+                    <div className="text-xs uppercase tracking-wide text-slate-400">{t.contact_license_label}</div>
+                    <span className="text-white">{legalLine}</span>
+                  </div>
+                </li>
+              ) : null}
             </ul>
           </div>
 

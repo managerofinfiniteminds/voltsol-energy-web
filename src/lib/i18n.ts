@@ -48,6 +48,7 @@ export interface Dict {
   contact_phone_label: string;
   contact_address_label: string;
   contact_email_label: string;
+  contact_license_label: string;
 
   // Estimate flow — step labels (progress)
   step_bill: string;
@@ -181,6 +182,7 @@ const en: Dict = {
   contact_phone_label: 'Phone',
   contact_address_label: 'Address',
   contact_email_label: 'Email',
+  contact_license_label: 'License',
   lang_label_en: 'EN',
   lang_label_es: 'ES',
 
@@ -308,6 +310,7 @@ const es: Dict = {
   contact_phone_label: 'Teléfono',
   contact_address_label: 'Dirección',
   contact_email_label: 'Correo',
+  contact_license_label: 'Licencia',
   lang_label_en: 'EN',
   lang_label_es: 'ES',
 

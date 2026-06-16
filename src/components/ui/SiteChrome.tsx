@@ -11,6 +11,7 @@ interface FooterProps {
   ctaText?: string;
   tagline?: string;
   email?: string;
+  phone?: string;
   copyrightYear?: string;
   copyrightRights?: string;
   legalLine?: string;

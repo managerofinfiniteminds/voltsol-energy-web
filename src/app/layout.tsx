@@ -78,6 +78,7 @@ export default async function RootLayout({
           ctaText={ctaText}
           tagline={cfg.footer_tagline}
           email={cfg.footer_email}
+          phone={cfg.contact_phone}
           copyrightYear={cfg.footer_copyright_year}
           copyrightRights={cfg.footer_copyright_rights}
           legalLine={cfg.footer_legal_line}

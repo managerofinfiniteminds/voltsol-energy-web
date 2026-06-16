@@ -18,6 +18,7 @@ interface FooterProps {
   ctaText?: string;
   tagline?: string;
   email?: string;
+  phone?: string;
   copyrightYear?: string;
   copyrightRights?: string;
   legalLine?: string;
@@ -28,11 +29,13 @@ export function Footer({
   ctaText,
   tagline = "Clean energy, built to last.",
   email = "info@voltsolenergy.com",
+  phone = "(530) 228-1019",
   copyrightYear = "2026",
   copyrightRights = "LLC. All rights reserved.",
   legalLine = "CSLB License #1148585",
   links,
 }: FooterProps) {
+  const phoneDigits = (phone || "").replace(/\D/g, "");
   const baseLinks = links && links.length ? links : DEFAULT_LINKS;
   // If a CTA override is set, relabel the estimate link to match site-wide CTA.
   const navLinks = ctaText
@@ -68,6 +71,14 @@ export function Footer({
             >
               {email}
             </a>
+            {phone ? (
+              <a
+                href={`tel:${phoneDigits}`}
+                className="mt-1 inline-block text-sm text-slate-400 transition-colors hover:text-white"
+              >
+                {phone}
+              </a>
+            ) : null}
           </div>
 
           {/* Nav */}

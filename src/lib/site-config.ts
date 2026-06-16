@@ -222,7 +222,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   footer_email: 'info@voltsolenergy.com',
   footer_copyright_year: '2026',
   footer_copyright_rights: 'LLC. All rights reserved.',
-  footer_legal_line: 'CSLB License # pending',
+  footer_legal_line: 'CSLB License #1148585',
   contact_phone: '(555) 123-4567',
   contact_address: '123 Solar Way, Suite 100, Your City, CA 95000',
   contact_email: 'sales@voltsolenergy.com',

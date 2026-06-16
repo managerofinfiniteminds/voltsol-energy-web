@@ -114,7 +114,7 @@ export async function sendAppointmentConfirmationEmail(appt: AppointmentEmailDet
       </p>`;
 
   await getResend().emails.send({
-    from: 'VoltSol Energy <hello@voltsolenergy.com>',
+    from: 'VoltSol Energy <info@voltsolenergy.com>',
     to: appt.email,
     subject,
     html: emailShell(body),
@@ -142,7 +142,7 @@ export async function sendAppointmentAlertEmail(appt: AppointmentEmailDetails): 
       </div>`;
 
   await getResend().emails.send({
-    from: 'VoltSol Alerts <alerts@voltsolenergy.com>',
+    from: 'VoltSol Alerts <info@voltsolenergy.com>',
     to: HUGO_EMAIL,
     subject,
     html: emailShell(body),
@@ -171,7 +171,7 @@ export async function sendCancellationEmail(appt: AppointmentEmailDetails): Prom
       </p>`;
 
   await getResend().emails.send({
-    from: 'VoltSol Energy <hello@voltsolenergy.com>',
+    from: 'VoltSol Energy <info@voltsolenergy.com>',
     to: appt.email,
     subject,
     html: emailShell(body),
@@ -202,7 +202,7 @@ export async function sendAdminLoginEmail(email: string, token: string): Promise
       </p>`;
 
   await getResend().emails.send({
-    from: 'VoltSol Admin <hello@voltsolenergy.com>',
+    from: 'VoltSol Admin <info@voltsolenergy.com>',
     to: email,
     subject,
     html: emailShell(body),

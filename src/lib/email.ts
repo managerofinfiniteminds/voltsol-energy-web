@@ -87,7 +87,7 @@ export async function sendConfirmationEmail(contact: ContactDetails): Promise<vo
 </html>`;
 
   await getResend().emails.send({
-    from: 'VoltSol Energy <hello@voltsolenergy.com>',
+    from: 'VoltSol Energy <info@voltsolenergy.com>',
     to: contact.email,
     subject: 'We received your request — VoltSol Energy',
     html,
@@ -152,7 +152,7 @@ export async function sendSalesAlertEmail(contact: ContactDetails): Promise<void
   const subject = `[LEAD] ${score} ${contact.first_name} ${contact.last_name} — ${campaignLabel}`;
 
   await getResend().emails.send({
-    from: 'VoltSol Alerts <alerts@voltsolenergy.com>',
+    from: 'VoltSol Alerts <info@voltsolenergy.com>',
     to: salesEmail,
     subject,
     html,
@@ -212,7 +212,7 @@ export async function sendContactMessageEmail(msg: ContactMessage): Promise<void
 </html>`;
 
   await getResend().emails.send({
-    from: 'VoltSol Contact <hello@voltsolenergy.com>',
+    from: 'VoltSol Contact <info@voltsolenergy.com>',
     to: salesEmail,
     reply_to: msg.email,
     subject: `[CONTACT] ${msg.name}`,

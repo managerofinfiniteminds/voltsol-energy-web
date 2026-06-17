@@ -71,7 +71,7 @@ export default function MarketCityPage({ params }: PageProps) {
         name: 'VoltSol Energy',
         description: `Licensed residential solar installation serving ${cityData.city}, ${regionData.county}, California.`,
         url: 'https://voltsolenergy.com',
-        telephone: process.env.VOLTSOL_PHONE || undefined,
+        telephone: process.env.NEXT_PUBLIC_VOLTSOL_PHONE || undefined,
         areaServed: {
           '@type': 'City',
           name: cityData.city,
@@ -99,6 +99,17 @@ export default function MarketCityPage({ params }: PageProps) {
           { '@type': 'ListItem', position: 4, name: regionData.county, item: `https://voltsolenergy.com/market/solar/california/${regionData.regionSlug}` },
           { '@type': 'ListItem', position: 5, name: cityData.city, item: `https://voltsolenergy.com/market/${slug}` },
         ],
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: cityData.cityProfile.faq.map(item => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.a,
+          },
+        })),
       },
     ],
   };
@@ -136,7 +147,7 @@ export default function MarketCityPage({ params }: PageProps) {
               Solar Panels in {cityData.city}, CA
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-blue-100">
-              Homeowners in {cityData.city} on {cityData.utility} pay an estimated{' '}
+              {cityData.cityProfile.localNote} Homeowners in {cityData.city} on {cityData.utility} pay an estimated{' '}
               <strong>${cityData.localData.avgMonthlyBillEstimate}/mo</strong> in electricity — solar can
               cut that dramatically. Get a free, no-obligation quote from a licensed local installer today.
             </p>
@@ -191,9 +202,9 @@ export default function MarketCityPage({ params }: PageProps) {
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
                     <span>
-                      <strong>Rising {cityData.utility} rates:</strong> California utilities have increased
-                      residential rates significantly in recent years, making the economics of solar stronger
-                      each year.
+                      <strong>High {cityData.utility} rates:</strong> {regionData.countyData.utilityRate.utility} customers pay an estimated{' '}
+                      ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh, making solar economics strong.{' '}
+                      {regionData.countyData.utilityRate.note}
                     </span>
                   </li>
                   <li className="flex gap-2">
@@ -212,6 +223,52 @@ export default function MarketCityPage({ params }: PageProps) {
                     </span>
                   </li>
                 </ul>
+              </section>
+
+              {/* Local Details */}
+              <section className="mt-10" aria-labelledby="local-details-heading">
+                <h2 id="local-details-heading" className="text-xl font-bold text-gray-900">
+                  Local Details for {cityData.city}
+                </h2>
+                <div className="mt-4 space-y-4">
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                    <h3 className="text-sm font-semibold text-gray-900">Utility Rate</h3>
+                    <p className="mt-1 text-sm text-gray-700">
+                      <strong>{regionData.countyData.utilityRate.utility}:</strong> Estimated{' '}
+                      ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh residential rate.{' '}
+                      {regionData.countyData.utilityRate.note}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                    <h3 className="text-sm font-semibold text-gray-900">Permit Office</h3>
+                    <p className="mt-1 text-sm text-gray-700">
+                      <strong>{regionData.countyData.permitOffice.name}</strong> ({regionData.countyData.permitOffice.jurisdiction}).{' '}
+                      Typical turnaround: {regionData.countyData.permitOffice.typicalTurnaround}.{' '}
+                      {regionData.countyData.permitOffice.note}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                    <h3 className="text-sm font-semibold text-gray-900">Climate Zone</h3>
+                    <p className="mt-1 text-sm text-gray-700">
+                      <strong>{regionData.countyData.climateZone.zone}:</strong> {regionData.countyData.climateZone.description}
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* FAQ */}
+              <section className="mt-10" aria-labelledby="faq-heading">
+                <h2 id="faq-heading" className="text-xl font-bold text-gray-900">
+                  Frequently Asked Questions — {cityData.city}
+                </h2>
+                <div className="mt-4 space-y-4">
+                  {cityData.cityProfile.faq.map((item, i) => (
+                    <div key={i} className="rounded-lg border border-gray-200 bg-white p-4">
+                      <h3 className="text-base font-semibold text-gray-900">{item.q}</h3>
+                      <p className="mt-2 text-sm text-gray-700">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
               </section>
 
               {/* How the process works */}
@@ -302,8 +359,16 @@ export default function MarketCityPage({ params }: PageProps) {
                     <Shield className="h-4 w-4 text-blue-500" aria-hidden="true" />
                     No pressure, no obligation
                   </li>
+                  {process.env.NEXT_PUBLIC_VOLTSOL_PHONE && (
+                    <li className="flex items-center gap-2 text-sm text-gray-700">
+                      <Phone className="h-4 w-4 text-blue-500" aria-hidden="true" />
+                      <a href={`tel:${process.env.NEXT_PUBLIC_VOLTSOL_PHONE}`} className="hover:text-blue-600">
+                        {process.env.NEXT_PUBLIC_VOLTSOL_PHONE}
+                      </a>
+                    </li>
+                  )}
                   <li className="flex items-center gap-2 text-sm text-gray-700">
-                    <Phone className="h-4 w-4 text-blue-500" aria-hidden="true" />
+                    <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />
                     Local NorCal team
                   </li>
                 </ul>

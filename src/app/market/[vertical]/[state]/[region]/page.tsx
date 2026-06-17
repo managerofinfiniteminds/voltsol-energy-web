@@ -124,9 +124,46 @@ export default function RegionPage({ params }: PageProps) {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
             {/* Left: content */}
             <div className="lg:col-span-3">
-              {/* County intro */}
-              <section aria-labelledby="county-intro-heading">
-                <h2 id="county-intro-heading" className="text-2xl font-bold text-gray-900">
+              {/* County Snapshot */}
+              <section aria-labelledby="county-snapshot-heading">
+                <h2 id="county-snapshot-heading" className="text-2xl font-bold text-gray-900">
+                  County Snapshot — {regionData.county}
+                </h2>
+                <div className="mt-4 space-y-4">
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
+                    <h3 className="text-base font-semibold text-gray-900">Utility Rate</h3>
+                    <p className="mt-2 text-sm text-gray-700">
+                      <strong>{regionData.countyData.utilityRate.utility}:</strong> Estimated{' '}
+                      ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh residential rate.{' '}
+                      {regionData.countyData.utilityRate.note}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
+                    <h3 className="text-base font-semibold text-gray-900">Permit Office</h3>
+                    <p className="mt-2 text-sm text-gray-700">
+                      <strong>{regionData.countyData.permitOffice.name}</strong> ({regionData.countyData.permitOffice.jurisdiction}).{' '}
+                      Typical turnaround: {regionData.countyData.permitOffice.typicalTurnaround}.{' '}
+                      {regionData.countyData.permitOffice.note}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
+                    <h3 className="text-base font-semibold text-gray-900">Climate Zone</h3>
+                    <p className="mt-2 text-sm text-gray-700">
+                      <strong>{regionData.countyData.climateZone.zone}:</strong> {regionData.countyData.climateZone.description}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-blue-100 bg-blue-50 p-5">
+                    <h3 className="text-base font-semibold text-gray-900">County Context</h3>
+                    <p className="mt-2 text-sm text-gray-700">
+                      {regionData.countyData.countyContext}
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Why solar */}
+              <section className="mt-10" aria-labelledby="why-solar-heading">
+                <h2 id="why-solar-heading" className="text-2xl font-bold text-gray-900">
                   Why Solar in {regionData.county}?
                 </h2>
                 <div className="mt-4 space-y-3 text-gray-700">

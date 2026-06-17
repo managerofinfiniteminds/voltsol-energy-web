@@ -5329,6 +5329,783 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
       },
     ],
   },
+  {
+    county: 'Butte County',
+    regionSlug: 'butte-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E residential rates average $0.44/kWh, among California\'s highest. High rates combined with frequent PSPS events make solar with battery backup especially attractive.'
+      },
+      permitOffice: {
+        name: 'Butte County Development Services',
+        jurisdiction: 'Butte County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'Post-Camp Fire rebuilds often integrate solar. County staff experienced with fire-resilient installations and PSPS-hardened systems.'
+      },
+      climateZone: {
+        zone: 'Zone 11 (valley floor)',
+        description: 'Hot valley summers with temperatures over 100°F and mild winters. High cooling demand drives energy use from June through September.'
+      },
+      countyContext: 'Butte County sits in the northern Sacramento Valley with Chico and Oroville on the valley floor and Paradise in the foothill fire zone. The 2018 Camp Fire devastated Paradise, making fire resilience and PSPS backup power top priorities. High PG&E rates and frequent shutoffs drive strong solar adoption.'
+    },
+    cities: [
+      {
+        city: 'Chico',
+        citySlug: 'chico',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Chico is Butte County\'s largest city, sitting on the valley floor with flat terrain ideal for solar. Hot summers and PSPS shutoffs make battery backup critical for AC and refrigeration.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Chico?',
+              a: 'Yes. Chico requires a building permit through Butte County Development Services with typical turnaround of 2-4 weeks. Your installer handles the application and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Chico with PSPS risk?',
+              a: 'Absolutely. PG&E rates average $0.44/kWh and PSPS shutoffs are common during fire season. Off-grid solar with battery storage provides power during multi-day outages and locks in energy costs against future rate hikes.'
+            },
+            {
+              q: 'How much sun does Chico get for solar?',
+              a: 'Chico averages 5.3 peak sun hours per day in Zone 11. The valley location provides strong solar production with hot, clear summers and minimal winter fog.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Oroville',
+        citySlug: 'oroville',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Oroville sits at the base of the Sierra foothills along Lake Oroville with valley-floor solar potential. PSPS shutoffs during fire season make battery backup essential for this rural community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Oroville?',
+              a: 'Yes. Oroville falls under Butte County Development Services with 2-4 week permit turnaround. Your contractor manages the application and county inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Oroville with PG&E rates?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and frequent PSPS events make off-grid solar attractive. Battery storage provides power during multi-day fire-season shutoffs common in this foothill-adjacent area.'
+            },
+            {
+              q: 'How much sun does Oroville get for solar?',
+              a: 'Oroville averages 5.3 peak sun hours daily in Zone 11. The valley floor location delivers consistent solar production with hot summers exceeding 100°F and mild winters.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Paradise',
+        citySlug: 'paradise',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Paradise was devastated by the 2018 Camp Fire and many rebuilds include solar with battery backup. Foothill terrain and PSPS shutoffs make energy resilience a top rebuilding priority.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Paradise?',
+              a: 'Yes. Paradise requires permits through Butte County Development Services with 2-4 week turnaround. Post-Camp Fire rebuilds often integrate solar, and county staff are experienced with fire-resilient systems.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Paradise after the Camp Fire?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this high-risk fire zone. Off-grid solar with battery backup provides critical power during evacuations and multi-day outages, a lesson learned from the Camp Fire.'
+            },
+            {
+              q: 'How much sun does Paradise get for solar?',
+              a: 'Paradise averages 5.0 peak sun hours daily in the foothill zone. Elevation around 1,700 feet and forested terrain can create roof shading, but the ridge location still provides solid solar production year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Gridley',
+        citySlug: 'gridley',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Gridley is a small agricultural town on the valley floor with flat rooftops and excellent solar exposure. PSPS events and high PG&E rates drive rural solar adoption.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Gridley?',
+              a: 'Yes. Gridley requires permits through Butte County Development Services with typical 2-4 week turnaround. Your installer handles the county application and inspection coordination.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Gridley?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and PSPS shutoffs make off-grid solar attractive for this rural community. Battery backup provides power for well pumps and farm operations during multi-day outages.'
+            },
+            {
+              q: 'How much sun does Gridley get for solar?',
+              a: 'Gridley averages 5.3 peak sun hours per day in Zone 11. The flat valley terrain and agricultural surroundings provide unobstructed solar exposure with hot summers and minimal fog.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Biggs',
+        citySlug: 'biggs',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Biggs is a tiny rural community northwest of Gridley with flat valley terrain ideal for solar installations. PSPS events and agricultural energy needs make battery backup valuable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Biggs?',
+              a: 'Yes. Biggs falls under Butte County Development Services jurisdiction with 2-4 week permit processing. Your solar contractor manages the application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Biggs with PG&E rates?',
+              a: 'Definitely. PG&E rates average $0.44/kWh and PSPS outages are common in rural areas. Off-grid solar with battery storage provides energy independence and backup power for wells and irrigation.'
+            },
+            {
+              q: 'How much sun does Biggs get for solar?',
+              a: 'Biggs averages 5.3 peak sun hours daily in Zone 11. The open valley floor provides excellent solar production with hot summers often exceeding 100°F and clear skies.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Shasta County',
+    regionSlug: 'shasta-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E residential rates average $0.44/kWh. Extreme summer heat drives high AC loads, making solar savings substantial for Shasta County homeowners.'
+      },
+      permitOffice: {
+        name: 'Shasta County Resource Management',
+        jurisdiction: 'Shasta County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes solar permits for unincorporated areas. Cities like Redding have separate permit departments with similar timelines.'
+      },
+      climateZone: {
+        zone: 'Zone 11',
+        description: 'Very hot inland climate with summer temperatures routinely exceeding 105°F. High cooling demand from June through September drives peak energy use.'
+      },
+      countyContext: 'Shasta County sits at the northern end of the Central Valley where extreme summer heat drives high AC loads. Redding, Anderson, and Shasta Lake experience scorching valley temperatures with frequent PSPS shutoffs during fire season. High PG&E rates and intense cooling demand make solar highly attractive.'
+    },
+    cities: [
+      {
+        city: 'Redding',
+        citySlug: 'redding',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.4 },
+        cityProfile: {
+          localNote: 'Redding is one of California\'s hottest cities with summer temperatures regularly topping 110°F. AC loads are extreme from June through September, making solar savings substantial.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Redding?',
+              a: 'Yes. The City of Redding Building Division handles solar permits with typical turnaround of 2-4 weeks. Your installer manages the application and city inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Redding with extreme heat?',
+              a: 'Absolutely. PG&E rates average $0.44/kWh and AC costs are brutal with summer highs over 110°F. Off-grid solar with battery backup locks in energy costs and provides cooling during PSPS outages when heat is most dangerous.'
+            },
+            {
+              q: 'How much sun does Redding get for solar?',
+              a: 'Redding averages 5.4 peak sun hours per day in Zone 11. The northern valley location provides exceptional solar production with intense summer sun and minimal winter fog.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Anderson',
+        citySlug: 'anderson',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.4 },
+        cityProfile: {
+          localNote: 'Anderson sits just south of Redding on the valley floor with equally extreme summer heat. Flat terrain and unobstructed rooftops are ideal for solar installations.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Anderson?',
+              a: 'Yes. Anderson requires permits through the City Building Department with 2-4 week typical turnaround. Your solar contractor handles the city application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Anderson with high AC costs?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and extreme summer heat create massive AC bills. Off-grid solar with battery storage provides energy independence and backup cooling during PSPS events when temperatures exceed 105°F.'
+            },
+            {
+              q: 'How much sun does Anderson get for solar?',
+              a: 'Anderson averages 5.4 peak sun hours daily in Zone 11. The valley floor location delivers strong solar production year-round with scorching summer sun and clear skies.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Shasta Lake',
+        citySlug: 'shasta-lake',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Shasta Lake sits north of Redding along I-5 with hot valley summers and some foothill terrain. PSPS shutoffs are common in this area adjacent to national forest.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Shasta Lake?',
+              a: 'Yes. Shasta Lake requires building permits through the City Building Division with typical 2-4 week processing. Your installer manages the application and city inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Shasta Lake with PSPS risk?',
+              a: 'Definitely. PG&E rates are $0.44/kWh and PSPS outages are frequent near forested areas. Off-grid solar with battery backup provides power during multi-day shutoffs and extreme heat events.'
+            },
+            {
+              q: 'How much sun does Shasta Lake get for solar?',
+              a: 'Shasta Lake averages 5.3 peak sun hours per day in Zone 11. Some foothill shading possible but valley-facing homes still see strong solar production with intense summer heat.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Tehama County',
+    regionSlug: 'tehama-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E residential rates average $0.44/kWh. Hot valley summers and agricultural energy needs make solar attractive for both residential and farm applications.'
+      },
+      permitOffice: {
+        name: 'Tehama County Planning & Building',
+        jurisdiction: 'Tehama County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for unincorporated areas and smaller cities. Rural installations may require additional site review for agricultural setbacks.'
+      },
+      climateZone: {
+        zone: 'Zone 11',
+        description: 'Hot valley climate with summer temperatures over 100°F and mild winters. High cooling demand and agricultural irrigation loads drive energy use.'
+      },
+      countyContext: 'Tehama County lies in the northern Sacramento Valley between Red Bluff and Corning with flat agricultural terrain. Hot summers, high PG&E rates, and rural PSPS shutoffs make solar with battery backup valuable for both residential and agricultural operations. Valley floor provides excellent solar exposure.'
+    },
+    cities: [
+      {
+        city: 'Red Bluff',
+        citySlug: 'red-bluff',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Red Bluff is Tehama County\'s largest city on the Sacramento River with hot valley summers. Flat terrain and clear skies provide excellent solar production year-round.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Red Bluff?',
+              a: 'Yes. Red Bluff requires building permits through Tehama County Planning & Building with typical 2-4 week turnaround. Your solar installer handles the county application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Red Bluff?',
+              a: 'Yes. PG&E rates average $0.44/kWh and summer heat drives high AC costs. Off-grid solar with battery storage provides energy independence and backup power during PSPS outages common in rural northern counties.'
+            },
+            {
+              q: 'How much sun does Red Bluff get for solar?',
+              a: 'Red Bluff averages 5.3 peak sun hours daily in Zone 11. The valley floor location delivers strong solar production with hot summers exceeding 100°F and minimal winter cloud cover.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Corning',
+        citySlug: 'corning',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Corning is a small agricultural town on the valley floor south of Red Bluff. Flat terrain and rural setting make solar installations straightforward with excellent roof exposure.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Corning?',
+              a: 'Yes. Corning falls under Tehama County Planning & Building jurisdiction with 2-4 week permit processing. Your contractor manages the application and county inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Corning with agricultural loads?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make off-grid solar attractive. Battery backup provides power for well pumps, irrigation, and home AC during multi-day outages.'
+            },
+            {
+              q: 'How much sun does Corning get for solar?',
+              a: 'Corning averages 5.3 peak sun hours per day in Zone 11. The open agricultural valley provides unobstructed solar exposure with hot, clear summers and mild winters.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Tehama',
+        citySlug: 'tehama',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Tehama is a tiny rural community east of Red Bluff along the Sacramento River. Open valley terrain and agricultural surroundings provide ideal solar exposure.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Tehama?',
+              a: 'Yes. Tehama requires permits through Tehama County Planning & Building with typical 2-4 week turnaround. Your solar installer coordinates the county application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Tehama?',
+              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages are common in rural areas. Off-grid solar with battery storage provides energy independence and backup for wells and irrigation during shutoffs.'
+            },
+            {
+              q: 'How much sun does Tehama get for solar?',
+              a: 'Tehama averages 5.3 peak sun hours daily in Zone 11. The valley floor location along the river provides excellent solar production with hot summers and minimal terrain shading.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Glenn County',
+    regionSlug: 'glenn-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E residential rates average $0.44/kWh. Rural valley location and agricultural energy demands make solar attractive for energy independence.'
+      },
+      permitOffice: {
+        name: 'Glenn County Planning & Community Development Services',
+        jurisdiction: 'Glenn County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for this rural agricultural region. Farm installations may require setback review for agricultural zoning.'
+      },
+      climateZone: {
+        zone: 'Zone 11',
+        description: 'Hot valley climate with summer temperatures over 100°F and mild winters. Agricultural region with high irrigation and cooling loads.'
+      },
+      countyContext: 'Glenn County is a rural agricultural county in the northern Sacramento Valley with Willows and Orland as primary towns. Flat valley terrain, hot summers, and high PG&E rates make solar attractive. PSPS shutoffs affect rural areas, making battery backup valuable for wells and farm operations.'
+    },
+    cities: [
+      {
+        city: 'Willows',
+        citySlug: 'willows',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Willows is Glenn County\'s seat with flat valley terrain ideal for solar. Agricultural surroundings and rural setting make energy independence attractive for well pumps and irrigation.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Willows?',
+              a: 'Yes. Willows requires permits through Glenn County Planning & Community Development Services with typical 2-4 week turnaround. Your installer handles the county application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Willows with agricultural needs?',
+              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages affect rural areas. Off-grid solar with battery backup provides energy independence and backup for well pumps, irrigation, and AC during multi-day shutoffs.'
+            },
+            {
+              q: 'How much sun does Willows get for solar?',
+              a: 'Willows averages 5.3 peak sun hours daily in Zone 11. The flat agricultural valley provides excellent solar production with hot summers often exceeding 100°F and minimal cloud cover.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Orland',
+        citySlug: 'orland',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Orland is a small agricultural town on the valley floor with open terrain and excellent solar exposure. Rural PSPS events make battery backup valuable for farms and homes.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Orland?',
+              a: 'Yes. Orland falls under Glenn County Planning & Community Development Services with 2-4 week permit processing. Your solar contractor manages the county application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Orland?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make off-grid solar attractive. Battery storage provides backup for wells, irrigation, and home power during multi-day outages common in agricultural areas.'
+            },
+            {
+              q: 'How much sun does Orland get for solar?',
+              a: 'Orland averages 5.3 peak sun hours per day in Zone 11. The open valley floor and agricultural surroundings provide unobstructed solar exposure with hot, dry summers.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Colusa County',
+    regionSlug: 'colusa-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E residential rates average $0.44/kWh. Rural agricultural setting and high rates make solar economics strong for energy independence.'
+      },
+      permitOffice: {
+        name: 'Colusa County Community Development',
+        jurisdiction: 'Colusa County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for this rural valley region. Agricultural installations may require zoning review for farm setbacks.'
+      },
+      climateZone: {
+        zone: 'Zone 11',
+        description: 'Hot valley climate with summer temperatures exceeding 100°F and mild winters. Agricultural region with high irrigation and cooling loads.'
+      },
+      countyContext: 'Colusa County is a small, rural agricultural county in the northern Sacramento Valley with Colusa and Williams as primary towns. Flat valley terrain provides excellent solar exposure. High PG&E rates and rural PSPS shutoffs make solar with battery backup attractive for homes and agricultural operations.'
+    },
+    cities: [
+      {
+        city: 'Colusa',
+        citySlug: 'colusa',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Colusa is the county seat along the Sacramento River with flat valley terrain. Agricultural surroundings and rural setting make solar attractive for energy independence and well pump backup.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Colusa?',
+              a: 'Yes. Colusa requires permits through Colusa County Community Development with typical 2-4 week turnaround. Your solar installer handles the county application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Colusa with rural PSPS risk?',
+              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages affect rural areas. Off-grid solar with battery backup provides energy independence and backup for wells, irrigation, and home power during shutoffs.'
+            },
+            {
+              q: 'How much sun does Colusa get for solar?',
+              a: 'Colusa averages 5.3 peak sun hours daily in Zone 11. The valley floor location along the river provides excellent solar production with hot summers and minimal terrain shading.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Williams',
+        citySlug: 'williams',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Williams is a small agricultural town along I-5 with flat valley terrain ideal for solar. Rural PSPS events and high PG&E rates drive solar adoption.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Williams?',
+              a: 'Yes. Williams falls under Colusa County Community Development jurisdiction with 2-4 week permit processing. Your contractor manages the county application and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Williams?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make off-grid solar attractive. Battery storage provides backup power for wells, irrigation, and AC during multi-day outages.'
+            },
+            {
+              q: 'How much sun does Williams get for solar?',
+              a: 'Williams averages 5.3 peak sun hours per day in Zone 11. The open agricultural valley provides unobstructed solar exposure with hot, dry summers and clear skies.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Siskiyou County',
+    regionSlug: 'siskiyou-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E residential rates average $0.44/kWh. High elevation and cold winters increase heating costs, making solar with battery backup valuable for energy resilience.'
+      },
+      permitOffice: {
+        name: 'Siskiyou County Community Development',
+        jurisdiction: 'Siskiyou County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for mountain and rural installations. Snow load calculations required for high-elevation systems. Fire-resilient construction common.'
+      },
+      climateZone: {
+        zone: 'Zone 1',
+        description: 'Cold mountain climate with snowy winters and mild summers. High elevation requires snow load design. Lower solar production than valley floor but still viable.'
+      },
+      countyContext: 'Siskiyou County is California\'s far northern mountain region with Yreka, Mount Shasta, and Weed at elevations from 2,500 to 3,500 feet. Cold winters require snow-load-rated solar systems. PSPS shutoffs and winter storms make battery backup critical. Lower sun hours than valley floor but high PG&E rates still make solar attractive.'
+    },
+    cities: [
+      {
+        city: 'Yreka',
+        citySlug: 'yreka',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.8 },
+        cityProfile: {
+          localNote: 'Yreka is the county seat at 2,600 feet elevation with cold, snowy winters. Solar systems require snow load design, and battery backup is critical for winter storm outages.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Yreka?',
+              a: 'Yes. Yreka requires permits through Siskiyou County Community Development with typical 2-4 week turnaround. High-elevation installations require snow load calculations. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Yreka with snow and cold winters?',
+              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause multi-day outages. Off-grid solar with battery backup provides power during storms and PSPS events. Snow-rated systems handle winter loads and still produce year-round.'
+            },
+            {
+              q: 'How much sun does Yreka get for solar?',
+              a: 'Yreka averages 4.8 peak sun hours daily in Zone 1. The mountain elevation at 2,600 feet reduces sun hours versus valley floor, but high PG&E rates and cold-weather energy needs still make solar economically viable.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Mount Shasta',
+        citySlug: 'mount-shasta',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.6 },
+        cityProfile: {
+          localNote: 'Mount Shasta sits at 3,600 feet on the slopes of the volcanic peak with heavy winter snow. Snow load design is critical, and battery backup provides resilience during winter storms.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Mount Shasta?',
+              a: 'Yes. Mount Shasta requires permits through Siskiyou County Community Development with 2-4 week processing. High-elevation snow load calculations are mandatory. Your contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Mount Shasta with heavy snow?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and frequent winter storm outages make off-grid solar valuable. Battery backup provides critical power when roads are impassable. Snow-rated panels handle heavy loads and still produce during clear winter days.'
+            },
+            {
+              q: 'How much sun does Mount Shasta get for solar?',
+              a: 'Mount Shasta averages 4.6 peak sun hours daily at 3,600 feet elevation in Zone 1. Heavy winter snow and mountain terrain reduce production, but high altitude provides intense summer sun and year-round viability.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Weed',
+        citySlug: 'weed',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.7 },
+        cityProfile: {
+          localNote: 'Weed sits at 3,400 feet elevation along I-5 with cold winters and snow load requirements. PSPS shutoffs and winter storms make battery backup essential for this mountain community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Weed?',
+              a: 'Yes. Weed requires permits through Siskiyou County Community Development with typical 2-4 week turnaround. Snow load calculations required for high-elevation installations. Your installer manages the process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Weed with mountain winters?',
+              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause frequent outages. Off-grid solar with battery backup provides power during multi-day storms and PSPS events. Snow-rated systems handle heavy winter loads.'
+            },
+            {
+              q: 'How much sun does Weed get for solar?',
+              a: 'Weed averages 4.7 peak sun hours daily at 3,400 feet in Zone 1. Mountain elevation and winter snow reduce sun hours, but clear skies and high altitude provide strong solar production in summer and fall.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Dunsmuir',
+        citySlug: 'dunsmuir',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.6 },
+        cityProfile: {
+          localNote: 'Dunsmuir sits in a narrow canyon at 2,300 feet elevation with steep terrain and forested surroundings. Snow load design and terrain shading considerations are critical for solar installations.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Dunsmuir?',
+              a: 'Yes. Dunsmuir requires permits through Siskiyou County Community Development with 2-4 week processing. Canyon terrain may create shading challenges. Your installer handles site assessment and permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Dunsmuir with canyon terrain?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and winter storm outages make off-grid solar valuable. Battery backup provides power during multi-day events. South-facing roofs in the canyon can still achieve solid solar production despite terrain shading.'
+            },
+            {
+              q: 'How much sun does Dunsmuir get for solar?',
+              a: 'Dunsmuir averages 4.6 peak sun hours daily at 2,300 feet in a forested canyon in Zone 1. Steep terrain and trees can create shading, but south-facing sites still provide viable solar production year-round.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Modoc County',
+    regionSlug: 'modoc-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PacifiCorp / Surprise Valley Electric',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'Mix of PacifiCorp and Surprise Valley Electric serve this remote region with rates comparable to PG&E. Remote location and cold winters make energy independence attractive.'
+      },
+      permitOffice: {
+        name: 'Modoc County Planning',
+        jurisdiction: 'Modoc County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for this remote high-desert region. Snow load calculations required for winter conditions. Off-grid systems common.'
+      },
+      climateZone: {
+        zone: 'Zone 1',
+        description: 'Cold high desert with snowy winters and hot summers. High elevation around 4,500 feet requires snow load design. Remote location makes energy independence valuable.'
+      },
+      countyContext: 'Modoc County is California\'s remote far northeast corner with Alturas as the county seat at 4,400 feet elevation. Cold high desert with snowy winters and hot summers. Limited grid infrastructure makes off-grid solar attractive. Snow load design required for winter conditions.'
+    },
+    cities: [
+      {
+        city: 'Alturas',
+        citySlug: 'alturas',
+        utility: 'PacifiCorp / Surprise Valley Electric',
+        localData: { ...PGE, peakSunHoursEstimate: 4.9 },
+        cityProfile: {
+          localNote: 'Alturas is California\'s most remote county seat at 4,400 feet elevation in the high desert. Cold winters and remote location make battery backup and energy independence highly valuable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Alturas?',
+              a: 'Yes. Alturas requires permits through Modoc County Planning with typical 2-4 week turnaround. High-elevation snow load calculations required. Your installer handles the county application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Alturas with remote location?',
+              a: 'Absolutely. Alturas is one of California\'s most remote communities with limited grid infrastructure. Off-grid solar with battery backup provides energy independence and resilience during winter storms. Snow-rated systems handle high-desert winter conditions.'
+            },
+            {
+              q: 'How much sun does Alturas get for solar?',
+              a: 'Alturas averages 4.9 peak sun hours daily at 4,400 feet in Zone 1. The high-desert elevation provides strong solar production despite cold winters. Clear skies and high altitude deliver intense sun year-round.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Lassen County',
+    regionSlug: 'lassen-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'Lassen MUD / PG&E / Plumas-Sierra REC',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'Mix of Lassen Municipal Utility District, PG&E, and Plumas-Sierra Rural Electric serve the region. High desert location and cold winters make energy independence attractive.'
+      },
+      permitOffice: {
+        name: 'Lassen County Planning & Building',
+        jurisdiction: 'Lassen County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for high-desert installations. Snow load calculations required for cold-weather systems. Off-grid installations common in rural areas.'
+      },
+      climateZone: {
+        zone: 'Zone 1',
+        description: 'Cold high desert with snowy winters and warm summers. Elevation around 4,200 feet requires snow load design. Remote location makes energy resilience valuable.'
+      },
+      countyContext: 'Lassen County is a remote high-desert region in northeastern California with Susanville as the county seat at 4,200 feet elevation. Cold winters with snow and remote location make battery backup critical. Multiple utilities serve the area. Snow load design required for winter conditions.'
+    },
+    cities: [
+      {
+        city: 'Susanville',
+        citySlug: 'susanville',
+        utility: 'Lassen MUD / PG&E / Plumas-Sierra REC',
+        localData: { ...PGE, peakSunHoursEstimate: 4.9 },
+        cityProfile: {
+          localNote: 'Susanville sits at 4,200 feet elevation in the high desert with cold, snowy winters. Remote location and winter storms make battery backup essential for energy resilience.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Susanville?',
+              a: 'Yes. Susanville requires permits through Lassen County Planning & Building with typical 2-4 week turnaround. High-elevation snow load calculations required. Your installer handles the county application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Susanville with remote location?',
+              a: 'Yes. Susanville\'s remote high-desert location makes off-grid solar attractive for energy independence. Battery backup provides power during winter storms and outages. Snow-rated systems handle cold-weather conditions and still produce year-round.'
+            },
+            {
+              q: 'How much sun does Susanville get for solar?',
+              a: 'Susanville averages 4.9 peak sun hours daily at 4,200 feet in Zone 1. The high-desert elevation provides solid solar production with clear skies year-round. Cold winters and high altitude deliver strong sun intensity.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Plumas County',
+    regionSlug: 'plumas-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E / Plumas-Sierra REC',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'Mix of PG&E and Plumas-Sierra Rural Electric Cooperative serve this mountain region. High rates and frequent PSPS shutoffs make solar with battery backup attractive.'
+      },
+      permitOffice: {
+        name: 'Plumas County Building',
+        jurisdiction: 'Plumas County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for high-Sierra installations. Heavy snow load calculations required. Post-Dixie Fire rebuilds often integrate solar and battery backup.'
+      },
+      climateZone: {
+        zone: 'Zone 1',
+        description: 'High Sierra climate with heavy snow winters and mild summers. Elevation 3,400-5,000 feet requires snow load design. Forested terrain creates PSPS risk.'
+      },
+      countyContext: 'Plumas County is a high-Sierra mountain region with Quincy, Portola, and Chester at elevations from 3,400 to 5,000 feet. Heavy winter snow requires snow-load-rated systems. The 2021 Dixie Fire devastated much of the county, making fire resilience and PSPS backup power top priorities. Forested terrain and PSPS shutoffs make battery backup critical.'
+    },
+    cities: [
+      {
+        city: 'Quincy',
+        citySlug: 'quincy',
+        utility: 'PG&E / Plumas-Sierra REC',
+        localData: { ...PGE, peakSunHoursEstimate: 4.8 },
+        cityProfile: {
+          localNote: 'Quincy is the county seat at 3,400 feet elevation in a forested Sierra valley. The 2021 Dixie Fire threatened the town, making fire resilience and PSPS backup power critical priorities.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Quincy?',
+              a: 'Yes. Quincy requires permits through Plumas County Building with typical 2-4 week turnaround. Heavy snow load calculations required for Sierra installations. Your installer handles the county application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Quincy after the Dixie Fire?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this forested fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events and winter storms. The Dixie Fire showed the critical need for energy resilience.'
+            },
+            {
+              q: 'How much sun does Quincy get for solar?',
+              a: 'Quincy averages 4.8 peak sun hours daily at 3,400 feet in Zone 1. Forested valley terrain can create shading, but south-facing sites provide solid solar production year-round. Clear Sierra air provides strong sun intensity.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Portola',
+        citySlug: 'portola',
+        utility: 'PG&E / Plumas-Sierra REC',
+        localData: { ...PGE, peakSunHoursEstimate: 4.7 },
+        cityProfile: {
+          localNote: 'Portola sits at 4,800 feet elevation in the high Sierra with heavy winter snow. Snow load design is critical, and battery backup provides resilience during winter storms and PSPS events.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Portola?',
+              a: 'Yes. Portola requires permits through Plumas County Building with 2-4 week processing. High-elevation heavy snow load calculations mandatory. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Portola with heavy snow?',
+              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause multi-day outages. Off-grid solar with battery backup provides power during storms and PSPS events. Snow-rated panels handle heavy Sierra snow loads and still produce year-round.'
+            },
+            {
+              q: 'How much sun does Portola get for solar?',
+              a: 'Portola averages 4.7 peak sun hours daily at 4,800 feet in Zone 1. Heavy winter snow and high elevation reduce sun hours, but clear Sierra skies and high altitude provide strong solar production in spring through fall.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Chester',
+        citySlug: 'chester',
+        utility: 'PG&E / Plumas-Sierra REC',
+        localData: { ...PGE, peakSunHoursEstimate: 4.8 },
+        cityProfile: {
+          localNote: 'Chester sits at 4,500 feet on Lake Almanor with heavy winter snow and forested surroundings. The Dixie Fire burned nearby, making PSPS backup power and fire resilience critical priorities.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Chester?',
+              a: 'Yes. Chester requires permits through Plumas County Building with typical 2-4 week turnaround. Heavy snow load calculations required. Post-Dixie Fire rebuilds often integrate solar. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Chester with Dixie Fire risk?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and frequent PSPS shutoffs in this forested fire zone make off-grid solar essential. Battery backup provides power during multi-day PSPS events and winter storms. The Dixie Fire demonstrated the need for energy resilience.'
+            },
+            {
+              q: 'How much sun does Chester get for solar?',
+              a: 'Chester averages 4.8 peak sun hours daily at 4,500 feet in Zone 1. Forested terrain and heavy winter snow create challenges, but south-facing lakeside sites provide solid solar production. Clear Sierra air delivers strong sun intensity.'
+            }
+          ]
+        }
+      },
+    ],
+  },
 ];
 
 export interface MarketParams {

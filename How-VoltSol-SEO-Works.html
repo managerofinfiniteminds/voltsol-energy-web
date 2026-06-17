@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>How VoltSol's SEO Strategy Works — Internal Briefing</title>
+<style>
+  :root{
+    --navy:#040D1C; --navy800:#071628; --navy700:#0C2040; --navy600:#0F2D5A;
+    --blue:#1D4ED8; --blue300:#93c5fd; --gold:#F59E0B; --gold400:#FBBF24; --amber:#F97316;
+    --ink:#0c1420; --body:#33414f; --muted:#6b7888; --line:#e4e9f0; --paper:#ffffff; --soft:#f6f8fb;
+    --green:#059669; --red:#e11d48;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--body);background:var(--paper);line-height:1.6;font-size:14.5px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .page{max-width:780px;margin:0 auto;padding:0 44px;}
+
+  .cover{background:linear-gradient(135deg,#040D1C 0%,#0C2040 55%,#0F2D5A 100%);color:#fff;padding:46px 44px 40px;position:relative;overflow:hidden;}
+  .cover::after{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--amber),var(--gold),var(--gold400));}
+  .brandrow{display:flex;align-items:center;gap:16px;margin-bottom:26px;}
+  .mark{width:52px;height:52px;flex:0 0 52px;}
+  .brandtext .name{font-size:22px;font-weight:800;letter-spacing:.3px;color:#fff;}
+  .brandtext .tag{font-size:12px;color:var(--gold400);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+  .conf{display:inline-block;background:rgba(249,115,22,.16);border:1px solid rgba(249,115,22,.45);color:var(--gold400);font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:5px 12px;border-radius:30px;margin-bottom:18px;}
+  .cover h1{font-size:29px;line-height:1.18;font-weight:800;color:#fff;margin-bottom:12px;max-width:580px;}
+  .cover .sub{font-size:15px;color:#b9cde6;max-width:560px;}
+  .cover .meta{margin-top:22px;font-size:12px;color:#8fa6c4;}
+
+  section{padding:30px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .sechead{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .secnum{flex:0 0 32px;width:32px;height:32px;border-radius:8px;background:rgba(245,158,11,.14);color:var(--amber);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  h2{font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.2px;}
+  h3{font-size:15px;font-weight:700;color:var(--navy600);margin:18px 0 7px;}
+  p{margin-bottom:11px;}
+  strong{color:var(--ink);}
+  em{color:var(--navy600);font-style:italic;}
+  .q{font-style:italic;color:var(--navy700);}
+
+  .callout{border-radius:11px;padding:14px 18px;margin:16px 0;font-size:14px;}
+  .callout .ct{font-weight:700;margin-bottom:4px;font-size:13.5px;}
+  .callout.gold{background:#fff7ed;border:1px solid #fed7aa;}
+  .callout.gold .ct{color:#b45309;}
+  .callout.gold, .callout.gold *{color:#7c2d12;}
+  .callout.blue{background:#eff6ff;border:1px solid #bfdbfe;}
+  .callout.blue .ct{color:#1d4ed8;}
+  .callout.blue, .callout.blue *{color:#1e3a8a;}
+
+  .step{display:flex;gap:14px;margin:10px 0;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:13px 16px;}
+  .step .n{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--navy700);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .step .lbl{font-weight:700;color:var(--ink);margin-bottom:2px;}
+  .step .bd{font-size:14px;}
+
+  code{background:#eef1f6;border-radius:4px;padding:1px 6px;font-size:12.5px;color:#b45309;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+
+  /* pyramid */
+  .pyr{margin:18px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .pyrow{display:flex;gap:14px;align-items:flex-start;padding:13px 16px;border-bottom:1px solid var(--line);}
+  .pyrow:last-child{border-bottom:none;}
+  .pyrow.hl{background:#fff7ed;}
+  .pyrow .tier{flex:0 0 78px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--amber);padding-top:2px;}
+  .pyrow .ttl{font-weight:700;color:var(--ink);font-size:14px;}
+  .pyrow .pth{background:#eef1f6;border-radius:4px;padding:1px 6px;font-size:11px;color:#64748b;font-family:ui-monospace,Menlo,monospace;margin-left:4px;}
+  .pyrow .ds{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.45;}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0;}
+  .card{border-radius:11px;padding:14px 16px;border:1px solid var(--line);background:var(--soft);}
+  .card .h{font-weight:700;font-size:13.5px;margin-bottom:8px;}
+  .card.green{border-color:#a7f3d0;background:#ecfdf5;} .card.green .h{color:#047857;}
+  .card.red{border-color:#fecdd3;background:#fff1f2;} .card.red .h{color:#be123c;}
+  .card.amber{border-color:#fed7aa;background:#fff7ed;} .card.amber .h{color:#b45309;}
+  .card ul{margin:0 0 0 18px;} .card li{font-size:13px;margin-bottom:4px;color:var(--body);}
+
+  ul,ol{margin:8px 0 11px 22px;} li{margin-bottom:6px;font-size:14px;}
+
+  .journey{counter-reset:j;list-style:none;margin-left:0;}
+  .journey li{display:flex;gap:14px;margin-bottom:14px;}
+  .journey li .jn{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:rgba(245,158,11,.18);color:#b45309;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .journey li .jt{font-weight:700;color:var(--ink);}
+  .journey li .jb{font-size:14px;margin-top:1px;}
+
+  footer{padding:24px 0 44px;color:var(--muted);font-size:11.5px;text-align:center;}
+  footer .line{height:3px;width:60px;background:linear-gradient(90deg,var(--amber),var(--gold));margin:0 auto 14px;border-radius:3px;}
+  @media print{section,.step,.pyrow,.card,.journey li{page-break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="brandrow">
+    <svg class="mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+      <path fill="#f49527" d="M452.92,890.34c-.59,0-.87-.16-1.2-.38l188.36-388.96c2.4-4.95-.14-9.05-5.64-9.1l-164.83-1.71c-5.5-.06-7.98-4.12-5.51-9.04l143.23-284.88c2.47-4.91,8.99-8.91,14.49-8.87l172.08,1.04c5.5.03,7.9,4.04,5.32,8.9l-96.77,182.95c.37.56.59.53,1.17.53l192.08-.13c.72,0,1.14-.06,1.46.3.16.19-.2.51-.6,1l-406.64,501.06c-3.47,4.27-10.8,7.7-16.3,7.61l-20.7-.31Z"/>
+      <path fill="#ffffff" d="M382.27,878.66c-2.41,4.95-6.09,4.83-8.18-.26L90.71,189.97c1.67-.03,2.9.82,4.67.46l165.91-2.34c5.5-.08,11.71,4.02,13.81,9.11l197.34,479.14c2.09,5.09,1.84,13.29-.57,18.24l-89.6,184.08Z"/>
+    </svg>
+    <div class="brandtext">
+      <div class="name">VoltSol Energy</div>
+      <div class="tag">Make it. Store it. Live on it.</div>
+    </div>
+  </div>
+  <div class="conf">⚡ Internal Briefing · Confidential</div>
+  <h1>How VoltSol&rsquo;s SEO Strategy Actually Works</h1>
+  <p class="sub">A plain-language walk-through of how the website is built to win Google searches, what Google sees and stores, and how a real homeowner ends up clicking through and becoming a lead. No jargon &mdash; or jargon explained when we have to use it.</p>
+  <div class="meta">Last updated June 17, 2026 · Reflects the live site (200 city pages, 28 guides, full structured data)</div>
+</div>
+
+<div class="page">
+
+  <section>
+    <div class="sechead"><div class="secnum">0</div><h2>The 30-second version</h2></div>
+    <p>Google is a matchmaker. When someone types <span class="q">&ldquo;off grid solar Sacramento&rdquo;</span> into Google, Google&rsquo;s job is to instantly hand them the most relevant, trustworthy pages it knows about. Our entire strategy is about making VoltSol&rsquo;s website the obvious answer for thousands of solar-related searches across California &mdash; so the homeowner clicks <em>us</em>, not a competitor.</p>
+    <p>We do that three ways: (1) build a page for almost every relevant search someone might make, (2) make each page genuinely useful and unique so Google trusts it, and (3) hand Google the business&rsquo;s real-world credentials so it treats us as a legitimate local company. Everything below is detail on those three moves.</p>
+    <div class="callout gold"><div class="ct">The core idea</div>We are not buying ads. This is <strong>organic</strong> search &mdash; the free results below the ads. It compounds: once a page ranks, it brings in leads month after month without paying per click. It takes longer to build than ads, but it doesn&rsquo;t stop when you stop paying.</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">1</div><h2>How Google works (in three steps)</h2></div>
+    <p>Behind the scenes, Google does three distinct things. Understanding them is the key to everything else.</p>
+    <div class="step"><div class="n">1</div><div><div class="lbl">Crawling</div><div class="bd">Google runs automated robots (called <span class="q">&ldquo;crawlers&rdquo;</span> or <span class="q">&ldquo;spiders&rdquo;</span>; the main one is <span class="q">&ldquo;Googlebot&rdquo;</span>) that follow links around the internet, page to page, reading everything they find. They discover new pages by following links from pages they already know &mdash; and from a special file we hand them called a <em>sitemap</em> (more below).</div></div></div>
+    <div class="step"><div class="n">2</div><div><div class="lbl">Indexing</div><div class="bd">When the crawler reads a page, Google stores a copy and analyzes it: what is this about? What questions does it answer? Is it high-quality or thin junk? It files all of that into a massive library called the <span class="q">&ldquo;index.&rdquo;</span> If a page isn&rsquo;t in the index, it can <strong>never</strong> show up in search results &mdash; it effectively doesn&rsquo;t exist to Google.</div></div></div>
+    <div class="step"><div class="n">3</div><div><div class="lbl">Ranking</div><div class="bd">When someone searches, Google pulls every indexed page that could answer the query and puts them in order &mdash; best answer first. Hundreds of signals decide that order: relevance, quality, trust, how local the business is, page speed, and more. Position #1 gets the vast majority of clicks; almost nobody scrolls to page two.</div></div></div>
+    <div class="callout blue"><div class="ct">Why this matters for us</div>Our strategy maps cleanly onto these three steps: we make sure every page gets <strong>crawled</strong> (sitemap + links), gets <strong>indexed</strong> (unique, quality content), and <strong>ranks</strong> well (relevance + trust + local authority).</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">2</div><h2>The site structure &mdash; a pyramid of authority</h2></div>
+    <p>We didn&rsquo;t just build a homepage and a contact form. The site is built as a deliberate <strong>hierarchy</strong> &mdash; a pyramid &mdash; that Google rewards because it shows topical depth and organization.</p>
+    <div class="pyr">
+      <div class="pyrow"><div class="tier">Tier 1</div><div><div class="ttl">Homepage <span class="pth">/</span></div><div class="ds">The brand hub. Tells Google who VoltSol is, what it sells, and where it operates. Carries the business credentials.</div></div></div>
+      <div class="pyrow"><div class="tier">Tier 2</div><div><div class="ttl">State hub <span class="pth">/market/solar/california</span></div><div class="ds">The &ldquo;money&rdquo; authority page for California solar &mdash; links down to every county.</div></div></div>
+      <div class="pyrow"><div class="tier">Tier 3</div><div><div class="ttl">County hubs (24) <span class="pth">/&hellip;/[county]</span></div><div class="ds">One per county. Carries county-level facts: local utility rates, permit office, climate zone. Links to its cities.</div></div></div>
+      <div class="pyrow hl"><div class="tier">Tier 4</div><div><div class="ttl">City pages (200) <span class="pth">/&hellip;/[county]/[city]</span></div><div class="ds">The workhorses. One page per city &mdash; the page that ranks when someone searches &ldquo;solar in [their town].&rdquo;</div></div></div>
+      <div class="pyrow"><div class="tier">Content</div><div><div class="ttl">The Learn hub (28 guides) <span class="pth">/learn</span></div><div class="ds">Educational articles that catch people earlier in their research &mdash; before they&rsquo;re even ready to buy.</div></div></div>
+    </div>
+    <p>Every tier <strong>links down</strong> to the tier below and <strong>links back up</strong>. That internal linking does two jobs: it lets Google&rsquo;s crawler reach every page easily, and it passes <span class="q">&ldquo;authority&rdquo;</span> around the site so the whole thing ranks stronger than a flat pile of disconnected pages would.</p>
+    <div class="callout gold"><div class="ct">Why 200 separate city pages?</div>Because people search locally. Someone in Fresno searches <span class="q">&ldquo;solar Fresno,&rdquo;</span> not <span class="q">&ldquo;solar California.&rdquo;</span> A single generic page can&rsquo;t rank for 200 different towns &mdash; but 200 dedicated, locally-specific pages can each rank for their own town. This is how you capture the entire state instead of a sliver.</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">3</div><h2>What gets indexed &mdash; and what stays hidden</h2></div>
+    <p>Not everything on the site is meant for Google. We deliberately control what gets indexed.</p>
+    <div class="cards">
+      <div class="card green"><div class="h">✅ Indexed (we want these found)</div><ul><li>Homepage</li><li>State + 24 county hubs</li><li>All 200 city pages</li><li>The Learn hub + all 28 guides</li><li>Technology, pricing, estimate, booking pages</li></ul></div>
+      <div class="card red"><div class="h">🚫 Blocked (kept private)</div><ul><li>Everything under <code>/admin</code> (this doc included)</li><li>The lead database + dashboard</li><li><code>/api/</code> internal endpoints</li><li>Customer booking tokens &amp; personal data</li></ul></div>
+    </div>
+    <p style="margin-top:14px;">We control this with two tools working together:</p>
+    <div class="step"><div class="n">1</div><div><div class="lbl">robots.txt</div><div class="bd">A plain text file at <code>voltsolenergy.com/robots.txt</code> that politely tells crawlers <span class="q">&ldquo;you may read everything except <code>/admin</code> and <code>/api</code>.&rdquo;</span> Well-behaved bots (Google, Bing) obey it.</div></div></div>
+    <div class="step"><div class="n">2</div><div><div class="lbl">The sitemap</div><div class="bd">A machine-readable list at <code>voltsolenergy.com/sitemap.xml</code> of every page we <em>want</em> indexed &mdash; currently <strong>260 URLs</strong>. It&rsquo;s like handing the librarian a complete catalog instead of making them wander the stacks. It also tells Google when each page last changed, so it knows what to re-check.</div></div></div>
+    <div class="callout blue"><div class="ct">Belt and suspenders on privacy</div>This very document lives under <code>/admin</code>, so it is (a) blocked in robots.txt, (b) behind the admin login, and (c) tagged <code>noindex</code> so even if a bot somehow reached it, it&rsquo;s told not to store it. Three independent locks.</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">4</div><h2>Why each page actually ranks &mdash; uniqueness + trust</h2></div>
+    <p>Building 200 pages is easy. Building 200 pages that Google <em>respects</em> is the hard part &mdash; and where most competitors fail.</p>
+    <h3>The doorway-page trap (and how we avoid it)</h3>
+    <p>If you make 200 near-identical pages where only the town name is swapped, Google calls these <span class="q">&ldquo;doorway pages&rdquo;</span> and <strong>penalizes</strong> them &mdash; sometimes the whole site. It&rsquo;s considered spam.</p>
+    <p>So every one of our city pages carries genuinely different, true information about <em>that specific town</em>:</p>
+    <ul>
+      <li>The actual local electric utility and its rate (e.g. PG&amp;E ~$0.44/kWh vs. SMUD ~$0.18 vs. SDG&amp;E ~$0.47). <span style="color:var(--muted);font-size:12.5px;">(PG&amp;E = Pacific Gas &amp; Electric; SMUD = Sacramento Municipal Utility District; SDG&amp;E = San Diego Gas &amp; Electric; kWh = kilowatt-hour, the unit your bill is measured in.)</span></li>
+      <li>That county&rsquo;s real permit office and typical turnaround</li>
+      <li>The local climate zone and realistic sun-hours</li>
+      <li>Three unique, town-specific FAQs (frequently asked questions)</li>
+      <li>Local notes (coastal fog, desert heat, mountain snow load, etc.)</li>
+    </ul>
+    <p>That variation is what makes each page a legitimate, useful answer instead of spam. It&rsquo;s the difference between dominating and getting penalized.</p>
+    <h3>Structured data &mdash; speaking Google&rsquo;s native language</h3>
+    <p>Buried invisibly in each page&rsquo;s code is a section of <span class="q">&ldquo;structured data&rdquo;</span> (also called <span class="q">&ldquo;schema&rdquo;</span>). Humans never see it, but it spells out facts in a format Google reads perfectly: <em>this is a local business, here&rsquo;s its phone, its license number #1148585, its service area, its prices, its reviews.</em></p>
+    <p>This is what can earn the fancy search results &mdash; the star ratings, the FAQ drop-downs, the business info panel. We&rsquo;ve wired all of it: the local-business markup, services, FAQ markup, articles, the CSLB (Contractors State License Board) license, and the review/rating markup.</p>
+    <div class="callout gold"><div class="ct">One honest caveat</div>The star-rating code is in place, but Google only <em>displays</em> stars sourced from real Google reviews. That&rsquo;s why getting actual customer reviews is the one piece we can&rsquo;t code our way around &mdash; it needs real customers.</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">5</div><h2>The user journey &mdash; from Google search to lead</h2></div>
+    <p>Here is the whole thing from the homeowner&rsquo;s side, start to finish:</p>
+    <ol class="journey">
+      <li><div class="jn">1</div><div><div class="jt">They search</div><div class="jb">A homeowner in Roseville with a scary PG&amp;E bill types <span class="q">&ldquo;off grid solar roseville&rdquo;</span> or <span class="q">&ldquo;how to avoid PG&amp;E rate increases&rdquo;</span> into Google.</div></div></li>
+      <li><div class="jn">2</div><div><div class="jt">Google matches</div><div class="jb">Google checks its index and finds our Roseville city page (for the first search) or our PG&amp;E-rates guide (for the second) &mdash; both built specifically to answer that exact query.</div></div></li>
+      <li><div class="jn">3</div><div><div class="jt">They see a rich result</div><div class="jb">Our listing appears with a compelling title (<span class="q">&ldquo;Off-Grid Solar in Roseville from $8,700&rdquo;</span>), a useful description, and &mdash; as reviews accumulate &mdash; star ratings and FAQ drop-downs that make it stand out from plain-text competitors.</div></div></li>
+      <li><div class="jn">4</div><div><div class="jt">They click through</div><div class="jb">They land on a page that speaks directly to <em>their</em> town: their utility, their permit process, their sun exposure. It feels local and credible, not generic.</div></div></li>
+      <li><div class="jn">5</div><div><div class="jt">They convert</div><div class="jb">The page guides them to the free-estimate form. They fill it out. That lead lands in the admin dashboard &mdash; scored hot/standard/low &mdash; and an email alert fires to info@. Hugo follows up.</div></div></li>
+    </ol>
+    <div class="callout blue"><div class="ct">The Learn hub catches them earlier</div>Not everyone is ready to buy. The 28 guides catch people in research mode (<span class="q">&ldquo;is off-grid solar worth it?&rdquo;</span>), build trust, and link them toward the city pages and estimate form when they&rsquo;re ready. It widens the top of the funnel.</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">6</div><h2>Two halves: what we built vs. what&rsquo;s next</h2></div>
+    <p>SEO has two halves. We&rsquo;ve completed the first; the second needs real-world action.</p>
+    <div class="cards">
+      <div class="card green"><div class="h">On-site &mdash; ✅ DONE (the code)</div><ul><li>Site structure &amp; 200 city pages</li><li>28 educational guides</li><li>All structured data / schema</li><li>Sitemap, robots, fast page speed</li><li>Titles, descriptions, internal links</li></ul></div>
+      <div class="card amber"><div class="h">Off-site &mdash; 🔜 NEXT (needs Hugo)</div><ul><li>Google Business Profile (claim + verify)</li><li>Real customer reviews</li><li>Directory listings / citations</li><li>Submit sitemap to Google &amp; Bing</li><li>Backlinks from other reputable sites</li></ul></div>
+    </div>
+    <p style="margin-top:14px;">Think of the on-site work as building a great store on the best corner in town. The off-site work is getting listed in the phone book, collecting customer reviews in the window, and getting the local paper to mention you. Google weighs both &mdash; and for a local business, the off-site trust signals are enormous.</p>
+    <div class="callout gold"><div class="ct">The single highest-leverage next step</div><strong>Claim and verify the Google Business Profile (GBP)</strong> &mdash; the free business listing that puts VoltSol on Google Search and Maps. It powers the map pack (the top-3 local results with the map), feeds the star ratings, and is the #1 trust signal for local search. The verification postcard takes up to two weeks, so the clock starts the day Hugo requests it. The full copy-paste pack is already prepared.</div>
+  </section>
+
+  <section>
+    <div class="sechead"><div class="secnum">7</div><h2>What to expect &mdash; the honest timeline</h2></div>
+    <p>Organic SEO is a compounding asset, not an instant switch. Realistic expectations:</p>
+    <ul>
+      <li><strong>Weeks 1&ndash;4:</strong> Google discovers and indexes the new pages. Business Profile verification happens. Early long-tail searches start trickling in.</li>
+      <li><strong>Months 2&ndash;4:</strong> Pages climb as Google gains trust. Reviews and citations accumulate. The map pack starts appearing for local searches.</li>
+      <li><strong>Months 4&ndash;9:</strong> Authority compounds. City pages rank for competitive terms. Leads grow steadily without per-click cost.</li>
+    </ul>
+    <div class="callout blue"><div class="ct">The bottom line</div>The expensive, technical foundation is built and live. From here the growth comes from consistency &mdash; reviews, citations, and patience &mdash; and it pays back every month for years, unlike ads that stop the moment you stop paying.</div>
+  </section>
+
+  <footer>
+    <div class="line"></div>
+    VoltSol Energy · Internal SEO briefing · Confidential &mdash; not for public distribution<br>
+    Verified against the live site on June 17, 2026 · voltsolenergy.com
+  </footer>
+
+</div>
+</body>
+</html>

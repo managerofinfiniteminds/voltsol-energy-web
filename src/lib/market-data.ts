@@ -7426,6 +7426,944 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
       },
     ],
   },
+  {
+    county: 'Monterey County',
+    regionSlug: 'monterey-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves all of Monterey County with rates averaging $0.44/kWh. High energy costs combined with excellent solar potential in the Salinas Valley make solar and battery systems very attractive for both coastal and inland areas.'
+      },
+      permitOffice: {
+        name: 'Monterey County Resource Management Agency',
+        jurisdiction: 'Monterey County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'Monterey County processes solar permits through RMA Building Services with typical 2-4 week turnaround. Coastal zones may require additional environmental review. Incorporated cities like Salinas and Monterey have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 3 (Coastal) / Zone 13 (Inland)',
+        description: 'Monterey County spans mild coastal fog zones (Monterey, Seaside) and hot inland agricultural valleys (Salinas, King City). Coastal areas see marine layer mornings with afternoon sun; inland valleys experience hot summers with strong solar production and high cooling loads.'
+      },
+      countyContext: 'Monterey County stretches from the foggy Pacific coast to the hot Salinas Valley agricultural heartland. Coastal cities like Monterey and Seaside have mild Mediterranean climates with marine layer influence, while inland areas like Salinas and King City see intense summer heat ideal for solar production. High PG&E rates and frequent summer power demands make solar plus battery an excellent investment across the entire county.'
+    },
+    cities: [
+      {
+        city: 'Salinas',
+        citySlug: 'salinas',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.4 },
+        cityProfile: {
+          localNote: 'Salinas is the county seat and agricultural capital of the Salinas Valley, experiencing hot inland summers with minimal fog and strong solar potential. The city\'s flat valley terrain and high cooling demand make solar an ideal energy solution.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Salinas?',
+              a: 'Yes. Salinas has its own building department that processes solar permits separately from the county. Typical turnaround is 2-3 weeks for standard rooftop systems. Your solar installer handles all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Salinas with PG&E rates?',
+              a: 'Absolutely. PG&E charges $0.44/kWh in Salinas, and the hot valley climate drives high summer AC bills. Off-grid solar with battery storage locks in your energy costs and provides resilience during grid outages. Salinas gets an estimated 5.4 peak sun hours daily — excellent for solar production.'
+            },
+            {
+              q: 'How much sun does Salinas get for solar?',
+              a: 'Salinas averages an estimated 5.4 peak sun hours per day, well above the coastal fog zone. The inland Salinas Valley has minimal marine layer influence, delivering consistent year-round solar production with strong summer peak output aligned with air conditioning demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Monterey',
+        citySlug: 'monterey',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Monterey sits on the scenic Pacific coast with morning marine layer that typically clears by midday. Coastal fog reduces solar production slightly compared to inland areas, but the mild climate keeps energy demand moderate and solar still provides strong year-round value.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Monterey?',
+              a: 'Yes. The City of Monterey Building Division processes solar permits with typical 2-4 week turnaround. Coastal zone properties may require additional environmental review. Your installer coordinates all permits and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in coastal Monterey?',
+              a: 'Yes. Even with morning fog, Monterey gets an estimated 5.0 peak sun hours daily as marine layer burns off by afternoon. PG&E rates at $0.44/kWh and moderate coastal energy use make solar with battery backup a smart investment for energy independence and cost savings.'
+            },
+            {
+              q: 'How does fog affect solar in Monterey?',
+              a: 'Monterey experiences morning marine layer that typically clears by late morning or early afternoon. This reduces solar output slightly compared to inland valleys, but the city still achieves an estimated 5.0 peak sun hours daily — viable for strong solar production and savings on high PG&E bills.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Seaside',
+        citySlug: 'seaside',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Seaside is a coastal community just inland from Monterey Bay with mild year-round climate and morning marine layer similar to Monterey. The city\'s moderate energy use and high PG&E rates make solar plus battery a cost-effective choice.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Seaside?',
+              a: 'Yes. Seaside processes solar permits through the City Building Division with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your installer handles all paperwork and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Seaside with coastal fog?',
+              a: 'Yes. Despite morning fog, Seaside gets an estimated 5.0 peak sun hours daily as the marine layer burns off. PG&E rates at $0.44/kWh make solar plus battery storage a strong financial decision, locking in energy costs and providing backup power during outages.'
+            },
+            {
+              q: 'How much sun does Seaside get for solar?',
+              a: 'Seaside averages an estimated 5.0 peak sun hours per day. The coastal location brings morning fog that typically clears by midday, allowing strong afternoon solar production. The mild climate keeps overall energy use moderate, enhancing solar return on investment.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Marina',
+        citySlug: 'marina',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.1 },
+        cityProfile: {
+          localNote: 'Marina sits on the north end of Monterey Bay with coastal dune terrain and morning fog that clears earlier than Monterey proper. The city\'s flat layout and moderate climate create ideal conditions for rooftop solar installations.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Marina?',
+              a: 'Yes. Marina requires permits through the City Building Department with typical 2-3 week processing. Coastal properties may need additional review; your solar installer manages all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Marina?',
+              a: 'Yes. Marina gets an estimated 5.1 peak sun hours daily as morning fog burns off earlier than deeper coastal areas. PG&E rates at $0.44/kWh combined with moderate coastal energy use make solar with battery storage an excellent long-term investment.'
+            },
+            {
+              q: 'How does Marina\'s coastal location affect solar?',
+              a: 'Marina experiences morning marine layer but typically clears earlier than Monterey proper due to its position at the north bay. This yields an estimated 5.1 peak sun hours daily — strong solar production potential that pairs well with the mild coastal climate and high utility rates.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'King City',
+        citySlug: 'king-city',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.6 },
+        cityProfile: {
+          localNote: 'King City sits in the hot southern Salinas Valley with minimal coastal influence and intense summer heat. The city\'s agricultural setting and very high cooling demand make solar plus battery ideal for managing peak energy costs.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in King City?',
+              a: 'Yes. King City processes solar permits through the City Building Department with typical 2-4 week turnaround. The straightforward permitting process and flat valley terrain make installations smooth; your installer handles all coordination.'
+            },
+            {
+              q: 'Is off-grid solar worth it in hot King City?',
+              a: 'Absolutely. King City experiences very hot summers driving high AC bills on PG&E\'s $0.44/kWh rates. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. King City gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
+            },
+            {
+              q: 'How much sun does King City get for solar?',
+              a: 'King City averages an estimated 5.6 peak sun hours per day, among the highest in Monterey County. The inland southern valley location has minimal fog and intense summer sun, delivering strong year-round solar output aligned with high summer air conditioning demand.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Santa Cruz County',
+    regionSlug: 'santa-cruz-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves all of Santa Cruz County with residential rates averaging $0.44/kWh. High utility costs paired with an environmentally conscious community and strong coastal solar potential make solar and battery systems very popular.'
+      },
+      permitOffice: {
+        name: 'Santa Cruz County Planning Department',
+        jurisdiction: 'Santa Cruz County',
+        typicalTurnaround: '3-5 weeks',
+        note: 'Santa Cruz County processes solar permits through Planning Department Building Services with typical 3-5 week turnaround. Coastal zone properties require Coastal Commission review. Incorporated cities like Santa Cruz and Watsonville have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 3 (Coastal)',
+        description: 'Santa Cruz County has a mild Mediterranean coastal climate with morning marine layer that typically burns off by midday. Cool summers and mild winters keep energy demand moderate while still providing strong solar production potential, especially on south-facing slopes above the fog line.'
+      },
+      countyContext: 'Santa Cruz County stretches along the northern Monterey Bay with iconic coastal redwood terrain and a strong environmental ethos. Morning fog is common but typically clears by afternoon, yielding solid solar production. The county\'s progressive community, high PG&E rates, and frequent grid outages during winter storms make solar plus battery storage highly attractive for energy independence and resilience.'
+    },
+    cities: [
+      {
+        city: 'Santa Cruz',
+        citySlug: 'santa-cruz',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.9 },
+        cityProfile: {
+          localNote: 'Santa Cruz is a coastal city with morning fog that typically clears by midday, revealing strong afternoon sun. The city\'s environmentally conscious community and high PG&E rates drive strong adoption of solar plus battery for clean energy independence.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Santa Cruz?',
+              a: 'Yes. The City of Santa Cruz Planning and Community Development Department processes solar permits with typical 3-4 week turnaround. Coastal properties may require additional review; your installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Santa Cruz with coastal fog?',
+              a: 'Yes. Santa Cruz gets an estimated 4.9 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the city\'s strong environmental values make solar with battery storage both economically and ecologically attractive. Winter storm outages also make battery backup highly valuable.'
+            },
+            {
+              q: 'How much sun does Santa Cruz get for solar?',
+              a: 'Santa Cruz averages an estimated 4.9 peak sun hours per day. Morning marine layer typically clears by late morning or early afternoon, allowing strong solar production. South-facing rooftops and hillside properties above the fog line capture even more sun for excellent year-round output.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Watsonville',
+        citySlug: 'watsonville',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.1 },
+        cityProfile: {
+          localNote: 'Watsonville sits slightly inland from the coast in the Pajaro Valley agricultural region, experiencing less marine layer influence than coastal Santa Cruz. The city\'s warmer inland climate and agricultural setting deliver stronger solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Watsonville?',
+              a: 'Yes. Watsonville processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Watsonville?',
+              a: 'Yes. Watsonville gets an estimated 5.1 peak sun hours daily due to its inland valley location with less fog than coastal areas. PG&E rates at $0.44/kWh and the warm climate driving moderate AC use make solar with battery storage a smart long-term investment.'
+            },
+            {
+              q: 'How much sun does Watsonville get for solar?',
+              a: 'Watsonville averages an estimated 5.1 peak sun hours per day, higher than coastal Santa Cruz due to less marine layer influence. The Pajaro Valley location delivers consistent year-round solar production with strong summer output aligned with cooling demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Scotts Valley',
+        citySlug: 'scotts-valley',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Scotts Valley sits in the Santa Cruz Mountains at higher elevation, experiencing cooler temperatures and less marine layer than coastal areas. The city\'s hillside terrain and redwood forest require careful site assessment, but south-facing properties get excellent solar exposure.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Scotts Valley?',
+              a: 'Yes. Scotts Valley processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Mountain terrain and forest shading may require site-specific analysis; your installer handles permitting and site assessment.'
+            },
+            {
+              q: 'Is off-grid solar worth it in mountain Scotts Valley?',
+              a: 'Yes. Scotts Valley\'s higher elevation keeps it above coastal fog, achieving an estimated 5.0 peak sun hours on unshaded south-facing sites. PG&E rates at $0.44/kWh and frequent winter storm outages make solar with battery backup ideal for mountain energy resilience.'
+            },
+            {
+              q: 'How does mountain terrain affect solar in Scotts Valley?',
+              a: 'Scotts Valley sits in forested mountain terrain with tall redwoods that can shade north-facing slopes. South-facing properties above tree line or on cleared sites get excellent solar exposure at an estimated 5.0 peak sun hours daily. A site assessment determines shading impact and optimal panel placement.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Capitola',
+        citySlug: 'capitola',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.9 },
+        cityProfile: {
+          localNote: 'Capitola is a small coastal village on Monterey Bay with charming beach-town character and morning marine layer similar to Santa Cruz. The mild coastal climate and high PG&E rates make solar plus battery a popular choice for local homeowners.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Capitola?',
+              a: 'Yes. Capitola processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Coastal properties may require additional review; your solar installer manages all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in coastal Capitola?',
+              a: 'Yes. Capitola gets an estimated 4.9 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the mild coastal climate keeping energy use moderate make solar with battery storage financially attractive and provide valuable backup power during outages.'
+            },
+            {
+              q: 'How much sun does Capitola get for solar?',
+              a: 'Capitola averages an estimated 4.9 peak sun hours per day. The coastal location brings morning marine layer that typically clears by midday, allowing strong afternoon solar production. Hillside properties above the fog capture even more sun for excellent year-round solar output.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'San Benito County',
+    regionSlug: 'san-benito-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves all of San Benito County with residential rates averaging $0.44/kWh. The county\'s hot inland summers and high utility costs make solar and battery systems an excellent investment for reducing energy expenses and gaining grid independence.'
+      },
+      permitOffice: {
+        name: 'San Benito County Building Department',
+        jurisdiction: 'San Benito County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'San Benito County processes solar permits through the Building Department with typical 2-4 week turnaround. The county is small and permitting is generally straightforward. Incorporated cities like Hollister have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 13 (Inland Valley)',
+        description: 'San Benito County has a hot inland valley climate with dry summers, minimal fog, and strong year-round solar production. High summer temperatures drive significant cooling loads, making solar plus battery ideal for managing peak energy costs.'
+      },
+      countyContext: 'San Benito County is a small agricultural county inland from the Monterey Bay coast, centered on Hollister and the San Juan Valley. The hot inland climate sees minimal coastal fog influence, delivering excellent solar potential with high summer production. Fast population growth and high PG&E rates make solar plus battery storage very attractive for new and existing homeowners.'
+    },
+    cities: [
+      {
+        city: 'Hollister',
+        citySlug: 'hollister',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.4 },
+        cityProfile: {
+          localNote: 'Hollister is the county seat and largest city in San Benito County, experiencing hot inland summers with high cooling demand. The city\'s flat valley terrain and minimal fog create ideal conditions for rooftop solar installations.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Hollister?',
+              a: 'Yes. Hollister processes solar permits through the City Building Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Hollister with PG&E rates?',
+              a: 'Absolutely. PG&E charges $0.44/kWh in Hollister, and hot summers drive high AC bills. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. Hollister gets an estimated 5.4 peak sun hours daily — excellent for solar production.'
+            },
+            {
+              q: 'How much sun does Hollister get for solar?',
+              a: 'Hollister averages an estimated 5.4 peak sun hours per day with minimal coastal fog influence. The hot inland valley climate delivers strong year-round solar production with peak summer output aligned perfectly with air conditioning demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'San Juan Bautista',
+        citySlug: 'san-juan-bautista',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'San Juan Bautista is a historic mission town in the San Juan Valley with mild inland climate and rolling hillside terrain. The city\'s agricultural setting and moderate temperatures create strong solar potential with year-round production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in San Juan Bautista?',
+              a: 'Yes. San Juan Bautista processes solar permits through San Benito County Building Department with typical 2-4 week turnaround. Historic properties may require additional review; your solar installer manages all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in San Juan Bautista?',
+              a: 'Yes. San Juan Bautista gets an estimated 5.3 peak sun hours daily with minimal fog. PG&E rates at $0.44/kWh make solar with battery storage a smart financial decision, locking in energy costs and providing backup power during outages.'
+            },
+            {
+              q: 'How much sun does San Juan Bautista get for solar?',
+              a: 'San Juan Bautista averages an estimated 5.3 peak sun hours per day. The inland valley location has minimal marine layer influence, delivering consistent year-round solar production with strong output throughout summer and fall.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'San Luis Obispo County',
+    regionSlug: 'san-luis-obispo-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves all of San Luis Obispo County with residential rates averaging $0.44/kWh. The county spans mild coastal areas and hot inland wine country, both offering excellent solar potential. High utility costs make solar and battery systems very attractive across the region.'
+      },
+      permitOffice: {
+        name: 'San Luis Obispo County Planning and Building Department',
+        jurisdiction: 'San Luis Obispo County',
+        typicalTurnaround: '3-5 weeks',
+        note: 'San Luis Obispo County processes solar permits through Planning and Building with typical 3-5 week turnaround. Coastal zone properties require Coastal Commission review. Incorporated cities like SLO, Paso Robles, and Pismo Beach have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 3 (Coastal) / Zone 13 (Inland)',
+        description: 'San Luis Obispo County spans mild coastal areas (SLO, Pismo Beach, Morro Bay) and hot inland wine country (Paso Robles, Atascadero). Coastal areas see morning marine layer with afternoon sun; inland valleys experience intense summer heat with very strong solar production potential.'
+      },
+      countyContext: 'San Luis Obispo County stretches from the scenic Pacific coast to the hot inland wine country of Paso Robles. Coastal cities enjoy mild Mediterranean climates with morning fog that burns off by midday, while inland areas see intense summer heat ideal for solar production. The county\'s mix of coastal charm and agricultural inland valleys, combined with high PG&E rates, makes solar plus battery an excellent investment across all communities.'
+    },
+    cities: [
+      {
+        city: 'San Luis Obispo',
+        citySlug: 'san-luis-obispo',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.2 },
+        cityProfile: {
+          localNote: 'San Luis Obispo is a vibrant college town nestled in a coastal valley with morning marine layer that typically clears by midday. The city\'s mild climate and environmentally conscious community drive strong adoption of solar plus battery for clean energy independence.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in San Luis Obispo?',
+              a: 'Yes. The City of San Luis Obispo Community Development Department processes solar permits with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in San Luis Obispo?',
+              a: 'Yes. SLO gets an estimated 5.2 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the city\'s strong environmental ethos make solar with battery storage both economically and ecologically attractive for energy independence.'
+            },
+            {
+              q: 'How much sun does San Luis Obispo get for solar?',
+              a: 'San Luis Obispo averages an estimated 5.2 peak sun hours per day. The coastal valley location brings morning marine layer that typically clears by late morning, allowing strong afternoon solar production. Hillside properties capture even more sun for excellent year-round output.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Paso Robles',
+        citySlug: 'paso-robles',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Paso Robles sits in hot inland wine country with intense summer heat and minimal coastal influence. The city\'s vineyards and agricultural setting experience very strong solar production potential aligned with high summer cooling demand.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Paso Robles?',
+              a: 'Yes. Paso Robles processes solar permits through the City Community Development Department with typical 2-3 week turnaround. The straightforward permitting and flat valley terrain make installations smooth; your installer handles all coordination.'
+            },
+            {
+              q: 'Is off-grid solar worth it in hot Paso Robles?',
+              a: 'Absolutely. Paso Robles experiences very hot summers driving high AC bills on PG&E\'s $0.44/kWh rates. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. Paso gets an estimated 5.7 peak sun hours daily — excellent for solar production.'
+            },
+            {
+              q: 'How much sun does Paso Robles get for solar?',
+              a: 'Paso Robles averages an estimated 5.7 peak sun hours per day, among the highest in SLO County. The hot inland wine country climate has minimal fog and intense summer sun, delivering very strong year-round solar output aligned with high air conditioning demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Atascadero',
+        citySlug: 'atascadero',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.5 },
+        cityProfile: {
+          localNote: 'Atascadero sits between coastal SLO and inland Paso Robles, experiencing transitional climate with warm summers and minimal fog. The city\'s hillside terrain and strong solar exposure make rooftop installations highly productive.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Atascadero?',
+              a: 'Yes. Atascadero processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Atascadero?',
+              a: 'Yes. Atascadero gets an estimated 5.5 peak sun hours daily with minimal coastal fog. PG&E rates at $0.44/kWh and warm summers driving moderate cooling demand make solar with battery storage a smart long-term investment for energy independence.'
+            },
+            {
+              q: 'How much sun does Atascadero get for solar?',
+              a: 'Atascadero averages an estimated 5.5 peak sun hours per day, benefiting from transitional climate between coast and inland valleys. The city experiences less fog than coastal SLO and cooler temps than Paso, delivering strong year-round solar production.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Arroyo Grande',
+        citySlug: 'arroyo-grande',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.1 },
+        cityProfile: {
+          localNote: 'Arroyo Grande sits in a coastal valley near Pismo Beach with morning marine layer that typically burns off by midday. The city\'s mild climate and proximity to the coast create solid solar potential with moderate energy demand.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Arroyo Grande?',
+              a: 'Yes. Arroyo Grande processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Coastal properties may require additional review; your installer handles all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Arroyo Grande?',
+              a: 'Yes. Arroyo Grande gets an estimated 5.1 peak sun hours daily as morning fog clears by afternoon. PG&E rates at $0.44/kWh and the mild coastal climate make solar with battery storage financially attractive and provide valuable backup power during outages.'
+            },
+            {
+              q: 'How much sun does Arroyo Grande get for solar?',
+              a: 'Arroyo Grande averages an estimated 5.1 peak sun hours per day. The coastal valley location brings morning marine layer that typically clears by late morning, allowing strong afternoon solar production with consistent year-round output.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Pismo Beach',
+        citySlug: 'pismo-beach',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Pismo Beach is a coastal resort town on the Pacific with morning marine layer and mild year-round climate. The city\'s beach-town character and moderate energy use paired with high PG&E rates make solar plus battery a popular choice.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Pismo Beach?',
+              a: 'Yes. Pismo Beach processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Coastal zone properties require additional review; your solar installer manages all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in coastal Pismo Beach?',
+              a: 'Yes. Pismo Beach gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the mild coastal climate keeping energy use moderate make solar with battery storage a smart investment for cost savings and resilience.'
+            },
+            {
+              q: 'How much sun does Pismo Beach get for solar?',
+              a: 'Pismo Beach averages an estimated 5.0 peak sun hours per day. The coastal location brings morning marine layer that typically clears by midday, allowing strong afternoon solar production. South-facing rooftops capture excellent year-round sun for solid solar output.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Santa Barbara County',
+    regionSlug: 'santa-barbara-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'SCE',
+        avgResidentialRatePerKwh: 0.40,
+        note: 'Southern California Edison (SCE) serves most of Santa Barbara County with residential rates averaging $0.40/kWh. The county\'s coastal Mediterranean climate and affluent communities make solar and battery systems very attractive for energy independence and cost savings.'
+      },
+      permitOffice: {
+        name: 'Santa Barbara County Planning and Development',
+        jurisdiction: 'Santa Barbara County',
+        typicalTurnaround: '3-5 weeks',
+        note: 'Santa Barbara County processes solar permits through Planning and Development with typical 3-5 week turnaround. Coastal zone properties require Coastal Commission review. Incorporated cities like Santa Barbara, Santa Maria, and Lompoc have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 6 (Coastal)',
+        description: 'Santa Barbara County has a mild Mediterranean coastal climate with morning marine layer that typically burns off by midday. Cool summers and mild winters keep energy demand moderate while still providing strong solar production potential, especially on south-facing slopes.'
+      },
+      countyContext: 'Santa Barbara County stretches along the scenic Central Coast with iconic coastal mountains and Mediterranean climate. Morning fog is common but typically clears by afternoon, yielding solid solar production. The county\'s affluent communities, environmental consciousness, and high SCE utility rates make solar plus battery storage highly attractive for energy independence, cost savings, and resilience during wildfire season outages.'
+    },
+    cities: [
+      {
+        city: 'Santa Barbara',
+        citySlug: 'santa-barbara',
+        utility: 'SCE',
+        localData: { ...SCE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Santa Barbara is a coastal city with iconic Mediterranean architecture and morning fog that typically clears by midday. The city\'s affluent community and environmental values drive strong adoption of solar plus battery for clean energy independence.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Santa Barbara?',
+              a: 'Yes. The City of Santa Barbara Community Development Department processes solar permits with typical 3-4 week turnaround. Coastal and historic properties may require additional review; your installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Santa Barbara?',
+              a: 'Yes. Santa Barbara gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. SCE rates at $0.40/kWh and the city\'s strong environmental ethos make solar with battery storage both economically and ecologically attractive for energy independence.'
+            },
+            {
+              q: 'How much sun does Santa Barbara get for solar?',
+              a: 'Santa Barbara averages an estimated 5.0 peak sun hours per day. Morning marine layer typically clears by late morning or early afternoon, allowing strong solar production. South-facing rooftops and hillside properties in the Riviera capture even more sun for excellent year-round output.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Santa Maria',
+        citySlug: 'santa-maria',
+        utility: 'SCE',
+        localData: { ...SCE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Santa Maria sits in the inland Santa Maria Valley agricultural region with less marine layer influence than coastal Santa Barbara. The city\'s warmer inland climate and agricultural setting deliver stronger solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Santa Maria?',
+              a: 'Yes. Santa Maria processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Santa Maria?',
+              a: 'Yes. Santa Maria gets an estimated 5.3 peak sun hours daily due to its inland valley location with less fog than coastal areas. SCE rates at $0.40/kWh and the warm climate make solar with battery storage a smart long-term investment for cost savings and energy independence.'
+            },
+            {
+              q: 'How much sun does Santa Maria get for solar?',
+              a: 'Santa Maria averages an estimated 5.3 peak sun hours per day, higher than coastal Santa Barbara due to less marine layer influence. The inland valley location delivers consistent year-round solar production with strong summer output.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Lompoc',
+        citySlug: 'lompoc',
+        utility: 'SCE',
+        localData: { ...SCE, peakSunHoursEstimate: 5.1 },
+        cityProfile: {
+          localNote: 'Lompoc sits in a coastal valley near Vandenberg Space Force Base with morning fog that typically clears by midday. The city\'s mild climate and moderate energy use paired with SCE rates make solar plus battery a cost-effective choice.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Lompoc?',
+              a: 'Yes. Lompoc processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your installer handles all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Lompoc?',
+              a: 'Yes. Lompoc gets an estimated 5.1 peak sun hours daily as morning fog clears by afternoon. SCE rates at $0.40/kWh and the mild coastal climate make solar with battery storage financially attractive and provide valuable backup power during outages.'
+            },
+            {
+              q: 'How much sun does Lompoc get for solar?',
+              a: 'Lompoc averages an estimated 5.1 peak sun hours per day. The coastal valley location brings morning marine layer that typically clears by late morning, allowing strong afternoon solar production with consistent year-round output.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Goleta',
+        citySlug: 'goleta',
+        utility: 'SCE',
+        localData: { ...SCE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Goleta sits just west of Santa Barbara with similar coastal Mediterranean climate and morning fog patterns. The city\'s flat terrain and moderate energy use create solid solar potential with high return on investment.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Goleta?',
+              a: 'Yes. Goleta processes solar permits through the City Planning and Environmental Review Department with typical 3-4 week turnaround. Coastal properties may require additional review; your solar installer manages all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Goleta?',
+              a: 'Yes. Goleta gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. SCE rates at $0.40/kWh and the mild coastal climate make solar with battery storage a smart investment for locking in energy costs and gaining backup power resilience.'
+            },
+            {
+              q: 'How much sun does Goleta get for solar?',
+              a: 'Goleta averages an estimated 5.0 peak sun hours per day with morning marine layer that typically clears by midday. The coastal location delivers strong afternoon solar production, and the mild climate keeps overall energy use moderate for excellent solar ROI.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Carpinteria',
+        citySlug: 'carpinteria',
+        utility: 'SCE',
+        localData: { ...SCE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Carpinteria is a small coastal beach town southeast of Santa Barbara with morning marine layer and mild year-round climate. The city\'s beach-town character and moderate energy use paired with SCE rates make solar plus battery a popular choice.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Carpinteria?',
+              a: 'Yes. Carpinteria processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Coastal zone properties require additional review; your solar installer manages all permitting and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in coastal Carpinteria?',
+              a: 'Yes. Carpinteria gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. SCE rates at $0.40/kWh and the mild coastal climate keeping energy use moderate make solar with battery storage a smart financial decision for cost savings and resilience.'
+            },
+            {
+              q: 'How much sun does Carpinteria get for solar?',
+              a: 'Carpinteria averages an estimated 5.0 peak sun hours per day. The coastal location brings morning marine layer that typically clears by midday, allowing strong afternoon solar production. South-facing rooftops capture excellent year-round sun for solid solar output.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Kings County',
+    regionSlug: 'kings-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E / SCE',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'Kings County is served by both PG&E and Southern California Edison depending on location, with residential rates averaging $0.40-0.44/kWh. The county\'s hot Central Valley summers and high utility costs make solar and battery systems an excellent investment for managing peak energy expenses.'
+      },
+      permitOffice: {
+        name: 'Kings County Community Development Agency',
+        jurisdiction: 'Kings County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'Kings County processes solar permits through the Community Development Agency with typical 2-4 week turnaround. The county is rural and agricultural with straightforward permitting. Incorporated cities like Hanford and Lemoore have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 13 (Hot Central Valley)',
+        description: 'Kings County has a very hot Central Valley climate with intense summer heat, minimal coastal fog, and high cooling loads. The county experiences very strong year-round solar production potential, with peak summer output aligned perfectly with air conditioning demand.'
+      },
+      countyContext: 'Kings County sits in the hot southern San Joaquin Valley agricultural heartland, centered on Hanford and Lemoore. The county experiences intense summer heat with minimal coastal influence, delivering excellent solar potential and very high summer production. Agricultural land use and high utility rates make solar plus battery storage very attractive for both residential and agricultural applications.'
+    },
+    cities: [
+      {
+        city: 'Hanford',
+        citySlug: 'hanford',
+        utility: 'PG&E / SCE',
+        localData: { ...PGE, peakSunHoursEstimate: 5.6 },
+        cityProfile: {
+          localNote: 'Hanford is the county seat of Kings County in the hot San Joaquin Valley, experiencing very hot summers with high cooling demand. The city\'s flat agricultural terrain and minimal fog create ideal conditions for rooftop solar installations.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Hanford?',
+              a: 'Yes. Hanford processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in hot Hanford?',
+              a: 'Absolutely. Hanford experiences very hot summers driving high AC bills on utility rates of $0.44/kWh. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. Hanford gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
+            },
+            {
+              q: 'How much sun does Hanford get for solar?',
+              a: 'Hanford averages an estimated 5.6 peak sun hours per day with minimal coastal fog influence. The hot Central Valley climate delivers very strong year-round solar production with peak summer output aligned perfectly with air conditioning demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Lemoore',
+        citySlug: 'lemoore',
+        utility: 'PG&E / SCE',
+        localData: { ...PGE, peakSunHoursEstimate: 5.6 },
+        cityProfile: {
+          localNote: 'Lemoore sits in the southern San Joaquin Valley near NAS Lemoore with very hot summers and high cooling loads. The city\'s agricultural setting and flat valley terrain deliver excellent solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Lemoore?',
+              a: 'Yes. Lemoore processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Lemoore?',
+              a: 'Yes. Lemoore experiences very hot summers driving high AC bills on utility rates around $0.44/kWh. Off-grid solar with battery storage locks in energy costs and provides reliable power. Lemoore gets an estimated 5.6 peak sun hours daily — ideal for solar production.'
+            },
+            {
+              q: 'How much sun does Lemoore get for solar?',
+              a: 'Lemoore averages an estimated 5.6 peak sun hours per day. The hot San Joaquin Valley location delivers very strong year-round solar output with intense summer production that matches peak air conditioning demand for maximum savings.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Avenal',
+        citySlug: 'avenal',
+        utility: 'PG&E / SCE',
+        localData: { ...PGE, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Avenal sits in the western San Joaquin Valley near the Kettleman Hills with very hot summers and minimal vegetation. The city\'s remote location and intense heat create exceptional solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Avenal?',
+              a: 'Yes. Avenal processes solar permits through Kings County Community Development Agency with typical 2-4 week turnaround. The rural location and straightforward permitting make installations smooth; your installer handles all coordination.'
+            },
+            {
+              q: 'Is off-grid solar worth it in remote Avenal?',
+              a: 'Absolutely. Avenal experiences very hot summers and remote location with high utility costs. Off-grid solar with battery storage locks in energy costs and provides resilience. Avenal gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+            },
+            {
+              q: 'How much sun does Avenal get for solar?',
+              a: 'Avenal averages an estimated 5.7 peak sun hours per day, among the highest in Kings County. The western valley location with minimal fog and intense summer heat delivers exceptional year-round solar output aligned with very high cooling demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Corcoran',
+        citySlug: 'corcoran',
+        utility: 'PG&E / SCE',
+        localData: { ...PGE, peakSunHoursEstimate: 5.6 },
+        cityProfile: {
+          localNote: 'Corcoran is a small agricultural city in the southern San Joaquin Valley with very hot summers and flat farmland terrain. The city\'s agricultural economy and high cooling demand make solar plus battery ideal for energy cost management.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Corcoran?',
+              a: 'Yes. Corcoran processes solar permits through the City Community Development Department with typical 2-3 week turnaround. The agricultural setting and straightforward permitting make installations smooth; your installer handles all coordination.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Corcoran?',
+              a: 'Yes. Corcoran experiences very hot summers driving high AC bills on utility rates around $0.44/kWh. Off-grid solar with battery storage locks in energy costs and handles peak loads. Corcoran gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
+            },
+            {
+              q: 'How much sun does Corcoran get for solar?',
+              a: 'Corcoran averages an estimated 5.6 peak sun hours per day with minimal fog. The hot agricultural valley climate delivers very strong year-round solar production with peak summer output aligned perfectly with air conditioning and agricultural irrigation demand.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Tulare County',
+    regionSlug: 'tulare-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'SCE / PG&E',
+        avgResidentialRatePerKwh: 0.40,
+        note: 'Tulare County is primarily served by Southern California Edison with some areas served by PG&E, with residential rates averaging $0.40/kWh. The county\'s very hot Central Valley summers and high cooling loads make solar and battery systems an excellent investment for reducing energy expenses.'
+      },
+      permitOffice: {
+        name: 'Tulare County Resource Management Agency',
+        jurisdiction: 'Tulare County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'Tulare County processes solar permits through the Resource Management Agency with typical 2-4 week turnaround. The county is agricultural and permitting is straightforward. Incorporated cities like Visalia, Tulare, and Porterville have separate building departments.'
+      },
+      climateZone: {
+        zone: 'Zone 13 (Hot Central Valley)',
+        description: 'Tulare County has a very hot Central Valley climate with intense summer heat exceeding 100°F regularly, minimal coastal fog, and very high cooling loads. The county experiences exceptional year-round solar production potential with very strong summer peak output.'
+      },
+      countyContext: 'Tulare County sits in the heart of the San Joaquin Valley agricultural region with some of the hottest summer temperatures in California. Cities like Visalia, Tulare, and Porterville experience intense heat with minimal coastal influence, delivering exceptional solar potential and very high summer production. The county\'s agricultural economy and very high cooling costs make solar plus battery storage highly attractive for both residential and agricultural applications.'
+    },
+    cities: [
+      {
+        city: 'Visalia',
+        citySlug: 'visalia',
+        utility: 'SCE / PG&E',
+        localData: { ...SCE, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Visalia is the county seat and largest city in Tulare County, experiencing very hot summers with temperatures regularly exceeding 100°F. The city\'s flat agricultural terrain and intense heat create exceptional conditions for solar production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Visalia?',
+              a: 'Yes. Visalia processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in very hot Visalia?',
+              a: 'Absolutely. Visalia experiences very hot summers driving extremely high AC bills on SCE rates of $0.40/kWh. Off-grid solar with battery storage locks in energy costs and handles intense cooling loads. Visalia gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+            },
+            {
+              q: 'How much sun does Visalia get for solar?',
+              a: 'Visalia averages an estimated 5.7 peak sun hours per day, among the highest in California. The very hot Central Valley climate with minimal fog delivers exceptional year-round solar production with intense summer output that perfectly aligns with air conditioning demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Tulare',
+        citySlug: 'tulare',
+        utility: 'SCE / PG&E',
+        localData: { ...SCE, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Tulare is an agricultural city in the heart of the San Joaquin Valley with very hot summers and high cooling demand. The city\'s flat valley terrain and intense heat deliver exceptional solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Tulare?',
+              a: 'Yes. Tulare processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Tulare?',
+              a: 'Yes. Tulare experiences very hot summers driving extremely high AC bills on SCE rates around $0.40/kWh. Off-grid solar with battery storage locks in energy costs and provides reliable power. Tulare gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+            },
+            {
+              q: 'How much sun does Tulare get for solar?',
+              a: 'Tulare averages an estimated 5.7 peak sun hours per day. The very hot agricultural valley climate delivers exceptional year-round solar output with intense summer production that matches peak air conditioning and agricultural energy demand for maximum savings.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Porterville',
+        citySlug: 'porterville',
+        utility: 'SCE / PG&E',
+        localData: { ...SCE, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Porterville sits at the eastern edge of the San Joaquin Valley near the Sierra Nevada foothills, experiencing very hot summers with high cooling loads. The city\'s position between valley and foothills delivers exceptional solar potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Porterville?',
+              a: 'Yes. Porterville processes solar permits through the City Development Services Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Porterville?',
+              a: 'Absolutely. Porterville experiences very hot summers driving extremely high AC bills on SCE rates of $0.40/kWh. Off-grid solar with battery storage locks in energy costs and handles intense cooling loads. Porterville gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+            },
+            {
+              q: 'How much sun does Porterville get for solar?',
+              a: 'Porterville averages an estimated 5.7 peak sun hours per day. The eastern valley location near the foothills with minimal fog and very hot summers delivers exceptional year-round solar output with intense summer production aligned with air conditioning demand.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Dinuba',
+        citySlug: 'dinuba',
+        utility: 'SCE / PG&E',
+        localData: { ...SCE, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Dinuba is a small agricultural city in the central San Joaquin Valley with very hot summers and flat farmland terrain. The city\'s agricultural economy and intense heat make solar plus battery ideal for energy cost management.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Dinuba?',
+              a: 'Yes. Dinuba processes solar permits through the City Community Development Department with typical 2-3 week turnaround. The agricultural setting and straightforward permitting make installations smooth; your installer handles all coordination.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Dinuba?',
+              a: 'Yes. Dinuba experiences very hot summers driving extremely high AC bills on SCE rates around $0.40/kWh. Off-grid solar with battery storage locks in energy costs and handles peak loads. Dinuba gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+            },
+            {
+              q: 'How much sun does Dinuba get for solar?',
+              a: 'Dinuba averages an estimated 5.7 peak sun hours per day with minimal fog. The very hot agricultural valley climate delivers exceptional year-round solar production with intense summer output aligned perfectly with air conditioning and agricultural irrigation demand.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'San Francisco County',
+    regionSlug: 'san-francisco-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves all of San Francisco with residential rates averaging $0.44/kWh, among the highest in California. While the city\'s foggy coastal climate and dense urban environment present solar challenges, high utility costs and strong environmental values make solar viable for suitable properties.'
+      },
+      permitOffice: {
+        name: 'San Francisco Department of Building Inspection',
+        jurisdiction: 'City and County of San Francisco',
+        typicalTurnaround: '3-5 weeks',
+        note: 'San Francisco processes solar permits through the Department of Building Inspection with typical 3-5 week turnaround. The city has strict building codes and seismic requirements. SolarAPP+ is available for eligible systems to expedite approval.'
+      },
+      climateZone: {
+        zone: 'Zone 3 (Coastal)',
+        description: 'San Francisco has a unique foggy coastal microclimate with cool summers, mild winters, and persistent marine layer influence. The city experiences lower solar production than inland areas, but south-facing rooftops and properties in sunnier neighborhoods like the Mission and Noe Valley still achieve viable solar output.'
+      },
+      countyContext: 'San Francisco is a dense urban city and county with iconic foggy coastal climate and limited single-family housing stock. Many residents live in condos or multi-unit buildings where rooftop solar may require HOA approval or shared systems. However, single-family homes with south-facing roofs in sunnier neighborhoods can achieve solid solar production. High PG&E rates, strong environmental values, and renewable energy mandates make solar attractive where physically viable.'
+    },
+    cities: [
+      {
+        city: 'San Francisco',
+        citySlug: 'san-francisco',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.9 },
+        cityProfile: {
+          localNote: 'San Francisco is a dense urban city with foggy coastal climate and varied microclimates. Foggy western neighborhoods near the ocean see less sun, while inland areas like the Mission, Noe Valley, and Potrero Hill get stronger solar production. High PG&E rates and environmental values make solar viable for suitable properties.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in San Francisco?',
+              a: 'Yes. San Francisco requires permits through the Department of Building Inspection with typical 3-5 week turnaround. SolarAPP+ can expedite eligible systems. Multi-unit buildings may need HOA approval. Your solar installer handles all permitting and coordinates inspections.'
+            },
+            {
+              q: 'Is off-grid solar worth it in foggy San Francisco?',
+              a: 'It depends on location and roof orientation. Foggy western neighborhoods see lower production, but sunnier areas like the Mission and Noe Valley get an estimated 4.9 peak sun hours daily. PG&E rates at $0.44/kWh make solar financially viable on south-facing roofs in sunnier microclimates. A site assessment determines feasibility.'
+            },
+            {
+              q: 'How much sun does San Francisco get for solar?',
+              a: 'San Francisco averages an estimated 4.9 peak sun hours per day citywide, with significant variation by neighborhood. Western areas near the ocean are foggier; eastern and southern neighborhoods like the Mission, Potrero, and Noe Valley see more sun. South-facing roofs in sunnier areas achieve viable solar production despite the fog.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Trinity County',
+    regionSlug: 'trinity-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E / Trinity PUD',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'Trinity County is served primarily by PG&E with some areas covered by Trinity Public Utilities District, with residential rates averaging $0.44/kWh. The county\'s remote mountain location, frequent wildfire-related power shutoffs (PSPS), and high utility costs make solar with battery backup an excellent investment for energy resilience.'
+      },
+      permitOffice: {
+        name: 'Trinity County Building Department',
+        jurisdiction: 'Trinity County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'Trinity County processes solar permits through the Building Department with typical 2-4 week turnaround. The county is very rural and mountainous with straightforward permitting. Snow load and wildfire considerations may apply at higher elevations.'
+      },
+      climateZone: {
+        zone: 'Zone 1 (Mountain)',
+        description: 'Trinity County has a mountain climate with hot dry summers, cold winters with snow at higher elevations, and forested terrain. Solar production varies by elevation and forest shading, but south-facing cleared sites receive strong summer sun. The remote location and wildfire risk make battery backup highly valuable.'
+      },
+      countyContext: 'Trinity County is a remote forested mountain county in far northwestern California, centered on Weaverville and the Trinity Alps. The county experiences hot summers with strong solar potential on cleared sites, though dense forest can create shading challenges. Frequent wildfire-related PSPS shutoffs and winter storm outages make solar plus battery storage essential for energy resilience. High PG&E rates and remote grid infrastructure further drive solar adoption.'
+    },
+    cities: [
+      {
+        city: 'Weaverville',
+        citySlug: 'weaverville',
+        utility: 'PG&E / Trinity PUD',
+        localData: { ...PGE, peakSunHoursEstimate: 5.2 },
+        cityProfile: {
+          localNote: 'Weaverville is the county seat and largest town in Trinity County, sitting in a mountain valley surrounded by dense forest. The town experiences hot summers with strong solar potential on south-facing cleared sites, though forest shading requires careful site assessment. Frequent PSPS outages make battery backup essential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Weaverville?',
+              a: 'Yes. Weaverville requires permits through Trinity County Building Department with typical 2-4 week processing. Mountain terrain and forest shading may require site-specific analysis. Your solar installer handles all permitting and site assessment.'
+            },
+            {
+              q: 'Is off-grid solar worth it in remote Weaverville?',
+              a: 'Absolutely. Weaverville experiences frequent wildfire-related PSPS shutoffs and winter storm outages due to its remote mountain location. Off-grid solar with battery storage provides critical energy resilience and locks in costs against PG&E\'s $0.44/kWh rates. Weaverville gets an estimated 5.2 peak sun hours on unshaded south-facing sites.'
+            },
+            {
+              q: 'How does forest terrain affect solar in Weaverville?',
+              a: 'Weaverville sits in forested mountain terrain with tall pines and firs that can shade north-facing slopes. South-facing properties on cleared sites or above tree line get excellent solar exposure at an estimated 5.2 peak sun hours daily. A site assessment determines shading impact and optimal panel placement for mountain terrain.'
+            }
+          ]
+        }
+      },
+    ],
+  },
 ];
 
 export interface MarketParams {

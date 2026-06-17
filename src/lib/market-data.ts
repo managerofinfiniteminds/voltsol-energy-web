@@ -115,6 +115,30 @@ const PASADENA_POWER: MarketCityLocalData = {
   peakSunHoursEstimate: 5.7,
 };
 
+const BURBANK_POWER: MarketCityLocalData = {
+  avgMonthlyBillEstimate: 165,
+  avgSystemSizeKwEstimate: 6.5,
+  avgSavingsYear1Estimate: 1350,
+  avgPaybackYearsEstimate: 8,
+  peakSunHoursEstimate: 5.7,
+};
+
+const GLENDALE_POWER: MarketCityLocalData = {
+  avgMonthlyBillEstimate: 165,
+  avgSystemSizeKwEstimate: 6.5,
+  avgSavingsYear1Estimate: 1350,
+  avgPaybackYearsEstimate: 8,
+  peakSunHoursEstimate: 5.8,
+};
+
+const IID: MarketCityLocalData = {
+  avgMonthlyBillEstimate: 120,
+  avgSystemSizeKwEstimate: 7.5,
+  avgSavingsYear1Estimate: 950,
+  avgPaybackYearsEstimate: 11,
+  peakSunHoursEstimate: 6.5,
+};
+
 export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
   {
     county: 'Placer County',
@@ -2667,6 +2691,121 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
           ]
         }
       },
+      {
+        city: 'Burbank',
+        citySlug: 'burbank',
+        utility: 'Burbank Water & Power',
+        localData: { ...BURBANK_POWER, avgMonthlyBillEstimate: 170 },
+        cityProfile: {
+          localNote: 'Burbank is served by Burbank Water & Power, a municipal utility with lower rates than SCE. The city sits in the Verdugo Mountains foothills with warm summers. Solar value comes from backup power, energy independence, and offsetting moderate cooling costs.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Burbank?',
+              a: 'Yes. Burbank has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Burbank with BWP rates?',
+              a: 'Burbank Water & Power rates average $0.22/kWh, lower than SCE. Solar payback is longer, but off-grid systems provide backup power during outages, lock in energy costs, and offset moderate cooling demand from the foothill location.'
+            },
+            {
+              q: 'How much sun does Burbank get for solar?',
+              a: 'Burbank averages around 5.7 peak sun hours per day in Zone 9/10. The foothill location provides strong solar production with warm summers and minimal marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Inglewood',
+        citySlug: 'inglewood',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 240, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Inglewood sits in southwestern Los Angeles County near LAX with moderate marine layer influence. The area receives strong solar production despite coastal proximity, and SCE rates make solar economics favorable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Inglewood?',
+              a: 'Yes. Inglewood has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Inglewood with SCE rates?',
+              a: 'Yes. Inglewood residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the near-coastal location.'
+            },
+            {
+              q: 'How much sun does Inglewood get for solar?',
+              a: 'Inglewood averages around 5.7 peak sun hours per day in Zone 8. Marine layer affects morning production, but solar generation remains strong with afternoon clearing.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Norwalk',
+        citySlug: 'norwalk',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 245, peakSunHoursEstimate: 5.8 },
+        cityProfile: {
+          localNote: 'Norwalk sits in southeastern Los Angeles County with mild inland climate and moderate marine layer influence. The area experiences warm summers with strong solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Norwalk?',
+              a: 'Yes. Norwalk has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Norwalk with SCE rates?',
+              a: 'Yes. Norwalk residents pay SCE rates around $0.36/kWh with moderate summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+            },
+            {
+              q: 'How much sun does Norwalk get for solar?',
+              a: 'Norwalk averages around 5.8 peak sun hours per day in Zone 9. The inland location provides strong solar production with warm summers and moderate marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Carson',
+        citySlug: 'carson',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 245, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Carson sits in the South Bay area with moderate coastal influence. The area receives strong solar production despite marine layer proximity, and SCE rates make solar economics favorable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Carson?',
+              a: 'Yes. Carson has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Carson with SCE rates?',
+              a: 'Yes. Carson residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the South Bay location.'
+            },
+            {
+              q: 'How much sun does Carson get for solar?',
+              a: 'Carson averages around 5.7 peak sun hours per day in Zone 8. Marine layer affects morning production, but solar generation remains strong year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Whittier',
+        citySlug: 'whittier',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 250, peakSunHoursEstimate: 5.8 },
+        cityProfile: {
+          localNote: 'Whittier sits in the Puente Hills with warm inland climate and hillside terrain. The area experiences moderate to high cooling demand with excellent solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Whittier?',
+              a: 'Yes. Whittier has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Whittier with SCE rates?',
+              a: 'Yes. Whittier residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Whittier get for solar?',
+              a: 'Whittier averages around 5.8 peak sun hours per day in Zone 9/10. The hillside location provides strong solar production with warm summers and minimal marine layer.'
+            }
+          ]
+        }
+      },
     ],
   },
   {
@@ -3177,6 +3316,121 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
           ]
         }
       },
+      {
+        city: 'Poway',
+        citySlug: 'poway',
+        utility: 'SDG&E',
+        localData: { ...SDGE, avgMonthlyBillEstimate: 285, peakSunHoursEstimate: 6.0 },
+        cityProfile: {
+          localNote: 'Poway sits in an inland valley north of San Diego with hot summers and minimal marine layer. The area experiences high cooling demand with excellent solar production, and SDG&E rates make solar economics exceptionally strong.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Poway?',
+              a: 'Yes. Poway has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Poway with SDG&E rates?',
+              a: 'Absolutely. Poway residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Poway get for solar?',
+              a: 'Poway averages around 6.0 peak sun hours per day in Zone 10. The inland valley location provides excellent solar production with hot summers and no marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Santee',
+        citySlug: 'santee',
+        utility: 'SDG&E',
+        localData: { ...SDGE, avgMonthlyBillEstimate: 280, peakSunHoursEstimate: 6.1 },
+        cityProfile: {
+          localNote: 'Santee sits in an inland valley east of San Diego with hot summers and minimal marine layer. The area experiences high cooling demand with excellent solar production, and SDG&E rates make solar economics exceptionally strong.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Santee?',
+              a: 'Yes. Santee has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Santee with SDG&E rates?',
+              a: 'Absolutely. Santee residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Santee get for solar?',
+              a: 'Santee averages around 6.1 peak sun hours per day in Zone 10. The inland valley location provides excellent solar production with hot, clear summers.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'National City',
+        citySlug: 'national-city',
+        utility: 'SDG&E',
+        localData: { ...SDGE, avgMonthlyBillEstimate: 270, peakSunHoursEstimate: 5.8 },
+        cityProfile: {
+          localNote: 'National City sits just south of San Diego with moderate coastal influence and marine layer. The area receives strong solar production, and SDG&E rates make solar economics exceptionally favorable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in National City?',
+              a: 'Yes. National City has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in National City with SDG&E rates?',
+              a: 'Absolutely. National City residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings despite moderate cooling demand from the near-coastal location.'
+            },
+            {
+              q: 'How much sun does National City get for solar?',
+              a: 'National City averages around 5.8 peak sun hours per day in Zone 7. Marine layer affects morning production, but solar generation remains strong with afternoon clearing.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Coronado',
+        citySlug: 'coronado',
+        utility: 'SDG&E',
+        localData: { ...SDGE, avgMonthlyBillEstimate: 270, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Coronado sits on a peninsula in San Diego Bay with marine layer influence and mild coastal climate. Despite morning fog, SDG&E rates make solar economics exceptionally favorable for this affluent island community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Coronado?',
+              a: 'Yes. Coronado has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Coronado with SDG&E rates?',
+              a: 'Absolutely. Coronado residents pay SDG&E rates around $0.47/kWh. Off-grid solar with battery storage provides exceptional savings and energy independence despite moderate cooling demand from the coastal island location.'
+            },
+            {
+              q: 'How much sun does Coronado get for solar?',
+              a: 'Coronado averages around 5.7 peak sun hours per day in Zone 7. Marine layer affects morning production on the island peninsula, but solar generation remains strong with afternoon sun.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Imperial Beach',
+        citySlug: 'imperial-beach',
+        utility: 'SDG&E',
+        localData: { ...SDGE, avgMonthlyBillEstimate: 270, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Imperial Beach sits on the Pacific coast at the southernmost point of San Diego County with marine layer influence. Despite coastal fog, SDG&E rates make solar economics exceptionally favorable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Imperial Beach?',
+              a: 'Yes. Imperial Beach has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Imperial Beach with SDG&E rates?',
+              a: 'Absolutely. Imperial Beach residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal location.'
+            },
+            {
+              q: 'How much sun does Imperial Beach get for solar?',
+              a: 'Imperial Beach averages around 5.7 peak sun hours per day in Zone 7. Marine layer affects morning production at the southernmost beach, but solar generation remains strong with afternoon clearing.'
+            }
+          ]
+        }
+      },
     ],
   },
   {
@@ -3432,6 +3686,121 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
           ]
         }
       },
+      {
+        city: 'Lake Elsinore',
+        citySlug: 'lake-elsinore',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 255, peakSunHoursEstimate: 6.1 },
+        cityProfile: {
+          localNote: 'Lake Elsinore sits around its namesake lake in southwestern Riverside County with hot summers. The area experiences high cooling demand with excellent solar production, and SCE rates make solar economics strong.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Lake Elsinore?',
+              a: 'Yes. Lake Elsinore has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Lake Elsinore with SCE rates?',
+              a: 'Yes. Lake Elsinore residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during inland heat waves.'
+            },
+            {
+              q: 'How much sun does Lake Elsinore get for solar?',
+              a: 'Lake Elsinore averages around 6.1 peak sun hours per day in Zone 10. The inland valley location provides excellent solar production with hot summers and clear skies.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Wildomar',
+        citySlug: 'wildomar',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 250, peakSunHoursEstimate: 6.0 },
+        cityProfile: {
+          localNote: 'Wildomar sits in southwestern Riverside County with warm summers and growing residential development. The area experiences moderate to high cooling demand with excellent solar production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Wildomar?',
+              a: 'Yes. Wildomar has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Wildomar with SCE rates?',
+              a: 'Yes. Wildomar residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Wildomar get for solar?',
+              a: 'Wildomar averages around 6.0 peak sun hours per day in Zone 10. The inland location provides excellent solar production with warm summers and clear skies.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Coachella',
+        citySlug: 'coachella',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 285, peakSunHoursEstimate: 6.5 },
+        cityProfile: {
+          localNote: 'Coachella sits in the Coachella Valley desert with extreme summer heat. The area has exceptional solar potential with very high cooling demand that solar can effectively offset.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Coachella?',
+              a: 'Yes. Coachella has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Coachella with SCE rates?',
+              a: 'Absolutely. Coachella residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Coachella get for solar?',
+              a: 'Coachella averages around 6.5 peak sun hours per day in Zone 15. The Coachella Valley desert location provides exceptional solar production with very hot, clear summers year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Cathedral City',
+        citySlug: 'cathedral-city',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 290, peakSunHoursEstimate: 6.5 },
+        cityProfile: {
+          localNote: 'Cathedral City sits in the Coachella Valley desert adjacent to Palm Springs with extreme summer heat. The area has exceptional solar potential with very high cooling demand.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Cathedral City?',
+              a: 'Yes. Cathedral City has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Cathedral City with SCE rates?',
+              a: 'Absolutely. Cathedral City residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and backup power.'
+            },
+            {
+              q: 'How much sun does Cathedral City get for solar?',
+              a: 'Cathedral City averages around 6.5 peak sun hours per day in Zone 15. The desert location provides exceptional solar production with very hot, clear summers adjacent to Palm Springs.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Banning',
+        citySlug: 'banning',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 250, peakSunHoursEstimate: 6.2 },
+        cityProfile: {
+          localNote: 'Banning sits at the western entrance to the Coachella Valley with hot summers. The area experiences high cooling demand with excellent solar production, and SCE rates make solar economics strong.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Banning?',
+              a: 'Yes. Banning has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Banning with SCE rates?',
+              a: 'Yes. Banning residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during inland heat waves.'
+            },
+            {
+              q: 'How much sun does Banning get for solar?',
+              a: 'Banning averages around 6.2 peak sun hours per day in Zone 10/14. The pass location at the valley entrance provides excellent solar production with hot summers and clear skies.'
+            }
+          ]
+        }
+      },
     ],
   },
   {
@@ -3683,6 +4052,541 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
             {
               q: 'How much sun does Upland get for solar?',
               a: 'Upland averages around 6.0 peak sun hours per day in Zone 10. The foothill Inland Empire location provides excellent solar production with hot summers and no marine layer.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Ventura County',
+    regionSlug: 'ventura-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'SCE',
+        avgResidentialRatePerKwh: 0.36,
+        note: 'Southern California Edison (SCE) serves all of Ventura County at ~$0.36/kWh. Coastal cities experience marine layer while inland valleys see hot summers. Solar economics are strong throughout the county due to SCE rates combined with moderate to high cooling demand.'
+      },
+      permitOffice: {
+        name: 'Ventura County Resource Management Agency / Individual City Building Departments',
+        jurisdiction: 'Ventura County / individual cities',
+        typicalTurnaround: '2-3 weeks',
+        note: 'Oxnard, Thousand Oaks, Simi Valley, Ventura, and other cities have their own building departments. Unincorporated areas fall under Ventura County RMA. Coastal areas may experience marine layer permitting considerations.'
+      },
+      climateZone: {
+        zone: 'Zone 6 (coastal) / Zone 9 (inland valleys)',
+        description: 'Zone 6: coastal marine climate (Oxnard, Ventura) with marine layer influence and moderate temperatures. Zone 9: warm inland valleys (Thousand Oaks, Simi Valley, Moorpark) with hot summers and high cooling demand. Excellent solar production throughout the county.'
+      },
+      countyContext: 'Ventura County spans from the Pacific coast through the Oxnard Plain and inland to the Simi and Conejo Valleys. Coastal cities experience marine layer but receive strong solar production. Inland valleys see hot summers with moderate to high cooling demand. High SCE rates throughout drive strong solar economics. The county sits between Los Angeles and Santa Barbara with varied microclimates.'
+    },
+    cities: [
+      {
+        city: 'Oxnard',
+        citySlug: 'oxnard',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 235, peakSunHoursEstimate: 5.6 },
+        cityProfile: {
+          localNote: 'Oxnard sits on the Pacific coast with agricultural surroundings and marine layer influence. Despite coastal fog, the area receives strong solar production, and SCE rates make solar economics favorable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Oxnard?',
+              a: 'Yes. Oxnard has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Oxnard with SCE rates?',
+              a: 'Yes. Oxnard residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
+            },
+            {
+              q: 'How much sun does Oxnard get for solar?',
+              a: 'Oxnard averages around 5.6 peak sun hours per day in Zone 6. Marine layer affects morning production, but solar generation remains strong with afternoon sun clearing the fog.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Thousand Oaks',
+        citySlug: 'thousand-oaks',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 255, peakSunHoursEstimate: 5.9 },
+        cityProfile: {
+          localNote: 'Thousand Oaks sits in the Conejo Valley with warm inland climate and large homes. The area experiences hot summers with minimal marine layer interference and high cooling demand.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Thousand Oaks?',
+              a: 'Yes. Thousand Oaks has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Thousand Oaks with SCE rates?',
+              a: 'Yes. Thousand Oaks residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Thousand Oaks get for solar?',
+              a: 'Thousand Oaks averages around 5.9 peak sun hours per day in Zone 9. The inland valley location provides excellent solar production with warm summers and minimal marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Simi Valley',
+        citySlug: 'simi-valley',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 250, peakSunHoursEstimate: 5.9 },
+        cityProfile: {
+          localNote: 'Simi Valley sits in an inland valley with hot summers and minimal marine layer. The area experiences high cooling demand with excellent solar production, and SCE rates make solar economics strong.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Simi Valley?',
+              a: 'Yes. Simi Valley has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Simi Valley with SCE rates?',
+              a: 'Yes. Simi Valley residents pay SCE rates around $0.36/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Simi Valley get for solar?',
+              a: 'Simi Valley averages around 5.9 peak sun hours per day in Zone 9. The inland valley location provides excellent solar production with hot summers and no marine layer interference.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Ventura',
+        citySlug: 'ventura',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 240, peakSunHoursEstimate: 5.7 },
+        cityProfile: {
+          localNote: 'Ventura sits on the Pacific coast with marine layer influence and moderate coastal climate. Despite morning fog, the area receives strong solar production, and SCE rates make solar economics favorable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Ventura?',
+              a: 'Yes. Ventura has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Ventura with SCE rates?',
+              a: 'Yes. Ventura residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal location.'
+            },
+            {
+              q: 'How much sun does Ventura get for solar?',
+              a: 'Ventura averages around 5.7 peak sun hours per day in Zone 6. Marine layer affects morning production, but solar generation remains strong with afternoon clearing and ocean breezes.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Camarillo',
+        citySlug: 'camarillo',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 245, peakSunHoursEstimate: 5.8 },
+        cityProfile: {
+          localNote: 'Camarillo sits in the Pleasant Valley between the coast and inland areas with moderate marine influence. The area experiences warm summers with strong solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Camarillo?',
+              a: 'Yes. Camarillo has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Camarillo with SCE rates?',
+              a: 'Yes. Camarillo residents pay SCE rates around $0.36/kWh with moderate cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+            },
+            {
+              q: 'How much sun does Camarillo get for solar?',
+              a: 'Camarillo averages around 5.8 peak sun hours per day in Zone 6/9. The valley location between coast and inland areas provides strong solar production with moderate marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Moorpark',
+        citySlug: 'moorpark',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 250, peakSunHoursEstimate: 5.9 },
+        cityProfile: {
+          localNote: 'Moorpark sits in the inland hills with warm summers and minimal marine layer. The area experiences moderate to high cooling demand with excellent solar production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Moorpark?',
+              a: 'Yes. Moorpark has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Moorpark with SCE rates?',
+              a: 'Yes. Moorpark residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Moorpark get for solar?',
+              a: 'Moorpark averages around 5.9 peak sun hours per day in Zone 9. The inland hillside location provides excellent solar production with warm summers and no marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Santa Paula',
+        citySlug: 'santa-paula',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 240, peakSunHoursEstimate: 5.9 },
+        cityProfile: {
+          localNote: 'Santa Paula sits in the inland Santa Clara River Valley with hot summers and agricultural surroundings. The area experiences high cooling demand with excellent solar production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Santa Paula?',
+              a: 'Yes. Santa Paula has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Santa Paula with SCE rates?',
+              a: 'Yes. Santa Paula residents pay SCE rates around $0.36/kWh with high summer cooling demand from inland valley heat. Off-grid solar with battery storage delivers strong savings and backup power.'
+            },
+            {
+              q: 'How much sun does Santa Paula get for solar?',
+              a: 'Santa Paula averages around 5.9 peak sun hours per day in Zone 9/10. The inland valley location provides excellent solar production with hot summers and minimal marine layer.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Fillmore',
+        citySlug: 'fillmore',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 235, peakSunHoursEstimate: 5.9 },
+        cityProfile: {
+          localNote: 'Fillmore sits in the inland Santa Clara River Valley with agricultural character and hot summers. The area experiences high cooling demand with excellent solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Fillmore?',
+              a: 'Yes. Fillmore has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Fillmore with SCE rates?',
+              a: 'Yes. Fillmore residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for agricultural properties.'
+            },
+            {
+              q: 'How much sun does Fillmore get for solar?',
+              a: 'Fillmore averages around 5.9 peak sun hours per day in Zone 9/10. The inland valley location provides excellent solar production with hot summers and clear skies.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Kern County',
+    regionSlug: 'kern-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E / SCE',
+        avgResidentialRatePerKwh: 0.40,
+        note: 'Northern Kern County is served by PG&E at ~$0.44/kWh; southern areas are served by SCE at ~$0.36/kWh. Blended average ~$0.40/kWh. Hot Central Valley and desert climate drive very high cooling demand. Solar economics are exceptionally strong throughout the county.'
+      },
+      permitOffice: {
+        name: 'Kern County Planning and Community Development / Individual City Building Departments',
+        jurisdiction: 'Kern County / individual cities',
+        typicalTurnaround: '2-4 weeks',
+        note: 'Bakersfield, Delano, Ridgecrest, and other cities have their own building departments. Unincorporated areas fall under Kern County Planning. Desert areas (Ridgecrest, California City) require systems designed for extreme heat.'
+      },
+      climateZone: {
+        zone: 'Zone 13 / Zone 14 (desert)',
+        description: 'Zone 13: very hot Central Valley climate (Bakersfield, Delano, Shafter, Wasco) with extreme summer heat and very high cooling demand. Zone 14: desert climate (Ridgecrest, California City, Tehachapi) with extreme temperature swings and exceptional sun exposure. Excellent solar production throughout the county.'
+      },
+      countyContext: 'Kern County spans from the southern San Joaquin Valley (Bakersfield, Delano) through oil fields to the Mojave Desert (Ridgecrest, California City) and mountain areas (Tehachapi). Valley areas experience extreme summer heat with very high cooling demand. Desert cities see even hotter conditions with exceptional solar potential. High utility rates (PG&E in north, SCE in south) drive strong solar economics throughout the county.'
+    },
+    cities: [
+      {
+        city: 'Bakersfield',
+        citySlug: 'bakersfield',
+        utility: 'PG&E',
+        localData: { ...PGE, avgMonthlyBillEstimate: 260, peakSunHoursEstimate: 6.0 },
+        cityProfile: {
+          localNote: 'Bakersfield sits in the southern San Joaquin Valley with extreme summer heat. The area experiences some of the hottest temperatures in California with very high cooling demand, making solar especially valuable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Bakersfield?',
+              a: 'Yes. Bakersfield has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Bakersfield with PG&E rates?',
+              a: 'Absolutely. Bakersfield residents pay PG&E rates around $0.44/kWh with extreme summer cooling costs. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Bakersfield get for solar?',
+              a: 'Bakersfield averages around 6.0 peak sun hours per day in Zone 13. The southern San Joaquin Valley location provides excellent solar production with very hot, clear summers and minimal cloud cover.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Delano',
+        citySlug: 'delano',
+        utility: 'PG&E',
+        localData: { ...PGE, avgMonthlyBillEstimate: 245, peakSunHoursEstimate: 6.0 },
+        cityProfile: {
+          localNote: 'Delano sits in the southern San Joaquin Valley with agricultural surroundings and extreme summer heat. The area experiences very high cooling demand with excellent solar production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Delano?',
+              a: 'Yes. Delano has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Delano with PG&E rates?',
+              a: 'Absolutely. Delano residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power, especially valuable for agricultural properties.'
+            },
+            {
+              q: 'How much sun does Delano get for solar?',
+              a: 'Delano averages around 6.0 peak sun hours per day in Zone 13. The valley location provides excellent solar production with hot summers and clear skies year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Ridgecrest',
+        citySlug: 'ridgecrest',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 280, peakSunHoursEstimate: 6.5 },
+        cityProfile: {
+          localNote: 'Ridgecrest sits in the Mojave Desert with extreme summer heat and exceptional solar potential. The area experiences very high cooling demand, and desert conditions provide among the best solar production in California.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Ridgecrest?',
+              a: 'Yes. Ridgecrest has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat and temperature swings. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Ridgecrest with SCE rates?',
+              a: 'Absolutely. Ridgecrest residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+            },
+            {
+              q: 'How much sun does Ridgecrest get for solar?',
+              a: 'Ridgecrest averages around 6.5 peak sun hours per day in Zone 14. The Mojave Desert location provides exceptional solar production with very hot, clear summers and minimal cloud cover year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Tehachapi',
+        citySlug: 'tehachapi',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 250, peakSunHoursEstimate: 6.2 },
+        cityProfile: {
+          localNote: 'Tehachapi sits in the mountains at higher elevation with cooler temperatures than the valley floor but strong solar potential. The area is known for wind energy but also receives excellent sun exposure.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Tehachapi?',
+              a: 'Yes. Tehachapi has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Tehachapi with SCE rates?',
+              a: 'Yes. Tehachapi residents pay SCE rates around $0.36/kWh with moderate cooling and heating demand from mountain elevation. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+            },
+            {
+              q: 'How much sun does Tehachapi get for solar?',
+              a: 'Tehachapi averages around 6.2 peak sun hours per day in Zone 14/16. The mountain location provides excellent solar production with clear skies, though higher elevation means cooler temperatures than desert areas.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'California City',
+        citySlug: 'california-city',
+        utility: 'SCE',
+        localData: { ...SCE, avgMonthlyBillEstimate: 275, peakSunHoursEstimate: 6.5 },
+        cityProfile: {
+          localNote: 'California City sits in the Mojave Desert with extreme summer heat and exceptional solar potential. The area experiences very high cooling demand with among the best solar production conditions in the state.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in California City?',
+              a: 'Yes. California City has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in California City with SCE rates?',
+              a: 'Absolutely. California City residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power.'
+            },
+            {
+              q: 'How much sun does California City get for solar?',
+              a: 'California City averages around 6.5 peak sun hours per day in Zone 14. The Mojave Desert location provides exceptional solar production with very hot, clear summers year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Wasco',
+        citySlug: 'wasco',
+        utility: 'PG&E',
+        localData: { ...PGE, avgMonthlyBillEstimate: 240, peakSunHoursEstimate: 6.0 },
+        cityProfile: {
+          localNote: 'Wasco sits in the southern San Joaquin Valley with agricultural surroundings and hot summers. The area experiences high cooling demand with excellent solar production potential.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Wasco?',
+              a: 'Yes. Wasco has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Wasco with PG&E rates?',
+              a: 'Yes. Wasco residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power, especially valuable for agricultural properties.'
+            },
+            {
+              q: 'How much sun does Wasco get for solar?',
+              a: 'Wasco averages around 6.0 peak sun hours per day in Zone 13. The valley location provides excellent solar production with hot summers and minimal cloud cover.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Shafter',
+        citySlug: 'shafter',
+        utility: 'PG&E',
+        localData: { ...PGE, avgMonthlyBillEstimate: 240, peakSunHoursEstimate: 6.0 },
+        cityProfile: {
+          localNote: 'Shafter sits in the southern San Joaquin Valley north of Bakersfield with agricultural character. The area experiences hot summers with high cooling demand and excellent solar production.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Shafter?',
+              a: 'Yes. Shafter has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Shafter with PG&E rates?',
+              a: 'Yes. Shafter residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for agricultural areas.'
+            },
+            {
+              q: 'How much sun does Shafter get for solar?',
+              a: 'Shafter averages around 6.0 peak sun hours per day in Zone 13. The southern valley location provides excellent solar production with hot, clear summers.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Imperial County',
+    regionSlug: 'imperial-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'IID (Imperial Irrigation District)',
+        avgResidentialRatePerKwh: 0.16,
+        note: 'Imperial Irrigation District (IID), a municipal utility, serves all of Imperial County at ~$0.16/kWh — among the lowest residential rates in California. Despite low rates, solar provides value through backup power during extreme heat outages, energy independence, and resilience during desert heat waves (110F+ common). The extreme heat drives high cooling loads that solar can offset.'
+      },
+      permitOffice: {
+        name: 'Imperial County Planning and Development Services / Individual City Building Departments',
+        jurisdiction: 'Imperial County / individual cities',
+        typicalTurnaround: '2-4 weeks',
+        note: 'El Centro, Calexico, Brawley, and other cities have their own building departments. Unincorporated areas fall under Imperial County Planning. All desert installations require systems designed for extreme heat, dust, and temperature swings.'
+      },
+      climateZone: {
+        zone: 'Zone 15',
+        description: 'Extreme desert climate with some of the hottest temperatures in the United States. Summer highs routinely exceed 110F with very high cooling demand. Zone 15 provides exceptional solar production — among the best in the nation — with 6.5+ peak sun hours per day year-round.'
+      },
+      countyContext: 'Imperial County sits in the Colorado Desert in California\'s southeast corner, below sea level in the Imperial Valley. The area experiences extreme summer heat (115F+ common) with exceptional solar potential — among the best in the nation. Low IID municipal rates change the solar value proposition: payback is longer, but backup power during heat-related outages and energy independence remain valuable. High cooling loads from extreme heat mean solar can still offset significant electricity consumption despite low rates.'
+    },
+    cities: [
+      {
+        city: 'El Centro',
+        citySlug: 'el-centro',
+        utility: 'IID',
+        localData: { ...IID, avgMonthlyBillEstimate: 135 },
+        cityProfile: {
+          localNote: 'El Centro is the county seat, located in the Imperial Valley with extreme desert heat. Despite low IID municipal rates, solar provides value through backup power during heat-related outages and energy independence in this extreme climate.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in El Centro?',
+              a: 'Yes. El Centro has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat, dust, and temperature swings. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in El Centro with IID rates?',
+              a: 'IID rates average $0.16/kWh, among the lowest in California, so financial payback is longer. However, off-grid solar with battery storage provides critical backup power during extreme heat outages (115F+ common), energy independence, and resilience during desert heat waves.'
+            },
+            {
+              q: 'How much sun does El Centro get for solar?',
+              a: 'El Centro averages around 6.5 peak sun hours per day in Zone 15. The Imperial Valley desert location provides exceptional solar production — among the best in the nation — with extreme heat and clear skies year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Calexico',
+        citySlug: 'calexico',
+        utility: 'IID',
+        localData: { ...IID, avgMonthlyBillEstimate: 130 },
+        cityProfile: {
+          localNote: 'Calexico sits on the Mexico border in the Imperial Valley with extreme desert heat. Despite low IID rates, solar provides backup power and energy independence in this extreme climate with frequent summer heat waves.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Calexico?',
+              a: 'Yes. Calexico has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat and dust. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Calexico with IID rates?',
+              a: 'IID rates average $0.16/kWh, very low compared to SCE or PG&E. Solar payback is longer, but off-grid systems provide critical backup power during heat-related outages and energy independence in this border city with extreme summer conditions.'
+            },
+            {
+              q: 'How much sun does Calexico get for solar?',
+              a: 'Calexico averages around 6.5 peak sun hours per day in Zone 15. The border desert location provides exceptional solar production with extreme heat and clear skies year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Brawley',
+        citySlug: 'brawley',
+        utility: 'IID',
+        localData: { ...IID, avgMonthlyBillEstimate: 125 },
+        cityProfile: {
+          localNote: 'Brawley sits in the heart of the Imperial Valley with agricultural surroundings and extreme desert heat. Despite low IID rates, solar provides backup power and resilience during extreme heat events.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Brawley?',
+              a: 'Yes. Brawley has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat. Your contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Brawley with IID rates?',
+              a: 'IID rates average $0.16/kWh, among the lowest in California. Solar payback is longer, but off-grid systems provide backup power during heat-related outages and energy independence, especially valuable for agricultural properties in extreme heat.'
+            },
+            {
+              q: 'How much sun does Brawley get for solar?',
+              a: 'Brawley averages around 6.5 peak sun hours per day in Zone 15. The Imperial Valley location provides exceptional solar production with extreme desert heat and clear skies.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Imperial',
+        citySlug: 'imperial',
+        utility: 'IID',
+        localData: { ...IID, avgMonthlyBillEstimate: 125 },
+        cityProfile: {
+          localNote: 'Imperial sits in the Imperial Valley with agricultural character and extreme desert heat. Despite low IID municipal rates, solar provides backup power and resilience in this extreme climate.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Imperial?',
+              a: 'Yes. Imperial has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat and dust. Your installer handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Imperial with IID rates?',
+              a: 'IID rates average $0.16/kWh, very low. Solar payback is longer, but off-grid systems provide critical backup power during extreme heat outages and energy independence, especially valuable for rural and agricultural areas.'
+            },
+            {
+              q: 'How much sun does Imperial get for solar?',
+              a: 'Imperial averages around 6.5 peak sun hours per day in Zone 15. The desert location provides exceptional solar production with extreme heat and minimal cloud cover year-round.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Calipatria',
+        citySlug: 'calipatria',
+        utility: 'IID',
+        localData: { ...IID, avgMonthlyBillEstimate: 120 },
+        cityProfile: {
+          localNote: 'Calipatria sits below sea level in the Imperial Valley with extreme desert heat. Despite low IID rates, solar provides critical backup power and resilience in this remote desert community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Calipatria?',
+              a: 'Yes. Calipatria has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat. Your contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Calipatria with IID rates?',
+              a: 'IID rates average $0.16/kWh, among the lowest in California. Solar payback is longer, but off-grid systems provide critical backup power during heat-related outages and energy independence in this remote desert location below sea level.'
+            },
+            {
+              q: 'How much sun does Calipatria get for solar?',
+              a: 'Calipatria averages around 6.5 peak sun hours per day in Zone 15. The below-sea-level desert location provides exceptional solar production with extreme heat and clear skies.'
             }
           ]
         }

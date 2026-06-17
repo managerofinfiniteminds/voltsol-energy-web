@@ -33,27 +33,49 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "VoltSol Energy",
-  description:
-    "Off-grid solar installations for your home — EG4 battery, inverter, and solar-powered mini-split systems from $8,700.",
-  url: "https://voltsolenergy.com",
-  email: "info@voltsolenergy.com",
-  telephone: "+1-530-228-1019",
-  image: "https://voltsolenergy.com/og-image.png",
-  priceRange: "$8,700–$16,000",
-  areaServed: {
-    "@type": "Country",
-    name: "United States",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "US",
-  },
-  knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],
-};
+// Build LocalBusiness JSON-LD, including Review + aggregateRating from testimonials.
+function buildLocalBusinessJsonLd(testimonials: { quote: string; name: string; city: string }[]) {
+  const reviews = testimonials.map((t) => ({
+    "@type": "Review",
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+    author: { "@type": "Person", name: t.name },
+    reviewBody: t.quote,
+  }));
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "VoltSol Energy",
+    description:
+      "Off-grid solar installations for your home - EG4 battery, inverter, and solar-powered mini-split systems from $8,700.",
+    url: "https://voltsolenergy.com",
+    email: "info@voltsolenergy.com",
+    telephone: "+1-530-228-1019",
+    image: "https://voltsolenergy.com/og-image.png",
+    priceRange: "$8,700-$16,000",
+    areaServed: {
+      "@type": "State",
+      name: "California",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "CA",
+      addressCountry: "US",
+    },
+    knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],
+    ...(reviews.length > 0
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5",
+            reviewCount: String(reviews.length),
+            bestRating: "5",
+          },
+          review: reviews,
+        }
+      : {}),
+  };
+}
 
 // Fixed icon array for Hugo's credentials (order matches ARRAY_DEFAULTS)
 const credentialIcons = [BadgeCheck, MapPin, Wrench, Phone];
@@ -61,6 +83,8 @@ const credentialIcons = [BadgeCheck, MapPin, Wrench, Phone];
 export default async function HomePage() {
   const locale = getLocale();
   const cfg = await getHomeConfig(locale);
+
+  const localBusinessJsonLd = buildLocalBusinessJsonLd(cfg.testimonials);
 
   // Build FAQ JSON-LD from config
   const faqJsonLd = {

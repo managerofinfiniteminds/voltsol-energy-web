@@ -57,6 +57,9 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "VoltSol Energy",
   url: siteUrl,
+  logo: `${siteUrl}/images/voltsol-mark.svg`,
+  email: "info@voltsolenergy.com",
+  telephone: "+1-530-228-1019",
   description: "Off-grid solar installations serving Northern California",
   areaServed: {
     "@type": "State",

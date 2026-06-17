@@ -412,6 +412,16 @@ export default async function TechnologyPage() {
                 </Button>
               </div>
             </Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-8 text-center">
+                <a
+                  href="/learn"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-gold transition-colors hover:text-gold/80"
+                >
+                  <Zap className="h-4 w-4" /> Read our guides on off-grid solar, EG4 equipment, and more →
+                </a>
+              </div>
+            </Reveal>
           </div>
         </Container>
       </Section>

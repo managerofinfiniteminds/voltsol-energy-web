@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { ALL_MARKET_PARAMS, NORCAL_SOLAR_MARKETS, marketPageHref } from "@/lib/market-data";
+import { LEARN_ARTICLES } from "@/lib/learn-content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://voltsolenergy.com";
@@ -77,5 +78,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...corePages, ...marketHubs, ...cityPages];
+  // Learn hub and articles
+  const learnPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/learn`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
+    ...LEARN_ARTICLES.map(article => ({
+      url: `${baseUrl}/learn/${article.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return [...corePages, ...marketHubs, ...cityPages, ...learnPages];
 }

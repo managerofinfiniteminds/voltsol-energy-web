@@ -582,6 +582,18 @@ export default async function HomePage() {
             </div>
           </Reveal>
 
+          {/* Learn More Link */}
+          <Reveal delay={0.15}>
+            <div className="mt-8 text-center">
+              <Link
+                href="/learn"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-gold transition-colors hover:text-gold/80"
+              >
+                <Zap className="h-4 w-4" /> Want to learn more? Read our guides on off-grid solar, EG4 equipment, and energy independence →
+              </Link>
+            </div>
+          </Reveal>
+
           {/* Final CTA */}
           <Reveal delay={0.2}>
             <div className="mt-14 rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 p-8 text-center lg:p-10">

@@ -40,14 +40,13 @@ export function middleware(req: NextRequest) {
     langToSet = detectLocale(req.headers.get('accept-language') || '');
   }
 
-  // Protect /admin routes (but not /admin/login, /admin/auth, or /admin/seo-strategy)
+  // Protect /admin routes (but not /admin/login or /admin/auth).
   // This is a COARSE gate: only checks cookie presence, not validity.
   // Real session validation (token vs DB) happens in getAdminSession() inside each route/page.
   if (
     pathname.startsWith('/admin') &&
     !pathname.startsWith('/admin/login') &&
-    !pathname.startsWith('/admin/auth') &&
-    !pathname.startsWith('/admin/seo-strategy')
+    !pathname.startsWith('/admin/auth')
   ) {
     const session = req.cookies.get('admin_session')?.value;
     if (!session) {

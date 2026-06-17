@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { Container } from "@/components/ui";
+import { getAdminSession } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
   title: "SEO Strategy — VoltSol Admin",
   description: "Strategic SEO domination plan for EG4 solar in Northern California",
+  // Keep this internal strategy doc out of search engines entirely.
+  robots: { index: false, follow: false, nocache: true },
 };
 
-export default function SeoStrategyPage() {
-  // Auth check is handled by middleware for /admin/* routes
-  // If we reach this page, the user is already authenticated
+// Force dynamic so the session check always runs server-side.
+export const dynamic = "force-dynamic";
+
+export default async function SeoStrategyPage() {
+  // Hard auth gate (defense-in-depth on top of the middleware cookie gate):
+  // verify a real admin session so this internal doc can never render to a
+  // logged-out visitor.
+  const session = await getAdminSession();
+  if (!session) {
+    redirect("/admin/login");
+  }
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-navy-900 to-navy-800 py-12 sm:py-16 lg:py-20">

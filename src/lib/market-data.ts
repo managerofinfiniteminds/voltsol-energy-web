@@ -147,3 +147,13 @@ export function marketPageHref(p: MarketParams): string {
 export function marketSlug(p: MarketParams): string {
   return `${p.vertical}/${p.state}/${p.region}/${p.city}`;
 }
+
+// Find a specific region/county by slug
+export function findRegion(
+  vertical: string,
+  state: string,
+  regionSlug: string
+): MarketRegion | null {
+  if (vertical !== 'solar' || state !== 'california') return null;
+  return NORCAL_SOLAR_MARKETS.find(r => r.regionSlug === regionSlug) || null;
+}

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { ALL_MARKET_PARAMS, marketPageHref } from "@/lib/market-data";
+import { ALL_MARKET_PARAMS, NORCAL_SOLAR_MARKETS, marketPageHref } from "@/lib/market-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://voltsolenergy.com";
@@ -44,13 +44,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Programmatic market pages (one per city)
-  const marketPages: MetadataRoute.Sitemap = ALL_MARKET_PARAMS.map(p => ({
+  // Market hub pages
+  const marketHubs: MetadataRoute.Sitemap = [
+    // Market index
+    {
+      url: `${baseUrl}/market`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    // State hub (California)
+    {
+      url: `${baseUrl}/market/solar/california`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    // County hubs
+    ...NORCAL_SOLAR_MARKETS.map(region => ({
+      url: `${baseUrl}/market/solar/california/${region.regionSlug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  // City pages (existing)
+  const cityPages: MetadataRoute.Sitemap = ALL_MARKET_PARAMS.map(p => ({
     url: `${baseUrl}${marketPageHref(p)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...corePages, ...marketPages];
+  return [...corePages, ...marketHubs, ...cityPages];
 }

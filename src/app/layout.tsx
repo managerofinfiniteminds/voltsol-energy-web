@@ -66,6 +66,16 @@ const organizationJsonLd = {
     name: "California",
   },
   serviceType: "Solar Panel Installation",
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "license",
+    name: "California Contractors State License Board (CSLB) License",
+    identifier: "1148585",
+    recognizedBy: {
+      "@type": "GovernmentOrganization",
+      name: "California Contractors State License Board",
+    },
+  },
 };
 
 export default async function RootLayout({

@@ -63,6 +63,16 @@ function buildLocalBusinessJsonLd(testimonials: { quote: string; name: string; c
       addressCountry: "US",
     },
     knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "license",
+      name: "California Contractors State License Board (CSLB) License",
+      identifier: "1148585",
+      recognizedBy: {
+        "@type": "GovernmentOrganization",
+        name: "California Contractors State License Board",
+      },
+    },
     ...(reviews.length > 0
       ? {
           aggregateRating: {

@@ -6106,6 +6106,618 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
       },
     ],
   },
+  {
+    county: 'Humboldt County',
+    regionSlug: 'humboldt-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this foggy North Coast region with rates averaging $0.44/kWh. Lower solar irradiance makes proper system sizing and battery backup critical for maximizing value.'
+      },
+      permitOffice: {
+        name: 'Humboldt County Building Department',
+        jurisdiction: 'Humboldt County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for coastal and inland installations. Marine environment requires corrosion-resistant hardware. Seismic Zone 4 design standards apply.'
+      },
+      climateZone: {
+        zone: 'Zone 1 (North Coast)',
+        description: 'Cool maritime climate with persistent summer fog and heavy winter rain. Coastal redwood forest terrain creates moderate solar conditions. Marine air requires corrosion-resistant equipment.'
+      },
+      countyContext: 'Humboldt County is a remote North Coast region anchored by Eureka and Arcata. Persistent coastal fog and redwood forests create lower solar irradiance than inland California, averaging 4.3-4.4 peak sun hours daily. PG&E\'s high rates still make solar viable, but proper system sizing is critical. Battery backup provides value during winter storms and PSPS events.'
+    },
+    cities: [
+      {
+        city: 'Eureka',
+        citySlug: 'eureka',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.3 },
+        cityProfile: {
+          localNote: 'Eureka is the county seat on Humboldt Bay with persistent coastal fog. Lower sun hours than inland California make efficient system design critical, but PG&E rates still make solar worthwhile.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Eureka?',
+              a: 'Yes. Eureka requires permits through Humboldt County Building with typical 2-4 week turnaround. Coastal installations need corrosion-resistant hardware. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Eureka with coastal fog?',
+              a: 'Yes, but requires careful sizing. Eureka averages 4.3 peak sun hours daily due to coastal fog, lower than inland California. PG&E rates of $0.44/kWh still make solar viable. Oversizing the array and adding battery storage compensates for fog and winter storm outages.'
+            },
+            {
+              q: 'How much sun does Eureka get for solar?',
+              a: 'Eureka averages 4.3 peak sun hours daily in Zone 1. Coastal fog reduces sun hours compared to inland regions, but solar still works year-round. South-facing installations and efficient panels maximize production in marine conditions.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Arcata',
+        citySlug: 'arcata',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.4 },
+        cityProfile: {
+          localNote: 'Arcata sits on Humboldt Bay near Eureka with similar foggy coastal conditions. The university town sees slightly more sun than coastal Eureka, but battery backup remains valuable for storm resilience.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Arcata?',
+              a: 'Yes. Arcata requires permits through Humboldt County Building with 2-4 week processing. Marine environment requires corrosion-resistant components. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Arcata with fog and rain?',
+              a: 'Absolutely. PG&E charges $0.44/kWh and winter storms cause outages. Solar with battery backup provides year-round savings despite 4.4 peak sun hours from coastal fog. Proper sizing overcomes weather challenges.'
+            },
+            {
+              q: 'How much sun does Arcata get for solar?',
+              a: 'Arcata averages 4.4 peak sun hours daily in Zone 1. Coastal location brings morning fog, but inland hills get more sun. South-facing roof installations avoid redwood shade and maximize production.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Fortuna',
+        citySlug: 'fortuna',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.5 },
+        cityProfile: {
+          localNote: 'Fortuna sits inland from the coast in the Eel River valley with slightly better sun than coastal Eureka. Redwood forestry and agriculture make backup power valuable for rural properties.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Fortuna?',
+              a: 'Yes. Fortuna requires permits through Humboldt County Building with typical 2-4 week turnaround. Inland valley sites may have fewer marine corrosion concerns than coastal areas. Your contractor handles applications.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Fortuna with PG&E rates?',
+              a: 'Yes. PG&E rates average $0.44/kWh and rural locations face winter storm outages. Solar with battery backup provides energy independence for Eel River valley properties. Fortuna gets 4.5 peak sun hours, better than coastal Eureka.'
+            },
+            {
+              q: 'How much sun does Fortuna get for solar?',
+              a: 'Fortuna averages 4.5 peak sun hours daily in Zone 1. Inland valley location brings warmer summers and less fog than the coast. Redwood forest surroundings require south-facing sites to avoid shading.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'McKinleyville',
+        citySlug: 'mckinleyville',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.4 },
+        cityProfile: {
+          localNote: 'McKinleyville sits north of Arcata on the coastal plain with persistent marine fog. Battery backup provides value during winter storms and PSPS events in this remote coastal community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in McKinleyville?',
+              a: 'Yes. McKinleyville requires permits through Humboldt County Building with 2-4 week processing. Coastal exposure requires marine-grade hardware. Your solar installer handles the county application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in McKinleyville with coastal fog?',
+              a: 'Yes. PG&E charges $0.44/kWh and winter storms cause multi-day outages. Solar with battery backup provides resilience despite 4.4 peak sun hours from marine fog. Oversized systems compensate for weather.'
+            },
+            {
+              q: 'How much sun does McKinleyville get for solar?',
+              a: 'McKinleyville averages 4.4 peak sun hours daily in Zone 1. Coastal plain location brings heavy morning fog but clears midday. Marine climate requires corrosion-resistant panels and mounts.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Del Norte County',
+    regionSlug: 'del-norte-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this far northwest coast region with rates averaging $0.44/kWh. Extreme marine climate and low sun hours make battery backup and efficient design critical.'
+      },
+      permitOffice: {
+        name: 'Del Norte County Building Department',
+        jurisdiction: 'Del Norte County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for coastal installations in California\'s rainiest region. Marine corrosion resistance and seismic design required. Remote location makes backup power valuable.'
+      },
+      climateZone: {
+        zone: 'Zone 1 (Far North Coast)',
+        description: 'Extreme maritime climate with heavy year-round rainfall and persistent fog. Coldest coastal region in California. Marine air and redwood forests create challenging solar conditions.'
+      },
+      countyContext: 'Del Norte County is California\'s far northwest corner, anchored by Crescent City. This is the state\'s rainiest and foggiest region, with persistent marine weather and redwood forests creating the lowest solar irradiance in Northern California. Solar still works year-round with proper sizing, and PG&E\'s high rates plus storm outages make battery backup especially valuable.'
+    },
+    cities: [
+      {
+        city: 'Crescent City',
+        citySlug: 'crescent-city',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.2 },
+        cityProfile: {
+          localNote: 'Crescent City is California\'s far northwest coastal town with the state\'s heaviest rainfall and persistent fog. Low sun hours require larger system sizing, but PG&E rates and storm resilience make solar valuable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Crescent City?',
+              a: 'Yes. Crescent City requires permits through Del Norte County Building with typical 2-4 week turnaround. Extreme marine environment requires corrosion-resistant hardware and seismic design. Your installer handles applications.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Crescent City with heavy rain?',
+              a: 'Yes, with proper sizing. Crescent City averages 4.2 peak sun hours, California\'s lowest, due to persistent fog and rain. PG&E rates of $0.44/kWh and winter storm outages make solar with oversized battery backup worthwhile for energy independence.'
+            },
+            {
+              q: 'How much sun does Crescent City get for solar?',
+              a: 'Crescent City averages 4.2 peak sun hours daily in Zone 1. Heavy marine fog and rainfall reduce sun hours, but modern panels still produce year-round. South-facing installations and efficient design maximize production in challenging conditions.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Mendocino County',
+    regionSlug: 'mendocino-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this North Coast and inland region with rates averaging $0.44/kWh. Frequent PSPS shutoffs in wildfire zones make battery backup critical.'
+      },
+      permitOffice: {
+        name: 'Mendocino County Planning & Building',
+        jurisdiction: 'Mendocino County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for coastal and inland wine-country installations. Coastal sites need marine-grade hardware. Wildfire zones require fire-resistant design and PSPS backup.'
+      },
+      climateZone: {
+        zone: 'Zone 1 (Coast) / Zone 2 (Inland Valleys)',
+        description: 'Coastal areas see cool marine climate with fog, while inland Ukiah Valley sees hot dry summers. Wildfire risk and PSPS events are severe countywide.'
+      },
+      countyContext: 'Mendocino County spans foggy North Coast (Fort Bragg, Point Arena) to hot inland wine valleys (Ukiah, Willits). Coastal areas see 4.4-4.6 peak sun hours with marine fog, while inland Ukiah Valley gets 5.0-5.2 hours with hot summers. Severe wildfire history and frequent PSPS shutoffs make battery backup essential for both coast and inland.'
+    },
+    cities: [
+      {
+        city: 'Ukiah',
+        citySlug: 'ukiah',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.2 },
+        cityProfile: {
+          localNote: 'Ukiah is the county seat in a hot inland valley with excellent solar conditions. Severe wildfire risk and frequent PSPS shutoffs make battery backup critical for this wine-country town.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Ukiah?',
+              a: 'Yes. Ukiah requires permits through Mendocino County Planning & Building with typical 2-4 week turnaround. Wildfire zones may require fire-resistant design. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Ukiah with PSPS risk?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this wildfire zone. Off-grid solar with battery backup provides power during multi-day PSPS events and extreme heat. Ukiah gets 5.2 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does Ukiah get for solar?',
+              a: 'Ukiah averages 5.2 peak sun hours daily in Zone 2. Inland valley location brings hot dry summers and clear skies, ideal for solar production. Wildfire smoke can reduce output during fire season.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Fort Bragg',
+        citySlug: 'fort-bragg',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.4 },
+        cityProfile: {
+          localNote: 'Fort Bragg sits on the foggy North Coast with persistent marine weather. Lower sun hours than inland Ukiah require efficient system sizing, but PG&E rates and storm resilience make solar valuable.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Fort Bragg?',
+              a: 'Yes. Fort Bragg requires permits through Mendocino County Planning & Building with 2-4 week processing. Coastal installations need marine-grade corrosion-resistant hardware. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Fort Bragg with coastal fog?',
+              a: 'Yes. PG&E charges $0.44/kWh and winter storms cause outages. Solar with battery backup provides year-round savings despite 4.4 peak sun hours from marine fog. Oversized systems compensate for weather.'
+            },
+            {
+              q: 'How much sun does Fort Bragg get for solar?',
+              a: 'Fort Bragg averages 4.4 peak sun hours daily in Zone 1. Coastal location brings heavy morning fog but midday clearing. Marine air requires corrosion-resistant equipment for long-term durability.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Willits',
+        citySlug: 'willits',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Willits sits inland in forested hill country between coast and Ukiah Valley. Moderate sun hours and severe PSPS risk make battery backup critical for this gateway town.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Willits?',
+              a: 'Yes. Willits requires permits through Mendocino County Planning & Building with typical 2-4 week turnaround. Forested terrain may require fire-resistant design. Your contractor handles applications.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Willits with wildfire risk?',
+              a: 'Absolutely. PG&E rates average $0.44/kWh and PSPS shutoffs are frequent in this forested fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events. Willits gets 5.0 peak sun hours, solid for inland hills.'
+            },
+            {
+              q: 'How much sun does Willits get for solar?',
+              a: 'Willits averages 5.0 peak sun hours daily in Zone 2. Inland hill location brings warmer summers than the coast with moderate solar production. Forested terrain requires south-facing sites to avoid shading.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Point Arena',
+        citySlug: 'point-arena',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 4.6 },
+        cityProfile: {
+          localNote: 'Point Arena sits on the remote southern Mendocino coast with persistent marine fog. Solar works year-round with proper sizing, and battery backup provides storm resilience for this isolated community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Point Arena?',
+              a: 'Yes. Point Arena requires permits through Mendocino County Planning & Building with 2-4 week processing. Coastal exposure requires marine-grade hardware. Your solar installer handles the county application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Point Arena with fog?',
+              a: 'Yes. PG&E charges $0.44/kWh and winter storms cause outages in this remote coastal town. Solar with battery backup provides energy independence despite 4.6 peak sun hours from marine fog. Oversized systems work well.'
+            },
+            {
+              q: 'How much sun does Point Arena get for solar?',
+              a: 'Point Arena averages 4.6 peak sun hours daily in Zone 1. South coast location gets slightly more sun than far north coast. Marine climate requires corrosion-resistant panels and racking.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Lake County',
+    regionSlug: 'lake-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this inland region with rates averaging $0.44/kWh. Severe wildfire history and extreme PSPS frequency make battery backup essential.'
+      },
+      permitOffice: {
+        name: 'Lake County Community Development',
+        jurisdiction: 'Lake County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for inland installations. Post-wildfire rebuilds often integrate solar and battery. Fire-resistant design required in high-risk zones.'
+      },
+      climateZone: {
+        zone: 'Zone 2 (Inland Valleys)',
+        description: 'Hot dry summers and mild winters in inland valleys around Clear Lake. Severe wildfire risk and PSPS events are frequent. Excellent solar conditions.'
+      },
+      countyContext: 'Lake County is an inland region anchored by Lakeport and Clearlake around Clear Lake. Severe wildfire history (Valley Fire, Mendocino Complex) and extreme PSPS frequency make battery backup critical. Hot summers bring excellent solar production at 5.1-5.3 peak sun hours. Off-grid solar provides essential energy independence in this fire-prone region.'
+    },
+    cities: [
+      {
+        city: 'Lakeport',
+        citySlug: 'lakeport',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.2 },
+        cityProfile: {
+          localNote: 'Lakeport is the county seat on Clear Lake with excellent solar conditions. Severe wildfire history and frequent PSPS shutoffs make battery backup critical for this lakeside town.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Lakeport?',
+              a: 'Yes. Lakeport requires permits through Lake County Community Development with typical 2-4 week turnaround. High-risk fire zones may require fire-resistant design. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Lakeport with wildfire risk?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are extreme in this fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events and evacuations. Lakeport gets 5.2 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does Lakeport get for solar?',
+              a: 'Lakeport averages 5.2 peak sun hours daily in Zone 2. Clear Lake location brings hot dry summers with clear skies, ideal for solar production. Wildfire smoke can reduce output during fire season.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Clearlake',
+        citySlug: 'clearlake',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Clearlake sits on the north shore of Clear Lake with excellent solar potential. Severe wildfire history and extreme PSPS frequency make battery backup essential for energy resilience.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Clearlake?',
+              a: 'Yes. Clearlake requires permits through Lake County Community Development with 2-4 week processing. Wildfire zones require fire-resistant design. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Clearlake after wildfires?',
+              a: 'Absolutely. PG&E charges $0.44/kWh and PSPS shutoffs are frequent in this severe fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events. Clearlake gets 5.3 peak sun hours, excellent for solar independence.'
+            },
+            {
+              q: 'How much sun does Clearlake get for solar?',
+              a: 'Clearlake averages 5.3 peak sun hours daily in Zone 2. Hot inland summers and clear skies deliver strong solar production year-round. Fire season smoke can temporarily reduce output.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Napa County',
+    regionSlug: 'napa-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this premium wine-country region with rates averaging $0.44/kWh. Wildfire risk and PSPS events make battery backup attractive for high-value properties.'
+      },
+      permitOffice: {
+        name: 'Napa County Planning, Building & Environmental Services',
+        jurisdiction: 'Napa County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for wine-country installations. Hillside vineyard sites may have additional requirements. Fire-resistant design encouraged in high-risk zones.'
+      },
+      climateZone: {
+        zone: 'Zone 2 (Wine Country)',
+        description: 'Mediterranean climate with hot dry summers and mild winters. Hillside vineyard terrain and wildfire risk create PSPS vulnerability. Excellent solar conditions.'
+      },
+      countyContext: 'Napa County is California\'s premier wine region, anchored by Napa, American Canyon, Calistoga, and St. Helena. Hot summers bring excellent solar production at 5.0-5.2 peak sun hours. Wildfire history (Glass Fire, Hennessey Fire) and PSPS events make battery backup attractive for high-value wine-country properties. Affluent market with strong demand for premium solar and battery systems.'
+    },
+    cities: [
+      {
+        city: 'Napa',
+        citySlug: 'napa',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.1 },
+        cityProfile: {
+          localNote: 'Napa is the county seat and heart of wine country with excellent solar conditions. Wildfire risk and PSPS events make battery backup attractive for this affluent community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Napa?',
+              a: 'Yes. Napa requires permits through Napa County Planning, Building & Environmental Services with typical 2-4 week turnaround. Hillside properties may have additional requirements. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Napa with PSPS risk?',
+              a: 'Highly attractive. PG&E rates are $0.44/kWh and PSPS shutoffs affect wine-country hillsides. Off-grid solar with premium battery backup provides power during PSPS events and extreme heat. Napa gets 5.1 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does Napa get for solar?',
+              a: 'Napa averages 5.1 peak sun hours daily in Zone 2. Hot valley summers and clear skies deliver strong solar production year-round. Premium systems match the wine-country aesthetic.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'American Canyon',
+        citySlug: 'american-canyon',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.2 },
+        cityProfile: {
+          localNote: 'American Canyon sits at the south county gateway with excellent solar potential. PSPS events and proximity to Bay Area make battery backup attractive for this growing community.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in American Canyon?',
+              a: 'Yes. American Canyon requires permits through Napa County Planning, Building & Environmental Services with 2-4 week processing. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in American Canyon with PG&E rates?',
+              a: 'Yes. PG&E charges $0.44/kWh and PSPS shutoffs affect hillside areas. Solar with battery backup provides energy independence and resilience. American Canyon gets 5.2 peak sun hours, excellent for solar production.'
+            },
+            {
+              q: 'How much sun does American Canyon get for solar?',
+              a: 'American Canyon averages 5.2 peak sun hours daily in Zone 2. South county location brings warm summers and clear skies, ideal for solar. Bay Area proximity means strong solar market.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Calistoga',
+        citySlug: 'calistoga',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.0 },
+        cityProfile: {
+          localNote: 'Calistoga sits in the hot upper valley with excellent solar conditions. Severe wildfire history (Glass Fire) and PSPS events make battery backup critical for this resort town.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Calistoga?',
+              a: 'Yes. Calistoga requires permits through Napa County Planning, Building & Environmental Services with typical 2-4 week turnaround. Wildfire zones may require fire-resistant design. Your contractor handles applications.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Calistoga after Glass Fire?',
+              a: 'Essential. PG&E rates average $0.44/kWh and PSPS shutoffs are frequent in this severe fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events. Calistoga gets 5.0 peak sun hours, strong for solar.'
+            },
+            {
+              q: 'How much sun does Calistoga get for solar?',
+              a: 'Calistoga averages 5.0 peak sun hours daily in Zone 2. Upper valley location brings hot summers with clear skies. Hillside vineyard terrain provides excellent south-facing sites.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'St. Helena',
+        citySlug: 'st-helena',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.1 },
+        cityProfile: {
+          localNote: 'St. Helena is a premium wine-country town with excellent solar potential. Wildfire risk and PSPS events make battery backup attractive for high-value vineyard properties.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in St. Helena?',
+              a: 'Yes. St. Helena requires permits through Napa County Planning, Building & Environmental Services with 2-4 week processing. Hillside vineyard sites may have additional requirements. Your solar installer handles the county application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in St. Helena with PSPS risk?',
+              a: 'Highly attractive. PG&E charges $0.44/kWh and PSPS shutoffs affect hillside vineyards. Premium solar with battery backup provides power during PSPS events and extreme heat. St. Helena gets 5.1 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does St. Helena get for solar?',
+              a: 'St. Helena averages 5.1 peak sun hours daily in Zone 2. Valley floor and hillside vineyard sites get hot summers with clear skies, ideal for solar production. Premium systems match wine-country aesthetics.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Sutter County',
+    regionSlug: 'sutter-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this Sacramento Valley region with rates averaging $0.44/kWh. Hot summers and agricultural economy make solar attractive for residential and farm properties.'
+      },
+      permitOffice: {
+        name: 'Sutter County Community Services',
+        jurisdiction: 'Sutter County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for valley residential and agricultural installations. Flat valley terrain simplifies solar design.'
+      },
+      climateZone: {
+        zone: 'Zone 12 (Sacramento Valley)',
+        description: 'Hot valley summers and mild winters. Flat agricultural terrain provides excellent solar conditions. Heat extremes make cooling cost reduction valuable.'
+      },
+      countyContext: 'Sutter County is a Sacramento Valley agricultural region anchored by Yuba City and Live Oak. Hot valley summers bring excellent solar production at 5.3 peak sun hours. PG&E\'s high rates and extreme heat make solar attractive for reducing cooling costs. Flat terrain and agricultural economy create strong solar market for residential and farm properties.'
+    },
+    cities: [
+      {
+        city: 'Yuba City',
+        citySlug: 'yuba-city',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Yuba City is the county seat in the Sacramento Valley with excellent solar conditions. Hot summers and PG&E rates make solar attractive for reducing cooling costs.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Yuba City?',
+              a: 'Yes. Yuba City requires permits through Sutter County Community Services with typical 2-4 week turnaround. Flat valley terrain simplifies installation. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Yuba City with hot summers?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and extreme valley heat drives cooling costs. Off-grid solar with battery backup provides savings on AC bills and resilience during heat events. Yuba City gets 5.3 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does Yuba City get for solar?',
+              a: 'Yuba City averages 5.3 peak sun hours daily in Zone 12. Sacramento Valley location brings hot summers with clear skies, ideal for solar production. Flat terrain provides easy south-facing installations.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Live Oak',
+        citySlug: 'live-oak',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Live Oak is a small agricultural town in the valley with excellent solar potential. Hot summers and farming economy make solar attractive for residential and agricultural properties.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Live Oak?',
+              a: 'Yes. Live Oak requires permits through Sutter County Community Services with 2-4 week processing. Agricultural properties may integrate solar for farm operations. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Live Oak with PG&E rates?',
+              a: 'Yes. PG&E charges $0.44/kWh and valley heat drives high cooling costs. Solar with battery backup provides savings and resilience for residential and farm properties. Live Oak gets 5.3 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does Live Oak get for solar?',
+              a: 'Live Oak averages 5.3 peak sun hours daily in Zone 12. Valley agricultural area gets hot summers with clear skies, ideal for solar. Flat terrain simplifies installations.'
+            }
+          ]
+        }
+      },
+    ],
+  },
+  {
+    county: 'Yuba County',
+    regionSlug: 'yuba-county',
+    state: 'california',
+    countyData: {
+      utilityRate: {
+        utility: 'PG&E',
+        avgResidentialRatePerKwh: 0.44,
+        note: 'PG&E serves this Sacramento Valley region with rates averaging $0.44/kWh. Hot summers make solar attractive for reducing cooling costs. Foothills see occasional PSPS events.'
+      },
+      permitOffice: {
+        name: 'Yuba County Community Development',
+        jurisdiction: 'Yuba County',
+        typicalTurnaround: '2-4 weeks',
+        note: 'County processes permits for valley and foothill installations. Flat valley terrain simplifies solar design. Eastern foothills may have wildfire design requirements.'
+      },
+      climateZone: {
+        zone: 'Zone 12 (Sacramento Valley)',
+        description: 'Hot valley summers and mild winters. Flat agricultural valley terrain provides excellent solar conditions. Foothills to east see occasional wildfire risk.'
+      },
+      countyContext: 'Yuba County is a Sacramento Valley region anchored by Marysville and Wheatland. Hot valley summers bring excellent solar production at 5.3 peak sun hours. PG&E\'s high rates and extreme heat make solar attractive for reducing cooling costs. Eastern foothills see occasional PSPS events, making battery backup valuable for those areas.'
+    },
+    cities: [
+      {
+        city: 'Marysville',
+        citySlug: 'marysville',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Marysville is the county seat in the Sacramento Valley with excellent solar conditions. Hot summers and PG&E rates make solar attractive for reducing cooling costs.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Marysville?',
+              a: 'Yes. Marysville requires permits through Yuba County Community Development with typical 2-4 week turnaround. Flat valley terrain simplifies installation. Your solar contractor handles the application.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Marysville with hot summers?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and extreme valley heat drives cooling costs. Off-grid solar with battery backup provides savings on AC bills and resilience during heat events. Marysville gets 5.3 peak sun hours, excellent for solar.'
+            },
+            {
+              q: 'How much sun does Marysville get for solar?',
+              a: 'Marysville averages 5.3 peak sun hours daily in Zone 12. Sacramento Valley location brings hot summers with clear skies, ideal for solar production. Flat terrain provides easy south-facing installations.'
+            }
+          ]
+        }
+      },
+      {
+        city: 'Wheatland',
+        citySlug: 'wheatland',
+        utility: 'PG&E',
+        localData: { ...PGE, peakSunHoursEstimate: 5.3 },
+        cityProfile: {
+          localNote: 'Wheatland is a small valley town with excellent solar potential. Hot summers and proximity to foothills make solar with battery backup attractive for energy independence.',
+          faq: [
+            {
+              q: 'Do I need a permit for solar in Wheatland?',
+              a: 'Yes. Wheatland requires permits through Yuba County Community Development with 2-4 week processing. Valley location simplifies installation. Your installer handles permitting.'
+            },
+            {
+              q: 'Is off-grid solar worth it in Wheatland with PG&E rates?',
+              a: 'Yes. PG&E charges $0.44/kWh and valley heat drives high cooling costs. Solar with battery backup provides savings and resilience. Wheatland gets 5.3 peak sun hours, excellent for solar production.'
+            },
+            {
+              q: 'How much sun does Wheatland get for solar?',
+              a: 'Wheatland averages 5.3 peak sun hours daily in Zone 12. Valley location gets hot summers with clear skies, ideal for solar. Flat terrain simplifies installations.'
+            }
+          ]
+        }
+      },
+    ],
+  },
 ];
 
 export interface MarketParams {

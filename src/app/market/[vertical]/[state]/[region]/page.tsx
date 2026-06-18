@@ -22,11 +22,11 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const regionData = findRegion(params.vertical, params.state, params.region);
   if (!regionData) return {};
 
-  const title = `Solar Panels in ${regionData.county}, California | VoltSol Energy`;
+  const title = `Off-Grid Solar & Battery Backup in ${regionData.county}, CA | VoltSol Energy`;
   const description =
-    `Off-grid solar panel installation in ${regionData.county}. ` +
-    `VoltSol Energy serves ${regionData.cities.length} cities with EG4 battery systems from $8,700. ` +
-    `Free quote, no pressure, licensed installers.`;
+    `Off-grid solar + EG4 battery installation across ${regionData.county}. ` +
+    `VoltSol gives ${regionData.cities.length} cities energy independence from the utility — systems from $8,700, ` +
+    `blackout-ready, and built for NEM 3.0. Free quote.`;
 
   return {
     title,
@@ -63,13 +63,13 @@ export default function RegionPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Licensed solar installation serving ${regionData.county}, California`,
+        description: `Off-grid solar and EG4 battery backup installation serving ${regionData.county}, California — energy independence from the local utility.`,
         url: 'https://voltsolenergy.com',
         areaServed: {
           '@type': 'AdministrativeArea',
           name: regionData.county,
         },
-        serviceType: 'Solar Panel Installation',
+        serviceType: 'Off-Grid Solar and Battery Storage Installation',
       },
       {
         '@type': 'BreadcrumbList',
@@ -123,12 +123,13 @@ export default function RegionPage({ params }: PageProps) {
               {primaryUtility} Service Area
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Solar Panels in {regionData.county}, California
+              Off-Grid Solar &amp; Battery Backup in {regionData.county}, CA
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-blue-100">
-              VoltSol Energy serves {regionData.cities.length} cities across {regionData.county} with off-grid
-              solar installations. Our EG4 battery systems start at $8,700 — designed to reduce your {primaryUtility}{' '}
-              bill, provide backup power, and sidestep NEM 3.0 complexity.
+              VoltSol gives {regionData.cities.length} cities across {regionData.county} a way off the
+              {' '}{primaryUtility} treadmill: off-grid solar paired with EG4 battery storage, from $8,700. Make your
+              own power, store it, and keep the lights on through blackouts and PSPS shutoffs — instead of
+              exporting it back to the grid for pennies under NEM 3.0.
             </p>
           </div>
         </header>
@@ -177,7 +178,7 @@ export default function RegionPage({ params }: PageProps) {
               {/* Why solar */}
               <section className="mt-10" aria-labelledby="why-solar-heading">
                 <h2 id="why-solar-heading" className="text-2xl font-bold text-gray-900">
-                  Why Solar in {regionData.county}?
+                  Why Go Off-Grid in {regionData.county}?
                 </h2>
                 <div className="mt-4 space-y-3 text-gray-700">
                   <p>

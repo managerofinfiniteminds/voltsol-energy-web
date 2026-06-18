@@ -17,10 +17,11 @@ interface PageProps {
 export function generateMetadata({ params }: PageProps): Metadata {
   if (params.vertical !== 'solar' || params.state !== 'california') return {};
 
-  const title = 'Solar Panel Installation in California | VoltSol Energy';
+  const title = 'Off-Grid Solar & Battery Backup in California | VoltSol Energy';
   const description =
-    'Off-grid solar panel installation across Northern California. EG4 battery systems from $8,700. ' +
-    'Beat NEM 3.0 export cuts and rising PG&E and SMUD rates by storing your own power. Free quote.';
+    'Off-grid solar + EG4 battery installation across Northern California. Systems from $8,700. ' +
+    'Make your own power, store it, and run your home through blackouts — independent of PG&E and SMUD, ' +
+    'and built for NEM 3.0. Free quote.';
 
   return {
     title,
@@ -42,13 +43,13 @@ const jsonLd = {
     {
       '@type': 'LocalBusiness',
       name: 'VoltSol Energy',
-      description: 'Off-grid solar panel installation serving California',
+      description: 'Off-grid solar and EG4 battery backup installation serving California — energy independence from PG&E and SMUD.',
       url: 'https://voltsolenergy.com',
       areaServed: {
         '@type': 'State',
         name: 'California',
       },
-      serviceType: 'Solar Panel Installation',
+      serviceType: 'Off-Grid Solar and Battery Storage Installation',
       priceRange: '$8,700–$16,000',
     },
     {
@@ -115,12 +116,13 @@ export default function StatePage({ params }: PageProps) {
               Northern California
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Solar Panel Installation in California
+              Off-Grid Solar &amp; Battery Backup in California
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-blue-100">
-              VoltSol Energy specializes in off-grid solar installations across Northern California.
-              Our EG4-based systems start at just $8,700 — avoiding NEM 3.0 headaches, cutting your
-              dependence on PG&E and SMUD, and providing backup power during blackouts.
+              VoltSol specializes in off-grid solar with EG4 battery storage across Northern California —
+              systems from $8,700. Make your own power, store it, and run your home through blackouts and
+              PSPS shutoffs. Real energy independence from PG&E and SMUD, built for the NEM 3.0 era —
+              not another grid-tied system that shuts off when the utility does.
             </p>
           </div>
         </header>
@@ -143,10 +145,10 @@ export default function StatePage({ params }: PageProps) {
 
               <div className="flex flex-col gap-3 rounded-lg border border-amber-200 bg-amber-50 p-6">
                 <DollarSign className="h-8 w-8 text-amber-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">Built for NEM 3.0</h3>
+                <h3 className="font-bold text-gray-900">Own It, Don&rsquo;t Rent It</h3>
                 <p className="text-sm text-gray-700">
-                  Grid export credits dropped ~75% under NEM 3.0, so VoltSol systems store your power for
-                  self-use instead. Ask about current California incentives like SGIP battery rebates.
+                  The big installers sell you a grid-tied system that still leaves you on the utility&rsquo;s meter.
+                  VoltSol builds you your own power plant — solar + EG4 battery — so you stop renting power for good.
                 </p>
               </div>
 
@@ -161,10 +163,10 @@ export default function StatePage({ params }: PageProps) {
 
               <div className="flex flex-col gap-3 rounded-lg border border-green-200 bg-green-50 p-6">
                 <MapPin className="h-8 w-8 text-green-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">Rising Utility Rates</h3>
+                <h3 className="font-bold text-gray-900">Beat Rising Rates</h3>
                 <p className="text-sm text-gray-700">
-                  PG&E and SMUD residential rates have climbed dramatically. Solar locks in your energy cost at
-                  installation prices, protecting you from future hikes.
+                  PG&E and SMUD rates keep climbing. When you make and store your own power, their next rate
+                  hike stops being your problem — your energy cost is locked in at install.
                 </p>
               </div>
             </div>

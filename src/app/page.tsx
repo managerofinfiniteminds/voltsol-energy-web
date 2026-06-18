@@ -152,7 +152,7 @@ export default async function HomePage() {
 
           <Reveal delay={0.2} immediate>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button href="/start" size="lg" trackLocation="hero">
+              <Button href="/start" size="lg" trackLocation="hero" className="hidden sm:inline-flex">
                 {cfg.cta_button_text}
               </Button>
               <a

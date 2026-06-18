@@ -25,11 +25,11 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!market) return {};
 
   const { city: cityData, region: regionData } = market;
-  const title = `Solar Panels in ${cityData.city}, CA | Free Quote | VoltSol Energy`;
+  const title = `Off-Grid Solar & Battery Backup in ${cityData.city}, CA | VoltSol Energy`;
   const description =
-    `Get a free solar quote for your ${cityData.city} home. ${cityData.utility} customers in ` +
-    `${regionData.county} typically spend an estimated $${cityData.localData.avgMonthlyBillEstimate}/mo — ` +
-    `solar can dramatically reduce that bill. Licensed installers, no pressure.`;
+    `Cut the cord on ${cityData.utility}. VoltSol installs off-grid solar + EG4 battery systems in ` +
+    `${cityData.city} from $8,700 — power through blackouts, beat NEM 3.0 export cuts, and stop renting ` +
+    `power from the utility. ${cityData.utility} customers here pay an est. $${cityData.localData.avgMonthlyBillEstimate}/mo. Free quote.`;
 
   return {
     title,
@@ -70,7 +70,7 @@ export default function MarketCityPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Licensed residential solar installation serving ${cityData.city}, ${regionData.county}, California.`,
+        description: `Off-grid solar and EG4 battery backup installation serving ${cityData.city}, ${regionData.county}, California — energy independence from ${cityData.utility}.`,
         url: 'https://voltsolenergy.com',
         telephone: process.env.NEXT_PUBLIC_VOLTSOL_PHONE || undefined,
         areaServed: {
@@ -85,11 +85,11 @@ export default function MarketCityPage({ params }: PageProps) {
       },
       {
         '@type': 'Service',
-        name: `Residential Solar Panel Installation in ${cityData.city}`,
-        serviceType: 'Solar Panel Installation',
+        name: `Off-Grid Solar & Battery Backup Installation in ${cityData.city}`,
+        serviceType: 'Off-Grid Solar and Battery Storage Installation',
         provider: { '@type': 'LocalBusiness', name: 'VoltSol Energy' },
         areaServed: { '@type': 'City', name: cityData.city },
-        description: `VoltSol Energy and its licensed contractor network provide residential solar installation quotes in ${cityData.city}, California.`,
+        description: `VoltSol Energy installs off-grid solar with EG4 battery storage in ${cityData.city}, California — blackout-ready power independent of ${cityData.utility}, built for NEM 3.0.`,
       },
       {
         '@type': 'BreadcrumbList',
@@ -157,12 +157,13 @@ export default function MarketCityPage({ params }: PageProps) {
               {cityData.utility} Service Area · {regionData.county}
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Solar Panels in {cityData.city}, CA
+              Off-Grid Solar &amp; Battery Backup in {cityData.city}, CA
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-blue-100">
-              {cityData.cityProfile.localNote} Homeowners in {cityData.city} on {cityData.utility} pay an estimated{' '}
-              <strong>${cityData.localData.avgMonthlyBillEstimate}/mo</strong> in electricity — solar can
-              cut that dramatically. Get a free, no-obligation quote from a licensed local installer today.
+              Stop renting your power from {cityData.utility}. VoltSol installs off-grid solar paired with
+              EG4 battery storage in {cityData.city} — so you make your own power, store it, and run your home
+              through blackouts and PSPS shutoffs. Systems start at <strong>$8,700</strong>, and {cityData.city}
+              {' '}homes on {cityData.utility} pay an estimated <strong>${cityData.localData.avgMonthlyBillEstimate}/mo</strong> today.
             </p>
             <p className="mt-1 text-xs text-blue-300">
               * Electricity bill figures are regional estimates only, not guarantees.
@@ -177,7 +178,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Local stats */}
               <section aria-labelledby="local-stats-heading">
                 <h2 id="local-stats-heading" className="text-xl font-bold text-gray-900">
-                  Solar in {cityData.city} — Local Estimates
+                  Off-Grid Solar in {cityData.city} — Local Estimates
                 </h2>
                 <p className="mt-1 text-xs text-gray-400">
                   These are illustrative regional estimates — not guarantees. Your actual savings depend on
@@ -201,7 +202,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Why solar in this city */}
               <section className="mt-10" aria-labelledby="why-solar-heading">
                 <h2 id="why-solar-heading" className="text-xl font-bold text-gray-900">
-                  Why Go Solar in {cityData.city}?
+                  Why Go Off-Grid in {cityData.city}?
                 </h2>
                 <ul className="mt-4 space-y-3 text-sm text-gray-700">
                   <li className="flex gap-2">

@@ -5,9 +5,9 @@ import { NORCAL_SOLAR_MARKETS, marketPageHref } from '@/lib/market-data';
 import { MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Solar Markets We Serve in California | VoltSol Energy',
+  title: 'Off-Grid Solar & Battery Markets in California | VoltSol Energy',
   description:
-    'VoltSol Energy serves Northern California with off-grid solar installations. Browse our service areas across 7 counties and 27+ cities.',
+    'VoltSol installs off-grid solar + EG4 battery systems across all 58 California counties and 294 cities — energy independence from PG&E and SMUD, blackout-ready, built for NEM 3.0.',
   alternates: {
     canonical: '/market',
   },
@@ -19,13 +19,13 @@ const jsonLd = {
     {
       '@type': 'LocalBusiness',
       name: 'VoltSol Energy',
-      description: 'Off-grid solar installation serving Northern California',
+      description: 'Off-grid solar and EG4 battery backup installation serving California — energy independence from PG&E and SMUD.',
       url: 'https://voltsolenergy.com',
       areaServed: {
         '@type': 'State',
         name: 'California',
       },
-      serviceType: 'Solar Panel Installation',
+      serviceType: 'Off-Grid Solar and Battery Storage Installation',
     },
     {
       '@type': 'BreadcrumbList',
@@ -83,11 +83,12 @@ export default function MarketIndexPage() {
               Northern California
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              California Solar Markets
+              California Off-Grid Solar &amp; Battery Markets
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-blue-100">
-              VoltSol Energy serves homeowners across Northern California with off-grid solar installations
-              designed to reduce electricity bills and provide energy independence. Browse our service areas below.
+              VoltSol installs off-grid solar paired with EG4 battery storage across California — so homeowners
+              make their own power, store it, and run through blackouts instead of renting from PG&E or SMUD.
+              Find your county below.
             </p>
           </div>
         </header>

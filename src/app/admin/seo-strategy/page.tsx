@@ -36,10 +36,116 @@ export default async function SeoStrategyPage() {
             </h1>
           </div>
           <p className="text-lg text-blue-300 max-w-3xl">
-            Complete plan to own EG4 solar search in Northern California by Q4 2026
+            Complete plan to own EG4 + off-grid solar search across <strong className="text-white">all of California</strong> by Q4 2026, capturing the Jan 1, 2027 tax-urgency spike.
           </p>
           <p className="text-sm text-blue-400 mt-3">
-            📅 Generated June 14, 2026 | ⏰ 5-month roadmap | 🎯 200+ city pages | 🔗 30-45 backlinks
+            📅 Generated June 14, 2026 · Updated June 17, 2026 | 🎯 294 city pages LIVE | 🗺️ all 58 CA counties | 📑 389-URL sitemap
+          </p>
+        </div>
+
+        {/* LIVE STATUS — what is actually built and deployed */}
+        <div className="mb-12 rounded-2xl border border-green-500/40 bg-gradient-to-br from-emerald-900/20 to-navy-800 p-8">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-flex h-8 items-center rounded-full bg-green-500/20 px-3 text-sm font-bold text-green-300">● LIVE STATUS</span>
+            <span className="text-blue-400 text-sm">as of June 17, 2026 — voltsolenergy.com</span>
+          </div>
+          <p className="text-blue-200 mb-6">
+            The on-site half of this plan is <strong className="text-green-300">built and deployed</strong>. The original roadmap below targeted &ldquo;200+ city pages&rdquo; as a future Phase 3 — that is now done and exceeded. Here is what is live right now:
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { n: "58", l: "CA counties covered", s: "every county in the state" },
+              { n: "294", l: "city pages live", s: "unique local data each" },
+              { n: "28", l: "learn guides", s: "evergreen educational" },
+              { n: "389", l: "URLs in sitemap", s: "up from 260" },
+            ].map((x, i) => (
+              <div key={i} className="rounded-xl border border-green-500/20 bg-navy-900/40 p-4 text-center">
+                <div className="text-3xl font-bold text-green-300">{x.n}</div>
+                <div className="text-sm font-semibold text-white mt-1">{x.l}</div>
+                <div className="text-xs text-blue-400 mt-1">{x.s}</div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 className="font-semibold text-green-300 mb-2">✅ Done &amp; live (on-site)</h4>
+              <ul className="text-blue-300 text-sm space-y-1">
+                <li>✓ County → city page hierarchy (state hub → 58 counties → 294 cities)</li>
+                <li>✓ Unique per-page data: local utility + rate, permit office, climate zone, 3 city-specific FAQs (no doorway dupes)</li>
+                <li>✓ Structured data / schema: LocalBusiness, Service, FAQPage, Article + CSLB #1148585</li>
+                <li>✓ 28 evergreen /learn guides</li>
+                <li>✓ Sitemap.xml + robots.txt, fast page speed, internal linking</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gold mb-2">🔜 Remaining (off-site — needs Hugo)</h4>
+              <ul className="text-blue-300 text-sm space-y-1">
+                <li>→ Claim &amp; verify Google Business Profile <span className="text-gold">(#1 priority — postcard PIN takes ~2 weeks)</span></li>
+                <li>→ Real customer reviews (target 5+ first month)</li>
+                <li>→ Directory citations with identical NAP (Bing Places, Yelp, etc.)</li>
+                <li>→ Submit sitemap to Google Search Console + Bing Webmaster Tools</li>
+                <li>→ Backlinks / guest posts (see Authority section below)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* HOW TO VIEW THE PAGES — practical navigation + inspection guide */}
+        <div className="mb-12 rounded-2xl border border-gold/30 bg-navy-800/50 p-8">
+          <h2 className="text-2xl font-bold text-gold mb-4">How to View the Pages</h2>
+          <p className="text-blue-300 mb-6">
+            Every county and city page is a real, public URL on the live site. Here is exactly how to find and inspect them.
+          </p>
+
+          <h3 className="font-semibold text-white mb-2">1. The URL pattern</h3>
+          <p className="text-blue-300 text-sm mb-3">All market pages follow one predictable structure — swap in the county and city slug (lowercase, hyphenated):</p>
+          <div className="rounded-lg border border-blue-900/40 bg-navy-900/60 p-4 font-mono text-xs text-green-300 space-y-2 mb-3">
+            <div><span className="text-blue-400"># State hub (links to all counties)</span><br/>voltsolenergy.com/market/solar/california</div>
+            <div><span className="text-blue-400"># A county hub (links to that county&apos;s cities)</span><br/>voltsolenergy.com/market/solar/california/<span className="text-gold">[county]</span></div>
+            <div><span className="text-blue-400"># A city page (the page that ranks locally)</span><br/>voltsolenergy.com/market/solar/california/<span className="text-gold">[county]</span>/<span className="text-gold">[city]</span></div>
+          </div>
+          <p className="text-blue-300 text-sm mb-2">Live examples you can open right now:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
+            {[
+              ["State hub", "/market/solar/california"],
+              ["Sacramento County", "/market/solar/california/sacramento-county"],
+              ["Roseville (Placer)", "/market/solar/california/placer-county/roseville"],
+              ["San Francisco", "/market/solar/california/san-francisco-county/san-francisco"],
+              ["Bishop (Eastern Sierra)", "/market/solar/california/inyo-county/bishop"],
+              ["Weaverville (remote NW)", "/market/solar/california/trinity-county/weaverville"],
+            ].map((r, i) => (
+              <a key={i} href={`https://voltsolenergy.com${r[1]}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg border border-gold/20 bg-navy-700/40 hover:bg-navy-700/70 transition p-3">
+                <span className="text-gold">↗</span>
+                <span className="text-white text-sm font-medium">{r[0]}</span>
+                <span className="text-blue-400 text-xs font-mono ml-auto truncate">{r[1]}</span>
+              </a>
+            ))}
+          </div>
+
+          <h3 className="font-semibold text-white mb-2">2. See the full list of every page</h3>
+          <p className="text-blue-300 text-sm mb-3">
+            The sitemap is the machine-readable index of all 389 live URLs. Open it in a browser to scan every county, city, and guide:
+          </p>
+          <div className="rounded-lg border border-blue-900/40 bg-navy-900/60 p-4 font-mono text-xs text-green-300 mb-2">
+            <a href="https://voltsolenergy.com/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:underline">voltsolenergy.com/sitemap.xml</a>
+          </div>
+          <p className="text-blue-400 text-xs mb-6">Tip: in the browser, use Find (⌘F / Ctrl-F) to jump to any county, e.g. &ldquo;napa-county&rdquo;.</p>
+
+          <h3 className="font-semibold text-white mb-2">3. Inspect what Google sees (the schema)</h3>
+          <p className="text-blue-300 text-sm mb-3">
+            The structured data is invisible on the page but readable in the HTML source. Two easy ways:
+          </p>
+          <ul className="text-blue-300 text-sm space-y-2 mb-4 list-disc pl-5">
+            <li><strong className="text-white">View source:</strong> open any page, right-click → &ldquo;View Page Source&rdquo; (or add <code className="bg-navy-900/60 px-1.5 py-0.5 rounded text-green-300">view-source:</code> before the URL). Search the page for <code className="bg-navy-900/60 px-1.5 py-0.5 rounded text-green-300">application/ld+json</code> — that block is the LocalBusiness / FAQ / Article schema.</li>
+            <li><strong className="text-white">Google&apos;s own tester:</strong> paste any city URL into the <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">Rich Results Test</a> to see exactly which rich snippets Google detects (FAQ drop-downs, business info, etc.).</li>
+          </ul>
+          <p className="text-blue-400 text-xs mb-6">Note: the star-rating markup is wired but only renders stars once real Google reviews exist — that&apos;s the off-site step above.</p>
+
+          <h3 className="font-semibold text-white mb-2">4. Plain-language walkthrough</h3>
+          <p className="text-blue-300 text-sm">
+            For a non-technical explainer of <em>why</em> these pages are built this way and how a searcher becomes a lead, see the companion briefing at{" "}
+            <a href="https://voltsolenergy.com/admin/how-seo-works" className="text-gold hover:underline font-mono">/admin/how-seo-works</a>{" "}
+            (admin-only, same login).
           </p>
         </div>
 
@@ -116,6 +222,9 @@ export default async function SeoStrategyPage() {
         {/* 5-Phase Roadmap */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">5-Phase Implementation Roadmap</h2>
+          <p className="text-blue-400 text-sm mb-6 -mt-3">
+            <span className="text-green-300 font-semibold">Status update (June 17):</span> the on-site build phases (foundation, city pages, content, schema) are <span className="text-green-300">complete and live</span> — see the LIVE STATUS panel above. The phases below are the original plan, kept for reference. Remaining effort is the off-site / authority track (GBP, reviews, citations, backlinks).
+          </p>
           <div className="space-y-4">
             {[
               {
@@ -394,28 +503,29 @@ export default async function SeoStrategyPage() {
         </div>
 
         {/* Next Steps */}
-        <div className="mb-12 rounded-xl border border-blue-900/50 bg-navy-800/50 p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Next Steps (Awaiting Review)</h2>
+        <div className="mb-12 rounded-xl border border-gold/40 bg-navy-800/50 p-8">
+          <h2 className="text-2xl font-bold text-white mb-6">Next Steps (off-site — owner action)</h2>
+          <p className="text-blue-300 text-sm mb-6 -mt-2">The on-site build is done. These are the remaining moves, in priority order — all require Hugo&apos;s real-world accounts:</p>
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="text-gold text-xl flex-shrink-0">📋</div>
+              <div className="text-gold text-xl flex-shrink-0">1️⃣</div>
               <div>
-                <h4 className="font-semibold text-white mb-1">Strategic Alignment Meeting</h4>
-                <p className="text-blue-300 text-sm">Review full strategy document with Wayne + Hugo to confirm direction and priorities</p>
+                <h4 className="font-semibold text-white mb-1">Claim &amp; verify Google Business Profile</h4>
+                <p className="text-blue-300 text-sm">Highest leverage by far. Powers the map pack + star ratings. Verification postcard takes up to 2 weeks — start the clock now. Copy-paste pack already emailed.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="text-gold text-xl flex-shrink-0">👥</div>
+              <div className="text-gold text-xl flex-shrink-0">2️⃣</div>
               <div>
-                <h4 className="font-semibold text-white mb-1">Team Assignment</h4>
-                <p className="text-blue-300 text-sm">Assign content creator, developer, and project lead once strategy is approved</p>
+                <h4 className="font-semibold text-white mb-1">Collect customer reviews + build citations</h4>
+                <p className="text-blue-300 text-sm">Aim 5+ Google reviews in month one (unlocks the star markup already on-site). Submit identical NAP to Bing Places, Yelp, and the directory list in the off-site pack.</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="text-gold text-xl flex-shrink-0">🔨</div>
+              <div className="text-gold text-xl flex-shrink-0">3️⃣</div>
               <div>
-                <h4 className="font-semibold text-white mb-1">Phase 1 Kickoff</h4>
-                <p className="text-blue-300 text-sm">Begin foundation work: technical SEO, schema deployment, GBP optimization, first 7 pages</p>
+                <h4 className="font-semibold text-white mb-1">Submit sitemap + begin backlinks</h4>
+                <p className="text-blue-300 text-sm">Add the site to Google Search Console + Bing Webmaster Tools and submit sitemap.xml so all 389 URLs get crawled fast. Then start the guest-post / link outreach below.</p>
               </div>
             </div>
           </div>
@@ -461,8 +571,8 @@ export default async function SeoStrategyPage() {
 
         {/* Footer */}
         <div className="mt-16 pt-12 border-t border-blue-900/30 text-center text-blue-400 text-sm">
-          <p>VoltSol Energy SEO Strategy Report | Generated June 14, 2026</p>
-          <p className="mt-2">⚠️ Awaiting Hugo review before Phase 1 build authorization</p>
+          <p>VoltSol Energy SEO Strategy Report | Generated June 14, 2026 · Updated June 17, 2026</p>
+          <p className="mt-2">✅ On-site build complete &amp; live (58 counties / 294 cities / 389-URL sitemap) — remaining work is off-site (GBP, reviews, citations, backlinks)</p>
         </div>
       </Container>
     </section>

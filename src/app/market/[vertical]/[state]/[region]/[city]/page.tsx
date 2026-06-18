@@ -238,6 +238,32 @@ export default function MarketCityPage({ params }: PageProps) {
                 </ul>
               </section>
 
+              {/* PSPS outage moment */}
+              <section className="mt-10" aria-labelledby="psps-heading">
+                <div className="relative overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/psps-alert-moment.png"
+                    alt={`PG&E PSPS power shutoff alert on a phone while an off-grid solar home stays powered in ${cityData.city}, California`}
+                    width={1200}
+                    height={675}
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                    className="h-auto w-full object-cover"
+                  />
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+                    <h2 id="psps-heading" className="text-xl font-bold text-white sm:text-2xl">
+                      When {cityData.utility} cuts the power, your lights stay on
+                    </h2>
+                    <p className="mt-2 max-w-2xl text-sm text-blue-100 sm:text-base">
+                      Public Safety Power Shutoffs (PSPS) and wildfire-season outages can leave {cityData.city}
+                      {' '}homes dark for hours — sometimes days. A VoltSol off-grid system with EG4 battery backup
+                      keeps your fridge, lights, and Wi-Fi running while the grid is down. No generator, no fuel runs,
+                      no scramble.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
               {/* Local Details */}
               <section className="mt-10" aria-labelledby="local-details-heading">
                 <h2 id="local-details-heading" className="text-xl font-bold text-gray-900">

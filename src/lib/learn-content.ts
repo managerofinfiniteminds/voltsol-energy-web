@@ -79,7 +79,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "VoltSol Approach: Under $10,000, Installed",
         paragraphs: [
           "Most VoltSol installs run under $10,000, all-in. That includes solar panels, EG4 battery, hybrid mini-split heat pump, installation, and commissioning. We focus on HVAC because it is the biggest energy hog. Once that is covered, you can add lighting, outlets, and other loads incrementally.",
-          "Our systems qualify for the 30 percent federal Investment Tax Credit, which brings the net cost down further. VoltSol serves Northern California and handles all permitting, installation, and inspection coordination. You get a working system, not a years-long financing trap.",
+          "California's SGIP program still offers rebates on qualifying battery storage, which can bring your net cost down further. (The 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025, so we no longer factor it into 2026 quotes.) VoltSol serves Northern California and handles all permitting, installation, and inspection coordination. You get a working system, not a years-long financing trap.",
         ],
       },
     ],
@@ -224,7 +224,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "A typical VoltSol install includes 3 to 5 kW of solar panels, a 10 to 15 kWh EG4 LiFePO4 battery, one EG4 hybrid mini-split heat pump, installation, commissioning, and all required permits. The system covers your heating and cooling year-round, plus lighting and small loads.",
           "The panels go on your roof or ground-mount depending on site conditions. The battery mounts indoors or in a weather-rated enclosure. The mini-split indoor unit mounts on a wall in your main living space. The outdoor condenser unit sits outside like any standard AC unit. Installation typically takes 1 to 2 days.",
-          "You keep the system. No loan. No lease. No utility bill for HVAC. The 30 percent federal Investment Tax Credit applies, bringing the net cost down to around $7,000. At current Northern California utility rates of 40+ cents per kWh, payback is under 3 years.",
+          "You keep the system. No loan. No lease. No utility bill for HVAC. At an all-in cost under $10,000 — with California SGIP battery rebates potentially lowering it further — and current Northern California utility rates of 40+ cents per kWh, payback typically lands in the 3-to-4-year range. (The federal residential solar tax credit ended for systems placed in service after December 31, 2025.)",
         ],
       },
       {
@@ -273,7 +273,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Do I qualify for tax credits or rebates?",
-        a: "Yes. The federal Investment Tax Credit gives you 30 percent back on the total system cost, including installation. Some California counties and utilities offer additional rebates for battery storage or heat pump upgrades. VoltSol can help you identify available incentives.",
+        a: "The 30 percent federal residential solar tax credit (Section 25D) ended for systems placed in service after December 31, 2025, so it no longer applies to new 2026 installs. The good news: California's SGIP program still offers rebates on qualifying battery storage, and some counties and utilities offer additional incentives for storage or heat pump upgrades. VoltSol can help you identify which incentives you currently qualify for.",
       },
       {
         q: "Can I still have a grid connection as backup?",
@@ -331,7 +331,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Cost and Payback",
         paragraphs: [
-          "A complete VoltSol system with solar panels, battery, and mini-split heat pump costs under $10,000 installed. That includes all equipment, labor, permits, and inspection fees. Apply the 30 percent federal Investment Tax Credit, and your net cost drops to around $7,000.",
+          "A complete VoltSol system with solar panels, battery, and mini-split heat pump costs under $10,000 installed. That includes all equipment, labor, permits, and inspection fees. California SGIP battery rebates can lower your net cost further. (The 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025.)",
           "Compare that to your current HVAC energy cost. If you spend $200 per month on heating and cooling with PG&E at 40+ cents per kWh, you are spending $2,400 per year. At that rate, the system pays for itself in under 3 years. After that, your heating and cooling are free.",
           "Traditional central AC replacement costs $5,000 to $8,000 without any solar. A full solar-plus-battery system from a national installer costs $30,000 to $40,000. VoltSol delivers both for a fraction of the price by focusing on efficiency first and using value-focused brands like EG4.",
         ],
@@ -624,7 +624,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "First, understand your current usage and cost. Pull up your last 12 months of utility bills and calculate your average monthly kWh and cost. Identify your biggest loads: HVAC, water heating, electric vehicle charging, pool pumps. These are the targets for solar.",
           "Second, consider your options. Grid-tie solar with battery backup is one path. Off-grid solar focused on your biggest loads is another. Hybrid approaches -- off-grid for HVAC and essentials, grid connection for heavy appliances -- are also viable. VoltSol can assess your situation and recommend the best fit.",
-          "Third, act sooner rather than later. Every month you wait, you pay more to the utility. Solar panels, batteries, and inverters have stable pricing, but installation timelines can stretch during peak seasons. The federal 30 percent Investment Tax Credit is in place through 2032, so you have time, but every year of delay costs you thousands in utility bills.",
+          "Third, act sooner rather than later. Every month you wait, you pay more to the utility. Solar panels, batteries, and inverters have stable pricing, but installation timelines can stretch during peak seasons. The 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025 — so the era of waiting for a federal subsidy is over. Today the math is driven by avoided utility costs, and every year of delay costs you thousands in utility bills.",
         ],
       },
     ],
@@ -908,7 +908,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Real Example: VoltSol 4 kW System",
         paragraphs: [
           "A typical VoltSol install includes 10 panels at 400 watts each for 4 kW total. In Fresno or Sacramento, this produces 20 kWh per day in summer and 12 to 15 kWh per day in winter. Paired with a 15 kWh EG4 battery and an EG4 hybrid mini-split heat pump, the system covers year-round heating and cooling plus essentials.",
-          "Total cost is under $10,000 installed. After the 30 percent federal tax credit, net cost is around $7,000. At current PG&E rates of 40+ cents per kWh, the system saves $200 to $300 per month and pays for itself in under 3 years. The panels last 25+ years, the battery lasts 15 to 20 years, and the mini-split lasts 15 to 20 years.",
+          "Total cost is under $10,000 installed, with California SGIP battery rebates potentially lowering it further. At current PG&E rates of 40+ cents per kWh, the system saves $200 to $300 per month and pays for itself in roughly 3 to 4 years. The panels last 25+ years, the battery lasts 15 to 20 years, and the mini-split lasts 15 to 20 years. (The 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025.)",
         ],
       },
     ],
@@ -1087,7 +1087,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Payback and Long-Term Value",
         paragraphs: [
-          "At current Northern California rates of 40+ cents per kWh, an essential-loads system saving $200 per month pays for itself in 3 to 4 years after the federal tax credit. An expanded system saving $300 to $400 per month pays back in 4 to 6 years. Whole-house systems take 8 to 12 years to pay back unless you have extremely high usage.",
+          "At current Northern California rates of 40+ cents per kWh, an essential-loads system saving $200 per month pays for itself in roughly 3 to 5 years. An expanded system saving $300 to $400 per month pays back in 4 to 6 years. Whole-house systems take 8 to 12 years to pay back unless you have extremely high usage. (Payback is now driven by avoided utility costs and any California SGIP battery rebates; the 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025.)",
           "After payback, your electricity is free. Over 20 years, an essential-loads system saves $50,000 to $70,000 compared to staying on the grid, accounting for annual rate increases. Expanded and whole-house systems save even more, but the upfront cost is higher and the payback is longer.",
           "Off-grid systems also add home resale value. Studies show homes with solar sell faster and for 3 to 4 percent more than comparable homes without solar. Off-grid capability is especially attractive in high-fire-risk areas where PSPS events are common.",
         ],
@@ -1307,96 +1307,88 @@ export const LEARN_ARTICLES: LearnArticle[] = [
   },
   {
     slug: "federal-solar-tax-credit-2026",
-    title: "The Federal Solar Tax Credit (ITC) in 2026: What You Get",
-    metaTitle: "Federal Solar Tax Credit 2026: 30% ITC Explained",
+    title: "The Federal Solar Tax Credit Ended in 2026: What California Homeowners Need to Know",
+    metaTitle: "Federal Solar Tax Credit Ended 2026: What California Homeowners Need to Know",
     metaDescription:
-      "The federal solar tax credit gives you 30% back on solar costs through 2032. Learn how it works, what qualifies, and how to claim it.",
+      "The 30% federal residential solar tax credit (Section 25D) ended for systems placed in service after December 31, 2025. Here is what that means for 2026 buyers and what real California incentives remain.",
     excerpt:
-      "The federal Investment Tax Credit gives you 30 percent of your solar system cost back as a tax credit.",
+      "The federal residential solar Investment Tax Credit (Section 25D) ended for systems placed in service after December 31, 2025 -- it no longer applies to new 2026 installs.",
     sections: [
       {
         paragraphs: [
-          "The federal solar Investment Tax Credit, or ITC, is the single biggest financial incentive for residential solar in the United States. It gives you 30 percent of your total system cost back as a tax credit, which directly reduces your federal income tax liability dollar-for-dollar.",
-          "The ITC applies to solar panels, batteries, inverters, installation labor, and permitting costs. It covers grid-tie, off-grid, and hybrid systems. And it remains at 30 percent through the end of 2032, after which it steps down. Here is how it works, what qualifies, and how to claim it.",
+          "For over a decade, the federal residential solar Investment Tax Credit -- Section 25D of the Internal Revenue Code -- gave homeowners 30 percent of their solar system cost back as a direct tax credit. It was the single biggest incentive in residential solar. For 2026 buyers, it is gone.",
+          "The July 2025 federal budget law repealed Section 25D for systems placed in service after December 31, 2025. If your system goes live in 2026 or later, the federal ITC does not apply. This is a material change. Here is what it means for you, what incentives remain, and why the financial case for solar is still strong in California.",
         ],
       },
       {
-        heading: "How the ITC Works",
+        heading: "What Was the 30% Federal Solar Tax Credit?",
         paragraphs: [
-          "The ITC is a tax credit, not a deduction. A deduction reduces your taxable income. A credit reduces your tax liability directly. If you owe $10,000 in federal taxes and claim a $3,000 solar tax credit, you now owe $7,000. The credit pays your tax bill.",
-          "The ITC is non-refundable, meaning it can reduce your tax liability to zero but will not generate a refund beyond that. If you owe $2,000 in taxes and have a $3,000 credit, you use $2,000 and carry the remaining $1,000 forward to next year. The credit rolls forward indefinitely until fully used.",
-          "To claim the ITC, you file IRS Form 5695 with your federal tax return. The form calculates your credit based on qualified solar expenses. You attach it to Form 1040 and reduce your tax liability by the credit amount. Most tax software handles this automatically if you enter your solar system cost.",
+          "Section 25D was a non-refundable federal income tax credit equal to 30 percent of the total installed cost of a residential solar system -- panels, inverters, batteries, installation labor, and permits. A $10,000 system generated a $3,000 credit that directly reduced your federal tax liability dollar-for-dollar.",
+          "The credit was valuable because it was not a deduction -- it reduced actual taxes owed, not just taxable income. Unused credit carried forward to future years. It covered grid-tie, off-grid, and hybrid systems, and was a major reason solar payback periods were often quoted at 2 to 3 years.",
+          "Congress extended the ITC multiple times. The Inflation Reduction Act of 2022 set it at 30 percent until the end of 2032, with a step-down schedule planned for subsequent years. The July 2025 budget law reversed that and repealed the residential credit for systems placed in service after December 31, 2025.",
         ],
       },
       {
-        heading: "What Qualifies for the ITC?",
+        heading: "What This Means for 2026 Buyers",
         paragraphs: [
-          "Qualified expenses include solar panels, inverters, charge controllers, mounting hardware, wiring, and installation labor. Battery storage qualifies if charged primarily by solar. Permits, inspection fees, and sales tax also qualify. Basically, if it is part of the solar system and necessary for it to function, it qualifies.",
-          "The system must be installed at your primary or secondary residence in the United States. New construction qualifies. Rentals qualify if you own the property. The system must be new -- used equipment does not qualify. And you must own the system, not lease it. Leased or PPA systems do not qualify because the leasing company owns the equipment and claims the credit.",
-          "Off-grid systems qualify just like grid-tie systems. The IRS does not care whether you connect to the utility or not. As long as the system generates electricity from solar and meets the other requirements, you get the credit.",
+          "If you are buying or planning a solar system in 2026, you cannot claim the Section 25D federal tax credit. The credit eligibility is based on when the system is placed in service -- meaning installed and fully operational -- not when you sign a contract or make a payment.",
+          "Systems placed in service on or before December 31, 2025 were not affected. If an installer tells you the 30 percent federal credit still applies to a 2026 install, that is factually wrong. Consult a licensed tax professional if you have questions about your specific situation.",
+          "This does not mean solar is a bad investment. It means the payback math changes. The full installed cost is your starting number, with no federal subsidy to offset it. In PG&E territory at 40-plus cents per kWh, avoided utility costs still drive a compelling payback in 3 to 5 years -- no tax credit required.",
         ],
       },
       {
-        heading: "Battery Storage and the ITC",
+        heading: "California Incentives That Still Apply",
         paragraphs: [
-          "Battery storage qualifies for the ITC if it is charged 100 percent by solar. If your battery charges from both solar and the grid, only the portion charged by solar qualifies. The IRS allows you to claim the full battery cost if you can demonstrate that the battery is primarily charged by solar.",
-          "In practice, most residential solar-plus-battery systems qualify for the full credit. The battery charges from solar during the day and discharges at night or during outages. Even if the system occasionally draws grid power to top off the battery, the primary charging source is solar, so the IRS allows the full credit.",
-          "This is a significant benefit. Batteries add $5,000 to $15,000 to system cost, and the 30 percent credit cuts that by $1,500 to $4,500. Without the ITC, battery storage would be much less affordable. With it, solar-plus-battery systems are cost-competitive with grid-tie-only systems under NEM 3.0.",
+          "California's Self-Generation Incentive Program (SGIP) offers rebates on qualifying battery storage systems. SGIP is administered through the state's major utilities and targets storage that reduces grid stress during peak demand. If your system includes a battery, you may qualify for a rebate that lowers your net cost -- ask VoltSol about current SGIP enrollment status during your quote.",
+          "California's property tax exclusion for solar still applies. Under Revenue and Taxation Code Section 73, adding a qualifying solar system does not trigger a property tax reassessment. The added home value from your install is excluded from your assessed value, saving you money on property taxes every year for the life of the system.",
+          "Some counties and local utilities offer additional incentives for battery storage, EV charging, or low-income solar programs. SMUD has offered battery incentives in the past. Check with your local utility or county for currently active programs -- VoltSol tracks available California incentives and will flag anything you qualify for.",
         ],
       },
       {
-        heading: "ITC Step-Down Schedule",
+        heading: "The Real Value Driver: Avoided Utility Costs",
         paragraphs: [
-          "The ITC is currently 30 percent for systems placed in service before January 1, 2033. On that date, it drops to 26 percent. In 2034, it drops to 22 percent. In 2035 and beyond, the residential credit expires entirely unless Congress extends it.",
-          "Placed in service means the system is installed and operational, not just contracted or purchased. If you sign a contract in 2032 but the system is not installed until 2033, you get 26 percent, not 30 percent. The clock runs on when the system goes live, not when you place the order.",
-          "This creates a deadline. If you are considering solar, installing before the end of 2032 locks in the 30 percent credit. Waiting until 2033 costs you 4 percent of the system cost, or $400 per $10,000 spent. For most homeowners, that is reason enough to act sooner rather than later.",
+          "Even without a federal tax credit, off-grid solar in Northern California is a strong financial move. PG&E residential rates now exceed 40 cents per kWh in many tiers. A home using 600 kWh per month pays $240 or more every month -- nearly $3,000 per year -- to PG&E. Off-grid solar eliminates that bill entirely.",
+          "A $10,000 VoltSol system saving $250 per month pays back in about 3.3 years on avoided utility costs alone. SGIP rebates, if your battery qualifies, may lower your net cost and shorten payback further. After year 4, you are banking $250 per month that used to go to PG&E. That value compounds every year as utility rates keep climbing.",
+          "Compare this to staying on the grid under NEM 3.0, which pays a fraction of what NEM 2.0 customers earned for solar exports. Off-grid avoids the utility entirely -- no NEM rate games, no demand charges, no grid outages during PSPS events. You generate, store, and consume your own power.",
         ],
       },
       {
-        heading: "How to Claim the ITC",
+        heading: "Example: $10,000 System in 2026 (No Federal ITC)",
         paragraphs: [
-          "You claim the ITC on your federal tax return for the year the system is placed in service. If your system goes live in 2026, you claim the credit on your 2026 tax return filed in early 2027. The credit applies to the year of installation, not the year you paid for it.",
-          "To claim, you need documentation: the final invoice showing total system cost, proof of payment, and a statement from your installer confirming the system is operational. VoltSol provides all required documentation at system completion. You or your tax preparer enter the total cost on IRS Form 5695, calculate the credit, and apply it to your tax liability.",
-          "If your tax liability is less than the credit amount, the unused portion carries forward to future years. There is no limit on how many years you can carry it forward. If you owe $2,000 per year in federal taxes and have a $9,000 credit from a $30,000 system, you use $2,000 per year for the next four to five years until the credit is exhausted.",
+          "A VoltSol off-grid system costs approximately $10,000 installed. There is no federal tax credit to claim for 2026 installs. SGIP may lower your net cost depending on battery eligibility -- VoltSol will assess this during your quote.",
+          "Pre-solar PG&E bill: $250 per month, or $3,000 per year. Post-solar bill: $0. Annual savings: $3,000. Payback on the full $10,000: approximately 3.3 years. If SGIP applies, your net cost drops and payback shortens further.",
+          "By year 5, you have recouped the full investment. By year 10, you have avoided $30,000 or more in utility costs. By year 20 -- the practical lifespan of the system -- you have avoided $60,000 to $80,000 in utility payments as rates continue rising. The absence of a federal tax credit pushes payback from 2 years to 3 to 4 years. The long-term financial outcome remains compelling.",
         ],
       },
       {
-        heading: "State and Local Incentives",
+        heading: "Property Tax Exclusion: An Ongoing Benefit",
         paragraphs: [
-          "California does not currently offer a statewide solar rebate, but some local utilities and municipalities offer incentives for battery storage or low-income solar programs. SMUD, for example, has offered battery incentives in the past. Check with your local utility or county for current programs.",
-          "Property tax exclusion is another California benefit. Solar systems are excluded from property tax reassessment, meaning your property taxes do not increase even though the system adds value to your home. This is automatic and requires no application.",
-          "The federal ITC is the biggest incentive by far. Combined with California property tax exclusion and increasing utility rates, the financial case for solar is stronger than ever. VoltSol helps customers identify all available incentives and maximize total savings.",
-        ],
-      },
-      {
-        heading: "Example: $10,000 System After ITC",
-        paragraphs: [
-          "A VoltSol off-grid system costs $10,000 installed. You pay the full amount upfront or finance it. At tax time, you claim a $3,000 ITC (30 percent of $10,000). If you owe $5,000 in federal taxes, the credit reduces your liability to $2,000. You either get a bigger refund or owe less.",
-          "If you owe less than $3,000 in taxes, you carry forward the unused credit. Say you owe $2,000 this year and $2,500 next year. You use $2,000 in year one, $2,500 in year two, and the remaining $500 in year three. Eventually you get the full $3,000 back, just spread over multiple years.",
-          "Net cost after the ITC is $7,000. At current Northern California utility rates, the system saves $200 to $300 per month. Payback is 2 to 3 years. After that, your electricity is free for the next 20+ years.",
+          "California Revenue and Taxation Code Section 73 excludes solar installations from property tax reassessment. When you add solar, your assessed property value does not increase -- even though the system adds real market value to your home. You pay no additional property taxes for the life of the system.",
+          "This benefit is automatic and requires no application. It applies to new solar installations and to battery storage systems paired with solar. Over 20 years, this exclusion typically saves homeowners $1,000 to $3,000 in would-be property tax increases.",
+          "Combined with SGIP battery rebates and ongoing avoided utility cost savings, the total financial picture for solar in 2026 California remains strong -- just built on different foundations than it was in 2024.",
         ],
       },
     ],
     faq: [
       {
-        q: "Do I get the ITC if I lease my solar system?",
-        a: "No. The ITC goes to the system owner. If you lease or sign a PPA, the leasing company owns the equipment and claims the credit. To get the ITC, you must own the system outright or finance it.",
+        q: "Can I still claim the 30% federal solar tax credit in 2026?",
+        a: "No. The Section 25D residential solar tax credit ended for systems placed in service after December 31, 2025. If your system is installed and operational in 2026, the federal ITC does not apply. Verify your specific situation with a licensed tax professional.",
       },
       {
-        q: "Can I claim the ITC for a system I install myself?",
-        a: "Yes, as long as the system qualifies. You include equipment costs and any labor you paid for. Your own labor does not count, but materials, permits, and hired help do. Keep all receipts and documentation for your tax filing.",
+        q: "Does California still offer solar incentives?",
+        a: "Yes. California's SGIP program offers rebates on qualifying battery storage systems. The state property tax exclusion for solar still applies. Some local utilities and counties offer additional incentives for storage or heat pump upgrades. VoltSol can walk you through what you currently qualify for.",
       },
       {
-        q: "What if I do not owe enough taxes to use the full credit?",
-        a: "The unused credit carries forward to future years indefinitely. You use it as you owe taxes. If your tax liability is low, it may take several years to use the full credit, but you will eventually get it all.",
+        q: "Does solar still make financial sense without the federal tax credit?",
+        a: "Absolutely. In PG&E and SCE territory, where rates exceed 40 cents per kWh, avoided utility costs drive a 3 to 5 year payback on a sub-$10,000 off-grid system -- no federal subsidy needed. SGIP rebates may reduce your cost further. The math is different without the ITC, but the long-term outcome is still compelling.",
       },
       {
-        q: "Does the ITC apply to battery-only installations?",
-        a: "Only if the battery is charged by solar. Standalone batteries charged from the grid do not qualify. Batteries paired with solar and charged primarily by solar qualify for the full 30 percent credit.",
+        q: "What is SGIP and do I qualify?",
+        a: "SGIP (Self-Generation Incentive Program) is a California program that offers rebates on qualifying battery storage systems. Eligibility depends on your utility, system specs, and current program availability. Ask VoltSol during your quote -- we track current SGIP enrollment status and can tell you if your project qualifies.",
       },
       {
-        q: "Will the ITC be extended past 2032?",
-        a: "Maybe. Congress has extended the ITC multiple times in the past. But there is no guarantee. If you want the 30 percent credit, install before January 1, 2033. Waiting risks a lower rate or expiration.",
+        q: "Does the California property tax exclusion still apply in 2026?",
+        a: "Yes. California Revenue and Taxation Code Section 73 excludes solar installations from property tax reassessment. This is automatic, requires no application, and applies to solar panels and paired battery storage.",
       },
     ],
   },
@@ -1651,7 +1643,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "A 1,200 square foot home in Fresno with average insulation needs roughly 24,000 BTU of cooling capacity. VoltSol installs an 18,000 to 24,000 BTU EG4 hybrid mini-split with SEER2 22 and HSPF2 10. The unit uses 1.5 to 2 kW during operation.",
           "We pair it with 4 kW of solar panels and a 15 kWh EG4 battery. Summer daytime cooling runs directly on solar. Excess energy charges the battery. Nighttime cooling draws from the battery. Winter heating works the same way. The system covers year-round HVAC for under $10,000 installed.",
-          "After the 30 percent federal tax credit, net cost is around $7,000. The customer saves $200 to $300 per month on PG&E bills. Payback is under 3 years. The mini-split lasts 15 to 20 years, the battery lasts 15 to 20+ years, and the panels last 25 to 30+ years.",
+          "The full installed cost is under $10,000. The customer saves $200 to $300 per month on PG&E bills. California's SGIP program may lower net cost further if the battery qualifies. Payback is typically 3 to 4 years on avoided utility costs alone. The mini-split lasts 15 to 20 years, the battery lasts 15 to 20+ years, and the panels last 25 to 30+ years.",
         ],
       },
     ],
@@ -2190,7 +2182,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     title: "Paying for Solar: Cash vs Financing vs Loan (California Guide)",
     metaTitle: "Solar Financing vs Cash: California Payment Options 2026",
     metaDescription:
-      "Compare paying cash, taking a solar loan, or financing for California solar. Cost, interest, tax credits, and which option saves the most.",
+      "Compare paying cash, taking a solar loan, or financing for California solar. Cost, interest, and which option saves the most given the end of the federal ITC.",
     excerpt:
       "Should you pay cash, take a loan, or finance your solar system? Here is the math on each option.",
     sections: [
@@ -2203,8 +2195,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Option 1: Pay Cash Upfront",
         paragraphs: [
-          "Paying cash means you write a check for the full system cost and own the system outright from day one. No interest. No monthly payments. No financing fees. You claim the 30 percent federal Investment Tax Credit the following year when you file taxes, which returns $3,000 to $12,000 depending on system size.",
-          "Cash is the lowest total cost option. A $10,000 system costs exactly $10,000. After the 30 percent ITC, your net cost is $7,000. Compare that to financing the same system at 6 percent interest over 20 years -- total payments exceed $17,000. You save $10,000 by paying cash.",
+          "Paying cash means you write a check for the full system cost and own the system outright from day one. No interest. No monthly payments. No financing fees. The 30 percent federal residential solar tax credit (Section 25D) ended for systems placed in service after December 31, 2025, so it no longer applies to new 2026 installs -- but California's SGIP program may still reduce your net cost via a battery rebate.",
+          "Cash is the lowest total cost option. A $10,000 system costs exactly $10,000. Compare that to financing the same system at 6 percent interest over 20 years -- total payments exceed $17,000. You save thousands by paying cash.",
           "The downside is liquidity. If you spend $10,000 on solar, that is $10,000 you cannot use for emergency savings, investments, or other expenses. For homeowners with strong cash reserves and low-interest debt elsewhere, paying cash makes sense. For those living paycheck-to-paycheck or prioritizing liquidity, financing may be better despite the higher total cost.",
         ],
       },
@@ -2212,8 +2204,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Option 2: Solar Loan (Secured or Unsecured)",
         paragraphs: [
           "Solar loans are personal loans or home equity loans used to finance solar installations. You borrow the system cost, pay it back over 5 to 20 years with interest, and own the system from day one. Interest rates range from 3 to 10 percent depending on creditworthiness and loan type.",
-          "Secured loans like home equity loans or HELOCs offer lower rates -- 4 to 6 percent as of 2026 -- because your home is collateral. Unsecured personal loans have higher rates -- 6 to 10 percent -- but no lien on your house. Both types let you claim the ITC immediately, which you can use to pay down the loan principal.",
-          "Example: you borrow $10,000 for solar at 5 percent interest over 10 years. Monthly payments are about $106. Total repayment is $12,700. You claim a $3,000 ITC refund the following year and apply it to the loan, reducing the balance to $7,000. Remaining interest over 9 years is roughly $1,900. Total cost: $11,900, or $4,900 more than paying cash upfront.",
+          "Secured loans like home equity loans or HELOCs offer lower rates -- 4 to 6 percent as of 2026 -- because your home is collateral. Unsecured personal loans have higher rates -- 6 to 10 percent -- but no lien on your house.",
+          "Example: you borrow $10,000 for solar at 5 percent interest over 10 years. Monthly payments are about $106. Total repayment is $12,700. Total cost: $12,700, or $2,700 more than paying cash upfront. If your battery qualifies for a SGIP rebate, that can reduce your effective principal and shorten the loan.",
           "Solar loans make sense if you want to preserve cash reserves or invest the upfront cost elsewhere at a higher return. If you can earn 8 percent returns in the stock market and borrow solar funds at 5 percent, you come out ahead. But if the cash would otherwise sit idle, paying upfront is cheaper.",
         ],
       },
@@ -2234,27 +2226,27 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "How the 30 Percent Federal ITC Works",
+        heading: "The Federal Solar Tax Credit: What Changed in 2026",
         paragraphs: [
-          "The federal Investment Tax Credit gives you 30 percent of the total system cost as a tax credit. If you spend $10,000 on solar, you get a $3,000 credit. If you spend $30,000, you get $9,000. The credit applies to equipment and installation labor. Permits, inspections, and design fees also qualify.",
-          "The ITC is a tax credit, not a refund. It reduces your federal tax liability dollar-for-dollar. If you owe $5,000 in federal taxes and have a $3,000 ITC, you only owe $2,000. If your ITC is larger than your tax liability, the unused portion carries forward to future years.",
-          "You claim the ITC the year the system is placed in service, not the year you pay for it. If you install solar in December 2026 and the system goes online in January 2027, you claim the credit on your 2027 tax return filed in 2028. The ITC is scheduled to remain at 30 percent through 2032, then step down to 26 percent in 2033 and 22 percent in 2034.",
+          "The 30 percent federal residential solar tax credit (Section 25D) ended for systems placed in service after December 31, 2025. It no longer applies to new 2026 installs. Any payment analysis you see online that subtracts a $3,000 or $9,000 federal ITC from system costs is outdated for 2026 buyers.",
+          "California's SGIP program still offers rebates on qualifying battery storage systems, which may lower your net cost. California's property tax exclusion for solar also still applies. And the main financial engine -- avoided utility costs at 40-plus cents per kWh -- has not changed.",
+          "Work from the full installed cost when comparing payment options. SGIP rebates, if your battery qualifies, reduce net cost further -- but treat them as a potential bonus, not a guarantee.",
         ],
       },
       {
         heading: "Total Cost Comparison: Cash vs Loan vs Financing",
         paragraphs: [
-          "Example system: $10,000 off-grid solar system covering HVAC and essentials. Compare three payment options over 20 years.",
-          "Cash: $10,000 upfront. Claim $3,000 ITC refund. Net cost: $7,000. No interest. Total 20-year cost: $7,000.",
-          "Solar loan at 5 percent over 10 years: Borrow $10,000. Pay $106 per month for 10 years. Total repayment: $12,700. Claim $3,000 ITC and apply to principal. Remaining loan balance $7,000 at month 12. Total interest over remaining 9 years: $1,900. Total 20-year cost: $11,900.",
-          "Dealer financing at 7 percent over 20 years: Borrow $10,000 (or $13,000 if dealer marks up price). Pay $100 per month for 20 years. Total repayment: $24,000. Claim $3,000 ITC but apply to other expenses, not loan. Total 20-year cost: $24,000 to $31,000 depending on markup.",
-          "Cash wins on total cost. Loan is middle ground. Dealer financing costs 2 to 4 times more.",
+          "Example system: $10,000 off-grid solar system covering HVAC and essentials. Compare three payment options over 20 years. No federal ITC applies for 2026 installs; SGIP rebate potential not included as it varies.",
+          "Cash: $10,000 upfront. No interest. Total 20-year cost: $10,000.",
+          "Solar loan at 5 percent over 10 years: Borrow $10,000. Pay $106 per month for 10 years. Total repayment: $12,700. Total 20-year cost: $12,700.",
+          "Dealer financing at 7 percent over 20 years: Borrow $10,000 (or $13,000 if dealer marks up price). Pay $100 per month for 20 years. Total repayment: $24,000. Total 20-year cost: $24,000 to $31,000 depending on markup.",
+          "Cash wins on total cost. Loan is middle ground. Dealer financing costs 2 to 3 times more.",
         ],
       },
       {
         heading: "Which Option Should You Choose?",
         paragraphs: [
-          "If you have cash reserves and no higher-priority debt, pay cash. You save thousands in interest and own the system outright. Apply the ITC refund to replenish savings or invest it.",
+          "If you have cash reserves and no higher-priority debt, pay cash. You save thousands in interest and own the system outright.",
           "If you want to preserve liquidity or can earn higher returns elsewhere, take a solar loan at the lowest rate you can find. Home equity loans or credit union solar loans often beat dealer financing by 2 to 4 percentage points. Pay extra principal when possible to reduce total interest.",
           "Avoid dealer financing unless you have no other option. The high interest rates and long repayment periods eat your savings. If dealer financing is your only path to solar, at least compare quotes from multiple installers and understand the true cost before signing.",
           "Skip solar leases and PPAs entirely. They were a necessary evil in the high-cost era but make no sense in 2026. Own your system or wait until you can afford to.",
@@ -2263,7 +2255,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "VoltSol Payment Options",
         paragraphs: [
-          "VoltSol systems cost under $10,000 for most off-grid installs. We encourage customers to pay cash when possible -- the upfront cost is low enough that many homeowners can cover it from savings without financing. After the 30 percent ITC, net cost is around $7,000.",
+          "VoltSol systems cost under $10,000 for most off-grid installs. We encourage customers to pay cash when possible -- the upfront cost is low enough that many homeowners can cover it from savings without financing. California's SGIP program may lower your net cost further if your battery qualifies.",
           "For customers who prefer to finance, we work with local credit unions and banks that offer solar loans at competitive rates. We do not mark up system prices to cover financing fees. The cash price is the financed price. You arrange your own loan and pay us directly.",
           "We do not offer dealer financing or solar leases. These products benefit the installer and financing company, not the customer. Our goal is to deliver maximum value at minimum cost. Paying cash or securing your own low-rate loan achieves that.",
         ],
@@ -2279,12 +2271,12 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         a: "A $10,000 system financed at 6 percent over 20 years costs about $17,200 total. At 8 percent, it costs $20,900. Cash cost is $10,000. Financing adds $7,000 to $11,000 in interest over the loan term.",
       },
       {
-        q: "Can I use the 30 percent ITC to pay down my solar loan?",
-        a: "Yes. Many borrowers claim the ITC refund and apply it to their solar loan principal, reducing the remaining balance and total interest. This is one of the best uses of the ITC if you financed the system.",
+        q: "Can I use a SGIP rebate to pay down my solar loan?",
+        a: "Yes. If your battery qualifies for a California SGIP rebate, applying that rebate to your loan principal is one of the best moves you can make. It lowers your outstanding balance and reduces total interest paid. The 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025 -- it no longer applies to 2026 installs.",
       },
       {
         q: "Should I avoid solar leases and PPAs?",
-        a: "Yes. Solar leases and PPAs were popular when upfront costs were high, but in 2026 they are a bad deal. You pay more long-term, do not own the system, complicate home sales, and miss out on the ITC. Own your system via cash or loan instead.",
+        a: "Yes. Solar leases and PPAs were popular when upfront costs were high, but in 2026 they are a bad deal. You pay more long-term, do not own the system, and complicate home sales. Own your system via cash or loan instead.",
       },
       {
         q: "What interest rate should I expect for a solar loan?",
@@ -2640,7 +2632,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Payback Period: How Long Until Solar Pays for Itself?",
         paragraphs: [
           "Payback period is total system cost divided by annual savings. A $10,000 system saving $3,000 per year pays back in 3.3 years. A $30,000 system saving $2,400 per year pays back in 12.5 years.",
-          "The 30 percent federal Investment Tax Credit shortens payback significantly. A $10,000 system returns $3,000 as a tax credit. Net cost: $7,000. At $3,000 per year savings, payback is 2.3 years. After that, you are cashflow-positive.",
+          "Note: the 30 percent federal residential solar tax credit (Section 25D) ended for systems placed in service after December 31, 2025. For 2026 installs, work from the full system cost. California's SGIP program may lower net cost if your battery qualifies. At $10,000 full cost and $3,000 per year in avoided utility bills, payback is 3.3 years -- still strong without any federal subsidy.",
           "In PG&E and SDG&E territory, where rates exceed 40 cents per kWh, payback is under 5 years for most systems. In SMUD territory at 18 cents per kWh, payback stretches to 8 to 12 years. Higher utility rates make solar more attractive.",
         ],
       },
@@ -2673,7 +2665,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Real Customer Example: Fresno Off-Grid",
         paragraphs: [
           "A VoltSol customer in Fresno installed a $9,800 off-grid system in 2024. Pre-solar PG&E bill: $280 per month average, $3,360 per year. Post-solar bill: $0. Annual savings: $3,360.",
-          "After 30 percent ITC, net system cost: $6,860. Payback: 2.0 years. By year 3, the system was cashflow-positive. Over 20 years at 4 percent annual rate increases, total avoided utility costs: $100,000. System cost: $6,860. Net savings: $93,000.",
+          "This install was in 2024, when the 30 percent federal ITC still applied. Net system cost after ITC: $6,860. Payback: 2.0 years. For 2026 installs, the federal ITC ended for systems placed in service after December 31, 2025. At full cost of $9,800, payback stretches to about 2.9 years -- still under 3 years in high-rate PG&E territory. Over 20 years at 4 percent annual rate increases, total avoided utility costs: $100,000. System cost: $9,800. Net savings: $90,200.",
           "This is not hypothetical. This is real data from a real customer. Off-grid solar in high-rate PG&E territory delivers life-changing financial value.",
         ],
       },

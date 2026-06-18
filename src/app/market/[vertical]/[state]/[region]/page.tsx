@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { NORCAL_SOLAR_MARKETS, findRegion, marketPageHref } from '@/lib/market-data';
 import { MapPin, CalendarCheck } from 'lucide-react';
@@ -104,8 +105,17 @@ export default function RegionPage({ params }: PageProps) {
         </nav>
 
         {/* Hero */}
-        <header className="bg-gradient-to-br from-blue-900 to-blue-700 px-4 py-16 text-white">
-          <div className="mx-auto max-w-7xl">
+        <header className="relative overflow-hidden px-4 py-20 text-white">
+          <Image
+            src="/images/hero-blackout-glow.jpg"
+            alt={`Off-grid solar home with battery backup keeping the lights on during a blackout in ${regionData.county}, California`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-blue-950/90 via-blue-900/80 to-blue-800/70" />
+          <div className="relative mx-auto max-w-7xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wide text-blue-200">
               {primaryUtility} Service Area
             </p>

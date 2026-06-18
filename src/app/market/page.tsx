@@ -5,7 +5,7 @@ import { NORCAL_SOLAR_MARKETS, marketPageHref } from '@/lib/market-data';
 import { MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Off-Grid Solar & Battery Markets in California | VoltSol Energy',
+  title: 'Off-Grid Solar & Battery Markets in California',
   description:
     'VoltSol installs off-grid solar + EG4 battery systems across all 58 California counties and 294 cities — energy independence from PG&E and SMUD, blackout-ready, built for NEM 3.0.',
   alternates: {

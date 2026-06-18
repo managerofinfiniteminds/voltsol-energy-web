@@ -25,7 +25,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!market) return {};
 
   const { city: cityData, region: regionData } = market;
-  const title = `Off-Grid Solar & Battery Backup in ${cityData.city}, CA | VoltSol Energy`;
+  const title = `Off-Grid Solar & Battery Backup in ${cityData.city}, CA`;
   const description =
     `Cut the cord on ${cityData.utility}. VoltSol installs off-grid solar + EG4 battery systems in ` +
     `${cityData.city} from $8,700 — power through blackouts, beat NEM 3.0 export cuts, and stop renting ` +

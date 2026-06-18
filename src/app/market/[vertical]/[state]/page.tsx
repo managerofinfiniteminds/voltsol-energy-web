@@ -17,7 +17,7 @@ interface PageProps {
 export function generateMetadata({ params }: PageProps): Metadata {
   if (params.vertical !== 'solar' || params.state !== 'california') return {};
 
-  const title = 'Off-Grid Solar & Battery Backup in California | VoltSol Energy';
+  const title = 'Off-Grid Solar & Battery Backup in California';
   const description =
     'Off-grid solar + EG4 battery installation across Northern California. Systems from $8,700. ' +
     'Make your own power, store it, and run your home through blackouts — independent of PG&E and SMUD, ' +

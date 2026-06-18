@@ -22,7 +22,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const regionData = findRegion(params.vertical, params.state, params.region);
   if (!regionData) return {};
 
-  const title = `Off-Grid Solar & Battery Backup in ${regionData.county}, CA | VoltSol Energy`;
+  const title = `Off-Grid Solar & Battery Backup in ${regionData.county}, CA`;
   const description =
     `Off-grid solar + EG4 battery installation across ${regionData.county}. ` +
     `VoltSol gives ${regionData.cities.length} cities energy independence from the utility — systems from $8,700, ` +

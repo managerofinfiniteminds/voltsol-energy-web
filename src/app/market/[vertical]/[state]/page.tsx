@@ -19,7 +19,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const title = 'Solar Panel Installation in California | VoltSol Energy';
   const description =
     'Off-grid solar panel installation across Northern California. EG4 battery systems from $8,700. ' +
-    'Sidestep NEM 3.0, escape rising PG&E and SMUD rates, and get 30% federal tax credit. Free quote.';
+    'Beat NEM 3.0 export cuts and rising PG&E and SMUD rates by storing your own power. Free quote.';
 
   return {
     title,
@@ -130,10 +130,10 @@ export default function StatePage({ params }: PageProps) {
 
               <div className="flex flex-col gap-3 rounded-lg border border-amber-200 bg-amber-50 p-6">
                 <DollarSign className="h-8 w-8 text-amber-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">30% Federal Tax Credit</h3>
+                <h3 className="font-bold text-gray-900">Built for NEM 3.0</h3>
                 <p className="text-sm text-gray-700">
-                  The federal solar Investment Tax Credit (ITC) covers 30% of your system cost. Consult a tax
-                  professional to confirm your eligibility.
+                  Grid export credits dropped ~75% under NEM 3.0, so VoltSol systems store your power for
+                  self-use instead. Ask about current California incentives like SGIP battery rebates.
                 </p>
               </div>
 

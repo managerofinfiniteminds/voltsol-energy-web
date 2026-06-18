@@ -121,15 +121,16 @@ export default async function HomePage() {
         {/* Hero background image */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <Image
-            src="/images/hero-sunset.jpg"
-            alt=""
+            src="/images/hero-blackout-glow.jpg"
+            alt="A single home glowing with light during a neighborhood blackout — powered by a VoltSol off-grid solar and battery system while the rest of the street sits dark"
             fill
             priority
             className="object-cover object-center"
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/40 to-navy/80" />
-          <div className="absolute inset-0 bg-gradient-to-l from-amber-800/10 to-transparent" />
+          {/* Night-shot overlay: darken top for headline legibility, let the glowing house breathe through the middle/right */}
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/35 to-navy/85" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/70 via-transparent to-transparent" />
         </div>
         <Container className="relative">
           {/* immediate prop ensures opacity:1 base - no invisible hero trap */}
@@ -180,6 +181,72 @@ export default async function HomePage() {
             </div>
           </Reveal>
 
+        </Container>
+      </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
+      {/* ========== SECTION 2.5: WHY NOW — NEM 3.0 PAYBACK COLLAPSE ========== */}
+      <Section className="relative overflow-hidden">
+        <Container>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <Reveal>
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
+                  <Zap className="h-3.5 w-3.5" aria-hidden="true" />
+                  Why now
+                </span>
+                <h2 className="mt-5 font-display text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl">
+                  The grid used to pay you{" "}
+                  <span className="text-gold">$0.30</span>.
+                  <br />
+                  Now it pays{" "}
+                  <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
+                    $0.08
+                  </span>.
+                </h2>
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100">
+                  Under California&rsquo;s NEM 3.0 rules, the credit you get for
+                  selling solar power back to the grid was cut by roughly{" "}
+                  <strong className="text-white">75%</strong>. Exporting power
+                  to the utility barely pays anymore.
+                </p>
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-blue-100">
+                  So the smart move flipped: don&rsquo;t sell your power cheap
+                  &mdash; <strong className="text-white">store it and use it
+                  yourself</strong>. That&rsquo;s a battery-first, off-grid
+                  system. That&rsquo;s exactly what VoltSol builds.
+                </p>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Button href="/start" size="lg" trackLocation="nem3_band">
+                    {cfg.cta_button_text}
+                  </Button>
+                  <Link
+                    href="/technology"
+                    className="inline-flex items-center justify-center text-sm font-medium text-slate-300 transition-colors hover:text-white py-3"
+                  >
+                    Why batteries win under NEM 3.0 &rarr;
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <div className="overflow-hidden rounded-2xl border border-navy-500/40 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
+                <Image
+                  src="/images/nem3-payback-collapse.png"
+                  alt="Comparison showing how California NEM 3.0 cut solar export credits roughly 75 percent — from about $0.30 per kWh down to about $0.08 per kWh — making battery storage smarter than selling power back to the grid"
+                  width={1376}
+                  height={768}
+                  className="h-auto w-full"
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                />
+              </div>
+            </Reveal>
+          </div>
         </Container>
       </Section>
 
@@ -250,6 +317,31 @@ export default async function HomePage() {
           </Reveal>
         </Container>
       </Section>
+
+      {/* ========== SECTION 4.5: FREEDOM PAYOFF (daytime bookend) ========== */}
+      <section className="relative h-[60vh] min-h-[380px] w-full overflow-hidden">
+        <Image
+          src="/images/freedom-daytime.jpg"
+          alt="A modern California home running entirely on its own solar and battery power on a bright sunny day — rooftop panels, wall-mounted battery, and an EV charging in the driveway while the family enjoys the yard"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-navy/50" />
+        <Container className="relative flex h-full flex-col items-start justify-end pb-12">
+          <Reveal>
+            <h2 className="max-w-2xl font-display text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl">
+              Your own power plant.
+              <br />
+              <span className="text-gold">Sun up to sun down, and after.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-lg text-blue-100">
+              Make it on the roof. Store it in the battery. Live on it day and
+              night &mdash; whether or not the grid is up.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
 
       <div
         aria-hidden="true"

@@ -179,9 +179,11 @@ export default function RegionPage({ params }: PageProps) {
                     power during PSPS shutoffs or outages.
                   </p>
                   <p>
-                    With the 30% federal solar Investment Tax Credit (ITC) still available, the economics of
-                    solar in {regionData.county} are stronger than ever. Consult a tax professional to confirm
-                    your specific eligibility.
+                    Since NEM 3.0 slashed grid export credits by roughly 75%, the smart economics in{' '}
+                    {regionData.county} shifted to storing your own power instead of selling it back &mdash; a
+                    battery-first, off-grid system. The federal 30% residential solar tax credit ended for
+                    systems placed in service after Dec 31, 2025, but California programs like SGIP battery
+                    rebates may still apply. Consult a tax professional to confirm your eligibility.
                   </p>
                 </div>
               </section>

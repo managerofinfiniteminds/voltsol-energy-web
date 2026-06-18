@@ -210,9 +210,12 @@ export default function MarketCityPage({ params }: PageProps) {
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
                     <span>
-                      <strong>Federal tax credit:</strong> The 30% federal solar Investment Tax Credit (ITC)
-                      is currently available for systems installed on primary residences. Consult a tax
-                      professional for your specific situation.
+                      <strong>Battery-first economics under NEM 3.0:</strong> California&rsquo;s Net Billing
+                      rules cut credit for power exported to the grid by roughly 75%, so the value is now in
+                      <em> storing and using your own power</em> &mdash; exactly what an off-grid VoltSol system does.
+                      The federal 30% residential solar tax credit ended for systems placed in service after
+                      Dec 31, 2025; ask about current state programs like SGIP battery rebates. Consult a tax
+                      professional for your situation.
                     </span>
                   </li>
                   <li className="flex gap-2">

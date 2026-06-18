@@ -5,7 +5,7 @@ import { getAdminSession } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
   title: "SEO Strategy — VoltSol Admin",
-  description: "Strategic SEO domination plan for EG4 solar in Northern California",
+  description: "Internal SEO strategy and live build status for VoltSol Energy",
   // Keep this internal strategy doc out of search engines entirely.
   robots: { index: false, follow: false, nocache: true },
 };
@@ -36,10 +36,10 @@ export default async function SeoStrategyPage() {
             </h1>
           </div>
           <p className="text-lg text-blue-300 max-w-3xl">
-            Complete plan to own EG4 + off-grid solar search across <strong className="text-white">all of California</strong> by Q4 2026, capturing the Jan 1, 2027 tax-urgency spike.
+            Plan to own EG4 + off-grid solar search across <strong className="text-white">all of California</strong> through scaled local pages, structured data, and off-site authority.
           </p>
           <p className="text-sm text-blue-400 mt-3">
-            📅 Generated June 14, 2026 · Updated June 17, 2026 | 🎯 294 city pages LIVE | 🗺️ all 58 CA counties | 📑 389-URL sitemap
+            🎯 294 city pages LIVE | 🗺️ all 58 CA counties | 📑 389-URL sitemap
           </p>
         </div>
 
@@ -47,10 +47,10 @@ export default async function SeoStrategyPage() {
         <div className="mb-12 rounded-2xl border border-green-500/40 bg-gradient-to-br from-emerald-900/20 to-navy-800 p-8">
           <div className="flex items-center gap-3 mb-4">
             <span className="inline-flex h-8 items-center rounded-full bg-green-500/20 px-3 text-sm font-bold text-green-300">● LIVE STATUS</span>
-            <span className="text-blue-400 text-sm">as of June 17, 2026 — voltsolenergy.com</span>
+            <span className="text-blue-400 text-sm">voltsolenergy.com</span>
           </div>
           <p className="text-blue-200 mb-6">
-            The on-site half of this plan is <strong className="text-green-300">built and deployed</strong>. The original roadmap below targeted &ldquo;200+ city pages&rdquo; as a future Phase 3 — that is now done and exceeded. Here is what is live right now:
+            The on-site half of this plan is <strong className="text-green-300">built and deployed</strong>. Here is what is live right now:
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -156,30 +156,30 @@ export default async function SeoStrategyPage() {
             <div>
               <h3 className="font-semibold text-white mb-2">Vision</h3>
               <p className="text-blue-300 text-sm leading-relaxed">
-                VoltSol will own organic search for &ldquo;EG4 solar&rdquo; and &ldquo;off-grid solar under $10k&rdquo; in Northern California by Q4 2026, capturing the Jan 1, 2027 tax urgency spike.
+                Rank VoltSol for EG4 + off-grid solar searches across California — statewide local coverage plus an EG4 authority hub — so local searches surface VoltSol over national eCommerce and out-of-area installers.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-white mb-2">Timeline</h3>
+              <h3 className="font-semibold text-white mb-2">Approach</h3>
               <p className="text-blue-300 text-sm leading-relaxed">
-                5-month aggressive roadmap (June-October 2026) with focus on SEO foundation, content at scale, authority building, and lead conversion optimization.
+                Two tracks: on-site (scaled local pages + structured data + educational content) and off-site (Google Business Profile, reviews, citations, backlinks). The on-site track is built and live; the off-site track is the remaining work.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-white mb-2">Expected Outcomes</h3>
+              <h3 className="font-semibold text-white mb-2">On-Site (live)</h3>
               <ul className="text-blue-300 text-sm space-y-1">
-                <li>✓ 50+ keywords in top 10</li>
-                <li>✓ 3,000+ organic visitors/month</li>
-                <li>✓ 30-50 leads/month from organic</li>
+                <li>✓ 58 counties / 294 city pages</li>
+                <li>✓ 28 educational guides</li>
+                <li>✓ Full structured data + 389-URL sitemap</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-white mb-2">Revenue Impact</h3>
-              <p className="text-gold font-semibold text-sm">
-                $15K/month organic revenue<br />
-                $100-150K+ annual impact<br />
-                1-2 month payback period
-              </p>
+              <h3 className="font-semibold text-white mb-2">Off-Site (remaining)</h3>
+              <ul className="text-blue-300 text-sm space-y-1">
+                <li>→ Google Business Profile</li>
+                <li>→ Customer reviews + citations</li>
+                <li>→ Sitemap submission + backlinks</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -191,23 +191,23 @@ export default async function SeoStrategyPage() {
             {[
               {
                 icon: "🎯",
-                title: "Zero EG4 Competitors",
-                desc: "VoltSol can completely own EG4 solar search in Northern California with zero organic competition"
+                title: "Low EG4 Competition",
+                desc: "Few installers target EG4-specific search in California, leaving room for VoltSol to rank as the EG4 authority"
               },
               {
-                icon: "📅",
-                title: "Tax Deadline Window",
-                desc: "Jan 1, 2027 solar tax exclusion creates 200-300% search spike Oct-Dec 2026"
+                icon: "🗺️",
+                title: "Statewide Local Coverage",
+                desc: "Dedicated pages for all 58 counties and 294 cities capture local searches a single generic page cannot"
               },
               {
                 icon: "💰",
-                title: "$10K Differentiation",
-                desc: "Massive pricing advantage vs. $15-20K competitors (West Coast Solar, etc.)"
+                title: "Pricing Differentiation",
+                desc: "Lower complete-system pricing than many full-service competitors — a concrete hook for decision-stage searchers"
               },
               {
                 icon: "👤",
                 title: "Hugo as Brand",
-                desc: "Local founder personal branding = trust multiplier vs. national eCommerce"
+                desc: "Local founder personal branding is a trust signal national eCommerce sellers cannot match"
               }
             ].map((item, i) => (
               <div key={i} className="rounded-xl border border-blue-900/50 bg-navy-800/40 p-6">
@@ -223,69 +223,59 @@ export default async function SeoStrategyPage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">5-Phase Implementation Roadmap</h2>
           <p className="text-blue-400 text-sm mb-6 -mt-3">
-            <span className="text-green-300 font-semibold">Status update (June 17):</span> the on-site build phases (foundation, city pages, content, schema) are <span className="text-green-300">complete and live</span> — see the LIVE STATUS panel above. The phases below are the original plan, kept for reference. Remaining effort is the off-site / authority track (GBP, reviews, citations, backlinks).
+            <span className="text-green-300 font-semibold">Status:</span> the on-site build phases (foundation, city pages, content, schema) are <span className="text-green-300">complete and live</span> — see the LIVE STATUS panel above. The phases below are the original plan, kept for reference. Remaining effort is the off-site / authority track (GBP, reviews, citations, backlinks).
           </p>
           <div className="space-y-4">
             {[
               {
                 phase: "Phase 1",
-                month: "Month 1",
                 title: "Foundation",
                 tasks: [
                   "Technical SEO + schema deployment",
-                  "Google Business Profile optimization",
-                  "7 core pages created",
+                  "Google Business Profile setup",
+                  "Core pages created",
                   "First guest post submitted"
-                ],
-                target: "+40% organic visibility"
+                ]
               },
               {
                 phase: "Phase 2",
-                month: "Month 2",
                 title: "Local Launch",
                 tasks: [
-                  "20 city pages deployed",
-                  "5-8 backlinks acquired",
+                  "City pages deployed",
+                  "Initial backlinks acquired",
                   "YouTube channel launch",
-                  "First 3 guest posts published"
-                ],
-                target: "+200 rankings"
+                  "First guest posts published"
+                ]
               },
               {
                 phase: "Phase 3",
-                month: "Month 3",
                 title: "Scale",
                 tasks: [
-                  "150-200 city pages via dynamic generation",
-                  "15+ backlinks acquired",
-                  "50+ keywords tracking top-20",
-                  "8+ YouTube videos uploaded"
-                ],
-                target: "1,000+ pages indexed"
+                  "Statewide city pages via dynamic generation",
+                  "Additional backlinks acquired",
+                  "Keyword rank tracking",
+                  "Educational video uploads"
+                ]
               },
               {
                 phase: "Phase 4",
-                month: "Month 4",
                 title: "Authority",
                 tasks: [
-                  "6-10 additional backlinks",
-                  "Strategic partnerships locked",
-                  "Media outreach (tax deadline angle)",
+                  "Additional backlinks",
+                  "Strategic partnerships",
+                  "Media outreach",
                   "Ranking consolidation"
-                ],
-                target: "30-45 total backlinks"
+                ]
               },
               {
                 phase: "Phase 5",
-                month: "Month 5",
                 title: "Optimization",
                 tasks: [
                   "Lead funnel A/B testing",
-                  "Seasonal urgency messaging",
+                  "Conversion-focused messaging",
                   "Final content gaps filled",
-                  "Prepare for tax deadline push"
-                ],
-                target: "3,000+ organic traffic/mo"
+                  "Ongoing ranking maintenance"
+                ]
               }
             ].map((item, i) => (
               <div key={i} className="rounded-xl border border-gold/20 bg-navy-800/50 p-6">
@@ -295,12 +285,8 @@ export default async function SeoStrategyPage() {
                       <span className="inline-block bg-gold text-navy px-3 py-1 rounded-full text-sm font-bold">
                         {item.phase}
                       </span>
-                      <span className="text-blue-400 text-sm">{item.month}</span>
                     </div>
                     <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-gold font-semibold text-sm">{item.target}</p>
                   </div>
                 </div>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -346,7 +332,7 @@ export default async function SeoStrategyPage() {
                   ["EG4 FlexBOSS18", "210", "Medium", "Comparative", "Product"],
                   ["off-grid living setup", "890", "Low-Med", "Awareness", "Guide"],
                   ["solar panel installation costs CA", "1,400", "High", "Decision", "Guide"],
-                  ["best solar inverters 2026", "610", "High", "Comparative", "Guide"],
+                  ["best solar inverters", "610", "High", "Comparative", "Guide"],
                   ["Northern California solar companies", "380", "Med-High", "Decision", "Hub"],
                   ["solar system ROI calculator", "450", "Medium", "Informational", "Tool"],
                   ["grid-tied vs off-grid solar", "560", "Medium", "Educational", "Guide"],
@@ -365,7 +351,7 @@ export default async function SeoStrategyPage() {
             </table>
           </div>
           <p className="text-blue-400 text-xs mt-4">
-            Full 50-keyword matrix available in SEO_DOMINATION_PLAN_VoltSol_2026.md
+            Volumes are keyword-research estimates used for prioritization, not traffic guarantees.
           </p>
         </div>
 
@@ -375,27 +361,27 @@ export default async function SeoStrategyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: "200+ City Pages",
-                desc: "Template-based scalable pages for every Northern CA city, generated via dynamic Next.js routes"
+                title: "City Pages (294 live)",
+                desc: "Dynamic Next.js pages for every California city, each with unique local utility, permit, climate, and FAQ data"
               },
               {
                 title: "EG4 Authority Hub",
                 desc: "Central product hub with specs, reviews, case studies, pricing, and video content"
               },
               {
-                title: "Buyer's Guides (8+)",
-                desc: "Comprehensive 3,000+ word guides for funnel capture: comparisons, sizing, financing"
+                title: "Buyer's Guides (28 live)",
+                desc: "Evergreen educational guides for funnel capture: comparisons, sizing, financing"
               },
               {
-                title: "Case Studies (12-20)",
-                desc: "Real customer projects showcasing EG4 systems, ROI, and results with video testimonials"
+                title: "Case Studies",
+                desc: "Real customer projects showcasing EG4 systems and results with video testimonials"
               },
               {
                 title: "Product Deep-Dives",
                 desc: "Technical specifications, sizing calculators, wiring diagrams, competitor comparisons"
               },
               {
-                title: "YouTube Content (40-80)",
+                title: "YouTube Content",
                 desc: "Product demos, installation process, customer testimonials, educational content series"
               }
             ].map((item, i) => (
@@ -413,19 +399,16 @@ export default async function SeoStrategyPage() {
           <div className="rounded-xl border border-gold/30 bg-navy-800/50 p-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
-                <h3 className="font-bold text-gold text-lg mb-4">Backlinks Target</h3>
-                <div className="text-4xl font-bold text-white mb-2">30-45</div>
-                <p className="text-blue-300 text-sm">Quality links from DA 30+ domains across 5 months</p>
+                <h3 className="font-bold text-gold text-lg mb-4">Backlinks</h3>
+                <p className="text-blue-300 text-sm">Earn quality links from high-authority solar and clean-energy domains.</p>
               </div>
               <div>
                 <h3 className="font-bold text-gold text-lg mb-4">Guest Posts</h3>
-                <div className="text-4xl font-bold text-white mb-2">10+</div>
-                <p className="text-blue-300 text-sm">Published articles positioning Hugo as EG4 expert</p>
+                <p className="text-blue-300 text-sm">Publish articles positioning Hugo as an EG4 and off-grid expert.</p>
               </div>
               <div>
                 <h3 className="font-bold text-gold text-lg mb-4">Media Mentions</h3>
-                <div className="text-4xl font-bold text-white mb-2">5+</div>
-                <p className="text-blue-300 text-sm">Press coverage on tax deadline urgency angle</p>
+                <p className="text-blue-300 text-sm">Pursue local press coverage for VoltSol as a California installer.</p>
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-blue-900/30">
@@ -446,59 +429,6 @@ export default async function SeoStrategyPage() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Expected Outcomes */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Expected Outcomes (by Sept 14, 2026)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { metric: "Organic Keywords Top 10", current: "5", target: "50+", unit: "keywords" },
-              { metric: "Monthly Organic Traffic", current: "200", target: "3,000+", unit: "visitors" },
-              { metric: "Organic Leads/Month", current: "2", target: "30-50", unit: "qualified leads" },
-              { metric: "Domain Authority", current: "15", target: "40+", unit: "semrush score" },
-              { metric: "Total Backlinks", current: "3", target: "30-45", unit: "quality links" },
-              { metric: "Media Mentions", current: "0", target: "5+", unit: "press placements" }
-            ].map((item, i) => (
-              <div key={i} className="rounded-lg border border-blue-900/30 bg-navy-800/30 p-6">
-                <p className="text-blue-400 text-sm mb-3">{item.metric}</p>
-                <div className="flex items-baseline gap-3">
-                  <div>
-                    <div className="text-blue-300 text-sm line-through">{item.current}</div>
-                    <div className="text-3xl font-bold text-gold">{item.target}</div>
-                  </div>
-                  <div className="text-blue-400 text-xs">{item.unit}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Revenue Impact */}
-        <div className="mb-12 rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 to-amber-900/10 p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Revenue Impact & ROI</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-gold mb-2">50</div>
-              <p className="text-blue-300 text-sm mb-2">Leads/month from organic</p>
-              <p className="text-xs text-blue-400">× $300 value each</p>
-            </div>
-            <div className="text-center border-l border-r border-blue-900/30">
-              <div className="text-5xl font-bold text-gold mb-2">$15K</div>
-              <p className="text-blue-300 text-sm mb-2">Monthly revenue impact</p>
-              <p className="text-xs text-blue-400">from organic leads</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold text-gold mb-2">1-2</div>
-              <p className="text-blue-300 text-sm mb-2">Month payback period</p>
-              <p className="text-xs text-blue-400">on $13-15K investment</p>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-blue-900/30">
-            <p className="text-center text-blue-300">
-              <span className="font-semibold text-gold">12-month organic revenue:</span> $100K-$150K+
-            </p>
           </div>
         </div>
 
@@ -549,14 +479,14 @@ export default async function SeoStrategyPage() {
               <span className="text-2xl">🏘️</span>
               <div>
                 <div className="font-semibold text-white">City Page Template</div>
-                <div className="text-xs text-blue-400">16K words | 200+ cities scalable</div>
+                <div className="text-xs text-blue-400">16K words | statewide city template</div>
               </div>
             </a>
             <a href="/admin/download/LINK_BUILDING_PLAYBOOK.md" className="flex items-center gap-3 rounded-lg border border-gold/20 bg-navy-700/40 hover:bg-navy-700/60 transition p-4">
               <span className="text-2xl">🔗</span>
               <div>
                 <div className="font-semibold text-white">Link Building Playbook</div>
-                <div className="text-xs text-blue-400">18K words | 30-45 backlinks roadmap</div>
+                <div className="text-xs text-blue-400">18K words | backlink + outreach tactics</div>
               </div>
             </a>
             <a href="/admin/download/QUICK_START_CHECKLIST.md" className="flex items-center gap-3 rounded-lg border border-gold/20 bg-navy-700/40 hover:bg-navy-700/60 transition p-4">
@@ -571,7 +501,7 @@ export default async function SeoStrategyPage() {
 
         {/* Footer */}
         <div className="mt-16 pt-12 border-t border-blue-900/30 text-center text-blue-400 text-sm">
-          <p>VoltSol Energy SEO Strategy Report | Generated June 14, 2026 · Updated June 17, 2026</p>
+          <p>VoltSol Energy SEO Strategy Report</p>
           <p className="mt-2">✅ On-site build complete &amp; live (58 counties / 294 cities / 389-URL sitemap) — remaining work is off-site (GBP, reviews, citations, backlinks)</p>
         </div>
       </Container>

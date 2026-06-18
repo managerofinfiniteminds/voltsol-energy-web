@@ -138,8 +138,8 @@ export default function MarketCityPage({ params }: PageProps) {
           </ol>
         </nav>
 
-        {/* Hero */}
-        <header className="relative overflow-hidden px-4 py-20 text-white">
+        {/* Hero image — clean, stands on its own */}
+        <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
             alt={`Off-grid solar home with battery backup keeping the lights on during a blackout in ${cityData.city}, California`}
@@ -148,8 +148,11 @@ export default function MarketCityPage({ params }: PageProps) {
             sizes="100vw"
             className="object-cover object-center"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-blue-950/90 via-blue-900/80 to-blue-800/70" />
-          <div className="relative mx-auto max-w-5xl">
+        </div>
+
+        {/* Hero text — solid background, no image behind */}
+        <header className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-4 py-16 text-white">
+          <div className="mx-auto max-w-5xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wide text-blue-200">
               {cityData.utility} Service Area · {regionData.county}
             </p>
@@ -240,7 +243,7 @@ export default function MarketCityPage({ params }: PageProps) {
 
               {/* PSPS outage moment */}
               <section className="mt-10" aria-labelledby="psps-heading">
-                <div className="relative overflow-hidden rounded-2xl">
+                <div className="overflow-hidden rounded-2xl border border-gray-200">
                   <Image
                     src="/images/psps-alert-moment.png"
                     alt={`PG&E PSPS power shutoff alert on a phone while an off-grid solar home stays powered in ${cityData.city}, California`}
@@ -249,8 +252,7 @@ export default function MarketCityPage({ params }: PageProps) {
                     sizes="(min-width: 1024px) 60vw, 100vw"
                     className="h-auto w-full object-cover"
                   />
-                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/30 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+                  <div className="bg-gradient-to-br from-blue-950 to-blue-900 p-5 sm:p-7">
                     <h2 id="psps-heading" className="text-xl font-bold text-white sm:text-2xl">
                       When {cityData.utility} cuts the power, your lights stay on
                     </h2>

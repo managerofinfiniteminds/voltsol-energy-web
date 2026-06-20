@@ -22,10 +22,13 @@ import {
   steeringLine,
   nextQuestionFallback,
   backoffFallback,
+  standdownFallback,
   isVagueLine,
   looksLikeQuestion,
   looksLikeRefusal,
+  countRefusals,
   topicDirective,
+  objectionDirective,
   type SteerMode,
   type ChatSlots,
   type QuizContext,
@@ -328,14 +331,27 @@ export async function POST(req: NextRequest) {
   // the user's latest message to pick the mode, instead of pumping a slot every
   // turn (which is what made the old bot feel like a clipboard).
   const latestUser = [...userMessages].reverse().find((m) => m.role === 'user')?.content || '';
+  // Two-strike back-off (playbook guardrail #2): once they've declined twice, we
+  // STAND DOWN — stop asking for contact entirely, pure help mode. A single
+  // current-turn refusal still uses gentle backoff; an answer/question takes
+  // priority so we always help first.
+  // Once stood down, we STAY stood down for the rest of the session. The standdown
+  // steer already instructs Ray to answer questions from the facts — so even when
+  // they ask something, we keep standdown (which forbids re-asking) rather than
+  // switching to 'answer' (which would re-introduce a contact invite).
+  const refusalCount = countRefusals(userMessages);
   let steerMode: SteerMode = 'advance';
-  if (looksLikeRefusal(latestUser)) steerMode = 'backoff';
+  if (refusalCount >= 2) steerMode = 'standdown';
+  else if (looksLikeRefusal(latestUser)) steerMode = 'backoff';
   else if (looksLikeQuestion(latestUser)) steerMode = 'answer';
   const steer = steeringLine(slots, steerMode);
 
   // Deterministic accuracy guardrail: pricing/tax questions get an explicit, hard
   // directive the model can't miss (it won't reliably obey a buried KB rule).
-  const directive = topicDirective(latestUser);
+  // Objection directive (Barouch reframe) stacks when they push back emotionally.
+  const directive = [topicDirective(latestUser), objectionDirective(latestUser)]
+    .filter(Boolean)
+    .join('\n\n');
 
   const orMessages: OrMessage[] = [
     { role: 'system', content: `${systemPrompt}\n\n${preamble}\n\nALREADY CAPTURED THIS SESSION (do not re-ask): ${knownSlots}\n\n${steer}${directive ? `\n\n${directive}` : ''}` },
@@ -452,13 +468,18 @@ export async function POST(req: NextRequest) {
   // ── Anti-dead-end guard: if the model produced an empty or VAGUE line, replace it
   // with the deterministic next question. In ANSWER mode we trust the model's reply
   // (it's answering a real question), so we only apply this in advance/backoff flow.
-  if (!completed && !handoff && steerMode !== 'answer' && steerMode !== 'backoff' && isVagueLine(assistantText)) {
+  // Standdown is excluded too — we must never pump a field after a two-strike
+  // back-off; standdownFallback (below) handles empty text instead.
+  if (!completed && !handoff && steerMode !== 'answer' && steerMode !== 'backoff' && steerMode !== 'standdown' && isVagueLine(assistantText)) {
     assistantText = nextQuestionFallback(slots);
   }
 
   if (!assistantText) {
     if (completed) {
       assistantText = "You're all set — a tech will be in touch shortly. ☀️";
+    } else if (steerMode === 'standdown') {
+      // Two strikes: pure help, never pump a field.
+      assistantText = standdownFallback(slots);
     } else if (steerMode === 'backoff') {
       // Respect the refusal: reassure, never pump the next field.
       assistantText = backoffFallback(slots);
@@ -470,11 +491,11 @@ export async function POST(req: NextRequest) {
   // ── Backoff safety: even if the model produced text, never let a refusal turn end
   // by demanding the SAME OR ANOTHER detail. If we're in backoff and the reply
   // reads like a field-pump with no reassurance, replace with a reassurance.
-  if (!completed && !handoff && steerMode === 'backoff') {
+  if (!completed && !handoff && (steerMode === 'backoff' || steerMode === 'standdown')) {
     const t = assistantText.toLowerCase();
-    const reassures = /(no (pressure|problem|worries|rush)|totally (fine|ok|optional)|that'?s (fine|ok|totally fine)|of course|whenever you'?re ready|happy to (just )?answer|opt out|don'?t have to|no obligation)/i.test(t);
+    const reassures = /(no (pressure|problem|worries|rush)|totally (fine|ok|optional)|that'?s (fine|ok|totally fine)|of course|whenever you'?re ready|happy to (just )?answer|opt out|don'?t have to|no obligation|won'?t (keep )?ask)/i.test(t);
     const pumps = /(what'?s|whats|share|give me|can i (get|have)|may i (get|have)|your)\b[^.?!]{0,30}\b(last name|phone|number|cell|email|address)/i.test(t);
-    if (pumps && !reassures) assistantText = backoffFallback(slots);
+    if (pumps && !reassures) assistantText = steerMode === 'standdown' ? standdownFallback(slots) : backoffFallback(slots);
   }
 
   const status = completed ? 'completed' : handoff ? 'handed_off' : 'active';

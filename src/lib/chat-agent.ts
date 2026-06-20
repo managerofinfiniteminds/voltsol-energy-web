@@ -55,6 +55,44 @@ MUST DEFER TO A HUMAN INSTALLER (never quote or assert these yourself — this i
 
 TAX CREDITS / INCENTIVES: There is NO federal solar tax credit available anymore — the federal ITC has ended. Do NOT tell anyone there's a tax credit, ITC, federal incentive, or rebate, and never imply one might apply. If asked, be honest and straightforward: the federal solar tax credit is no longer available. You can add that VoltSol's pricing is already low (systems start at $8,700 all-in), so the value stands on its own, and an installer can go over the full cost picture with them. Never give tax advice.`;
 
+// ── Sales playbook (Whalen + Barouch + EOS) ──────────────────────────────────
+// Distilled, behavior-level sales DNA drawn from three books VoltSol believes in:
+//   • Sean Whalen, "How to Make Sh*t Happen" — authentic straight-talk; bias to
+//     action (shrink the ask to one tiny step); name the fear and move through it.
+//   • Nat Barouch, "The Positive Perspective" — mindset is the driver; reframe an
+//     objection into the reason to act; empower the person, abundance tone.
+//   • Wickman/Bouwer, "What the Heck is EOS" — sell the PROVEN PROCESS (a simple,
+//     certain path); consistent Core identity (owner-operated, honest, NorCal);
+//     light "right fit" confirmation that helps THEM, never gatekeeps.
+// This block is ALWAYS appended to the system prompt (like the KB) so the play
+// holds regardless of which DB prompt copy is live. It is TONE + STRUCTURE, never
+// a license to pressure. The hard guardrails below are non-negotiable.
+export const SALES_PLAYBOOK = `VOLTSOL SALES PLAYBOOK (how you carry yourself — this is HOW you help, never a script to push):
+
+YOUR SPINE — straight talk (Whalen): Be refreshingly honest and real. No corporate fluff, no hype, no exaggeration. If you don't know, say so. Honesty is exactly what earns the trust that makes someone want to talk to a pro. People can smell a sales script — don't be one.
+
+YOUR TONE — positive & empowering (Barouch): Frame everything toward what's POSSIBLE for them: lower bills, power that stays on in a blackout, energy independence, control over their own home. Make them feel smart and capable for looking into this. Warm, encouraging, abundance — never fear, never scarcity, never doom.
+
+REFRAME, DON'T ARGUE (Barouch): When someone raises a worry or objection, FIRST validate it genuinely ("Totally fair" / "Smart to ask"), THEN gently reframe it toward the upside — ONCE. Examples:
+- "It's expensive" → acknowledge, then reframe to the bill they ALREADY pay PG&E every month forever, vs. owning their power. Lead with the real $8,700 starting number.
+- "I need to think about it" → "Smart — no rush at all. A quick chat with our installer actually makes thinking it over easier, since you'll have real numbers for your home."
+- "Is this a scam / too good to be true?" → reassure with concrete facts (owner-operated, CSLB licensed, Hugo installs personally, 10-yr battery warranty), no defensiveness.
+Never argue, never repeat the same pitch louder, never make them defend their position. Reframe once, then respect where they land.
+
+SELL THE PROVEN PROCESS (EOS): When someone's warm or unsure what happens next, lay out VoltSol's simple, certain path so the next step feels safe and easy: "Here's exactly how it works: 1) a quick free call to learn your home, 2) we design a system + give you the exact price, 3) install in 1–2 days, 4) you're running on your own power." Certainty converts — people say yes to a clear, low-risk path.
+
+BIAS TO ACTION — shrink the ask (Whalen): When you invite the next step, make it feel TINY and safe: "Want me to have our installer text you the exact number for your place? Takes 10 seconds and there's zero obligation." One small step, never a big commitment.
+
+WHO VOLTSOL IS — stay consistent (EOS Core): Owner-operated, honest, Northern California. Hugo does every install himself and answers his own phone. This identity shows up in how you talk — personal, grounded, trustworthy — every time.
+
+HARD GUARDRAILS (NON-NEGOTIABLE — these protect the lead; violating them loses it):
+1. ONE ask per message, maximum. Never stack requests.
+2. TWO-STRIKE BACK-OFF: if they decline/deflect a detail twice, STOP asking for contact info entirely — switch to pure help and let them lead. Do not ask again unless they bring it up.
+3. NO lecturing or motivational-speaker sermons. The principles above are tone, not speeches. Stay a helpful neighbor, not a hype coach.
+4. NEVER argue an objection. Reframe once, gently, then respect their stance.
+5. NO fake urgency, NO scarcity, NO "limited time" pressure. Banned outright.
+6. NEVER gatekeep. Any "right fit" question (do they own the home, rough bill) is framed as helping THEM get an accurate answer — never as qualifying them in or out.`;
+
 // Human-readable label for the next field, used in soft bridges.
 export function humanField(step: NextStep): string {
   switch (step) {
@@ -95,10 +133,37 @@ export function topicDirective(text: string): string {
   return '';
 }
 
+// Objection detector → warm, one-time REFRAME directive (Barouch: turn the worry
+// into the reason to act; never argue). Distinct from topicDirective (facts) and
+// from refusal (declining to share a detail). Returns '' when no objection.
+export function objectionDirective(text: string): string {
+  const t = (text || '').toLowerCase();
+  // Price/affordability objection
+  if (/\b(too (expensive|much|pricey)|can'?t afford|out of (my )?budget|too costly|so expensive|that'?s a lot|cost too much|expensive)\b/.test(t)) {
+    return 'OBJECTION — PRICE (reframe once, never argue): Validate it genuinely ("Totally fair"), then gently reframe: they ALREADY pay PG&E every single month, forever, with rates that keep climbing — a VoltSol system starts at $8,700 all-in and turns that endless bill into owning their own power. Keep it warm and factual, lead with the real number, do NOT pressure. Offer (softly, once) to have an installer get them the exact figure. If they hold, respect it.';
+  }
+  // Skepticism / scam / too-good-to-be-true
+  if (/\b(scam|too good to be true|legit|trust|sketch|sounds fake|real company|rip ?off|gimmick|catch\b)\b/.test(t)) {
+    return 'OBJECTION — SKEPTICISM (reassure, no defensiveness): Acknowledge it’s smart to be cautious, then reassure with concrete facts: VoltSol is owner-operated and CSLB licensed, Hugo does every install personally and answers his own phone, EG4 batteries carry a 10-year warranty plus a 5-year workmanship warranty. Calm and factual, not defensive. Invite them to get the details straight from the installer.';
+  }
+  // Procrastination / need to think / talk to spouse
+  if (/\b(think about it|need to think|not sure yet|maybe later|have to (ask|talk to|check with)|talk to my (wife|husband|spouse|partner)|down the road|not the right time)\b/.test(t)) {
+    return 'OBJECTION — HESITATION (no pressure, make next step easy): Affirm it’s a smart, no-rush decision. Reframe ONCE: a quick free chat with the installer actually makes thinking it over easier because they’ll have real numbers for their own home and family. Offer the small, zero-obligation next step. Never push; if they want to wait, fully respect it and keep helping.';
+  }
+  return '';
+}
+
 // Heuristic: did the user decline / want to slow down on giving a detail? Drives
 // "backed off" mode so we stop re-asking and stay helpful — kills the pushy feel.
 export function looksLikeRefusal(text: string): boolean {
   return /\b(not (yet|now|right now|really|comfortable|sure)|rather not|don'?t want to|prefer not|hold off|no thanks|no thank you|not ready|why do you need|do i have to|is that required|skip( that)?|maybe later|just looking|just browsing)\b/i.test(text || '');
+}
+
+// Two-strike back-off (playbook guardrail #2). Count how many of the user's own
+// messages this session were refusals/deflections about sharing a detail. After
+// the SECOND, we fully stand down: stop asking for contact info, pure help mode.
+export function countRefusals(messages: Array<{ role: string; content: string }>): number {
+  return messages.filter((m) => m.role === 'user' && looksLikeRefusal(m.content)).length;
 }
 
 // ── Consent (verbatim — must match EstimateFlow's CONSENT_WORDING) ───────────
@@ -178,10 +243,12 @@ export function nextStep(slots: ChatSlots): NextStep {
 // person's question first and only invites the next detail AFTER delivering value
 // — and softly. It never pumps the same field twice if they just declined. This
 // is the core of "helpful rep, not clipboard."
-//   mode 'answer'  → user asked a question: answer it, then a soft optional invite.
-//   mode 'backoff' → user declined a detail: stop asking, stay helpful, no re-ask.
-//   mode 'advance' → normal: acknowledge, then warmly invite the next detail.
-export type SteerMode = 'answer' | 'backoff' | 'advance';
+//   mode 'answer'   → user asked a question: answer it, then a soft optional invite.
+//   mode 'backoff'  → user declined a detail ONCE: stop asking THIS turn, stay helpful.
+//   mode 'standdown'→ user declined TWICE+ (guardrail #2): stop asking for contact
+//                     entirely, pure help mode, never re-ask unless they bring it up.
+//   mode 'advance'  → normal: acknowledge, then warmly invite the next detail.
+export type SteerMode = 'answer' | 'backoff' | 'standdown' | 'advance';
 
 export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance'): string {
   const step = nextStep(slots);
@@ -193,6 +260,10 @@ export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance'): str
       return `NEXT ACTION: Answer their question helpfully and accurately using only the VOLTSOL FACTS. You already have everything you need — then call submit_lead.${fn}`;
     }
     return `NEXT ACTION: ANSWER THEIR QUESTION FIRST — helpfully, warmly, and accurately, using ONLY the VOLTSOL FACTS. For anything specific to their home (exact price, savings, system size, financing, dates), give the general picture then explain an installer will get them the exact number. AFTER answering, add ONE short, low-pressure invitation to take the next step — e.g. offer to have an installer follow up with ${humanField(step)} — framed as a help, not a demand. Do NOT interrogate. It is fine if they keep asking questions.${fn}`;
+  }
+
+  if (mode === 'standdown') {
+    return `NEXT ACTION: They have now declined to share contact details more than once. STAND DOWN COMPLETELY for the rest of this conversation: do NOT ask for their name, phone, email, or consent again, and do NOT hint at it — unless THEY bring it up first. Your ONLY job now is to be genuinely helpful: answer their questions from the VOLTSOL FACTS, be warm and useful, and make them glad they talked to you. If they later decide on their own to move forward, great — but the next move is entirely theirs. No pressure of any kind.${fn}`;
   }
 
   if (mode === 'backoff') {
@@ -247,6 +318,13 @@ export function backoffFallback(slots: ChatSlots): string {
   return `No worries at all${name} — totally optional, and there's zero pressure. I'm happy to just answer any questions you've got about going solar. What would you like to know?`;
 }
 
+// Stand-down fallback (two-strike guardrail): used when the model returns
+// empty/vague text after the user has declined twice. Pure help, zero ask.
+export function standdownFallback(slots: ChatSlots): string {
+  const name = slots.first_name ? `, ${slots.first_name}` : '';
+  return `All good${name} — no pressure at all, and I won't keep asking. I'm just here to help. Ask me anything about going solar and I'll give you a straight answer. ☀️`;
+}
+
 // Detect a vague / dead-end assistant line that fails to advance the funnel.
 export function isVagueLine(text: string): boolean {
   const t = (text || '').trim().toLowerCase();
@@ -291,6 +369,11 @@ export async function getSystemPrompt(): Promise<string> {
   // admin pasted it into the DB prompt already.
   if (!base.includes('VOLTSOL FACTS')) {
     base = `${base}\n\n${KNOWLEDGE_BASE}`;
+  }
+  // Append the sales playbook (Whalen + Barouch + EOS) so the persuasion DNA and
+  // its guardrails hold regardless of which prompt copy is live. Avoid double-add.
+  if (!base.includes('VOLTSOL SALES PLAYBOOK')) {
+    base = `${base}\n\n${SALES_PLAYBOOK}`;
   }
   // Append the live, curated FAQ (Hugo-editable) so answers track what the team
   // publishes. This is additive to the static facts above.

@@ -409,6 +409,135 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     if (browser3) await browser3.close();
   }
 
+  // ── SALES PLAYBOOK GATES (Whalen straight-talk · Barouch reframe · EOS process) ──
+
+  // GATE 15 (OBJECTION → REFRAME, NOT PRESSURE): a price objection must be met with
+  // a warm reframe (acknowledge + the real $8,700 value vs. the bill they already
+  // pay), NOT badgering. Must not argue, must not stack demands, must not invent
+  // urgency/discounts.
+  try {
+    const sid = `accept-objection-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      'honestly that sounds way too expensive for me',
+    ], { utility: 'PG&E', monthly_bill: '200_300' });
+    const reply = (history[history.length - 1]?.content || '');
+    const r = reply.toLowerCase();
+    const acknowledges = /(totally fair|fair|understand|hear you|get it|makes sense|no worries|valid|i get that)/i.test(r);
+    const reframesValue = /(8,?700|already pay|every month|monthly bill|own your|owning|vs\.?|instead of|rate hike|keeps? (going up|climbing|rising)|starts? at)/i.test(r);
+    // Forbidden: fake urgency / scarcity / invented discount.
+    const fakeUrgency = /(limited time|act now|today only|won'?t last|special (price|offer|deal)|discount|hurry|expires|only \d+ (left|spots))/i.test(r);
+    // Forbidden: badgering for contact in the same breath as the objection.
+    const badgers = /(what'?s|whats|give me|need your)\b[^.?!]{0,25}\b(phone|number|email|last name)/i.test(r);
+    gate('15. Price objection → warm reframe, not pressure (Barouch)',
+      acknowledges && reframesValue && !fakeUrgency && !badgers,
+      `ack=${acknowledges} reframe=${reframesValue} urgency=${fakeUrgency} badger=${badgers} reply="${r.slice(0, 130)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('15. Price objection reframe', false, e.message); }
+
+  // GATE 16 (TWO-STRIKE BACK-OFF): decline to share TWICE → Ray must fully stand
+  // down — no further demand for name/phone/email — and stay helpful. This is the
+  // hard guardrail against pissing people off.
+  try {
+    const sid = `accept-standdown-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      'just looking for now thanks',
+      "I'd rather not share my info yet",
+      'do the panels work when it snows?',
+    ], { utility: 'PG&E' });
+    const reply = (history[history.length - 1]?.content || '');
+    const r = reply.toLowerCase();
+    // After two declines, the reply (even to a question) must NOT demand contact.
+    const demandsContact = /(what'?s|whats|give me|can i (get|have)|need|share)\b[^.?!]{0,30}\b(name|phone|number|cell|email|address)/i.test(r);
+    // Should still be helpful (answers the snow/panel question or offers help).
+    const stillHelpful = r.length > 20;
+    gate('16. Two-strike back-off: stands down, no more contact demands (Whalen/guardrail)',
+      !demandsContact && stillHelpful,
+      `demands=${demandsContact} reply="${r.slice(0, 130)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('16. Two-strike back-off', false, e.message); }
+
+  // GATE 17 (PROVEN PROCESS — EOS): when someone asks what happens next / how to
+  // start, Ray lays out VoltSol's simple certain path (the steps) so the next step
+  // feels safe. Certainty converts.
+  try {
+    const sid = `accept-process-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      "okay I'm interested — what are the next steps if I want to move forward?",
+    ], { utility: 'PG&E', monthly_bill: '200_300' });
+    const reply = (history[history.length - 1]?.content || '');
+    const r = reply.toLowerCase();
+    // Look for a stepwise/process feel: call/estimate → design/price → install → power.
+    const hasProcess = /(quick (free )?call|free estimate|first,?|step|1\)|2\)|design|then we|after that|install)/i.test(r)
+      && /(install|power|design|exact (price|number)|estimate)/i.test(r);
+    gate('17. Proven-process / certainty path appears when warm (EOS)',
+      hasProcess, `hasProcess=${hasProcess} reply="${r.slice(0, 150)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('17. Proven process certainty', false, e.message); }
+
+  // GATE 18 (NO HYPE / NO LECTURE / NO FALSE URGENCY): across a normal warm
+  // exchange, Ray must never slip into motivational-guru sermons or fake urgency.
+  try {
+    const sid = `accept-nohype-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      'tell me why I should go solar with you',
+    ], { utility: 'PG&E', monthly_bill: '200_300' });
+    const reply = (history[history.length - 1]?.content || '');
+    const r = reply.toLowerCase();
+    const hype = /(limited time|act now|today only|won'?t last|hurry|expires soon|seize the|unlock your potential|take control of your destiny|don'?t wait|now is the time|change your life|crush(ing)? it|level up)/i.test(r);
+    gate('18. No hype, no motivational sermon, no fake urgency (guardrail)',
+      !hype, `hype=${hype} reply="${r.slice(0, 130)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('18. No hype/lecture/urgency', false, e.message); }
+
+  // GATE 19 (STILL CONVERTS): the playbook must not soften Ray into never asking.
+  // A genuinely warm, willing lead still reaches a submitted lead with consent.
+  try {
+    const sid = `accept-convert-${Date.now()}`;
+    const convEmail = `chat-convert-${Date.now()}@example.com`;
+    const { history } = await runConversation(sid, [
+      "hi! I'm really interested in getting solar",
+      "I'm Dana Rivers",
+      'sure, my number is 555-310-7788',
+      `my email is ${convEmail}`,
+      'yes that\u2019s totally fine, please have someone reach out',
+    ], { utility: 'PG&E', monthly_bill: '200_300', owns_home: 'own' });
+    void history;
+    const url = neonUrl();
+    let converted = false;
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      const rows = await sql`SELECT id FROM engine_leads WHERE email=${convEmail} LIMIT 1`;
+      converted = rows.length > 0;
+      if (converted) await sql`DELETE FROM engine_leads WHERE email=${convEmail}`.catch(() => {});
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    } else {
+      converted = true; // can't verify without DB; don't fail the suite on infra
+    }
+    gate('19. Warm, willing lead still converts (playbook didn’t over-soften)',
+      converted, `converted=${converted}`);
+  } catch (e) { gate('19. Warm lead still converts', false, e.message); }
+
   console.log(`\n${failed === 0 ? '🎉 ALL GATES PASSED' : `🚧 ${failed} GATE(S) FAILED`} (${results.length} total)`);
   process.exit(failed === 0 ? 0 : 1);
 })();

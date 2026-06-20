@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { displayFont, bodyFont } from "@/lib/fonts";
-import { SiteHeader, SiteFooter, SiteStickyCTA } from "@/components/ui/SiteChrome";
+import { SiteHeader, SiteFooter, SiteStickyCTA, SiteChatWidget } from "@/components/ui/SiteChrome";
 import { getHomeConfig } from "@/lib/site-config";
 import { getLocale } from "@/lib/locale";
 import "./globals.css";
@@ -117,6 +117,7 @@ export default async function RootLayout({
           links={cfg.footer_links}
         />
         <SiteStickyCTA ctaText={ctaText} locale={locale} />
+        <SiteChatWidget />
       </body>
     </html>
   );

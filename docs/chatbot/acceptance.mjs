@@ -321,6 +321,43 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     await browser2.close();
   } catch (e) { gate('8. Classic form fallback', false, e.message); }
 
+  // GATE 12 (WIDGET): always-on floating chat launcher is present site-wide on
+  // mobile (homepage), opens to the chat UI, and is usable. This is the live-answers
+  // entry point from any page.
+  let browser3;
+  try {
+    browser3 = await chromium.launch({ channel: 'chrome', headless: true });
+    const MOBILE_H = 667;
+    const page = await browser3.newPage({
+      viewport: { width: 390, height: MOBILE_H }, isMobile: true, hasTouch: true,
+      userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15',
+    });
+    await page.goto(`${BASE}/`, { waitUntil: 'networkidle', timeout: 45000 });
+    await page.waitForTimeout(1500);
+    const launcher = page.locator('button[aria-label="Open chat — ask a question"]');
+    const launcherVisible = (await launcher.count()) > 0 && await launcher.first().isVisible().catch(() => false);
+    gate('12. Floating chat launcher visible site-wide (homepage mobile)', launcherVisible,
+      launcherVisible ? 'launcher present' : 'launcher not found');
+    if (launcherVisible) {
+      await launcher.first().click();
+      await page.waitForTimeout(1500);
+      const chat = page.locator('[data-testid="lead-chat"]');
+      const chatVisible = (await chat.count()) > 0 && await chat.first().isVisible().catch(() => false);
+      const input = page.locator('[data-testid="lead-chat-input"]');
+      const inputBox = await input.first().boundingBox().catch(() => null);
+      const inputOk = inputBox && inputBox.y + inputBox.height <= MOBILE_H + 1 && inputBox.height >= 36;
+      gate('12b. Widget opens to a usable chat (input in viewport)', !!(chatVisible && inputOk),
+        inputBox ? `chat=${chatVisible} bottom=${Math.round(inputBox.y + inputBox.height)} (limit ${MOBILE_H})` : 'no input box');
+      await page.screenshot({ path: '/tmp/voltsol-widget-390.png' });
+    } else {
+      gate('12b. Widget opens to a usable chat', false, 'launcher not visible');
+    }
+  } catch (e) {
+    gate('12. Floating chat widget', false, e.message);
+  } finally {
+    if (browser3) await browser3.close();
+  }
+
   console.log(`\n${failed === 0 ? '🎉 ALL GATES PASSED' : `🚧 ${failed} GATE(S) FAILED`} (${results.length} total)`);
   process.exit(failed === 0 ? 0 : 1);
 })();

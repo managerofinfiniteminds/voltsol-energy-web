@@ -77,6 +77,24 @@ export function looksLikeQuestion(text: string): boolean {
   return /^(how|what|why|when|where|which|who|does|do|can|could|is|are|will|would|should|tell me|explain|i'?m wondering|i'?m curious|wondering|curious|any chance|got a)\b/i.test(t);
 }
 
+// Topic detector → hard, explicit directive injected when the user asks about a
+// sensitive/accuracy-critical topic. The model is NOT reliable at obeying a rule
+// buried in a long KB (it hallucinated $50k pricing and asserted the ITC). So for
+// these topics we surface a SHORT, unmissable instruction at the end of the system
+// message. Returns '' for ordinary questions.
+export function topicDirective(text: string): string {
+  const t = (text || '').toLowerCase();
+  // Pricing / cost
+  if (/\b(cost|costs|price|pricing|how much|expensive|afford|\$|quote|ballpark|budget)\b/.test(t)) {
+    return 'PRICING DIRECTIVE (obey exactly): They asked about cost. You MUST state VoltSol\'s real range up front in plain numbers: systems start at $8,700 all-in and most homes land between roughly $8,700 and $16,000 — panels, inverter, battery, mini-split, AND installation included. Do NOT be vague, do NOT say "it varies" without giving the range, and NEVER quote tens-of-thousands or $25k–$50k as VoltSol\'s price. Then note the exact number comes from a free estimate and offer to connect them with an installer.';
+  }
+  // Taxes / incentives / rebates
+  if (/\b(tax|itc|credit|incentive|rebate|write.?off|deduction)\b/.test(t)) {
+    return 'TAX DIRECTIVE (obey exactly): They asked about tax credits/incentives. Do NOT assert that any specific credit (e.g. the federal ITC) exists or applies — eligibility varies and you must not give tax advice. Say honestly that incentives can change and depend on their situation, and that one of our installers can walk them through any they may qualify for. Offer to connect them.';
+  }
+  return '';
+}
+
 // Heuristic: did the user decline / want to slow down on giving a detail? Drives
 // "backed off" mode so we stop re-asking and stay helpful — kills the pushy feel.
 export function looksLikeRefusal(text: string): boolean {

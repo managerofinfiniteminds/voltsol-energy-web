@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { StickyCTA } from "./StickyCTA";
+import { ChatWidget } from "../ChatWidget";
 import type { FooterLink } from "@/lib/site-config";
 import type { Locale } from "@/lib/locale";
 
@@ -44,4 +45,9 @@ export function SiteStickyCTA({ ctaText }: { ctaText?: string; locale?: Locale }
   const pathname = usePathname();
   if (isAdmin(pathname) || !showStickyCTA(pathname)) return null;
   return <StickyCTA ctaText={ctaText} />;
+}
+
+// Always-on floating chat — site-wide; self-gates (hidden on /admin and /start).
+export function SiteChatWidget() {
+  return <ChatWidget />;
 }

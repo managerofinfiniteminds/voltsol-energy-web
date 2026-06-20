@@ -25,6 +25,7 @@ import {
   isVagueLine,
   looksLikeQuestion,
   looksLikeRefusal,
+  topicDirective,
   type SteerMode,
   type ChatSlots,
   type QuizContext,
@@ -332,8 +333,12 @@ export async function POST(req: NextRequest) {
   else if (looksLikeQuestion(latestUser)) steerMode = 'answer';
   const steer = steeringLine(slots, steerMode);
 
+  // Deterministic accuracy guardrail: pricing/tax questions get an explicit, hard
+  // directive the model can't miss (it won't reliably obey a buried KB rule).
+  const directive = topicDirective(latestUser);
+
   const orMessages: OrMessage[] = [
-    { role: 'system', content: `${systemPrompt}\n\n${preamble}\n\nALREADY CAPTURED THIS SESSION (do not re-ask): ${knownSlots}\n\n${steer}` },
+    { role: 'system', content: `${systemPrompt}\n\n${preamble}\n\nALREADY CAPTURED THIS SESSION (do not re-ask): ${knownSlots}\n\n${steer}${directive ? `\n\n${directive}` : ''}` },
     ...userMessages.map((m) => ({ role: m.role, content: m.content })),
   ];
 

@@ -16,6 +16,8 @@ interface LeadChatProps {
   quizContext?: QuizContext;
   firstNameHint?: string;
   onHandoff: () => void; // swap to classic Step-6 form
+  hideHeader?: boolean; // host (e.g. ChatWidget) supplies its own header
+  fill?: boolean; // fill parent height instead of the fixed estimate-flow height
 }
 
 function getOrMakeSessionId(passed: string): string {
@@ -30,7 +32,7 @@ function getOrMakeSessionId(passed: string): string {
   return `s-${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
 }
 
-export default function LeadChat({ sessionId, quizContext, onHandoff }: LeadChatProps) {
+export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader, fill }: LeadChatProps) {
   const [sid] = useState(() => getOrMakeSessionId(sessionId));
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
@@ -177,23 +179,29 @@ export default function LeadChat({ sessionId, quizContext, onHandoff }: LeadChat
   return (
     <div
       data-testid="lead-chat"
-      className="flex flex-col rounded-2xl border border-navy-500/40 bg-navy-800 overflow-hidden"
+      className={cn(
+        'flex flex-col bg-navy-800 overflow-hidden',
+        fill ? 'h-full w-full' : 'rounded-2xl border border-navy-500/40'
+      )}
       // Use DYNAMIC viewport height (dvh): it shrinks when mobile Safari's bottom
       // toolbar is showing, so the pinned input bar never slides under the chrome.
       // Subtract space for the progress header above + page padding. Fallback to
       // vh for older engines via the className min-h, capped at 560px on desktop.
-      style={{ height: 'min(72dvh, 560px)', maxHeight: 'calc(100dvh - 9rem)' }}
+      // In `fill` mode the parent controls height, so no inline height is set.
+      style={fill ? undefined : { height: 'min(72dvh, 560px)', maxHeight: 'calc(100dvh - 9rem)' }}
     >
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-navy-500/40 bg-navy-700/60 px-4 py-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/15 text-gold font-bold">
-          ☀️
+      {!hideHeader && (
+        <div className="flex items-center gap-3 border-b border-navy-500/40 bg-navy-700/60 px-4 py-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/15 text-gold font-bold">
+            ☀️
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-white leading-tight">Ray — VoltSol</p>
+            <p className="text-[11px] text-blue-300/70 leading-tight">Here to answer questions &amp; help</p>
+          </div>
         </div>
-        <div className="min-w-0">
-          <p className="text-sm font-semibold text-white leading-tight">Ray — VoltSol</p>
-          <p className="text-[11px] text-blue-300/70 leading-tight">Here to answer questions &amp; help</p>
-        </div>
-      </div>
+      )}
 
       {/* Messages — scrolls inside the panel */}
       <div

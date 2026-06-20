@@ -178,7 +178,11 @@ export default function LeadChat({ sessionId, quizContext, onHandoff }: LeadChat
     <div
       data-testid="lead-chat"
       className="flex flex-col rounded-2xl border border-navy-500/40 bg-navy-800 overflow-hidden"
-      style={{ height: 'min(70vh, 560px)' }}
+      // Use DYNAMIC viewport height (dvh): it shrinks when mobile Safari's bottom
+      // toolbar is showing, so the pinned input bar never slides under the chrome.
+      // Subtract space for the progress header above + page padding. Fallback to
+      // vh for older engines via the className min-h, capped at 560px on desktop.
+      style={{ height: 'min(72dvh, 560px)', maxHeight: 'calc(100dvh - 9rem)' }}
     >
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-navy-500/40 bg-navy-700/60 px-4 py-3">

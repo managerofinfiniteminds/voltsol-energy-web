@@ -359,7 +359,12 @@ export function applyCapture(slots: ChatSlots, field: string, value: string): Ch
       if (isValidEmail(v)) next.email = v.toLowerCase();
       break;
     case 'consent':
-      next.consent = parseConsentValue(v);
+      // COMPLIANCE: never let the MODEL assert consent. Consent is only ever set
+      // by extractFromText() parsing a genuine affirmative from the USER's own
+      // message. A model-supplied capture_field(consent,...) is ignored here so
+      // a hallucinated/early consent can never submit a TCPA lead. We only allow
+      // the model to RETRACT consent (explicit false).
+      if (!parseConsentValue(v)) next.consent = false;
       break;
     default:
       break;

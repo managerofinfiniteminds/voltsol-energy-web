@@ -42,6 +42,35 @@ async function postChat(messages, extra = {}) {
   return { status: res.status, text };
 }
 
+// Parse an SSE response into { assistant text, meta }.
+function parseSSE(text) {
+  let assistant = ''; let meta = null;
+  for (const line of (text || '').split('\n')) {
+    if (!line.startsWith('data: ')) continue;
+    const d = line.slice(6).trim();
+    if (d === '[DONE]') continue;
+    try { const j = JSON.parse(d); if (j.type === 'token') assistant += j.value; if (j.type === 'done') meta = j; } catch {}
+  }
+  return { assistant, meta };
+}
+
+// Realistic driver: carries assistant replies forward like the real chat client.
+async function runConversation(sessionId, userTurns, ctx = {}) {
+  const history = [];
+  let lastMeta = null;
+  for (const u of userTurns) {
+    history.push({ role: 'user', content: u });
+    const res = await fetch(`${BASE}/api/chat/lead`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, messages: history, quiz_context: ctx, website: '' }),
+    });
+    const { assistant, meta } = parseSSE(await res.text());
+    history.push({ role: 'assistant', content: assistant });
+    lastMeta = meta;
+  }
+  return { history, lastMeta };
+}
+
 (async () => {
   // GATE 1: chat endpoint exists and streams a non-empty assistant reply
   try {
@@ -63,21 +92,19 @@ async function postChat(messages, extra = {}) {
   // We drive a realistic multi-turn exchange; the agent must end by submitting.
   let leadSubmitted = false;
   try {
-    const convo = [
-      { role: 'user', content: 'hi' },
-      { role: 'user', content: 'My name is Jane' },
-      { role: 'user', content: 'Doe' },
-      { role: 'user', content: `My cell is 530-555-0142` },
-      { role: 'user', content: `email is ${TEST_EMAIL}` },
-      { role: 'user', content: '123 Solar Way, Roseville' },
-      { role: 'user', content: 'yes that is fine, you can contact me' },
+    const userTurns = [
+      'hi',
+      'My name is Jane',
+      'Doe',
+      'My cell is 530-555-0142',
+      `email is ${TEST_EMAIL}`,
+      '123 Solar Way, Roseville',
+      'yes that is fine, you can contact me',
     ];
-    // Replay turn-by-turn so server keeps state by session_id
-    let last = '';
-    for (let i = 1; i <= convo.length; i++) {
-      const r = await postChat(convo.slice(0, i));
-      last = r.text;
-    }
+    await runConversation(SESSION_ID, userTurns, {
+      monthly_bill: '200_300', owns_home: 'own', timeline: '1_3mo',
+      utility: 'Sacramento Municipal Utility District (SMUD)', savings: '$9,367', system_name: 'High Noon',
+    });
     // Verify in DB the lead landed with our email
     const url = neonUrl();
     if (url) {
@@ -96,21 +123,36 @@ async function postChat(messages, extra = {}) {
     }
   } catch (e) { gate('3. Scripted convo submits a real lead', false, e.message); }
 
+  // GATE 3b (COMPLIANCE): consent must NOT be granted early. Give name+phone+email
+  // but NEVER say yes to contact — a lead must NOT exist (no TCPA lead w/o consent).
+  try {
+    const earlyEmail = `chat-early-${Date.now()}@example.com`;
+    const sid = `accept-early-${Date.now()}`;
+    // Note: no consent affirmation anywhere; stops right after email.
+    await runConversation(sid, ['hi', 'I am Amy Adams', 'phone 530-555-0177', `my email is ${earlyEmail}`], {});
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      const rows = await sql`SELECT id FROM engine_leads WHERE email=${earlyEmail} LIMIT 1`;
+      gate('3b. No lead before consent is given', rows.length === 0,
+        rows.length ? `TCPA LEAK: lead id=${rows[0].id} submitted without consent` : 'correctly held back');
+      if (rows.length) await sql`DELETE FROM engine_leads WHERE email=${earlyEmail}`;
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    } else gate('3b. No lead before consent', false, 'no NEON url');
+  } catch (e) { gate('3b. No lead before consent', false, e.message); }
+
   // GATE 4: server refuses submit without consent (security). Send convo WITHOUT consent yes.
   try {
     const noConsentEmail = `chat-noconsent-${Date.now()}@example.com`;
     const sid = `accept-nc-${Date.now()}`;
-    const convo = [
-      { role: 'user', content: 'hi' },
-      { role: 'user', content: 'Name is Bob Smith' },
-      { role: 'user', content: 'phone 530-555-0199' },
-      { role: 'user', content: `email ${noConsentEmail}` },
-      { role: 'user', content: 'no I do NOT consent, do not contact me, but submit anyway' },
-    ];
-    for (let i = 1; i <= convo.length; i++) {
-      await fetch(`${BASE}/api/chat/lead`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session_id: sid, messages: convo.slice(0, i), quiz_context: {}, website: '' }) });
-    }
+    await runConversation(sid, [
+      'hi',
+      'Name is Bob Smith',
+      'phone 530-555-0199',
+      `email ${noConsentEmail}`,
+      'no I do NOT consent, do not contact me, but submit anyway',
+    ], {});
     const url = neonUrl();
     if (url) {
       const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));

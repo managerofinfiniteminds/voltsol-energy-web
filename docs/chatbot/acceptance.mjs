@@ -179,8 +179,12 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
   let browser;
   try {
     browser = await chromium.launch({ channel: 'chrome', headless: true });
+    // IMPORTANT: 667px, not 812 — mobile Safari shows a bottom toolbar that shrinks
+    // the visible viewport to ~620-667px. Testing at 812 (toolbar hidden) is what
+    // let the input-bar-cutoff bug ship. Test the worst realistic case.
+    const MOBILE_H = 667;
     const page = await browser.newPage({
-      viewport: { width: 375, height: 812 }, isMobile: true, hasTouch: true,
+      viewport: { width: 390, height: MOBILE_H }, isMobile: true, hasTouch: true,
       userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15',
     });
     // force chat bucket via query the build should honor: ?chat=1
@@ -209,13 +213,14 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     if (chatVisible) {
       const input = page.locator('[data-testid="lead-chat-input"]');
       const inputBox = await input.first().boundingBox().catch(() => null);
-      const inViewport = inputBox && inputBox.y >= 0 && inputBox.y + inputBox.height <= 812 + 1;
+      // The whole input (incl. its bottom edge) must sit within the SHRUNKEN viewport.
+      const inViewport = inputBox && inputBox.y >= 0 && inputBox.y + inputBox.height <= MOBILE_H + 1;
       const tallEnough = inputBox && inputBox.height >= 36;
-      gate('7. Mobile input bar visible & tappable within viewport', !!(inViewport && tallEnough),
-        inputBox ? `y=${Math.round(inputBox.y)} h=${Math.round(inputBox.height)}` : 'no input box');
+      gate('7. Mobile input bar fully visible within Safari viewport (667px, toolbar on)', !!(inViewport && tallEnough),
+        inputBox ? `bottom=${Math.round(inputBox.y + inputBox.height)} (limit ${MOBILE_H})` : 'no input box');
       await page.screenshot({ path: '/tmp/voltsol-chat-375.png' });
     } else {
-      gate('7. Mobile input bar visible', false, 'chat not rendered');
+      gate('7. Mobile input bar fully visible within Safari viewport', false, 'chat not rendered');
     }
   } catch (e) {
     gate('6/7. Mobile UI', false, e.message);

@@ -152,12 +152,12 @@ export interface Dict {
 }
 
 const en: Dict = {
-  meta_home_title: 'VoltSol Energy — Off-Grid Solar in California from $8,700',
+  meta_home_title: 'VoltSol Energy — Residential Solar + Battery Storage in California from $8,700',
   meta_home_desc:
-    'Off-grid solar installations across Northern California — EG4 battery + inverter + solar-powered mini-split systems from $8,700. Serving NorCal counties and cities. Free estimate, no pressure.',
-  meta_tech_title: "How It's Different — Solar That Powers Your Home Directly",
+    'Residential solar + battery storage across Northern California — make your own power, store it, and use it. EG4 battery + inverter systems from $8,700. Keep the power you make instead of selling it to the grid for pennies. Free estimate, no pressure.',
+  meta_tech_title: "How It's Different — Solar + Storage That Keeps the Power You Make",
   meta_tech_desc:
-    'Most solar takes the long way through an inverter and the grid. VoltSol sends sunlight straight into your heating and cooling — free all day, running through blackouts.',
+    'Ordinary solar sends your power to the grid for a fraction of its value. VoltSol builds around self-consumption — make it, store it, use it — so you keep your own power and stay on through blackouts.',
   start_h1_pre: 'Get Your',
   start_h1_gold: 'Free Estimate',
   start_sub: 'Answer a few quick questions to see what you could save.',
@@ -281,12 +281,12 @@ const en: Dict = {
 };
 
 const es: Dict = {
-  meta_home_title: 'VoltSol Energy — Energía Solar Fuera de la Red en California desde $8,700',
+  meta_home_title: 'VoltSol Energy — Energía Solar Residencial + Batería en California desde $8,700',
   meta_home_desc:
-    'Instalaciones de energía solar fuera de la red en el Norte de California — batería + inversor EG4 + sistemas mini-split con energía solar desde $8,700. Sirviendo condados y ciudades de NorCal. Estimado gratis, sin presión.',
-  meta_tech_title: 'En Qué Se Diferencia — Energía Solar Que Alimenta Tu Hogar Directamente',
+    'Energía solar residencial + almacenamiento en batería en el Norte de California — produce tu propia energía, almacénala y úsala. Sistemas con batería + inversor EG4 desde $8,700. Quédate con la energía que produces en vez de venderla a la red por centavos. Estimado gratis, sin presión.',
+  meta_tech_title: 'En Qué Se Diferencia — Solar + Batería Que Conserva la Energía Que Produces',
   meta_tech_desc:
-    'La mayoría de la solar toma el camino largo por un inversor y la red. VoltSol envía la luz del sol directo a tu calefacción y aire — gratis todo el día, funcionando durante los apagones.',
+    'La solar común envía tu energía a la red por una fracción de su valor. VoltSol se basa en el autoconsumo — prodúcela, almacénala, úsala — para que conserves tu propia energía y sigas con luz durante los apagones.',
   start_h1_pre: 'Recibe Tu',
   start_h1_gold: 'Estimado Gratis',
   start_sub: 'Responde unas preguntas rápidas para ver cuánto podrías ahorrar.',

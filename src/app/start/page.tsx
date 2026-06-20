@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Get Your Free Estimate — VoltSol Energy',
   description:
-    'Answer a few quick questions and get your personalized off-grid solar estimate for your home.',
+    'Answer a few quick questions and get your personalized residential solar + battery storage estimate for your home.',
 };
 
 interface StartPageProps {

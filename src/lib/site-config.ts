@@ -171,7 +171,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   compare_bad_amount: '$40,000+',
   compare_bad_caption: 'Traditional solar — loan, still grid-tied',
   compare_good_amount: 'Under $10,000',
-  compare_good_caption: 'VoltSol / EG4 — off-grid capable',
+  compare_good_caption: 'VoltSol / EG4 — make it, store it, use it',
   stat_1_value: '8,000+',
   stat_1_label: 'Battery Cycles',
   stat_2_value: '10-Year',
@@ -229,7 +229,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
 };
 
 const ARRAY_DEFAULTS = {
-  hero_trust: ['Licensed', 'Local', 'Off-Grid Capable', 'No Pressure'] as string[],
+  hero_trust: ['Licensed', 'Local', 'Solar + Storage', 'No Pressure'] as string[],
   how_steps: [
     { step: '01', title: 'MAKE IT', desc: 'Solar panels turn free sunlight into power.' },
     { step: '02', title: 'STORE IT', desc: 'A home battery banks it for night and blackouts.' },
@@ -252,7 +252,7 @@ const ARRAY_DEFAULTS = {
   ] as FooterLink[],
   faqs: [
     { q: "What does a system cost, and what's included?", a: "Systems start at $8,700 all-in — solar panels, EG4 hybrid inverter, EG4 LiFePO4 battery, mini-split heat pump, and full installation. Your free estimate shows the exact number for your home." },
-    { q: "What's the difference between off-grid and grid-tie solar?", a: "Grid-tie solar feeds power back to the utility and shuts off during blackouts — you stay dependent on them. Our systems are off-grid capable: the battery runs your home directly, so you can keep the grid as backup or cut it entirely." },
+    { q: "What's the difference between VoltSol's solar and ordinary grid-tie solar?", a: "Ordinary grid-tie solar sends your power back to the utility and shuts off during blackouts — you stay dependent on them and get credited only a fraction of retail for what you export. VoltSol builds around self-consumption: you make your own power, store it in your battery, and use it yourself — keeping the power you make, with backup that stays on in a blackout." },
     { q: "Do I need permits?", a: "Yes, and we handle them. Permitting and county paperwork are included in every install — you don't file a single form." },
     { q: "How long do the batteries last?", a: "EG4 LiFePO4 batteries are rated for 8,000 cycles — roughly 20 years of daily use — and carry a 10-year manufacturer warranty." },
     { q: "How long does installation take?", a: "Most installs are done in 1–2 days. From your free estimate to power-on is typically 2–4 weeks, depending on county permit turnaround." },

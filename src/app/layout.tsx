@@ -11,29 +11,31 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "VoltSol Energy — Off-Grid Solar in California from $8,700",
+      "VoltSol Energy — Residential Solar + Battery Storage in California from $8,700",
     template: "%s — VoltSol Energy",
   },
   description:
-    "Off-grid solar installations across Northern California — EG4 battery + inverter + solar-powered mini-split systems from $8,700. Serving NorCal counties and cities. Free estimate, no pressure.",
+    "Residential solar + battery storage across Northern California — make your own power, store it, and use it. EG4 battery + inverter systems from $8,700. Keep the power you make instead of selling it to the grid for pennies. Free estimate, no pressure.",
   keywords: [
-    "off-grid solar",
-    "residential solar",
-    "EG4 solar",
+    "residential solar California",
+    "home solar and battery storage",
     "solar battery storage",
-    "affordable off-grid solar",
-    "off-grid EG4",
-    "solar lead generation",
-    "utility bill alternative",
-    "solar installation",
+    "solar self-consumption",
+    "solar battery backup California",
+    "NEM 3.0 solar battery",
+    "keep your own solar power",
+    "solar that works in a blackout",
+    "EG4 solar",
+    "home battery storage",
+    "solar plus storage",
     "FlexBOSS18 inverter",
-    "California solar",
     "Northern California solar",
+    "California solar installation",
   ],
   openGraph: {
-    title: "VoltSol Energy — Off-Grid Solar in California from $8,700",
+    title: "VoltSol Energy — Residential Solar + Battery Storage in California from $8,700",
     description:
-      "Off-grid solar installations across Northern California — EG4 battery + inverter + solar-powered mini-split systems from $8,700. Free estimate, no pressure.",
+      "Residential solar + battery storage across Northern California — make it, store it, use it. EG4 systems from $8,700. Keep the power you make. Free estimate, no pressure.",
     siteName: "VoltSol Energy",
     url: siteUrl,
     type: "website",
@@ -42,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VoltSol Energy — Off-Grid Solar in California from $8,700",
+    title: "VoltSol Energy — Residential Solar + Battery Storage from $8,700",
     description:
-      "Off-grid solar for Northern California. EG4 systems from $8,700. Free estimate.",
+      "Residential solar + battery storage for Northern California. Make it, store it, use it. EG4 systems from $8,700. Free estimate.",
     // twitter:image also auto-uses the generated opengraph-image card
   },
   alternates: {
@@ -60,7 +62,7 @@ const organizationJsonLd = {
   logo: `${siteUrl}/images/voltsol-mark.svg`,
   email: "info@voltsolenergy.com",
   telephone: "+1-530-228-1019",
-  description: "Off-grid solar installations serving Northern California",
+  description: "Residential solar + battery storage installations serving Northern California",
   areaServed: {
     "@type": "State",
     name: "California",

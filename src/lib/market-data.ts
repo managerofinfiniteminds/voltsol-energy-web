@@ -176,8 +176,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Roseville falls under Placer County CDRA jurisdiction. Typical turnaround is 2-4 weeks, though SolarAPP+ can expedite eligible systems to same-day approval. Your installer handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Roseville with PG&E rates?',
-              a: 'Absolutely. PG&E residential rates average around $0.44/kWh in Roseville — among the highest in California. Off-grid solar with battery storage lets you lock in energy costs and avoid future rate increases.'
+              q: 'Is residential solar + battery storage worth it in Roseville with PG&E rates?',
+              a: 'Absolutely. PG&E residential rates average around $0.44/kWh in Roseville — among the highest in California. Residential solar with battery storage lets you lock in energy costs and avoid future rate increases.'
             },
             {
               q: 'How much sun does Roseville get for solar?',
@@ -199,8 +199,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Rocklin is under Placer County CDRA jurisdiction. Permit turnaround is typically 2-4 weeks, or same-day via SolarAPP+ for eligible systems. Your contractor manages the process.'
             },
             {
-              q: 'Is off-grid solar worth it in Rocklin with PG&E rates?',
-              a: 'Yes. With PG&E rates around $0.44/kWh, Rocklin homeowners can save significantly by switching to off-grid solar with battery storage, especially during peak summer cooling months.'
+              q: 'Is residential solar + battery storage worth it in Rocklin with PG&E rates?',
+              a: 'Yes. With PG&E rates around $0.44/kWh, Rocklin homeowners can save significantly by switching to solar with battery storage, especially during peak summer cooling months.'
             },
             {
               q: 'How much sun does Rocklin get for solar?',
@@ -222,8 +222,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lincoln follows Placer County CDRA permit procedures, with typical turnaround of 2-4 weeks. SolarAPP+ can expedite approval for eligible residential systems to same-day.'
             },
             {
-              q: 'Is off-grid solar worth it in Lincoln with PG&E rates?',
-              a: 'Definitely. Lincoln residents face PG&E rates near $0.44/kWh. Off-grid solar with battery backup eliminates most of that cost while providing blackout protection during PSPS events.'
+              q: 'Is residential solar + battery storage worth it in Lincoln with PG&E rates?',
+              a: 'Definitely. Lincoln residents face PG&E rates near $0.44/kWh. Residential solar with battery backup eliminates most of that cost while providing blackout protection during PSPS events.'
             },
             {
               q: 'How much sun does Lincoln get for solar?',
@@ -245,8 +245,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Auburn is under Placer County CDRA jurisdiction. Typical permit turnaround is 2-4 weeks, with SolarAPP+ available for eligible systems. Foothill terrain may require additional site review.'
             },
             {
-              q: 'Is off-grid solar worth it in Auburn with PG&E rates?',
-              a: 'Yes. Auburn homeowners pay PG&E rates around $0.44/kWh. Off-grid solar is especially valuable here for backup power during frequent PSPS shutoffs in foothill fire zones.'
+              q: 'Is residential solar + battery storage worth it in Auburn with PG&E rates?',
+              a: 'Yes. Auburn homeowners pay PG&E rates around $0.44/kWh. Residential solar + battery storage is especially valuable here for backup power during frequent PSPS shutoffs in foothill fire zones.'
             },
             {
               q: 'How much sun does Auburn get for solar?',
@@ -268,8 +268,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Loomis falls under Placer County CDRA jurisdiction. Typical turnaround is 2-4 weeks, or same-day via SolarAPP+ for eligible systems. Rural sites may require additional review.'
             },
             {
-              q: 'Is off-grid solar worth it in Loomis with PG&E rates?',
-              a: 'Absolutely. Loomis residents pay PG&E rates near $0.44/kWh, and foothill locations face PSPS shutoffs. Off-grid solar with battery storage provides both savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Loomis with PG&E rates?',
+              a: 'Absolutely. Loomis residents pay PG&E rates near $0.44/kWh, and foothill locations face PSPS shutoffs. Residential solar with battery storage provides both savings and reliable backup power.'
             },
             {
               q: 'How much sun does Loomis get for solar?',
@@ -316,8 +316,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Sacramento uses SolarAPP+ for eligible residential rooftop systems, which provides same-day automated approval. Your installer submits the application and handles the process.'
             },
             {
-              q: 'Is off-grid solar worth it in Sacramento with SMUD rates?',
-              a: 'SMUD rates average around $0.18/kWh — much lower than PG&E. Solar payback is longer, but off-grid systems provide backup power during outages and lock in energy costs against future rate increases.'
+              q: 'Is residential solar + battery storage worth it in Sacramento with SMUD rates?',
+              a: 'SMUD rates average around $0.18/kWh — much lower than PG&E. Solar payback is longer, but solar + battery systems provide backup power during outages and lock in energy costs against future rate increases.'
             },
             {
               q: 'How much sun does Sacramento get for solar?',
@@ -339,8 +339,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Elk Grove falls under Sacramento County Building Permits & Inspection Division. Typical turnaround is 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Elk Grove with SMUD rates?',
-              a: 'SMUD rates around $0.18/kWh are lower than PG&E, so financial payback is longer. However, off-grid solar with battery storage provides backup power during summer outages and locks in energy costs long-term.'
+              q: 'Is residential solar + battery storage worth it in Elk Grove with SMUD rates?',
+              a: 'SMUD rates around $0.18/kWh are lower than PG&E, so financial payback is longer. However, solar with battery storage provides backup power during summer outages and locks in energy costs long-term.'
             },
             {
               q: 'How much sun does Elk Grove get for solar?',
@@ -362,8 +362,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Rancho Cordova follows Sacramento County permit procedures, with typical turnaround of 2-4 weeks. Your installer will manage the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Rancho Cordova with SMUD rates?',
-              a: 'SMUD rates average $0.18/kWh, lower than PG&E. Off-grid solar offers longer payback but provides backup power and shields you from future rate increases, especially valuable in hot summer months.'
+              q: 'Is residential solar + battery storage worth it in Rancho Cordova with SMUD rates?',
+              a: 'SMUD rates average $0.18/kWh, lower than PG&E. Residential solar + battery storage offers longer payback but provides backup power and shields you from future rate increases, especially valuable in hot summer months.'
             },
             {
               q: 'How much sun does Rancho Cordova get for solar?',
@@ -385,8 +385,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Citrus Heights is under Sacramento County Building Permits & Inspection Division jurisdiction. Typical turnaround is 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Citrus Heights with SMUD rates?',
-              a: 'SMUD rates around $0.18/kWh mean longer financial payback compared to PG&E areas. However, off-grid solar provides backup power during outages and protects against future rate increases.'
+              q: 'Is residential solar + battery storage worth it in Citrus Heights with SMUD rates?',
+              a: 'SMUD rates around $0.18/kWh mean longer financial payback compared to PG&E areas. However, solar with battery storage provides backup power during outages and protects against future rate increases.'
             },
             {
               q: 'How much sun does Citrus Heights get for solar?',
@@ -408,8 +408,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Folsom follows Sacramento County permit procedures, with typical turnaround of 2-4 weeks. Your installer will manage the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Folsom with PG&E rates?',
-              a: 'Yes. Unlike most of Sacramento County, Folsom residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage can deliver strong savings and backup power during PSPS events.'
+              q: 'Is residential solar + battery storage worth it in Folsom with PG&E rates?',
+              a: 'Yes. Unlike most of Sacramento County, Folsom residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage can deliver strong savings and backup power during PSPS events.'
             },
             {
               q: 'How much sun does Folsom get for solar?',
@@ -440,7 +440,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         zone: 'Zone 11',
         description: 'Hot inland climate for lower elevations (El Dorado Hills, Cameron Park). Foothill areas (Shingle Springs, Placerville) see more variation with cooler winters and potential snow at higher elevations.'
       },
-      countyContext: 'El Dorado County spans from the Sierra foothills into higher mountain elevations. Lower-elevation areas (El Dorado Hills, Cameron Park) have strong solar potential similar to valley floor. Higher elevations (Placerville, Shingle Springs) require snow-load considerations and may see more tree shading. High PG&E rates and frequent PSPS shutoffs make off-grid solar attractive for backup power and savings.'
+      countyContext: 'El Dorado County spans from the Sierra foothills into higher mountain elevations. Lower-elevation areas (El Dorado Hills, Cameron Park) have strong solar potential similar to valley floor. Higher elevations (Placerville, Shingle Springs) require snow-load considerations and may see more tree shading. High PG&E rates and frequent PSPS shutoffs make solar with battery storage attractive for backup power and savings.'
     },
     cities: [
       {
@@ -456,8 +456,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. El Dorado Hills falls under El Dorado County Planning & Building Department jurisdiction. Typical turnaround is 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in El Dorado Hills with PG&E rates?',
-              a: 'Absolutely. El Dorado Hills residents pay PG&E rates around $0.44/kWh on higher-than-average bills due to large homes. Off-grid solar with battery storage delivers strong savings and backup power during PSPS events.'
+              q: 'Is residential solar + battery storage worth it in El Dorado Hills with PG&E rates?',
+              a: 'Absolutely. El Dorado Hills residents pay PG&E rates around $0.44/kWh on higher-than-average bills due to large homes. Residential solar with battery storage delivers strong savings and backup power during PSPS events.'
             },
             {
               q: 'How much sun does El Dorado Hills get for solar?',
@@ -479,8 +479,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Cameron Park is under El Dorado County Planning & Building Department jurisdiction. Typical turnaround is 2-3 weeks. Your installer will manage the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Cameron Park with PG&E rates?',
-              a: 'Yes. Cameron Park residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs during fire season. Off-grid solar with battery storage provides both savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Cameron Park with PG&E rates?',
+              a: 'Yes. Cameron Park residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs during fire season. Residential solar with battery storage provides both savings and reliable backup power.'
             },
             {
               q: 'How much sun does Cameron Park get for solar?',
@@ -502,8 +502,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Shingle Springs follows El Dorado County Planning & Building Department procedures, with typical turnaround of 2-3 weeks. Foothill sites may require additional review for fire zones and structural considerations.'
             },
             {
-              q: 'Is off-grid solar worth it in Shingle Springs with PG&E rates?',
-              a: 'Yes. Shingle Springs residents pay PG&E rates near $0.44/kWh and face PSPS shutoffs in foothill fire zones. Off-grid solar with battery storage is ideal for backup power and long-term savings.'
+              q: 'Is residential solar + battery storage worth it in Shingle Springs with PG&E rates?',
+              a: 'Yes. Shingle Springs residents pay PG&E rates near $0.44/kWh and face PSPS shutoffs in foothill fire zones. Residential solar with battery storage is ideal for backup power and long-term savings.'
             },
             {
               q: 'How much sun does Shingle Springs get for solar?',
@@ -525,8 +525,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Placerville is under El Dorado County Planning & Building Department jurisdiction. Typical turnaround is 2-3 weeks. Higher-elevation sites may require additional structural review for snow load.'
             },
             {
-              q: 'Is off-grid solar worth it in Placerville with PG&E rates?',
-              a: 'Yes. Placerville residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Off-grid solar with battery storage provides both savings and backup power during winter storms and summer shutoffs.'
+              q: 'Is residential solar + battery storage worth it in Placerville with PG&E rates?',
+              a: 'Yes. Placerville residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Residential solar with battery storage provides both savings and backup power during winter storms and summer shutoffs.'
             },
             {
               q: 'How much sun does Placerville get for solar?',
@@ -557,7 +557,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         zone: 'Zone 11 (Grass Valley, Nevada City) / Zone 16 (Truckee)',
         description: 'Zone 11: hot inland climate with cooler winters than valley floor. Zone 16 (Truckee): cold mountain climate with significant snow load and higher heating demand. Solar production is strong in summer but reduced in winter.'
       },
-      countyContext: 'Nevada County spans from the mid-elevation foothills (Grass Valley, Nevada City) to the high Sierra (Truckee). Foothill areas face frequent PSPS shutoffs during fire season and benefit from off-grid solar for backup power. Truckee requires specialized snow-load engineering and sees reduced winter production due to snow cover, but strong summer production and high heating loads still make solar viable.'
+      countyContext: 'Nevada County spans from the mid-elevation foothills (Grass Valley, Nevada City) to the high Sierra (Truckee). Foothill areas face frequent PSPS shutoffs during fire season and benefit from solar with battery storage for backup power. Truckee requires specialized snow-load engineering and sees reduced winter production due to snow cover, but strong summer production and high heating loads still make solar viable.'
     },
     cities: [
       {
@@ -573,8 +573,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Grass Valley is under Nevada County Building Department jurisdiction. Typical turnaround is 2-4 weeks. Rural and foothill sites may require additional fire-zone review.'
             },
             {
-              q: 'Is off-grid solar worth it in Grass Valley with PG&E rates?',
-              a: 'Absolutely. Grass Valley residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs during fire season. Off-grid solar with battery storage provides both savings and critical backup power.'
+              q: 'Is residential solar + battery storage worth it in Grass Valley with PG&E rates?',
+              a: 'Absolutely. Grass Valley residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs during fire season. Residential solar with battery storage provides both savings and critical backup power.'
             },
             {
               q: 'How much sun does Grass Valley get for solar?',
@@ -596,8 +596,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Nevada City follows Nevada County Building Department procedures, with typical turnaround of 2-4 weeks. Foothill and forested sites may require additional fire-zone and terrain review.'
             },
             {
-              q: 'Is off-grid solar worth it in Nevada City with PG&E rates?',
-              a: 'Yes. Nevada City residents pay PG&E rates near $0.44/kWh and experience frequent PSPS shutoffs. Off-grid solar with battery storage is ideal for backup power during shutoffs and long-term energy savings.'
+              q: 'Is residential solar + battery storage worth it in Nevada City with PG&E rates?',
+              a: 'Yes. Nevada City residents pay PG&E rates near $0.44/kWh and experience frequent PSPS shutoffs. Residential solar with battery storage is ideal for backup power during shutoffs and long-term energy savings.'
             },
             {
               q: 'How much sun does Nevada City get for solar?',
@@ -619,8 +619,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Truckee is under Nevada County Building Department jurisdiction. Typical turnaround is 2-4 weeks, though high-elevation sites require snow-load calculations and structural review, which can extend timelines.'
             },
             {
-              q: 'Is off-grid solar worth it in Truckee with PG&E rates?',
-              a: 'Yes. Truckee residents pay PG&E rates around $0.44/kWh with high heating loads. Off-grid solar with battery storage provides backup power during winter storms and PSPS events, though winter production is reduced by snow cover.'
+              q: 'Is residential solar + battery storage worth it in Truckee with PG&E rates?',
+              a: 'Yes. Truckee residents pay PG&E rates around $0.44/kWh with high heating loads. Residential solar with battery storage provides backup power during winter storms and PSPS events, though winter production is reduced by snow cover.'
             },
             {
               q: 'How much sun does Truckee get for solar?',
@@ -667,8 +667,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Davis uses SolarAPP+ for eligible residential rooftop systems, which provides same-day automated approval. Your installer submits the application and handles the process.'
             },
             {
-              q: 'Is off-grid solar worth it in Davis with PG&E rates?',
-              a: 'Yes. Davis residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and aligns with the city\'s progressive environmental values.'
+              q: 'Is residential solar + battery storage worth it in Davis with PG&E rates?',
+              a: 'Yes. Davis residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and aligns with the city\'s progressive environmental values.'
             },
             {
               q: 'How much sun does Davis get for solar?',
@@ -690,8 +690,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Woodland follows its city building department permit procedures, with typical turnaround of around 2 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Woodland with PG&E rates?',
-              a: 'Yes. Woodland residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power during summer heat waves and outages.'
+              q: 'Is residential solar + battery storage worth it in Woodland with PG&E rates?',
+              a: 'Yes. Woodland residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power during summer heat waves and outages.'
             },
             {
               q: 'How much sun does Woodland get for solar?',
@@ -713,8 +713,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. West Sacramento follows its city building department permit procedures, with typical turnaround of around 2 weeks. Your installer will manage the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in West Sacramento with PG&E rates?',
-              a: 'Yes. West Sacramento residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and backup power during summer peak demand periods.'
+              q: 'Is residential solar + battery storage worth it in West Sacramento with PG&E rates?',
+              a: 'Yes. West Sacramento residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and backup power during summer peak demand periods.'
             },
             {
               q: 'How much sun does West Sacramento get for solar?',
@@ -761,8 +761,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fairfield has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Fairfield with PG&E rates?',
-              a: 'Yes. Fairfield residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during peak demand periods.'
+              q: 'Is residential solar + battery storage worth it in Fairfield with PG&E rates?',
+              a: 'Yes. Fairfield residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during peak demand periods.'
             },
             {
               q: 'How much sun does Fairfield get for solar?',
@@ -784,8 +784,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Vacaville has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Vacaville with PG&E rates?',
-              a: 'Yes. Vacaville residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power during summer heat waves.'
+              q: 'Is residential solar + battery storage worth it in Vacaville with PG&E rates?',
+              a: 'Yes. Vacaville residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power during summer heat waves.'
             },
             {
               q: 'How much sun does Vacaville get for solar?',
@@ -807,8 +807,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Vallejo has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Vallejo with PG&E rates?',
-              a: 'Yes. Vallejo residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings even with moderate cooling demand, plus backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Vallejo with PG&E rates?',
+              a: 'Yes. Vallejo residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings even with moderate cooling demand, plus backup power during outages.'
             },
             {
               q: 'How much sun does Vallejo get for solar?',
@@ -830,8 +830,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Benicia has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Benicia with PG&E rates?',
-              a: 'Yes. Benicia residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and backup power, even with moderate cooling demand from the bay location.'
+              q: 'Is residential solar + battery storage worth it in Benicia with PG&E rates?',
+              a: 'Yes. Benicia residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and backup power, even with moderate cooling demand from the bay location.'
             },
             {
               q: 'How much sun does Benicia get for solar?',
@@ -878,8 +878,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Oakland has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Oakland with PG&E rates?',
-              a: 'Yes. Oakland residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and provides backup power during outages and PSPS events.'
+              q: 'Is residential solar + battery storage worth it in Oakland with PG&E rates?',
+              a: 'Yes. Oakland residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and provides backup power during outages and PSPS events.'
             },
             {
               q: 'How much sun does Oakland get for solar?',
@@ -901,8 +901,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fremont uses SolarAPP+ for eligible residential rooftop systems, which provides same-day automated approval. Your installer submits the application and handles the process.'
             },
             {
-              q: 'Is off-grid solar worth it in Fremont with PG&E rates?',
-              a: 'Yes. Fremont residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for inland areas with high summer cooling demand.'
+              q: 'Is residential solar + battery storage worth it in Fremont with PG&E rates?',
+              a: 'Yes. Fremont residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power, especially valuable for inland areas with high summer cooling demand.'
             },
             {
               q: 'How much sun does Fremont get for solar?',
@@ -924,8 +924,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Hayward has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Hayward with PG&E rates?',
-              a: 'Yes. Hayward residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Hayward with PG&E rates?',
+              a: 'Yes. Hayward residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Hayward get for solar?',
@@ -947,8 +947,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Berkeley has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Berkeley with PG&E rates?',
-              a: 'Yes. Berkeley residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides savings and aligns with Berkeley\'s strong environmental values, plus backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Berkeley with PG&E rates?',
+              a: 'Yes. Berkeley residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides savings and aligns with Berkeley\'s strong environmental values, plus backup power during outages.'
             },
             {
               q: 'How much sun does Berkeley get for solar?',
@@ -970,8 +970,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Leandro has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in San Leandro with PG&E rates?',
-              a: 'Yes. San Leandro residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in San Leandro with PG&E rates?',
+              a: 'Yes. San Leandro residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does San Leandro get for solar?',
@@ -993,8 +993,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Livermore has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Livermore with PG&E rates?',
-              a: 'Absolutely. Livermore residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Livermore with PG&E rates?',
+              a: 'Absolutely. Livermore residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Livermore get for solar?',
@@ -1016,8 +1016,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Pleasanton has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Pleasanton with PG&E rates?',
-              a: 'Absolutely. Pleasanton residents pay PG&E rates around $0.44/kWh on higher-than-average bills. Off-grid solar with battery storage delivers strong savings and backup power during summer heat waves.'
+              q: 'Is residential solar + battery storage worth it in Pleasanton with PG&E rates?',
+              a: 'Absolutely. Pleasanton residents pay PG&E rates around $0.44/kWh on higher-than-average bills. Residential solar with battery storage delivers strong savings and backup power during summer heat waves.'
             },
             {
               q: 'How much sun does Pleasanton get for solar?',
@@ -1039,8 +1039,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Dublin has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Dublin with PG&E rates?',
-              a: 'Yes. Dublin residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage provides strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Dublin with PG&E rates?',
+              a: 'Yes. Dublin residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage provides strong savings and backup power.'
             },
             {
               q: 'How much sun does Dublin get for solar?',
@@ -1087,8 +1087,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Concord has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Concord with PG&E rates?',
-              a: 'Yes. Concord residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Concord with PG&E rates?',
+              a: 'Yes. Concord residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Concord get for solar?',
@@ -1110,8 +1110,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Richmond has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Richmond with PG&E rates?',
-              a: 'Yes. Richmond residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Richmond with PG&E rates?',
+              a: 'Yes. Richmond residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides savings and backup power during outages.'
             },
             {
               q: 'How much sun does Richmond get for solar?',
@@ -1133,8 +1133,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Antioch has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Antioch with PG&E rates?',
-              a: 'Absolutely. Antioch residents pay PG&E rates around $0.44/kWh with very high summer cooling demand due to extreme heat. Off-grid solar with battery storage delivers strong savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Antioch with PG&E rates?',
+              a: 'Absolutely. Antioch residents pay PG&E rates around $0.44/kWh with very high summer cooling demand due to extreme heat. Residential solar with battery storage delivers strong savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Antioch get for solar?',
@@ -1156,8 +1156,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Walnut Creek has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Walnut Creek with PG&E rates?',
-              a: 'Absolutely. Walnut Creek residents pay PG&E rates around $0.44/kWh on higher-than-average bills. Off-grid solar with battery storage delivers strong savings and backup power during summer heat waves.'
+              q: 'Is residential solar + battery storage worth it in Walnut Creek with PG&E rates?',
+              a: 'Absolutely. Walnut Creek residents pay PG&E rates around $0.44/kWh on higher-than-average bills. Residential solar with battery storage delivers strong savings and backup power during summer heat waves.'
             },
             {
               q: 'How much sun does Walnut Creek get for solar?',
@@ -1179,8 +1179,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Ramon has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in San Ramon with PG&E rates?',
-              a: 'Absolutely. San Ramon residents pay PG&E rates around $0.44/kWh on high bills due to large homes and AC use. Off-grid solar with battery storage delivers strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in San Ramon with PG&E rates?',
+              a: 'Absolutely. San Ramon residents pay PG&E rates around $0.44/kWh on high bills due to large homes and AC use. Residential solar with battery storage delivers strong savings and backup power.'
             },
             {
               q: 'How much sun does San Ramon get for solar?',
@@ -1202,8 +1202,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Brentwood has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Brentwood with PG&E rates?',
-              a: 'Absolutely. Brentwood residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Brentwood with PG&E rates?',
+              a: 'Absolutely. Brentwood residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Brentwood get for solar?',
@@ -1225,8 +1225,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Pittsburg has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Pittsburg with PG&E rates?',
-              a: 'Yes. Pittsburg residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Pittsburg with PG&E rates?',
+              a: 'Yes. Pittsburg residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Pittsburg get for solar?',
@@ -1248,8 +1248,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Danville has its own town building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Danville with PG&E rates?',
-              a: 'Absolutely. Danville residents pay PG&E rates around $0.44/kWh on high bills from large homes and pools. Off-grid solar with battery storage delivers strong savings and backup power during summer heat and PSPS events.'
+              q: 'Is residential solar + battery storage worth it in Danville with PG&E rates?',
+              a: 'Absolutely. Danville residents pay PG&E rates around $0.44/kWh on high bills from large homes and pools. Residential solar with battery storage delivers strong savings and backup power during summer heat and PSPS events.'
             },
             {
               q: 'How much sun does Danville get for solar?',
@@ -1296,8 +1296,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Jose has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in San Jose with PG&E rates?',
-              a: 'Yes. San Jose residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves and outages.'
+              q: 'Is residential solar + battery storage worth it in San Jose with PG&E rates?',
+              a: 'Yes. San Jose residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves and outages.'
             },
             {
               q: 'How much sun does San Jose get for solar?',
@@ -1319,8 +1319,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Sunnyvale has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Sunnyvale with PG&E rates?',
-              a: 'Yes. Sunnyvale residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Sunnyvale with PG&E rates?',
+              a: 'Yes. Sunnyvale residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Sunnyvale get for solar?',
@@ -1348,8 +1348,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santa Clara has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Clara with Silicon Valley Power rates?',
-              a: 'Silicon Valley Power rates average $0.16-0.18/kWh, much lower than PG&E. Solar payback is longer, but off-grid systems provide backup power during outages and lock in energy costs against future rate increases.'
+              q: 'Is residential solar + battery storage worth it in Santa Clara with Silicon Valley Power rates?',
+              a: 'Silicon Valley Power rates average $0.16-0.18/kWh, much lower than PG&E. Solar payback is longer, but solar + battery systems provide backup power during outages and lock in energy costs against future rate increases.'
             },
             {
               q: 'How much sun does Santa Clara get for solar?',
@@ -1371,8 +1371,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Mountain View has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Mountain View with PG&E rates?',
-              a: 'Yes. Mountain View residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Mountain View with PG&E rates?',
+              a: 'Yes. Mountain View residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Mountain View get for solar?',
@@ -1394,8 +1394,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Milpitas has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Milpitas with PG&E rates?',
-              a: 'Yes. Milpitas residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power during summer heat waves.'
+              q: 'Is residential solar + battery storage worth it in Milpitas with PG&E rates?',
+              a: 'Yes. Milpitas residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power during summer heat waves.'
             },
             {
               q: 'How much sun does Milpitas get for solar?',
@@ -1417,8 +1417,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Palo Alto has its own city utilities department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Palo Alto with PG&E rates?',
-              a: 'Yes. Palo Alto residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers savings and aligns with the city\'s progressive environmental values, plus backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Palo Alto with PG&E rates?',
+              a: 'Yes. Palo Alto residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers savings and aligns with the city\'s progressive environmental values, plus backup power during outages.'
             },
             {
               q: 'How much sun does Palo Alto get for solar?',
@@ -1440,8 +1440,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Gilroy has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Gilroy with PG&E rates?',
-              a: 'Absolutely. Gilroy residents pay PG&E rates around $0.44/kWh with very high summer cooling demand due to extreme heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Gilroy with PG&E rates?',
+              a: 'Absolutely. Gilroy residents pay PG&E rates around $0.44/kWh with very high summer cooling demand due to extreme heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Gilroy get for solar?',
@@ -1463,8 +1463,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Morgan Hill has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Morgan Hill with PG&E rates?',
-              a: 'Yes. Morgan Hill residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage provides strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Morgan Hill with PG&E rates?',
+              a: 'Yes. Morgan Hill residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage provides strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Morgan Hill get for solar?',
@@ -1495,7 +1495,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         zone: 'Zone 1 (coastal) / Zone 2 (inland valleys)',
         description: 'Zone 1: cool marine climate along the coast. Zone 2: mild inland climate for valleys (Santa Rosa, Petaluma, Sonoma) with warm summers and cool winters. Strong solar production in inland valleys; coastal areas see more marine layer influence.'
       },
-      countyContext: 'Sonoma County spans from the Pacific coast through inland valleys (Santa Rosa, Sonoma Valley) to the Mayacamas Mountains. Inland valleys experience warm summers with excellent solar potential. Coastal areas see marine layer influence. High PG&E rates and frequent PSPS shutoffs during fire season make off-grid solar with battery storage especially valuable throughout the county.'
+      countyContext: 'Sonoma County spans from the Pacific coast through inland valleys (Santa Rosa, Sonoma Valley) to the Mayacamas Mountains. Inland valleys experience warm summers with excellent solar potential. Coastal areas see marine layer influence. High PG&E rates and frequent PSPS shutoffs during fire season make solar with battery storage especially valuable throughout the county.'
     },
     cities: [
       {
@@ -1511,8 +1511,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santa Rosa has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Rosa with PG&E rates?',
-              a: 'Absolutely. Santa Rosa residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs during fire season. Off-grid solar with battery storage provides both savings and critical backup power.'
+              q: 'Is residential solar + battery storage worth it in Santa Rosa with PG&E rates?',
+              a: 'Absolutely. Santa Rosa residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs during fire season. Residential solar with battery storage provides both savings and critical backup power.'
             },
             {
               q: 'How much sun does Santa Rosa get for solar?',
@@ -1534,8 +1534,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Petaluma has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Petaluma with PG&E rates?',
-              a: 'Yes. Petaluma residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Off-grid solar with battery storage delivers savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Petaluma with PG&E rates?',
+              a: 'Yes. Petaluma residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Residential solar with battery storage delivers savings and backup power during outages.'
             },
             {
               q: 'How much sun does Petaluma get for solar?',
@@ -1557,8 +1557,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Rohnert Park has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Rohnert Park with PG&E rates?',
-              a: 'Yes. Rohnert Park residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs. Off-grid solar with battery storage provides savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Rohnert Park with PG&E rates?',
+              a: 'Yes. Rohnert Park residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs. Residential solar with battery storage provides savings and backup power during outages.'
             },
             {
               q: 'How much sun does Rohnert Park get for solar?',
@@ -1580,8 +1580,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Windsor has its own town building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Windsor with PG&E rates?',
-              a: 'Yes. Windsor residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Off-grid solar with battery storage delivers savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Windsor with PG&E rates?',
+              a: 'Yes. Windsor residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Residential solar with battery storage delivers savings and backup power.'
             },
             {
               q: 'How much sun does Windsor get for solar?',
@@ -1603,8 +1603,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Healdsburg has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Healdsburg with PG&E rates?',
-              a: 'Absolutely. Healdsburg residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs. Off-grid solar with battery storage provides savings and critical backup power during fire season.'
+              q: 'Is residential solar + battery storage worth it in Healdsburg with PG&E rates?',
+              a: 'Absolutely. Healdsburg residents pay PG&E rates around $0.44/kWh and face frequent PSPS shutoffs. Residential solar with battery storage provides savings and critical backup power during fire season.'
             },
             {
               q: 'How much sun does Healdsburg get for solar?',
@@ -1626,8 +1626,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Sonoma has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Sonoma with PG&E rates?',
-              a: 'Yes. Sonoma residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Off-grid solar with battery storage delivers savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Sonoma with PG&E rates?',
+              a: 'Yes. Sonoma residents pay PG&E rates around $0.44/kWh and face PSPS shutoffs during fire season. Residential solar with battery storage delivers savings and backup power.'
             },
             {
               q: 'How much sun does Sonoma get for solar?',
@@ -1674,8 +1674,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Rafael has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in San Rafael with PG&E rates?',
-              a: 'Yes. San Rafael residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides savings and backup power, even with moderate cooling demand from the inland valley location.'
+              q: 'Is residential solar + battery storage worth it in San Rafael with PG&E rates?',
+              a: 'Yes. San Rafael residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides savings and backup power, even with moderate cooling demand from the inland valley location.'
             },
             {
               q: 'How much sun does San Rafael get for solar?',
@@ -1697,8 +1697,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Novato has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Novato with PG&E rates?',
-              a: 'Yes. Novato residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers savings and backup power, with the inland valley location providing better solar conditions than coastal Marin.'
+              q: 'Is residential solar + battery storage worth it in Novato with PG&E rates?',
+              a: 'Yes. Novato residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers savings and backup power, with the inland valley location providing better solar conditions than coastal Marin.'
             },
             {
               q: 'How much sun does Novato get for solar?',
@@ -1720,8 +1720,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Mill Valley has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Mill Valley with PG&E rates?',
-              a: 'Yes. Mill Valley residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides savings and energy independence despite marine layer influence, plus backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Mill Valley with PG&E rates?',
+              a: 'Yes. Mill Valley residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides savings and energy independence despite marine layer influence, plus backup power during outages.'
             },
             {
               q: 'How much sun does Mill Valley get for solar?',
@@ -1743,8 +1743,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Anselmo has its own town building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in San Anselmo with PG&E rates?',
-              a: 'Yes. San Anselmo residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers savings and backup power, though tree shading should be assessed carefully.'
+              q: 'Is residential solar + battery storage worth it in San Anselmo with PG&E rates?',
+              a: 'Yes. San Anselmo residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers savings and backup power, though tree shading should be assessed carefully.'
             },
             {
               q: 'How much sun does San Anselmo get for solar?',
@@ -1791,8 +1791,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Redwood City has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Redwood City with PG&E rates?',
-              a: 'Yes. Redwood City residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers savings and backup power, with better solar conditions than coastal Peninsula areas.'
+              q: 'Is residential solar + battery storage worth it in Redwood City with PG&E rates?',
+              a: 'Yes. Redwood City residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers savings and backup power, with better solar conditions than coastal Peninsula areas.'
             },
             {
               q: 'How much sun does Redwood City get for solar?',
@@ -1814,8 +1814,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Mateo has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in San Mateo with PG&E rates?',
-              a: 'Yes. San Mateo residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides savings and backup power despite marine layer influence.'
+              q: 'Is residential solar + battery storage worth it in San Mateo with PG&E rates?',
+              a: 'Yes. San Mateo residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides savings and backup power despite marine layer influence.'
             },
             {
               q: 'How much sun does San Mateo get for solar?',
@@ -1837,8 +1837,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Daly City has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Daly City with PG&E rates?',
-              a: 'Yes. Daly City residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides savings and energy independence despite frequent marine layer, plus backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Daly City with PG&E rates?',
+              a: 'Yes. Daly City residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides savings and energy independence despite frequent marine layer, plus backup power during outages.'
             },
             {
               q: 'How much sun does Daly City get for solar?',
@@ -1860,8 +1860,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. South San Francisco has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in South San Francisco with PG&E rates?',
-              a: 'Yes. South San Francisco residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers savings and backup power despite marine layer influence.'
+              q: 'Is residential solar + battery storage worth it in South San Francisco with PG&E rates?',
+              a: 'Yes. South San Francisco residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers savings and backup power despite marine layer influence.'
             },
             {
               q: 'How much sun does South San Francisco get for solar?',
@@ -1883,8 +1883,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Menlo Park has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Menlo Park with PG&E rates?',
-              a: 'Yes. Menlo Park residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage delivers savings and energy independence, with better solar conditions than coastal Peninsula areas.'
+              q: 'Is residential solar + battery storage worth it in Menlo Park with PG&E rates?',
+              a: 'Yes. Menlo Park residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage delivers savings and energy independence, with better solar conditions than coastal Peninsula areas.'
             },
             {
               q: 'How much sun does Menlo Park get for solar?',
@@ -1931,8 +1931,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Stockton has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Stockton with PG&E rates?',
-              a: 'Absolutely. Stockton residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Stockton with PG&E rates?',
+              a: 'Absolutely. Stockton residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Stockton get for solar?',
@@ -1954,8 +1954,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Tracy has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Tracy with PG&E rates?',
-              a: 'Absolutely. Tracy residents pay PG&E rates around $0.44/kWh with extreme summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Tracy with PG&E rates?',
+              a: 'Absolutely. Tracy residents pay PG&E rates around $0.44/kWh with extreme summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Tracy get for solar?',
@@ -1977,8 +1977,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Manteca has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Manteca with PG&E rates?',
-              a: 'Yes. Manteca residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat.'
+              q: 'Is residential solar + battery storage worth it in Manteca with PG&E rates?',
+              a: 'Yes. Manteca residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during extreme heat.'
             },
             {
               q: 'How much sun does Manteca get for solar?',
@@ -2000,8 +2000,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lodi has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Lodi with PG&E rates?',
-              a: 'Yes. Lodi residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage provides strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Lodi with PG&E rates?',
+              a: 'Yes. Lodi residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage provides strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Lodi get for solar?',
@@ -2023,8 +2023,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lathrop has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Lathrop with PG&E rates?',
-              a: 'Yes. Lathrop residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Lathrop with PG&E rates?',
+              a: 'Yes. Lathrop residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power.'
             },
             {
               q: 'How much sun does Lathrop get for solar?',
@@ -2077,8 +2077,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Modesto has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Modesto with MID rates?',
-              a: 'MID rates average $0.18-0.20/kWh, much lower than PG&E. Solar payback is longer, but off-grid systems provide backup power during summer outages and lock in energy costs against future rate increases, plus energy independence.'
+              q: 'Is residential solar + battery storage worth it in Modesto with MID rates?',
+              a: 'MID rates average $0.18-0.20/kWh, much lower than PG&E. Solar payback is longer, but solar + battery systems provide backup power during summer outages and lock in energy costs against future rate increases, plus energy independence.'
             },
             {
               q: 'How much sun does Modesto get for solar?',
@@ -2100,8 +2100,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Turlock has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Turlock with PG&E rates?',
-              a: 'Absolutely. Turlock residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Turlock with PG&E rates?',
+              a: 'Absolutely. Turlock residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Turlock get for solar?',
@@ -2123,8 +2123,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Ceres has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Ceres with PG&E rates?',
-              a: 'Yes. Ceres residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Ceres with PG&E rates?',
+              a: 'Yes. Ceres residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Ceres get for solar?',
@@ -2146,8 +2146,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Oakdale has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Oakdale with PG&E rates?',
-              a: 'Yes. Oakdale residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for rural and ag areas.'
+              q: 'Is residential solar + battery storage worth it in Oakdale with PG&E rates?',
+              a: 'Yes. Oakdale residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power, especially valuable for rural and ag areas.'
             },
             {
               q: 'How much sun does Oakdale get for solar?',
@@ -2169,8 +2169,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Riverbank has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Riverbank with PG&E rates?',
-              a: 'Yes. Riverbank residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Off-grid solar with battery storage delivers savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Riverbank with PG&E rates?',
+              a: 'Yes. Riverbank residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Residential solar with battery storage delivers savings and backup power.'
             },
             {
               q: 'How much sun does Riverbank get for solar?',
@@ -2217,8 +2217,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fresno has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Fresno with PG&E rates?',
-              a: 'Absolutely. Fresno residents pay PG&E rates around $0.44/kWh with extremely high summer cooling costs. Off-grid solar with battery storage delivers strong savings and critical backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Fresno with PG&E rates?',
+              a: 'Absolutely. Fresno residents pay PG&E rates around $0.44/kWh with extremely high summer cooling costs. Residential solar with battery storage delivers strong savings and critical backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Fresno get for solar?',
@@ -2240,8 +2240,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Clovis has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Clovis with PG&E rates?',
-              a: 'Absolutely. Clovis residents pay PG&E rates around $0.44/kWh on high bills due to extreme summer cooling. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Clovis with PG&E rates?',
+              a: 'Absolutely. Clovis residents pay PG&E rates around $0.44/kWh on high bills due to extreme summer cooling. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Clovis get for solar?',
@@ -2263,8 +2263,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Sanger has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Sanger with PG&E rates?',
-              a: 'Yes. Sanger residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat.'
+              q: 'Is residential solar + battery storage worth it in Sanger with PG&E rates?',
+              a: 'Yes. Sanger residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat.'
             },
             {
               q: 'How much sun does Sanger get for solar?',
@@ -2286,8 +2286,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Reedley has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Reedley with PG&E rates?',
-              a: 'Yes. Reedley residents pay PG&E rates around $0.44/kWh. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for agricultural and rural properties.'
+              q: 'Is residential solar + battery storage worth it in Reedley with PG&E rates?',
+              a: 'Yes. Reedley residents pay PG&E rates around $0.44/kWh. Residential solar with battery storage provides strong savings and backup power, especially valuable for agricultural and rural properties.'
             },
             {
               q: 'How much sun does Reedley get for solar?',
@@ -2318,7 +2318,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         zone: 'Zone 12 / Zone 13',
         description: 'Hot-dry Central Valley climate with extreme summer heat and high cooling demand. Zone 12 for northern areas; Zone 13 for southern areas with hotter summers. Excellent solar production year-round with very high summer output.'
       },
-      countyContext: 'Merced County sits in the central San Joaquin Valley with flat agricultural terrain ideal for solar. The area experiences extreme summer heat with very high cooling demand, making solar especially valuable for offsetting AC costs. High PG&E rates throughout the county drive strong solar economics. Agricultural and rural areas benefit from off-grid solar for energy independence and reliability.'
+      countyContext: 'Merced County sits in the central San Joaquin Valley with flat agricultural terrain ideal for solar. The area experiences extreme summer heat with very high cooling demand, making solar especially valuable for offsetting AC costs. High PG&E rates throughout the county drive strong solar economics. Agricultural and rural areas benefit from solar with battery storage for energy independence and reliability.'
     },
     cities: [
       {
@@ -2334,8 +2334,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Merced has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Merced with PG&E rates?',
-              a: 'Absolutely. Merced residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Merced with PG&E rates?',
+              a: 'Absolutely. Merced residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Merced get for solar?',
@@ -2357,8 +2357,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Los Banos has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Los Banos with PG&E rates?',
-              a: 'Yes. Los Banos residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for agricultural properties.'
+              q: 'Is residential solar + battery storage worth it in Los Banos with PG&E rates?',
+              a: 'Yes. Los Banos residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage provides strong savings and backup power, especially valuable for agricultural properties.'
             },
             {
               q: 'How much sun does Los Banos get for solar?',
@@ -2380,8 +2380,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Atwater has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Atwater with PG&E rates?',
-              a: 'Yes. Atwater residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Off-grid solar with battery storage delivers savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Atwater with PG&E rates?',
+              a: 'Yes. Atwater residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Residential solar with battery storage delivers savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Atwater get for solar?',
@@ -2428,8 +2428,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Los Angeles uses LADBS (LA Dept of Building and Safety) with SolarAPP+ for eligible residential rooftop systems, providing same-day automated approval. Your installer submits the application and handles the process.'
             },
             {
-              q: 'Is off-grid solar worth it in Los Angeles with LADWP rates?',
-              a: 'LADWP rates average $0.24/kWh, lower than SCE. Solar payback is longer, but off-grid systems provide backup power during outages, lock in energy costs against future rate increases, and offset high cooling costs in inland LA neighborhoods like the Valley.'
+              q: 'Is residential solar + battery storage worth it in Los Angeles with LADWP rates?',
+              a: 'LADWP rates average $0.24/kWh, lower than SCE. Solar payback is longer, but solar + battery systems provide backup power during outages, lock in energy costs against future rate increases, and offset high cooling costs in inland LA neighborhoods like the Valley.'
             },
             {
               q: 'How much sun does Los Angeles get for solar?',
@@ -2451,8 +2451,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Long Beach has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Long Beach with SCE rates?',
-              a: 'Yes. Long Beach residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage delivers strong savings and backup power, even with moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Long Beach with SCE rates?',
+              a: 'Yes. Long Beach residents pay SCE rates around $0.36/kWh. Residential solar with battery storage delivers strong savings and backup power, even with moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Long Beach get for solar?',
@@ -2474,8 +2474,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Glendale has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Glendale with SCE rates?',
-              a: 'Absolutely. Glendale residents pay SCE rates around $0.36/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Glendale with SCE rates?',
+              a: 'Absolutely. Glendale residents pay SCE rates around $0.36/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Glendale get for solar?',
@@ -2497,8 +2497,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santa Clarita has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Clarita with SCE rates?',
-              a: 'Absolutely. Santa Clarita residents pay SCE rates around $0.36/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Santa Clarita with SCE rates?',
+              a: 'Absolutely. Santa Clarita residents pay SCE rates around $0.36/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Santa Clarita get for solar?',
@@ -2520,8 +2520,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Pasadena has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Pasadena with PWP rates?',
-              a: 'Pasadena Water & Power rates average $0.22/kWh, lower than SCE. Solar payback is longer, but off-grid systems provide backup power during outages, lock in energy costs, and offset high cooling demand from the foothill location.'
+              q: 'Is residential solar + battery storage worth it in Pasadena with PWP rates?',
+              a: 'Pasadena Water & Power rates average $0.22/kWh, lower than SCE. Solar payback is longer, but solar + battery systems provide backup power during outages, lock in energy costs, and offset high cooling demand from the foothill location.'
             },
             {
               q: 'How much sun does Pasadena get for solar?',
@@ -2543,8 +2543,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Pomona has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Pomona with SCE rates?',
-              a: 'Yes. Pomona residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Pomona with SCE rates?',
+              a: 'Yes. Pomona residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Pomona get for solar?',
@@ -2566,8 +2566,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Torrance has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Torrance with SCE rates?',
-              a: 'Yes. Torrance residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Torrance with SCE rates?',
+              a: 'Yes. Torrance residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Torrance get for solar?',
@@ -2589,8 +2589,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lancaster has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Lancaster with SCE rates?',
-              a: 'Absolutely. Lancaster residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Lancaster with SCE rates?',
+              a: 'Absolutely. Lancaster residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Lancaster get for solar?',
@@ -2612,8 +2612,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Palmdale has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Palmdale with SCE rates?',
-              a: 'Absolutely. Palmdale residents pay SCE rates around $0.36/kWh with extreme summer cooling costs. Off-grid solar with battery storage delivers exceptional savings and backup power during desert heat waves.'
+              q: 'Is residential solar + battery storage worth it in Palmdale with SCE rates?',
+              a: 'Absolutely. Palmdale residents pay SCE rates around $0.36/kWh with extreme summer cooling costs. Residential solar with battery storage delivers exceptional savings and backup power during desert heat waves.'
             },
             {
               q: 'How much sun does Palmdale get for solar?',
@@ -2635,8 +2635,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Downey has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Downey with SCE rates?',
-              a: 'Yes. Downey residents pay SCE rates around $0.36/kWh with moderate summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Downey with SCE rates?',
+              a: 'Yes. Downey residents pay SCE rates around $0.36/kWh with moderate summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Downey get for solar?',
@@ -2658,8 +2658,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. West Covina has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in West Covina with SCE rates?',
-              a: 'Yes. West Covina residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in West Covina with SCE rates?',
+              a: 'Yes. West Covina residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does West Covina get for solar?',
@@ -2681,8 +2681,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. El Monte has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in El Monte with SCE rates?',
-              a: 'Yes. El Monte residents pay SCE rates around $0.36/kWh with moderate to high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in El Monte with SCE rates?',
+              a: 'Yes. El Monte residents pay SCE rates around $0.36/kWh with moderate to high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power.'
             },
             {
               q: 'How much sun does El Monte get for solar?',
@@ -2704,8 +2704,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Burbank has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Burbank with BWP rates?',
-              a: 'Burbank Water & Power rates average $0.22/kWh, lower than SCE. Solar payback is longer, but off-grid systems provide backup power during outages, lock in energy costs, and offset moderate cooling demand from the foothill location.'
+              q: 'Is residential solar + battery storage worth it in Burbank with BWP rates?',
+              a: 'Burbank Water & Power rates average $0.22/kWh, lower than SCE. Solar payback is longer, but solar + battery systems provide backup power during outages, lock in energy costs, and offset moderate cooling demand from the foothill location.'
             },
             {
               q: 'How much sun does Burbank get for solar?',
@@ -2727,8 +2727,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Inglewood has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Inglewood with SCE rates?',
-              a: 'Yes. Inglewood residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the near-coastal location.'
+              q: 'Is residential solar + battery storage worth it in Inglewood with SCE rates?',
+              a: 'Yes. Inglewood residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the near-coastal location.'
             },
             {
               q: 'How much sun does Inglewood get for solar?',
@@ -2750,8 +2750,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Norwalk has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Norwalk with SCE rates?',
-              a: 'Yes. Norwalk residents pay SCE rates around $0.36/kWh with moderate summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Norwalk with SCE rates?',
+              a: 'Yes. Norwalk residents pay SCE rates around $0.36/kWh with moderate summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Norwalk get for solar?',
@@ -2773,8 +2773,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Carson has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Carson with SCE rates?',
-              a: 'Yes. Carson residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the South Bay location.'
+              q: 'Is residential solar + battery storage worth it in Carson with SCE rates?',
+              a: 'Yes. Carson residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the South Bay location.'
             },
             {
               q: 'How much sun does Carson get for solar?',
@@ -2796,8 +2796,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Whittier has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Whittier with SCE rates?',
-              a: 'Yes. Whittier residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Whittier with SCE rates?',
+              a: 'Yes. Whittier residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Whittier get for solar?',
@@ -2819,8 +2819,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Alhambra has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer handles all permit paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Alhambra with SCE rates?',
-              a: 'Yes. Alhambra residents pay SCE rates around $0.36/kWh with high summer cooling costs from the inland valley climate. Off-grid solar with battery storage provides strong savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Alhambra with SCE rates?',
+              a: 'Yes. Alhambra residents pay SCE rates around $0.36/kWh with high summer cooling costs from the inland valley climate. Residential solar with battery storage provides strong savings and reliable backup power.'
             },
             {
               q: 'How much sun does Alhambra get for solar?',
@@ -2842,8 +2842,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lakewood has its own city building department. Residential solar permits typically process within 2-3 weeks. Your contractor manages the application and inspection process.'
             },
             {
-              q: 'Is off-grid solar worth it in Lakewood with SCE rates?',
-              a: 'Yes. Lakewood residents pay SCE rates around $0.36/kWh. Off-grid systems deliver strong savings, backup power during outages, and protection from future SCE rate increases.'
+              q: 'Is residential solar + battery storage worth it in Lakewood with SCE rates?',
+              a: 'Yes. Lakewood residents pay SCE rates around $0.36/kWh. Solar + battery storage systems deliver strong savings, backup power during outages, and protection from future SCE rate increases.'
             },
             {
               q: 'How much sun does Lakewood get for solar?',
@@ -2865,8 +2865,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Bellflower uses its own city building department with typical turnaround of 2-3 weeks for residential solar. Your installer will submit the permit application and coordinate inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Bellflower with SCE rates?',
-              a: 'Yes. Bellflower residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs. Off-grid solar with battery storage provides strong savings and backup during outages.'
+              q: 'Is residential solar + battery storage worth it in Bellflower with SCE rates?',
+              a: 'Yes. Bellflower residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs. Residential solar with battery storage provides strong savings and backup during outages.'
             },
             {
               q: 'How much sun does Bellflower get for solar?',
@@ -2888,8 +2888,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Baldwin Park has its own city building and safety department. Residential solar permits typically take 2-3 weeks to process. Your solar contractor handles all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Baldwin Park with SCE rates?',
-              a: 'Yes. Baldwin Park residents pay SCE rates around $0.36/kWh. The inland valley climate drives high summer cooling costs, making off-grid solar with battery storage a strong investment for savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Baldwin Park with SCE rates?',
+              a: 'Yes. Baldwin Park residents pay SCE rates around $0.36/kWh. The inland valley climate drives high summer cooling costs, making solar with battery storage a strong investment for savings and backup power.'
             },
             {
               q: 'How much sun does Baldwin Park get for solar?',
@@ -2911,8 +2911,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lynwood has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer manages the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Lynwood with SCE rates?',
-              a: 'Yes. Lynwood residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage delivers strong savings and reliable backup power during grid outages.'
+              q: 'Is residential solar + battery storage worth it in Lynwood with SCE rates?',
+              a: 'Yes. Lynwood residents pay SCE rates around $0.36/kWh. Residential solar with battery storage delivers strong savings and reliable backup power during grid outages.'
             },
             {
               q: 'How much sun does Lynwood get for solar?',
@@ -2934,8 +2934,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Redondo Beach has its own city building department with typical turnaround of 2-3 weeks for residential solar. Your contractor handles all permit submissions and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Redondo Beach with SCE rates?',
-              a: 'Yes. Redondo Beach residents pay SCE rates around $0.36/kWh. Even with lower cooling demand from the coastal climate, off-grid solar provides strong savings, backup power, and increases home value in this premium beach market.'
+              q: 'Is residential solar + battery storage worth it in Redondo Beach with SCE rates?',
+              a: 'Yes. Redondo Beach residents pay SCE rates around $0.36/kWh. Even with lower cooling demand from the coastal climate, solar with battery storage provides strong savings, backup power, and increases home value in this premium beach market.'
             },
             {
               q: 'How much sun does Redondo Beach get for solar?',
@@ -2957,8 +2957,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Montebello has its own city building and safety department. Residential solar permits typically take 2-3 weeks. Your installer handles the permit application and coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in Montebello with SCE rates?',
-              a: 'Yes. Montebello residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs. Off-grid solar with battery storage provides strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Montebello with SCE rates?',
+              a: 'Yes. Montebello residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs. Residential solar with battery storage provides strong savings and backup power.'
             },
             {
               q: 'How much sun does Montebello get for solar?',
@@ -2980,8 +2980,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Pico Rivera has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your contractor manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Pico Rivera with SCE rates?',
-              a: 'Yes. Pico Rivera residents pay SCE rates around $0.36/kWh. The warm inland climate drives high summer cooling costs, making off-grid solar with battery storage a strong investment for savings and backup.'
+              q: 'Is residential solar + battery storage worth it in Pico Rivera with SCE rates?',
+              a: 'Yes. Pico Rivera residents pay SCE rates around $0.36/kWh. The warm inland climate drives high summer cooling costs, making solar with battery storage a strong investment for savings and backup.'
             },
             {
               q: 'How much sun does Pico Rivera get for solar?',
@@ -3028,8 +3028,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Anaheim has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Anaheim with APU rates?',
-              a: 'Anaheim Public Utilities rates average $0.22/kWh, lower than SCE. Solar payback is longer, but off-grid systems provide backup power during outages, lock in energy costs against future rate increases, and offset moderate cooling demand.'
+              q: 'Is residential solar + battery storage worth it in Anaheim with APU rates?',
+              a: 'Anaheim Public Utilities rates average $0.22/kWh, lower than SCE. Solar payback is longer, but solar + battery systems provide backup power during outages, lock in energy costs against future rate increases, and offset moderate cooling demand.'
             },
             {
               q: 'How much sun does Anaheim get for solar?',
@@ -3051,8 +3051,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santa Ana has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Ana with SCE rates?',
-              a: 'Yes. Santa Ana residents pay SCE rates around $0.36/kWh with moderate cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Santa Ana with SCE rates?',
+              a: 'Yes. Santa Ana residents pay SCE rates around $0.36/kWh with moderate cooling demand. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Santa Ana get for solar?',
@@ -3074,8 +3074,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Irvine has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Irvine with SCE rates?',
-              a: 'Yes. Irvine residents pay SCE rates around $0.36/kWh with moderate cooling demand from large homes. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Irvine with SCE rates?',
+              a: 'Yes. Irvine residents pay SCE rates around $0.36/kWh with moderate cooling demand from large homes. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Irvine get for solar?',
@@ -3097,8 +3097,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Huntington Beach has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Huntington Beach with SCE rates?',
-              a: 'Yes. Huntington Beach residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Huntington Beach with SCE rates?',
+              a: 'Yes. Huntington Beach residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Huntington Beach get for solar?',
@@ -3120,8 +3120,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Garden Grove has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Garden Grove with SCE rates?',
-              a: 'Yes. Garden Grove residents pay SCE rates around $0.36/kWh with moderate cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Garden Grove with SCE rates?',
+              a: 'Yes. Garden Grove residents pay SCE rates around $0.36/kWh with moderate cooling demand. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Garden Grove get for solar?',
@@ -3143,8 +3143,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fullerton has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Fullerton with SCE rates?',
-              a: 'Yes. Fullerton residents pay SCE rates around $0.36/kWh with moderate summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Fullerton with SCE rates?',
+              a: 'Yes. Fullerton residents pay SCE rates around $0.36/kWh with moderate summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Fullerton get for solar?',
@@ -3166,8 +3166,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Orange has its own building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Orange with SCE rates?',
-              a: 'Yes. Orange residents pay SCE rates around $0.36/kWh with moderate cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Orange with SCE rates?',
+              a: 'Yes. Orange residents pay SCE rates around $0.36/kWh with moderate cooling demand. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Orange get for solar?',
@@ -3189,8 +3189,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Costa Mesa has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Costa Mesa with SCE rates?',
-              a: 'Yes. Costa Mesa residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal location.'
+              q: 'Is residential solar + battery storage worth it in Costa Mesa with SCE rates?',
+              a: 'Yes. Costa Mesa residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal location.'
             },
             {
               q: 'How much sun does Costa Mesa get for solar?',
@@ -3212,8 +3212,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Mission Viejo has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Mission Viejo with SCE rates?',
-              a: 'Yes. Mission Viejo residents pay SCE rates around $0.36/kWh with moderate to high cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Mission Viejo with SCE rates?',
+              a: 'Yes. Mission Viejo residents pay SCE rates around $0.36/kWh with moderate to high cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Mission Viejo get for solar?',
@@ -3235,8 +3235,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Newport Beach has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Newport Beach with SCE rates?',
-              a: 'Yes. Newport Beach residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and energy independence despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Newport Beach with SCE rates?',
+              a: 'Yes. Newport Beach residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and energy independence despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Newport Beach get for solar?',
@@ -3258,8 +3258,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fountain Valley has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer handles all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Fountain Valley with SCE rates?',
-              a: 'Yes. Fountain Valley residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings, backup power, and protection from future rate increases.'
+              q: 'Is residential solar + battery storage worth it in Fountain Valley with SCE rates?',
+              a: 'Yes. Fountain Valley residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings, backup power, and protection from future rate increases.'
             },
             {
               q: 'How much sun does Fountain Valley get for solar?',
@@ -3281,8 +3281,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Buena Park has its own city building and safety department. Residential solar permits typically process within 2-3 weeks. Your contractor manages the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Buena Park with SCE rates?',
-              a: 'Yes. Buena Park residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs. Off-grid solar with battery storage delivers strong savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Buena Park with SCE rates?',
+              a: 'Yes. Buena Park residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs. Residential solar with battery storage delivers strong savings and reliable backup power.'
             },
             {
               q: 'How much sun does Buena Park get for solar?',
@@ -3304,8 +3304,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Tustin has its own city building department with typical turnaround of 2-3 weeks for residential solar. Your installer submits the permit application and coordinates all inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Tustin with SCE rates?',
-              a: 'Yes. Tustin residents pay SCE rates around $0.36/kWh. The warm inland climate drives moderate to high summer cooling costs, making off-grid solar with battery storage a strong investment.'
+              q: 'Is residential solar + battery storage worth it in Tustin with SCE rates?',
+              a: 'Yes. Tustin residents pay SCE rates around $0.36/kWh. The warm inland climate drives moderate to high summer cooling costs, making solar with battery storage a strong investment.'
             },
             {
               q: 'How much sun does Tustin get for solar?',
@@ -3327,8 +3327,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Yorba Linda has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your contractor handles all permitting for you.'
             },
             {
-              q: 'Is off-grid solar worth it in Yorba Linda with SCE rates?',
-              a: 'Yes. Yorba Linda residents pay SCE rates around $0.36/kWh with high summer cooling costs from the hillside inland location. Off-grid solar with battery storage provides strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Yorba Linda with SCE rates?',
+              a: 'Yes. Yorba Linda residents pay SCE rates around $0.36/kWh with high summer cooling costs from the hillside inland location. Residential solar with battery storage provides strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Yorba Linda get for solar?',
@@ -3350,8 +3350,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Clemente has its own city building department. Residential solar permits typically take 2-3 weeks to process. Your installer manages all permit paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in San Clemente with SCE rates?',
-              a: 'Yes. San Clemente residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings, backup power, and increases home value in this premium coastal market.'
+              q: 'Is residential solar + battery storage worth it in San Clemente with SCE rates?',
+              a: 'Yes. San Clemente residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings, backup power, and increases home value in this premium coastal market.'
             },
             {
               q: 'How much sun does San Clemente get for solar?',
@@ -3373,8 +3373,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Laguna Niguel has its own city building department with typical turnaround of 2-3 weeks for residential solar. Your contractor handles the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Laguna Niguel with SCE rates?',
-              a: 'Yes. Laguna Niguel residents pay SCE rates around $0.36/kWh. The hillside location with moderate climate makes off-grid solar with battery storage a strong investment for savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Laguna Niguel with SCE rates?',
+              a: 'Yes. Laguna Niguel residents pay SCE rates around $0.36/kWh. The hillside location with moderate climate makes solar with battery storage a strong investment for savings and backup power.'
             },
             {
               q: 'How much sun does Laguna Niguel get for solar?',
@@ -3396,8 +3396,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. La Habra has its own city building and safety department. Residential solar permits typically process within 2-3 weeks. Your installer manages all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in La Habra with SCE rates?',
-              a: 'Yes. La Habra residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs from the inland climate. Off-grid solar with battery storage provides strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in La Habra with SCE rates?',
+              a: 'Yes. La Habra residents pay SCE rates around $0.36/kWh with moderate to high summer air conditioning costs from the inland climate. Residential solar with battery storage provides strong savings and backup power.'
             },
             {
               q: 'How much sun does La Habra get for solar?',
@@ -3419,8 +3419,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Westminster has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your contractor handles all permit submissions and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Westminster with SCE rates?',
-              a: 'Yes. Westminster residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage delivers strong savings, backup power during outages, and protection from future SCE rate increases.'
+              q: 'Is residential solar + battery storage worth it in Westminster with SCE rates?',
+              a: 'Yes. Westminster residents pay SCE rates around $0.36/kWh. Residential solar with battery storage delivers strong savings, backup power during outages, and protection from future SCE rate increases.'
             },
             {
               q: 'How much sun does Westminster get for solar?',
@@ -3467,8 +3467,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of San Diego has its own Development Services Department with typical turnaround of 2-4 weeks. Many residential systems qualify for SolarAPP+ same-day approval. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in San Diego with SDG&E rates?',
-              a: 'Absolutely. San Diego residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings and backup power, with some of the fastest payback periods in California.'
+              q: 'Is residential solar + battery storage worth it in San Diego with SDG&E rates?',
+              a: 'Absolutely. San Diego residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Residential solar with battery storage delivers exceptional savings and backup power, with some of the fastest payback periods in California.'
             },
             {
               q: 'How much sun does San Diego get for solar?',
@@ -3490,8 +3490,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Chula Vista has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Chula Vista with SDG&E rates?',
-              a: 'Absolutely. Chula Vista residents pay SDG&E rates around $0.47/kWh. Off-grid solar with battery storage delivers exceptional savings and backup power, with among the fastest payback periods in California.'
+              q: 'Is residential solar + battery storage worth it in Chula Vista with SDG&E rates?',
+              a: 'Absolutely. Chula Vista residents pay SDG&E rates around $0.47/kWh. Residential solar with battery storage delivers exceptional savings and backup power, with among the fastest payback periods in California.'
             },
             {
               q: 'How much sun does Chula Vista get for solar?',
@@ -3513,8 +3513,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Oceanside has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Oceanside with SDG&E rates?',
-              a: 'Absolutely. Oceanside residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Oceanside with SDG&E rates?',
+              a: 'Absolutely. Oceanside residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Residential solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Oceanside get for solar?',
@@ -3536,8 +3536,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Escondido has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Escondido with SDG&E rates?',
-              a: 'Absolutely. Escondido residents pay SDG&E rates around $0.47/kWh with high summer cooling costs. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Escondido with SDG&E rates?',
+              a: 'Absolutely. Escondido residents pay SDG&E rates around $0.47/kWh with high summer cooling costs. Residential solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Escondido get for solar?',
@@ -3559,8 +3559,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Carlsbad has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Carlsbad with SDG&E rates?',
-              a: 'Absolutely. Carlsbad residents pay SDG&E rates around $0.47/kWh. Off-grid solar with battery storage delivers exceptional savings and backup power despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Carlsbad with SDG&E rates?',
+              a: 'Absolutely. Carlsbad residents pay SDG&E rates around $0.47/kWh. Residential solar with battery storage delivers exceptional savings and backup power despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Carlsbad get for solar?',
@@ -3582,8 +3582,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. El Cajon has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in El Cajon with SDG&E rates?',
-              a: 'Absolutely. El Cajon residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in El Cajon with SDG&E rates?',
+              a: 'Absolutely. El Cajon residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Residential solar with battery storage delivers exceptional savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does El Cajon get for solar?',
@@ -3605,8 +3605,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Vista has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Vista with SDG&E rates?',
-              a: 'Absolutely. Vista residents pay SDG&E rates around $0.47/kWh. Off-grid solar with battery storage delivers exceptional savings and backup power, with among the fastest payback periods in California.'
+              q: 'Is residential solar + battery storage worth it in Vista with SDG&E rates?',
+              a: 'Absolutely. Vista residents pay SDG&E rates around $0.47/kWh. Residential solar with battery storage delivers exceptional savings and backup power, with among the fastest payback periods in California.'
             },
             {
               q: 'How much sun does Vista get for solar?',
@@ -3628,8 +3628,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Marcos has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in San Marcos with SDG&E rates?',
-              a: 'Absolutely. San Marcos residents pay SDG&E rates around $0.47/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in San Marcos with SDG&E rates?',
+              a: 'Absolutely. San Marcos residents pay SDG&E rates around $0.47/kWh with moderate to high summer cooling costs. Residential solar with battery storage delivers exceptional savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does San Marcos get for solar?',
@@ -3651,8 +3651,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Encinitas has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Encinitas with SDG&E rates?',
-              a: 'Absolutely. Encinitas residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Encinitas with SDG&E rates?',
+              a: 'Absolutely. Encinitas residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Residential solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Encinitas get for solar?',
@@ -3674,8 +3674,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. La Mesa has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in La Mesa with SDG&E rates?',
-              a: 'Absolutely. La Mesa residents pay SDG&E rates around $0.47/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in La Mesa with SDG&E rates?',
+              a: 'Absolutely. La Mesa residents pay SDG&E rates around $0.47/kWh with moderate to high summer cooling costs. Residential solar with battery storage delivers exceptional savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does La Mesa get for solar?',
@@ -3697,8 +3697,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Poway has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Poway with SDG&E rates?',
-              a: 'Absolutely. Poway residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Poway with SDG&E rates?',
+              a: 'Absolutely. Poway residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Residential solar with battery storage delivers exceptional savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Poway get for solar?',
@@ -3720,8 +3720,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santee has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Santee with SDG&E rates?',
-              a: 'Absolutely. Santee residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Off-grid solar with battery storage delivers exceptional savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Santee with SDG&E rates?',
+              a: 'Absolutely. Santee residents pay SDG&E rates around $0.47/kWh with high summer cooling costs from inland heat. Residential solar with battery storage delivers exceptional savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Santee get for solar?',
@@ -3743,8 +3743,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. National City has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in National City with SDG&E rates?',
-              a: 'Absolutely. National City residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings despite moderate cooling demand from the near-coastal location.'
+              q: 'Is residential solar + battery storage worth it in National City with SDG&E rates?',
+              a: 'Absolutely. National City residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Residential solar with battery storage delivers exceptional savings despite moderate cooling demand from the near-coastal location.'
             },
             {
               q: 'How much sun does National City get for solar?',
@@ -3766,8 +3766,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Coronado has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Coronado with SDG&E rates?',
-              a: 'Absolutely. Coronado residents pay SDG&E rates around $0.47/kWh. Off-grid solar with battery storage provides exceptional savings and energy independence despite moderate cooling demand from the coastal island location.'
+              q: 'Is residential solar + battery storage worth it in Coronado with SDG&E rates?',
+              a: 'Absolutely. Coronado residents pay SDG&E rates around $0.47/kWh. Residential solar with battery storage provides exceptional savings and energy independence despite moderate cooling demand from the coastal island location.'
             },
             {
               q: 'How much sun does Coronado get for solar?',
@@ -3789,8 +3789,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Imperial Beach has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Imperial Beach with SDG&E rates?',
-              a: 'Absolutely. Imperial Beach residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Off-grid solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal location.'
+              q: 'Is residential solar + battery storage worth it in Imperial Beach with SDG&E rates?',
+              a: 'Absolutely. Imperial Beach residents pay SDG&E rates around $0.47/kWh — among the highest in the nation. Residential solar with battery storage delivers exceptional savings despite moderate cooling demand from the coastal location.'
             },
             {
               q: 'How much sun does Imperial Beach get for solar?',
@@ -3837,8 +3837,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Riverside has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Riverside with RPU rates?',
-              a: 'Riverside Public Utilities rates average $0.20/kWh, lower than SCE. Solar payback is longer, but off-grid systems provide backup power during outages, lock in energy costs, and offset very high summer cooling demand from Inland Empire heat.'
+              q: 'Is residential solar + battery storage worth it in Riverside with RPU rates?',
+              a: 'Riverside Public Utilities rates average $0.20/kWh, lower than SCE. Solar payback is longer, but solar + battery systems provide backup power during outages, lock in energy costs, and offset very high summer cooling demand from Inland Empire heat.'
             },
             {
               q: 'How much sun does Riverside get for solar?',
@@ -3860,8 +3860,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Moreno Valley has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Moreno Valley with SCE rates?',
-              a: 'Absolutely. Moreno Valley residents pay SCE rates around $0.36/kWh with very high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Moreno Valley with SCE rates?',
+              a: 'Absolutely. Moreno Valley residents pay SCE rates around $0.36/kWh with very high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Moreno Valley get for solar?',
@@ -3883,8 +3883,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Corona has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Corona with SCE rates?',
-              a: 'Yes. Corona residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during Inland Empire heat waves.'
+              q: 'Is residential solar + battery storage worth it in Corona with SCE rates?',
+              a: 'Yes. Corona residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during Inland Empire heat waves.'
             },
             {
               q: 'How much sun does Corona get for solar?',
@@ -3906,8 +3906,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Temecula has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Temecula with SCE rates?',
-              a: 'Yes. Temecula residents pay SCE rates around $0.36/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Temecula with SCE rates?',
+              a: 'Yes. Temecula residents pay SCE rates around $0.36/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Temecula get for solar?',
@@ -3929,8 +3929,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Murrieta has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Murrieta with SCE rates?',
-              a: 'Yes. Murrieta residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Murrieta with SCE rates?',
+              a: 'Yes. Murrieta residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Murrieta get for solar?',
@@ -3952,8 +3952,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Hemet has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Hemet with SCE rates?',
-              a: 'Yes. Hemet residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Hemet with SCE rates?',
+              a: 'Yes. Hemet residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Hemet get for solar?',
@@ -3975,8 +3975,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Indio has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Indio with SCE rates?',
-              a: 'Absolutely. Indio residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Indio with SCE rates?',
+              a: 'Absolutely. Indio residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Indio get for solar?',
@@ -3998,8 +3998,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Palm Springs has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat and sand. Your contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Palm Springs with SCE rates?',
-              a: 'Absolutely. Palm Springs residents pay SCE rates around $0.36/kWh with extreme summer cooling costs (110F+ common). Off-grid solar with battery storage delivers exceptional savings and critical backup power during desert heat waves.'
+              q: 'Is residential solar + battery storage worth it in Palm Springs with SCE rates?',
+              a: 'Absolutely. Palm Springs residents pay SCE rates around $0.36/kWh with extreme summer cooling costs (110F+ common). Residential solar with battery storage delivers exceptional savings and critical backup power during desert heat waves.'
             },
             {
               q: 'How much sun does Palm Springs get for solar?',
@@ -4021,8 +4021,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Menifee has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Menifee with SCE rates?',
-              a: 'Yes. Menifee residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Menifee with SCE rates?',
+              a: 'Yes. Menifee residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Menifee get for solar?',
@@ -4044,8 +4044,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Perris has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Perris with SCE rates?',
-              a: 'Yes. Perris residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Perris with SCE rates?',
+              a: 'Yes. Perris residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Perris get for solar?',
@@ -4067,8 +4067,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lake Elsinore has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Lake Elsinore with SCE rates?',
-              a: 'Yes. Lake Elsinore residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during inland heat waves.'
+              q: 'Is residential solar + battery storage worth it in Lake Elsinore with SCE rates?',
+              a: 'Yes. Lake Elsinore residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during inland heat waves.'
             },
             {
               q: 'How much sun does Lake Elsinore get for solar?',
@@ -4090,8 +4090,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Wildomar has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Wildomar with SCE rates?',
-              a: 'Yes. Wildomar residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Wildomar with SCE rates?',
+              a: 'Yes. Wildomar residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Wildomar get for solar?',
@@ -4113,8 +4113,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Coachella has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Coachella with SCE rates?',
-              a: 'Absolutely. Coachella residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Coachella with SCE rates?',
+              a: 'Absolutely. Coachella residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Coachella get for solar?',
@@ -4136,8 +4136,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Cathedral City has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Cathedral City with SCE rates?',
-              a: 'Absolutely. Cathedral City residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Cathedral City with SCE rates?',
+              a: 'Absolutely. Cathedral City residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and backup power.'
             },
             {
               q: 'How much sun does Cathedral City get for solar?',
@@ -4159,8 +4159,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Banning has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Banning with SCE rates?',
-              a: 'Yes. Banning residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during inland heat waves.'
+              q: 'Is residential solar + battery storage worth it in Banning with SCE rates?',
+              a: 'Yes. Banning residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during inland heat waves.'
             },
             {
               q: 'How much sun does Banning get for solar?',
@@ -4182,8 +4182,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Eastvale has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer handles all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Eastvale with SCE rates?',
-              a: 'Yes. Eastvale residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland climate. Off-grid solar with battery storage provides strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Eastvale with SCE rates?',
+              a: 'Yes. Eastvale residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland climate. Residential solar with battery storage provides strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Eastvale get for solar?',
@@ -4205,8 +4205,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Jurupa Valley has its own city building department. Residential solar permits typically process within 2-3 weeks. Your contractor manages the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Jurupa Valley with SCE rates?',
-              a: 'Yes. Jurupa Valley residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Jurupa Valley with SCE rates?',
+              a: 'Yes. Jurupa Valley residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and reliable backup power.'
             },
             {
               q: 'How much sun does Jurupa Valley get for solar?',
@@ -4228,8 +4228,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. La Quinta has its own city building and safety department with typical turnaround of 2-3 weeks for residential solar. Your installer handles all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in La Quinta with SCE rates?',
-              a: 'Absolutely. La Quinta residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage provides exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in La Quinta with SCE rates?',
+              a: 'Absolutely. La Quinta residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage provides exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does La Quinta get for solar?',
@@ -4251,8 +4251,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Rancho Mirage has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your contractor manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Rancho Mirage with SCE rates?',
-              a: 'Absolutely. Rancho Mirage residents pay SCE rates around $0.36/kWh with extreme summer air conditioning costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Rancho Mirage with SCE rates?',
+              a: 'Absolutely. Rancho Mirage residents pay SCE rates around $0.36/kWh with extreme summer air conditioning costs from desert heat. Residential solar with battery storage delivers exceptional savings and backup power.'
             },
             {
               q: 'How much sun does Rancho Mirage get for solar?',
@@ -4274,8 +4274,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Desert Hot Springs has its own city building department. Residential solar permits typically take 2-3 weeks. Your installer handles all permit paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Desert Hot Springs with SCE rates?',
-              a: 'Absolutely. Desert Hot Springs residents pay SCE rates around $0.36/kWh with extreme summer cooling costs. Off-grid solar with battery storage provides exceptional savings and critical backup power during desert heat waves.'
+              q: 'Is residential solar + battery storage worth it in Desert Hot Springs with SCE rates?',
+              a: 'Absolutely. Desert Hot Springs residents pay SCE rates around $0.36/kWh with extreme summer cooling costs. Residential solar with battery storage provides exceptional savings and critical backup power during desert heat waves.'
             },
             {
               q: 'How much sun does Desert Hot Springs get for solar?',
@@ -4297,8 +4297,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Norco has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your contractor manages the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Norco with SCE rates?',
-              a: 'Yes. Norco residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland climate. Off-grid solar with battery storage provides strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Norco with SCE rates?',
+              a: 'Yes. Norco residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland climate. Residential solar with battery storage provides strong savings and backup power.'
             },
             {
               q: 'How much sun does Norco get for solar?',
@@ -4320,8 +4320,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Canyon Lake has its own city building department. Residential solar permits typically process within 2-3 weeks. Your installer handles all permitting and coordinates with HOA requirements if applicable.'
             },
             {
-              q: 'Is off-grid solar worth it in Canyon Lake with SCE rates?',
-              a: 'Yes. Canyon Lake residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage provides strong savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Canyon Lake with SCE rates?',
+              a: 'Yes. Canyon Lake residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage provides strong savings and reliable backup power.'
             },
             {
               q: 'How much sun does Canyon Lake get for solar?',
@@ -4343,8 +4343,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Calimesa has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your contractor handles all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Calimesa with SCE rates?',
-              a: 'Yes. Calimesa residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland climate. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Calimesa with SCE rates?',
+              a: 'Yes. Calimesa residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland climate. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Calimesa get for solar?',
@@ -4391,8 +4391,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Bernardino has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in San Bernardino with SCE rates?',
-              a: 'Absolutely. San Bernardino residents pay SCE rates around $0.36/kWh with very high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in San Bernardino with SCE rates?',
+              a: 'Absolutely. San Bernardino residents pay SCE rates around $0.36/kWh with very high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does San Bernardino get for solar?',
@@ -4414,8 +4414,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fontana has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Fontana with SCE rates?',
-              a: 'Yes. Fontana residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Fontana with SCE rates?',
+              a: 'Yes. Fontana residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Fontana get for solar?',
@@ -4437,8 +4437,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Rancho Cucamonga has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Rancho Cucamonga with SCE rates?',
-              a: 'Yes. Rancho Cucamonga residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during Inland Empire heat waves.'
+              q: 'Is residential solar + battery storage worth it in Rancho Cucamonga with SCE rates?',
+              a: 'Yes. Rancho Cucamonga residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during Inland Empire heat waves.'
             },
             {
               q: 'How much sun does Rancho Cucamonga get for solar?',
@@ -4460,8 +4460,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Ontario has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Ontario with SCE rates?',
-              a: 'Yes. Ontario residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Ontario with SCE rates?',
+              a: 'Yes. Ontario residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Ontario get for solar?',
@@ -4483,8 +4483,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Victorville has its own city building department with typical turnaround of 2-3 weeks. High desert installations require systems designed for extreme temperature swings. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Victorville with SCE rates?',
-              a: 'Absolutely. Victorville residents pay SCE rates around $0.36/kWh with very high summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during extreme heat.'
+              q: 'Is residential solar + battery storage worth it in Victorville with SCE rates?',
+              a: 'Absolutely. Victorville residents pay SCE rates around $0.36/kWh with very high summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and critical backup power during extreme heat.'
             },
             {
               q: 'How much sun does Victorville get for solar?',
@@ -4506,8 +4506,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Rialto has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Rialto with SCE rates?',
-              a: 'Yes. Rialto residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Rialto with SCE rates?',
+              a: 'Yes. Rialto residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Rialto get for solar?',
@@ -4529,8 +4529,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Hesperia has its own city building department with typical turnaround of 2-3 weeks. High desert installations require systems designed for extreme temperature swings. Your contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Hesperia with SCE rates?',
-              a: 'Absolutely. Hesperia residents pay SCE rates around $0.36/kWh with very high summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and backup power during extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Hesperia with SCE rates?',
+              a: 'Absolutely. Hesperia residents pay SCE rates around $0.36/kWh with very high summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and backup power during extreme heat events.'
             },
             {
               q: 'How much sun does Hesperia get for solar?',
@@ -4552,8 +4552,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Chino has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Chino with SCE rates?',
-              a: 'Yes. Chino residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Chino with SCE rates?',
+              a: 'Yes. Chino residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Chino get for solar?',
@@ -4575,8 +4575,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Redlands has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Redlands with SCE rates?',
-              a: 'Yes. Redlands residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during Inland Empire heat waves.'
+              q: 'Is residential solar + battery storage worth it in Redlands with SCE rates?',
+              a: 'Yes. Redlands residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during Inland Empire heat waves.'
             },
             {
               q: 'How much sun does Redlands get for solar?',
@@ -4598,8 +4598,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Upland has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Upland with SCE rates?',
-              a: 'Yes. Upland residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Upland with SCE rates?',
+              a: 'Yes. Upland residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Upland get for solar?',
@@ -4621,8 +4621,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Highland has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Highland with SCE rates?',
-              a: 'Yes. Highland residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from Inland Empire heat. Off-grid solar with battery storage provides strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Highland with SCE rates?',
+              a: 'Yes. Highland residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from Inland Empire heat. Residential solar with battery storage provides strong savings and backup power.'
             },
             {
               q: 'How much sun does Highland get for solar?',
@@ -4644,8 +4644,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Colton has its own city building and safety department. Residential solar permits typically process within 2-3 weeks. Your contractor handles the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Colton with SCE rates?',
-              a: 'Yes. Colton residents pay SCE rates around $0.36/kWh with very high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and reliable backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Colton with SCE rates?',
+              a: 'Yes. Colton residents pay SCE rates around $0.36/kWh with very high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and reliable backup power during heat waves.'
             },
             {
               q: 'How much sun does Colton get for solar?',
@@ -4667,8 +4667,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Yucaipa has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer handles all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Yucaipa with SCE rates?',
-              a: 'Yes. Yucaipa residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland valley climate. Off-grid solar with battery storage provides strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Yucaipa with SCE rates?',
+              a: 'Yes. Yucaipa residents pay SCE rates around $0.36/kWh with high summer air conditioning costs from the inland valley climate. Residential solar with battery storage provides strong savings and backup power.'
             },
             {
               q: 'How much sun does Yucaipa get for solar?',
@@ -4690,8 +4690,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Montclair has its own city building department. Residential solar permits typically take 2-3 weeks to process. Your contractor manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Montclair with SCE rates?',
-              a: 'Yes. Montclair residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Montclair with SCE rates?',
+              a: 'Yes. Montclair residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Montclair get for solar?',
@@ -4713,8 +4713,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Adelanto has its own city building and safety department with typical turnaround of 2-3 weeks for residential solar. Your installer handles all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Adelanto with SCE rates?',
-              a: 'Absolutely. Adelanto residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage provides exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Adelanto with SCE rates?',
+              a: 'Absolutely. Adelanto residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage provides exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Adelanto get for solar?',
@@ -4736,8 +4736,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Apple Valley has its own city building department. Residential solar permits typically process within 2-3 weeks. Your contractor manages the entire permitting process.'
             },
             {
-              q: 'Is off-grid solar worth it in Apple Valley with SCE rates?',
-              a: 'Absolutely. Apple Valley residents pay SCE rates around $0.36/kWh with extreme summer air conditioning costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Apple Valley with SCE rates?',
+              a: 'Absolutely. Apple Valley residents pay SCE rates around $0.36/kWh with extreme summer air conditioning costs from desert heat. Residential solar with battery storage delivers exceptional savings and backup power.'
             },
             {
               q: 'How much sun does Apple Valley get for solar?',
@@ -4759,8 +4759,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Loma Linda has its own city building department with typical turnaround of 2-3 weeks for residential solar permits. Your installer handles all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Loma Linda with SCE rates?',
-              a: 'Yes. Loma Linda residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Off-grid solar with battery storage provides strong savings and reliable backup power.'
+              q: 'Is residential solar + battery storage worth it in Loma Linda with SCE rates?',
+              a: 'Yes. Loma Linda residents pay SCE rates around $0.36/kWh with high summer cooling costs from Inland Empire heat. Residential solar with battery storage provides strong savings and reliable backup power.'
             },
             {
               q: 'How much sun does Loma Linda get for solar?',
@@ -4782,8 +4782,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Big Bear Lake has its own city building department. Residential solar permits typically take 2-3 weeks and require engineered snow load calculations for the mountain environment. Your installer handles all permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Big Bear Lake with SCE rates and snow?',
-              a: 'Yes. Big Bear residents pay SCE rates around $0.36/kWh. Despite winter snow covering panels periodically, the high elevation provides excellent solar production with clear mountain air. Off-grid systems with battery storage provide critical backup power during winter storms when grid outages are most likely.'
+              q: 'Is residential solar + battery storage worth it in Big Bear Lake with SCE rates and snow?',
+              a: 'Yes. Big Bear residents pay SCE rates around $0.36/kWh. Despite winter snow covering panels periodically, the high elevation provides excellent solar production with clear mountain air. Solar + battery storage systems with battery storage provide critical backup power during winter storms when grid outages are most likely.'
             },
             {
               q: 'How much sun does Big Bear Lake get for solar?',
@@ -4830,8 +4830,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Oxnard has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Oxnard with SCE rates?',
-              a: 'Yes. Oxnard residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
+              q: 'Is residential solar + battery storage worth it in Oxnard with SCE rates?',
+              a: 'Yes. Oxnard residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal climate.'
             },
             {
               q: 'How much sun does Oxnard get for solar?',
@@ -4853,8 +4853,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Thousand Oaks has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Thousand Oaks with SCE rates?',
-              a: 'Yes. Thousand Oaks residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Thousand Oaks with SCE rates?',
+              a: 'Yes. Thousand Oaks residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Thousand Oaks get for solar?',
@@ -4876,8 +4876,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Simi Valley has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Simi Valley with SCE rates?',
-              a: 'Yes. Simi Valley residents pay SCE rates around $0.36/kWh with high summer cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Simi Valley with SCE rates?',
+              a: 'Yes. Simi Valley residents pay SCE rates around $0.36/kWh with high summer cooling demand. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Simi Valley get for solar?',
@@ -4899,8 +4899,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Ventura has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Ventura with SCE rates?',
-              a: 'Yes. Ventura residents pay SCE rates around $0.36/kWh. Off-grid solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal location.'
+              q: 'Is residential solar + battery storage worth it in Ventura with SCE rates?',
+              a: 'Yes. Ventura residents pay SCE rates around $0.36/kWh. Residential solar with battery storage provides strong savings and backup power despite moderate cooling demand from the coastal location.'
             },
             {
               q: 'How much sun does Ventura get for solar?',
@@ -4922,8 +4922,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Camarillo has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Camarillo with SCE rates?',
-              a: 'Yes. Camarillo residents pay SCE rates around $0.36/kWh with moderate cooling demand. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Camarillo with SCE rates?',
+              a: 'Yes. Camarillo residents pay SCE rates around $0.36/kWh with moderate cooling demand. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Camarillo get for solar?',
@@ -4945,8 +4945,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Moorpark has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Moorpark with SCE rates?',
-              a: 'Yes. Moorpark residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Moorpark with SCE rates?',
+              a: 'Yes. Moorpark residents pay SCE rates around $0.36/kWh with moderate to high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power during heat waves.'
             },
             {
               q: 'How much sun does Moorpark get for solar?',
@@ -4968,8 +4968,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santa Paula has its own city building department with typical turnaround of 2-3 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Paula with SCE rates?',
-              a: 'Yes. Santa Paula residents pay SCE rates around $0.36/kWh with high summer cooling demand from inland valley heat. Off-grid solar with battery storage delivers strong savings and backup power.'
+              q: 'Is residential solar + battery storage worth it in Santa Paula with SCE rates?',
+              a: 'Yes. Santa Paula residents pay SCE rates around $0.36/kWh with high summer cooling demand from inland valley heat. Residential solar with battery storage delivers strong savings and backup power.'
             },
             {
               q: 'How much sun does Santa Paula get for solar?',
@@ -4991,8 +4991,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fillmore has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Fillmore with SCE rates?',
-              a: 'Yes. Fillmore residents pay SCE rates around $0.36/kWh with high summer cooling costs. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for agricultural properties.'
+              q: 'Is residential solar + battery storage worth it in Fillmore with SCE rates?',
+              a: 'Yes. Fillmore residents pay SCE rates around $0.36/kWh with high summer cooling costs. Residential solar with battery storage provides strong savings and backup power, especially valuable for agricultural properties.'
             },
             {
               q: 'How much sun does Fillmore get for solar?',
@@ -5039,8 +5039,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Bakersfield has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Bakersfield with PG&E rates?',
-              a: 'Absolutely. Bakersfield residents pay PG&E rates around $0.44/kWh with extreme summer cooling costs. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Bakersfield with PG&E rates?',
+              a: 'Absolutely. Bakersfield residents pay PG&E rates around $0.44/kWh with extreme summer cooling costs. Residential solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Bakersfield get for solar?',
@@ -5062,8 +5062,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Delano has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Delano with PG&E rates?',
-              a: 'Absolutely. Delano residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power, especially valuable for agricultural properties.'
+              q: 'Is residential solar + battery storage worth it in Delano with PG&E rates?',
+              a: 'Absolutely. Delano residents pay PG&E rates around $0.44/kWh with very high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power, especially valuable for agricultural properties.'
             },
             {
               q: 'How much sun does Delano get for solar?',
@@ -5085,8 +5085,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Ridgecrest has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat and temperature swings. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Ridgecrest with SCE rates?',
-              a: 'Absolutely. Ridgecrest residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
+              q: 'Is residential solar + battery storage worth it in Ridgecrest with SCE rates?',
+              a: 'Absolutely. Ridgecrest residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and critical backup power during heat waves.'
             },
             {
               q: 'How much sun does Ridgecrest get for solar?',
@@ -5108,8 +5108,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Tehachapi has its own city building department with typical turnaround of 2-3 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Tehachapi with SCE rates?',
-              a: 'Yes. Tehachapi residents pay SCE rates around $0.36/kWh with moderate cooling and heating demand from mountain elevation. Off-grid solar with battery storage delivers strong savings and backup power during outages.'
+              q: 'Is residential solar + battery storage worth it in Tehachapi with SCE rates?',
+              a: 'Yes. Tehachapi residents pay SCE rates around $0.36/kWh with moderate cooling and heating demand from mountain elevation. Residential solar with battery storage delivers strong savings and backup power during outages.'
             },
             {
               q: 'How much sun does Tehachapi get for solar?',
@@ -5131,8 +5131,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. California City has its own city building department with typical turnaround of 2-3 weeks. Desert installations require systems designed for extreme heat. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in California City with SCE rates?',
-              a: 'Absolutely. California City residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Off-grid solar with battery storage delivers exceptional savings and critical backup power.'
+              q: 'Is residential solar + battery storage worth it in California City with SCE rates?',
+              a: 'Absolutely. California City residents pay SCE rates around $0.36/kWh with extreme summer cooling costs from desert heat. Residential solar with battery storage delivers exceptional savings and critical backup power.'
             },
             {
               q: 'How much sun does California City get for solar?',
@@ -5154,8 +5154,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Wasco has its own city building department with typical turnaround of 2-4 weeks. Your contractor handles the permit application.'
             },
             {
-              q: 'Is off-grid solar worth it in Wasco with PG&E rates?',
-              a: 'Yes. Wasco residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Off-grid solar with battery storage delivers strong savings and backup power, especially valuable for agricultural properties.'
+              q: 'Is residential solar + battery storage worth it in Wasco with PG&E rates?',
+              a: 'Yes. Wasco residents pay PG&E rates around $0.44/kWh with high summer cooling costs. Residential solar with battery storage delivers strong savings and backup power, especially valuable for agricultural properties.'
             },
             {
               q: 'How much sun does Wasco get for solar?',
@@ -5177,8 +5177,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Shafter has its own city building department with typical turnaround of 2-4 weeks. Your installer will manage the permit application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Shafter with PG&E rates?',
-              a: 'Yes. Shafter residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Off-grid solar with battery storage provides strong savings and backup power, especially valuable for agricultural areas.'
+              q: 'Is residential solar + battery storage worth it in Shafter with PG&E rates?',
+              a: 'Yes. Shafter residents pay PG&E rates around $0.44/kWh with high summer cooling demand. Residential solar with battery storage provides strong savings and backup power, especially valuable for agricultural areas.'
             },
             {
               q: 'How much sun does Shafter get for solar?',
@@ -5225,8 +5225,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. El Centro has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat, dust, and temperature swings. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in El Centro with IID rates?',
-              a: 'IID rates average $0.16/kWh, among the lowest in California, so financial payback is longer. However, off-grid solar with battery storage provides critical backup power during extreme heat outages (115F+ common), energy independence, and resilience during desert heat waves.'
+              q: 'Is residential solar + battery storage worth it in El Centro with IID rates?',
+              a: 'IID rates average $0.16/kWh, among the lowest in California, so financial payback is longer. However, solar with battery storage provides critical backup power during extreme heat outages (115F+ common), energy independence, and resilience during desert heat waves.'
             },
             {
               q: 'How much sun does El Centro get for solar?',
@@ -5248,8 +5248,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Calexico has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat and dust. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Calexico with IID rates?',
-              a: 'IID rates average $0.16/kWh, very low compared to SCE or PG&E. Solar payback is longer, but off-grid systems provide critical backup power during heat-related outages and energy independence in this border city with extreme summer conditions.'
+              q: 'Is residential solar + battery storage worth it in Calexico with IID rates?',
+              a: 'IID rates average $0.16/kWh, very low compared to SCE or PG&E. Solar payback is longer, but solar + battery systems provide critical backup power during heat-related outages and energy independence in this border city with extreme summer conditions.'
             },
             {
               q: 'How much sun does Calexico get for solar?',
@@ -5271,8 +5271,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Brawley has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat. Your contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Brawley with IID rates?',
-              a: 'IID rates average $0.16/kWh, among the lowest in California. Solar payback is longer, but off-grid systems provide backup power during heat-related outages and energy independence, especially valuable for agricultural properties in extreme heat.'
+              q: 'Is residential solar + battery storage worth it in Brawley with IID rates?',
+              a: 'IID rates average $0.16/kWh, among the lowest in California. Solar payback is longer, but solar + battery systems provide backup power during heat-related outages and energy independence, especially valuable for agricultural properties in extreme heat.'
             },
             {
               q: 'How much sun does Brawley get for solar?',
@@ -5294,8 +5294,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Imperial has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat and dust. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Imperial with IID rates?',
-              a: 'IID rates average $0.16/kWh, very low. Solar payback is longer, but off-grid systems provide critical backup power during extreme heat outages and energy independence, especially valuable for rural and agricultural areas.'
+              q: 'Is residential solar + battery storage worth it in Imperial with IID rates?',
+              a: 'IID rates average $0.16/kWh, very low. Solar payback is longer, but solar + battery systems provide critical backup power during extreme heat outages and energy independence, especially valuable for rural and agricultural areas.'
             },
             {
               q: 'How much sun does Imperial get for solar?',
@@ -5317,8 +5317,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Calipatria has its own city building department with typical turnaround of 2-4 weeks. Desert installations require systems designed for extreme heat. Your contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Calipatria with IID rates?',
-              a: 'IID rates average $0.16/kWh, among the lowest in California. Solar payback is longer, but off-grid systems provide critical backup power during heat-related outages and energy independence in this remote desert location below sea level.'
+              q: 'Is residential solar + battery storage worth it in Calipatria with IID rates?',
+              a: 'IID rates average $0.16/kWh, among the lowest in California. Solar payback is longer, but solar + battery systems provide critical backup power during heat-related outages and energy independence in this remote desert location below sea level.'
             },
             {
               q: 'How much sun does Calipatria get for solar?',
@@ -5365,8 +5365,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Chico requires a building permit through Butte County Development Services with typical turnaround of 2-4 weeks. Your installer handles the application and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Chico with PSPS risk?',
-              a: 'Absolutely. PG&E rates average $0.44/kWh and PSPS shutoffs are common during fire season. Off-grid solar with battery storage provides power during multi-day outages and locks in energy costs against future rate hikes.'
+              q: 'Is residential solar + battery storage worth it in Chico with PSPS risk?',
+              a: 'Absolutely. PG&E rates average $0.44/kWh and PSPS shutoffs are common during fire season. Residential solar with battery storage provides power during multi-day outages and locks in energy costs against future rate hikes.'
             },
             {
               q: 'How much sun does Chico get for solar?',
@@ -5388,8 +5388,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Oroville falls under Butte County Development Services with 2-4 week permit turnaround. Your contractor manages the application and county inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Oroville with PG&E rates?',
-              a: 'Yes. PG&E\'s $0.44/kWh rates and frequent PSPS events make off-grid solar attractive. Battery storage provides power during multi-day fire-season shutoffs common in this foothill-adjacent area.'
+              q: 'Is residential solar + battery storage worth it in Oroville with PG&E rates?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and frequent PSPS events make solar with battery storage attractive. Battery storage provides power during multi-day fire-season shutoffs common in this foothill-adjacent area.'
             },
             {
               q: 'How much sun does Oroville get for solar?',
@@ -5411,8 +5411,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Paradise requires permits through Butte County Development Services with 2-4 week turnaround. Post-Camp Fire rebuilds often integrate solar, and county staff are experienced with fire-resilient systems.'
             },
             {
-              q: 'Is off-grid solar worth it in Paradise after the Camp Fire?',
-              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this high-risk fire zone. Off-grid solar with battery backup provides critical power during evacuations and multi-day outages, a lesson learned from the Camp Fire.'
+              q: 'Is residential solar + battery storage worth it in Paradise after the Camp Fire?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this high-risk fire zone. Residential solar with battery backup provides critical power during evacuations and multi-day outages, a lesson learned from the Camp Fire.'
             },
             {
               q: 'How much sun does Paradise get for solar?',
@@ -5434,8 +5434,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Gridley requires permits through Butte County Development Services with typical 2-4 week turnaround. Your installer handles the county application and inspection coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in Gridley?',
-              a: 'Yes. PG&E\'s $0.44/kWh rates and PSPS shutoffs make off-grid solar attractive for this rural community. Battery backup provides power for well pumps and farm operations during multi-day outages.'
+              q: 'Is residential solar + battery storage worth it in Gridley?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and PSPS shutoffs make solar with battery storage attractive for this rural community. Battery backup provides power for well pumps and farm operations during multi-day outages.'
             },
             {
               q: 'How much sun does Gridley get for solar?',
@@ -5457,8 +5457,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Biggs falls under Butte County Development Services jurisdiction with 2-4 week permit processing. Your solar contractor manages the application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Biggs with PG&E rates?',
-              a: 'Definitely. PG&E rates average $0.44/kWh and PSPS outages are common in rural areas. Off-grid solar with battery storage provides energy independence and backup power for wells and irrigation.'
+              q: 'Is residential solar + battery storage worth it in Biggs with PG&E rates?',
+              a: 'Definitely. PG&E rates average $0.44/kWh and PSPS outages are common in rural areas. Residential solar with battery storage provides energy independence and backup power for wells and irrigation.'
             },
             {
               q: 'How much sun does Biggs get for solar?',
@@ -5505,8 +5505,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Redding Building Division handles solar permits with typical turnaround of 2-4 weeks. Your installer manages the application and city inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Redding with extreme heat?',
-              a: 'Absolutely. PG&E rates average $0.44/kWh and AC costs are brutal with summer highs over 110°F. Off-grid solar with battery backup locks in energy costs and provides cooling during PSPS outages when heat is most dangerous.'
+              q: 'Is residential solar + battery storage worth it in Redding with extreme heat?',
+              a: 'Absolutely. PG&E rates average $0.44/kWh and AC costs are brutal with summer highs over 110°F. Residential solar with battery backup locks in energy costs and provides cooling during PSPS outages when heat is most dangerous.'
             },
             {
               q: 'How much sun does Redding get for solar?',
@@ -5528,8 +5528,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Anderson requires permits through the City Building Department with 2-4 week typical turnaround. Your solar contractor handles the city application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Anderson with high AC costs?',
-              a: 'Yes. PG&E\'s $0.44/kWh rates and extreme summer heat create massive AC bills. Off-grid solar with battery storage provides energy independence and backup cooling during PSPS events when temperatures exceed 105°F.'
+              q: 'Is residential solar + battery storage worth it in Anderson with high AC costs?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and extreme summer heat create massive AC bills. Residential solar with battery storage provides energy independence and backup cooling during PSPS events when temperatures exceed 105°F.'
             },
             {
               q: 'How much sun does Anderson get for solar?',
@@ -5551,8 +5551,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Shasta Lake requires building permits through the City Building Division with typical 2-4 week processing. Your installer manages the application and city inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Shasta Lake with PSPS risk?',
-              a: 'Definitely. PG&E rates are $0.44/kWh and PSPS outages are frequent near forested areas. Off-grid solar with battery backup provides power during multi-day shutoffs and extreme heat events.'
+              q: 'Is residential solar + battery storage worth it in Shasta Lake with PSPS risk?',
+              a: 'Definitely. PG&E rates are $0.44/kWh and PSPS outages are frequent near forested areas. Residential solar with battery backup provides power during multi-day shutoffs and extreme heat events.'
             },
             {
               q: 'How much sun does Shasta Lake get for solar?',
@@ -5599,8 +5599,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Red Bluff requires building permits through Tehama County Planning & Building with typical 2-4 week turnaround. Your solar installer handles the county application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Red Bluff?',
-              a: 'Yes. PG&E rates average $0.44/kWh and summer heat drives high AC costs. Off-grid solar with battery storage provides energy independence and backup power during PSPS outages common in rural northern counties.'
+              q: 'Is residential solar + battery storage worth it in Red Bluff?',
+              a: 'Yes. PG&E rates average $0.44/kWh and summer heat drives high AC costs. Residential solar with battery storage provides energy independence and backup power during PSPS outages common in rural northern counties.'
             },
             {
               q: 'How much sun does Red Bluff get for solar?',
@@ -5622,8 +5622,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Corning falls under Tehama County Planning & Building jurisdiction with 2-4 week permit processing. Your contractor manages the application and county inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Corning with agricultural loads?',
-              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make off-grid solar attractive. Battery backup provides power for well pumps, irrigation, and home AC during multi-day outages.'
+              q: 'Is residential solar + battery storage worth it in Corning with agricultural loads?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make solar with battery storage attractive. Battery backup provides power for well pumps, irrigation, and home AC during multi-day outages.'
             },
             {
               q: 'How much sun does Corning get for solar?',
@@ -5645,8 +5645,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Tehama requires permits through Tehama County Planning & Building with typical 2-4 week turnaround. Your solar installer coordinates the county application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Tehama?',
-              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages are common in rural areas. Off-grid solar with battery storage provides energy independence and backup for wells and irrigation during shutoffs.'
+              q: 'Is residential solar + battery storage worth it in Tehama?',
+              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages are common in rural areas. Residential solar with battery storage provides energy independence and backup for wells and irrigation during shutoffs.'
             },
             {
               q: 'How much sun does Tehama get for solar?',
@@ -5693,8 +5693,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Willows requires permits through Glenn County Planning & Community Development Services with typical 2-4 week turnaround. Your installer handles the county application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Willows with agricultural needs?',
-              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages affect rural areas. Off-grid solar with battery backup provides energy independence and backup for well pumps, irrigation, and AC during multi-day shutoffs.'
+              q: 'Is residential solar + battery storage worth it in Willows with agricultural needs?',
+              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages affect rural areas. Residential solar with battery backup provides energy independence and backup for well pumps, irrigation, and AC during multi-day shutoffs.'
             },
             {
               q: 'How much sun does Willows get for solar?',
@@ -5716,8 +5716,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Orland falls under Glenn County Planning & Community Development Services with 2-4 week permit processing. Your solar contractor manages the county application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Orland?',
-              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make off-grid solar attractive. Battery storage provides backup for wells, irrigation, and home power during multi-day outages common in agricultural areas.'
+              q: 'Is residential solar + battery storage worth it in Orland?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make solar with battery storage attractive. Battery storage provides backup for wells, irrigation, and home power during multi-day outages common in agricultural areas.'
             },
             {
               q: 'How much sun does Orland get for solar?',
@@ -5764,8 +5764,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Colusa requires permits through Colusa County Community Development with typical 2-4 week turnaround. Your solar installer handles the county application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Colusa with rural PSPS risk?',
-              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages affect rural areas. Off-grid solar with battery backup provides energy independence and backup for wells, irrigation, and home power during shutoffs.'
+              q: 'Is residential solar + battery storage worth it in Colusa with rural PSPS risk?',
+              a: 'Yes. PG&E rates average $0.44/kWh and PSPS outages affect rural areas. Residential solar with battery backup provides energy independence and backup for wells, irrigation, and home power during shutoffs.'
             },
             {
               q: 'How much sun does Colusa get for solar?',
@@ -5787,8 +5787,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Williams falls under Colusa County Community Development jurisdiction with 2-4 week permit processing. Your contractor manages the county application and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Williams?',
-              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make off-grid solar attractive. Battery storage provides backup power for wells, irrigation, and AC during multi-day outages.'
+              q: 'Is residential solar + battery storage worth it in Williams?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and rural PSPS shutoffs make solar with battery storage attractive. Battery storage provides backup power for wells, irrigation, and AC during multi-day outages.'
             },
             {
               q: 'How much sun does Williams get for solar?',
@@ -5835,8 +5835,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Yreka requires permits through Siskiyou County Community Development with typical 2-4 week turnaround. High-elevation installations require snow load calculations. Your installer handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Yreka with snow and cold winters?',
-              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause multi-day outages. Off-grid solar with battery backup provides power during storms and PSPS events. Snow-rated systems handle winter loads and still produce year-round.'
+              q: 'Is residential solar + battery storage worth it in Yreka with snow and cold winters?',
+              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause multi-day outages. Residential solar with battery backup provides power during storms and PSPS events. Snow-rated systems handle winter loads and still produce year-round.'
             },
             {
               q: 'How much sun does Yreka get for solar?',
@@ -5858,8 +5858,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Mount Shasta requires permits through Siskiyou County Community Development with 2-4 week processing. High-elevation snow load calculations are mandatory. Your contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Mount Shasta with heavy snow?',
-              a: 'Absolutely. PG&E\'s $0.44/kWh rates and frequent winter storm outages make off-grid solar valuable. Battery backup provides critical power when roads are impassable. Snow-rated panels handle heavy loads and still produce during clear winter days.'
+              q: 'Is residential solar + battery storage worth it in Mount Shasta with heavy snow?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and frequent winter storm outages make solar with battery storage valuable. Battery backup provides critical power when roads are impassable. Snow-rated panels handle heavy loads and still produce during clear winter days.'
             },
             {
               q: 'How much sun does Mount Shasta get for solar?',
@@ -5881,8 +5881,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Weed requires permits through Siskiyou County Community Development with typical 2-4 week turnaround. Snow load calculations required for high-elevation installations. Your installer manages the process.'
             },
             {
-              q: 'Is off-grid solar worth it in Weed with mountain winters?',
-              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause frequent outages. Off-grid solar with battery backup provides power during multi-day storms and PSPS events. Snow-rated systems handle heavy winter loads.'
+              q: 'Is residential solar + battery storage worth it in Weed with mountain winters?',
+              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause frequent outages. Residential solar with battery backup provides power during multi-day storms and PSPS events. Snow-rated systems handle heavy winter loads.'
             },
             {
               q: 'How much sun does Weed get for solar?',
@@ -5904,8 +5904,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Dunsmuir requires permits through Siskiyou County Community Development with 2-4 week processing. Canyon terrain may create shading challenges. Your installer handles site assessment and permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Dunsmuir with canyon terrain?',
-              a: 'Yes. PG&E\'s $0.44/kWh rates and winter storm outages make off-grid solar valuable. Battery backup provides power during multi-day events. South-facing roofs in the canyon can still achieve solid solar production despite terrain shading.'
+              q: 'Is residential solar + battery storage worth it in Dunsmuir with canyon terrain?',
+              a: 'Yes. PG&E\'s $0.44/kWh rates and winter storm outages make solar with battery storage valuable. Battery backup provides power during multi-day events. South-facing roofs in the canyon can still achieve solid solar production despite terrain shading.'
             },
             {
               q: 'How much sun does Dunsmuir get for solar?',
@@ -5930,13 +5930,13 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         name: 'Modoc County Planning',
         jurisdiction: 'Modoc County',
         typicalTurnaround: '2-4 weeks',
-        note: 'County processes permits for this remote high-desert region. Snow load calculations required for winter conditions. Off-grid systems common.'
+        note: 'County processes permits for this remote high-desert region. Snow load calculations required for winter conditions. Solar + battery storage systems common.'
       },
       climateZone: {
         zone: 'Zone 1',
         description: 'Cold high desert with snowy winters and hot summers. High elevation around 4,500 feet requires snow load design. Remote location makes energy independence valuable.'
       },
-      countyContext: 'Modoc County is California\'s remote far northeast corner with Alturas as the county seat at 4,400 feet elevation. Cold high desert with snowy winters and hot summers. Limited grid infrastructure makes off-grid solar attractive. Snow load design required for winter conditions.'
+      countyContext: 'Modoc County is California\'s remote far northeast corner with Alturas as the county seat at 4,400 feet elevation. Cold high desert with snowy winters and hot summers. Limited grid infrastructure makes solar with battery storage attractive. Snow load design required for winter conditions.'
     },
     cities: [
       {
@@ -5952,8 +5952,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Alturas requires permits through Modoc County Planning with typical 2-4 week turnaround. High-elevation snow load calculations required. Your installer handles the county application.'
             },
             {
-              q: 'Is off-grid solar worth it in Alturas with remote location?',
-              a: 'Absolutely. Alturas is one of California\'s most remote communities with limited grid infrastructure. Off-grid solar with battery backup provides energy independence and resilience during winter storms. Snow-rated systems handle high-desert winter conditions.'
+              q: 'Is residential solar + battery storage worth it in Alturas with remote location?',
+              a: 'Absolutely. Alturas is one of California\'s most remote communities with limited grid infrastructure. Residential solar with battery backup provides energy independence and resilience during winter storms. Snow-rated systems handle high-desert winter conditions.'
             },
             {
               q: 'How much sun does Alturas get for solar?',
@@ -5978,7 +5978,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         name: 'Lassen County Planning & Building',
         jurisdiction: 'Lassen County',
         typicalTurnaround: '2-4 weeks',
-        note: 'County processes permits for high-desert installations. Snow load calculations required for cold-weather systems. Off-grid installations common in rural areas.'
+        note: 'County processes permits for high-desert installations. Snow load calculations required for cold-weather systems. Solar + battery storage installations common in rural areas.'
       },
       climateZone: {
         zone: 'Zone 1',
@@ -6000,8 +6000,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Susanville requires permits through Lassen County Planning & Building with typical 2-4 week turnaround. High-elevation snow load calculations required. Your installer handles the county application.'
             },
             {
-              q: 'Is off-grid solar worth it in Susanville with remote location?',
-              a: 'Yes. Susanville\'s remote high-desert location makes off-grid solar attractive for energy independence. Battery backup provides power during winter storms and outages. Snow-rated systems handle cold-weather conditions and still produce year-round.'
+              q: 'Is residential solar + battery storage worth it in Susanville with remote location?',
+              a: 'Yes. Susanville\'s remote high-desert location makes solar with battery storage attractive for energy independence. Battery backup provides power during winter storms and outages. Snow-rated systems handle cold-weather conditions and still produce year-round.'
             },
             {
               q: 'How much sun does Susanville get for solar?',
@@ -6048,8 +6048,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Quincy requires permits through Plumas County Building with typical 2-4 week turnaround. Heavy snow load calculations required for Sierra installations. Your installer handles the county application.'
             },
             {
-              q: 'Is off-grid solar worth it in Quincy after the Dixie Fire?',
-              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this forested fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events and winter storms. The Dixie Fire showed the critical need for energy resilience.'
+              q: 'Is residential solar + battery storage worth it in Quincy after the Dixie Fire?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this forested fire zone. Residential solar with battery backup provides power during multi-day PSPS events and winter storms. The Dixie Fire showed the critical need for energy resilience.'
             },
             {
               q: 'How much sun does Quincy get for solar?',
@@ -6071,8 +6071,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Portola requires permits through Plumas County Building with 2-4 week processing. High-elevation heavy snow load calculations mandatory. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Portola with heavy snow?',
-              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause multi-day outages. Off-grid solar with battery backup provides power during storms and PSPS events. Snow-rated panels handle heavy Sierra snow loads and still produce year-round.'
+              q: 'Is residential solar + battery storage worth it in Portola with heavy snow?',
+              a: 'Yes. PG&E rates average $0.44/kWh and winter storms cause multi-day outages. Residential solar with battery backup provides power during storms and PSPS events. Snow-rated panels handle heavy Sierra snow loads and still produce year-round.'
             },
             {
               q: 'How much sun does Portola get for solar?',
@@ -6094,8 +6094,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Chester requires permits through Plumas County Building with typical 2-4 week turnaround. Heavy snow load calculations required. Post-Dixie Fire rebuilds often integrate solar. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Chester with Dixie Fire risk?',
-              a: 'Absolutely. PG&E\'s $0.44/kWh rates and frequent PSPS shutoffs in this forested fire zone make off-grid solar essential. Battery backup provides power during multi-day PSPS events and winter storms. The Dixie Fire demonstrated the need for energy resilience.'
+              q: 'Is residential solar + battery storage worth it in Chester with Dixie Fire risk?',
+              a: 'Absolutely. PG&E\'s $0.44/kWh rates and frequent PSPS shutoffs in this forested fire zone make residential solar + battery storage essential. Battery backup provides power during multi-day PSPS events and winter storms. The Dixie Fire demonstrated the need for energy resilience.'
             },
             {
               q: 'How much sun does Chester get for solar?',
@@ -6142,7 +6142,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Eureka requires permits through Humboldt County Building with typical 2-4 week turnaround. Coastal installations need corrosion-resistant hardware. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Eureka with coastal fog?',
+              q: 'Is residential solar + battery storage worth it in Eureka with coastal fog?',
               a: 'Yes, but requires careful sizing. Eureka averages 4.3 peak sun hours daily due to coastal fog, lower than inland California. PG&E rates of $0.44/kWh still make solar viable. Oversizing the array and adding battery storage compensates for fog and winter storm outages.'
             },
             {
@@ -6165,7 +6165,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Arcata requires permits through Humboldt County Building with 2-4 week processing. Marine environment requires corrosion-resistant components. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Arcata with fog and rain?',
+              q: 'Is residential solar + battery storage worth it in Arcata with fog and rain?',
               a: 'Absolutely. PG&E charges $0.44/kWh and winter storms cause outages. Solar with battery backup provides year-round savings despite 4.4 peak sun hours from coastal fog. Proper sizing overcomes weather challenges.'
             },
             {
@@ -6188,7 +6188,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fortuna requires permits through Humboldt County Building with typical 2-4 week turnaround. Inland valley sites may have fewer marine corrosion concerns than coastal areas. Your contractor handles applications.'
             },
             {
-              q: 'Is off-grid solar worth it in Fortuna with PG&E rates?',
+              q: 'Is residential solar + battery storage worth it in Fortuna with PG&E rates?',
               a: 'Yes. PG&E rates average $0.44/kWh and rural locations face winter storm outages. Solar with battery backup provides energy independence for Eel River valley properties. Fortuna gets 4.5 peak sun hours, better than coastal Eureka.'
             },
             {
@@ -6211,7 +6211,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. McKinleyville requires permits through Humboldt County Building with 2-4 week processing. Coastal exposure requires marine-grade hardware. Your solar installer handles the county application.'
             },
             {
-              q: 'Is off-grid solar worth it in McKinleyville with coastal fog?',
+              q: 'Is residential solar + battery storage worth it in McKinleyville with coastal fog?',
               a: 'Yes. PG&E charges $0.44/kWh and winter storms cause multi-day outages. Solar with battery backup provides resilience despite 4.4 peak sun hours from marine fog. Oversized systems compensate for weather.'
             },
             {
@@ -6259,7 +6259,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Crescent City requires permits through Del Norte County Building with typical 2-4 week turnaround. Extreme marine environment requires corrosion-resistant hardware and seismic design. Your installer handles applications.'
             },
             {
-              q: 'Is off-grid solar worth it in Crescent City with heavy rain?',
+              q: 'Is residential solar + battery storage worth it in Crescent City with heavy rain?',
               a: 'Yes, with proper sizing. Crescent City averages 4.2 peak sun hours, California\'s lowest, due to persistent fog and rain. PG&E rates of $0.44/kWh and winter storm outages make solar with oversized battery backup worthwhile for energy independence.'
             },
             {
@@ -6307,8 +6307,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Ukiah requires permits through Mendocino County Planning & Building with typical 2-4 week turnaround. Wildfire zones may require fire-resistant design. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Ukiah with PSPS risk?',
-              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this wildfire zone. Off-grid solar with battery backup provides power during multi-day PSPS events and extreme heat. Ukiah gets 5.2 peak sun hours, excellent for solar.'
+              q: 'Is residential solar + battery storage worth it in Ukiah with PSPS risk?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent in this wildfire zone. Residential solar with battery backup provides power during multi-day PSPS events and extreme heat. Ukiah gets 5.2 peak sun hours, excellent for solar.'
             },
             {
               q: 'How much sun does Ukiah get for solar?',
@@ -6330,7 +6330,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Fort Bragg requires permits through Mendocino County Planning & Building with 2-4 week processing. Coastal installations need marine-grade corrosion-resistant hardware. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Fort Bragg with coastal fog?',
+              q: 'Is residential solar + battery storage worth it in Fort Bragg with coastal fog?',
               a: 'Yes. PG&E charges $0.44/kWh and winter storms cause outages. Solar with battery backup provides year-round savings despite 4.4 peak sun hours from marine fog. Oversized systems compensate for weather.'
             },
             {
@@ -6353,8 +6353,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Willits requires permits through Mendocino County Planning & Building with typical 2-4 week turnaround. Forested terrain may require fire-resistant design. Your contractor handles applications.'
             },
             {
-              q: 'Is off-grid solar worth it in Willits with wildfire risk?',
-              a: 'Absolutely. PG&E rates average $0.44/kWh and PSPS shutoffs are frequent in this forested fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events. Willits gets 5.0 peak sun hours, solid for inland hills.'
+              q: 'Is residential solar + battery storage worth it in Willits with wildfire risk?',
+              a: 'Absolutely. PG&E rates average $0.44/kWh and PSPS shutoffs are frequent in this forested fire zone. Residential solar with battery backup provides power during multi-day PSPS events. Willits gets 5.0 peak sun hours, solid for inland hills.'
             },
             {
               q: 'How much sun does Willits get for solar?',
@@ -6376,7 +6376,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Point Arena requires permits through Mendocino County Planning & Building with 2-4 week processing. Coastal exposure requires marine-grade hardware. Your solar installer handles the county application.'
             },
             {
-              q: 'Is off-grid solar worth it in Point Arena with fog?',
+              q: 'Is residential solar + battery storage worth it in Point Arena with fog?',
               a: 'Yes. PG&E charges $0.44/kWh and winter storms cause outages in this remote coastal town. Solar with battery backup provides energy independence despite 4.6 peak sun hours from marine fog. Oversized systems work well.'
             },
             {
@@ -6408,7 +6408,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         zone: 'Zone 2 (Inland Valleys)',
         description: 'Hot dry summers and mild winters in inland valleys around Clear Lake. Severe wildfire risk and PSPS events are frequent. Excellent solar conditions.'
       },
-      countyContext: 'Lake County is an inland region anchored by Lakeport and Clearlake around Clear Lake. Severe wildfire history (Valley Fire, Mendocino Complex) and extreme PSPS frequency make battery backup critical. Hot summers bring excellent solar production at 5.1-5.3 peak sun hours. Off-grid solar provides essential energy independence in this fire-prone region.'
+      countyContext: 'Lake County is an inland region anchored by Lakeport and Clearlake around Clear Lake. Severe wildfire history (Valley Fire, Mendocino Complex) and extreme PSPS frequency make battery backup critical. Hot summers bring excellent solar production at 5.1-5.3 peak sun hours. Solar with battery storage provides essential energy independence in this fire-prone region.'
     },
     cities: [
       {
@@ -6424,8 +6424,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lakeport requires permits through Lake County Community Development with typical 2-4 week turnaround. High-risk fire zones may require fire-resistant design. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Lakeport with wildfire risk?',
-              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are extreme in this fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events and evacuations. Lakeport gets 5.2 peak sun hours, excellent for solar.'
+              q: 'Is residential solar + battery storage worth it in Lakeport with wildfire risk?',
+              a: 'Essential. PG&E rates are $0.44/kWh and PSPS shutoffs are extreme in this fire zone. Residential solar with battery backup provides power during multi-day PSPS events and evacuations. Lakeport gets 5.2 peak sun hours, excellent for solar.'
             },
             {
               q: 'How much sun does Lakeport get for solar?',
@@ -6447,8 +6447,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Clearlake requires permits through Lake County Community Development with 2-4 week processing. Wildfire zones require fire-resistant design. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Clearlake after wildfires?',
-              a: 'Absolutely. PG&E charges $0.44/kWh and PSPS shutoffs are frequent in this severe fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events. Clearlake gets 5.3 peak sun hours, excellent for solar independence.'
+              q: 'Is residential solar + battery storage worth it in Clearlake after wildfires?',
+              a: 'Absolutely. PG&E charges $0.44/kWh and PSPS shutoffs are frequent in this severe fire zone. Residential solar with battery backup provides power during multi-day PSPS events. Clearlake gets 5.3 peak sun hours, excellent for solar independence.'
             },
             {
               q: 'How much sun does Clearlake get for solar?',
@@ -6495,8 +6495,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Napa requires permits through Napa County Planning, Building & Environmental Services with typical 2-4 week turnaround. Hillside properties may have additional requirements. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Napa with PSPS risk?',
-              a: 'Highly attractive. PG&E rates are $0.44/kWh and PSPS shutoffs affect wine-country hillsides. Off-grid solar with premium battery backup provides power during PSPS events and extreme heat. Napa gets 5.1 peak sun hours, excellent for solar.'
+              q: 'Is residential solar + battery storage worth it in Napa with PSPS risk?',
+              a: 'Highly attractive. PG&E rates are $0.44/kWh and PSPS shutoffs affect wine-country hillsides. Residential solar with premium battery backup provides power during PSPS events and extreme heat. Napa gets 5.1 peak sun hours, excellent for solar.'
             },
             {
               q: 'How much sun does Napa get for solar?',
@@ -6518,7 +6518,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. American Canyon requires permits through Napa County Planning, Building & Environmental Services with 2-4 week processing. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in American Canyon with PG&E rates?',
+              q: 'Is residential solar + battery storage worth it in American Canyon with PG&E rates?',
               a: 'Yes. PG&E charges $0.44/kWh and PSPS shutoffs affect hillside areas. Solar with battery backup provides energy independence and resilience. American Canyon gets 5.2 peak sun hours, excellent for solar production.'
             },
             {
@@ -6541,8 +6541,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Calistoga requires permits through Napa County Planning, Building & Environmental Services with typical 2-4 week turnaround. Wildfire zones may require fire-resistant design. Your contractor handles applications.'
             },
             {
-              q: 'Is off-grid solar worth it in Calistoga after Glass Fire?',
-              a: 'Essential. PG&E rates average $0.44/kWh and PSPS shutoffs are frequent in this severe fire zone. Off-grid solar with battery backup provides power during multi-day PSPS events. Calistoga gets 5.0 peak sun hours, strong for solar.'
+              q: 'Is residential solar + battery storage worth it in Calistoga after Glass Fire?',
+              a: 'Essential. PG&E rates average $0.44/kWh and PSPS shutoffs are frequent in this severe fire zone. Residential solar with battery backup provides power during multi-day PSPS events. Calistoga gets 5.0 peak sun hours, strong for solar.'
             },
             {
               q: 'How much sun does Calistoga get for solar?',
@@ -6564,7 +6564,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. St. Helena requires permits through Napa County Planning, Building & Environmental Services with 2-4 week processing. Hillside vineyard sites may have additional requirements. Your solar installer handles the county application.'
             },
             {
-              q: 'Is off-grid solar worth it in St. Helena with PSPS risk?',
+              q: 'Is residential solar + battery storage worth it in St. Helena with PSPS risk?',
               a: 'Highly attractive. PG&E charges $0.44/kWh and PSPS shutoffs affect hillside vineyards. Premium solar with battery backup provides power during PSPS events and extreme heat. St. Helena gets 5.1 peak sun hours, excellent for solar.'
             },
             {
@@ -6612,8 +6612,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Yuba City requires permits through Sutter County Community Services with typical 2-4 week turnaround. Flat valley terrain simplifies installation. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Yuba City with hot summers?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and extreme valley heat drives cooling costs. Off-grid solar with battery backup provides savings on AC bills and resilience during heat events. Yuba City gets 5.3 peak sun hours, excellent for solar.'
+              q: 'Is residential solar + battery storage worth it in Yuba City with hot summers?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and extreme valley heat drives cooling costs. Residential solar with battery backup provides savings on AC bills and resilience during heat events. Yuba City gets 5.3 peak sun hours, excellent for solar.'
             },
             {
               q: 'How much sun does Yuba City get for solar?',
@@ -6635,7 +6635,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Live Oak requires permits through Sutter County Community Services with 2-4 week processing. Agricultural properties may integrate solar for farm operations. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Live Oak with PG&E rates?',
+              q: 'Is residential solar + battery storage worth it in Live Oak with PG&E rates?',
               a: 'Yes. PG&E charges $0.44/kWh and valley heat drives high cooling costs. Solar with battery backup provides savings and resilience for residential and farm properties. Live Oak gets 5.3 peak sun hours, excellent for solar.'
             },
             {
@@ -6683,8 +6683,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Marysville requires permits through Yuba County Community Development with typical 2-4 week turnaround. Flat valley terrain simplifies installation. Your solar contractor handles the application.'
             },
             {
-              q: 'Is off-grid solar worth it in Marysville with hot summers?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and extreme valley heat drives cooling costs. Off-grid solar with battery backup provides savings on AC bills and resilience during heat events. Marysville gets 5.3 peak sun hours, excellent for solar.'
+              q: 'Is residential solar + battery storage worth it in Marysville with hot summers?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and extreme valley heat drives cooling costs. Residential solar with battery backup provides savings on AC bills and resilience during heat events. Marysville gets 5.3 peak sun hours, excellent for solar.'
             },
             {
               q: 'How much sun does Marysville get for solar?',
@@ -6706,7 +6706,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Wheatland requires permits through Yuba County Community Development with 2-4 week processing. Valley location simplifies installation. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Wheatland with PG&E rates?',
+              q: 'Is residential solar + battery storage worth it in Wheatland with PG&E rates?',
               a: 'Yes. PG&E charges $0.44/kWh and valley heat drives high cooling costs. Solar with battery backup provides savings and resilience. Wheatland gets 5.3 peak sun hours, excellent for solar production.'
             },
             {
@@ -6754,8 +6754,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Jackson requires permits through Amador County Building Department with typical 3-4 week turnaround. Foothill terrain may require structural review for roof loads. Your solar contractor handles the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Jackson with wildfire risk?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are common during fire season. Off-grid solar with battery backup provides energy independence during outages and long-term savings. Jackson gets 5.0 peak sun hours, excellent for year-round production.'
+              q: 'Is residential solar + battery storage worth it in Jackson with wildfire risk?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are common during fire season. Residential solar with battery backup provides energy independence during outages and long-term savings. Jackson gets 5.0 peak sun hours, excellent for year-round production.'
             },
             {
               q: 'How much sun does Jackson get for solar?',
@@ -6777,7 +6777,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Sutter Creek requires permits through Amador County Building Department with 3-4 week processing. Historic downtown may have design review for visible installations. Your installer handles permit coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in Sutter Creek with PSPS events?',
+              q: 'Is residential solar + battery storage worth it in Sutter Creek with PSPS events?',
               a: 'Yes. PG&E charges $0.44/kWh and foothill fire risk brings frequent shutoffs. Solar with battery backup provides resilience during multi-day outages and reduces high electric bills. Sutter Creek gets 5.1 peak sun hours, strong for foothill solar.'
             },
             {
@@ -6800,8 +6800,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Ione requires permits through Amador County Building Department with 3-4 week turnaround. Rural properties may combine solar with well pumps or barn installations. Your contractor handles permitting for all property types.'
             },
             {
-              q: 'Is off-grid solar worth it in Ione for rural properties?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and rural areas see longer outage restoration times during PSPS events. Off-grid solar with battery backup provides energy independence for homes and agricultural operations. Ione gets 5.0 peak sun hours, excellent for self-sufficiency.'
+              q: 'Is residential solar + battery storage worth it in Ione for rural properties?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and rural areas see longer outage restoration times during PSPS events. Residential solar with battery backup provides energy independence for homes and agricultural operations. Ione gets 5.0 peak sun hours, excellent for self-sufficiency.'
             },
             {
               q: 'How much sun does Ione get for solar?',
@@ -6823,7 +6823,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Plymouth requires permits through Amador County Building Department with typical 3-4 week processing. Vineyard properties may integrate solar for tasting rooms or agricultural operations. Your installer handles all permit applications.'
             },
             {
-              q: 'Is off-grid solar worth it in Plymouth wine country?',
+              q: 'Is residential solar + battery storage worth it in Plymouth wine country?',
               a: 'Yes. PG&E charges $0.44/kWh and wildfire risk brings PSPS shutoffs during fire season. Solar with battery backup provides resilience for homes and wineries during outages. Plymouth gets 5.1 peak sun hours, strong for foothill solar production.'
             },
             {
@@ -6871,8 +6871,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Angels Camp requires permits through Calaveras County Planning Department with typical 3-5 week turnaround. Foothill terrain may require structural review for roof installations. Your solar contractor handles the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Angels Camp with PSPS risk?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent during dry, windy conditions. Off-grid solar with battery backup provides energy independence during multi-day outages and long-term savings. Angels Camp gets 5.1 peak sun hours, excellent for reliable production.'
+              q: 'Is residential solar + battery storage worth it in Angels Camp with PSPS risk?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent during dry, windy conditions. Residential solar with battery backup provides energy independence during multi-day outages and long-term savings. Angels Camp gets 5.1 peak sun hours, excellent for reliable production.'
             },
             {
               q: 'How much sun does Angels Camp get for solar?',
@@ -6894,7 +6894,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Andreas requires permits through Calaveras County Planning Department with 3-5 week processing. County seat location may expedite coordination with building officials. Your installer handles permit applications.'
             },
             {
-              q: 'Is off-grid solar worth it in San Andreas with wildfire risk?',
+              q: 'Is residential solar + battery storage worth it in San Andreas with wildfire risk?',
               a: 'Yes. PG&E charges $0.44/kWh and foothill fire zones see regular PSPS shutoffs. Solar with battery backup provides resilience during outages and reduces high electric bills. San Andreas gets 5.0 peak sun hours, strong for foothill solar.'
             },
             {
@@ -6917,7 +6917,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Murphys requires permits through Calaveras County Planning Department with 3-5 week turnaround. Higher elevation may require snow load calculations for solar racking. Your contractor handles engineering and permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Murphys wine country?',
+              q: 'Is residential solar + battery storage worth it in Murphys wine country?',
               a: 'Absolutely. PG&E rates are $0.44/kWh and higher elevation brings longer PSPS outages during fire season. Solar with battery backup provides resilience for homes and wineries. Murphys gets 5.2 peak sun hours, excellent for mountain solar production.'
             },
             {
@@ -6965,8 +6965,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Sonora requires permits through Tuolumne County Community Resources Agency with typical 3-5 week turnaround. Foothill terrain may require structural review for hillside installations. Your solar contractor handles the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Sonora with PSPS risk?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent during fire season. Off-grid solar with battery backup provides energy independence during multi-day outages and long-term savings. Sonora gets 5.1 peak sun hours, excellent for year-round production.'
+              q: 'Is residential solar + battery storage worth it in Sonora with PSPS risk?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent during fire season. Residential solar with battery backup provides energy independence during multi-day outages and long-term savings. Sonora gets 5.1 peak sun hours, excellent for year-round production.'
             },
             {
               q: 'How much sun does Sonora get for solar?',
@@ -6988,7 +6988,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Twain Harte requires permits through Tuolumne County Community Resources Agency with 3-5 week processing. Mountain elevation requires snow load calculations for solar racking. Your contractor handles engineering and permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Twain Harte with winter storms?',
+              q: 'Is residential solar + battery storage worth it in Twain Harte with winter storms?',
               a: 'Yes. PG&E charges $0.44/kWh and mountain areas see longer outage restoration times during storms and PSPS events. Solar with battery backup provides energy independence year-round. Twain Harte gets 5.0 peak sun hours, strong for mountain solar despite winter snow.'
             },
             {
@@ -7011,7 +7011,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Jamestown requires permits through Tuolumne County Community Resources Agency with 3-5 week turnaround. Historic properties may need design review for visible installations. Your installer handles permit coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in Jamestown with wildfire risk?',
+              q: 'Is residential solar + battery storage worth it in Jamestown with wildfire risk?',
               a: 'Absolutely. PG&E rates are $0.44/kWh and foothill fire zones see frequent PSPS shutoffs. Solar with battery backup provides resilience during outages and reduces high electric bills. Jamestown gets 5.2 peak sun hours, excellent for foothill solar production.'
             },
             {
@@ -7059,8 +7059,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Mariposa requires permits through Mariposa County Planning Department with typical 3-5 week turnaround. Mountain terrain may require structural review for hillside installations. Your solar contractor handles the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Mariposa with PSPS risk?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent during fire season in this Yosemite gateway area. Off-grid solar with battery backup provides energy independence during multi-day outages. Mariposa gets 5.1 peak sun hours, excellent for mountain foothill solar.'
+              q: 'Is residential solar + battery storage worth it in Mariposa with PSPS risk?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and PSPS shutoffs are frequent during fire season in this Yosemite gateway area. Residential solar with battery backup provides energy independence during multi-day outages. Mariposa gets 5.1 peak sun hours, excellent for mountain foothill solar.'
             },
             {
               q: 'How much sun does Mariposa get for solar?',
@@ -7107,8 +7107,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Madera requires permits through Madera County Building Department with typical 2-4 week turnaround. Valley floor location simplifies installation with minimal terrain constraints. Your solar contractor handles the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Madera with extreme valley heat?',
-              a: 'Absolutely. PG&E rates are $0.44/kWh and valley temperatures regularly exceed 100°F in summer, driving extreme cooling costs. Off-grid solar with battery backup provides savings on AC bills and resilience during heat events. Madera gets 5.4 peak sun hours, excellent for solar.'
+              q: 'Is residential solar + battery storage worth it in Madera with extreme valley heat?',
+              a: 'Absolutely. PG&E rates are $0.44/kWh and valley temperatures regularly exceed 100°F in summer, driving extreme cooling costs. Residential solar with battery backup provides savings on AC bills and resilience during heat events. Madera gets 5.4 peak sun hours, excellent for solar.'
             },
             {
               q: 'How much sun does Madera get for solar?',
@@ -7130,7 +7130,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Chowchilla requires permits through Madera County Building Department with 2-4 week processing. Agricultural properties may integrate solar for irrigation pumps or farm buildings. Your installer handles permitting for all property types.'
             },
             {
-              q: 'Is off-grid solar worth it in Chowchilla for farms?',
+              q: 'Is residential solar + battery storage worth it in Chowchilla for farms?',
               a: 'Yes. PG&E charges $0.44/kWh and valley heat drives high cooling and irrigation costs. Solar with battery backup provides savings for residential and agricultural operations. Chowchilla gets 5.4 peak sun hours, excellent for farm solar production.'
             },
             {
@@ -7153,7 +7153,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Oakhurst requires permits through Madera County Building Department with 2-4 week turnaround. Foothill location may require wildfire design standards and structural review for hillside installations. Your contractor handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Oakhurst near Yosemite?',
+              q: 'Is residential solar + battery storage worth it in Oakhurst near Yosemite?',
               a: 'Absolutely. PG&E rates are $0.44/kWh and foothill fire zones see frequent PSPS shutoffs. Solar with battery backup provides resilience during multi-day outages and reduces high electric bills. Oakhurst gets 5.2 peak sun hours, excellent for foothill solar.'
             },
             {
@@ -7179,13 +7179,13 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         name: 'Inyo County Planning Department',
         jurisdiction: 'Inyo County',
         typicalTurnaround: '3-5 weeks',
-        note: 'County processes permits for high desert and mountain installations. Remote locations may require off-grid design review. Higher elevations need snow load calculations. Wind zones may require additional racking engineering.'
+        note: 'County processes permits for high desert and mountain installations. Remote locations may require standalone solar system design review. Higher elevations need snow load calculations. Wind zones may require additional racking engineering.'
       },
       climateZone: {
         zone: 'Zone 14-16 (High Desert to Mountains)',
         description: 'High desert climate with extreme temperature swings and low humidity. Eastern Sierra mountains see winter snow. Excellent solar potential across all elevations with minimal cloud cover year-round.'
       },
-      countyContext: 'Inyo County spans the Owens Valley and Eastern Sierra from Bishop at 4,100 feet to mountain peaks above 14,000 feet. High desert location brings exceptional solar potential at 6.0 peak sun hours, among the best in California. Remote locations and utility costs make off-grid solar attractive. Death Valley National Park and Mount Whitney anchor tourism economy.'
+      countyContext: 'Inyo County spans the Owens Valley and Eastern Sierra from Bishop at 4,100 feet to mountain peaks above 14,000 feet. High desert location brings exceptional solar potential at 6.0 peak sun hours, among the best in California. Remote locations and utility costs make solar with battery storage attractive. Death Valley National Park and Mount Whitney anchor tourism economy.'
     },
     cities: [
       {
@@ -7194,15 +7194,15 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         utility: 'SCE',
         localData: { ...SCE, peakSunHoursEstimate: 6.0 },
         cityProfile: {
-          localNote: 'Bishop is the Eastern Sierra hub at 4,100 feet elevation with high desert climate and exceptional solar exposure. Clear skies and high elevation bring some of the best solar potential in California, ideal for off-grid systems.',
+          localNote: 'Bishop is the Eastern Sierra hub at 4,100 feet elevation with high desert climate and exceptional solar exposure. Clear skies and high elevation bring some of the best solar potential in California, ideal for solar + battery storage systems.',
           faq: [
             {
               q: 'Do I need a permit for solar in Bishop?',
               a: 'Yes. Bishop requires permits through Inyo County Planning Department with typical 3-5 week turnaround. High desert location may require wind load calculations for solar racking. Your solar contractor handles the application process.'
             },
             {
-              q: 'Is off-grid solar worth it in Bishop with high desert sun?',
-              a: 'Absolutely. SCE rates average $0.40/kWh and Bishop gets 6.0 peak sun hours, exceptional for solar production. High desert location with clear skies year-round makes off-grid solar with battery backup ideal for energy independence and long-term savings.'
+              q: 'Is residential solar + battery storage worth it in Bishop with high desert sun?',
+              a: 'Absolutely. SCE rates average $0.40/kWh and Bishop gets 6.0 peak sun hours, exceptional for solar production. High desert location with clear skies year-round makes solar with battery backup ideal for energy independence and long-term savings.'
             },
             {
               q: 'How much sun does Bishop get for solar?',
@@ -7217,15 +7217,15 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         utility: 'LADWP',
         localData: { ...LADWP, peakSunHoursEstimate: 6.0 },
         cityProfile: {
-          localNote: 'Lone Pine is a small Owens Valley town at 3,700 feet elevation with high desert climate and Mount Whitney views. Exceptional solar exposure and remote location make off-grid solar attractive for energy independence.',
+          localNote: 'Lone Pine is a small Owens Valley town at 3,700 feet elevation with high desert climate and Mount Whitney views. Exceptional solar exposure and remote location make solar with battery storage attractive for energy independence.',
           faq: [
             {
               q: 'Do I need a permit for solar in Lone Pine?',
               a: 'Yes. Lone Pine requires permits through Inyo County Planning Department with 3-5 week processing. High desert location may require wind and seismic calculations for solar installations. Your installer handles permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Lone Pine with remote location?',
-              a: 'Yes. LADWP rates and remote Owens Valley location make energy independence attractive. Lone Pine gets 6.0 peak sun hours with clear skies year-round, exceptional for off-grid solar with battery backup. High desert climate ensures reliable production.'
+              q: 'Is residential solar + battery storage worth it in Lone Pine with remote location?',
+              a: 'Yes. LADWP rates and remote Owens Valley location make energy independence attractive. Lone Pine gets 6.0 peak sun hours with clear skies year-round, exceptional for solar with battery backup. High desert climate ensures reliable production.'
             },
             {
               q: 'How much sun does Lone Pine get for solar?',
@@ -7272,7 +7272,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Mammoth Lakes requires permits through Town of Mammoth Lakes with separate process from Mono County. High elevation requires snow load calculations for solar racking. Your contractor handles engineering and permitting for mountain installations.'
             },
             {
-              q: 'Is off-grid solar worth it in Mammoth Lakes with winter snow?',
+              q: 'Is residential solar + battery storage worth it in Mammoth Lakes with winter snow?',
               a: 'Yes, with proper design. Liberty Utilities rates and remote mountain location make energy independence attractive. Mammoth gets 4.8 peak sun hours with exceptional summer production at high elevation. Steep panel angles shed snow, and battery backup provides resilience during winter storms.'
             },
             {
@@ -7295,8 +7295,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Bridgeport requires permits through Mono County Community Development with 3-5 week turnaround. High elevation requires snow and wind load calculations for solar racking. Your installer handles engineering and permitting.'
             },
             {
-              q: 'Is off-grid solar worth it in Bridgeport with remote location?',
-              a: 'Absolutely. SCE rates and remote mountain valley location make energy independence attractive. Bridgeport gets 5.8 peak sun hours with clear high desert skies year-round. Off-grid solar with battery backup provides resilience during winter storms and long-term savings.'
+              q: 'Is residential solar + battery storage worth it in Bridgeport with remote location?',
+              a: 'Absolutely. SCE rates and remote mountain valley location make energy independence attractive. Bridgeport gets 5.8 peak sun hours with clear high desert skies year-round. Residential solar with battery backup provides resilience during winter storms and long-term savings.'
             },
             {
               q: 'How much sun does Bridgeport get for solar?',
@@ -7321,13 +7321,13 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
         name: 'Alpine County Community Development',
         jurisdiction: 'Alpine County',
         typicalTurnaround: '3-5 weeks',
-        note: 'County processes permits for high mountain installations. Snow load calculations required for all elevations. Remote location may extend coordination timelines. Off-grid systems common given limited grid infrastructure.'
+        note: 'County processes permits for high mountain installations. Snow load calculations required for all elevations. Remote location may extend coordination timelines. Solar + battery storage systems common given limited grid infrastructure.'
       },
       climateZone: {
         zone: 'Zone 16 (High Sierra Mountains)',
         description: 'High mountain climate with cold winters and heavy snowfall. Short summers with intense sun at elevation. Excellent solar potential despite winter challenges due to high elevation and clear mountain air.'
       },
-      countyContext: 'Alpine County is the least populous county in California, spanning the High Sierra around Markleeville at 5,500 feet elevation. Remote mountain location brings excellent solar potential at 5.0 peak sun hours despite winter snow. Clear mountain air and high elevation enhance solar production. Limited grid infrastructure makes off-grid solar attractive. Tourism and outdoor recreation drive the small economy.'
+      countyContext: 'Alpine County is the least populous county in California, spanning the High Sierra around Markleeville at 5,500 feet elevation. Remote mountain location brings excellent solar potential at 5.0 peak sun hours despite winter snow. Clear mountain air and high elevation enhance solar production. Limited grid infrastructure makes solar with battery storage attractive. Tourism and outdoor recreation drive the small economy.'
     },
     cities: [
       {
@@ -7343,8 +7343,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Markleeville requires permits through Alpine County Community Development with 3-5 week turnaround. High mountain elevation requires snow load calculations for solar racking. Your contractor handles engineering and permitting for remote mountain installations.'
             },
             {
-              q: 'Is off-grid solar worth it in remote Markleeville?',
-              a: 'Absolutely. Liberty Utilities rates and remote High Sierra location make energy independence essential. Markleeville gets 5.0 peak sun hours with strong summer production at elevation. Off-grid solar with battery backup provides resilience during winter storms when grid access may be limited.'
+              q: 'Is residential solar + battery storage worth it in remote Markleeville?',
+              a: 'Absolutely. Liberty Utilities rates and remote High Sierra location make energy independence essential. Markleeville gets 5.0 peak sun hours with strong summer production at elevation. Residential solar with battery backup provides resilience during winter storms when grid access may be limited.'
             },
             {
               q: 'How does mountain elevation affect solar in Markleeville?',
@@ -7391,7 +7391,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Loyalton requires permits through Sierra County Planning Department with 3-5 week turnaround. Mountain elevation requires snow load calculations for solar racking. Your contractor handles engineering and permitting for remote mountain installations.'
             },
             {
-              q: 'Is off-grid solar worth it in remote Loyalton?',
+              q: 'Is residential solar + battery storage worth it in remote Loyalton?',
               a: 'Yes. PG&E charges $0.44/kWh and remote mountain location brings longer outage restoration times during winter storms. Solar with battery backup provides energy independence and resilience. Loyalton gets 5.0 peak sun hours, strong for mountain solar despite winter snow.'
             },
             {
@@ -7414,7 +7414,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Downieville requires permits through Sierra County Planning Department with 3-5 week processing. Canyon terrain and forest may require site-specific shading analysis. Your installer handles permitting and site assessment.'
             },
             {
-              q: 'Is off-grid solar worth it in historic Downieville?',
+              q: 'Is residential solar + battery storage worth it in historic Downieville?',
               a: 'Yes. PG&E rates are $0.44/kWh and remote canyon location brings PSPS shutoffs and storm outages. Solar with battery backup provides resilience and energy independence. Downieville gets 5.0 peak sun hours on unshaded south-facing sites, viable for mountain solar.'
             },
             {
@@ -7462,8 +7462,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Salinas has its own building department that processes solar permits separately from the county. Typical turnaround is 2-3 weeks for standard rooftop systems. Your solar installer handles all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Salinas with PG&E rates?',
-              a: 'Absolutely. PG&E charges $0.44/kWh in Salinas, and the hot valley climate drives high summer AC bills. Off-grid solar with battery storage locks in your energy costs and provides resilience during grid outages. Salinas gets an estimated 5.4 peak sun hours daily — excellent for solar production.'
+              q: 'Is residential solar + battery storage worth it in Salinas with PG&E rates?',
+              a: 'Absolutely. PG&E charges $0.44/kWh in Salinas, and the hot valley climate drives high summer AC bills. Residential solar with battery storage locks in your energy costs and provides resilience during grid outages. Salinas gets an estimated 5.4 peak sun hours daily — excellent for solar production.'
             },
             {
               q: 'How much sun does Salinas get for solar?',
@@ -7485,7 +7485,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Monterey Building Division processes solar permits with typical 2-4 week turnaround. Coastal zone properties may require additional environmental review. Your installer coordinates all permits and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in coastal Monterey?',
+              q: 'Is residential solar + battery storage worth it in coastal Monterey?',
               a: 'Yes. Even with morning fog, Monterey gets an estimated 5.0 peak sun hours daily as marine layer burns off by afternoon. PG&E rates at $0.44/kWh and moderate coastal energy use make solar with battery backup a smart investment for energy independence and cost savings.'
             },
             {
@@ -7508,7 +7508,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Seaside processes solar permits through the City Building Division with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your installer handles all paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Seaside with coastal fog?',
+              q: 'Is residential solar + battery storage worth it in Seaside with coastal fog?',
               a: 'Yes. Despite morning fog, Seaside gets an estimated 5.0 peak sun hours daily as the marine layer burns off. PG&E rates at $0.44/kWh make solar plus battery storage a strong financial decision, locking in energy costs and providing backup power during outages.'
             },
             {
@@ -7531,7 +7531,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Marina requires permits through the City Building Department with typical 2-3 week processing. Coastal properties may need additional review; your solar installer manages all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Marina?',
+              q: 'Is residential solar + battery storage worth it in Marina?',
               a: 'Yes. Marina gets an estimated 5.1 peak sun hours daily as morning fog burns off earlier than deeper coastal areas. PG&E rates at $0.44/kWh combined with moderate coastal energy use make solar with battery storage an excellent long-term investment.'
             },
             {
@@ -7554,8 +7554,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. King City processes solar permits through the City Building Department with typical 2-4 week turnaround. The straightforward permitting process and flat valley terrain make installations smooth; your installer handles all coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in hot King City?',
-              a: 'Absolutely. King City experiences very hot summers driving high AC bills on PG&E\'s $0.44/kWh rates. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. King City gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
+              q: 'Is residential solar + battery storage worth it in hot King City?',
+              a: 'Absolutely. King City experiences very hot summers driving high AC bills on PG&E\'s $0.44/kWh rates. Residential solar with battery storage locks in energy costs and handles peak cooling loads. King City gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
             },
             {
               q: 'How much sun does King City get for solar?',
@@ -7602,7 +7602,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Santa Cruz Planning and Community Development Department processes solar permits with typical 3-4 week turnaround. Coastal properties may require additional review; your installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Cruz with coastal fog?',
+              q: 'Is residential solar + battery storage worth it in Santa Cruz with coastal fog?',
               a: 'Yes. Santa Cruz gets an estimated 4.9 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the city\'s strong environmental values make solar with battery storage both economically and ecologically attractive. Winter storm outages also make battery backup highly valuable.'
             },
             {
@@ -7625,7 +7625,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Watsonville processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Watsonville?',
+              q: 'Is residential solar + battery storage worth it in Watsonville?',
               a: 'Yes. Watsonville gets an estimated 5.1 peak sun hours daily due to its inland valley location with less fog than coastal areas. PG&E rates at $0.44/kWh and the warm climate driving moderate AC use make solar with battery storage a smart long-term investment.'
             },
             {
@@ -7648,7 +7648,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Scotts Valley processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Mountain terrain and forest shading may require site-specific analysis; your installer handles permitting and site assessment.'
             },
             {
-              q: 'Is off-grid solar worth it in mountain Scotts Valley?',
+              q: 'Is residential solar + battery storage worth it in mountain Scotts Valley?',
               a: 'Yes. Scotts Valley\'s higher elevation keeps it above coastal fog, achieving an estimated 5.0 peak sun hours on unshaded south-facing sites. PG&E rates at $0.44/kWh and frequent winter storm outages make solar with battery backup ideal for mountain energy resilience.'
             },
             {
@@ -7671,7 +7671,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Capitola processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Coastal properties may require additional review; your solar installer manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in coastal Capitola?',
+              q: 'Is residential solar + battery storage worth it in coastal Capitola?',
               a: 'Yes. Capitola gets an estimated 4.9 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the mild coastal climate keeping energy use moderate make solar with battery storage financially attractive and provide valuable backup power during outages.'
             },
             {
@@ -7719,8 +7719,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Hollister processes solar permits through the City Building Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Hollister with PG&E rates?',
-              a: 'Absolutely. PG&E charges $0.44/kWh in Hollister, and hot summers drive high AC bills. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. Hollister gets an estimated 5.4 peak sun hours daily — excellent for solar production.'
+              q: 'Is residential solar + battery storage worth it in Hollister with PG&E rates?',
+              a: 'Absolutely. PG&E charges $0.44/kWh in Hollister, and hot summers drive high AC bills. Residential solar with battery storage locks in energy costs and handles peak cooling loads. Hollister gets an estimated 5.4 peak sun hours daily — excellent for solar production.'
             },
             {
               q: 'How much sun does Hollister get for solar?',
@@ -7742,7 +7742,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Juan Bautista processes solar permits through San Benito County Building Department with typical 2-4 week turnaround. Historic properties may require additional review; your solar installer manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in San Juan Bautista?',
+              q: 'Is residential solar + battery storage worth it in San Juan Bautista?',
               a: 'Yes. San Juan Bautista gets an estimated 5.3 peak sun hours daily with minimal fog. PG&E rates at $0.44/kWh make solar with battery storage a smart financial decision, locking in energy costs and providing backup power during outages.'
             },
             {
@@ -7790,7 +7790,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of San Luis Obispo Community Development Department processes solar permits with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in San Luis Obispo?',
+              q: 'Is residential solar + battery storage worth it in San Luis Obispo?',
               a: 'Yes. SLO gets an estimated 5.2 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the city\'s strong environmental ethos make solar with battery storage both economically and ecologically attractive for energy independence.'
             },
             {
@@ -7813,8 +7813,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Paso Robles processes solar permits through the City Community Development Department with typical 2-3 week turnaround. The straightforward permitting and flat valley terrain make installations smooth; your installer handles all coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in hot Paso Robles?',
-              a: 'Absolutely. Paso Robles experiences very hot summers driving high AC bills on PG&E\'s $0.44/kWh rates. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. Paso gets an estimated 5.7 peak sun hours daily — excellent for solar production.'
+              q: 'Is residential solar + battery storage worth it in hot Paso Robles?',
+              a: 'Absolutely. Paso Robles experiences very hot summers driving high AC bills on PG&E\'s $0.44/kWh rates. Residential solar with battery storage locks in energy costs and handles peak cooling loads. Paso gets an estimated 5.7 peak sun hours daily — excellent for solar production.'
             },
             {
               q: 'How much sun does Paso Robles get for solar?',
@@ -7836,7 +7836,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Atascadero processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Atascadero?',
+              q: 'Is residential solar + battery storage worth it in Atascadero?',
               a: 'Yes. Atascadero gets an estimated 5.5 peak sun hours daily with minimal coastal fog. PG&E rates at $0.44/kWh and warm summers driving moderate cooling demand make solar with battery storage a smart long-term investment for energy independence.'
             },
             {
@@ -7859,7 +7859,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Arroyo Grande processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Coastal properties may require additional review; your installer handles all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Arroyo Grande?',
+              q: 'Is residential solar + battery storage worth it in Arroyo Grande?',
               a: 'Yes. Arroyo Grande gets an estimated 5.1 peak sun hours daily as morning fog clears by afternoon. PG&E rates at $0.44/kWh and the mild coastal climate make solar with battery storage financially attractive and provide valuable backup power during outages.'
             },
             {
@@ -7882,7 +7882,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Pismo Beach processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Coastal zone properties require additional review; your solar installer manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in coastal Pismo Beach?',
+              q: 'Is residential solar + battery storage worth it in coastal Pismo Beach?',
               a: 'Yes. Pismo Beach gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. PG&E rates at $0.44/kWh and the mild coastal climate keeping energy use moderate make solar with battery storage a smart investment for cost savings and resilience.'
             },
             {
@@ -7930,7 +7930,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. The City of Santa Barbara Community Development Department processes solar permits with typical 3-4 week turnaround. Coastal and historic properties may require additional review; your installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Barbara?',
+              q: 'Is residential solar + battery storage worth it in Santa Barbara?',
               a: 'Yes. Santa Barbara gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. SCE rates at $0.40/kWh and the city\'s strong environmental ethos make solar with battery storage both economically and ecologically attractive for energy independence.'
             },
             {
@@ -7953,7 +7953,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Santa Maria processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Santa Maria?',
+              q: 'Is residential solar + battery storage worth it in Santa Maria?',
               a: 'Yes. Santa Maria gets an estimated 5.3 peak sun hours daily due to its inland valley location with less fog than coastal areas. SCE rates at $0.40/kWh and the warm climate make solar with battery storage a smart long-term investment for cost savings and energy independence.'
             },
             {
@@ -7976,7 +7976,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lompoc processes solar permits through the City Community Development Department with typical 3-4 week turnaround. Standard rooftop installations are straightforward; your installer handles all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Lompoc?',
+              q: 'Is residential solar + battery storage worth it in Lompoc?',
               a: 'Yes. Lompoc gets an estimated 5.1 peak sun hours daily as morning fog clears by afternoon. SCE rates at $0.40/kWh and the mild coastal climate make solar with battery storage financially attractive and provide valuable backup power during outages.'
             },
             {
@@ -7999,7 +7999,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Goleta processes solar permits through the City Planning and Environmental Review Department with typical 3-4 week turnaround. Coastal properties may require additional review; your solar installer manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Goleta?',
+              q: 'Is residential solar + battery storage worth it in Goleta?',
               a: 'Yes. Goleta gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. SCE rates at $0.40/kWh and the mild coastal climate make solar with battery storage a smart investment for locking in energy costs and gaining backup power resilience.'
             },
             {
@@ -8022,7 +8022,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Carpinteria processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Coastal zone properties require additional review; your solar installer manages all permitting and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in coastal Carpinteria?',
+              q: 'Is residential solar + battery storage worth it in coastal Carpinteria?',
               a: 'Yes. Carpinteria gets an estimated 5.0 peak sun hours daily as morning fog burns off by afternoon. SCE rates at $0.40/kWh and the mild coastal climate keeping energy use moderate make solar with battery storage a smart financial decision for cost savings and resilience.'
             },
             {
@@ -8070,8 +8070,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Hanford processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in hot Hanford?',
-              a: 'Absolutely. Hanford experiences very hot summers driving high AC bills on utility rates of $0.44/kWh. Off-grid solar with battery storage locks in energy costs and handles peak cooling loads. Hanford gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
+              q: 'Is residential solar + battery storage worth it in hot Hanford?',
+              a: 'Absolutely. Hanford experiences very hot summers driving high AC bills on utility rates of $0.44/kWh. Residential solar with battery storage locks in energy costs and handles peak cooling loads. Hanford gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
             },
             {
               q: 'How much sun does Hanford get for solar?',
@@ -8093,8 +8093,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Lemoore processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Lemoore?',
-              a: 'Yes. Lemoore experiences very hot summers driving high AC bills on utility rates around $0.44/kWh. Off-grid solar with battery storage locks in energy costs and provides reliable power. Lemoore gets an estimated 5.6 peak sun hours daily — ideal for solar production.'
+              q: 'Is residential solar + battery storage worth it in Lemoore?',
+              a: 'Yes. Lemoore experiences very hot summers driving high AC bills on utility rates around $0.44/kWh. Residential solar with battery storage locks in energy costs and provides reliable power. Lemoore gets an estimated 5.6 peak sun hours daily — ideal for solar production.'
             },
             {
               q: 'How much sun does Lemoore get for solar?',
@@ -8116,8 +8116,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Avenal processes solar permits through Kings County Community Development Agency with typical 2-4 week turnaround. The rural location and straightforward permitting make installations smooth; your installer handles all coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in remote Avenal?',
-              a: 'Absolutely. Avenal experiences very hot summers and remote location with high utility costs. Off-grid solar with battery storage locks in energy costs and provides resilience. Avenal gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+              q: 'Is residential solar + battery storage worth it in remote Avenal?',
+              a: 'Absolutely. Avenal experiences very hot summers and remote location with high utility costs. Residential solar with battery storage locks in energy costs and provides resilience. Avenal gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
             },
             {
               q: 'How much sun does Avenal get for solar?',
@@ -8139,8 +8139,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Corcoran processes solar permits through the City Community Development Department with typical 2-3 week turnaround. The agricultural setting and straightforward permitting make installations smooth; your installer handles all coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in Corcoran?',
-              a: 'Yes. Corcoran experiences very hot summers driving high AC bills on utility rates around $0.44/kWh. Off-grid solar with battery storage locks in energy costs and handles peak loads. Corcoran gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
+              q: 'Is residential solar + battery storage worth it in Corcoran?',
+              a: 'Yes. Corcoran experiences very hot summers driving high AC bills on utility rates around $0.44/kWh. Residential solar with battery storage locks in energy costs and handles peak loads. Corcoran gets an estimated 5.6 peak sun hours daily — excellent for solar production.'
             },
             {
               q: 'How much sun does Corcoran get for solar?',
@@ -8187,8 +8187,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Visalia processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in very hot Visalia?',
-              a: 'Absolutely. Visalia experiences very hot summers driving extremely high AC bills on SCE rates of $0.40/kWh. Off-grid solar with battery storage locks in energy costs and handles intense cooling loads. Visalia gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+              q: 'Is residential solar + battery storage worth it in very hot Visalia?',
+              a: 'Absolutely. Visalia experiences very hot summers driving extremely high AC bills on SCE rates of $0.40/kWh. Residential solar with battery storage locks in energy costs and handles intense cooling loads. Visalia gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
             },
             {
               q: 'How much sun does Visalia get for solar?',
@@ -8210,8 +8210,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Tulare processes solar permits through the City Community Development Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer manages all paperwork and inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Tulare?',
-              a: 'Yes. Tulare experiences very hot summers driving extremely high AC bills on SCE rates around $0.40/kWh. Off-grid solar with battery storage locks in energy costs and provides reliable power. Tulare gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+              q: 'Is residential solar + battery storage worth it in Tulare?',
+              a: 'Yes. Tulare experiences very hot summers driving extremely high AC bills on SCE rates around $0.40/kWh. Residential solar with battery storage locks in energy costs and provides reliable power. Tulare gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
             },
             {
               q: 'How much sun does Tulare get for solar?',
@@ -8233,8 +8233,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Porterville processes solar permits through the City Development Services Department with typical 2-3 week turnaround. Standard rooftop installations are straightforward; your solar installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in Porterville?',
-              a: 'Absolutely. Porterville experiences very hot summers driving extremely high AC bills on SCE rates of $0.40/kWh. Off-grid solar with battery storage locks in energy costs and handles intense cooling loads. Porterville gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+              q: 'Is residential solar + battery storage worth it in Porterville?',
+              a: 'Absolutely. Porterville experiences very hot summers driving extremely high AC bills on SCE rates of $0.40/kWh. Residential solar with battery storage locks in energy costs and handles intense cooling loads. Porterville gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
             },
             {
               q: 'How much sun does Porterville get for solar?',
@@ -8256,8 +8256,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Dinuba processes solar permits through the City Community Development Department with typical 2-3 week turnaround. The agricultural setting and straightforward permitting make installations smooth; your installer handles all coordination.'
             },
             {
-              q: 'Is off-grid solar worth it in Dinuba?',
-              a: 'Yes. Dinuba experiences very hot summers driving extremely high AC bills on SCE rates around $0.40/kWh. Off-grid solar with battery storage locks in energy costs and handles peak loads. Dinuba gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
+              q: 'Is residential solar + battery storage worth it in Dinuba?',
+              a: 'Yes. Dinuba experiences very hot summers driving extremely high AC bills on SCE rates around $0.40/kWh. Residential solar with battery storage locks in energy costs and handles peak loads. Dinuba gets an estimated 5.7 peak sun hours daily — exceptional for solar production.'
             },
             {
               q: 'How much sun does Dinuba get for solar?',
@@ -8304,7 +8304,7 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. San Francisco requires permits through the Department of Building Inspection with typical 3-5 week turnaround. SolarAPP+ can expedite eligible systems. Multi-unit buildings may need HOA approval. Your solar installer handles all permitting and coordinates inspections.'
             },
             {
-              q: 'Is off-grid solar worth it in foggy San Francisco?',
+              q: 'Is residential solar + battery storage worth it in foggy San Francisco?',
               a: 'It depends on location and roof orientation. Foggy western neighborhoods see lower production, but sunnier areas like the Mission and Noe Valley get an estimated 4.9 peak sun hours daily. PG&E rates at $0.44/kWh make solar financially viable on south-facing roofs in sunnier microclimates. A site assessment determines feasibility.'
             },
             {
@@ -8352,8 +8352,8 @@ export const NORCAL_SOLAR_MARKETS: MarketRegion[] = [
               a: 'Yes. Weaverville requires permits through Trinity County Building Department with typical 2-4 week processing. Mountain terrain and forest shading may require site-specific analysis. Your solar installer handles all permitting and site assessment.'
             },
             {
-              q: 'Is off-grid solar worth it in remote Weaverville?',
-              a: 'Absolutely. Weaverville experiences frequent wildfire-related PSPS shutoffs and winter storm outages due to its remote mountain location. Off-grid solar with battery storage provides critical energy resilience and locks in costs against PG&E\'s $0.44/kWh rates. Weaverville gets an estimated 5.2 peak sun hours on unshaded south-facing sites.'
+              q: 'Is residential solar + battery storage worth it in remote Weaverville?',
+              a: 'Absolutely. Weaverville experiences frequent wildfire-related PSPS shutoffs and winter storm outages due to its remote mountain location. Residential solar with battery storage provides critical energy resilience and locks in costs against PG&E\'s $0.44/kWh rates. Weaverville gets an estimated 5.2 peak sun hours on unshaded south-facing sites.'
             },
             {
               q: 'How does forest terrain affect solar in Weaverville?',

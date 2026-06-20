@@ -17,10 +17,10 @@ interface PageProps {
 export function generateMetadata({ params }: PageProps): Metadata {
   if (params.vertical !== 'solar' || params.state !== 'california') return {};
 
-  const title = 'Off-Grid Solar & Battery Backup in California';
+  const title = 'Residential Solar & Battery Storage in California';
   const description =
-    'Off-grid solar + EG4 battery installation across Northern California. Systems from $8,700. ' +
-    'Make your own power, store it, and run your home through blackouts — independent of PG&E and SMUD, ' +
+    'Residential solar + EG4 battery storage across Northern California. Systems from $8,700. ' +
+    'Make your own power, store it, and run your home through blackouts — self-powered and blackout-ready, ' +
     'and built for NEM 3.0. Free quote.';
 
   return {
@@ -43,13 +43,13 @@ const jsonLd = {
     {
       '@type': 'LocalBusiness',
       name: 'VoltSol Energy',
-      description: 'Off-grid solar and EG4 battery backup installation serving California — energy independence from PG&E and SMUD.',
+      description: 'Residential solar and EG4 battery storage installation serving California — make your own power, store it, and use it.',
       url: 'https://voltsolenergy.com',
       areaServed: {
         '@type': 'State',
         name: 'California',
       },
-      serviceType: 'Off-Grid Solar and Battery Storage Installation',
+      serviceType: 'Residential Solar and Battery Storage Installation',
       priceRange: '$8,700–$16,000',
     },
     {
@@ -101,7 +101,7 @@ export default function StatePage({ params }: PageProps) {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt="Off-grid solar home with battery backup keeping the lights on during a blackout in Northern California"
+            alt="Solar-powered home with battery backup keeping the lights on during a blackout in Northern California"
             fill
             priority
             sizes="100vw"
@@ -116,29 +116,29 @@ export default function StatePage({ params }: PageProps) {
               Northern California
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Off-Grid Solar &amp; Battery Backup in California
+              Residential Solar &amp; Battery Storage in California
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-blue-100">
-              VoltSol specializes in off-grid solar with EG4 battery storage across Northern California —
+              VoltSol specializes in residential solar with EG4 battery storage across Northern California —
               systems from $8,700. Make your own power, store it, and run your home through blackouts and
-              PSPS shutoffs. Real energy independence from PG&E and SMUD, built for the NEM 3.0 era —
-              not another grid-tied system that shuts off when the utility does.
+              PSPS shutoffs. Real energy independence, built for the NEM 3.0 era —
+              keep the power you make instead of exporting it for a fraction of what you paid.
             </p>
           </div>
         </header>
 
         <main className="mx-auto max-w-7xl px-4 py-12">
-          {/* Why Off-Grid Solar in California */}
+          {/* Why Solar + Battery Storage in California */}
           <section aria-labelledby="why-california-heading" className="mb-16">
             <h2 id="why-california-heading" className="text-2xl font-bold text-gray-900">
-              Why Off-Grid Solar in California?
+              Why Solar + Battery Storage in California?
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <div className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-6">
                 <Zap className="h-8 w-8 text-blue-600" aria-hidden="true" />
                 <h3 className="font-bold text-gray-900">Sidestep NEM 3.0</h3>
                 <p className="text-sm text-gray-700">
-                  California&rsquo;s NEM 3.0 slashed solar export credits. Off-grid systems avoid this entirely — you
+                  California&rsquo;s NEM 3.0 slashed solar export credits. Battery-first systems sidestep this entirely — you
                   store and use your own power, no utility buyback needed.
                 </p>
               </div>
@@ -148,7 +148,8 @@ export default function StatePage({ params }: PageProps) {
                 <h3 className="font-bold text-gray-900">Own It, Don&rsquo;t Rent It</h3>
                 <p className="text-sm text-gray-700">
                   The big installers sell you a grid-tied system that still leaves you on the utility&rsquo;s meter.
-                  VoltSol builds you your own power plant — solar + EG4 battery — so you stop renting power for good.
+                  VoltSol builds you your own power plant — solar + EG4 battery — so you stop renting power
+                  from the grid for good.
                 </p>
               </div>
 
@@ -156,8 +157,8 @@ export default function StatePage({ params }: PageProps) {
                 <Shield className="h-8 w-8 text-red-600" aria-hidden="true" />
                 <h3 className="font-bold text-gray-900">Blackout Resilience</h3>
                 <p className="text-sm text-gray-700">
-                  California&rsquo;s wildfire-driven PSPS shutoffs leave thousands in the dark each year. Off-grid
-                  battery systems keep your lights and HVAC running.
+                  California&rsquo;s wildfire-driven PSPS shutoffs leave thousands in the dark each year. Solar +
+                  battery storage systems keep your lights and HVAC running.
                 </p>
               </div>
 
@@ -165,8 +166,8 @@ export default function StatePage({ params }: PageProps) {
                 <MapPin className="h-8 w-8 text-green-600" aria-hidden="true" />
                 <h3 className="font-bold text-gray-900">Beat Rising Rates</h3>
                 <p className="text-sm text-gray-700">
-                  PG&E and SMUD rates keep climbing. When you make and store your own power, their next rate
-                  hike stops being your problem — your energy cost is locked in at install.
+                  Utility rates keep climbing. When you make and store your own power, your local utility’s
+                  next rate hike stops being your problem — your energy cost is locked in at install.
                 </p>
               </div>
             </div>

@@ -6,14 +6,14 @@ import { BookOpen, ArrowRight } from 'lucide-react';
 import PageTracker from '@/components/PageTracker';
 
 export const metadata: Metadata = {
-  title: 'Learn About Off-Grid Solar, EG4, & Energy Independence | VoltSol Energy',
+  title: 'Learn About Residential Solar + Battery Storage, EG4, & Energy Independence | VoltSol Energy',
   description:
-    'Everything you need to know about off-grid solar, EG4 batteries and mini-splits, California solar permits, NEM 3.0, and how to cut your utility bill for good.',
+    'Everything you need to know about residential solar + battery storage, EG4 batteries, California solar permits, NEM 3.0 net billing, and how to keep the power you make instead of selling it to the grid.',
   alternates: { canonical: 'https://voltsolenergy.com/learn' },
   openGraph: {
-    title: 'Learn About Off-Grid Solar & Energy Independence | VoltSol',
+    title: 'Learn About Residential Solar + Battery Storage & Energy Independence | VoltSol',
     description:
-      'Guides and articles on off-grid solar, EG4 equipment, California solar policy, and real-world energy savings.',
+      'Guides and articles on residential solar + battery storage, EG4 equipment, California solar policy, and real-world energy savings.',
     url: 'https://voltsolenergy.com/learn',
   },
 };
@@ -50,13 +50,13 @@ export default function LearnIndexPage() {
             </Reveal>
             <Reveal immediate delay={0.1}>
               <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-                Learn About <span className="text-gold">Off-Grid Solar</span>
+                Learn About <span className="text-gold">Solar + Battery Storage</span>
               </h1>
             </Reveal>
             <Reveal immediate delay={0.2}>
               <p className="mt-6 text-lg text-blue-200 sm:text-xl">
-                Everything you need to know about off-grid solar, EG4 equipment, California solar
-                policy, and how to cut your utility bill for good.
+                Everything you need to know about residential solar + battery storage, EG4 equipment, California solar
+                policy, and how to keep the power you make instead of selling it to the grid for pennies.
               </p>
             </Reveal>
           </div>

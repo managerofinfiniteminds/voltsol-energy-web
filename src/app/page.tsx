@@ -47,7 +47,7 @@ function buildLocalBusinessJsonLd(testimonials: { quote: string; name: string; c
     "@type": "LocalBusiness",
     name: "VoltSol Energy",
     description:
-      "Off-grid solar installations for your home - EG4 battery, inverter, and solar-powered mini-split systems from $8,700.",
+      "Residential solar + battery storage for your home - make your own power, store it, and use it. EG4 battery and inverter systems from $8,700.",
     url: "https://voltsolenergy.com",
     email: "info@voltsolenergy.com",
     telephone: "+1-530-228-1019",
@@ -62,7 +62,7 @@ function buildLocalBusinessJsonLd(testimonials: { quote: string; name: string; c
       addressRegion: "CA",
       addressCountry: "US",
     },
-    knowsAbout: ["off-grid solar", "solar battery storage", "EG4 solar systems"],
+    knowsAbout: ["residential solar", "solar battery storage", "solar self-consumption", "solar battery backup", "EG4 solar systems"],
     hasCredential: {
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "license",
@@ -122,7 +122,7 @@ export default async function HomePage() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt="A single home glowing with light during a neighborhood blackout — powered by a VoltSol off-grid solar and battery system while the rest of the street sits dark"
+            alt="A single home glowing with light during a neighborhood blackout — powered by a VoltSol residential solar and battery storage system while the rest of the street sits dark"
             fill
             priority
             className="object-cover object-center"
@@ -713,7 +713,7 @@ export default async function HomePage() {
                 href="/learn"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-gold transition-colors hover:text-gold/80"
               >
-                <Zap className="h-4 w-4" /> Want to learn more? Read our guides on off-grid solar, EG4 equipment, and energy independence →
+                <Zap className="h-4 w-4" /> Want to learn more? Read our guides on residential solar, battery storage, EG4 equipment, and energy independence →
               </Link>
             </div>
           </Reveal>

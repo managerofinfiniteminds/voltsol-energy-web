@@ -25,11 +25,11 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!market) return {};
 
   const { city: cityData, region: regionData } = market;
-  const title = `Off-Grid Solar & Battery Backup in ${cityData.city}, CA`;
+  const title = `Home Solar + Battery Storage in ${cityData.city}, CA`;
   const description =
-    `Cut the cord on ${cityData.utility}. VoltSol installs off-grid solar + EG4 battery systems in ` +
-    `${cityData.city} from $8,700 — power through blackouts, beat NEM 3.0 export cuts, and stop renting ` +
-    `power from the utility. ${cityData.utility} customers here pay an est. $${cityData.localData.avgMonthlyBillEstimate}/mo. Free quote.`;
+    `VoltSol installs residential solar + EG4 battery storage in ` +
+    `${cityData.city} from $8,700 — power through blackouts, beat NEM 3.0 export cuts, and keep the ` +
+    `power you make instead of renting it back. ${cityData.city} is served by ${cityData.utility}. Free quote.`;
 
   return {
     title,
@@ -70,7 +70,7 @@ export default function MarketCityPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Off-grid solar and EG4 battery backup installation serving ${cityData.city}, ${regionData.county}, California — energy independence from ${cityData.utility}.`,
+        description: `Residential solar and EG4 battery storage installation serving ${cityData.city}, ${regionData.county}, California — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         telephone: process.env.NEXT_PUBLIC_VOLTSOL_PHONE || undefined,
         areaServed: {
@@ -85,11 +85,11 @@ export default function MarketCityPage({ params }: PageProps) {
       },
       {
         '@type': 'Service',
-        name: `Off-Grid Solar & Battery Backup Installation in ${cityData.city}`,
-        serviceType: 'Off-Grid Solar and Battery Storage Installation',
+        name: `Home Solar + Battery Storage Installation in ${cityData.city}`,
+        serviceType: 'Residential Solar and Battery Storage Installation',
         provider: { '@type': 'LocalBusiness', name: 'VoltSol Energy' },
         areaServed: { '@type': 'City', name: cityData.city },
-        description: `VoltSol Energy installs off-grid solar with EG4 battery storage in ${cityData.city}, California — blackout-ready power independent of ${cityData.utility}, built for NEM 3.0.`,
+        description: `VoltSol Energy installs residential solar with EG4 battery storage in ${cityData.city}, California — blackout-ready power self-supplied from your own system, built for NEM 3.0.`,
       },
       {
         '@type': 'BreadcrumbList',
@@ -142,7 +142,7 @@ export default function MarketCityPage({ params }: PageProps) {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt={`Off-grid solar home with battery backup keeping the lights on during a blackout in ${cityData.city}, California`}
+            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${cityData.city}, California`}
             fill
             priority
             sizes="100vw"
@@ -157,13 +157,13 @@ export default function MarketCityPage({ params }: PageProps) {
               {cityData.utility} Service Area · {regionData.county}
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Off-Grid Solar &amp; Battery Backup in {cityData.city}, CA
+              Home Solar + Battery Storage in {cityData.city}, CA
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-blue-100">
-              Stop renting your power from {cityData.utility}. VoltSol installs off-grid solar paired with
+              Stop renting your power from the grid. VoltSol installs residential solar paired with
               EG4 battery storage in {cityData.city} — so you make your own power, store it, and run your home
               through blackouts and PSPS shutoffs. Systems start at <strong>$8,700</strong>, and {cityData.city}
-              {' '}homes on {cityData.utility} pay an estimated <strong>${cityData.localData.avgMonthlyBillEstimate}/mo</strong> today.
+              {' '}is served by {cityData.utility} — homes here pay an estimated <strong>${cityData.localData.avgMonthlyBillEstimate}/mo</strong> today.
             </p>
             <p className="mt-1 text-xs text-blue-300">
               * Electricity bill figures are regional estimates only, not guarantees.
@@ -178,7 +178,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Local stats */}
               <section aria-labelledby="local-stats-heading">
                 <h2 id="local-stats-heading" className="text-xl font-bold text-gray-900">
-                  Off-Grid Solar in {cityData.city} — Local Estimates
+                  Home Solar + Battery Storage in {cityData.city} — Local Estimates
                 </h2>
                 <p className="mt-1 text-xs text-gray-400">
                   These are illustrative regional estimates — not guarantees. Your actual savings depend on
@@ -202,7 +202,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Why solar in this city */}
               <section className="mt-10" aria-labelledby="why-solar-heading">
                 <h2 id="why-solar-heading" className="text-xl font-bold text-gray-900">
-                  Why Go Off-Grid in {cityData.city}?
+                  Why Solar + Battery Storage in {cityData.city}?
                 </h2>
                 <ul className="mt-4 space-y-3 text-sm text-gray-700">
                   <li className="flex gap-2">
@@ -216,17 +216,19 @@ export default function MarketCityPage({ params }: PageProps) {
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
                     <span>
-                      <strong>High {cityData.utility} rates:</strong> {regionData.countyData.utilityRate.utility} customers pay an estimated{' '}
-                      ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh, making solar economics strong.{' '}
+                      <strong>High local utility rates:</strong> {regionData.countyData.utilityRate.utility} customers in {cityData.city} pay an estimated{' '}
+                      ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh, making solar self-consumption economics strong.{' '}
                       {regionData.countyData.utilityRate.note}
                     </span>
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
                     <span>
-                      <strong>Battery-first economics under NEM 3.0:</strong> California&rsquo;s Net Billing
-                      rules cut credit for power exported to the grid by roughly 75%, so the value is now in
-                      <em> storing and using your own power</em> &mdash; exactly what an off-grid VoltSol system does.
+                      <strong>Battery-first economics under NEM 3.0:</strong> Under California&rsquo;s current
+                      net-billing rules, many homeowners now receive only a fraction of the retail rate for
+                      power they export to the grid — so the value is now in
+                      <em> storing and using your own power</em> &mdash; exactly what a VoltSol solar + battery
+                      system delivers.
                       The federal 30% residential solar tax credit ended for systems placed in service after
                       Dec 31, 2025; ask about current state programs like SGIP battery rebates. Consult a tax
                       professional for your situation.
@@ -247,7 +249,7 @@ export default function MarketCityPage({ params }: PageProps) {
                 <div className="overflow-hidden rounded-2xl border border-gray-200">
                   <Image
                     src="/images/psps-alert-moment.png"
-                    alt={`PG&E PSPS power shutoff alert on a phone while an off-grid solar home stays powered in ${cityData.city}, California`}
+                    alt={`PSPS power shutoff alert on a phone while a solar-battery home stays powered in ${cityData.city}, California`}
                     width={1200}
                     height={675}
                     sizes="(min-width: 1024px) 60vw, 100vw"
@@ -255,13 +257,12 @@ export default function MarketCityPage({ params }: PageProps) {
                   />
                   <div className="bg-gradient-to-br from-blue-950 to-blue-900 p-5 sm:p-7">
                     <h2 id="psps-heading" className="text-xl font-bold text-white sm:text-2xl">
-                      When {cityData.utility} cuts the power, your lights stay on
+                      When the grid goes down, your lights stay on
                     </h2>
                     <p className="mt-2 max-w-2xl text-sm text-blue-100 sm:text-base">
                       Public Safety Power Shutoffs (PSPS) and wildfire-season outages can leave {cityData.city}
-                      {' '}homes dark for hours — sometimes days. A VoltSol off-grid system with EG4 battery backup
-                      keeps your fridge, lights, and Wi-Fi running while the grid is down. No generator, no fuel runs,
-                      no scramble.
+                      {' '}homes dark for hours — sometimes days. A VoltSol solar + battery system keeps your fridge,
+                      lights, and Wi-Fi running while the grid is down. No generator, no fuel runs, no scramble.
                     </p>
                   </div>
                 </div>

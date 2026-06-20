@@ -5,9 +5,9 @@ import { NORCAL_SOLAR_MARKETS, marketPageHref } from '@/lib/market-data';
 import { MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Off-Grid Solar & Battery Markets in California',
+  title: 'Residential Solar & Battery Storage Markets in California',
   description:
-    'VoltSol installs off-grid solar + EG4 battery systems across all 58 California counties and 294 cities — energy independence from PG&E and SMUD, blackout-ready, built for NEM 3.0.',
+    'VoltSol installs residential solar + EG4 battery storage across all 58 California counties and 294 cities — make your own power, store it, and keep the lights on through blackouts, built for NEM 3.0.',
   alternates: {
     canonical: '/market',
   },
@@ -19,13 +19,13 @@ const jsonLd = {
     {
       '@type': 'LocalBusiness',
       name: 'VoltSol Energy',
-      description: 'Off-grid solar and EG4 battery backup installation serving California — energy independence from PG&E and SMUD.',
+      description: 'Residential solar and EG4 battery storage installation serving California — make your own power, store it, and use it.',
       url: 'https://voltsolenergy.com',
       areaServed: {
         '@type': 'State',
         name: 'California',
       },
-      serviceType: 'Off-Grid Solar and Battery Storage Installation',
+      serviceType: 'Residential Solar and Battery Storage Installation',
     },
     {
       '@type': 'BreadcrumbList',
@@ -68,7 +68,7 @@ export default function MarketIndexPage() {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt="Off-grid solar home with battery backup keeping the lights on during a blackout in Northern California"
+            alt="Solar-powered home with battery backup keeping the lights on during a blackout in Northern California"
             fill
             priority
             sizes="100vw"
@@ -83,12 +83,12 @@ export default function MarketIndexPage() {
               Northern California
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              California Off-Grid Solar &amp; Battery Markets
+              California Residential Solar &amp; Battery Storage Markets
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-blue-100">
-              VoltSol installs off-grid solar paired with EG4 battery storage across California — so homeowners
-              make their own power, store it, and run through blackouts instead of renting from PG&E or SMUD.
-              Find your county below.
+              VoltSol installs residential solar paired with EG4 battery storage across California — so homeowners
+              make their own power, store it, and run through blackouts instead of sending it back to the grid
+              for a fraction of what they paid. Find your county below.
             </p>
           </div>
         </header>

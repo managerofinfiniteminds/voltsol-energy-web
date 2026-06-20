@@ -22,10 +22,10 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const regionData = findRegion(params.vertical, params.state, params.region);
   if (!regionData) return {};
 
-  const title = `Off-Grid Solar & Battery Backup in ${regionData.county}, CA`;
+  const title = `Solar + Battery Storage in ${regionData.county}, CA`;
   const description =
-    `Off-grid solar + EG4 battery installation across ${regionData.county}. ` +
-    `VoltSol gives ${regionData.cities.length} cities energy independence from the utility — systems from $8,700, ` +
+    `Residential solar + EG4 battery storage across ${regionData.county}. ` +
+    `VoltSol gives ${regionData.cities.length} cities energy independence — systems from $8,700, ` +
     `blackout-ready, and built for NEM 3.0. Free quote.`;
 
   return {
@@ -63,13 +63,13 @@ export default function RegionPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Off-grid solar and EG4 battery backup installation serving ${regionData.county}, California — energy independence from the local utility.`,
+        description: `Residential solar and EG4 battery storage installation serving ${regionData.county}, California — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         areaServed: {
           '@type': 'AdministrativeArea',
           name: regionData.county,
         },
-        serviceType: 'Off-Grid Solar and Battery Storage Installation',
+        serviceType: 'Residential Solar and Battery Storage Installation',
       },
       {
         '@type': 'BreadcrumbList',
@@ -108,7 +108,7 @@ export default function RegionPage({ params }: PageProps) {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt={`Off-grid solar home with battery backup keeping the lights on during a blackout in ${regionData.county}, California`}
+            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${regionData.county}, California`}
             fill
             priority
             sizes="100vw"
@@ -123,13 +123,13 @@ export default function RegionPage({ params }: PageProps) {
               {primaryUtility} Service Area
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Off-Grid Solar &amp; Battery Backup in {regionData.county}, CA
+              Solar + Battery Storage in {regionData.county}, CA
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-blue-100">
-              VoltSol gives {regionData.cities.length} cities across {regionData.county} a way off the
-              {' '}{primaryUtility} treadmill: off-grid solar paired with EG4 battery storage, from $8,700. Make your
+              VoltSol gives {regionData.cities.length} cities across {regionData.county} a way to energy
+              independence: residential solar paired with EG4 battery storage, from $8,700. Make your
               own power, store it, and keep the lights on through blackouts and PSPS shutoffs — instead of
-              exporting it back to the grid for pennies under NEM 3.0.
+              exporting it back to the grid for a fraction of what you paid under NEM 3.0.
             </p>
           </div>
         </header>
@@ -178,26 +178,28 @@ export default function RegionPage({ params }: PageProps) {
               {/* Why solar */}
               <section className="mt-10" aria-labelledby="why-solar-heading">
                 <h2 id="why-solar-heading" className="text-2xl font-bold text-gray-900">
-                  Why Go Off-Grid in {regionData.county}?
+                  Why Solar + Battery Storage in {regionData.county}?
                 </h2>
                 <div className="mt-4 space-y-3 text-gray-700">
                   <p>
                     Homeowners in {regionData.county} are served by <strong>{primaryUtility}</strong>, which
-                    has seen significant residential rate increases in recent years. Off-grid solar offers a
-                    way to lock in energy costs at installation prices and protect against future hikes.
+                    has seen significant residential rate increases in recent years. Residential solar + battery
+                    storage offers a way to lock in energy costs at installation prices and protect against
+                    future rate hikes.
                   </p>
                   <p>
                     Our systems combine rooftop solar panels, EG4 battery storage, and inverters to power your
-                    home&rsquo;s most energy-intensive loads — like heating, cooling, and major appliances — without
-                    relying on the grid. That means no utility buyback complexity under NEM 3.0, and backup
-                    power during PSPS shutoffs or outages.
+                    home&rsquo;s most energy-intensive loads — like heating, cooling, and major appliances — while
+                    maximizing the power you keep and use yourself. That means no utility buyback complexity
+                    under NEM 3.0, and backup power during PSPS shutoffs or outages.
                   </p>
                   <p>
-                    Since NEM 3.0 slashed grid export credits by roughly 75%, the smart economics in{' '}
-                    {regionData.county} shifted to storing your own power instead of selling it back &mdash; a
-                    battery-first, off-grid system. The federal 30% residential solar tax credit ended for
-                    systems placed in service after Dec 31, 2025, but California programs like SGIP battery
-                    rebates may still apply. Consult a tax professional to confirm your eligibility.
+                    Under California&rsquo;s current net-billing rules (NEM 3.0), the credit homeowners receive for
+                    solar energy they export is typically only a small fraction of the retail price they pay to
+                    buy electricity back. The smart economics in {regionData.county} shifted to storing and
+                    using your own power instead of selling it back. The federal 30% residential solar tax
+                    credit ended for systems placed in service after Dec 31, 2025, but California programs like
+                    SGIP battery rebates may still apply. Consult a tax professional to confirm your eligibility.
                   </p>
                 </div>
               </section>

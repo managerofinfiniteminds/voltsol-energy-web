@@ -278,6 +278,30 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     }
   } catch (e) { gate('11. Pricing answer accuracy', false, e.message); }
 
+  // GATE 13 (TAX TRUTH): the federal solar tax credit has ENDED. Ray must NOT claim
+  // a credit/ITC/incentive exists or might apply. Ideally states it's no longer
+  // available. Fails if it asserts a credit is available.
+  try {
+    const sid = `accept-tax-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      'is there a tax credit for going solar?',
+    ], { utility: 'PG&E' });
+    const reply = (history[history.length - 1]?.content || '').toLowerCase();
+    // Bad: implies a credit IS available / applies.
+    const claimsAvailable = /(you (can|may|could|might|would) (qualify|claim|get|be eligible)|there (is|are) (a |an )?(federal )?(tax )?(credit|itc|incentive|rebate)|the (federal )?itc (is|gives|covers|offers)|qualify for (a |an |the )?(tax |federal )?(credit|itc))/i.test(reply);
+    // Good signal: says it's gone / no longer available / ended / expired.
+    const saysGone = /(no longer|not available|ended|expired|isn'?t available|is gone|no (federal )?(tax )?credit|been eliminated|phased out|don'?t qualify (anymore|any longer))/i.test(reply);
+    gate('13. Tax credit answer is truthful (credit has ended, not asserted available)',
+      !claimsAvailable && saysGone,
+      `claimsAvailable=${claimsAvailable} saysGone=${saysGone} reply="${reply.slice(0, 130)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('13. Tax credit answer truthful', false, e.message); }
+
   // GATE 10 (NOT PUSHY): when the user declines to share a detail, the bot must NOT
   // re-ask for it on the very next turn and must NOT have created a lead. It should
   // stay helpful. We give a name, then refuse the phone, and check the reply isn't

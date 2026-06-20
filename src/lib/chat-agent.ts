@@ -28,7 +28,7 @@ export const BOT_NAME = 'Ray';
 // Grounded facts distilled from the live site (site-config FAQ, pricing tiers,
 // /technology + /learn content). The agent answers GENERAL questions from this
 // confidently, and defers anything specific-to-their-home (exact price, exact
-// system size, exact savings, financing, tax credits, dates) to a human installer.
+// system size, exact savings, financing, dates) to a human installer.
 // This is what turns it from a clipboard into a concierge. Keep it factual — the
 // agent must never invent numbers beyond what's here.
 export const KNOWLEDGE_BASE = `VOLTSOL FACTS (answer general questions from these; never invent beyond them):
@@ -51,9 +51,9 @@ INSTALL TIME: Most installs take 1–2 days. From free estimate to power-on is t
 
 BLACKOUTS: Because the home runs off the battery, the system keeps your power on during blackouts and PSPS shutoffs — unlike grid-tie solar, which shuts down with the grid.
 
-MUST DEFER TO A HUMAN INSTALLER (never quote or assert these yourself — this is the natural reason to connect them): the exact price for their home, exact system size / number of panels, exact savings, financing options, and specific install dates. For all of these: an installer will give them the precise figure after a quick look at their home.
+MUST DEFER TO A HUMAN INSTALLER (never quote or assert these yourself — this is the natural reason to connect them): the exact price for their home, exact system size / number of panels, exact savings, financing options, and specific install dates. For all of these: an installer will give them the precise figure after a quick look at their home. (Tax credits are NOT a defer item — see the rule below: there is no federal solar tax credit anymore, state that plainly.)
 
-TAX CREDITS / INCENTIVES: Do NOT claim specific tax credits, federal incentives, or rebates exist or apply — eligibility changes and depends on their situation. If asked, say honestly that an installer can walk them through any incentives they may qualify for. Never assert "there are federal tax incentives" as fact.`;
+TAX CREDITS / INCENTIVES: There is NO federal solar tax credit available anymore — the federal ITC has ended. Do NOT tell anyone there's a tax credit, ITC, federal incentive, or rebate, and never imply one might apply. If asked, be honest and straightforward: the federal solar tax credit is no longer available. You can add that VoltSol's pricing is already low (systems start at $8,700 all-in), so the value stands on its own, and an installer can go over the full cost picture with them. Never give tax advice.`;
 
 // Human-readable label for the next field, used in soft bridges.
 export function humanField(step: NextStep): string {
@@ -90,7 +90,7 @@ export function topicDirective(text: string): string {
   }
   // Taxes / incentives / rebates
   if (/\b(tax|itc|credit|incentive|rebate|write.?off|deduction)\b/.test(t)) {
-    return 'TAX DIRECTIVE (obey exactly): They asked about tax credits/incentives. Do NOT assert that any specific credit (e.g. the federal ITC) exists or applies — eligibility varies and you must not give tax advice. Say honestly that incentives can change and depend on their situation, and that one of our installers can walk them through any they may qualify for. Offer to connect them.';
+    return 'TAX DIRECTIVE (obey exactly): They asked about tax credits/incentives. The federal solar tax credit (ITC) is NO LONGER AVAILABLE — it has ended. Tell them honestly and plainly that there is no longer a federal tax credit for solar. Do NOT claim any credit, ITC, rebate, or incentive exists or might apply. You may reassure them that VoltSol systems are already affordable (starting at $8,700 all-in) so the value holds without a credit, and offer to connect them with an installer for the full cost breakdown. Never give tax advice.';
   }
   return '';
 }
@@ -257,6 +257,26 @@ export function isVagueLine(text: string): boolean {
 // ── System prompt loader ─────────────────────────────────────────────────────
 // Reads site_config.chatbot_system_prompt (no-store via db.ts fetchOptions).
 // Falls back to the bundled copy if the DB row is missing/empty.
+// Pull the live, admin-editable FAQ (site_config.faqs) so Ray answers from the
+// SAME Q&A Hugo curates at /admin/config — single source of truth, no redeploy to
+// update answers. Returns a formatted block or '' if unavailable.
+export async function getFaqBlock(): Promise<string> {
+  try {
+    const rows = await sql`SELECT value FROM site_config WHERE key = 'faqs' LIMIT 1`;
+    const raw = rows?.[0]?.value;
+    if (typeof raw !== 'string' || raw.trim().length < 5) return '';
+    const items = JSON.parse(raw) as Array<{ q?: string; a?: string }>;
+    if (!Array.isArray(items) || items.length === 0) return '';
+    const lines = items
+      .filter((it) => it && typeof it.q === 'string' && typeof it.a === 'string' && it.q.trim() && it.a.trim())
+      .map((it) => `Q: ${it.q!.trim()}\nA: ${it.a!.trim()}`);
+    if (lines.length === 0) return '';
+    return `VOLTSOL FAQ (curated by the VoltSol team — these are approved answers; use them when relevant and stay consistent with them):\n\n${lines.join('\n\n')}`;
+  } catch {
+    return '';
+  }
+}
+
 export async function getSystemPrompt(): Promise<string> {
   let base = FALLBACK_SYSTEM_PROMPT;
   try {
@@ -272,6 +292,10 @@ export async function getSystemPrompt(): Promise<string> {
   if (!base.includes('VOLTSOL FACTS')) {
     base = `${base}\n\n${KNOWLEDGE_BASE}`;
   }
+  // Append the live, curated FAQ (Hugo-editable) so answers track what the team
+  // publishes. This is additive to the static facts above.
+  const faq = await getFaqBlock();
+  if (faq) base = `${base}\n\n${faq}`;
   return base;
 }
 

@@ -293,6 +293,10 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     const assumesTool = /(after (using|checking out|completing|trying)|since you (used|checked|tried)|your (estimate|quiz) results|you just (used|finished|completed|checked)|saw (how much|your savings|your estimate)|after the (estimate|quiz))/i.test(g);
     gate('14. Cold widget open does not assume estimate-tool use', !assumesTool && g.length > 5,
       `assumes=${assumesTool} greeting="${g.slice(0, 130)}"`);
+    // 14b: human phrasing — must NOT use the stiff "what can/should I call you".
+    const vagueName = /what (can|should) i call you/i.test(g);
+    gate('14b. Name ask uses plain human phrasing (no "what can I call you")', !vagueName,
+      `vague=${vagueName} greeting="${g.slice(0, 130)}"`);
     const url = neonUrl();
     if (url) {
       const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));

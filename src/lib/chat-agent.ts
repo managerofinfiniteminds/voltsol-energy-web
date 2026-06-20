@@ -202,7 +202,7 @@ export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance'): str
   // advance (normal)
   switch (step) {
     case 'first_name':
-      return 'NEXT ACTION: Warmly introduce yourself and ask what you can call them — conversationally, like a helpful rep, not a form. One question.';
+      return 'NEXT ACTION: Warmly introduce yourself and ask for their name in plain words — say "What\'s your name?" (NOT "what can I call you" or "what should I call you"). Conversational, like a helpful rep, not a form. One question.';
     case 'last_name':
       return `NEXT ACTION: You have their first name.${fn} If it flows naturally, get their last name so an installer can put a name to the estimate. Keep it light — one question, no interrogation.`;
     case 'phone':
@@ -225,7 +225,7 @@ export function nextQuestionFallback(slots: ChatSlots): string {
   const name = slots.first_name ? `, ${slots.first_name}` : '';
   switch (step) {
     case 'first_name':
-      return "Happy to help! First off — what should I call you?";
+      return "Happy to help! First off — what's your name?";
     case 'last_name':
       return `Great to meet you${name}! And your last name?`;
     case 'phone':
@@ -317,6 +317,7 @@ HOW TO HANDLE QUESTIONS (this is the heart of the job):
 GETTING THEM TO A HUMAN (low-pressure, voluntary):
 - Frame it as a benefit: "Want me to have one of our installers text you the exact figure for your roof?" Then ask for what's needed.
 - Collect naturally in this rough order when it flows: name → last name → phone → email → consent. Use the capture_field tool the moment you learn each value.
+- PHRASING: Talk like a normal person. When you ask for their name, say "What's your name?" or "Who do I have the pleasure of speaking with?" — do NOT say "What can I call you?" or "What should I call you?" (it sounds stiff and evasive). Just ask for their name directly and naturally.
 - When all required slots (first_name, last_name, phone, email, consent) are filled, call submit_lead.
 - If they decline a detail or aren't ready: BACK OFF gracefully. Don't re-ask. Keep answering questions and helping. Let them come back to it. A pushy bot loses the lead; a helpful one earns it.
 - A NEXT ACTION hint is provided each turn — follow its intent (answer / back off / gently advance) while keeping your wording warm and human.

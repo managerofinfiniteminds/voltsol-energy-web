@@ -16,6 +16,8 @@ import {
   getSystemPrompt,
   buildContextPreamble,
   applyCapture,
+  extractFromText,
+  inferExpectedField,
   hasAllRequiredSlots,
   type ChatSlots,
   type QuizContext,
@@ -283,6 +285,22 @@ export async function POST(req: NextRequest) {
   let slots: ChatSlots = { ...prevSlots };
   let engineLeadId = prevLeadId;
 
+  // ── Deterministic backstop: extract slots from the user's latest message(s)
+  // BEFORE calling the model, so capture never depends on the model emitting
+  // tool calls. We infer what the assistant last asked to disambiguate bare
+  // replies (e.g. a lone "Doe" after "what's your last name?").
+  {
+    const lastAssistant = [...userMessages].reverse().find((m) => m.role === 'assistant')?.content;
+    let expected = inferExpectedField(lastAssistant);
+    // Walk user messages that arrived after the last assistant line (usually 1).
+    const lastAssistantIdx = userMessages.map((m) => m.role).lastIndexOf('assistant');
+    const newUserMsgs = userMessages.slice(lastAssistantIdx + 1).filter((m) => m.role === 'user');
+    for (const m of newUserMsgs) {
+      slots = extractFromText(slots, m.content, expected);
+      expected = null; // only the first new message answers the expected field
+    }
+  }
+
   // If already completed, acknowledge gracefully without re-submitting.
   if (prevStatus === 'completed' && engineLeadId) {
     return sseStream(
@@ -346,7 +364,9 @@ export async function POST(req: NextRequest) {
 
       if (fn === 'capture_field') {
         slots = applyCapture(slots, args.field, args.value);
-        toolResult = `captured ${args.field}`;
+        toolResult = hasAllRequiredSlots(slots)
+          ? `captured ${args.field}. All required fields are now present — call submit_lead now.`
+          : `captured ${args.field}`;
       } else if (fn === 'hand_off_to_form') {
         handoff = true;
         toolResult = 'handed off to form';
@@ -375,16 +395,29 @@ export async function POST(req: NextRequest) {
 
   // ── Safety net: auto-submit when all required slots are present (incl. consent),
   // even if the model didn't explicitly call submit_lead. Consent here is only
-  // true because applyCapture parsed a genuine affirmative from the user.
+  // true because applyCapture / extractFromText parsed a genuine affirmative.
   if (!completed && !engineLeadId && hasAllRequiredSlots(slots)) {
     const id = await submitToEngine(req, slots, quiz, ip);
     if (id) {
       engineLeadId = id;
       completed = true;
-      if (!assistantText) {
-        assistantText = `You're all set${slots.first_name ? `, ${slots.first_name}` : ''}! A VoltSol tech will reach out shortly with your estimate. ☀️`;
-      }
+      // Override whatever the model said — guarantee an accurate confirmation.
+      assistantText = `You're all set${slots.first_name ? `, ${slots.first_name}` : ''}! A VoltSol tech will reach out shortly with your estimate. ☀️`;
     }
+  }
+
+  // ── Truth guard: NEVER tell the customer they're done unless a lead actually
+  // landed. If the model claimed success but no lead id exists, replace its text
+  // with an honest continuation so we don't drop a lead silently.
+  if (!engineLeadId && !handoff && /\b(all set|you'?re set|all done|reach out|be in touch|got everything|submitted)\b/i.test(assistantText)) {
+    const missing: string[] = [];
+    if (!slots.first_name) missing.push('your name');
+    if (!slots.phone) missing.push('the best phone number');
+    if (!slots.email) missing.push('your email');
+    if (slots.consent !== true) missing.push('your okay to have a tech reach out');
+    assistantText = missing.length
+      ? `Almost there! I just need ${missing.slice(0, 2).join(' and ')} to send this over.`
+      : 'Got it! What else can I grab for you?';
   }
 
   if (!assistantText) {

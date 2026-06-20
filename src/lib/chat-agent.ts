@@ -234,6 +234,104 @@ export function parseConsentValue(value: string): boolean {
   return /^(true|yes|y|sure|yep|yeah|ok|okay|agreed|i agree|consent)/i.test((value || '').trim());
 }
 
+// ── Deterministic extraction backstop ───────────────────────────────────────
+// The model is NOT reliable at always emitting capture_field/submit_lead tool
+// calls (especially smaller/fallback models). For a lead-capture tool that is
+// unacceptable — a missed capture means a customer who thinks they're done but
+// produced no lead. So we ALSO parse the raw conversation server-side and fill
+// any slot the model missed. Tool calls remain the primary path; this is the net.
+
+const CONSENT_AFFIRM_RE =
+  /\b(yes|yep|yeah|yup|sure|ok|okay|sounds good|that'?s fine|fine|agree|agreed|i consent|you can|go ahead|please do|of course|absolutely|definitely)\b/i;
+const CONSENT_DENY_RE =
+  /\b(no|nope|don'?t|do not|stop|not interested|never|opt out|unsubscribe)\b/i;
+
+// Extract obvious fields from a single user utterance. Conservative: only fills
+// what it is confident about. Names are only taken from explicit "my name is X"
+// / "i'm X" / "this is X" patterns, or a lone 1-2 word reply when that slot is
+// the one being asked for (handled by the caller via expectedField).
+export function extractFromText(
+  slots: ChatSlots,
+  text: string,
+  expectedField?: CaptureField | null
+): ChatSlots {
+  const next = { ...slots };
+  const raw = (text || '').trim();
+  if (!raw) return next;
+
+  // Email
+  if (!next.email) {
+    const m = raw.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+    if (m && isValidEmail(m[0])) next.email = m[0].toLowerCase();
+  }
+  // Phone — look for a 10/11-digit run allowing separators
+  if (!next.phone) {
+    const m = raw.match(/(\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/);
+    if (m) {
+      const p = cleanPhone(m[0]);
+      if (p) next.phone = p;
+    }
+  }
+  // ZIP (5 digits standalone)
+  if (!next.zip) {
+    const m = raw.match(/\b\d{5}\b/);
+    if (m && !next.phone?.includes(m[0])) next.zip = m[0];
+  }
+  // Explicit name patterns
+  if (!next.first_name || !next.last_name) {
+    const nm = raw.match(/\b(?:my name is|i am|i'?m|this is|name'?s|it'?s)\s+([A-Za-z][A-Za-z'’-]+)(?:\s+([A-Za-z][A-Za-z'’-]+))?/i);
+    if (nm) {
+      if (!next.first_name && nm[1]) next.first_name = capitalize(nm[1]);
+      if (!next.last_name && nm[2]) next.last_name = capitalize(nm[2]);
+    }
+  }
+  // Consent — only when the conversation is at/after the consent ask, or the
+  // message clearly speaks to being contacted.
+  if (next.consent === undefined) {
+    const aboutContact = expectedField === 'consent' || /contact|reach out|call|text|email me|touch/i.test(raw);
+    if (aboutContact) {
+      if (CONSENT_DENY_RE.test(raw) && !CONSENT_AFFIRM_RE.test(raw)) next.consent = false;
+      else if (CONSENT_AFFIRM_RE.test(raw)) next.consent = true;
+    }
+  }
+
+  // Expected-field fallback: if we just asked for a specific field and the reply
+  // is a short bare value, take it.
+  if (expectedField) {
+    const bare = raw.replace(/[.,!?]$/, '').trim();
+    const words = bare.split(/\s+/);
+    if (expectedField === 'first_name' && !next.first_name && words.length <= 2 && /^[A-Za-z'’-]+$/.test(words[0])) {
+      next.first_name = capitalize(words[0]);
+      if (words[1] && !next.last_name && /^[A-Za-z'’-]+$/.test(words[1])) next.last_name = capitalize(words[1]);
+    } else if (expectedField === 'last_name' && !next.last_name && words.length <= 2 && /^[A-Za-z'’-]+$/.test(words[0])) {
+      next.last_name = capitalize(words[0]);
+    } else if (expectedField === 'city' && !next.city && /^[A-Za-z\s'’-]+$/.test(bare) && bare.length <= 40) {
+      next.city = bare;
+    }
+  }
+  return next;
+}
+
+// Infer which field the assistant most recently asked for, from its last line.
+export function inferExpectedField(lastAssistant: string | undefined): CaptureField | null {
+  const t = (lastAssistant || '').toLowerCase();
+  if (!t) return null;
+  if (/last name/.test(t)) return 'last_name';
+  if (/first name|what should i call you|your name|who am i/.test(t)) return 'first_name';
+  if (/phone|cell|number|text you|call you/.test(t)) return 'phone';
+  if (/email/.test(t)) return 'email';
+  if (/address|street/.test(t)) return 'street_address';
+  if (/\bcity\b/.test(t)) return 'city';
+  if (/zip/.test(t)) return 'zip';
+  if (/contact|reach out|consent|okay if|all good if|opt out/.test(t)) return 'consent';
+  return null;
+}
+
+function capitalize(s: string): string {
+  if (!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+}
+
 // Apply a capture_field tool call into the slots object, with validation.
 export function applyCapture(slots: ChatSlots, field: string, value: string): ChatSlots {
   const v = (value || '').trim().slice(0, 500);

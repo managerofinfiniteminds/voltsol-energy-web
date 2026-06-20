@@ -1,5 +1,5 @@
 /**
- * Editorial content for /learn - SEO-focused articles about off-grid solar
+ * Editorial content for /learn - SEO-focused articles about residential solar + battery storage
  */
 
 export interface ArticleSection {
@@ -20,37 +20,37 @@ export interface LearnArticle {
 
 export const LEARN_ARTICLES: LearnArticle[] = [
   {
-    slug: "off-grid-solar-explained",
-    title: "How Off-Grid Solar Actually Works (and Why It Beats Grid-Tie)",
-    metaTitle: "Off-Grid Solar Explained: How It Works & Why Beats Grid-Tie",
+    slug: "self-consumption-solar-explained",
+    title: "How Residential Solar + Battery Storage Actually Works (and Why It Beats Simple Grid-Tie)",
+    metaTitle: "Residential Solar + Battery Storage Explained: How It Works & Why It Beats Grid-Tie",
     metaDescription:
-      "Learn how off-grid solar systems work, differ from grid-tie, and why hybrid DC systems give you energy independence without the utility bill.",
+      "Learn how residential solar + battery storage systems work, differ from simple grid-tie, and why battery-backed solar gives you energy independence without the utility bill.",
     excerpt:
-      "Understand the difference between off-grid and grid-tie solar, and why going off-grid gives you true energy independence.",
+      "Understand the difference between solar + battery storage and simple grid-tie solar, and why keeping the power you make gives you true energy independence.",
     sections: [
       {
         paragraphs: [
           "Most solar systems sold in California today are grid-tie. They feed power back to the utility, spin your meter backward, and still shut off when the grid goes down. You are generating your own electricity but remain tied to the utility company.",
-          "Off-grid solar is different. It disconnects you from the utility entirely. Your panels charge a battery. The battery powers your home. When the sun is out, you run on sun. When it is dark, you run on stored energy. No monthly bill. No net metering rules. No blackout risk.",
+          "Solar + battery storage is different. Your panels charge a battery that powers your home. When the sun is out, you run on sun. When it is dark, you run on stored energy. No monthly bill. No net metering rules. No blackout risk.",
         ],
       },
       {
         heading: "Grid-Tie Solar: The Short Version",
         paragraphs: [
           "Grid-tie systems send power to the utility and draw it back when you need it. The grid acts as your battery. This works fine until the grid goes down, then your panels turn off too, even on a sunny day. Most grid-tie installs cost $25,000 to $40,000 and lock you into long-term financing.",
-          "You are also subject to net metering policies. In California, NEM 3.0 slashed the rate utilities pay you for exported power from roughly 1:1 credit to about 25 cents on the dollar. That changes the economics dramatically. When PG&E charges you 40 cents per kWh but only credits you 10 cents for what you send back, the value proposition collapses.",
+          "You are also subject to net metering policies. In California, NEM 3.0 slashed the credit homeowners receive for exported solar power. Under California's current net-billing rules, many homeowners now receive only a fraction of the retail rate for power they export. That changes the economics dramatically. When your utility charges 40+ cents per kWh but credits only a fraction of that for what you send back, the value proposition collapses.",
           "Grid-tie systems also require interconnection approval from your utility. The process can take weeks or months, and utilities can refuse your application if local grid capacity is maxed out. Once approved, you are still vulnerable to future rule changes like NEM 4.0 or fixed-charge proposals.",
         ],
       },
       {
-        heading: "Off-Grid Solar: How It Works",
+        heading: "Solar + Battery Storage: How It Works",
         paragraphs: [
-          "An off-grid system has three core pieces: solar panels, a battery bank, and a charge controller or inverter. Panels make DC power. The battery stores it. The inverter converts it to AC for your appliances, or in some cases the power feeds directly into hybrid AC/DC mini-split units that run on DC during the day.",
+          "A solar + battery storage system has three core pieces: solar panels, a battery bank, and a charge controller or inverter. Panels make DC power. The battery stores it. The inverter converts it to AC for your appliances, or in some cases the power feeds directly into hybrid AC/DC mini-split units that run on DC during the day.",
           "Because the system is self-contained, you keep running during blackouts. No meter to spin, no export credits, no utility permission needed. You produce what you use. Sizing matters -- you need enough panel capacity to run daytime loads and charge the battery, and enough battery capacity to cover nighttime and cloudy days.",
           "A typical Northern California home uses 20 to 30 kWh per day. VoltSol focuses on the biggest load first: heating and cooling. HVAC can be 40 to 60 percent of your total usage. By running that on solar with a mini-split heat pump, you cut the battery and panel requirements dramatically. Many customers need only 3 to 5 kW of solar and 10 to 15 kWh of battery storage to cover their comfort load year-round.",
         ],
         list: {
-          title: "Key advantages of off-grid solar:",
+          title: "Key advantages of solar + battery storage:",
           items: [
             "True energy independence with no monthly utility bill",
             "Power during blackouts and outages",
@@ -64,15 +64,15 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Hybrid Systems: The Best of Both Worlds",
         paragraphs: [
-          "Some homeowners choose a hybrid approach: off-grid for critical loads like HVAC, refrigerator, and lights, with optional grid backup for heavy appliances like electric dryers or ranges. This gives you resilience without the cost of oversizing your system for rare peak loads.",
+          "Some homeowners choose a hybrid approach: self-consumption for critical loads like HVAC, refrigerator, and lights, with optional grid backup for heavy appliances like electric dryers or ranges. This gives you resilience without the cost of oversizing your system for rare peak loads.",
           "VoltSol uses EG4 hybrid mini-split heat pumps that accept DC solar input directly. During the day, your panels power the AC without converting to grid power first. Excess energy charges an EG4 LiFePO4 battery. At night or during outages, the battery takes over. This eliminates the inverter losses that grid-tie systems carry and maximizes the energy you capture from every panel.",
         ],
       },
       {
-        heading: "Who Should Go Off-Grid?",
+        heading: "Who Should Consider Solar + Battery Storage?",
         paragraphs: [
-          "Off-grid solar makes the most sense if you face high utility rates, frequent outages, or want predictable energy costs. In Northern California, where PG&E rates have climbed past 40 cents per kWh and rate increases continue every year, the payback period for off-grid systems is typically under 3 years.",
-          "Off-grid is also the right choice if you are building in a remote area where grid extension costs tens of thousands of dollars, or if you simply want independence from utility rate games and policy shifts. With a well-designed system and efficient appliances, off-grid living is practical, reliable, and increasingly affordable.",
+          "Solar + battery storage makes the most sense if you face high utility rates, frequent outages, or want predictable energy costs. In Northern California, where utility rates have climbed past 40 cents per kWh and rate increases continue every year, the payback period for well-sized systems is typically under 3 years.",
+          "Solar + battery storage is also the right choice if you are building in a remote area where grid extension costs tens of thousands of dollars, or if you simply want independence from utility rate games and policy shifts. With a well-designed system and efficient appliances, energy independence is practical, reliable, and increasingly affordable.",
         ],
       },
       {
@@ -85,19 +85,19 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     ],
     faq: [
       {
-        q: "Can I run my whole house off-grid with solar?",
-        a: "Yes, but sizing matters. Most homes use 20-30 kWh per day. VoltSol focuses on your biggest load -- HVAC -- first, which cuts requirements dramatically. Many customers run heating, cooling, and essential loads off-grid while keeping grid connection for heavy appliances.",
+        q: "Can I run my whole house on solar + battery storage?",
+        a: "Yes, but sizing matters. Most homes use 20-30 kWh per day. VoltSol focuses on your biggest load -- HVAC -- first, which cuts requirements dramatically. Many customers run heating, cooling, and essential loads on solar + battery while keeping a grid connection for heavy appliances.",
       },
       {
         q: "What happens on cloudy days or during winter?",
         a: "Your battery bank covers nighttime and cloudy periods. In Northern California, winter solar production drops by about 40-50 percent, but heating loads also shift to efficient mini-split heat pumps. Proper sizing ensures year-round coverage.",
       },
       {
-        q: "Do I need utility permission to go off-grid?",
-        a: "No. Off-grid systems do not interconnect with the utility, so you skip the approval process entirely. You still need local building and electrical permits, which VoltSol handles for you.",
+        q: "Do I need utility permission for a solar + battery system?",
+        a: "No. Battery-backed solar systems that do not interconnect with the utility skip the approval process entirely. You still need local building and electrical permits, which VoltSol handles for you.",
       },
       {
-        q: "How long does an off-grid solar system last?",
+        q: "How long does a solar + battery storage system last?",
         a: "Solar panels carry 25-year warranties and often last 30+ years. EG4 LiFePO4 batteries are rated for 8,000+ cycles, roughly 20 years of daily use. Inverters and charge controllers typically last 10-15 years and are straightforward to replace.",
       },
     ],
@@ -113,8 +113,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         paragraphs: [
-          "When most people think solar battery, they think Tesla Powerwall. The brand has name recognition, sleek marketing, and a premium feel. But for many homeowners, especially those looking at off-grid solar under $10,000, it is not the best option.",
-          "EG4 LiFePO4 batteries have become the go-to choice for off-grid and hybrid solar installs, especially in the under-$15,000 system category. They offer comparable or better cycle life, safer chemistry, and a fraction of the cost. Here is how the three leading home battery brands compare in 2026.",
+          "When most people think solar battery, they think Tesla Powerwall. The brand has name recognition, sleek marketing, and a premium feel. But for many homeowners, especially those looking at residential solar + battery storage under $10,000, it is not the best option.",
+          "EG4 LiFePO4 batteries have become the go-to choice for battery-backed and hybrid solar installs, especially in the under-$15,000 system category. They offer comparable or better cycle life, safer chemistry, and a fraction of the cost. Here is how the three leading home battery brands compare in 2026.",
         ],
       },
       {
@@ -138,7 +138,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Tesla Powerwall 3 costs approximately $15,000 installed in California as of mid-2026. That includes the battery, gateway hardware, and professional installation. The price can climb higher if electrical panel upgrades are needed. For many homeowners, the Powerwall pushes the total system cost well past $25,000 when combined with solar panels.",
           "Enphase IQ 5P runs approximately $7,000 to $9,000 per 5 kWh unit installed. A 10 kWh system (two units) costs $14,000 to $18,000. A 15 kWh system (three units) runs $21,000 to $27,000. The modular design is flexible, but the per-kWh cost is higher than competitors.",
-          "EG4 batteries cost approximately $3,000 to $5,000 for a 15 kWh unit including installation when purchased as part of a complete VoltSol system. Standalone battery purchases run slightly higher. For a complete off-grid system including solar panels, hybrid mini-split heat pump, EG4 battery, and installation, VoltSol delivers the package for under $10,000.",
+          "EG4 batteries cost approximately $3,000 to $5,000 for a 15 kWh unit including installation when purchased as part of a complete VoltSol system. Standalone battery purchases run slightly higher. For a complete solar + battery system including solar panels, hybrid mini-split heat pump, EG4 battery, and installation, VoltSol delivers the package for under $10,000.",
         ],
       },
       {
@@ -153,7 +153,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Tesla Powerwall requires a Tesla-certified installer and integrates primarily with Tesla inverters or approved third-party gear. The installation process is straightforward, but you are locked into the Tesla ecosystem. If you want to expand or mix brands later, your options are limited.",
           "Enphase IQ 5P integrates seamlessly with Enphase microinverters and the Enphase app ecosystem. If you already have Enphase gear, adding IQ batteries is simple. If you do not, you are buying into the full Enphase stack. Mixing Enphase batteries with other inverter brands is possible but not officially supported.",
-          "EG4 batteries work with most off-grid and hybrid inverters, including EG4 own inverters, Sol-Ark, Victron, and others. The open architecture makes EG4 the most flexible option for DIY installers and integrators who want freedom to mix components. VoltSol pairs EG4 batteries with EG4 hybrid mini-split heat pumps for a vertically integrated system designed for off-grid solar under $10,000.",
+          "EG4 batteries work with most battery-backed and hybrid inverters, including EG4 own inverters, Sol-Ark, Victron, and others. The open architecture makes EG4 the most flexible option for DIY installers and integrators who want freedom to mix components. VoltSol pairs EG4 batteries with EG4 hybrid mini-split heat pumps for a vertically integrated system designed for residential solar + battery storage under $10,000.",
         ],
       },
       {
@@ -161,14 +161,14 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "If you want a turnkey brand-name solution and cost is not a primary concern, Tesla Powerwall delivers a polished product with strong support. It works well for grid-tie systems with battery backup.",
           "If you already have Enphase microinverters and want to stay in that ecosystem, Enphase IQ 5P is a natural fit. The modular design and 15-year warranty are appealing, though the cost per kWh is steep.",
-          "If you are building an off-grid system or want the longest lifespan and lowest cost per kWh, EG4 is the clear winner. The 8,000+ cycle rating, LiFePO4 safety, and sub-$5,000 installed pricing make it the default choice for value-focused installations. VoltSol uses EG4 exclusively because it delivers the performance customers need without the luxury-brand markup.",
+          "If you are building an solar + battery system or want the longest lifespan and lowest cost per kWh, EG4 is the clear winner. The 8,000+ cycle rating, LiFePO4 safety, and sub-$5,000 installed pricing make it the default choice for value-focused installations. VoltSol uses EG4 exclusively because it delivers the performance customers need without the luxury-brand markup.",
         ],
       },
     ],
     faq: [
       {
         q: "Can I use EG4 batteries with my existing solar panels?",
-        a: "Yes. EG4 batteries integrate with most off-grid and hybrid inverters. If you have grid-tie microinverters, you will need to add a battery-compatible inverter or charge controller. Your installer can confirm compatibility based on your current setup.",
+        a: "Yes. EG4 batteries integrate with most battery-backed and hybrid inverters. If you have grid-tie microinverters, you will need to add a battery-compatible inverter or charge controller. Your installer can confirm compatibility based on your current setup.",
       },
       {
         q: "How long do EG4 batteries actually last in real-world use?",
@@ -176,7 +176,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Is Tesla Powerwall worth the extra cost?",
-        a: "For most off-grid and hybrid installs, no. Tesla Powerwall costs 3-5 times more than EG4 per kWh and has a shorter rated lifespan. Powerwall makes sense if you want a premium brand, need a grid-tie-plus-backup system, or are already deep in the Tesla ecosystem. For pure value, EG4 wins.",
+        a: "For most battery-backed and hybrid installs, no. Tesla Powerwall costs 3-5 times more than EG4 per kWh and has a shorter rated lifespan. Powerwall makes sense if you want a premium brand, need a grid-tie-plus-backup system, or are already deep in the Tesla ecosystem. For pure value, EG4 wins.",
       },
       {
         q: "Can I mix different battery brands in one system?",
@@ -189,18 +189,18 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     ],
   },
   {
-    slug: "off-grid-solar-under-10000",
-    title: "Off-Grid Solar Under $10,000: Is It Actually Real?",
-    metaTitle: "Off-Grid Solar Under $10,000: How VoltSol Does It | Real Systems",
+    slug: "self-consumption-solar-under-10000",
+    title: "Solar + Battery Storage Under $10,000: Is It Actually Real?",
+    metaTitle: "Solar + Battery Storage Under $10,000: How VoltSol Does It | Real Systems",
     metaDescription:
-      "Yes, off-grid solar under $10,000 is real. Learn how VoltSol uses EG4 hybrid mini-splits to deliver whole-home comfort without the $40k tag.",
+      "Yes, residential solar + battery storage under $10,000 is real. Learn how VoltSol uses EG4 hybrid mini-splits to deliver whole-home comfort without the $40k tag.",
     excerpt:
-      "VoltSol proves you do not need $40,000 to go off-grid. Here is how we deliver real systems for under $10k.",
+      "VoltSol proves you do not need $40,000 to go solar with battery storage. Here is how we deliver real systems for under $10k.",
     sections: [
       {
         paragraphs: [
-          "The solar industry has trained homeowners to expect big numbers. $30,000. $40,000. Financing for 20 years. Most contractors will tell you that going off-grid is impractical, expensive, and only for survivalists or off-the-grid cabins.",
-          "VoltSol installs complete off-grid solar systems for under $10,000. No financing trap. No utility bills. Just a system that works. The secret is simple: focus on the biggest energy hog first, use the right technology, and skip the luxury-brand markup.",
+          "The solar industry has trained homeowners to expect big numbers. $30,000. $40,000. Financing for 20 years. Most contractors will tell you that going solar with battery storage is impractical, expensive, and only for survivalists or off-the-grid cabins.",
+          "VoltSol installs complete residential solar + battery systems for under $10,000. No financing trap. No utility bills. Just a system that works. The secret is simple: focus on the biggest energy hog first, use the right technology, and skip the luxury-brand markup.",
         ],
       },
       {
@@ -228,18 +228,18 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Can You Really Run a Whole House Off-Grid for Under $10k?",
+        heading: "Can You Really Run a Whole House on Solar + Battery for Under $10k?",
         paragraphs: [
           "It depends on what you mean by whole house. If you want to run electric stoves, dryers, water heaters, pool pumps, and every outlet simultaneously, no. That requires a much larger system.",
           "If you focus on your highest-value loads -- heating, cooling, refrigeration, lighting, and electronics -- then yes. VoltSol systems are designed for comfort and resilience, not running every appliance at once. Most customers add a small backup generator for rare heavy loads or extended cloudy periods, but daily operation is 100 percent solar.",
-          "You can also expand incrementally. Start with HVAC off-grid. Add a second battery later. Add more panels when budget allows. The modular design scales with your needs and budget.",
+          "You can also expand incrementally. Start with HVAC self-consumption. Add a second battery later. Add more panels when budget allows. The modular design scales with your needs and budget.",
         ],
       },
       {
         heading: "EG4 vs Premium Brands: Why the Price Gap?",
         paragraphs: [
           "EG4 builds residential solar and battery gear at scale, direct from the manufacturer. No celebrity endorsements. No Super Bowl ads. Just reliable LiFePO4 batteries, efficient inverters, and hybrid mini-splits that do the job. The quality is comparable to premium brands, but the price is half or less.",
-          "EG4 LiFePO4 batteries are rated for 6,000 to 8,000+ cycles, which compares favorably to Tesla Powerwall at 3,650 cycles. EG4 chemistry is also safer -- LiFePO4 does not thermally run away under stress like lithium-ion NMC. For off-grid solar under $10,000, EG4 is the obvious choice.",
+          "EG4 LiFePO4 batteries are rated for 6,000 to 8,000+ cycles, which compares favorably to Tesla Powerwall at 3,650 cycles. EG4 chemistry is also safer -- LiFePO4 does not thermally run away under stress like lithium-ion NMC. For residential solar + battery storage under $10,000, EG4 is the obvious choice.",
         ],
       },
       {
@@ -253,14 +253,14 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Real Systems, Real Customers",
         paragraphs: [
-          "VoltSol has installed dozens of off-grid systems across Northern California. Customers include homeowners in Fresno, Sacramento, Modesto, and surrounding counties who were tired of rising PG&E bills and wanted energy independence. Most report that their systems perform as expected and pay for themselves in under 3 years.",
+          "VoltSol has installed dozens of solar + battery systems across Northern California. Customers include homeowners in Fresno, Sacramento, Modesto, and surrounding counties who were tired of rising PG&E bills and wanted energy independence. Most report that their systems perform as expected and pay for themselves in under 3 years.",
           "The systems are designed for California weather: hot summers, mild winters, occasional multi-day storms. Battery sizing accounts for 2 to 3 days of autonomy. Panel tilt and orientation maximize year-round production. Everything is engineered for real-world conditions, not ideal lab specs.",
         ],
       },
     ],
     faq: [
       {
-        q: "Is $10,000 really enough for a complete off-grid solar system?",
+        q: "Is $10,000 really enough for a complete residential solar + battery system?",
         a: "Yes, if you focus on your highest-value loads first. VoltSol systems cover heating, cooling, lighting, and small electronics for under $10,000 installed. Heavy appliances like electric stoves or dryers require a larger system or optional grid backup.",
       },
       {
@@ -277,7 +277,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Can I still have a grid connection as backup?",
-        a: "Yes. Many customers keep their utility connection for backup but run off-grid day-to-day. This gives you resilience without the cost of oversizing for rare peak loads. You pay a minimal grid connection fee but use very little energy from the utility.",
+        a: "Yes. Many customers keep their utility connection for backup but run on your own stored power day-to-day. This gives you resilience without the cost of oversizing for rare peak loads. You pay a minimal grid connection fee but use very little energy from the utility.",
       },
     ],
   },
@@ -309,7 +309,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Most mini-splits run on AC power from the grid. VoltSol uses EG4 hybrid mini-splits that accept DC power directly from solar panels. During the day, your panels feed DC power straight into the heat pump. No inverter needed. No conversion losses. The heat pump runs on pure sunshine.",
           "When the sun goes down or clouds roll in, the system switches to battery power. An EG4 LiFePO4 battery stores excess solar energy during the day and delivers it at night. The battery is sized to cover nighttime cooling or heating, typically 10 to 15 kWh for most homes.",
-          "This DC-coupled architecture is 5 to 10 percent more efficient than traditional AC-coupled systems. It also reduces equipment costs because you skip the large central inverter. For off-grid solar under $10,000, every efficiency gain matters.",
+          "This DC-coupled architecture is 5 to 10 percent more efficient than traditional AC-coupled systems. It also reduces equipment costs because you skip the large central inverter. For residential solar + battery storage under $10,000, every efficiency gain matters.",
         ],
       },
       {
@@ -347,7 +347,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Who Should Consider Solar Mini-Split Systems?",
         paragraphs: [
-          "This approach makes the most sense if your biggest energy expense is heating and cooling, which is true for most California homeowners. It also works well if you want off-grid capability, have high utility rates, or face frequent outages.",
+          "This approach makes the most sense if your biggest energy expense is heating and cooling, which is true for most California homeowners. It also works well if you want self-consumption capability, have high utility rates, or face frequent outages.",
           "If you have an old central AC system that needs replacement, adding solar and a mini-split heat pump at the same time is a no-brainer. You get a new HVAC system and free energy for roughly the cost of a traditional AC replacement plus a few years of utility bills.",
           "VoltSol serves Northern California including Fresno, Sacramento, Modesto, and surrounding counties. We handle permitting, installation, and inspection coordination. If you want year-round comfort without the utility bill, this is the fastest and most affordable way to get there.",
         ],
@@ -396,7 +396,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "At minimum, every solar project in California needs a building permit and an electrical permit. The building permit covers structural attachments like roof mounting or ground-mount racking. The electrical permit covers wiring, inverters, batteries, and connection to your main panel or meter.",
           "Some counties require additional reviews. Fire departments may need to approve rooftop access pathways and setbacks per California Fire Code Title 24. Homeowners associations may require design approval, though California law limits HOA authority to reject solar installations. Historic districts or coastal zones may add environmental or aesthetic reviews.",
-          "Off-grid systems that do not interconnect with the utility skip the interconnection approval process, but still need building and electrical permits. Grid-tie systems require utility permission to connect, which adds a separate application and timeline.",
+          "Solar + battery systems that do not interconnect with the utility skip the interconnection approval process, but still need building and electrical permits. Grid-tie systems require utility permission to connect, which adds a separate application and timeline.",
         ],
       },
       {
@@ -434,7 +434,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Permit Costs",
         paragraphs: [
           "Permit fees vary by jurisdiction and system size. Typical building and electrical permits for a residential solar system cost $200 to $800 combined. Some counties charge flat fees. Others calculate fees based on system size or project valuation.",
-          "Fire safety reviews, plan check fees, and inspection fees may add another $100 to $300. Utility interconnection fees for grid-tie systems range from $0 to $400 depending on the utility. Off-grid systems skip the interconnection fee.",
+          "Fire safety reviews, plan check fees, and inspection fees may add another $100 to $300. Utility interconnection fees for grid-tie systems range from $0 to $400 depending on the utility. Solar + battery systems skip the interconnection fee.",
           "VoltSol includes all permit costs in the total system price. You do not pay permit fees separately or get surprise bills during installation. The price we quote is the price you pay.",
         ],
       },
@@ -462,8 +462,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         a: "SolarAPP+ is an instant permitting platform that approves eligible residential solar systems in minutes. Some Northern California cities use it, including parts of Sacramento County. VoltSol uses SolarAPP+ wherever available to speed up timelines.",
       },
       {
-        q: "Do off-grid solar systems need permits?",
-        a: "Yes. Off-grid systems still require building and electrical permits. You skip the utility interconnection process, but all structural and electrical work must be inspected and approved by the local building department.",
+        q: "Do residential solar + battery systems need permits?",
+        a: "Yes. Solar + battery systems still require building and electrical permits. You skip the utility interconnection process, but all structural and electrical work must be inspected and approved by the local building department.",
       },
       {
         q: "What happens if my system fails inspection?",
@@ -473,17 +473,17 @@ export const LEARN_ARTICLES: LearnArticle[] = [
   },
   {
     slug: "nem-3-explained",
-    title: "NEM 3.0 Explained - and Why Off-Grid Solar Sidesteps It",
-    metaTitle: "NEM 3.0 Explained: How It Changed Solar & Why Off-Grid Wins",
+    title: "NEM 3.0 Explained - and Why Solar + Battery Storage Sidesteps It",
+    metaTitle: "NEM 3.0 Explained: How It Changed Solar & Why Battery Storage Wins",
     metaDescription:
-      "NEM 3.0 slashed export credits for California solar. Learn what changed and why off-grid solar sidesteps the problem entirely.",
+      "NEM 3.0 slashed export credits for California solar. Learn what changed and why keeping and using your own power sidesteps the problem entirely.",
     excerpt:
       "NEM 3.0 cut solar export credits by 75 percent. Here is what it means for grid-tie systems.",
     sections: [
       {
         paragraphs: [
           "In April 2023, California regulators rolled out NEM 3.0, the biggest change to solar economics in over a decade. The new rules slashed the value of solar energy exported to the grid by roughly 75 percent, fundamentally changing the math for grid-tie solar systems.",
-          "If you installed solar before April 2023, you are grandfathered into the older NEM 2.0 rules for 20 years. But if you are considering solar today, NEM 3.0 applies, and the economics look very different. Here is what changed, why it matters, and how off-grid solar sidesteps the problem entirely.",
+          "If you installed solar before April 2023, you are grandfathered into the older NEM 2.0 rules for 20 years. But if you are considering solar today, NEM 3.0 applies, and the economics look very different. Here is what changed, why it matters, and how keeping and using your own power sidesteps the problem entirely.",
         ],
       },
       {
@@ -525,19 +525,19 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Why Off-Grid Solar Sidesteps NEM 3.0 Entirely",
+        heading: "Why Solar + Battery Storage Sidesteps NEM 3.0 Entirely",
         paragraphs: [
-          "Off-grid solar systems do not interconnect with the utility, so NEM rules do not apply. You generate power, store it in a battery, and use it on-site. No exports. No credits. No policy risk. You are completely decoupled from utility rate games and regulatory changes.",
-          "This makes off-grid solar immune to future NEM 4.0 changes, fixed-charge proposals, or whatever the CPUC dreams up next. Your system works the same regardless of what Sacramento decides. The value proposition is stable and predictable.",
-          "Off-grid also costs less upfront because you size the system for your actual needs, not for gaming export credits. VoltSol installs complete off-grid systems with solar, battery, and mini-split heat pump for under $10,000. That is a fraction of what a comparable grid-tie system costs under NEM 3.0, and you get true energy independence.",
+          "Residential solar + battery systems do not interconnect with the utility, so NEM rules do not apply. You generate power, store it in a battery, and use it on-site. No exports. No credits. No policy risk. You are completely decoupled from utility rate games and regulatory changes.",
+          "This makes residential solar + battery storage immune to future NEM 4.0 changes, fixed-charge proposals, or whatever the CPUC dreams up next. Your system works the same regardless of what Sacramento decides. The value proposition is stable and predictable.",
+          "Solar + battery storage also costs less upfront because you size the system for your actual needs, not for gaming export credits. VoltSol installs complete solar + battery systems with solar, battery, and mini-split heat pump for under $10,000. That is a fraction of what a comparable grid-tie system costs under NEM 3.0, and you get true energy independence.",
         ],
       },
       {
-        heading: "Should You Stay Grid-Tied or Go Off-Grid?",
+        heading: "Should You Stay Grid-Tied or Keep Your Own Power?",
         paragraphs: [
           "If you already have NEM 2.0, keep it. You are grandfathered for 20 years, and the economics are still strong. Do not disconnect from the grid unless you have a specific reason like frequent outages or wanting full independence.",
-          "If you are installing new solar under NEM 3.0, the decision is tougher. Grid-tie with battery backup still makes sense if you want whole-home coverage and can afford the $30,000+ system cost. But if your main goal is affordable energy independence and resilience, off-grid solar is the better value.",
-          "VoltSol focuses on off-grid because it delivers the best outcome for most Northern California homeowners: lower upfront cost, no exposure to rate hikes or policy shifts, and true energy independence. We handle permitting and installation across Fresno, Sacramento, Modesto, and surrounding counties.",
+          "If you are installing new solar under NEM 3.0, the decision is tougher. Grid-tie with battery backup still makes sense if you want whole-home coverage and can afford the $30,000+ system cost. But if your main goal is affordable energy independence and resilience, residential solar + battery storage is the better value.",
+          "VoltSol focuses on self-consumption because it delivers the best outcome for most Northern California homeowners: lower upfront cost, no exposure to rate hikes or policy shifts, and true energy independence. We handle permitting and installation across Fresno, Sacramento, Modesto, and surrounding counties.",
         ],
       },
     ],
@@ -552,15 +552,15 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Is grid-tie solar still worth it under NEM 3.0?",
-        a: "It depends on your situation. If you add a battery to store daytime solar and avoid evening grid usage, payback can still be reasonable. But the upfront cost is much higher. Off-grid solar often delivers better value if your goal is energy independence and lower cost.",
+        a: "It depends on your situation. If you add a battery to store daytime solar and avoid evening grid usage, payback can still be reasonable. But the upfront cost is much higher. Residential solar + battery storage often delivers better value if your goal is energy independence and lower cost.",
       },
       {
         q: "What happens if California changes the rules again with NEM 4.0?",
-        a: "Nobody knows. The CPUC can change net metering rules every few years. If you are on NEM 3.0, you are protected from future changes for 20 years. But off-grid systems sidestep the entire problem because they do not interconnect.",
+        a: "Nobody knows. The CPUC can change net metering rules every few years. If you are on NEM 3.0, you are protected from future changes for 20 years. But solar + battery systems sidestep the entire problem because they do not interconnect.",
       },
       {
-        q: "Can I go off-grid and still keep a grid connection for backup?",
-        a: "Yes. Many customers run off-grid for daily use but keep the utility connection as a backup for rare heavy loads or extended cloudy periods. You pay a minimal connection fee but use very little grid power. This gives you the best of both worlds.",
+        q: "Can I go solar with battery storage and still keep a grid connection for backup?",
+        a: "Yes. Many customers run self-consumption for daily use but keep the utility connection as a backup for rare heavy loads or extended cloudy periods. You pay a minimal connection fee but use very little grid power. This gives you the best of both worlds.",
       },
     ],
   },
@@ -608,22 +608,22 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "In 2024, PG&E and other California investor-owned utilities floated proposals to add a fixed monthly charge to all customer bills, regardless of usage. The idea was to shift some costs away from per-kWh rates and onto a flat fee, making bills more predictable and reducing the incentive for high-usage customers to cut consumption.",
           "Solar advocates and consumer groups pushed back hard, arguing that fixed charges punish efficiency and make solar less attractive. The CPUC approved a scaled-back version with income-based fixed charges starting in 2025, but it remains controversial and subject to legal challenges.",
-          "If fixed charges increase significantly in future years, the math for solar changes. You still save on per-kWh costs, but the flat fee eats into your savings. Off-grid solar sidesteps this entirely because you disconnect from the utility and pay no monthly fees.",
+          "If fixed charges increase significantly in future years, the math for solar changes. You still save on per-kWh costs, but the flat fee eats into your savings. Residential solar + battery storage sidesteps this entirely because you disconnect from the utility and pay no monthly fees.",
         ],
       },
       {
         heading: "How Solar Helps You Opt Out",
         paragraphs: [
           "With grid-tie solar under NEM 3.0, you still pay some utility charges -- connection fees, non-bypassable charges, and any grid power you draw at night. But you cut your usage dramatically, which reduces your exposure to rate increases.",
-          "Off-grid solar eliminates your utility bill entirely. You generate your own power, store it in a battery, and use it on-site. No meter. No monthly bill. No rate increases. You pay the upfront system cost, then your electricity is free. When PG&E raises rates another 10 percent next year, it does not affect you.",
-          "At current Northern California rates of 40+ cents per kWh, a VoltSol off-grid system covering your heating, cooling, and essential loads pays for itself in under 3 years. After that, you bank the savings. Over 20 years, assuming 4 percent annual rate increases, you save $60,000 to $80,000 compared to staying on the grid.",
+          "Residential solar + battery storage eliminates your utility bill entirely. You generate your own power, store it in a battery, and use it on-site. No meter. No monthly bill. No rate increases. You pay the upfront system cost, then your electricity is free. When PG&E raises rates another 10 percent next year, it does not affect you.",
+          "At current Northern California rates of 40+ cents per kWh, a VoltSol solar + battery system covering your heating, cooling, and essential loads pays for itself in under 3 years. After that, you bank the savings. Over 20 years, assuming 4 percent annual rate increases, you save $60,000 to $80,000 compared to staying on the grid.",
         ],
       },
       {
         heading: "What Can You Do Right Now?",
         paragraphs: [
           "First, understand your current usage and cost. Pull up your last 12 months of utility bills and calculate your average monthly kWh and cost. Identify your biggest loads: HVAC, water heating, electric vehicle charging, pool pumps. These are the targets for solar.",
-          "Second, consider your options. Grid-tie solar with battery backup is one path. Off-grid solar focused on your biggest loads is another. Hybrid approaches -- off-grid for HVAC and essentials, grid connection for heavy appliances -- are also viable. VoltSol can assess your situation and recommend the best fit.",
+          "Second, consider your options. Grid-tie solar with battery backup is one path. Residential solar + battery storage focused on your biggest loads is another. Hybrid approaches -- self-consumption for HVAC and essentials, grid connection for heavy appliances -- are also viable. VoltSol can assess your situation and recommend the best fit.",
           "Third, act sooner rather than later. Every month you wait, you pay more to the utility. Solar panels, batteries, and inverters have stable pricing, but installation timelines can stretch during peak seasons. The 30 percent federal residential solar tax credit ended for systems placed in service after December 31, 2025 — so the era of waiting for a federal subsidy is over. Today the math is driven by avoided utility costs, and every year of delay costs you thousands in utility bills.",
         ],
       },
@@ -639,11 +639,11 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Can I lock in my electricity rate with solar?",
-        a: "Sort of. With off-grid solar, you lock in zero utility cost after the system is paid off. With grid-tie solar, you still pay some charges, but your per-kWh exposure drops. Either way, solar insulates you from future rate increases.",
+        a: "Sort of. With residential solar + battery storage, you lock in zero utility cost after the system is paid off. With grid-tie solar, you still pay some charges, but your per-kWh exposure drops. Either way, solar insulates you from future rate increases.",
       },
       {
         q: "How much will I save with solar at current PG&E rates?",
-        a: "It depends on your usage. A VoltSol off-grid system covering HVAC and essentials saves most customers $200 to $300 per month at current rates. Over 20 years, that is $48,000 to $72,000 in savings, accounting for rate increases.",
+        a: "It depends on your usage. A VoltSol solar + battery system covering HVAC and essentials saves most customers $200 to $300 per month at current rates. Over 20 years, that is $48,000 to $72,000 in savings, accounting for rate increases.",
       },
       {
         q: "What if I move before the system pays for itself?",
@@ -685,7 +685,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "What Affects Battery Lifespan?",
         paragraphs: [
-          "Depth of discharge is the biggest factor. Shallow discharges (50 percent depth) cause less stress than deep discharges (80 to 100 percent depth). If you only use half your battery capacity each day, you extend the cycle life significantly. Off-grid systems typically cycle to 70 to 90 percent depth, balancing longevity with usable capacity.",
+          "Depth of discharge is the biggest factor. Shallow discharges (50 percent depth) cause less stress than deep discharges (80 to 100 percent depth). If you only use half your battery capacity each day, you extend the cycle life significantly. Solar + battery systems typically cycle to 70 to 90 percent depth, balancing longevity with usable capacity.",
           "Temperature matters. LiFePO4 tolerates heat better than NMC lithium-ion, but extreme temperatures still accelerate aging. EG4 batteries include thermal management, but installing them in a climate-controlled space or shaded enclosure extends lifespan. Ideal operating temperature is 50 to 85 degrees Fahrenheit.",
           "Charge and discharge rates also play a role. Slow, gentle charging and discharging is easier on the cells than rapid charging or high-power discharge. Most residential solar systems charge and discharge at moderate rates (0.2C to 0.5C), which is well within safe limits for LiFePO4.",
         ],
@@ -719,7 +719,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "An EG4 15 kWh LiFePO4 battery costs approximately $3,000 to $5,000 installed. At 8,000 cycles, that is $0.37 to $0.62 per cycle. Over 20 years, the battery stores and delivers 120,000 kWh of energy (15 kWh x 8,000 cycles). Cost per kWh delivered is 2.5 to 4.2 cents.",
           "A Tesla Powerwall 3 costs around $15,000 installed for 13.5 kWh. At 3,650 cycles, that is $4.11 per cycle. Over 10 years, the battery delivers 49,275 kWh. Cost per kWh delivered is 30.5 cents.",
-          "Even if you factor in EG4 replacement at year 20 and Tesla replacement at year 10, EG4 costs half as much per kWh delivered over the system lifetime. For off-grid solar under $10,000, EG4 is the obvious choice.",
+          "Even if you factor in EG4 replacement at year 20 and Tesla replacement at year 10, EG4 costs half as much per kWh delivered over the system lifetime. For residential solar + battery storage under $10,000, EG4 is the obvious choice.",
         ],
       },
     ],
@@ -782,7 +782,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "A portable 5 kW generator costs $1,000 plus $200 to $500 for a transfer switch and installation if you want whole-house integration. Fuel costs add up fast -- at $4 per gallon and 0.5 gallons per hour, you spend $2 per hour or $48 per day running 24/7. A week-long outage costs $336 in fuel alone.",
           "Standby generators cost $8,000 to $15,000 installed. Natural gas fuel is cheaper per kWh than gasoline, but you still pay for every hour of runtime. Maintenance costs $150 to $300 per year for oil changes, filter replacements, and annual service. Standby generators last 10 to 15 years with proper care.",
-          "Solar battery systems cost $5,000 to $10,000 for a complete off-grid setup including panels, battery, and installation. VoltSol delivers systems under $10,000 with 3 to 5 kW of solar and 10 to 15 kWh of battery. After installation, the fuel cost is zero. Maintenance is minimal -- no oil changes, no filters, no tune-ups. EG4 batteries last 15 to 20+ years.",
+          "Solar battery systems cost $5,000 to $10,000 for a complete self-consumption setup including panels, battery, and installation. VoltSol delivers systems under $10,000 with 3 to 5 kW of solar and 10 to 15 kWh of battery. After installation, the fuel cost is zero. Maintenance is minimal -- no oil changes, no filters, no tune-ups. EG4 batteries last 15 to 20+ years.",
         ],
       },
       {
@@ -790,7 +790,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Generators run as long as you have fuel. A 5 kW portable generator with a 5-gallon tank runs about 10 hours at half load. Refill the tank, and it runs another 10 hours. The limit is fuel storage and availability. During widespread outages, gas stations close or run out. Propane and diesel store longer but require upfront investment in tanks.",
           "Solar battery runtime depends on battery size and load. A 15 kWh battery running 1 kW of essentials lasts 15 hours. If you add a 2 kW mini-split for heating or cooling, runtime drops to 5 to 7 hours. The key difference: solar panels recharge the battery every day. A generator stops when the fuel runs out. Solar keeps going as long as the sun rises.",
-          "Multi-day outages favor solar. After day one, the generator needs more fuel. The solar battery recharges from the sun. Day two, three, four -- the battery keeps cycling. VoltSol customers report running off-grid for weeks during PSPS events and wildfire smoke evacuations without ever losing power.",
+          "Multi-day outages favor solar. After day one, the generator needs more fuel. The solar battery recharges from the sun. Day two, three, four -- the battery keeps cycling. VoltSol customers report running self-consumption for weeks during PSPS events and wildfire smoke evacuations without ever losing power.",
         ],
       },
       {
@@ -814,7 +814,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "If you already own a portable generator, keep it as a backup. It is a useful tool for camping, tailgating, or running power tools on a job site. But do not rely on it as your primary blackout solution -- fuel logistics, noise, and emissions make it impractical for multi-day outages.",
           "Standby generators make sense if you need whole-house backup, have natural gas service, and can afford the $10,000+ upfront cost. They work well for short outages but still depend on fuel supply and require ongoing maintenance.",
-          "Solar battery backup is the best long-term solution for California blackouts. It costs less upfront than a standby generator, requires zero fuel or maintenance, runs silently, and recharges itself every day. For off-grid or hybrid systems, VoltSol pairs solar with EG4 batteries and mini-split heat pumps for under $10,000 installed.",
+          "Solar battery backup is the best long-term solution for California blackouts. It costs less upfront than a standby generator, requires zero fuel or maintenance, runs silently, and recharges itself every day. For battery-backed or hybrid systems, VoltSol pairs solar with EG4 batteries and mini-split heat pumps for under $10,000 installed.",
         ],
       },
     ],
@@ -848,19 +848,19 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     metaDescription:
       "Calculate how many solar panels you need for your California home. Usage, location, roof space, and battery size all matter.",
     excerpt:
-      "The answer depends on your energy usage, location, and whether you are going grid-tie or off-grid.",
+      "The answer depends on your energy usage, location, and whether you are going grid-tie or self-consumption.",
     sections: [
       {
         paragraphs: [
           "Most solar companies will size your system based on your annual electricity usage. If you use 10,000 kWh per year, they sell you a 7 to 8 kW system. This works for grid-tie installs where you export excess power and draw it back later.",
-          "Off-grid solar sizing is different. You cannot export to the grid, so you size for daily production and storage. You also prioritize your highest-value loads first -- heating, cooling, refrigeration -- instead of trying to cover everything at once. Here is how to calculate how many panels you actually need.",
+          "Residential solar + battery storage sizing is different. You cannot export to the grid, so you size for daily production and storage. You also prioritize your highest-value loads first -- heating, cooling, refrigeration -- instead of trying to cover everything at once. Here is how to calculate how many panels you actually need.",
         ],
       },
       {
         heading: "Step 1: Calculate Your Daily Energy Usage",
         paragraphs: [
           "Pull up your last 12 months of utility bills. Find your total annual kWh usage and divide by 365 to get daily average. A typical California home uses 20 to 30 kWh per day. Larger homes or homes with electric heating, cooling, or vehicle charging use 40 to 60 kWh per day.",
-          "If you are going off-grid or hybrid, focus on your essential loads instead of whole-house usage. Add up the wattage and daily runtime for your refrigerator, lights, HVAC, electronics, and other must-have loads. Most VoltSol customers find that heating and cooling dominate -- a mini-split heat pump running 8 hours per day uses 8 to 16 kWh, depending on efficiency and outdoor temperature.",
+          "If you are going solar with battery storage or hybrid, focus on your essential loads instead of whole-house usage. Add up the wattage and daily runtime for your refrigerator, lights, HVAC, electronics, and other must-have loads. Most VoltSol customers find that heating and cooling dominate -- a mini-split heat pump running 8 hours per day uses 8 to 16 kWh, depending on efficiency and outdoor temperature.",
           "For this example, assume you want to cover 15 kWh per day: 10 kWh for a mini-split heat pump, 3 kWh for refrigerator and lights, and 2 kWh for electronics and small loads.",
         ],
       },
@@ -897,11 +897,11 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Grid-Tie vs Off-Grid Sizing Differences",
+        heading: "Grid-Tie vs Self-Consumption Sizing Differences",
         paragraphs: [
           "Grid-tie systems size for annual production, not daily balance. If you use 10,000 kWh per year, you install a 7 to 8 kW system that produces 10,000 kWh over 12 months. You export excess summer production and draw it back in winter. Battery storage is optional and mainly used to shift time-of-use loads or provide backup during outages.",
-          "Off-grid systems must balance daily. You cannot export or import, so your panels must produce enough energy each day to cover loads and charge the battery. This usually means smaller systems focused on high-value loads like HVAC, not whole-house coverage. VoltSol off-grid systems are typically 3 to 5 kW, which covers heating, cooling, and essentials for under $10,000.",
-          "Hybrid systems blend both approaches. You size for daily off-grid operation on your critical loads, but keep a grid connection for backup or heavy appliances. This gives you energy independence without the cost of oversizing for rare peak usage.",
+          "Solar + battery systems must balance daily. You cannot export or import, so your panels must produce enough energy each day to cover loads and charge the battery. This usually means smaller systems focused on high-value loads like HVAC, not whole-house coverage. VoltSol solar + battery systems are typically 3 to 5 kW, which covers heating, cooling, and essentials for under $10,000.",
+          "Hybrid systems blend both approaches. You size for daily self-consumption operation on your critical loads, but keep a grid connection for backup or heavy appliances. This gives you energy independence without the cost of oversizing for rare peak usage.",
         ],
       },
       {
@@ -931,7 +931,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "How many panels fit on a typical roof?",
-        a: "A standard 2,000 square foot home has 1,000 to 1,500 square feet of usable roof space, enough for 15 to 25 panels. VoltSol systems typically use 8 to 12 panels for off-grid installs, which fits easily on most roofs.",
+        a: "A standard 2,000 square foot home has 1,000 to 1,500 square feet of usable roof space, enough for 15 to 25 panels. VoltSol systems typically use 8 to 12 panels for solar + battery installs, which fits easily on most roofs.",
       },
     ],
   },
@@ -963,7 +963,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Most solar systems in California are grid-tie. They connect directly to the utility grid and feed excess power back through your meter. When the grid goes down, your inverter detects the loss of grid voltage and shuts off within milliseconds. This is required by federal anti-islanding rules to protect utility workers from live wires.",
           "Even if your panels are producing power and the sun is shining, a grid-tie system without a battery goes dark during PSPS. You cannot run your lights, fridge, or HVAC. Your expensive solar array sits idle while you scramble for candles and coolers.",
-          "To keep power during PSPS, you need a battery system that can island from the grid. The battery stores solar energy during the day and delivers it when the grid is down. The inverter switches to off-grid mode, and your home keeps running independently.",
+          "To keep power during PSPS, you need a battery system that can island from the grid. The battery stores solar energy during the day and delivers it when the grid is down. The inverter switches to self-consumption mode, and your home keeps running independently.",
         ],
       },
       {
@@ -987,7 +987,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "A VoltSol customer in Grass Valley reported a 72-hour PSPS event in October 2025. The system included 4 kW of solar, a 15 kWh EG4 battery, and a single-zone mini-split. During the outage, daytime loads included the mini-split, refrigerator, lights, and electronics. Nighttime loads included the mini-split for a few hours and the refrigerator overnight.",
           "The system ran continuously for the full 72 hours without running out of power. Daytime solar production exceeded usage and recharged the battery each day. The customer reported no discomfort, no spoiled food, and no need for a generator. When the grid came back online, the system switched back to grid-tie mode automatically.",
-          "Another customer in Sonora ran an off-grid VoltSol system through a 96-hour PSPS event in September 2025. The system covered a mini-split, refrigerator, well pump, and lights. The well pump was the heaviest load at 1.5 kW during startup. The customer manually limited well pump use to twice daily and stretched battery runtime. Solar recharged the battery fully each day despite cooler fall weather.",
+          "Another customer in Sonora ran an self-consumption VoltSol system through a 96-hour PSPS event in September 2025. The system covered a mini-split, refrigerator, well pump, and lights. The well pump was the heaviest load at 1.5 kW during startup. The customer manually limited well pump use to twice daily and stretched battery runtime. Solar recharged the battery fully each day despite cooler fall weather.",
         ],
       },
       {
@@ -1002,7 +1002,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Can You Add Battery to Existing Grid-Tie Solar?",
         paragraphs: [
           "Yes, but it depends on your inverter. Some grid-tie inverters support battery add-ons through DC-coupling or AC-coupling. Others do not, and you need to replace the inverter or add a separate battery inverter. VoltSol can assess your existing system and recommend retrofit options.",
-          "If you have an older grid-tie system without battery capability, the most cost-effective path is often to install a separate off-grid system for critical loads. This gives you backup power for HVAC and essentials without touching your existing grid-tie array. You keep both systems and let the grid-tie handle whole-house daytime loads while the off-grid system covers comfort and resilience.",
+          "If you have an older grid-tie system without battery capability, the most cost-effective path is often to install a separate solar + battery system for critical loads. This gives you backup power for HVAC and essentials without touching your existing grid-tie array. You keep both systems and let the grid-tie handle whole-house daytime loads while the solar + battery system covers comfort and resilience.",
         ],
       },
     ],
@@ -1129,20 +1129,20 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     title: "EG4 vs Sol-Ark Hybrid Inverters: Honest Comparison",
     metaTitle: "EG4 vs Sol-Ark Hybrid Inverters: Which Is Better?",
     metaDescription:
-      "Compare EG4 and Sol-Ark hybrid inverters on cost, features, reliability, and support. See which wins for off-grid solar in 2026.",
+      "Compare EG4 and Sol-Ark hybrid inverters on cost, features, reliability, and support. See which wins for residential solar + battery storage in 2026.",
     excerpt:
       "EG4 and Sol-Ark both make solid hybrid inverters, but they target different budgets and use cases.",
     sections: [
       {
         paragraphs: [
-          "Hybrid inverters handle solar input, battery charging, and AC output in one unit. They can run grid-tie, off-grid, or switch between modes automatically. EG4 and Sol-Ark are two of the most popular brands for residential off-grid and backup systems in the US.",
+          "Hybrid inverters handle solar input, battery charging, and AC output in one unit. They can run grid-tie, self-consumption, or switch between modes automatically. EG4 and Sol-Ark are two of the most popular brands for residential self-consumption and backup systems in the US.",
           "EG4 competes on price and value. Sol-Ark competes on features and support. Both work well, but the right choice depends on your budget, technical comfort level, and how much hand-holding you want. Here is an honest comparison based on real-world installs.",
         ],
       },
       {
         heading: "Inverter Lineup: What Each Brand Offers",
         paragraphs: [
-          "EG4 offers several hybrid inverter models. The 6000XP and 18kPV are the most popular for residential installs. The 6000XP is a 6 kW continuous / 12 kW surge unit with dual MPPT inputs and 48V battery compatibility. The 18kPV is a larger unit with 12 kW continuous / 18 kW surge output and higher solar input capacity. Both support grid-tie, off-grid, and hybrid modes.",
+          "EG4 offers several hybrid inverter models. The 6000XP and 18kPV are the most popular for residential installs. The 6000XP is a 6 kW continuous / 12 kW surge unit with dual MPPT inputs and 48V battery compatibility. The 18kPV is a larger unit with 12 kW continuous / 18 kW surge output and higher solar input capacity. Both support grid-tie, self-consumption, and hybrid modes.",
           "Sol-Ark makes the 8K, 12K, and 15K models. The 8K delivers 8 kW continuous output. The 12K and 15K scale up for larger homes or higher loads. All Sol-Ark units include advanced features like generator integration, load shedding, and cloud monitoring. They also support stacking multiple units for higher power.",
           "EG4 inverters cost $2,000 to $4,000 depending on model. Sol-Ark inverters cost $4,000 to $7,000. For budget-conscious installs, EG4 is hard to beat. For whole-house systems or customers who want premium support, Sol-Ark is the go-to.",
         ],
@@ -1150,7 +1150,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Features and Functionality",
         paragraphs: [
-          "Both brands support grid-tie with battery backup, off-grid, and hybrid operation. They handle solar charging, battery management, and AC output. They include built-in charge controllers and MPPT tracking. They support lithium and LiFePO4 batteries with configurable voltage and charging profiles.",
+          "Both brands support grid-tie with battery backup, self-consumption, and hybrid operation. They handle solar charging, battery management, and AC output. They include built-in charge controllers and MPPT tracking. They support lithium and LiFePO4 batteries with configurable voltage and charging profiles.",
           "Sol-Ark adds several features EG4 lacks. Generator auto-start triggers a backup generator when battery voltage drops below a threshold. Load management sheds non-critical circuits during low battery or high demand. Advanced cloud monitoring tracks production, usage, and battery health remotely. These features matter for whole-house installs or customers who want set-and-forget operation.",
           "EG4 inverters include basic monitoring via display or optional Wi-Fi module, but the interface is simpler. No generator auto-start on entry-level models, though some users wire external relays to achieve the same result. Load management is manual -- you turn off breakers or unplug loads. For DIY installers or simpler systems, this is fine. For hands-off operation, Sol-Ark is better.",
         ],
@@ -1182,9 +1182,9 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Which Should You Choose?",
         paragraphs: [
-          "Choose EG4 if you want the lowest cost per watt, have some technical comfort, and are installing an essential-loads or small off-grid system. EG4 delivers solid performance for the price and works well for heating, cooling, and basic loads. VoltSol uses EG4 inverters and batteries exclusively because they hit the sweet spot of cost and performance for under-$10k systems.",
+          "Choose EG4 if you want the lowest cost per watt, have some technical comfort, and are installing an essential-loads or small solar + battery system. EG4 delivers solid performance for the price and works well for heating, cooling, and basic loads. VoltSol uses EG4 inverters and batteries exclusively because they hit the sweet spot of cost and performance for under-$10k systems.",
           "Choose Sol-Ark if you want whole-house coverage, generator integration, advanced monitoring, or premium support. Sol-Ark is the better choice for customers who want set-and-forget operation, live in remote areas with limited installer support, or need the confidence of a 10+ year warranty from a US company.",
-          "Both brands work. The question is whether you value cost or features more. For most Northern California off-grid installs focused on HVAC and essentials, EG4 is the better value. For whole-house systems or customers willing to pay more for peace of mind, Sol-Ark wins.",
+          "Both brands work. The question is whether you value cost or features more. For most Northern California solar + battery installs focused on HVAC and essentials, EG4 is the better value. For whole-house systems or customers willing to pay more for peace of mind, Sol-Ark wins.",
         ],
       },
     ],
@@ -1199,7 +1199,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Do I need generator integration if I have solar and battery?",
-        a: "Not usually. Solar and battery cover most outages in California. Generator integration makes sense if you live off-grid full-time, have very high loads, or face frequent multi-day winter storms. For occasional PSPS events, solar battery alone is fine.",
+        a: "Not usually. Solar and battery cover most outages in California. Generator integration makes sense if you live self-consumption full-time, have very high loads, or face frequent multi-day winter storms. For occasional PSPS events, solar battery alone is fine.",
       },
       {
         q: "Can I install an EG4 or Sol-Ark inverter myself?",
@@ -1207,7 +1207,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Which inverter works better with mini-split heat pumps?",
-        a: "Both work fine. EG4 makes hybrid mini-splits that accept DC solar input directly, which pairs naturally with EG4 inverters. Sol-Ark inverters work with standard AC mini-splits. Either way, the combination delivers efficient off-grid heating and cooling.",
+        a: "Both work fine. EG4 makes hybrid mini-splits that accept DC solar input directly, which pairs naturally with EG4 inverters. Sol-Ark inverters work with standard AC mini-splits. Either way, the combination delivers efficient self-consumption heating and cooling.",
       },
     ],
   },
@@ -1324,7 +1324,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "What Was the 30% Federal Solar Tax Credit?",
         paragraphs: [
           "Section 25D was a non-refundable federal income tax credit equal to 30 percent of the total installed cost of a residential solar system -- panels, inverters, batteries, installation labor, and permits. A $10,000 system generated a $3,000 credit that directly reduced your federal tax liability dollar-for-dollar.",
-          "The credit was valuable because it was not a deduction -- it reduced actual taxes owed, not just taxable income. Unused credit carried forward to future years. It covered grid-tie, off-grid, and hybrid systems, and was a major reason solar payback periods were often quoted at 2 to 3 years.",
+          "The credit was valuable because it was not a deduction -- it reduced actual taxes owed, not just taxable income. Unused credit carried forward to future years. It covered grid-tie, self-consumption, and hybrid systems, and was a major reason solar payback periods were often quoted at 2 to 3 years.",
           "Congress extended the ITC multiple times. The Inflation Reduction Act of 2022 set it at 30 percent until the end of 2032, with a step-down schedule planned for subsequent years. The July 2025 budget law reversed that and repealed the residential credit for systems placed in service after December 31, 2025.",
         ],
       },
@@ -1347,15 +1347,15 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "The Real Value Driver: Avoided Utility Costs",
         paragraphs: [
-          "Even without a federal tax credit, off-grid solar in Northern California is a strong financial move. PG&E residential rates now exceed 40 cents per kWh in many tiers. A home using 600 kWh per month pays $240 or more every month -- nearly $3,000 per year -- to PG&E. Off-grid solar eliminates that bill entirely.",
+          "Even without a federal tax credit, residential solar + battery storage in Northern California is a strong financial move. PG&E residential rates now exceed 40 cents per kWh in many tiers. A home using 600 kWh per month pays $240 or more every month -- nearly $3,000 per year -- to PG&E. Residential solar + battery storage eliminates that bill entirely.",
           "A $10,000 VoltSol system saving $250 per month pays back in about 3.3 years on avoided utility costs alone. SGIP rebates, if your battery qualifies, may lower your net cost and shorten payback further. After year 4, you are banking $250 per month that used to go to PG&E. That value compounds every year as utility rates keep climbing.",
-          "Compare this to staying on the grid under NEM 3.0, which pays a fraction of what NEM 2.0 customers earned for solar exports. Off-grid avoids the utility entirely -- no NEM rate games, no demand charges, no grid outages during PSPS events. You generate, store, and consume your own power.",
+          "Compare this to staying on the grid under NEM 3.0, which pays a fraction of what NEM 2.0 customers earned for solar exports. Solar + battery storage avoids the utility entirely -- no NEM rate games, no demand charges, no grid outages during PSPS events. You generate, store, and consume your own power.",
         ],
       },
       {
         heading: "Example: $10,000 System in 2026 (No Federal ITC)",
         paragraphs: [
-          "A VoltSol off-grid system costs approximately $10,000 installed. There is no federal tax credit to claim for 2026 installs. SGIP may lower your net cost depending on battery eligibility -- VoltSol will assess this during your quote.",
+          "A VoltSol solar + battery system costs approximately $10,000 installed. There is no federal tax credit to claim for 2026 installs. SGIP may lower your net cost depending on battery eligibility -- VoltSol will assess this during your quote.",
           "Pre-solar PG&E bill: $250 per month, or $3,000 per year. Post-solar bill: $0. Annual savings: $3,000. Payback on the full $10,000: approximately 3.3 years. If SGIP applies, your net cost drops and payback shortens further.",
           "By year 5, you have recouped the full investment. By year 10, you have avoided $30,000 or more in utility costs. By year 20 -- the practical lifespan of the system -- you have avoided $60,000 to $80,000 in utility payments as rates continue rising. The absence of a federal tax credit pushes payback from 2 years to 3 to 4 years. The long-term financial outcome remains compelling.",
         ],
@@ -1380,7 +1380,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Does solar still make financial sense without the federal tax credit?",
-        a: "Absolutely. In PG&E and SCE territory, where rates exceed 40 cents per kWh, avoided utility costs drive a 3 to 5 year payback on a sub-$10,000 off-grid system -- no federal subsidy needed. SGIP rebates may reduce your cost further. The math is different without the ITC, but the long-term outcome is still compelling.",
+        a: "Absolutely. In PG&E and SCE territory, where rates exceed 40 cents per kWh, avoided utility costs drive a 3 to 5 year payback on a sub-$10,000 solar + battery system -- no federal subsidy needed. SGIP rebates may reduce your cost further. The math is different without the ITC, but the long-term outcome is still compelling.",
       },
       {
         q: "What is SGIP and do I qualify?",
@@ -1444,14 +1444,14 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "NMC batteries cost more upfront. Tesla Powerwall 3 costs around $15,000 installed for 13.5 kWh. At 3,650 cycles, that is $4.11 per cycle. Over 10 years, the battery delivers 49,275 kWh. Cost per kWh delivered is 30.5 cents.",
           "LiFePO4 batteries cost less upfront and last longer. An EG4 15 kWh battery costs around $4,000 installed. At 8,000 cycles, that is $0.50 per cycle. Over 20 years, the battery delivers 120,000 kWh. Cost per kWh delivered is 3.3 cents.",
-          "Even if you account for replacement, LiFePO4 is cheaper. Two NMC batteries over 20 years cost $30,000. Two LiFePO4 batteries over 40 years cost $8,000. The cost difference is an order of magnitude. For off-grid or daily-cycling applications, LiFePO4 is the obvious choice.",
+          "Even if you account for replacement, LiFePO4 is cheaper. Two NMC batteries over 20 years cost $30,000. Two LiFePO4 batteries over 40 years cost $8,000. The cost difference is an order of magnitude. For self-consumption or daily-cycling applications, LiFePO4 is the obvious choice.",
         ],
       },
       {
         heading: "Which Chemistry Should You Choose?",
         paragraphs: [
           "Choose NMC if you need the smallest, lightest battery possible and cost is not a constraint. This applies to electric vehicles, portable power stations, and applications where weight and volume matter. For home energy storage, NMC makes sense only if you are locked into a brand like Tesla and willing to pay the premium.",
-          "Choose LiFePO4 for stationary solar storage. It lasts twice as long, costs half as much per kWh delivered, and eliminates thermal runaway risk. The extra weight and volume are irrelevant for home installs. LiFePO4 is the default choice for off-grid, hybrid, and daily-cycling battery systems.",
+          "Choose LiFePO4 for stationary solar storage. It lasts twice as long, costs half as much per kWh delivered, and eliminates thermal runaway risk. The extra weight and volume are irrelevant for home installs. LiFePO4 is the default choice for self-consumption, hybrid, and daily-cycling battery systems.",
           "VoltSol uses EG4 LiFePO4 batteries exclusively because they deliver the best combination of safety, longevity, and cost for residential solar. We have installed hundreds of systems with zero thermal events and consistent performance over years of daily cycling.",
         ],
       },
@@ -1722,7 +1722,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "After installation, the local building department inspects the system to verify code compliance. VoltSol schedules the inspection and coordinates with the inspector. Inspections typically happen within 1 to 2 weeks of requesting them, depending on the jurisdiction workload.",
           "The inspector checks panel mounting, electrical connections, grounding, labeling, and fire safety setbacks. If everything passes, they sign off and the system is approved. If corrections are needed, we fix them and schedule a re-inspection. VoltSol designs and installs to code, so first-time pass rates are high.",
-          "Off-grid systems are done after inspection passes. You flip the switch and start using the system. Grid-tie systems need one more step: utility Permission to Operate.",
+          "Solar + battery systems are done after inspection passes. You flip the switch and start using the system. Grid-tie systems need one more step: utility Permission to Operate.",
         ],
       },
       {
@@ -1730,15 +1730,15 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Grid-tie systems require PG&E or your local utility to approve interconnection and issue Permission to Operate, or PTO. The installer submits interconnection paperwork after inspection passes. The utility reviews it, updates your account, and sends a PTO letter.",
           "PG&E PTO timelines range from 1 to 4 weeks depending on workload and completeness of the application. SMUD is similar. Smaller municipal utilities are sometimes faster. Delays happen if the application is incomplete or if the utility flags issues with your meter or service panel.",
-          "Once you receive PTO, you turn on the system and start exporting to the grid. Off-grid systems skip this step entirely, which is one reason off-grid timelines are shorter than grid-tie.",
+          "Once you receive PTO, you turn on the system and start exporting to the grid. Solar + battery systems skip this step entirely, which is one reason self-consumption timelines are shorter than grid-tie.",
         ],
       },
       {
         heading: "Total Timeline: 4 to 12 Weeks",
         paragraphs: [
-          "Off-grid systems: 4 to 8 weeks from signed contract to system online. Site eval and design take 1 to 2 weeks. Permitting takes 1 to 4 weeks. Installation takes 1 to 2 days. Inspection takes 1 to 2 weeks. No utility approval needed. You are online as soon as inspection passes.",
-          "Grid-tie systems: 6 to 12 weeks from signed contract to PTO. Same process as off-grid, plus 1 to 4 weeks for utility Permission to Operate. Faster in jurisdictions with SolarAPP+ and responsive utilities. Slower in jurisdictions with manual permitting or utility backlogs.",
-          "VoltSol averages 6 to 8 weeks for off-grid installs and 8 to 12 weeks for grid-tie. We keep you updated at every stage and push timelines as fast as the jurisdictions allow. Once the system is online, you start saving immediately.",
+          "Solar + battery systems: 4 to 8 weeks from signed contract to system online. Site eval and design take 1 to 2 weeks. Permitting takes 1 to 4 weeks. Installation takes 1 to 2 days. Inspection takes 1 to 2 weeks. No utility approval needed. You are online as soon as inspection passes.",
+          "Grid-tie systems: 6 to 12 weeks from signed contract to PTO. Same process as self-consumption, plus 1 to 4 weeks for utility Permission to Operate. Faster in jurisdictions with SolarAPP+ and responsive utilities. Slower in jurisdictions with manual permitting or utility backlogs.",
+          "VoltSol averages 6 to 8 weeks for solar + battery installs and 8 to 12 weeks for grid-tie. We keep you updated at every stage and push timelines as fast as the jurisdictions allow. Once the system is online, you start saving immediately.",
         ],
       },
       {
@@ -1757,7 +1757,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "What is the fastest solar installation timeline in California?",
-        a: "Off-grid systems in SolarAPP+ jurisdictions can go from contract to online in 3 to 4 weeks if everything aligns. Instant permit, fast material delivery, immediate installation, and quick inspection. Grid-tie adds 1 to 4 weeks for PTO.",
+        a: "Solar + battery systems in SolarAPP+ jurisdictions can go from contract to online in 3 to 4 weeks if everything aligns. Instant permit, fast material delivery, immediate installation, and quick inspection. Grid-tie adds 1 to 4 weeks for PTO.",
       },
       {
         q: "What is the slowest part of the solar installation process?",
@@ -1769,7 +1769,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "When do I start saving money after solar installation?",
-        a: "As soon as the system goes online. For off-grid systems, that is the day inspection passes. For grid-tie systems, that is the day you receive PTO. Your utility bill drops immediately, and the system starts paying for itself.",
+        a: "As soon as the system goes online. For solar + battery systems, that is the day inspection passes. For grid-tie systems, that is the day you receive PTO. Your utility bill drops immediately, and the system starts paying for itself.",
       },
     ],
   },
@@ -1807,7 +1807,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "How to Size for Year-Round Coverage",
         paragraphs: [
-          "Option one: oversize your solar array. If you need 15 kWh per day and your winter production is 3 kWh per kW of panels, you need 5 kW of panels to cover winter. This gives you excess production in summer, which you either export to the grid (if grid-tied) or curtail (if off-grid).",
+          "Option one: oversize your solar array. If you need 15 kWh per day and your winter production is 3 kWh per kW of panels, you need 5 kW of panels to cover winter. This gives you excess production in summer, which you either export to the grid (if grid-tied) or curtail (if self-consumption).",
           "Option two: reduce winter loads. Use efficient heating like mini-split heat pumps instead of resistance heaters. Heat pumps deliver 2 to 3 times more heat than the electricity they consume, which cuts winter heating load by 60 to 70 percent. Combine this with a moderately sized solar array, and you balance year-round.",
           "Option three: hybrid approach. Size solar for 80 to 90 percent of winter needs and fill the gap with a backup generator or grid connection. This avoids oversizing and keeps costs lower. Most VoltSol customers use this approach -- solar covers 90+ percent of annual usage, and a small generator or grid connection handles rare shortfalls.",
         ],
@@ -1816,7 +1816,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Battery Sizing for Winter",
         paragraphs: [
           "Winter nights are longer, so your battery must cover 12 to 14 hours of usage instead of 8 to 10 hours in summer. If your nighttime heating load is 1.5 kW, you need 18 to 21 kWh of battery capacity to cover the full night without recharging.",
-          "Most off-grid systems size batteries for 1.5 to 2 days of autonomy. This covers one cloudy day plus the following night. A home using 15 kWh per day needs 22 to 30 kWh of battery to cover winter storms. That is expensive, so many customers compromise with a smaller battery and a backup generator for multi-day storms.",
+          "Most solar + battery systems size batteries for 1.5 to 2 days of autonomy. This covers one cloudy day plus the following night. A home using 15 kWh per day needs 22 to 30 kWh of battery to cover winter storms. That is expensive, so many customers compromise with a smaller battery and a backup generator for multi-day storms.",
           "VoltSol systems typically include 10 to 15 kWh of battery, which covers one night plus margin. If a multi-day storm hits, customers reduce usage or run a backup generator for a few hours to recharge the battery. This keeps the system affordable while delivering resilience for 95+ percent of winter days.",
         ],
       },
@@ -1825,7 +1825,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Resistance electric heaters are the worst choice for solar-powered winter heating. They convert 1 kWh of electricity into 1 kWh of heat. A small 1,500-watt space heater running 8 hours per day uses 12 kWh, which eats your entire solar production and then some.",
           "Mini-split heat pumps are far better. They extract heat from outdoor air and move it inside, delivering 2 to 3 kWh of heat for every 1 kWh of electricity consumed. The same 12 kWh of heating only requires 4 to 6 kWh of electricity, which your solar array can cover even in winter.",
-          "Wood or propane heat is also viable for off-grid homes. If you have a wood stove or propane furnace for backup, your solar system only needs to cover cooling, lights, and electronics. This keeps the solar array small and affordable.",
+          "Wood or propane heat is also viable for self-consumption homes. If you have a wood stove or propane furnace for backup, your solar system only needs to cover cooling, lights, and electronics. This keeps the solar array small and affordable.",
         ],
       },
       {
@@ -1852,7 +1852,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "What happens during a week-long winter storm?",
-        a: "Production drops to 20 to 40 percent of normal. You reduce usage, prioritize essentials, and draw from the battery. Most off-grid customers add a small backup generator for rare extended storms. The generator runs a few hours to recharge the battery.",
+        a: "Production drops to 20 to 40 percent of normal. You reduce usage, prioritize essentials, and draw from the battery. Most self-consumption customers add a small backup generator for rare extended storms. The generator runs a few hours to recharge the battery.",
       },
       {
         q: "How much less solar power do I get in winter in California?",
@@ -1864,7 +1864,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       },
       {
         q: "Should I oversize my solar system to cover winter?",
-        a: "It depends on your budget and goals. Oversizing ensures year-round coverage but adds upfront cost and wastes summer production if you are off-grid. Most customers size for 80 to 90 percent of winter needs and fill the gap with a backup generator or grid connection.",
+        a: "It depends on your budget and goals. Oversizing ensures year-round coverage but adds upfront cost and wastes summer production if you are self-consumption. Most customers size for 80 to 90 percent of winter needs and fill the gap with a backup generator or grid connection.",
       },
     ],
   },
@@ -2023,7 +2023,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
           "Premium panels like SunPower Maxeon or Panasonic HIT deliver 21 to 22 percent efficiency, industry-leading temperature coefficients, 25-year product warranties, and sleek aesthetics. They cost $1.50 to $2.50 per watt. A 5 kW system runs $7,500 to $12,500 for panels alone.",
           "Budget panels from Tier-1 Chinese manufacturers like Longi, JA Solar, or Trina deliver 18 to 20 percent efficiency, decent temperature coefficients, 10 to 12 year product warranties, and standard silver-framed appearance. They cost $0.75 to $1.25 per watt. A 5 kW system runs $3,750 to $6,250 for panels.",
           "In California sun, the performance gap is smaller than the price gap. A premium 5 kW system might produce 7,500 kWh per year. A budget 5 kW system produces 7,000 to 7,200 kWh per year. That is a 4 to 7 percent difference. Over 25 years, the premium system delivers 12,500 more kWh. At 40 cents per kWh, that is $5,000 in extra value. But you paid $4,000 to $6,000 more upfront.",
-          "For off-grid systems under $10,000, budget panels make sense. The cost savings allow you to add battery capacity or a larger panel array. For grid-tie systems with 20-year financing, premium panels may be worth it if aesthetics and maximum production matter to you.",
+          "For solar + battery systems under $10,000, budget panels make sense. The cost savings allow you to add battery capacity or a larger panel array. For grid-tie systems with 20-year financing, premium panels may be worth it if aesthetics and maximum production matter to you.",
         ],
       },
       {
@@ -2066,8 +2066,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         a: "Solar panels are tested to last 25 to 30+ years. Degradation is about 0.5 to 0.7 percent per year. California heat accelerates degradation slightly, but modern panels are designed for hot climates. Expect 80 to 85 percent output after 25 years, 70 to 75 percent after 30 years.",
       },
       {
-        q: "Do I need premium panels for off-grid solar?",
-        a: "No. Budget Tier-1 panels work great for off-grid systems. The cost savings let you add more panels or battery capacity. Off-grid is about total system value, not chasing the last 2 percent of panel efficiency. VoltSol uses Tier-1 panels in all sub-$10k systems.",
+        q: "Do I need premium panels for residential solar + battery storage?",
+        a: "No. Budget Tier-1 panels work great for solar + battery systems. The cost savings let you add more panels or battery capacity. Solar with battery storage is about total system value, not chasing the last 2 percent of panel efficiency. VoltSol uses Tier-1 panels in all sub-$10k systems.",
       },
       {
         q: "Can I mix different solar panel brands in one system?",
@@ -2130,11 +2130,11 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Off-Grid Systems and Resale Value",
+        heading: "Solar + Battery Systems and Resale Value",
         paragraphs: [
-          "Off-grid solar systems add value, but the premium depends on the buyer pool. In rural areas, off-grid systems are highly desirable -- they eliminate the need for expensive grid extension and provide energy independence. Buyers in these markets often pay a premium equal to or greater than grid-tie systems.",
-          "In suburban or urban areas with reliable grid access, off-grid systems appeal to a narrower buyer pool. Some buyers love the independence and resilience. Others see off-grid as a complication or a sign that the home is too remote. Market the system benefits clearly: zero utility bills, blackout immunity, and low operating costs.",
-          "Hybrid systems -- off-grid for essentials with optional grid backup -- offer the best of both worlds. They appeal to both grid-dependent and off-grid-curious buyers. Highlighting flexibility and resilience in the listing can attract a wider buyer audience.",
+          "Residential solar + battery systems add value, but the premium depends on the buyer pool. In rural areas, solar + battery systems are highly desirable -- they eliminate the need for expensive grid extension and provide energy independence. Buyers in these markets often pay a premium equal to or greater than grid-tie systems.",
+          "In suburban or urban areas with reliable grid access, solar + battery systems appeal to a narrower buyer pool. Some buyers love the independence and resilience. Others see self-consumption as a complication or a sign that the home is too remote. Market the system benefits clearly: zero utility bills, blackout immunity, and low operating costs.",
+          "Hybrid systems -- battery backup for essentials with optional grid backup -- offer the best of both worlds. They appeal to both grid-dependent and self-consumption-curious buyers. Highlighting flexibility and resilience in the listing can attract a wider buyer audience.",
         ],
       },
       {
@@ -2188,7 +2188,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     sections: [
       {
         paragraphs: [
-          "Solar systems cost $10,000 to $40,000 depending on size, components, and whether you go grid-tie or off-grid. That is a big upfront expense. Most installers offer payment options: pay cash, take a solar loan, or sign a long-term financing agreement. Each has tradeoffs in total cost, monthly cash flow, and flexibility.",
+          "Solar systems cost $10,000 to $40,000 depending on size, components, and whether you go grid-tie or self-consumption. That is a big upfront expense. Most installers offer payment options: pay cash, take a solar loan, or sign a long-term financing agreement. Each has tradeoffs in total cost, monthly cash flow, and flexibility.",
           "Here is an honest breakdown of the three main payment options, how they work in California, and which delivers the best value for most homeowners.",
         ],
       },
@@ -2222,7 +2222,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Solar leases and PPAs were popular in the 2010s. You pay nothing upfront. A solar company installs panels on your roof, owns the system, and charges you a monthly lease payment or per-kWh rate. You save money compared to the utility, but you do not own the system or claim the ITC.",
           "The problems: you are locked into a 20 to 25 year contract with annual escalators that increase payments by 2 to 4 percent per year. You do not benefit from falling utility rates or policy changes. If you sell your home, the buyer must assume the lease or you must buy it out -- both complicate the sale. Leased systems add little to no resale value.",
-          "Solar leases made sense when upfront costs were $40,000 and financing was hard to get. In 2026, with system costs under $10,000 for off-grid and cash or low-interest loans widely available, leases are a bad deal. Avoid them unless you have no other option.",
+          "Solar leases made sense when upfront costs were $40,000 and financing was hard to get. In 2026, with system costs under $10,000 for self-consumption and cash or low-interest loans widely available, leases are a bad deal. Avoid them unless you have no other option.",
         ],
       },
       {
@@ -2236,7 +2236,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Total Cost Comparison: Cash vs Loan vs Financing",
         paragraphs: [
-          "Example system: $10,000 off-grid solar system covering HVAC and essentials. Compare three payment options over 20 years. No federal ITC applies for 2026 installs; SGIP rebate potential not included as it varies.",
+          "Example system: $10,000 residential solar + battery system covering HVAC and essentials. Compare three payment options over 20 years. No federal ITC applies for 2026 installs; SGIP rebate potential not included as it varies.",
           "Cash: $10,000 upfront. No interest. Total 20-year cost: $10,000.",
           "Solar loan at 5 percent over 10 years: Borrow $10,000. Pay $106 per month for 10 years. Total repayment: $12,700. Total 20-year cost: $12,700.",
           "Dealer financing at 7 percent over 20 years: Borrow $10,000 (or $13,000 if dealer marks up price). Pay $100 per month for 20 years. Total repayment: $24,000. Total 20-year cost: $24,000 to $31,000 depending on markup.",
@@ -2255,7 +2255,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "VoltSol Payment Options",
         paragraphs: [
-          "VoltSol systems cost under $10,000 for most off-grid installs. We encourage customers to pay cash when possible -- the upfront cost is low enough that many homeowners can cover it from savings without financing. California's SGIP program may lower your net cost further if your battery qualifies.",
+          "VoltSol systems cost under $10,000 for most solar + battery installs. We encourage customers to pay cash when possible -- the upfront cost is low enough that many homeowners can cover it from savings without financing. California's SGIP program may lower your net cost further if your battery qualifies.",
           "For customers who prefer to finance, we work with local credit unions and banks that offer solar loans at competitive rates. We do not mark up system prices to cover financing fees. The cash price is the financed price. You arrange your own loan and pay us directly.",
           "We do not offer dealer financing or solar leases. These products benefit the installer and financing company, not the customer. Our goal is to deliver maximum value at minimum cost. Paying cash or securing your own low-rate loan achieves that.",
         ],
@@ -2414,7 +2414,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "Standard grid-tie solar systems shut down during blackouts, even if the sun is shining. This is a safety requirement -- solar systems must disconnect to prevent backfeeding power into dead lines, which would endanger utility workers. Without a battery, your grid-tie solar is useless during PSPS.",
           "Solar-plus-battery systems with islanding capability keep running during outages. When the grid goes down, the system disconnects from the utility and switches to island mode. Solar panels charge the battery during the day. The battery powers your home at night. As long as the sun rises, you stay online.",
-          "Off-grid solar systems are immune to PSPS because they never connect to the grid. You generate, store, and use power on-site. The utility can shut off the grid for a month and you keep running. This is the ultimate PSPS resilience solution.",
+          "Residential solar + battery systems are immune to PSPS because they never connect to the grid. You generate, store, and use power on-site. The utility can shut off the grid for a month and you keep running. This is the ultimate PSPS resilience solution.",
         ],
       },
       {
@@ -2443,11 +2443,11 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Grid-Tie vs Off-Grid in Fire Zones",
+        heading: "Grid-Tie vs Battery-Backed Solar in Fire Zones",
         paragraphs: [
           "Grid-tie solar with battery backup is the most common choice in fire-prone areas with existing utility service. You stay connected to the grid for normal operation, export excess solar under NEM 3.0, and switch to battery backup during PSPS. This gives you resilience without fully disconnecting.",
-          "Off-grid solar makes sense for remote homes where grid extension is expensive or unreliable. If your property is in a high-fire zone and experiences frequent PSPS events, going off-grid eliminates dependency on the utility entirely. You are self-sufficient 365 days per year.",
-          "Hybrid systems -- off-grid for essentials with optional grid connection for heavy loads -- are popular in fire zones. Run HVAC, refrigerator, and lights on solar and battery. Keep the grid connection for electric stoves, dryers, and well pumps. During PSPS, you lose the heavy loads but maintain comfort and food storage.",
+          "Residential solar + battery storage makes sense for remote homes where grid extension is expensive or unreliable. If your property is in a high-fire zone and experiences frequent PSPS events, going solar with battery storage eliminates dependency on the utility entirely. You are self-sufficient 365 days per year.",
+          "Hybrid systems -- battery backup for essentials with optional grid connection for heavy loads -- are popular in fire zones. Run HVAC, refrigerator, and lights on solar and battery. Keep the grid connection for electric stoves, dryers, and well pumps. During PSPS, you lose the heavy loads but maintain comfort and food storage.",
         ],
       },
       {
@@ -2470,7 +2470,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     faq: [
       {
         q: "Will my solar panels work during a PSPS shutoff?",
-        a: "Only if you have a battery backup system with islanding capability. Standard grid-tie solar shuts down during blackouts for safety. Solar-plus-battery or off-grid systems keep running indefinitely as long as the sun rises.",
+        a: "Only if you have a battery backup system with islanding capability. Standard grid-tie solar shuts down during blackouts for safety. Solar-plus-battery or solar + battery systems keep running indefinitely as long as the sun rises.",
       },
       {
         q: "How much battery do I need to survive a week-long PSPS event?",
@@ -2527,8 +2527,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         heading: "Hybrid Inverters: Solar Plus Battery",
         paragraphs: [
           "Hybrid inverters combine the functions of a solar inverter and a battery charge controller. They convert DC from solar panels to AC for your home, charge a battery with excess solar, and draw from the battery when solar is insufficient. Hybrid inverters enable solar-plus-battery systems without separate charge controllers.",
-          "Hybrid inverters are essential for off-grid and battery backup systems. They manage power flow between solar, battery, grid (if connected), and loads. During the day, solar powers the home and charges the battery. At night, the battery takes over. If the grid is available, the inverter can draw from it as a backup or export excess solar under net metering.",
-          "EG4 and Sol-Ark make popular hybrid inverters for residential off-grid and backup systems. These units handle 6 to 18 kW of solar input, manage 48V battery banks, and support grid-tie or off-grid operation. Cost is $2,000 to $6,000 depending on capacity and features.",
+          "Hybrid inverters are essential for self-consumption and battery backup systems. They manage power flow between solar, battery, grid (if connected), and loads. During the day, solar powers the home and charges the battery. At night, the battery takes over. If the grid is available, the inverter can draw from it as a backup or export excess solar under net metering.",
+          "EG4 and Sol-Ark make popular hybrid inverters for residential self-consumption and backup systems. These units handle 6 to 18 kW of solar input, manage 48V battery banks, and support grid-tie or self-consumption operation. Cost is $2,000 to $6,000 depending on capacity and features.",
           "Hybrid inverters cost more than simple string inverters but eliminate the need for separate battery charge controllers and transfer switches. For systems with batteries, hybrid inverters simplify the design and reduce component count.",
         ],
       },
@@ -2561,8 +2561,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         paragraphs: [
           "String inverters make sense for unshaded roofs with simple layouts. If your panels face one direction, have no shading, and you want the lowest upfront cost, string inverters deliver excellent value. They are reliable, efficient, and easy to service.",
           "Microinverters are best for shaded roofs, complex layouts, or roofs with multiple orientations. If you have chimneys, vents, or trees that shade part of your array, microinverters prevent shading losses. The panel-level monitoring is also valuable for troubleshooting and performance tracking.",
-          "Hybrid inverters are mandatory for battery backup or off-grid systems. If you want resilience during blackouts or energy independence, hybrid inverters manage the solar-battery-load triangle. VoltSol uses EG4 hybrid inverters for off-grid systems because they handle solar input, battery charging, and AC output in one integrated unit.",
-          "For grid-tie systems without batteries, string or microinverters work fine. For systems with batteries, hybrid inverters are the default. For off-grid, hybrid is the only option.",
+          "Hybrid inverters are mandatory for battery backup or solar + battery systems. If you want resilience during blackouts or energy independence, hybrid inverters manage the solar-battery-load triangle. VoltSol uses EG4 hybrid inverters for solar + battery systems because they handle solar input, battery charging, and AC output in one integrated unit.",
+          "For grid-tie systems without batteries, string or microinverters work fine. For systems with batteries, hybrid inverters are the default. For self-consumption, hybrid is the only option.",
         ],
       },
     ],
@@ -2594,13 +2594,13 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     title: "How Much Can You Really Save on Your Electric Bill with Solar in California?",
     metaTitle: "Solar Electric Bill Savings California 2026: Real Numbers",
     metaDescription:
-      "Calculate real solar savings in California with PG&E, SCE, SMUD rates. Payback, monthly savings, and 20-year value for grid-tie and off-grid systems.",
+      "Calculate real solar savings in California with PG&E, SCE, SMUD rates. Payback, monthly savings, and 20-year value for grid-tie and solar + battery systems.",
     excerpt:
       "Here is how much California homeowners actually save with solar, broken down by utility and system type.",
     sections: [
       {
         paragraphs: [
-          "The pitch is always the same: solar will slash your electric bill. But how much do you actually save? It depends on your utility rates, usage, system size, and whether you go grid-tie or off-grid. Here are the real numbers for California homeowners in PG&E, SCE, and SMUD territory.",
+          "The pitch is always the same: solar will slash your electric bill. But how much do you actually save? It depends on your utility rates, usage, system size, and whether you go grid-tie or self-consumption. Here are the real numbers for California homeowners in PG&E, SCE, and SMUD territory.",
         ],
       },
       {
@@ -2621,11 +2621,11 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Off-Grid Solar: Zero Bills Forever",
+        heading: "Residential Solar + Battery Storage: Zero Bills Forever",
         paragraphs: [
-          "Off-grid solar eliminates your utility bill entirely. No meter. No monthly charges. No rate hikes. You generate, store, and use power on-site. After the system pays for itself, your electricity is free.",
-          "Example: you install a $10,000 VoltSol off-grid system covering HVAC, lights, and essentials. Pre-solar, you paid $250 per month to PG&E, or $3,000 per year. Post-solar, you pay $0. Annual savings: $3,000. Payback: 3.3 years. After year 4, you bank $3,000 per year in avoided utility costs.",
-          "Over 20 years, assuming 4 percent annual rate increases, you save $89,000 compared to staying on the grid. That is $10,000 upfront investment returning $89,000 in value. Even after accounting for occasional maintenance or component replacement, off-grid solar is a massive long-term win.",
+          "Residential solar + battery storage eliminates your utility bill entirely. No meter. No monthly charges. No rate hikes. You generate, store, and use power on-site. After the system pays for itself, your electricity is free.",
+          "Example: you install a $10,000 VoltSol solar + battery system covering HVAC, lights, and essentials. Pre-solar, you paid $250 per month to PG&E, or $3,000 per year. Post-solar, you pay $0. Annual savings: $3,000. Payback: 3.3 years. After year 4, you bank $3,000 per year in avoided utility costs.",
+          "Over 20 years, assuming 4 percent annual rate increases, you save $89,000 compared to staying on the grid. That is $10,000 upfront investment returning $89,000 in value. Even after accounting for occasional maintenance or component replacement, residential solar + battery storage is a massive long-term win.",
         ],
       },
       {
@@ -2639,10 +2639,10 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       {
         heading: "Monthly Savings by System Type",
         paragraphs: [
-          "Off-grid system covering HVAC and essentials, $10,000 installed: PG&E customers save $200 to $300 per month. SCE customers save $150 to $250. SMUD customers save $80 to $150. Payback: 2.5 to 4 years in PG&E/SCE, 5 to 8 years in SMUD.",
+          "Solar + battery system covering HVAC and essentials, $10,000 installed: PG&E customers save $200 to $300 per month. SCE customers save $150 to $250. SMUD customers save $80 to $150. Payback: 2.5 to 4 years in PG&E/SCE, 5 to 8 years in SMUD.",
           "Grid-tie system without battery, $18,000 installed: PG&E customers save $100 to $150 per month. SCE customers save $80 to $120. SMUD customers save $50 to $80. Payback: 6 to 10 years in PG&E/SCE, 10 to 15 years in SMUD.",
           "Grid-tie system with battery, $30,000 installed: PG&E customers save $180 to $220 per month. SCE customers save $140 to $180. SMUD customers save $80 to $120. Payback: 8 to 12 years in PG&E/SCE, 12 to 18 years in SMUD.",
-          "Off-grid delivers the fastest payback and highest total savings in high-rate territories. Grid-tie with battery delivers resilience but slower payback. Grid-tie without battery is cheapest upfront but saves the least.",
+          "Solar + battery storage delivers the fastest payback and highest total savings in high-rate territories. Grid-tie with battery delivers resilience but slower payback. Grid-tie without battery is cheapest upfront but saves the least.",
         ],
       },
       {
@@ -2662,30 +2662,30 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "Real Customer Example: Fresno Off-Grid",
+        heading: "Real Customer Example: Fresno Solar + Battery",
         paragraphs: [
-          "A VoltSol customer in Fresno installed a $9,800 off-grid system in 2024. Pre-solar PG&E bill: $280 per month average, $3,360 per year. Post-solar bill: $0. Annual savings: $3,360.",
+          "A VoltSol customer in Fresno installed a $9,800 solar + battery system in 2024. Pre-solar PG&E bill: $280 per month average, $3,360 per year. Post-solar bill: $0. Annual savings: $3,360.",
           "This install was in 2024, when the 30 percent federal ITC still applied. Net system cost after ITC: $6,860. Payback: 2.0 years. For 2026 installs, the federal ITC ended for systems placed in service after December 31, 2025. At full cost of $9,800, payback stretches to about 2.9 years -- still under 3 years in high-rate PG&E territory. Over 20 years at 4 percent annual rate increases, total avoided utility costs: $100,000. System cost: $9,800. Net savings: $90,200.",
-          "This is not hypothetical. This is real data from a real customer. Off-grid solar in high-rate PG&E territory delivers life-changing financial value.",
+          "This is not hypothetical. This is real data from a real customer. Residential solar + battery storage in high-rate PG&E territory delivers life-changing financial value.",
         ],
       },
     ],
     faq: [
       {
         q: "How much will I save per month with solar in California?",
-        a: "It depends on your utility and system type. PG&E customers with off-grid systems save $200 to $300 per month. Grid-tie systems save $100 to $150 per month without battery, $180 to $220 with battery. SMUD customers save less due to lower rates.",
+        a: "It depends on your utility and system type. PG&E customers with solar + battery systems save $200 to $300 per month. Grid-tie systems save $100 to $150 per month without battery, $180 to $220 with battery. SMUD customers save less due to lower rates.",
       },
       {
         q: "How long does it take for solar to pay for itself in California?",
-        a: "Payback ranges from 2 to 12 years depending on system cost, utility rates, and usage. Off-grid systems in PG&E territory pay back in 2.5 to 4 years. Grid-tie systems take 6 to 12 years. SMUD territory payback is longer due to lower rates.",
+        a: "Payback ranges from 2 to 12 years depending on system cost, utility rates, and usage. Solar + battery systems in PG&E territory pay back in 2.5 to 4 years. Grid-tie systems take 6 to 12 years. SMUD territory payback is longer due to lower rates.",
       },
       {
         q: "Will solar eliminate my electric bill?",
-        a: "Off-grid solar eliminates your bill entirely. Grid-tie solar under NEM 3.0 reduces it by 60 to 90 percent but leaves connection fees and nighttime grid usage. Adding a battery gets you closer to zero but increases upfront cost.",
+        a: "Residential solar + battery storage eliminates your bill entirely. Grid-tie solar under NEM 3.0 reduces it by 60 to 90 percent but leaves connection fees and nighttime grid usage. Adding a battery gets you closer to zero but increases upfront cost.",
       },
       {
         q: "How much do I save over 20 years with solar?",
-        a: "In PG&E territory, a $10,000 off-grid system saves $89,000 to $100,000 over 20 years accounting for rate increases. Grid-tie systems save $50,000 to $70,000 depending on battery inclusion. SMUD customers save $30,000 to $50,000.",
+        a: "In PG&E territory, a $10,000 solar + battery system saves $89,000 to $100,000 over 20 years accounting for rate increases. Grid-tie systems save $50,000 to $70,000 depending on battery inclusion. SMUD customers save $30,000 to $50,000.",
       },
       {
         q: "Are higher utility rates better for solar savings?",

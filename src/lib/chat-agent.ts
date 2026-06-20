@@ -7,7 +7,11 @@ import { sql } from '@/lib/db';
 
 // ── Model chain (OpenRouter) ─────────────────────────────────────────────────
 // Primary first; the route fails over down the list on hard errors.
+// Primary is Sonnet 4.6 — this is a SALES agent, not a form-filler. It needs warmth,
+// persuasion, and reliable tool-call discipline to guide a stranger to volunteer
+// their contact info. Haiku/Flash/GLM remain as cheap hard-failure fallbacks only.
 export const MODEL_CHAIN = [
+  'anthropic/claude-sonnet-4.6',
   'anthropic/claude-haiku-4.5',
   'google/gemini-3-flash-preview',
   'google/gemini-2.5-flash',
@@ -66,6 +70,81 @@ export function hasAllRequiredSlots(slots: ChatSlots): boolean {
   );
 }
 
+// ── Funnel steering ──────────────────────────────────────────────────────────
+// A salesman never asks an open-ended "what else can I grab?" mid-funnel. We
+// always know the single next thing to ask for. This is the ordered path and a
+// deterministic next-question generator so the agent can NEVER dead-end, even
+// if the model produces a vague line.
+export type NextStep =
+  | 'first_name'
+  | 'last_name'
+  | 'phone'
+  | 'email'
+  | 'consent'
+  | 'submit'
+  | 'done';
+
+export function nextStep(slots: ChatSlots): NextStep {
+  if (!slots.first_name?.trim()) return 'first_name';
+  if (!slots.last_name?.trim()) return 'last_name';
+  if (!slots.phone?.trim()) return 'phone';
+  if (!slots.email?.trim()) return 'email';
+  if (slots.consent !== true) return 'consent';
+  return 'submit';
+}
+
+// One-line instruction injected each turn so the model asks for EXACTLY the next
+// missing field and nothing vague. Keeps it a guided salesman, not a passive bot.
+export function steeringLine(slots: ChatSlots): string {
+  const step = nextStep(slots);
+  const fn = slots.first_name ? ` Use their name (${slots.first_name}) warmly.` : '';
+  switch (step) {
+    case 'first_name':
+      return 'NEXT ACTION: Warmly ask for their first name. One question only.';
+    case 'last_name':
+      return `NEXT ACTION: You have their first name.${fn} Now ask for their last name, casually. Do NOT ask an open-ended question. One question only.`;
+    case 'phone':
+      return `NEXT ACTION: Now get their phone — frame it as the fastest way the tech sends the estimate.${fn} Do NOT ask "what else." One question only.`;
+    case 'email':
+      return `NEXT ACTION: Now ask for their email so they get a copy in writing.${fn} One question only.`;
+    case 'consent':
+      return `NEXT ACTION: You have name, phone, and email. Now naturally confirm consent — e.g. "All good if a VoltSol tech reaches out by call or text? You can opt out anytime."${fn} Do NOT ask "what else."`;
+    case 'submit':
+      return 'NEXT ACTION: All required fields are captured WITH consent. Call submit_lead now, then give a short warm confirmation.';
+    default:
+      return '';
+  }
+}
+
+// Deterministic next-question fallback. Used ONLY when the model returns a vague
+// or empty line mid-funnel, so the customer is always advanced, never stalled.
+export function nextQuestionFallback(slots: ChatSlots): string {
+  const step = nextStep(slots);
+  const name = slots.first_name ? `, ${slots.first_name}` : '';
+  switch (step) {
+    case 'first_name':
+      return "Happy to help! First off — what should I call you?";
+    case 'last_name':
+      return `Great to meet you${name}! And your last name?`;
+    case 'phone':
+      return `Perfect${name}! What's the best phone number? Texting is usually the fastest way to get your estimate over.`;
+    case 'email':
+      return `Got it! And what email should I send the written copy to?`;
+    case 'consent':
+      return `Almost done${name}! All good if a VoltSol tech reaches out by call or text with your estimate? You can opt out anytime.`;
+    case 'submit':
+    default:
+      return `You're all set${name}! A VoltSol tech will reach out shortly with your estimate. ☀️`;
+  }
+}
+
+// Detect a vague / dead-end assistant line that fails to advance the funnel.
+export function isVagueLine(text: string): boolean {
+  const t = (text || '').trim().toLowerCase();
+  if (!t) return true;
+  return /(what else can i (grab|get|do|help)|anything else|how (else )?can i help|is there anything|let me know if)/.test(t);
+}
+
 // ── System prompt loader ─────────────────────────────────────────────────────
 // Reads site_config.chatbot_system_prompt (no-store via db.ts fetchOptions).
 // Falls back to the bundled copy if the DB row is missing/empty.
@@ -98,6 +177,8 @@ GOAL — collect via natural conversation, in order:
 Use the capture_field tool the moment you capture each value. When all required slots (first_name, last_name, phone, email, consent) are filled, call submit_lead.
 
 PLAYBOOK: Open on the savings win + reciprocity, ask their name; use it warmly then ask last name; frame phone as fastest delivery; ask email for a written copy; soft-ask address (optional); ask consent naturally ("all good if our team reaches out by call or text? opt out anytime"); close warmly.
+
+YOU ARE A GUIDED SALESMAN, NOT A PASSIVE BOT. Every single message must move them ONE step closer to a completed lead. After they answer, acknowledge briefly and IMMEDIATELY ask for the next missing detail in order (first_name → last_name → phone → email → consent). NEVER ask open-ended dead-end questions like "What else can I grab for you?", "Anything else?", or "How can I help?" — those kill the conversion. You always know the next thing to ask; ask it. A NEXT ACTION instruction is provided each turn — follow it exactly while keeping your wording warm and human.
 
 HARD RULES (non-negotiable):
 - NEVER invent or quote prices, discounts, tax credits, financing, timelines, or guarantees. The only number you may reference is the savings already shown. Defer everything else to "your tech."

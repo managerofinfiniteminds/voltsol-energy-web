@@ -19,6 +19,9 @@ import {
   extractFromText,
   inferExpectedField,
   hasAllRequiredSlots,
+  steeringLine,
+  nextQuestionFallback,
+  isVagueLine,
   type ChatSlots,
   type QuizContext,
 } from '@/lib/chat-agent';
@@ -315,8 +318,13 @@ export async function POST(req: NextRequest) {
     captured: Object.keys(slots).filter((k) => (slots as Record<string, unknown>)[k] !== undefined),
   });
 
+  // Funnel steering: tell the model EXACTLY which field to ask for next so it
+  // can never dead-end with a vague "what else can I grab for you?". This is the
+  // guided-salesman backbone — deterministic direction, model supplies warmth.
+  const steer = steeringLine(slots);
+
   const orMessages: OrMessage[] = [
-    { role: 'system', content: `${systemPrompt}\n\n${preamble}\n\nALREADY CAPTURED THIS SESSION (do not re-ask): ${knownSlots}` },
+    { role: 'system', content: `${systemPrompt}\n\n${preamble}\n\nALREADY CAPTURED THIS SESSION (do not re-ask): ${knownSlots}\n\n${steer}` },
     ...userMessages.map((m) => ({ role: m.role, content: m.content })),
   ];
 
@@ -407,23 +415,24 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Truth guard: NEVER tell the customer they're done unless a lead actually
-  // landed. If the model claimed success but no lead id exists, replace its text
-  // with an honest continuation so we don't drop a lead silently.
+  // landed. If the model claimed success but no lead id exists, steer it back to
+  // the next real question so we don't drop a lead silently.
   if (!engineLeadId && !handoff && /\b(all set|you'?re set|all done|reach out|be in touch|got everything|submitted)\b/i.test(assistantText)) {
-    const missing: string[] = [];
-    if (!slots.first_name) missing.push('your name');
-    if (!slots.phone) missing.push('the best phone number');
-    if (!slots.email) missing.push('your email');
-    if (slots.consent !== true) missing.push('your okay to have a tech reach out');
-    assistantText = missing.length
-      ? `Almost there! I just need ${missing.slice(0, 2).join(' and ')} to send this over.`
-      : 'Got it! What else can I grab for you?';
+    assistantText = nextQuestionFallback(slots);
+  }
+
+  // ── Anti-dead-end guard: if the model produced an empty or VAGUE line mid-funnel
+  // (e.g. "What else can I grab for you?"), replace it with the deterministic next
+  // question so the customer is always advanced toward submission. This is what
+  // turns a passive bot into a guided salesman, independent of model quality.
+  if (!completed && !handoff && isVagueLine(assistantText)) {
+    assistantText = nextQuestionFallback(slots);
   }
 
   if (!assistantText) {
     assistantText = completed
       ? "You're all set — a tech will be in touch shortly. ☀️"
-      : 'Got it! What else can I grab for you?';
+      : nextQuestionFallback(slots);
   }
 
   const status = completed ? 'completed' : handoff ? 'handed_off' : 'active';

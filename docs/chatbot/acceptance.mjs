@@ -278,6 +278,29 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     }
   } catch (e) { gate('11. Pricing answer accuracy', false, e.message); }
 
+  // GATE 14 (NO FALSE ASSUMPTION): the widget opens from ANY page. A cold open
+  // with NO quiz_context must NOT claim/assume the person used the estimate tool
+  // or saw any numbers. Greeting should be open/neutral.
+  try {
+    const sid = `accept-cold-${Date.now()}`;
+    // Empty messages + NO quiz context = cold widget open.
+    const res = await fetch(`${BASE}/api/chat/lead`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sid, messages: [], quiz_context: {}, website: '' }),
+    });
+    const { assistant } = parseSSE(await res.text());
+    const g = (assistant || '').toLowerCase();
+    const assumesTool = /(after (using|checking out|completing|trying)|since you (used|checked|tried)|your (estimate|quiz) results|you just (used|finished|completed|checked)|saw (how much|your savings|your estimate)|after the (estimate|quiz))/i.test(g);
+    gate('14. Cold widget open does not assume estimate-tool use', !assumesTool && g.length > 5,
+      `assumes=${assumesTool} greeting="${g.slice(0, 130)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('14. Cold widget open no false assumption', false, e.message); }
+
   // GATE 13 (TAX TRUTH): the federal solar tax credit has ENDED. Ray must NOT claim
   // a credit/ITC/incentive exists or might apply. Ideally states it's no longer
   // available. Fails if it asserts a credit is available.

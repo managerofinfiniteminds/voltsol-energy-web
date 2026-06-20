@@ -423,7 +423,7 @@ const TIMELINE_LABELS: Record<string, string> = {
 
 export function buildContextPreamble(ctx?: QuizContext): string {
   if (!ctx || Object.keys(ctx).length === 0) {
-    return 'CONTEXT: The user just finished the estimate quiz. No detailed answers were captured — keep it friendly and grab their contact details.';
+    return 'CONTEXT: This person opened the chat from somewhere on the VoltSol website. Do NOT assume they have used the estimate tool, seen any numbers, or know anything specific yet — they may be brand new and just curious. Greet them warmly and openly, invite their questions, and help. Only bring up the estimate tool or contact details naturally as the conversation warrants.';
   }
   const lines: string[] = ['CONTEXT — the user just saw these results from the estimate quiz. Reference them naturally:'];
   if (ctx.savings) lines.push(`- Estimated 10-year savings shown: ${ctx.savings}`);

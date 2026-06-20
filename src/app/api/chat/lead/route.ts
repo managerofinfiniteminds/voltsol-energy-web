@@ -342,9 +342,17 @@ export async function POST(req: NextRequest) {
     ...userMessages.map((m) => ({ role: m.role, content: m.content })),
   ];
 
-  // If the conversation is empty, open warmly.
+  // If the conversation is empty, open warmly. The greeting MUST NOT assume they
+  // used the estimate tool or know anything — the widget opens from any page and
+  // they may be brand new. Tailor only if quiz_context is actually present.
   if (userMessages.length === 0) {
-    orMessages.push({ role: 'user', content: '(the user just landed in the chat — greet them)' });
+    const hasQuiz = !!quiz && Object.keys(quiz).length > 0;
+    orMessages.push({
+      role: 'user',
+      content: hasQuiz
+        ? '(the user just landed in the chat after using the estimate tool — greet them warmly, you may reference their results)'
+        : '(the user just opened the chat from the website — greet them warmly and openly. Do NOT assume they used any tool, saw any numbers, or know anything yet. Invite their questions and offer to help. Keep it short.)',
+    });
   }
 
   let modelUsed: string = MODEL_CHAIN[0];

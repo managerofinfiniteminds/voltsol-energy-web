@@ -189,7 +189,7 @@ export default async function HomePage() {
         className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
       />
 
-      {/* ========== SECTION 2.5: WHY NOW — NEM 3.0 PAYBACK COLLAPSE ========== */}
+      {/* ========== SECTION 2.5: WHY NOW — THE EXPORT TRAP (make it, store it, use it) ========== */}
       <Section className="relative overflow-hidden">
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -200,35 +200,33 @@ export default async function HomePage() {
                   Why now
                 </span>
                 <h2 className="mt-5 font-display text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl">
-                  The grid used to pay you{" "}
-                  <span className="text-gold">$0.30</span>.
-                  <br />
-                  Now it pays{" "}
-                  <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
-                    $0.08
-                  </span>.
+                  Stop giving your power away{" "}
+                  <span className="text-gold">for pennies</span>.
                 </h2>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100">
-                  Under California&rsquo;s NEM 3.0 rules, the credit you get for
-                  selling solar power back to the grid was cut by roughly{" "}
-                  <strong className="text-white">75%</strong>. Exporting power
-                  to the utility barely pays anymore.
+                  The rules changed. Under California&rsquo;s current net-billing
+                  rules, many homeowners now get credited only a{" "}
+                  <strong className="text-white">small fraction</strong> of the
+                  retail price for the solar power they send to the grid &mdash;
+                  yet pay full retail to buy electricity back. Exporting your
+                  power has quietly become a bad deal.
                 </p>
                 <p className="mt-4 max-w-xl text-lg leading-relaxed text-blue-100">
-                  So the smart move flipped: don&rsquo;t sell your power cheap
-                  &mdash; <strong className="text-white">store it and use it
-                  yourself</strong>. That&rsquo;s a battery-first, off-grid
-                  system. That&rsquo;s exactly what VoltSol builds.
+                  So the smart move is simple:{" "}
+                  <strong className="text-white">make it, store it, and use it
+                  yourself</strong> &mdash; keep the power you make instead of
+                  handing it to the utility. A solar-plus-battery system does
+                  exactly that. That&rsquo;s what VoltSol builds.
                 </p>
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <Button href="/start" size="lg" trackLocation="nem3_band">
+                  <Button href="/start" size="lg" trackLocation="export_trap_band">
                     {cfg.cta_button_text}
                   </Button>
                   <Link
                     href="/technology"
                     className="inline-flex items-center justify-center text-sm font-medium text-slate-300 transition-colors hover:text-white py-3"
                   >
-                    Why batteries win under NEM 3.0 &rarr;
+                    Why keeping your power wins &rarr;
                   </Link>
                 </div>
               </div>
@@ -237,8 +235,8 @@ export default async function HomePage() {
             <Reveal delay={0.2}>
               <div className="overflow-hidden rounded-2xl border border-navy-500/40 shadow-[0_0_40px_rgba(245,158,11,0.08)]">
                 <Image
-                  src="/images/nem3-payback-collapse.png"
-                  alt="Comparison showing how California NEM 3.0 cut solar export credits roughly 75 percent — from about $0.30 per kWh down to about $0.08 per kWh — making battery storage smarter than selling power back to the grid"
+                  src="/images/make-store-use-grid.png"
+                  alt="Two paths for home solar: sending power to the grid earns only a fraction of retail value, while keeping it — make it, store it, use it — lets you use the full value of the power you produce"
                   width={1376}
                   height={768}
                   className="h-auto w-full"

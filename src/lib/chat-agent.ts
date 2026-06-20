@@ -220,6 +220,13 @@ export function nextQuestionFallback(slots: ChatSlots): string {
   }
 }
 
+// Reassuring fallback for BACKOFF mode: used when the model returns empty/vague
+// text after the user declined a detail. Must reassure and NOT pump a field.
+export function backoffFallback(slots: ChatSlots): string {
+  const name = slots.first_name ? `, ${slots.first_name}` : '';
+  return `No worries at all${name} — totally optional, and there's zero pressure. I'm happy to just answer any questions you've got about going solar. What would you like to know?`;
+}
+
 // Detect a vague / dead-end assistant line that fails to advance the funnel.
 export function isVagueLine(text: string): boolean {
   const t = (text || '').trim().toLowerCase();

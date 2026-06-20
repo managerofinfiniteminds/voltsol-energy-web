@@ -21,6 +21,7 @@ import {
   hasAllRequiredSlots,
   steeringLine,
   nextQuestionFallback,
+  backoffFallback,
   isVagueLine,
   looksLikeQuestion,
   looksLikeRefusal,
@@ -443,9 +444,24 @@ export async function POST(req: NextRequest) {
   }
 
   if (!assistantText) {
-    assistantText = completed
-      ? "You're all set — a tech will be in touch shortly. ☀️"
-      : nextQuestionFallback(slots);
+    if (completed) {
+      assistantText = "You're all set — a tech will be in touch shortly. ☀️";
+    } else if (steerMode === 'backoff') {
+      // Respect the refusal: reassure, never pump the next field.
+      assistantText = backoffFallback(slots);
+    } else {
+      assistantText = nextQuestionFallback(slots);
+    }
+  }
+
+  // ── Backoff safety: even if the model produced text, never let a refusal turn end
+  // by demanding the SAME OR ANOTHER detail. If we're in backoff and the reply
+  // reads like a field-pump with no reassurance, replace with a reassurance.
+  if (!completed && !handoff && steerMode === 'backoff') {
+    const t = assistantText.toLowerCase();
+    const reassures = /(no (pressure|problem|worries|rush)|totally (fine|ok|optional)|that'?s (fine|ok|totally fine)|of course|whenever you'?re ready|happy to (just )?answer|opt out|don'?t have to|no obligation)/i.test(t);
+    const pumps = /(what'?s|whats|share|give me|can i (get|have)|may i (get|have)|your)\b[^.?!]{0,30}\b(last name|phone|number|cell|email|address)/i.test(t);
+    if (pumps && !reassures) assistantText = backoffFallback(slots);
   }
 
   const status = completed ? 'completed' : handoff ? 'handed_off' : 'active';

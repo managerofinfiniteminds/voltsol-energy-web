@@ -33,15 +33,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Build LocalBusiness JSON-LD, including Review + aggregateRating from testimonials.
-function buildLocalBusinessJsonLd(testimonials: { quote: string; name: string; city: string }[]) {
-  const reviews = testimonials.map((t) => ({
-    "@type": "Review",
-    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-    author: { "@type": "Person", name: t.name },
-    reviewBody: t.quote,
-  }));
-
+// Build LocalBusiness JSON-LD.
+// NOTE: We intentionally do NOT emit Review/AggregateRating star markup built from
+// on-site testimonials. Google's structured-data policy disallows self-serving review
+// snippets (reviews a business writes about itself), and emitting them risks a manual
+// action / loss of rich-result eligibility. Re-enable this ONLY when fed by genuine
+// third-party reviews (e.g. verified Google Business Profile reviews). See admin launch plan.
+function buildLocalBusinessJsonLd(_testimonials: { quote: string; name: string; city: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -73,17 +71,7 @@ function buildLocalBusinessJsonLd(testimonials: { quote: string; name: string; c
         name: "California Contractors State License Board",
       },
     },
-    ...(reviews.length > 0
-      ? {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "5",
-            reviewCount: String(reviews.length),
-            bestRating: "5",
-          },
-          review: reviews,
-        }
-      : {}),
+    // aggregateRating / review intentionally omitted — see note above (no self-authored review stars).
   };
 }
 

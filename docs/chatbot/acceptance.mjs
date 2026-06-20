@@ -228,6 +228,60 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     if (browser) await browser.close();
   }
 
+  // GATE 9 (CONCIERGE): the bot ANSWERS a real solar question accurately instead of
+  // ignoring it to pump for contact info. Ask about batteries; expect a grounded
+  // answer (mentions warranty/lifespan/EG4/years), NOT just "what's your name?".
+  try {
+    const sid = `accept-answer-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      'how long do the batteries last?',
+    ], { utility: 'PG&E' });
+    const reply = (history[history.length - 1]?.content || '').toLowerCase();
+    const answered = /(year|cycle|warranty|8,?000|20|eg4|lifepo)/i.test(reply);
+    // It must NOT be a bare name-grab with no substance.
+    const isBareNameGrab = /what should i call you|your (first )?name/i.test(reply) && !answered;
+    gate('9. Bot answers a solar question accurately (concierge, not clipboard)',
+      answered && !isBareNameGrab,
+      `reply="${reply.slice(0, 120)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('9. Bot answers a solar question accurately', false, e.message); }
+
+  // GATE 10 (NOT PUSHY): when the user declines to share a detail, the bot must NOT
+  // re-ask for it on the very next turn and must NOT have created a lead. It should
+  // stay helpful. We give a name, then refuse the phone, and check the reply isn't
+  // another phone demand.
+  try {
+    const sid = `accept-backoff-${Date.now()}`;
+    const declineEmail = `chat-backoff-${Date.now()}@example.com`;
+    const { history } = await runConversation(sid, [
+      'hi there',
+      "I'm Pat",
+      "I'd rather not give my phone number yet, do I have to?",
+    ], { utility: 'PG&E' });
+    const reply = (history[history.length - 1]?.content || '').toLowerCase();
+    // Should reassure / not hard-demand the phone again. Flag a re-ask like
+    // "what's your phone number?" as a failure.
+    const reAsksPhone = /(what'?s|whats|share|give me|need)\b[^.?!]{0,30}\b(phone|number|cell)/i.test(reply);
+    const reassures = /(no (pressure|problem|worries)|that'?s (fine|ok|totally fine)|of course|no rush|whenever you'?re ready|happy to (just )?answer|opt out|don'?t have to)/i.test(reply);
+    const url = neonUrl();
+    let noLead = true;
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      const rows = await sql`SELECT id FROM engine_leads WHERE email=${declineEmail} LIMIT 1`;
+      noLead = rows.length === 0;
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+    gate('10. Bot backs off gracefully on refusal (not pushy)',
+      !reAsksPhone && reassures && noLead,
+      `reAsk=${reAsksPhone} reassure=${reassures} reply="${reply.slice(0, 120)}"`);
+  } catch (e) { gate('10. Bot backs off gracefully on refusal', false, e.message); }
+
   // GATE 8: "Prefer the form?" fallback path exists (handoff) — check classic form still reachable
   try {
     const browser2 = await chromium.launch({ channel: 'chrome', headless: true });

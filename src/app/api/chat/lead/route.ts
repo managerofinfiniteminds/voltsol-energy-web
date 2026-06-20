@@ -22,6 +22,9 @@ import {
   steeringLine,
   nextQuestionFallback,
   isVagueLine,
+  looksLikeQuestion,
+  looksLikeRefusal,
+  type SteerMode,
   type ChatSlots,
   type QuizContext,
 } from '@/lib/chat-agent';
@@ -318,10 +321,15 @@ export async function POST(req: NextRequest) {
     captured: Object.keys(slots).filter((k) => (slots as Record<string, unknown>)[k] !== undefined),
   });
 
-  // Funnel steering: tell the model EXACTLY which field to ask for next so it
-  // can never dead-end with a vague "what else can I grab for you?". This is the
-  // guided-salesman backbone — deterministic direction, model supplies warmth.
-  const steer = steeringLine(slots);
+  // Adaptive steering: a concierge ANSWERS questions and only invites the next
+  // detail after delivering value — and backs off if the person declines. We read
+  // the user's latest message to pick the mode, instead of pumping a slot every
+  // turn (which is what made the old bot feel like a clipboard).
+  const latestUser = [...userMessages].reverse().find((m) => m.role === 'user')?.content || '';
+  let steerMode: SteerMode = 'advance';
+  if (looksLikeRefusal(latestUser)) steerMode = 'backoff';
+  else if (looksLikeQuestion(latestUser)) steerMode = 'answer';
+  const steer = steeringLine(slots, steerMode);
 
   const orMessages: OrMessage[] = [
     { role: 'system', content: `${systemPrompt}\n\n${preamble}\n\nALREADY CAPTURED THIS SESSION (do not re-ask): ${knownSlots}\n\n${steer}` },
@@ -414,18 +422,23 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // ── Truth guard: NEVER tell the customer they're done unless a lead actually
-  // landed. If the model claimed success but no lead id exists, steer it back to
-  // the next real question so we don't drop a lead silently.
-  if (!engineLeadId && !handoff && /\b(all set|you'?re set|all done|reach out|be in touch|got everything|submitted)\b/i.test(assistantText)) {
+  // ── Truth guard: NEVER let the model claim the lead is DONE/submitted unless one
+  // actually landed. Tightened to completion-claim phrases only — the bot now
+  // legitimately says things like "an installer will reach out" while ANSWERING a
+  // question, and we must not clobber a good answer. Only fire when it falsely
+  // asserts the lead is finished.
+  if (
+    !engineLeadId &&
+    !handoff &&
+    /\b(you'?re all set|you are all set|all set!|all done|got everything i need|you'?re submitted|i'?ve submitted|lead (is )?submitted|you'?re all set)\b/i.test(assistantText)
+  ) {
     assistantText = nextQuestionFallback(slots);
   }
 
-  // ── Anti-dead-end guard: if the model produced an empty or VAGUE line mid-funnel
-  // (e.g. "What else can I grab for you?"), replace it with the deterministic next
-  // question so the customer is always advanced toward submission. This is what
-  // turns a passive bot into a guided salesman, independent of model quality.
-  if (!completed && !handoff && isVagueLine(assistantText)) {
+  // ── Anti-dead-end guard: if the model produced an empty or VAGUE line, replace it
+  // with the deterministic next question. In ANSWER mode we trust the model's reply
+  // (it's answering a real question), so we only apply this in advance/backoff flow.
+  if (!completed && !handoff && steerMode !== 'answer' && steerMode !== 'backoff' && isVagueLine(assistantText)) {
     assistantText = nextQuestionFallback(slots);
   }
 

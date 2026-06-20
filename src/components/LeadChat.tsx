@@ -190,8 +190,8 @@ export default function LeadChat({ sessionId, quizContext, onHandoff }: LeadChat
           ☀️
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-white leading-tight">Sol — VoltSol</p>
-          <p className="text-[11px] text-blue-300/70 leading-tight">Getting your estimate sent over</p>
+          <p className="text-sm font-semibold text-white leading-tight">Ray — VoltSol</p>
+          <p className="text-[11px] text-blue-300/70 leading-tight">Here to answer questions &amp; help</p>
         </div>
       </div>
 

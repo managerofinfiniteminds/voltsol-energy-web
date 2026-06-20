@@ -178,9 +178,12 @@ export async function POST(req: NextRequest) {
   const timeline = TimelineSchema.safeParse(data.timeline).success
     ? data.timeline
     : null;
+  // Accept canonical enum values OR a free-text/dropdown utility name (<=120 chars).
   const utility = UtilitySchema.safeParse(data.utility).success
     ? data.utility
-    : null;
+    : (typeof data.utility === 'string' && data.utility.trim()
+        ? data.utility.trim().slice(0, 120)
+        : null);
   const roofShade = RoofShadeSchema.safeParse(data.roof_shade).success
     ? data.roof_shade
     : null;

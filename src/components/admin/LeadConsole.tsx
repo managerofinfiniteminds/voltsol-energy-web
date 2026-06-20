@@ -33,7 +33,7 @@ interface EngineLead {
   owns_home: OwnsHome | null;
   monthly_bill: MonthlyBill | null;
   timeline: Timeline | null;
-  utility: Utility | null;
+  utility: Utility | string | null;
   roof_shade: RoofShade | null;
   notes: string | null;
   score: LeadScore;
@@ -93,7 +93,7 @@ function SignalRow({ lead }: { lead: EngineLead }) {
     signals.push({ emoji: '\uD83D\uDCC5', label: TIMELINE_LABELS[lead.timeline] });
   }
   if (lead.utility) {
-    signals.push({ emoji: '\uD83D\uDD0C', label: UTILITY_LABELS[lead.utility] });
+    signals.push({ emoji: '\uD83D\uDD0C', label: (UTILITY_LABELS as Record<string, string>)[lead.utility] ?? lead.utility });
   }
   if (lead.roof_shade) {
     signals.push({ emoji: '\u2600\uFE0F', label: ROOF_SHADE_LABELS[lead.roof_shade] });

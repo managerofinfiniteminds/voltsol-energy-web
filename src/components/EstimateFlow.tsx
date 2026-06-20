@@ -209,6 +209,25 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
   const [serverError, setServerError] = useState('');
   const [leadId, setLeadId] = useState<number | null>(null);
 
+  // Utility dropdown options (DB-backed, admin-editable)
+  const [utilityOptions, setUtilityOptions] = useState<{ id: number; name: string }[]>([]);
+  // When the user selects "Other / Not sure", reveal a free-text field
+  const [utilityOther, setUtilityOther] = useState('');
+  const isOtherUtility = /^other\b|not sure/i.test(form.utility);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/utilities')
+      .then(r => (r.ok ? r.json() : []))
+      .then((rows: { id: number; name: string }[]) => {
+        if (!cancelled && Array.isArray(rows)) setUtilityOptions(rows);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const stepRef = useRef<HTMLDivElement>(null);
 
   // Step labels for tracking
@@ -368,7 +387,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
       owns_home: form.owns_home || undefined,
       monthly_bill: form.monthly_bill || undefined,
       timeline: form.timeline || undefined,
-      utility: form.utility || undefined,
+      utility:
+        (isOtherUtility && utilityOther.trim()
+          ? utilityOther.trim()
+          : form.utility) || undefined,
       roof_shade: form.roof_shade === 'unsure' ? undefined : form.roof_shade || undefined,
       notes: form.notes.trim() || undefined,
       source_consumer: campaignCode ? `campaign_${campaignCode}` : 'voltsol_site',
@@ -666,19 +688,42 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">{t.q_utility}</h2>
           <p className="text-blue-300 text-sm mb-6">{t.q_utility_sub}</p>
-          <input
-            id="utility"
-            type="text"
-            name="utility"
-            value={form.utility}
-            onChange={handleChange}
-            placeholder={t.utility_placeholder}
-            autoComplete="off"
-            className={cn(
-              'w-full bg-navy-700 border rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base',
-              errors.utility ? 'border-red-500' : 'border-blue-900'
-            )}
-          />
+          <div className="relative">
+            <select
+              id="utility"
+              name="utility"
+              value={form.utility}
+              onChange={handleChange}
+              className={cn(
+                'w-full appearance-none bg-navy-700 border rounded-xl px-4 py-4 pr-10 text-base focus:outline-none focus:ring-2 focus:ring-gold transition',
+                form.utility ? 'text-white' : 'text-blue-300/40',
+                errors.utility ? 'border-red-500' : 'border-blue-900'
+              )}
+            >
+              <option value="" disabled>
+                {t.utility_placeholder}
+              </option>
+              {utilityOptions.map(u => (
+                <option key={u.id} value={u.name} className="text-navy bg-white">
+                  {u.name}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-blue-300">
+              ▾
+            </span>
+          </div>
+          {isOtherUtility && (
+            <input
+              type="text"
+              name="utility_other"
+              value={utilityOther}
+              onChange={e => setUtilityOther(e.target.value)}
+              placeholder="Type your utility company name"
+              autoComplete="off"
+              className="mt-3 w-full bg-navy-700 border border-blue-900 rounded-xl px-4 py-4 text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-gold transition text-base"
+            />
+          )}
           {errors.utility && (
             <p className="mt-2 text-sm text-red-400" role="alert">{errors.utility}</p>
           )}

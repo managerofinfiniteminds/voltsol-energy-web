@@ -5,7 +5,7 @@ The website is built and Google-ready. These steps are the part only YOU can do 
 is a real, local, trustworthy business. Do them in order. Most are free.
 
 **Your consistent business info — copy/paste this EXACTLY everywhere (this consistency is the #1 rule):**
-- **Name:** VoltSol Energy
+- **Legal name:** VoltSol Energy, LLC
 - **Phone:** (530) 228-1019
 - **Website:** https://voltsolenergy.com
 - **Email:** info@voltsolenergy.com

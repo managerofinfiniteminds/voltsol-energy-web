@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Schedule", href: "/admin/schedule" },
   { label: "Utilities", href: "/admin/utilities" },
   { label: "Config", href: "/admin/config" },
+  { label: "Launch Plan", href: "/admin/launch-plan" },
 ];
 
 function AdminNav() {

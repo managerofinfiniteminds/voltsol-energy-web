@@ -179,21 +179,21 @@ function LeadCard({ lead, onUpdate }: LeadCardProps) {
             href={`tel:${lead.phone.replace(/\D/g, '')}`}
             className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition"
           >
-            <span>\uD83D\uDCDE</span>
+            <span>📞</span>
             <span>{lead.phone}</span>
           </a>
           <a
             href={`mailto:${lead.email}`}
             className="flex items-center gap-1.5 text-slate-300 hover:text-white transition truncate"
           >
-            <span>\u2709\uFE0F</span>
+            <span>✉️</span>
             <span className="truncate">{lead.email}</span>
           </a>
         </div>
         {lead.status === 'new' && (
           <div className="mt-2 text-xs text-slate-500">
-            <Hint text="This is a new lead. Tap the phone or email above to reach out to them right now.">
-              <span className="text-slate-500 hover:text-slate-300">New card — tap phone or email to start →</span>
+            <Hint text="This lead hasn't been contacted yet. Tap the phone or email above to reach out.">
+              <span className="text-slate-500 hover:text-slate-300">New lead — not yet contacted</span>
             </Hint>
           </div>
         )}

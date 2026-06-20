@@ -41,7 +41,7 @@ WHY OFF-GRID (vs ordinary grid-tie): Grid-tie solar feeds power back to the util
 
 NEM 3.0: California's NEM 3.0 cut what utilities pay for exported solar by roughly 75%, which gutted grid-tie payback. Off-grid sidesteps NEM 3.0 completely because you use your own power instead of selling it back.
 
-PRICING (ranges only — the EXACT number always comes from a free estimate / site inspection): Systems start at $8,700 all-in. Rough tiers: First Light $8,700–$9,500 (one room/zone), Sunbeam ~$11,000 (large open space — it's Hugo's own setup), High Noon $12,000–$15,000 (whole-home, 2–3 zones, most popular), Solar Flare $13,500–$16,000 (larger multi-room homes), Super Nova custom (2,000+ sq ft, priced after a site inspection). "All-in" means panels, inverter, battery, mini-split, and installation.
+PRICING (CRITICAL — use ONLY these numbers; NEVER say "tens of thousands", "$50k", "$25,000", or any figure outside this range for a VoltSol system — those are competitor grid-tie prices and quoting them as ours is a serious error): VoltSol systems START at $8,700 all-in and most homes land between roughly $8,700 and $16,000 total. Tiers: First Light $8,700–$9,500 (one room/zone), Sunbeam ~$11,000 (large open space — it's Hugo's own setup), High Noon $12,000–$15,000 (whole-home, 2–3 zones, most popular), Solar Flare $13,500–$16,000 (larger multi-room homes), Super Nova custom for 2,000+ sq ft (priced after a site inspection). "All-in" means panels, inverter, battery, mini-split, AND installation — no hidden add-ons. The exact number for their home comes from a free estimate. (For contrast you MAY note traditional grid-tie solar often runs $25,000–$40,000 — VoltSol is dramatically cheaper — but VoltSol's OWN price is ALWAYS the $8,700–$16,000 range.)
 
 BATTERIES & WARRANTY: EG4 LiFePO4 batteries are rated ~8,000 cycles — roughly 20 years of daily use — with a 10-year manufacturer warranty. Systems also include a 5-year workmanship warranty.
 
@@ -51,7 +51,9 @@ INSTALL TIME: Most installs take 1–2 days. From free estimate to power-on is t
 
 BLACKOUTS: Because the home runs off the battery, the system keeps your power on during blackouts and PSPS shutoffs — unlike grid-tie solar, which shuts down with the grid.
 
-MUST DEFER TO A HUMAN INSTALLER (never quote these yourself — this is the natural reason to connect them): the exact price for their home, exact system size / number of panels, exact savings, financing options, tax credits/incentives, and specific install dates. For all of these: an installer will give them the precise figure after a quick look at their home.`;
+MUST DEFER TO A HUMAN INSTALLER (never quote or assert these yourself — this is the natural reason to connect them): the exact price for their home, exact system size / number of panels, exact savings, financing options, and specific install dates. For all of these: an installer will give them the precise figure after a quick look at their home.
+
+TAX CREDITS / INCENTIVES: Do NOT claim specific tax credits, federal incentives, or rebates exist or apply — eligibility changes and depends on their situation. If asked, say honestly that an installer can walk them through any incentives they may qualify for. Never assert "there are federal tax incentives" as fact.`;
 
 // Human-readable label for the next field, used in soft bridges.
 export function humanField(step: NextStep): string {

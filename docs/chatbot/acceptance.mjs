@@ -251,6 +251,33 @@ async function runConversation(sessionId, userTurns, ctx = {}) {
     }
   } catch (e) { gate('9. Bot answers a solar question accurately', false, e.message); }
 
+  // GATE 11 (PRICING ACCURACY): the bot must quote VoltSol's REAL range ($8,700-$16,000
+  // family) and must NOT hallucinate competitor grid-tie pricing AS OURS (tens of
+  // thousands / $50k). Hallucinated pricing is worse than no answer.
+  try {
+    const sid = `accept-price-${Date.now()}`;
+    const { history } = await runConversation(sid, [
+      'how much does a system cost?',
+    ], { utility: 'PG&E', monthly_bill: '200_300' });
+    const reply = (history[history.length - 1]?.content || '');
+    const r = reply.toLowerCase();
+    const hasRealNumber = /(8,?700|9,?500|11,?000|12,?000|15,?000|16,?000|\$?8\.7k|under \$?10|starts? at)/i.test(reply);
+    // Forbidden: quoting tens-of-thousands / 50k / 25-40k AS the VoltSol price.
+    // Allow the explicit grid-tie CONTRAST ("grid-tie ... $25,000-$40,000").
+    const hasGridTieContrast = /(grid.?tie|traditional|ordinary|competitor|others?)\b[^.]{0,60}(\$?25|\$?30|\$?35|\$?40|tens of thousands)/i.test(reply);
+    const badNumber = /(tens of thousands|\$?50,?000|\$?50k|\$?45,?000)/i.test(reply)
+      || (/(\$?25,?000|\$?30,?000|\$?35,?000|\$?40,?000)/i.test(reply) && !hasGridTieContrast);
+    gate('11. Pricing answer uses real VoltSol range, no hallucinated price',
+      hasRealNumber && !badNumber,
+      `real=${hasRealNumber} bad=${badNumber} reply="${r.slice(0, 130)}"`);
+    const url = neonUrl();
+    if (url) {
+      const { neon } = await import(new URL('../../node_modules/@neondatabase/serverless/index.mjs', import.meta.url));
+      const sql = neon(url);
+      await sql`DELETE FROM chat_sessions WHERE session_id=${sid}`.catch(() => {});
+    }
+  } catch (e) { gate('11. Pricing answer accuracy', false, e.message); }
+
   // GATE 10 (NOT PUSHY): when the user declines to share a detail, the bot must NOT
   // re-ask for it on the very next turn and must NOT have created a lead. It should
   // stay helpful. We give a name, then refuse the phone, and check the reply isn't

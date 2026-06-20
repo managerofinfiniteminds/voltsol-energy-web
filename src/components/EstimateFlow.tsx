@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, FormEvent } from 'react';
 import { Check, Mail, Zap } from 'lucide-react';
 import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 import AddressAutocomplete, { type AddressParts } from './AddressAutocomplete';
+import LeadChat from './LeadChat';
 import { cn } from '@/lib/utils';
 import { track } from '@/lib/track';
 import {
@@ -208,6 +209,52 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState('');
   const [leadId, setLeadId] = useState<number | null>(null);
+
+  // ── Chatbot A/B bucket ──────────────────────────────────────────────────────
+  // null = undecided (still loading flag). true = show <LeadChat/>, false = classic form.
+  const [chatBucket, setChatBucket] = useState<boolean | null>(null);
+  const [chatHandedOff, setChatHandedOff] = useState(false);
+  const [chatSessionId, setChatSessionId] = useState('');
+
+  useEffect(() => {
+    // Stable session id (shared with tracking).
+    let sid = '';
+    try {
+      sid = sessionStorage.getItem('vs_session_id') || '';
+      if (!sid) {
+        sid = Math.random().toString(36).slice(2) + Date.now().toString(36);
+        sessionStorage.setItem('vs_session_id', sid);
+      }
+    } catch {
+      sid = Math.random().toString(36).slice(2);
+    }
+    setChatSessionId(sid);
+
+    const params = new URLSearchParams(window.location.search);
+    const force = params.get('chat');
+    if (force === '1') {
+      setChatBucket(true);
+      setStep(6); // jump straight to the contact step so the chat renders
+      return;
+    }
+    if (force === '0') {
+      setChatBucket(false);
+      return;
+    }
+    // Deterministic split by session id hash.
+    let cancelled = false;
+    fetch('/api/chatbot/config')
+      .then(r => (r.ok ? r.json() : { enabled: false, ab_percent: 0 }))
+      .then((cfg: { enabled: boolean; ab_percent: number }) => {
+        if (cancelled) return;
+        if (!cfg.enabled) { setChatBucket(false); return; }
+        let h = 0;
+        for (let i = 0; i < sid.length; i++) h = (h * 31 + sid.charCodeAt(i)) >>> 0;
+        setChatBucket(h % 100 < (cfg.ab_percent || 0));
+      })
+      .catch(() => { if (!cancelled) setChatBucket(false); });
+    return () => { cancelled = true; };
+  }, []);
 
   // Utility dropdown options (DB-backed, admin-editable)
   const [utilityOptions, setUtilityOptions] = useState<{ id: number; name: string }[]>([]);
@@ -798,8 +845,29 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
         </div>
       )}
 
-      {/* ─── Step 6: Contact ─── */}
-      {step === 6 && (
+      {/* ─── Step 6: Conversational chat (A/B chat bucket) ─── */}
+      {step === 6 && chatBucket === true && !chatHandedOff && (
+        <div>
+          <LeadChat
+            sessionId={chatSessionId}
+            quizContext={{
+              monthly_bill: form.monthly_bill || undefined,
+              owns_home: form.owns_home || undefined,
+              roof_shade: form.roof_shade || undefined,
+              timeline: form.timeline || undefined,
+              utility:
+                (isOtherUtility && utilityOther.trim() ? utilityOther.trim() : form.utility) || undefined,
+              city: form.city || undefined,
+              savings: `$${netSavings.toLocaleString()}`,
+              system_name: systemName,
+            }}
+            onHandoff={() => setChatHandedOff(true)}
+          />
+        </div>
+      )}
+
+      {/* ─── Step 6: Contact (classic form — default-safe fallback) ─── */}
+      {step === 6 && (chatBucket !== true || chatHandedOff) && (
         <form onSubmit={handleSubmitLead} noValidate>
           <h2 className="text-2xl font-bold text-white mb-2">{t.contact_headline}</h2>
           <p className="text-blue-300 text-sm mb-6">{t.contact_sub}</p>

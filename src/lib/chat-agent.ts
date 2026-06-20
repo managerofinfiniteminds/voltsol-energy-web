@@ -176,7 +176,7 @@ export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance'): str
   }
 
   if (mode === 'backoff') {
-    return `NEXT ACTION: They're not ready to share that yet — RESPECT IT. Do NOT re-ask for it. Reassure them (no pressure, opt out anytime, here to help), answer anything they raise from the VOLTSOL FACTS, and offer to keep answering questions. You can gently note that whenever they're ready, an installer can ${step === 'consent' ? 'reach out with the exact numbers for their home' : 'send the exact estimate'} — but leave the next move to them.${fn}`;
+    return `NEXT ACTION: They're hesitant or not ready to share a detail — RESPECT IT COMPLETELY. Your reply MUST OPEN with a genuine reassurance, e.g. "No worries at all" / "Totally fine" / "No pressure" / "No rush" — and make clear it's optional and they can opt out anytime. Do NOT re-ask for the detail they just declined, and do NOT pivot straight into asking for a different detail this turn. Instead, answer anything they raised from the VOLTSOL FACTS and invite more questions ("happy to answer whatever you're curious about"). Leave the next move entirely to them.${fn}`;
   }
 
   // advance (normal)

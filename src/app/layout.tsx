@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { displayFont, bodyFont } from "@/lib/fonts";
+
+// Google Analytics 4 Measurement ID (public by design). Property: VoltSol Energy.
+const GA_MEASUREMENT_ID = "G-9FMXFMQLYT";
 import { SiteHeader, SiteFooter, SiteStickyCTA, SiteChatWidget } from "@/components/ui/SiteChrome";
 import { getHomeConfig } from "@/lib/site-config";
 import { getLocale } from "@/lib/locale";
@@ -94,6 +98,19 @@ export default async function RootLayout({
       className={`${displayFont.variable} ${bodyFont.variable}`}
     >
       <body className="flex min-h-screen flex-col">
+        {/* Google Analytics 4 (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

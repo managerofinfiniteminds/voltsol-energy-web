@@ -219,3 +219,104 @@ export async function sendContactMessageEmail(msg: ContactMessage): Promise<void
     html,
   });
 }
+
+/**
+ * Send a Google review request to a VoltSol customer (post-install).
+ * Simple, personal note from Hugo with one link to the review page.
+ */
+export async function sendReviewRequestEmail(customer: {
+  first_name: string;
+  email: string;
+}): Promise<{ id: string }> {
+  const safe = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;">
+  <div style="max-width:600px;margin:0 auto;padding:24px 16px;">
+    <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:32px 24px;">
+      <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">Hi ${safe(customer.first_name)},</p>
+      <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">
+        Thanks for trusting VoltSol with your solar install. I hope you're loving the independence of making your own power.
+      </p>
+      <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">
+        Quick favor — if you have a minute, would you mind leaving us a Google review? It helps other families find us when they're looking to cut the cord on their utility.
+      </p>
+      <div style="text-align:center;margin:24px 0;">
+        <a href="https://g.page/r/CQOUYctMQ1MMEBM/review" style="display:inline-block;background:#F59E0B;color:#0F172A;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:16px;">Leave a Google Review</a>
+      </div>
+      <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">
+        Thanks for your time.
+      </p>
+      <p style="margin:0;color:#0F172A;font-size:16px;">
+        — Hugo
+      </p>
+    </div>
+    <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
+      <span style="color:#0F172A;font-weight:700;">Volt</span><span style="color:#F49527;font-weight:700;">Sol</span><span style="color:#0F172A;font-weight:700;"> Energy</span><br/>
+      Make it. Store it. Live on it.™
+    </div>
+  </div>
+</body>
+</html>`;
+
+  const result = await getResend().emails.send({
+    from: 'Hugo at VoltSol <info@voltsolenergy.com>',
+    to: customer.email,
+    subject: `${customer.first_name}, quick favor?`,
+    html,
+  });
+
+  return { id: result.data?.id || '' };
+}
+
+/**
+ * Send a review request to a legacy (pre-VoltSol) customer.
+ * Uses editable subject/body with {name} token support.
+ */
+export async function sendLegacyReviewEmail(params: {
+  email: string;
+  name?: string;
+  subject: string;
+  body: string;
+}): Promise<{ id: string }> {
+  const safe = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // Replace {name} token with actual name, or "there" if name is blank
+  const displayName = params.name?.trim() || 'there';
+  const bodyText = params.body.replace(/\{name\}/g, displayName);
+  const subjectText = params.subject.replace(/\{name\}/g, displayName);
+
+  // Convert line breaks to paragraphs for HTML rendering
+  const paragraphs = bodyText.split('\n\n').filter(p => p.trim());
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;">
+  <div style="max-width:600px;margin:0 auto;padding:24px 16px;">
+    <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:32px 24px;">
+      ${paragraphs.map(p => `<p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">${safe(p)}</p>`).join('')}
+    </div>
+    <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
+      Hugo — Solar Installer<br/>
+      Northern California
+    </div>
+  </div>
+</body>
+</html>`;
+
+  const result = await getResend().emails.send({
+    from: 'Hugo <info@voltsolenergy.com>',
+    to: params.email,
+    subject: subjectText,
+    html,
+  });
+
+  return { id: result.data?.id || '' };
+}

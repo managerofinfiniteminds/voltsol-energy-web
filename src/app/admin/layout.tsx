@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "Leads", href: "/admin" },
   { label: "Chat", href: "/admin/chat" },
   { label: "Schedule", href: "/admin/schedule" },
+  { label: "Reviews", href: "/admin/reviews" },
   { label: "Utilities", href: "/admin/utilities" },
   { label: "Config", href: "/admin/config" },
   { label: "Launch Plan", href: "/admin/launch-plan" },

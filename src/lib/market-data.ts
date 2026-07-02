@@ -1,4 +1,4 @@
-// Static market config for NorCal solar markets.
+// Static market config for California solar markets (statewide).
 // Used by: generateStaticParams, seed-markets.js, sitemap, and page templates.
 // NOTE: all numeric estimates are approximate regional averages for illustrative
 // purposes only — not guarantees. Labeled "estimate" throughout.

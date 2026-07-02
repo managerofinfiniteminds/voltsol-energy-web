@@ -68,7 +68,7 @@ export default function MarketIndexPage() {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt="Solar-powered home with battery backup keeping the lights on during a blackout in Northern California"
+            alt="Solar-powered home with battery backup keeping the lights on during a blackout in California"
             fill
             priority
             sizes="100vw"
@@ -80,7 +80,7 @@ export default function MarketIndexPage() {
         <header className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-4 py-16 text-white">
           <div className="mx-auto max-w-7xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wide text-blue-200">
-              Northern California
+              California
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               California Residential Solar &amp; Battery Storage Markets
@@ -171,7 +171,7 @@ export default function MarketIndexPage() {
         {/* Footer note */}
         <footer className="border-t border-gray-100 bg-gray-50 px-4 py-6 text-center text-xs text-gray-400">
           <p>
-            VoltSol Energy operates a licensed contractor marketplace in Northern California. All estimates
+            VoltSol Energy operates a licensed contractor marketplace in California. All estimates
             are regional approximations and do not constitute a savings guarantee.
           </p>
         </footer>

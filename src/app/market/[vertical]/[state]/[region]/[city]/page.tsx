@@ -364,7 +364,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {otherRegions.length > 0 && (
                 <section className="mt-6" aria-labelledby="other-counties-heading">
                   <h2 id="other-counties-heading" className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    Other NorCal Solar Markets
+                    Other California Solar Markets
                   </h2>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {otherRegions.map(r => (
@@ -412,7 +412,7 @@ export default function MarketCityPage({ params }: PageProps) {
                   )}
                   <li className="flex items-center gap-2 text-sm text-gray-700">
                     <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                    Local NorCal team
+                    Local California team
                   </li>
                 </ul>
 
@@ -438,7 +438,7 @@ export default function MarketCityPage({ params }: PageProps) {
         {/* Footer note */}
         <footer className="border-t border-gray-100 bg-gray-50 px-4 py-6 text-center text-xs text-gray-400">
           <p>
-            VoltSol Energy operates a licensed contractor marketplace in Northern California. All estimates
+            VoltSol Energy operates a licensed contractor marketplace in California. All estimates
             are regional approximations and do not constitute a savings guarantee. Subject to our{' '}
             <Link href="/market/legal/terms" className="underline hover:text-gray-600">Terms</Link> and{' '}
             <Link href="/market/legal/privacy" className="underline hover:text-gray-600">Privacy Policy</Link>.

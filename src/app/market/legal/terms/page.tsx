@@ -39,7 +39,7 @@ export default function MarketplaceTermsPage() {
         <div>
           <h2 className="text-xl font-semibold mb-2">2. Marketplace Description</h2>
           <p>
-            The Marketplace connects homeowners in Northern California who have expressed interest in solar
+            The Marketplace connects homeowners in California who have expressed interest in solar
             energy products (&quot;Leads&quot;) with licensed solar installation contractors
             (&quot;Subscribers&quot;). VoltSol acts solely as a lead distribution platform and is not a
             party to any transaction between Subscribers and consumers.
@@ -161,7 +161,7 @@ export default function MarketplaceTermsPage() {
       </section>
 
       <div className="mt-12 pt-8 border-t border-gray-200 text-sm text-gray-500">
-        <p>VoltSol Energy, LLC — Northern California</p>
+        <p>VoltSol Energy, LLC — California</p>
         <p className="mt-1">
           Questions? Contact us at{' '}
           <a href="mailto:support@voltsolenergy.com" className="text-blue-600 underline">

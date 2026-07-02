@@ -235,7 +235,7 @@ export default function RegionPage({ params }: PageProps) {
               {otherCounties.length > 0 && (
                 <section className="mt-10" aria-labelledby="other-counties-heading">
                   <h2 id="other-counties-heading" className="text-lg font-semibold text-gray-800">
-                    Other Northern California Counties
+                    Other California Counties
                   </h2>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {otherCounties.map(county => (
@@ -300,7 +300,7 @@ export default function RegionPage({ params }: PageProps) {
         {/* Footer note */}
         <footer className="border-t border-gray-100 bg-gray-50 px-4 py-6 text-center text-xs text-gray-400">
           <p>
-            VoltSol Energy operates a licensed contractor marketplace in Northern California. All estimates
+            VoltSol Energy operates a licensed contractor marketplace in California. All estimates
             are regional approximations and do not constitute a savings guarantee.
           </p>
         </footer>

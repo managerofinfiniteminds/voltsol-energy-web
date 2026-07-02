@@ -146,7 +146,7 @@ export default function MarketplacePrivacyPage() {
       </section>
 
       <div className="mt-12 pt-8 border-t border-gray-200 text-sm text-gray-500">
-        <p>VoltSol Energy, LLC — Northern California</p>
+        <p>VoltSol Energy, LLC — California</p>
       </div>
     </div>
   );

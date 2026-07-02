@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import type { LeadScore } from './lead-scoring';
+import { GOOGLE_REVIEW_URL, buildReviewTrackingUrl } from './review-links';
 
 let _resend: Resend | null = null;
 function getResend(): Resend {
@@ -227,9 +228,12 @@ export async function sendContactMessageEmail(msg: ContactMessage): Promise<void
 export async function sendReviewRequestEmail(customer: {
   first_name: string;
   email: string;
+  click_token: string;
 }): Promise<{ id: string }> {
   const safe = (s: string) =>
     s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const reviewUrl = buildReviewTrackingUrl(customer.click_token);
 
   const html = `
 <!DOCTYPE html>
@@ -246,7 +250,7 @@ export async function sendReviewRequestEmail(customer: {
         Quick favor — if you have a minute, would you mind leaving us a Google review? It helps other families find us when they're looking to cut the cord on their utility.
       </p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://g.page/r/CQOUYctMQ1MMEBM/review" style="display:inline-block;background:#F59E0B;color:#0F172A;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:16px;">Leave a Google Review</a>
+        <a href="${reviewUrl}" style="display:inline-block;background:#F59E0B;color:#0F172A;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:16px;">Leave a Google Review</a>
       </div>
       <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">
         Thanks for your time.
@@ -282,13 +286,23 @@ export async function sendLegacyReviewEmail(params: {
   name?: string;
   subject: string;
   body: string;
+  click_token: string;
 }): Promise<{ id: string }> {
   const safe = (s: string) =>
     s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  // Replace {name} token with actual name, or "there" if name is blank
+  const reviewUrl = buildReviewTrackingUrl(params.click_token);
+
+  // Replace {name} and {review_link} tokens. Also swap any raw Google
+  // review URL a template author pasted in directly (including the old
+  // default template saved before click tracking existed) for the
+  // tracked link, so existing saved templates start getting click data
+  // automatically without anyone having to edit them.
   const displayName = params.name?.trim() || 'there';
-  const bodyText = params.body.replace(/\{name\}/g, displayName);
+  const bodyText = params.body
+    .replace(/\{name\}/g, displayName)
+    .replace(/\{review_link\}/g, reviewUrl)
+    .split(GOOGLE_REVIEW_URL).join(reviewUrl);
   const subjectText = params.subject.replace(/\{name\}/g, displayName);
 
   // Convert line breaks to paragraphs for HTML rendering

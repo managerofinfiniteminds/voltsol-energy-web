@@ -15,6 +15,8 @@ interface Appointment {
   status: string;
   slot_date: string | null;
   review_requested_at: string | null;
+  review_link_clicked_at: string | null;
+  review_link_click_count: number;
 }
 
 interface LegacyReviewSend {
@@ -23,6 +25,8 @@ interface LegacyReviewSend {
   name: string | null;
   subject: string;
   sent_at: string;
+  link_clicked_at: string | null;
+  click_count: number;
 }
 
 type Tab = 'voltsol' | 'legacy';
@@ -38,11 +42,51 @@ function formatDate(iso: string | null): string {
   });
 }
 
+function formatDateTime(iso: string | null): string {
+  if (!iso) return '';
+  return new Date(iso).toLocaleString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+}
+
+// Small badge showing whether a review link was clicked, and how many
+// times, so Hugo can see at a glance which requests actually landed.
+function ClickBadge({
+  clickedAt,
+  clickCount,
+}: {
+  clickedAt: string | null;
+  clickCount: number;
+}) {
+  if (!clickedAt) {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-slate-800 px-2.5 py-1 text-[11px] font-medium text-slate-500">
+        Not clicked yet
+      </span>
+    );
+  }
+  return (
+    <span
+      className="inline-flex items-center gap-1 rounded-full bg-emerald-900/30 px-2.5 py-1 text-[11px] font-medium text-emerald-400"
+      title={`First clicked ${formatDateTime(clickedAt)}`}
+    >
+      ✓ Clicked{clickCount > 1 ? ` ×${clickCount}` : ''} · {formatDateTime(clickedAt)}
+    </span>
+  );
+}
+
 const inputClass =
   'w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-amber-400 focus:outline-none';
 
 const buttonClass =
   'rounded-lg px-4 py-2 text-sm font-bold transition disabled:opacity-50';
+
+type ClickedFilter = 'all' | 'yes' | 'no';
+type SortKey = 'sent_at' | 'click_count' | 'name';
+type SortDir = 'asc' | 'desc';
 
 // ─── Main page ───────────────────────────────────────────────────────────────
 
@@ -66,6 +110,17 @@ export default function ReviewsPage() {
   const [sendingLegacy, setSendingLegacy] = useState(false);
   const [confirmSend, setConfirmSend] = useState(false);
 
+  // Legacy sends list: search/filter/sort/pagination
+  const [sendsQuery, setSendsQuery] = useState('');
+  const [sendsQueryInput, setSendsQueryInput] = useState('');
+  const [sendsClicked, setSendsClicked] = useState<ClickedFilter>('all');
+  const [sendsSort, setSendsSort] = useState<SortKey>('sent_at');
+  const [sendsDir, setSendsDir] = useState<SortDir>('desc');
+  const [sendsPage, setSendsPage] = useState(1);
+  const [sendsTotal, setSendsTotal] = useState(0);
+  const [sendsTotalPages, setSendsTotalPages] = useState(1);
+  const [sendsLoading, setSendsLoading] = useState(false);
+
   // Load VoltSol appointments (completed only)
   const loadAppointments = useCallback(async () => {
     setLoading(true);
@@ -87,41 +142,81 @@ export default function ReviewsPage() {
     setLoading(false);
   }, [router]);
 
-  // Load legacy template + recent sends
-  const loadLegacyData = useCallback(async () => {
+  // Load legacy template (once per tab visit)
+  const loadLegacyTemplate = useCallback(async () => {
     setLoading(true);
     setError('');
-    const [templateRes, sendsRes] = await Promise.all([
-      fetch('/api/admin/legacy-review-template', { cache: 'no-store' }),
-      fetch('/api/admin/legacy-reviews', { cache: 'no-store' }),
-    ]);
-    if (templateRes.status === 401 || sendsRes.status === 401) {
+    const res = await fetch('/api/admin/legacy-review-template', { cache: 'no-store' });
+    if (res.status === 401) {
       router.push('/admin/login');
       return;
     }
-    if (!templateRes.ok || !sendsRes.ok) {
-      setError('Failed to load legacy data.');
+    if (!res.ok) {
+      setError('Failed to load legacy template.');
       setLoading(false);
       return;
     }
-    const template = (await templateRes.json()) as {
-      subject: string;
-      body: string;
-    };
-    const sends = (await sendsRes.json()) as LegacyReviewSend[];
+    const template = (await res.json()) as { subject: string; body: string };
     setLegacySubject(template.subject);
     setLegacyBody(template.body);
-    setLegacySends(sends);
     setLoading(false);
   }, [router]);
+
+  // Load legacy sends list — reacts to search/filter/sort/page
+  const loadLegacySends = useCallback(async () => {
+    setSendsLoading(true);
+    const params = new URLSearchParams();
+    if (sendsQuery) params.set('q', sendsQuery);
+    if (sendsClicked !== 'all') params.set('clicked', sendsClicked);
+    params.set('sort', sendsSort);
+    params.set('dir', sendsDir);
+    params.set('page', String(sendsPage));
+    const res = await fetch(`/api/admin/legacy-reviews?${params.toString()}`, {
+      cache: 'no-store',
+    });
+    if (res.status === 401) {
+      router.push('/admin/login');
+      return;
+    }
+    if (!res.ok) {
+      setError('Failed to load sends.');
+      setSendsLoading(false);
+      return;
+    }
+    const data = (await res.json()) as {
+      rows: LegacyReviewSend[];
+      total: number;
+      totalPages: number;
+    };
+    setLegacySends(data.rows);
+    setSendsTotal(data.total);
+    setSendsTotalPages(data.totalPages);
+    setSendsLoading(false);
+  }, [router, sendsQuery, sendsClicked, sendsSort, sendsDir, sendsPage]);
 
   useEffect(() => {
     if (tab === 'voltsol') {
       loadAppointments();
     } else {
-      loadLegacyData();
+      loadLegacyTemplate();
     }
-  }, [tab, loadAppointments, loadLegacyData]);
+  }, [tab, loadAppointments, loadLegacyTemplate]);
+
+  useEffect(() => {
+    if (tab === 'legacy') {
+      loadLegacySends();
+    }
+  }, [tab, loadLegacySends]);
+
+  // Debounce the search box — wait 350ms after typing stops before firing
+  // the request, and jump back to page 1 whenever the search text changes.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setSendsQuery(sendsQueryInput.trim());
+      setSendsPage(1);
+    }, 350);
+    return () => clearTimeout(t);
+  }, [sendsQueryInput]);
 
   // VoltSol: Request review
   async function requestReview(apptId: string, force = false) {
@@ -193,10 +288,14 @@ export default function ReviewsPage() {
       setError(data.error || 'Failed to send email.');
       return;
     }
-    // Clear form and reload
+    // Clear form and reload the sends list (jump to page 1 sorted by most
+    // recent so the just-sent email is visible)
     setLegacyEmail('');
     setLegacyName('');
-    await loadLegacyData();
+    setSendsSort('sent_at');
+    setSendsDir('desc');
+    setSendsPage(1);
+    await loadLegacySends();
     alert('Email sent successfully!');
   }
 
@@ -246,6 +345,12 @@ export default function ReviewsPage() {
               Completed appointments ready for review requests. Button becomes
               &ldquo;Review Requested ✓&rdquo; after sending.
             </p>
+            {appointments.some(a => a.review_requested_at) && (
+              <p className="text-xs text-slate-500">
+                {appointments.filter(a => a.review_link_clicked_at).length} of{' '}
+                {appointments.filter(a => a.review_requested_at).length} sent requests clicked
+              </p>
+            )}
             {appointments.length === 0 && (
               <p className="py-8 text-center text-slate-500">
                 No completed appointments yet.
@@ -280,6 +385,10 @@ export default function ReviewsPage() {
                             {formatDate(appt.review_requested_at)}
                           </div>
                         </div>
+                        <ClickBadge
+                          clickedAt={appt.review_link_clicked_at}
+                          clickCount={appt.review_link_click_count}
+                        />
                         <button
                           disabled={sendingReview === appt.id}
                           onClick={() => requestReview(appt.id, true)}
@@ -318,7 +427,10 @@ export default function ReviewsPage() {
               <p className="text-sm text-slate-400">
                 Email pre-VoltSol customers. The template below uses a{' '}
                 <code className="text-amber-400">{'{name}'}</code> token that
-                falls back to &ldquo;there&rdquo; if name is blank.
+                falls back to &ldquo;there&rdquo; if name is blank, and a{' '}
+                <code className="text-amber-400">{'{review_link}'}</code>{' '}
+                token for the tracked review link (any raw Google review URL
+                pasted directly is also auto-tracked).
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -418,32 +530,136 @@ export default function ReviewsPage() {
               </div>
             )}
 
-            {/* Recent sends list */}
+            {/* Recent sends list — searchable, filterable, sortable, paginated */}
             <div className="rounded-xl border border-slate-700 bg-slate-900 p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-white">
-                Recent Sends (Last 20)
-              </h2>
-              {legacySends.length === 0 && (
-                <p className="text-sm text-slate-500">No sends yet.</p>
-              )}
-              <div className="space-y-2">
-                {legacySends.map((send) => (
-                  <div
-                    key={send.id}
-                    className="rounded-lg border border-slate-700 bg-slate-800/50 p-3 text-sm"
-                  >
-                    <div className="font-semibold text-white">
-                      {send.name || '(no name)'} &mdash; {send.email}
-                    </div>
-                    <div className="text-xs text-slate-400">
-                      {send.subject}
-                    </div>
-                    <div className="mt-1 text-xs text-slate-500">
-                      Sent {formatDate(send.sent_at)}
-                    </div>
-                  </div>
-                ))}
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 className="text-lg font-semibold text-white">All Sends</h2>
+                {sendsTotal > 0 && (
+                  <p className="text-xs text-slate-500">
+                    {sendsTotal} total
+                    {sendsClicked === 'all' && ` · sorted by ${sendsSort === 'sent_at' ? 'date sent' : sendsSort === 'click_count' ? 'click count' : 'name'} (${sendsDir === 'desc' ? '↓' : '↑'})`}
+                  </p>
+                )}
               </div>
+
+              {/* Filter bar — stacks vertically on mobile, one row on desktop */}
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <input
+                  type="text"
+                  value={sendsQueryInput}
+                  onChange={(e) => setSendsQueryInput(e.target.value)}
+                  placeholder="Search name, email, or subject…"
+                  className={inputClass}
+                />
+                <div className="flex gap-2">
+                  {(['all', 'yes', 'no'] as ClickedFilter[]).map((v) => (
+                    <button
+                      key={v}
+                      onClick={() => {
+                        setSendsClicked(v);
+                        setSendsPage(1);
+                      }}
+                      className={`flex-1 whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold transition sm:flex-none ${
+                        sendsClicked === v
+                          ? 'bg-amber-500 text-slate-900'
+                          : 'border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      }`}
+                    >
+                      {v === 'all' ? 'All' : v === 'yes' ? 'Clicked' : 'Not Clicked'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sort controls — dropdown works well at any width, avoids a
+                  cramped sortable-header row on narrow screens. */}
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="text-slate-500">Sort by</span>
+                <select
+                  value={sendsSort}
+                  onChange={(e) => {
+                    setSendsSort(e.target.value as SortKey);
+                    setSendsPage(1);
+                  }}
+                  className="rounded-lg border border-slate-700 bg-slate-800 px-2 py-1.5 text-xs text-white focus:border-amber-400 focus:outline-none"
+                >
+                  <option value="sent_at">Date Sent</option>
+                  <option value="click_count">Click Count</option>
+                  <option value="name">Name</option>
+                </select>
+                <button
+                  onClick={() => {
+                    setSendsDir(d => (d === 'asc' ? 'desc' : 'asc'));
+                    setSendsPage(1);
+                  }}
+                  className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-slate-300 hover:bg-slate-700"
+                  title={sendsDir === 'desc' ? 'Descending' : 'Ascending'}
+                >
+                  {sendsDir === 'desc' ? '↓ Desc' : '↑ Asc'}
+                </button>
+              </div>
+
+              {sendsLoading && (
+                <p className="py-6 text-center text-sm text-slate-500">Loading…</p>
+              )}
+
+              {!sendsLoading && legacySends.length === 0 && (
+                <p className="py-6 text-center text-sm text-slate-500">
+                  {sendsQuery || sendsClicked !== 'all'
+                    ? 'No sends match your filters.'
+                    : 'No sends yet.'}
+                </p>
+              )}
+
+              {!sendsLoading && legacySends.length > 0 && (
+                <div className="space-y-2">
+                  {legacySends.map((send) => (
+                    <div
+                      key={send.id}
+                      className="rounded-lg border border-slate-700 bg-slate-800/50 p-3 text-sm"
+                    >
+                      <div className="font-semibold text-white">
+                        {send.name || '(no name)'} &mdash; {send.email}
+                      </div>
+                      <div className="text-xs text-slate-400">
+                        {send.subject}
+                      </div>
+                      <div className="mt-1 flex flex-wrap items-center gap-2">
+                        <span className="text-xs text-slate-500">
+                          Sent {formatDate(send.sent_at)}
+                        </span>
+                        <ClickBadge
+                          clickedAt={send.link_clicked_at}
+                          clickCount={send.click_count}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Pagination — simple prev/next, wraps cleanly on mobile */}
+              {sendsTotalPages > 1 && (
+                <div className="flex items-center justify-between gap-3 pt-2">
+                  <button
+                    disabled={sendsPage <= 1}
+                    onClick={() => setSendsPage(p => Math.max(1, p - 1))}
+                    className={`${buttonClass} border border-slate-600 bg-transparent text-slate-300 hover:bg-slate-800`}
+                  >
+                    ← Prev
+                  </button>
+                  <span className="text-xs text-slate-500">
+                    Page {sendsPage} of {sendsTotalPages}
+                  </span>
+                  <button
+                    disabled={sendsPage >= sendsTotalPages}
+                    onClick={() => setSendsPage(p => Math.min(sendsTotalPages, p + 1))}
+                    className={`${buttonClass} border border-slate-600 bg-transparent text-slate-300 hover:bg-slate-800`}
+                  >
+                    Next →
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}

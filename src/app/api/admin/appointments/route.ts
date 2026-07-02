@@ -33,6 +33,7 @@ export async function GET(req: NextRequest) {
     SELECT
       a.id, a.slot_id, a.contact_id, a.first_name, a.last_name, a.email,
       a.phone, a.address, a.notes, a.status, a.created_at, a.review_requested_at,
+      a.review_link_clicked_at, a.review_link_click_count,
       s.slot_date, s.start_time, s.end_time, s.label
     FROM appointments a
     LEFT JOIN availability_slots s ON s.id = a.slot_id

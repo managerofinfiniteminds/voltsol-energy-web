@@ -24,7 +24,7 @@ export async function POST(
     UPDATE appointments
     SET review_requested_at = now()
     WHERE ${condition}
-    RETURNING id, first_name, email
+    RETURNING id, first_name, email, review_click_token
   `;
 
   if (rows.length === 0) {
@@ -35,12 +35,18 @@ export async function POST(
     );
   }
 
-  const appt = rows[0] as { id: string; first_name: string; email: string };
+  const appt = rows[0] as {
+    id: string;
+    first_name: string;
+    email: string;
+    review_click_token: string;
+  };
 
   try {
     await sendReviewRequestEmail({
       first_name: appt.first_name,
       email: appt.email,
+      click_token: appt.review_click_token,
     });
 
     return NextResponse.json({ success: true, appointment_id: appt.id });

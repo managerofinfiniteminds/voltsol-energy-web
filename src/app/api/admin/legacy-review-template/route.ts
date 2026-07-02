@@ -12,7 +12,7 @@ I've since launched my own company, VoltSol Energy, and I'm working to get the w
 
 If you have a minute, I'd really appreciate a Google review. It helps other homeowners find me when they're looking to cut the cord on their utility.
 
-https://g.page/r/CQOUYctMQ1MMEBM/review
+{review_link}
 
 Thanks for your time. Reply STOP and I won't email again.
 

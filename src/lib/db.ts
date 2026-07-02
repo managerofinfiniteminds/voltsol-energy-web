@@ -21,3 +21,12 @@ type SqlFn = (strings: TemplateStringsArray, ...values: any[]) => Promise<any[]>
 export const sql: SqlFn = (strings, ...values) => {
   return getDb()(strings, ...values) as Promise<any[]>;
 };
+
+// Raw parameterized query escape hatch for cases the tagged-template form
+// can't express (e.g. a dynamic ORDER BY chosen from a small fixed set of
+// query strings). Never interpolate raw user input into `text` itself —
+// only ever pass user-derived values via `params`.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function sqlRaw(text: string, params: any[] = []): Promise<any[]> {
+  return getDb()(text, params) as Promise<any[]>;
+}

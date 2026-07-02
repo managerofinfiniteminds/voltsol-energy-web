@@ -81,13 +81,17 @@ export async function createSession(email: string): Promise<string> {
  * Create a one-time login token for magic-link auth.
  * Token expires in 15 minutes.
  */
-export async function createLoginToken(email: string): Promise<string> {
+export async function createLoginToken(email: string, next?: string): Promise<string> {
   const token = genToken();
   const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
 
+  // Only allow same-site, relative-path redirect targets (open-redirect guard).
+  // Must start with a single "/" and not "//" (which browsers treat as protocol-relative).
+  const safeNext = next && /^\/(?!\/)[A-Za-z0-9\-._~!$&'()*+,;=:@%/?]*$/.test(next) ? next : null;
+
   await sql`
-    INSERT INTO admin_login_tokens (email, token, expires_at)
-    VALUES (LOWER(${email}), ${token}, ${expiresAt.toISOString()})
+    INSERT INTO admin_login_tokens (email, token, expires_at, next)
+    VALUES (LOWER(${email}), ${token}, ${expiresAt.toISOString()}, ${safeNext})
   `;
 
   return token;
@@ -98,7 +102,7 @@ export async function createLoginToken(email: string): Promise<string> {
  * Returns the email if valid; null otherwise.
  * Uses UPDATE...RETURNING to atomically claim the token, preventing race conditions.
  */
-export async function consumeLoginToken(token: string): Promise<string | null> {
+export async function consumeLoginToken(token: string): Promise<{ email: string; next: string | null } | null> {
   // Strict regex validation: must be exactly 64 hex chars
   if (!/^[a-f0-9]{64}$/.test(token)) {
     return null;
@@ -113,13 +117,14 @@ export async function consumeLoginToken(token: string): Promise<string | null> {
       WHERE token = ${token}
         AND used_at IS NULL
         AND expires_at > NOW()
-      RETURNING email
+      RETURNING email, next
     `;
 
     // If no rows returned, token was invalid, expired, or already used
     if (!rows.length) return null;
 
     const email = rows[0].email;
+    const next = rows[0].next as string | null;
 
     // Verify the email is still an active admin
     const adminRows = await sql`
@@ -130,7 +135,7 @@ export async function consumeLoginToken(token: string): Promise<string | null> {
 
     if (!adminRows.length) return null;
 
-    return email;
+    return { email, next };
   } catch {
     return null;
   }

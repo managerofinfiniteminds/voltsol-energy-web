@@ -16,12 +16,14 @@ export async function GET(
   }
 
   // Validate and consume the one-time token
-  const email = await consumeLoginToken(token);
+  const result = await consumeLoginToken(token);
 
-  if (!email) {
+  if (!result) {
     // Token invalid, expired, or already used
     return NextResponse.redirect(new URL('/admin/login?error=expired', req.url));
   }
+
+  const { email, next } = result;
 
   // Create a session for the admin
   const sessionToken = await createSession(email);
@@ -36,6 +38,8 @@ export async function GET(
     path: '/',
   });
 
-  // Redirect to admin dashboard
-  return NextResponse.redirect(new URL('/admin', req.url));
+  // Redirect to the originally requested admin page (defense-in-depth guard:
+  // must be a same-site relative path, not "//" protocol-relative).
+  const safeNext = next && /^\/(?!\/)[A-Za-z0-9\-._~!$&'()*+,;=:@%/?]*$/.test(next) ? next : '/admin';
+  return NextResponse.redirect(new URL(safeNext, req.url));
 }

@@ -10,6 +10,7 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const errorParam = searchParams.get('error');
+  const next = searchParams.get('next');
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -20,7 +21,7 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim().toLowerCase() }),
+        body: JSON.stringify({ email: email.trim().toLowerCase(), next: next || undefined }),
       });
 
       if (res.ok) {

@@ -27,7 +27,7 @@ function checkRateLimit(email: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { email?: string };
+  let body: { email?: string; next?: string };
   try {
     body = await req.json();
   } catch {
@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
   }
 
   const email = body.email?.trim().toLowerCase();
+  const next = typeof body.next === 'string' ? body.next : undefined;
   if (!email || typeof email !== 'string') {
     return NextResponse.json({ error: 'Email is required' }, { status: 400 });
   }
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
 
     if (whitelisted) {
       // Create one-time login token
-      const token = await createLoginToken(email);
+      const token = await createLoginToken(email, next);
       // Send magic link email
       await sendAdminLoginEmail(email, token);
     }

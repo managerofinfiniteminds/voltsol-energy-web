@@ -6,7 +6,7 @@ is a real, local, trustworthy business. Do them in order. Most are free.
 
 **Your consistent business info — copy/paste this EXACTLY everywhere (this consistency is the #1 rule):**
 - **Legal name:** VoltSol Energy, LLC
-- **Phone:** (530) 228-1019
+- **Phone:** (530) 228-1091
 - **Website:** https://voltsolenergy.com
 - **Email:** info@voltsolenergy.com
 - **License:** CSLB #1148585
@@ -27,7 +27,7 @@ weeks by mail, so START TODAY — everything else can happen while you wait.*
 - [ ] Category: **Solar Energy Contractor** (primary). Add secondary: **Solar Panel Installation, HVAC Contractor**
 - [ ] Service area: choose **"I deliver to customers"** (you don't have a storefront) → add your counties/cities
       (Sacramento, Placer, El Dorado, Yolo, Nevada County — wherever you serve)
-- [ ] Phone: **(530) 228-1019** · Website: **https://voltsolenergy.com**
+- [ ] Phone: **(530) 228-1091** · Website: **https://voltsolenergy.com**
 - [ ] Request verification (Google mails a postcard with a PIN — watch your mail, enter it when it arrives)
 - [ ] While waiting: write the business description (use the snippet at the bottom of this doc)
 - [ ] Add hours, and upload photos (see Step 3)

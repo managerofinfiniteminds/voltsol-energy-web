@@ -1,7 +1,7 @@
 # VoltSol — Developer SEO Launch Plan (Wayne)
 
 **Context:** On-site SEO is DONE & live (389-URL sitemap, robots OK, HTTPS 200, LocalBusiness + CSLB
-schema, metadata, scaled city/market pages, NAP consistent w/ (530) 228-1019). The job now is:
+schema, metadata, scaled city/market pages, NAP consistent w/ (530) 228-1091). The job now is:
 (1) make Google start crawling, (2) measure, (3) fix the few real gaps, (4) feed the off-page track.
 You can do ALL of this while Hugo works his checklist.
 
@@ -33,7 +33,7 @@ You can do ALL of this while Hugo works his checklist.
 ### P2 — Convert the traffic you'll get (this week)
 - [ ] Verify the **lead chat (Ray)** + estimate funnel fire on city pages (they're the SEO landing pages —
       traffic lands there, must convert). Quick check: does ChatWidget mount + a CTA exist on `/market/...`?
-- [ ] Make sure the **phone (530) 228-1019 is click-to-call** on mobile across all templates (footer has it;
+- [ ] Make sure the **phone (530) 228-1091 is click-to-call** on mobile across all templates (footer has it;
       confirm city/market headers do too).
 - [ ] Confirm **conversion tracking** — wire a GA4 event on lead submit + chat lead so we can prove ROI.
 

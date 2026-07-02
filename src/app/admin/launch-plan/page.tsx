@@ -71,7 +71,7 @@ export default async function LaunchPlanPage() {
           <div className="mt-4 grid gap-2 rounded-lg border border-slate-700 bg-navy-900/60 p-4 text-sm sm:grid-cols-2">
             <Field label="Legal name" value="VoltSol Energy, LLC" />
             <Field label="Display name" value="VoltSol Energy" />
-            <Field label="Phone" value="(530) 228-1019" />
+            <Field label="Phone" value="(530) 228-1091" />
             <Field label="Website" value="https://voltsolenergy.com" />
             <Field label="Email" value="info@voltsolenergy.com" />
             <Field label="License" value="CSLB #1148585" />
@@ -109,7 +109,7 @@ export default async function LaunchPlanPage() {
                 "Business name: VoltSol Energy, LLC (exactly)",
                 "Primary category: Solar Energy Contractor. Secondary: Solar Panel Installation, HVAC Contractor",
                 "Choose \u201cI deliver to customers\u201d (no storefront) → add your service cities/counties (Sacramento, Placer, El Dorado, Yolo, Nevada County…)",
-                "Phone: (530) 228-1019 · Website: https://voltsolenergy.com",
+                "Phone: (530) 228-1091 · Website: https://voltsolenergy.com",
                 "Request verification → watch your mail for the postcard PIN → enter it",
                 "While waiting: write the description (template below), add hours & photos",
               ]}
@@ -220,7 +220,7 @@ export default async function LaunchPlanPage() {
             <Checklist
               items={[
                 "Verify Ray (lead chat) + estimate funnel fire on city pages — those are the SEO landing pages",
-                "Confirm click-to-call (530) 228-1019 on mobile across all templates",
+                "Confirm click-to-call (530) 228-1091 on mobile across all templates",
                 "Wire GA4 conversion events on lead submit + chat lead to prove ROI",
               ]}
             />

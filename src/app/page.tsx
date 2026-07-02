@@ -48,7 +48,7 @@ function buildLocalBusinessJsonLd(_testimonials: { quote: string; name: string; 
       "Residential solar + battery storage for your home - make your own power, store it, and use it. EG4 battery and inverter systems from $8,700.",
     url: "https://voltsolenergy.com",
     email: "info@voltsolenergy.com",
-    telephone: "+1-530-228-1019",
+    telephone: "+1-530-228-1091",
     image: "https://voltsolenergy.com/og-image.png",
     priceRange: "$8,700-$16,000",
     areaServed: {

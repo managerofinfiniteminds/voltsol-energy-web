@@ -235,7 +235,7 @@ export default function AppointmentDashboard({
                 What to expect
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-blue-100">
-                Your estimate is a Google Meet video call. Hugo will share his
+                Your estimate is a Google Meet video call. Our installer will share their
                 screen and walk you through your roof layout, your PG&amp;E
                 savings, and a custom proposal &mdash; live. No pressure, no
                 obligation &mdash; the estimate is free either way. Your Google
@@ -249,7 +249,7 @@ export default function AppointmentDashboard({
               </h3>
               <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-blue-300">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                Text or call Hugo, or email{" "}
+                Text or call us, or email{" "}
                 <a href="mailto:info@voltsolenergy.com" className="text-gold hover:underline">
                   info@voltsolenergy.com
                 </a>

@@ -31,7 +31,7 @@ export function Footer({
   ctaText,
   tagline = "Clean energy, built to last.",
   email = "info@voltsolenergy.com",
-  phone = "(530) 228-1019",
+  phone = "(530) 228-1091",
   copyrightYear = "2026",
   copyrightRights = "LLC. All rights reserved.",
   legalLine = "CSLB License #1148585",

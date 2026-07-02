@@ -104,13 +104,13 @@ export async function sendAppointmentConfirmationEmail(appt: AppointmentEmailDet
         </table>
       </div>
       <p style="margin:0 0 16px 0;color:#475569;line-height:1.6;">
-        Your estimate is a quick 30–45 min Google Meet video call. Hugo will walk through your roof, your PG&amp;E bill, and a custom savings proposal — screen-shared, live. No pressure, no obligation. You'll receive a Google Meet link before your appointment.
+        Your estimate is a quick 30–45 min Google Meet video call. Our installer will walk through your roof, your PG&amp;E bill, and a custom savings proposal — screen-shared, live. No pressure, no obligation. You'll receive a Google Meet link before your appointment.
       </p>
       <div style="text-align:center;margin:24px 0;">
         <a href="${magicLink}" style="display:inline-block;background:#F59E0B;color:#040D1C;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:15px;">View or Manage Your Appointment</a>
       </div>
       <p style="margin:0;color:#475569;line-height:1.6;font-size:14px;">
-        Questions? Reply to this email or reach Hugo directly at <a href="mailto:info@voltsolenergy.com" style="color:#F59E0B;">info@voltsolenergy.com</a>.
+        Questions? Reply to this email or reach us directly at <a href="mailto:info@voltsolenergy.com" style="color:#F59E0B;">info@voltsolenergy.com</a>.
       </p>`;
 
   await getResend().emails.send({
@@ -167,7 +167,7 @@ export async function sendCancellationEmail(appt: AppointmentEmailDetails): Prom
         <a href="${SITE_URL}/book" style="display:inline-block;background:#F59E0B;color:#040D1C;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:15px;">Book a New Appointment</a>
       </div>
       <p style="margin:0;color:#475569;line-height:1.6;font-size:14px;">
-        Questions? Reply to this email or reach Hugo at <a href="mailto:info@voltsolenergy.com" style="color:#F59E0B;">info@voltsolenergy.com</a>.
+        Questions? Reply to this email or reach us at <a href="mailto:info@voltsolenergy.com" style="color:#F59E0B;">info@voltsolenergy.com</a>.
       </p>`;
 
   await getResend().emails.send({

@@ -207,8 +207,8 @@ const SCALAR_DEFAULTS: Record<string, string> = {
 
   // Section 6: Meet Hugo
   about_headline_pre: 'Meet ',
-  about_headline_gold: 'Hugo',
-  about_body: 'Hugo designs and installs every VoltSol system personally. When you call, he picks up.',
+  about_headline_gold: 'The Owner',
+  about_body: 'VoltSol’s owner designs and installs every system personally. When you call, he picks up.',
   about_equipment_link: 'See how the technology works',
 
   // Section 7: FAQ + Bottom CTA
@@ -223,7 +223,7 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   footer_copyright_year: '2026',
   footer_copyright_rights: 'LLC. All rights reserved.',
   footer_legal_line: 'CSLB License #1148585',
-  contact_phone: '(530) 228-1019',
+  contact_phone: '(530) 228-1091',
   contact_address: '356 Gladstone Cmns, Chico, CA 95973',
   contact_email: 'info@voltsolenergy.com',
 };
@@ -237,7 +237,7 @@ const ARRAY_DEFAULTS = {
   ] as HowStep[],
   testimonials: [
     { quote: 'Our utility bill went from $340 to almost nothing — and we kept the lights on during a 2-day blackout.', name: 'Maria S.', city: 'Verified Customer' },
-    { quote: 'SunPower quoted $38,000. Hugo did the whole thing for under ten grand.', name: 'David R.', city: 'Verified Customer' },
+    { quote: 'SunPower quoted $38,000. VoltSol did the whole thing for under ten grand.', name: 'David R.', city: 'Verified Customer' },
     { quote: 'First summer with no AC bill. First winter with no gas bill.', name: 'Carmen L.', city: 'Verified Customer' },
   ] as Testimonial[],
   about_credentials: ['CSLB Licensed', 'Local & Owner-Operated', 'Every Install Done Personally', 'Answers His Phone'] as string[],
@@ -259,7 +259,7 @@ const ARRAY_DEFAULTS = {
   ] as FaqItem[],
   pricing_tiers: [
     { name: 'First Light', icon: '☀️', system: '12K single-zone mini-split', price: '$8,700–$9,500', coverage: '600–700 sq ft', panels: '3 solar panels', tagline: 'One room, dialed in.', features: ['1-ton single-zone unit', 'Best for your main living area', 'A couple of box fans spread comfort nicely', '5-year warranty'], popular: false },
-    { name: 'Sunbeam', icon: '🌤️', system: '24K single-zone mini-split', price: '~$11,000', coverage: '1,000–1,350 sq ft', panels: '6 solar panels', tagline: "Hugo's own setup.", features: ['2-ton single-zone unit', 'Great for a large open living space', 'One powerful air handler', '5-year warranty'], popular: false },
+    { name: 'Sunbeam', icon: '🌤️', system: '24K single-zone mini-split', price: '~$11,000', coverage: '1,000–1,350 sq ft', panels: '6 solar panels', tagline: "The owner's own setup.", features: ['2-ton single-zone unit', 'Great for a large open living space', 'One powerful air handler', '5-year warranty'], popular: false },
     { name: 'High Noon', icon: '🔆', system: '24K multizone (2–3 heads)', price: '$12,000–$15,000', coverage: '1,250–1,500 sq ft', panels: '6–8 solar panels', tagline: 'Whole-home comfort.', features: ['Up to 3 independent air handlers (min. 2)', 'Living room + bedrooms on separate zones', 'Combined output up to 36K BTU', '5-year warranty'], popular: true },
     { name: 'Solar Flare', icon: '🌟', system: '36K multizone (2–4 heads)', price: '$13,500–$16,000', coverage: '1,500–2,000 sq ft', panels: '7–9 solar panels', tagline: 'Maximum coverage.', features: ['Up to 4 independent air handlers (min. 2)', 'Sized for larger multi-room homes', 'Combined output up to 40K BTU', '5-year warranty'], popular: false },
     { name: 'Super Nova', icon: '💫', system: 'Fully custom system', price: 'Custom', coverage: '2,000+ sq ft', panels: '10+ solar panels', tagline: 'Built entirely around you.', features: ['Custom-sized to your exact home', 'As many air handlers as you need', 'Designed after a free site inspection', '5-year warranty'], popular: false },

@@ -65,7 +65,7 @@ const organizationJsonLd = {
   url: siteUrl,
   logo: `${siteUrl}/images/voltsol-mark.svg`,
   email: "info@voltsolenergy.com",
-  telephone: "+1-530-228-1019",
+  telephone: "+1-530-228-1091",
   description: "Residential solar + battery storage installations serving Northern California",
   areaServed: {
     "@type": "State",

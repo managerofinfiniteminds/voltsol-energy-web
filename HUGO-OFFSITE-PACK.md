@@ -6,7 +6,7 @@
 
 ## 0) CANONICAL NAP — use these exact strings everywhere
 - **Business name:** VoltSol Energy
-- **Phone:** (530) 228-1019
+- **Phone:** (530) 228-1091
 - **Website:** https://voltsolenergy.com
 - **Email:** info@voltsolenergy.com
 - **Service area:** Northern California (Sacramento, Placer, El Dorado, Bay Area, Central Valley)
@@ -27,7 +27,7 @@
 
 **Service-area business?** YES — set service areas to: Sacramento, Roseville, Rocklin, Folsom, Auburn, El Dorado Hills, Davis, Elk Grove, plus Bay Area + Central Valley cities you actually serve.
 
-**Phone:** (530) 228-1019
+**Phone:** (530) 228-1091
 **Website:** https://voltsolenergy.com
 
 **Business description (max 750 chars — fits):**

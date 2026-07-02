@@ -498,6 +498,14 @@ export async function POST(req: NextRequest) {
     if (pumps && !reassures) assistantText = steerMode === 'standdown' ? standdownFallback(slots) : backoffFallback(slots);
   }
 
+  // Strip robotic fragment openers the model occasionally emits (e.g. "Going. What..." or "Noted. Here's...").
+  // These read as broken non-sentences to users. Replace with natural prose.
+  assistantText = assistantText
+    .replace(/^(Going|Noted|Understood|Sounds good|Got it|Sure|Okay|Alright|Certainly|Absolutely|Of course)\.\s+/i, '')
+    .replace(/,\s*(Going|Noted|Understood)\b\.?\s*/gi, ' — ')
+    .trim();
+  if (!assistantText) assistantText = backoffFallback(slots);
+
   const status = completed ? 'completed' : handoff ? 'handed_off' : 'active';
   const transcript: InMsg[] = [...userMessages, { role: 'assistant', content: assistantText }];
   await saveSession(sessionId, transcript, slots, status, modelUsed, engineLeadId);

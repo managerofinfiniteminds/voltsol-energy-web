@@ -29,7 +29,22 @@ interface LegacyReviewSend {
   click_count: number;
 }
 
-type Tab = 'voltsol' | 'legacy';
+interface GoogleReview {
+  id: number;
+  google_review_id: string;
+  author_name: string;
+  author_photo_url: string | null;
+  author_profile_url: string | null;
+  rating: number;
+  review_text: string;
+  relative_time_desc: string | null;
+  review_time: string | null;
+  featured: boolean;
+  sort_order: number;
+  last_synced_at: string;
+}
+
+type Tab = 'voltsol' | 'legacy' | 'google';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -78,6 +93,79 @@ function ClickBadge({
   );
 }
 
+// One synced Google review, with curation controls (feature toggle +
+// reorder among featured). Used both in the "Featured" and "All synced"
+// lists in the Google Reviews tab.
+function GoogleReviewCard({
+  review,
+  onToggleFeatured,
+  onMoveUp,
+  onMoveDown,
+}: {
+  review: {
+    id: number;
+    author_name: string;
+    rating: number;
+    review_text: string;
+    relative_time_desc: string | null;
+    featured: boolean;
+  };
+  onToggleFeatured: () => void;
+  onMoveUp?: () => void;
+  onMoveDown?: () => void;
+}) {
+  return (
+    <div className="rounded-lg border border-slate-700 bg-slate-800/50 p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-white">{review.author_name}</span>
+            <span className="text-amber-400">{'★'.repeat(review.rating)}</span>
+            {review.relative_time_desc && (
+              <span className="text-xs text-slate-500">{review.relative_time_desc}</span>
+            )}
+          </div>
+          {review.review_text && (
+            <p className="mt-1 text-sm text-slate-300">&ldquo;{review.review_text}&rdquo;</p>
+          )}
+        </div>
+        <div className="flex flex-shrink-0 items-center gap-1.5">
+          {(onMoveUp || onMoveDown) && (
+            <>
+              <button
+                disabled={!onMoveUp}
+                onClick={onMoveUp}
+                className="rounded-md border border-slate-600 px-2 py-1 text-xs text-slate-300 hover:bg-slate-700 disabled:opacity-30"
+                title="Move up"
+              >
+                ↑
+              </button>
+              <button
+                disabled={!onMoveDown}
+                onClick={onMoveDown}
+                className="rounded-md border border-slate-600 px-2 py-1 text-xs text-slate-300 hover:bg-slate-700 disabled:opacity-30"
+                title="Move down"
+              >
+                ↓
+              </button>
+            </>
+          )}
+          <button
+            onClick={onToggleFeatured}
+            className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
+              review.featured
+                ? 'bg-emerald-900/40 text-emerald-400 hover:bg-emerald-900/60'
+                : 'border border-slate-600 bg-transparent text-slate-400 hover:bg-slate-700'
+            }`}
+          >
+            {review.featured ? '✓ On site' : 'Show on site'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const inputClass =
   'w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-amber-400 focus:outline-none';
 
@@ -120,6 +208,16 @@ export default function ReviewsPage() {
   const [sendsTotal, setSendsTotal] = useState(0);
   const [sendsTotalPages, setSendsTotalPages] = useState(1);
   const [sendsLoading, setSendsLoading] = useState(false);
+
+  // Google Reviews state
+  const [googleReviews, setGoogleReviews] = useState<GoogleReview[]>([]);
+  const [googlePlaceId, setGooglePlaceId] = useState('');
+  const [googlePlaceIdInput, setGooglePlaceIdInput] = useState('');
+  const [googleBusinessRating, setGoogleBusinessRating] = useState<string | null>(null);
+  const [googleBusinessReviewCount, setGoogleBusinessReviewCount] = useState<string | null>(null);
+  const [googleLastSyncedAt, setGoogleLastSyncedAt] = useState<string | null>(null);
+  const [googleSyncing, setGoogleSyncing] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   // Load VoltSol appointments (completed only)
   const loadAppointments = useCallback(async () => {
@@ -194,13 +292,45 @@ export default function ReviewsPage() {
     setSendsLoading(false);
   }, [router, sendsQuery, sendsClicked, sendsSort, sendsDir, sendsPage]);
 
+  // Load Google reviews (list + config)
+  const loadGoogleReviews = useCallback(async () => {
+    setGoogleLoading(true);
+    setError('');
+    const res = await fetch('/api/admin/google-reviews', { cache: 'no-store' });
+    if (res.status === 401) {
+      router.push('/admin/login');
+      return;
+    }
+    if (!res.ok) {
+      setError('Failed to load Google reviews.');
+      setGoogleLoading(false);
+      return;
+    }
+    const data = (await res.json()) as {
+      reviews: GoogleReview[];
+      placeId: string;
+      businessRating: string | null;
+      businessReviewCount: string | null;
+      lastSyncedAt: string | null;
+    };
+    setGoogleReviews(data.reviews);
+    setGooglePlaceId(data.placeId);
+    setGooglePlaceIdInput(data.placeId);
+    setGoogleBusinessRating(data.businessRating);
+    setGoogleBusinessReviewCount(data.businessReviewCount);
+    setGoogleLastSyncedAt(data.lastSyncedAt);
+    setGoogleLoading(false);
+  }, [router]);
+
   useEffect(() => {
     if (tab === 'voltsol') {
       loadAppointments();
-    } else {
+    } else if (tab === 'legacy') {
       loadLegacyTemplate();
+    } else {
+      loadGoogleReviews();
     }
-  }, [tab, loadAppointments, loadLegacyTemplate]);
+  }, [tab, loadAppointments, loadLegacyTemplate, loadGoogleReviews]);
 
   useEffect(() => {
     if (tab === 'legacy') {
@@ -299,6 +429,69 @@ export default function ReviewsPage() {
     alert('Email sent successfully!');
   }
 
+  // Google Reviews: trigger a sync from the Places API
+  async function syncGoogleReviews() {
+    setGoogleSyncing(true);
+    setError('');
+    const res = await fetch('/api/admin/google-reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ placeId: googlePlaceIdInput.trim() || undefined }),
+    });
+    setGoogleSyncing(false);
+    if (!res.ok) {
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      setError(data.error || 'Sync failed.');
+      return;
+    }
+    await loadGoogleReviews();
+  }
+
+  // Google Reviews: toggle whether a review is featured on the homepage
+  async function toggleFeatured(review: GoogleReview) {
+    const nextFeatured = !review.featured;
+    // Optimistic update so the UI feels instant.
+    setGoogleReviews(prev =>
+      prev.map(r => (r.id === review.id ? { ...r, featured: nextFeatured } : r))
+    );
+    const res = await fetch(`/api/admin/google-reviews/${review.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ featured: nextFeatured }),
+    });
+    if (!res.ok) {
+      // Revert on failure
+      setGoogleReviews(prev =>
+        prev.map(r => (r.id === review.id ? { ...r, featured: review.featured } : r))
+      );
+      setError('Failed to update review.');
+      return;
+    }
+    await loadGoogleReviews();
+  }
+
+  // Google Reviews: move a featured review up/down in display order
+  async function moveFeatured(review: GoogleReview, direction: 'up' | 'down') {
+    const featured = googleReviews.filter(r => r.featured).sort((a, b) => a.sort_order - b.sort_order);
+    const idx = featured.findIndex(r => r.id === review.id);
+    const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
+    if (idx === -1 || swapIdx < 0 || swapIdx >= featured.length) return;
+    const other = featured[swapIdx];
+    await Promise.all([
+      fetch(`/api/admin/google-reviews/${review.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ featured: true, sort_order: other.sort_order }),
+      }),
+      fetch(`/api/admin/google-reviews/${other.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ featured: true, sort_order: review.sort_order }),
+      }),
+    ]);
+    await loadGoogleReviews();
+  }
+
   return (
     <div className="text-white">
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
@@ -325,6 +518,16 @@ export default function ReviewsPage() {
             }`}
           >
             Legacy Customers
+          </button>
+          <button
+            onClick={() => setTab('google')}
+            className={`px-4 py-2 text-sm font-semibold transition ${
+              tab === 'google'
+                ? 'border-b-2 border-amber-400 text-amber-400'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            Google Reviews
           </button>
         </div>
 
@@ -661,6 +864,131 @@ export default function ReviewsPage() {
                 </div>
               )}
             </div>
+          </div>
+        )}
+
+        {/* Google Reviews Tab */}
+        {!loading && tab === 'google' && (
+          <div className="space-y-6">
+            {/* Sync controls + business summary */}
+            <div className="rounded-xl border border-slate-700 bg-slate-900 p-6 space-y-4">
+              <h2 className="text-lg font-semibold text-white">Sync from Google</h2>
+              <p className="text-sm text-slate-400">
+                Pulls real reviews from your Google Business Profile via the
+                Places API. Google only returns up to 5 &ldquo;most
+                relevant&rdquo; reviews per sync — pick which ones show on
+                the homepage below.
+              </p>
+              <label className="block text-xs text-slate-400">
+                Google Place ID
+                <input
+                  type="text"
+                  value={googlePlaceIdInput}
+                  onChange={(e) => setGooglePlaceIdInput(e.target.value)}
+                  className={`mt-1 ${inputClass}`}
+                  placeholder="ChIJ..."
+                />
+              </label>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  disabled={googleSyncing || !googlePlaceIdInput.trim()}
+                  onClick={syncGoogleReviews}
+                  className={`${buttonClass} bg-amber-500 text-slate-900 hover:bg-amber-400`}
+                >
+                  {googleSyncing ? 'Syncing...' : 'Sync Reviews Now'}
+                </button>
+                {googleLastSyncedAt && (
+                  <span className="text-xs text-slate-500">
+                    Last synced {formatDateTime(googleLastSyncedAt)}
+                  </span>
+                )}
+              </div>
+              {(googleBusinessRating || googleBusinessReviewCount) && (
+                <div className="flex gap-4 border-t border-slate-800 pt-4 text-sm">
+                  {googleBusinessRating && (
+                    <div>
+                      <span className="font-semibold text-amber-400">★ {googleBusinessRating}</span>{' '}
+                      <span className="text-slate-500">overall rating</span>
+                    </div>
+                  )}
+                  {googleBusinessReviewCount && (
+                    <div className="text-slate-500">
+                      {googleBusinessReviewCount} total Google reviews
+                    </div>
+                  )}
+                </div>
+              )}
+              {!googlePlaceId && (
+                <p className="rounded-lg border border-amber-500/30 bg-amber-900/20 px-3 py-2 text-xs text-amber-300">
+                  No Place ID configured yet. Find yours by searching your
+                  business at{' '}
+                  <a
+                    href="https://developers.google.com/maps/documentation/places/web-service/place-id"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    Google&rsquo;s Place ID Finder
+                  </a>
+                  , paste it above, then sync.
+                </p>
+              )}
+            </div>
+
+            {googleLoading && (
+              <p className="py-6 text-center text-sm text-slate-500">Loading…</p>
+            )}
+
+            {!googleLoading && googleReviews.length === 0 && (
+              <p className="py-8 text-center text-slate-500">
+                No reviews synced yet. Enter a Place ID above and sync.
+              </p>
+            )}
+
+            {!googleLoading && googleReviews.length > 0 && (
+              <div className="space-y-4">
+                <div>
+                  <h2 className="mb-2 text-sm font-semibold text-slate-300">
+                    Featured on homepage ({googleReviews.filter(r => r.featured).length})
+                  </h2>
+                  {googleReviews.filter(r => r.featured).length === 0 && (
+                    <p className="text-xs text-slate-500">
+                      None featured yet — toggle &ldquo;Show on site&rdquo; below on
+                      the reviews you want live.
+                    </p>
+                  )}
+                  <div className="space-y-2">
+                    {googleReviews
+                      .filter(r => r.featured)
+                      .sort((a, b) => a.sort_order - b.sort_order)
+                      .map((review, i, arr) => (
+                        <GoogleReviewCard
+                          key={review.id}
+                          review={review}
+                          onToggleFeatured={() => toggleFeatured(review)}
+                          onMoveUp={i > 0 ? () => moveFeatured(review, 'up') : undefined}
+                          onMoveDown={i < arr.length - 1 ? () => moveFeatured(review, 'down') : undefined}
+                        />
+                      ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="mb-2 text-sm font-semibold text-slate-300">
+                    All synced reviews ({googleReviews.length})
+                  </h2>
+                  <div className="space-y-2">
+                    {googleReviews.map((review) => (
+                      <GoogleReviewCard
+                        key={review.id}
+                        review={review}
+                        onToggleFeatured={() => toggleFeatured(review)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </main>

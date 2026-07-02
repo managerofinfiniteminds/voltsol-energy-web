@@ -7,6 +7,8 @@ import {
   Reveal,
 } from "@/components/ui";
 import { getHomeConfig } from "@/lib/site-config";
+import { getFeaturedGoogleReviews } from "@/lib/google-reviews";
+import { sql } from "@/lib/db";
 import { getLocale } from "@/lib/locale";
 import InlineEstimateEntry from "@/components/InlineEstimateEntry";
 import PageTracker from "@/components/PageTracker";
@@ -37,9 +39,14 @@ export async function generateMetadata(): Promise<Metadata> {
 // NOTE: We intentionally do NOT emit Review/AggregateRating star markup built from
 // on-site testimonials. Google's structured-data policy disallows self-serving review
 // snippets (reviews a business writes about itself), and emitting them risks a manual
-// action / loss of rich-result eligibility. Re-enable this ONLY when fed by genuine
-// third-party reviews (e.g. verified Google Business Profile reviews). See admin launch plan.
-function buildLocalBusinessJsonLd(_testimonials: { quote: string; name: string; city: string }[]) {
+// action / loss of rich-result eligibility.
+// aggregateRating IS included, but ONLY when sourced from a real Places API sync
+// (businessRating/businessReviewCount below come straight from Google's own
+// aggregate rating for the place — not computed from on-site testimonials).
+function buildLocalBusinessJsonLd(
+  _testimonials: { quote: string; name: string; city: string }[],
+  googleAggregate: { rating: string; reviewCount: string } | null
+) {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -71,18 +78,75 @@ function buildLocalBusinessJsonLd(_testimonials: { quote: string; name: string; 
         name: "California Contractors State License Board",
       },
     },
-    // aggregateRating / review intentionally omitted — see note above (no self-authored review stars).
+    ...(googleAggregate
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: googleAggregate.rating,
+            reviewCount: googleAggregate.reviewCount,
+          },
+        }
+      : {}),
   };
 }
 
 // Fixed icon array for Hugo's credentials (order matches ARRAY_DEFAULTS)
 const credentialIcons = [BadgeCheck, MapPin, Wrench, Phone];
 
+// Unified shape the Proof section renders, whether the source is a real
+// synced Google review or a static fallback testimonial from site_config.
+interface ProofItem {
+  key: string;
+  quote: string;
+  name: string;
+  attribution: string;
+  rating: number;
+}
+
 export default async function HomePage() {
   const locale = getLocale();
   const cfg = await getHomeConfig(locale);
 
-  const localBusinessJsonLd = buildLocalBusinessJsonLd(cfg.testimonials);
+  // Prefer real, admin-curated Google reviews when any are featured;
+  // otherwise fall back to the static testimonials from site_config so the
+  // section never renders empty (e.g. before a Place ID is configured).
+  const featuredGoogleReviews = await getFeaturedGoogleReviews();
+  const proofItems: ProofItem[] =
+    featuredGoogleReviews.length > 0
+      ? featuredGoogleReviews.map((r) => ({
+          key: r.google_review_id,
+          quote: r.review_text,
+          name: r.author_name,
+          attribution: 'Verified Google Review',
+          rating: r.rating,
+        }))
+      : cfg.testimonials.map((t) => ({
+          key: t.name,
+          quote: t.quote,
+          name: t.name,
+          attribution: t.city,
+          rating: 5,
+        }));
+
+  // Google's own aggregate rating for the place (from the last sync), used
+  // only if we actually have real Google-sourced numbers to show.
+  const googleAggregateRows = await sql`
+    SELECT key, value FROM site_config
+    WHERE key IN ('google_business_rating', 'google_business_review_count')
+  `;
+  const googleAggregateMap: Record<string, string> = {};
+  for (const row of googleAggregateRows as { key: string; value: string }[]) {
+    googleAggregateMap[row.key] = row.value;
+  }
+  const googleAggregate =
+    googleAggregateMap.google_business_rating && googleAggregateMap.google_business_review_count
+      ? {
+          rating: googleAggregateMap.google_business_rating,
+          reviewCount: googleAggregateMap.google_business_review_count,
+        }
+      : null;
+
+  const localBusinessJsonLd = buildLocalBusinessJsonLd(cfg.testimonials, googleAggregate);
 
   // Build FAQ JSON-LD from config
   const faqJsonLd = {
@@ -347,9 +411,9 @@ export default async function HomePage() {
           </Reveal>
 
           <div className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
-            {cfg.testimonials.map((t, i) => (
+            {proofItems.map((p, i) => (
               <Reveal
-                key={t.name}
+                key={p.key}
                 delay={0.1 * (i + 1)}
                 className="w-[85%] shrink-0 snap-center sm:w-[60%] lg:w-auto"
               >
@@ -357,23 +421,23 @@ export default async function HomePage() {
                   <div
                     className="flex gap-1 text-gold"
                     role="img"
-                    aria-label="5 out of 5 stars"
+                    aria-label={`${p.rating} out of 5 stars`}
                   >
                     {Array.from({ length: 5 }).map((_, s) => (
                       <Star
                         key={s}
-                        className="h-4 w-4 fill-current"
+                        className={`h-4 w-4 ${s < p.rating ? 'fill-current' : 'fill-none opacity-30'}`}
                         aria-hidden="true"
                       />
                     ))}
                   </div>
                   <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-blue-100">
-                    &ldquo;{t.quote}&rdquo;
+                    &ldquo;{p.quote}&rdquo;
                   </blockquote>
                   <figcaption className="mt-6 font-display font-bold text-white">
-                    {t.name}{" "}
+                    {p.name}{" "}
                     <span className="font-sans text-sm font-normal text-blue-300">
-                      &mdash; {t.city}
+                      &mdash; {p.attribution}
                     </span>
                   </figcaption>
                 </figure>

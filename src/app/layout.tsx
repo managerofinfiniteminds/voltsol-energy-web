@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s — VoltSol Energy",
   },
   description:
-    "Residential solar + battery storage across Northern California — make your own power, store it, and use it. EG4 battery + inverter systems from $8,700. Keep the power you make instead of selling it to the grid for pennies. Free estimate, no pressure.",
+    "Residential solar + battery storage across California — make your own power, store it, and use it. EG4 battery + inverter systems from $8,700. Keep the power you make instead of selling it to the grid for pennies. Free estimate, no pressure.",
   keywords: [
     "residential solar California",
     "home solar and battery storage",
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
     "home battery storage",
     "solar plus storage",
     "FlexBOSS18 inverter",
-    "Northern California solar",
+    "California solar",
     "California solar installation",
   ],
   openGraph: {
     title: "VoltSol Energy — Residential Solar + Battery Storage in California from $8,700",
     description:
-      "Residential solar + battery storage across Northern California — make it, store it, use it. EG4 systems from $8,700. Keep the power you make. Free estimate, no pressure.",
+      "Residential solar + battery storage across California — make it, store it, use it. EG4 systems from $8,700. Keep the power you make. Free estimate, no pressure.",
     siteName: "VoltSol Energy",
     url: siteUrl,
     type: "website",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "VoltSol Energy — Residential Solar + Battery Storage from $8,700",
     description:
-      "Residential solar + battery storage for Northern California. Make it, store it, use it. EG4 systems from $8,700. Free estimate.",
+      "Residential solar + battery storage for California. Make it, store it, use it. EG4 systems from $8,700. Free estimate.",
     // twitter:image also auto-uses the generated opengraph-image card
   },
   alternates: {
@@ -66,7 +66,7 @@ const organizationJsonLd = {
   logo: `${siteUrl}/images/voltsol-mark.svg`,
   email: "info@voltsolenergy.com",
   telephone: "+1-530-228-1091",
-  description: "Residential solar + battery storage installations serving Northern California",
+  description: "Residential solar + battery storage installations serving California",
   areaServed: {
     "@type": "State",
     name: "California",

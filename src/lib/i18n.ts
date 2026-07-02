@@ -154,7 +154,7 @@ export interface Dict {
 const en: Dict = {
   meta_home_title: 'VoltSol Energy — Residential Solar + Battery Storage in California from $8,700',
   meta_home_desc:
-    'Residential solar + battery storage across Northern California — make your own power, store it, and use it. EG4 battery + inverter systems from $8,700. Keep the power you make instead of selling it to the grid for pennies. Free estimate, no pressure.',
+    'Residential solar + battery storage across California — make your own power, store it, and use it. EG4 battery + inverter systems from $8,700. Keep the power you make instead of selling it to the grid for pennies. Free estimate, no pressure.',
   meta_tech_title: "How It's Different — Solar + Storage That Keeps the Power You Make",
   meta_tech_desc:
     'Ordinary solar sends your power to the grid for a fraction of its value. VoltSol builds around self-consumption — make it, store it, use it — so you keep your own power and stay on through blackouts.',
@@ -283,7 +283,7 @@ const en: Dict = {
 const es: Dict = {
   meta_home_title: 'VoltSol Energy — Energía Solar Residencial + Batería en California desde $8,700',
   meta_home_desc:
-    'Energía solar residencial + almacenamiento en batería en el Norte de California — produce tu propia energía, almacénala y úsala. Sistemas con batería + inversor EG4 desde $8,700. Quédate con la energía que produces en vez de venderla a la red por centavos. Estimado gratis, sin presión.',
+    'Energía solar residencial + almacenamiento en batería en California — produce tu propia energía, almacénala y úsala. Sistemas con batería + inversor EG4 desde $8,700. Quédate con la energía que produces en vez de venderla a la red por centavos. Estimado gratis, sin presión.',
   meta_tech_title: 'En Qué Se Diferencia — Solar + Batería Que Conserva la Energía Que Produces',
   meta_tech_desc:
     'La solar común envía tu energía a la red por una fracción de su valor. VoltSol se basa en el autoconsumo — prodúcela, almacénala, úsala — para que conserves tu propia energía y sigas con luz durante los apagones.',

@@ -9,7 +9,7 @@
 - **Phone:** (530) 228-1091
 - **Website:** https://voltsolenergy.com
 - **Email:** info@voltsolenergy.com
-- **Service area:** Northern California (Sacramento, Placer, El Dorado, Bay Area, Central Valley)
+- **Service area:** California (statewide)
 - **CSLB License #:** 1148585
 - **Category (primary):** Solar Energy Equipment Supplier / Solar Energy Contractor
 - **Address:** [Hugo to confirm — service-area business; can hide street address and list service area instead]
@@ -25,13 +25,13 @@
 **Primary category:** Solar energy contractor
 **Additional categories:** Solar energy equipment supplier · Solar panel maintenance service · HVAC contractor (for the mini-split heat pump work)
 
-**Service-area business?** YES — set service areas to: Sacramento, Roseville, Rocklin, Folsom, Auburn, El Dorado Hills, Davis, Elk Grove, plus Bay Area + Central Valley cities you actually serve.
+**Service-area business?** YES — service area set to California (statewide) on GBP.
 
 **Phone:** (530) 228-1091
 **Website:** https://voltsolenergy.com
 
 **Business description (max 750 chars — fits):**
-> VoltSol Energy installs off-grid and hybrid solar power systems for Northern California homes — solar panels, EG4 hybrid inverters, EG4 LiFePO4 battery storage, and energy-efficient mini-split heat pumps. Complete systems start at $8,700, all-in. We help homeowners cut PG&E bills, gain protection from PSPS blackouts, and lock in energy costs against future rate hikes. Licensed (CSLB #1148585), local, and straightforward — free estimates with no pressure. Serving Sacramento, Placer, El Dorado, the Bay Area, and the Central Valley.
+> VoltSol Energy installs off-grid and hybrid solar power systems for California homes: solar panels, EG4 hybrid inverters, EG4 LiFePO4 battery storage, and energy-efficient mini-split heat pumps. Complete systems start at $8,700, all-in. We help homeowners cut utility bills, gain protection from PSPS blackouts, and lock in energy costs against future rate hikes. Licensed (CSLB #1148585), local, and straightforward, with free estimates and no pressure. Serving homeowners statewide across California.
 
 **Services to add (with short descriptions):**
 - Off-Grid Solar Installation — Complete solar + battery systems for energy independence.

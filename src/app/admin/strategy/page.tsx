@@ -95,6 +95,25 @@ export default async function StrategyPage() {
           </p>
         </div>
 
+        {/* Solar Sales AI strategy */}
+        <div className="mb-12 rounded-2xl border border-blue-900/40 bg-navy-800/40 p-8">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-2xl">🤖</span>
+            <h2 className="text-2xl font-bold text-white">The VoltSol Solar AI</h2>
+          </div>
+          <p className="text-blue-300 text-sm leading-relaxed mb-4">
+            Beyond renting a generic frontier model, an owned, fine-tuned &ldquo;solar sales AI&rdquo; trained on Wayne &amp; Hugo&apos;s actual closing methodology &mdash; residential and enterprise/C&amp;I. Glossary-first for mixed technical/non-technical readers, corpus-build plan (including Hugo&apos;s nationwide interview trip as training material), hosting/HA architecture, and a phased rollout targeting <strong className="text-white">January 1, 2027</strong>. Externally audited and revised by an independent AI reviewer (Fable 5) before publication &mdash; see Section 9&apos;s honest risk flags and Section 10&apos;s open decisions for Wayne.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="/admin/download/VOLTSOL-SOLAR-AI-STRATEGY.md"
+              className="flex items-center gap-2 rounded-lg border border-gold/20 bg-navy-700/40 hover:bg-navy-700/60 transition px-4 py-2.5 text-sm font-semibold text-white"
+            >
+              <span>📄</span> Full strategy &amp; rollout plan
+            </a>
+          </div>
+        </div>
+
         {/* Footer */}
         <div className="mt-16 pt-12 border-t border-blue-900/30 text-center text-blue-400 text-sm">
           <p>VoltSol Energy — Internal Strategy</p>

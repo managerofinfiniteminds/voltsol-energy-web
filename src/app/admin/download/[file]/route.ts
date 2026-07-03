@@ -13,6 +13,7 @@ const ALLOWED_FILES = [
   "JOSH-BROKERAGE-STRATEGY-SUMMARY.md",
   "VOLTSOL-VISION-STATEMENT.md",
   "VOLTSOL-VISION-STATEMENT.html",
+  "VOLTSOL-SOLAR-AI-STRATEGY.md",
 ];
 
 // Files that should render inline in the browser (e.g. an iframe) instead

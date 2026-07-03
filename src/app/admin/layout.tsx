@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { label: "Utilities", href: "/admin/utilities" },
   { label: "Config", href: "/admin/config" },
   { label: "Launch Plan", href: "/admin/launch-plan" },
+  { label: "Strategy", href: "/admin/strategy" },
 ];
 
 function AdminNav() {

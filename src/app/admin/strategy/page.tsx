@@ -106,10 +106,18 @@ export default async function StrategyPage() {
           </p>
           <div className="flex flex-wrap gap-3">
             <a
-              href="/admin/download/VOLTSOL-SOLAR-AI-STRATEGY.md"
-              className="flex items-center gap-2 rounded-lg border border-gold/20 bg-navy-700/40 hover:bg-navy-700/60 transition px-4 py-2.5 text-sm font-semibold text-white"
+              href="/admin/strategy/sales-ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-gold/30 bg-navy-700/50 hover:bg-navy-700/80 transition px-4 py-2.5 text-sm font-semibold text-gold"
             >
-              <span>📄</span> Full strategy &amp; rollout plan
+              <span>📖</span> View full plan (webpage)
+            </a>
+            <a
+              href="/admin/download/VOLTSOL-SOLAR-AI-STRATEGY.md"
+              className="flex items-center gap-2 rounded-lg border border-blue-900/40 bg-navy-700/40 hover:bg-navy-700/70 transition px-4 py-2.5 text-sm text-blue-300"
+            >
+              <span>📄</span> Download markdown
             </a>
           </div>
         </div>

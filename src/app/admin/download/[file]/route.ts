@@ -14,11 +14,15 @@ const ALLOWED_FILES = [
   "VOLTSOL-VISION-STATEMENT.md",
   "VOLTSOL-VISION-STATEMENT.html",
   "VOLTSOL-SOLAR-AI-STRATEGY.md",
+  "VOLTSOL-SOLAR-AI-STRATEGY.html",
 ];
 
 // Files that should render inline in the browser (e.g. an iframe) instead
 // of forcing a download prompt. Everything else defaults to attachment.
-const INLINE_FILES = new Set(["VOLTSOL-VISION-STATEMENT.html"]);
+const INLINE_FILES = new Set([
+  "VOLTSOL-VISION-STATEMENT.html",
+  "VOLTSOL-SOLAR-AI-STRATEGY.html",
+]);
 
 export async function GET(
   req: NextRequest,
@@ -47,15 +51,12 @@ export async function GET(
       );
     }
 
-    // Read file from workspace
-    const filePath = join(
-      process.cwd(),
-      "../..",
-      ".openclaw",
-      "workspace-voltsol",
-      "deliverables",
-      filename
-    );
+    // Read file from the repo's deliverables/ directory so it ships with
+    // the deploy and is reachable from Vercel's serverless functions.
+    // (Previously read from an external workspace path on the dev machine's
+    // filesystem, which doesn't exist in production — every download 500'd
+    // for anyone hitting the live site who wasn't on that exact machine.)
+    const filePath = join(process.cwd(), "deliverables", filename);
 
     let content: string;
     try {

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vision Statement — Confidential Draft</title>
+<style>
+  :root {
+    --navy: #1E3A8A;
+    --blue: #3B82F6;
+    --orange: #F97316;
+    --gold: #FBBF24;
+    --ink: #1a1f2b;
+    --paper: #ffffff;
+    --muted: #5b6472;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f4f5f7;
+    font-family: -apple-system, 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .confidential-banner {
+    background: repeating-linear-gradient(45deg, var(--navy) 0 18px, #142a63 18px 36px);
+    color: #fff;
+    text-align: center;
+    padding: 10px 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--orange);
+  }
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--paper);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  header.brand {
+    background: var(--navy);
+    padding: 32px 40px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--orange);
+  }
+  header.brand .logo-svg { height: 44px; width: 44px; }
+  header.brand .wordmark { color: #fff; font-family: -apple-system, 'Avenir Next', 'Futura', 'Century Gothic', system-ui, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.2px; }
+  header.brand .wordmark .gold { color: var(--gold); }
+  header.brand .brand-left { display: flex; align-items: center; gap: 12px; }
+  header.brand .tag {
+    color: #cfe0ff;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .title-block {
+    padding: 40px 40px 16px;
+    border-bottom: 1px solid #e8eaed;
+  }
+  .title-block .eyebrow {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .title-block h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+    line-height: 1.25;
+    color: var(--navy);
+  }
+  .title-block .meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0;
+  }
+  .oneliner {
+    margin: 20px 40px 0;
+    padding: 22px 26px;
+    background: #fff7ed;
+    border-left: 4px solid var(--orange);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    border-radius: 4px;
+  }
+  main {
+    padding: 8px 40px 12px;
+  }
+  section.block {
+    padding: 26px 0;
+    border-bottom: 1px solid #eef0f2;
+  }
+  section.block:last-of-type { border-bottom: none; }
+  section.block h2 {
+    margin: 0 0 4px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+  }
+  section.block h3 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    color: var(--navy);
+  }
+  section.block p {
+    margin: 0 0 12px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #2a303c;
+  }
+  section.block p:last-child { margin-bottom: 0; }
+  section.block ul {
+    margin: 0 0 12px;
+    padding-left: 20px;
+  }
+  section.block li {
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: #2a303c;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .two-col .col {
+    background: #f8f9fb;
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .two-col .col h4 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .col.know h4 { color: #1a7a4c; }
+  .col.bet h4 { color: var(--orange); }
+  .two-col .col ul { margin: 0; padding-left: 18px; }
+  .two-col .col li { font-size: 14px; margin-bottom: 6px; }
+  .never-build {
+    background: #fef2f2;
+    border-left: 4px solid #dc2626;
+    padding: 16px 20px;
+    border-radius: 4px;
+  }
+  .never-build p { margin: 0; }
+  .sequence-steps {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 4px 0 14px;
+  }
+  .sequence-steps span {
+    background: var(--navy);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+  }
+  .sequence-steps .arrow {
+    color: var(--muted);
+    background: none;
+    padding: 8px 0;
+    font-weight: 400;
+  }
+  footer {
+    padding: 24px 40px 32px;
+    background: #f8f9fb;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  footer strong { color: var(--ink); }
+  @media (max-width: 600px) {
+    header.brand { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .title-block, main, footer { padding-left: 22px; padding-right: 22px; }
+    .oneliner { margin-left: 22px; margin-right: 22px; }
+    .two-col { grid-template-columns: 1fr; }
+    .title-block h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="confidential-banner">⚠ Confidential — Internal Draft — Not for Distribution</div>
+
+<div class="page">
+  <header class="brand">
+    <div class="brand-left">
+      <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+        <defs>
+          <style>
+            .st0 { fill: #fff; }
+            .st1 { fill: #f49527; }
+          </style>
+        </defs>
+        <path class="st1" d="M452.92,890.34c-.59,0-.87-.16-1.2-.38l188.36-388.96c2.4-4.95-.14-9.05-5.64-9.1l-164.83-1.71c-5.5-.06-7.98-4.12-5.51-9.04l143.23-284.88c2.47-4.91,8.99-8.91,14.49-8.87l172.08,1.04c5.5.03,7.9,4.04,5.32,8.9l-96.77,182.95c.37.56.59.53,1.17.53l192.08-.13c.72,0,1.14-.06,1.46.3.16.19-.2.51-.6,1l-406.64,501.06c-3.47,4.27-10.8,7.7-16.3,7.61l-20.7-.31Z"/>
+        <path class="st0" d="M382.27,878.66c-2.41,4.95-6.09,4.83-8.18-.26L90.71,189.97c1.67-.03,2.9.82,4.67.46l165.91-2.34c5.5-.08,11.71,4.02,13.81,9.11l197.34,479.14c2.09,5.09,1.84,13.29-.57,18.24l-89.6,184.08Z"/>
+      </svg>
+      <span class="wordmark">Volt<span class="gold">Sol</span> Energy</span>
+    </div>
+    <div class="tag">Strategy&nbsp;&amp;&nbsp;New&nbsp;Ventures</div>
+  </header>
+
+  <div class="title-block">
+    <p class="eyebrow">Vision Statement · Draft v1</p>
+    <h1>All Roads Lead to Leads</h1>
+    <p class="meta">Prepared for internal review · July 2026 · Confidential</p>
+  </div>
+
+  <div class="oneliner">
+    Angie's List and Thumbtack sell a directory. We sell a lead.
+  </div>
+
+  <main>
+
+    <section class="block">
+      <h2>The Problem</h2>
+      <h3>The friction isn't a bug. It's the business model.</h3>
+      <p>Every major home-services platform runs the same playbook: build a directory, then make the <em>homeowner</em> do the work — sign up, build a profile, describe the job, wait to get matched, field five contractor calls. That friction isn't an accident. Those platforms need the homeowner's data entry to justify charging contractors for the match. The directory is the product they're selling — not the lead. That's why using one feels like getting processed, not helped.</p>
+    </section>
+
+    <section class="block">
+      <h2>The Unlock</h2>
+      <h3>Two things are already true. Nobody's connecting them.</h3>
+      <ul>
+        <li><strong>Homeowners already search first.</strong> Nobody browses a directory for fun — they Google "solar cost near me" or click an ad because they already want something. The intent exists before any platform gets involved.</li>
+        <li><strong>Licensed contractors are already a verified, public dataset.</strong> State licensing boards maintain a complete registry of every licensed pro in a trade and territory — zero signup required to know who they are.</li>
+      </ul>
+      <p>Neither side needs to create an account for this to work. Capture the homeowner's intent the moment it happens, with almost no friction. Know who the qualified pros are without asking them to build a profile first.</p>
+    </section>
+
+    <section class="block">
+      <h2>The Product</h2>
+      <h3>What we actually sell</h3>
+      <p>Not a listing. Not a match. <strong>A qualified, fast-responded, human-ready lead</strong> — a real homeowner who wants something, reached within minutes of raising their hand, pre-qualified through a real conversation, handed to a person who can close.</p>
+      <p>The lead-broker market today sells anywhere from junk ($20, resold five times, no context) to genuinely exclusive appointment-set leads ($150–200+). That spread is the business. The bet: speed-to-lead and real qualification move a lead from the junk end to the premium end — and we're building the machine that proves it, one vertical at a time.</p>
+    </section>
+
+    <section class="block">
+      <h2>The Moat</h2>
+      <h3>Why ours are better</h3>
+      <p>Lead brokers already exist. Most of them are why "lead-gen" has a bad reputation — resold lists, no qualification, no accountability when the lead turns out to be junk. We're not claiming to have invented lead generation. We're claiming the existing version is a lemon market, and we're building the alternative: one company that owns the whole loop — capture, qualify, respond, close, and learn — instead of just harvesting and dumping.</p>
+      <p>That loop is the actual asset. Not the licensing data — it's public, anyone can pull it. Not "lead generation" as a category — it's one of the most competed markets there is. What compounds is the data on what works: which search terms convert, which qualification questions predict a real close, how much speed-to-lead actually matters. Every closed deal teaches the next one. That's the moat, and it only exists once we're running real volume.</p>
+    </section>
+
+    <section class="block">
+      <h2>The Proof</h2>
+      <h3>It's already live</h3>
+      <p>This isn't theoretical — it's running today at VoltSol Energy, our solar lead-gen operation in Northern California. Low-friction landing pages, automatic lead scoring, a real closer on the other end, and a speed-to-lead response layer going live now. VoltSol is the lab. Everything here is being learned in production, not on a whiteboard.</p>
+    </section>
+
+    <section class="block">
+      <h2>The Sequence</h2>
+      <h3>How we get from one vertical to a business</h3>
+      <div class="sequence-steps">
+        <span>Prove it in Solar</span>
+        <span class="arrow">→</span>
+        <span>Extract the Playbook</span>
+        <span class="arrow">→</span>
+        <span>Open the Lead Marketplace</span>
+        <span class="arrow">→</span>
+        <span>Repeat Per Trade</span>
+      </div>
+      <p>Prove it in one vertical — solar, right now. Extract the playbook: what converts, what qualifies, what closes. Open the lead marketplace once the playbook is proven, selling qualified leads to licensed pros pulled straight from the public registry. Repeat the whole thing in the next trade — roofing, HVAC, battery storage, electrical — same engine, new dataset.</p>
+    </section>
+
+    <section class="block">
+      <h2>Phase 3.5 — The Next Step</h2>
+      <h3>Sell the closed deal, not just the lead</h3>
+      <p>A further-downstream evolution of the marketplace: instead of stopping at &ldquo;here&rsquo;s a qualified lead,&rdquo; go one step past it. A licensed broker closes the homeowner directly and signs a legally binding, fully-specified contract — equipment, price, financing terms all locked. That signed contract is now paper with a known gross value and a known margin. Installers buy it outright, or bid for it auction-style, instead of buying a name and a phone number.</p>
+      <p>The rep gets paid in days instead of months. The buyer gets a done deal with zero sales-cycle risk. The broker&rsquo;s name never touches the install — the installer&rsquo;s own license handles fulfillment, same discipline as every phase before it.</p>
+      <div class="never-build" style="background:#fff7ed;border-left-color:var(--orange);">
+        <p><strong>Real tension, said plainly:</strong> selling signed contracts is a different regulatory lane than brokering leads — a broker/contractor-license structure, not just data. It needs real legal review before it&rsquo;s more than a thesis. It is not a replacement for the lead marketplace — it&rsquo;s a second product, one step further down the funnel, once Phases 1&ndash;3 are already working.</p>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:14px;">Origin: a direct conversation describing exactly this model — sales reps sign the deal, sell the signed contract at a discount to the highest-bidding installer in that territory, get paid same-week instead of waiting on commission. Logged as a distinct idea, not originated here — it maps cleanly onto the sequencing already locked in above, one step further downstream.</p>
+    </section>
+
+    <section class="block">
+      <h2>Honest Accounting</h2>
+      <h3>What we know vs. what we're betting</h3>
+      <div class="two-col">
+        <div class="col know">
+          <h4>What we know</h4>
+          <ul>
+            <li>Homeowner intent capture works with near-zero friction — it's running.</li>
+            <li>Lead scoring and qualification improve close rates.</li>
+            <li>Licensing-board data is real, current, and requires no contractor signup to access.</li>
+          </ul>
+        </div>
+        <div class="col bet">
+          <h4>What we're betting</h4>
+          <ul>
+            <li>Speed-to-lead and conversational qualification move economics above the junk end of the market.</li>
+            <li>Contractors will pay for provably better leads without a self-serve platform to log into.</li>
+            <li>The solar playbook transfers to other trades without starting from zero.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Discipline</h2>
+      <h3>What we will never build</h3>
+      <div class="never-build">
+        <p>No contractor profiles. No bidding UI. No self-serve marketplace where contractors compete for attention. No dispatch, no fulfillment, no managing the actual installation. The moment we start operating contractor relationships, we've become a different, heavier business — and we've recreated the Angie's List trap from the other side. We stay small and sharp: find the lead, qualify the lead, hand off the conversation. A human closes. A human — not the platform — decides who does the work.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Why Now</h2>
+      <h3>What this document is for</h3>
+      <p>This is early — one vertical, one closer, real pipeline, no marketplace yet. The next 90 days are about proving the speed-to-lead loop moves conversion, and turning that proof into hard numbers instead of a thesis. This document exists to explain the bet to anyone helping build it — a co-founder, an advisor, an early believer — before there's a deck or a term sheet. If the loop proves out in solar, the same machine runs on any trade with real search intent and a public licensing registry behind it.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>Confidential.</strong> This document reflects an early-stage thesis, not a finalized business plan. Consent-first lead capture and TCPA-clean outreach are designed in from day one and will be formalized as the marketplace phase begins. Not for external distribution without approval.
+  </footer>
+</div>
+
+</body>
+</html>

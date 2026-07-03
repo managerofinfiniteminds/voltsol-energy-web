@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The VoltSol Sales AI — Strategy &amp; Rollout Plan</title>
+<style>
+  :root {
+    --navy: #1E3A8A;
+    --blue: #3B82F6;
+    --orange: #F97316;
+    --gold: #FBBF24;
+    --ink: #1a1f2b;
+    --paper: #ffffff;
+    --muted: #5b6472;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f4f5f7;
+    font-family: -apple-system, 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .confidential-banner {
+    background: repeating-linear-gradient(45deg, var(--navy) 0 18px, #142a63 18px 36px);
+    color: #fff;
+    text-align: center;
+    padding: 10px 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--orange);
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--paper);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  header.brand {
+    background: var(--navy);
+    padding: 32px 40px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--orange);
+  }
+  header.brand .logo-svg { height: 44px; width: 44px; flex-shrink: 0; }
+  header.brand .wordmark { color: #fff; font-family: -apple-system, 'Avenir Next', 'Futura', 'Century Gothic', system-ui, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.2px; }
+  header.brand .wordmark .gold { color: var(--gold); }
+  header.brand .brand-left { display: flex; align-items: center; gap: 12px; }
+  header.brand .tag {
+    color: #cfe0ff;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .title-block {
+    padding: 40px 40px 16px;
+    border-bottom: 1px solid #e8eaed;
+  }
+  .title-block .eyebrow {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .title-block h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    line-height: 1.25;
+    color: var(--navy);
+  }
+  .title-block .meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0;
+  }
+  main {
+    padding: 8px 40px 40px;
+  }
+  main h2 {
+    margin: 40px 0 4px;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+    padding-top: 20px;
+    border-top: 1px solid #eef0f2;
+  }
+  main h2:first-of-type { border-top: none; margin-top: 20px; padding-top: 0; }
+  main h3 {
+    margin: 20px 0 10px;
+    font-size: 17px;
+    color: var(--navy);
+  }
+  main p {
+    margin: 0 0 14px;
+    font-size: 15px;
+    line-height: 1.68;
+    color: #2a303c;
+  }
+  main em { color: var(--muted); }
+  main strong { color: var(--ink); }
+  main hr {
+    border: none;
+    border-top: 1px solid #eef0f2;
+    margin: 8px 0;
+  }
+  main ul, main ol {
+    margin: 0 0 14px;
+    padding-left: 22px;
+  }
+  main li {
+    font-size: 15px;
+    line-height: 1.62;
+    margin-bottom: 8px;
+    color: #2a303c;
+  }
+  main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 24px;
+    font-size: 14.5px;
+  }
+  main table thead th {
+    background: var(--navy);
+    color: #fff;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  main table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eef0f2;
+    vertical-align: top;
+    line-height: 1.6;
+    color: #2a303c;
+  }
+  main table tr:nth-child(even) td {
+    background: #f8f9fb;
+  }
+  main table td:first-child {
+    font-weight: 700;
+    color: var(--navy);
+    width: 30%;
+  }
+  main code {
+    background: #f1f3f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  footer {
+    padding: 24px 40px 32px;
+    background: #f8f9fb;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    border-top: 1px solid #e8eaed;
+  }
+  footer strong { color: var(--ink); }
+
+  /* Below 700px, tables stop being tables (a cramped two-column squeeze on
+     phones) and become a stack of labeled cards — one per row, term as a
+     header chip, definition as normal readable paragraph text underneath. */
+  @media (max-width: 700px) {
+    header.brand { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .title-block, main, footer { padding-left: 22px; padding-right: 22px; }
+    .title-block h1 { font-size: 22px; }
+
+    main table, main table thead, main table tbody, main table tr, main table th, main table td {
+      display: block;
+      width: auto;
+    }
+    main table {
+      border: none;
+      margin: 8px 0 24px;
+    }
+    main table thead {
+      /* Column headers ('Term' / 'What it actually means') are redundant
+         once each row is its own card — hide them, not squeeze them. */
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    main table tr {
+      background: #fff;
+      border: 1px solid #e2e5ea;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    main table tr:nth-child(even) td {
+      background: transparent;
+    }
+    main table td {
+      padding: 0;
+      border-bottom: none;
+      width: auto;
+    }
+    main table td:first-child {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 16px;
+      width: auto;
+    }
+    /* The term label is wrapped in <strong>, and `main strong { color:
+       var(--ink) }` (near-black) otherwise wins over the navy card's
+       inherited white text on this element specifically. Force it back to
+       white here so glossary terms stay legible on the dark card. */
+    main table td:first-child strong {
+      color: #fff;
+    }
+    main table td:last-child {
+      padding: 14px 16px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="confidential-banner">⚠ Confidential — Internal Draft — Not for Distribution</div>
+
+<div class="page">
+  <header class="brand">
+    <div class="brand-left">
+      <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+        <defs>
+          <style>
+            .st0 { fill: #fff; }
+            .st1 { fill: #f49527; }
+          </style>
+        </defs>
+        <path class="st1" d="M452.92,890.34c-.59,0-.87-.16-1.2-.38l188.36-388.96c2.4-4.95-.14-9.05-5.64-9.1l-164.83-1.71c-5.5-.06-7.98-4.12-5.51-9.04l143.23-284.88c2.47-4.91,8.99-8.91,14.49-8.87l172.08,1.04c5.5.03,7.9,4.04,5.32,8.9l-96.77,182.95c.37.56.59.53,1.17.53l192.08-.13c.72,0,1.14-.06,1.46.3.16.19-.2.51-.6,1l-406.64,501.06c-3.47,4.27-10.8,7.7-16.3,7.61l-20.7-.31Z"/>
+        <path class="st0" d="M382.27,878.66c-2.41,4.95-6.09,4.83-8.18-.26L90.71,189.97c1.67-.03,2.9.82,4.67.46l165.91-2.34c5.5-.08,11.71,4.02,13.81,9.11l197.34,479.14c2.09,5.09,1.84,13.29-.57,18.24l-89.6,184.08Z"/>
+      </svg>
+      <span class="wordmark">Volt<span class="gold">Sol</span> Energy</span>
+    </div>
+    <div class="tag">Strategy&nbsp;&amp;&nbsp;New&nbsp;Ventures</div>
+  </header>
+
+  <div class="title-block">
+    <p class="eyebrow">Internal Strategy Document · Audited by Fable 5 (4 rounds)</p>
+    <h1>The VoltSol Sales AI — Strategy &amp; Rollout Plan</h1>
+    <p class="meta">Solar Vertical, Phase 1 of a Broader Platform · Drafted 2026-07-03 · Target Launch: January 1, 2027 · Confidential</p>
+  </div>
+
+  <main>
+<p><em>Written for a mixed audience — some readers here know what a GPU is, some don&#39;t, and both need to walk away understanding this plan equally well. Every technical term is defined in plain language the first time it&#39;s used, and again in the glossary at the end.</em></p>
+<hr>
+<h2>1. The One-Paragraph Version</h2>
+<p>Right now, when VoltSol talks to a lead, the &quot;brain&quot; behind that conversation is a rented general-purpose AI (Claude, via a service called OpenRouter — more on that below). It&#39;s smart, but it&#39;s generic: it knows a little about everything, and nothing in particular about <em>how VoltSol actually sells</em>. This plan builds a second brain — one VoltSol owns outright, trained specifically on VoltSol&#39;s own sales doctrine, real objection-handling patterns, and both residential and enterprise/commercial deal structures — so the way VoltSol talks to a homeowner or a business owner reflects real closing experience, not a generic script. <strong>Solar is the first vertical this gets built and proven on — not the only one.</strong> The architecture is designed from day one so that additional verticals can be added later without rebuilding the whole system. Target: live and selling by <strong>January 1, 2027</strong>.</p>
+<hr>
+<h2>2. Plain-Language Glossary (read this first if any of Section 3 loses you)</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>What it actually means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AI model</strong></td>
+<td>A program that has been &quot;shown&quot; huge amounts of text and learned patterns from it — well enough that it can write, answer questions, and hold a conversation. Think of it as a very well-read employee who never sleeps.</td>
+</tr>
+<tr>
+<td><strong>LLM (Large Language Model)</strong></td>
+<td>The technical name for the kind of AI model behind ChatGPT, Claude, etc. &quot;Large&quot; refers to how much it learned from and how big it is internally.</td>
+</tr>
+<tr>
+<td><strong>Weights</strong></td>
+<td>The actual &quot;knowledge&quot; inside a trained AI model — millions or billions of numbers that encode everything it learned.</td>
+</tr>
+<tr>
+<td><strong>LoRA adapter</strong></td>
+<td>The small, separate file our fine-tuning actually produces — not a whole new brain, but a targeted &quot;patch&quot; on top of someone else&#39;s base model (see Base model, below). This is the part VoltSol genuinely owns outright and can move freely between hosting providers; the base model underneath stays the property of whoever published it, used under its open license.</td>
+</tr>
+<tr>
+<td><strong>Training</strong></td>
+<td>The process of teaching a model something new by showing it lots of examples, repeatedly, until it changes its behavior. This is expensive and slow, done once (or occasionally), not every time someone asks it a question.</td>
+</tr>
+<tr>
+<td><strong>Inference</strong></td>
+<td>The everyday act of <em>using</em> an already-trained model — asking it a question and getting an answer. This happens every single time VoltSol&#39;s AI responds to a lead. Cheap and fast, compared to training.</td>
+</tr>
+<tr>
+<td><strong>Frontier model</strong></td>
+<td>The best, most capable AI models available today (Claude, GPT, Gemini) — run by big companies, rented by the question. VoltSol currently rents Claude for its &quot;brain.&quot;</td>
+</tr>
+<tr>
+<td><strong>Open-weights model</strong></td>
+<td>Unlike frontier models (which are locked up inside their maker&#39;s servers), some AI models are published publicly — anyone can download the actual weights and run or retrain them. This is what makes owning a custom model possible without being a company the size of Google.</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong></td>
+<td>Taking an open-weights model that already knows how to write and reason, and further training it on a <em>specific</em> skill or voice — in our case, VoltSol&#39;s sales methodology — so it behaves differently than the generic version.</td>
+</tr>
+<tr>
+<td><strong>LoRA (Low-Rank Adaptation)</strong></td>
+<td>A cheap, efficient way to fine-tune a model without retraining the whole thing from scratch. Instead of rewriting the entire brain, it adds a small, targeted &quot;patch&quot; of new behavior on top. This is the standard, affordable approach for a project this size — training runs cost roughly $20–200 each, not the millions frontier labs spend.</td>
+</tr>
+<tr>
+<td><strong>RAG (Retrieval-Augmented Generation)</strong></td>
+<td>Instead of baking facts into the model&#39;s brain permanently (which goes stale), RAG lets the model look up current facts — prices, tax credit rules, financing terms — from a live, editable database <em>at the moment it answers</em>. Like giving an employee a searchable binder instead of asking them to memorize everything.</td>
+</tr>
+<tr>
+<td><strong>Corpus</strong></td>
+<td>The collected body of text/data used to train or fine-tune a model. Right now, VoltSol&#39;s corpus for this specific project is <strong>zero</strong> — starting from a blank page. Building it is most of this plan.</td>
+</tr>
+<tr>
+<td><strong>Base model</strong></td>
+<td>The starting open-weights model before it&#39;s fine-tuned. VoltSol owns zero stake in it, but its open license allows free use and adaptation — the specific model chosen will be whatever is current-generation and best-supported by the hosting provider at the time work actually starts (Section 6), not locked in today.</td>
+</tr>
+<tr>
+<td><strong>Serverless</strong></td>
+<td>A hosting style where you pay only while the model is actively answering a question, instead of renting a computer running 24/7. Cheaper at low volume, but the tradeoff is a possible few-seconds-to-minutes delay (&#39;cold start&#39;) if it has to &#39;wake up&#39; after sitting idle — relevant to Section 7.</td>
+</tr>
+<tr>
+<td><strong>Shadow mode</strong></td>
+<td>A safety step before full launch: the AI drafts real responses to real leads, but nothing sends until a human reviews it. Lets the team see how it performs on real traffic without any customer-facing risk. See Section 9, Phase 4.</td>
+</tr>
+<tr>
+<td><strong>GPU (Graphics Processing Unit)</strong></td>
+<td>The specialized computer chip needed to train and run AI models at reasonable speed. Training rents these by the hour from cloud providers; nobody needs to buy one outright for a project this size.</td>
+</tr>
+<tr>
+<td><strong>Quantization</strong></td>
+<td>A technique to shrink a trained model so it runs on smaller/cheaper hardware with a small accuracy tradeoff. Lets VoltSol run its own model locally instead of always paying a cloud provider per question.</td>
+</tr>
+<tr>
+<td><strong>Token</strong></td>
+<td>The unit AI models read and write text in — roughly ¾ of a word. Costs for renting frontier AI are usually billed per token.</td>
+</tr>
+<tr>
+<td><strong>API (Application Programming Interface)</strong></td>
+<td>The technical doorway that lets one piece of software (VoltSol&#39;s system) talk to another (an AI provider, a database, etc.) automatically.</td>
+</tr>
+<tr>
+<td><strong>Hallucination</strong></td>
+<td>When an AI model confidently states something false because it&#39;s a next-word-prediction machine, not a database — this is exactly why factual things (prices, tax law) should come from RAG lookups, not the model&#39;s memory.</td>
+</tr>
+<tr>
+<td><strong>High Availability (HA)</strong></td>
+<td>Engineering-speak for &quot;this system stays up even if one piece breaks.&quot; A single computer with no backup is the opposite of HA.</td>
+</tr>
+<tr>
+<td><strong>Uptime</strong></td>
+<td>The percentage of time a system is actually working and reachable. &quot;99.9% uptime&quot; means roughly 9 hours of downtime per year, tolerated in most business software.</td>
+</tr>
+<tr>
+<td><strong>Vertical</strong></td>
+<td>A distinct business/industry line VoltSol sells into — solar is the first; the term shows up throughout this plan wherever the design deliberately avoids solar-specific hard-wiring.</td>
+</tr>
+<tr>
+<td><strong>PPA (Power Purchase Agreement)</strong></td>
+<td>A financing structure where the customer pays for the solar electricity a system produces, on a per-unit or monthly basis, rather than buying the physical system outright. One of several financing options VoltSol&#39;s sales conversations need to handle correctly.</td>
+</tr>
+<tr>
+<td><strong>ITC (Investment Tax Credit)</strong></td>
+<td>A federal tax credit that reduces the cost of installing a solar system by a percentage of its total cost. The rate can increase (&quot;adders&quot;) for specific project conditions, such as paying prevailing/union-scale wages on a commercial project.</td>
+</tr>
+<tr>
+<td><strong>Legal discovery</strong></td>
+<td>The legal process where, during a lawsuit, each side can be required to hand over relevant records — including conversation logs. Whoever holds a copy of a record can be legally required to keep those records and hand them over, even if they weren&#39;t a party to the original conversation. Relevant to Section 3&#39;s case for controlling where conversation data lives.</td>
+</tr>
+<tr>
+<td><strong>Data residency</strong></td>
+<td>A legal/regulatory requirement that certain data must be stored and processed only within specific geographic or organizational boundaries — common in regulated industries, and a factor in why some future verticals may not be able to route data through any convenient third-party AI provider (Section 3).</td>
+</tr>
+<tr>
+<td><strong>DPA (Data Processing Agreement)</strong></td>
+<td>A signed contract that legally binds a vendor to handle a company&#39;s data only in specified ways — for example, promising not to retain or train on it. Referenced in Sections 3 and 7 as a hard requirement for any provider touching live conversation data.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. The Why</h2>
+<p><strong>The problem with renting a generic brain.</strong> Every conversation VoltSol&#39;s AI has today runs through Claude via OpenRouter — a capable, general-purpose model that has never sold a solar system, never closed an objection about a $30,000 PPA (power purchase agreement — a contract where the customer pays for the solar power a system produces rather than buying the system outright), and has no institutional memory of what actually works for VoltSol&#39;s customers versus what sounds good in theory. It&#39;s rented intelligence, not owned expertise, and every dollar spent on it goes to someone else&#39;s model with no compounding return to VoltSol.</p>
+<p><strong>What&#39;s actually valuable and ownable.</strong> VoltSol&#39;s sales methodology — how to read a homeowner&#39;s hesitation, structure a financing conversation, handle &quot;I want to think about it,&quot; or negotiate a C&amp;I (commercial &amp; industrial — larger business deals, not just homes) power-purchase structure — is real, hard-won expertise built up over years of closing real deals. Right now, that expertise lives mostly in the heads of a small number of experienced closers and in scattered call recordings. It doesn&#39;t scale, it doesn&#39;t get better automatically, and it walks out the door if a specific person isn&#39;t the one on the call.</p>
+<p><strong>The bet:</strong> a model fine-tuned specifically on VoltSol&#39;s own methodology, backed by a fact database that&#39;s always current, can extend that expertise into every conversation VoltSol has — at any hour, on any channel, without diluting quality. To be precise about what &quot;owned&quot; means here: VoltSol owns the fine-tuned adaptation (the LoRA adapter — see glossary) outright and can move it between hosting providers freely. The underlying base model stays the free-to-use, openly-licensed property of whoever published it — VoltSol isn&#39;t buying that, doesn&#39;t need to, and no one else building on the same open model diminishes what&#39;s been built. The real value isn&#39;t owning a brain from scratch; it&#39;s owning the custom adaptation that encodes VoltSol&#39;s actual methodology, with no rented-frontier-model dependency for the routine majority of conversations.</p>
+<p><strong>A second, independent reason to own this: control over where sensitive conversation data actually lives.</strong> Everything above is about capability and cost. There&#39;s a separate, equally real reason to fine-tune an owned model rather than lean permanently on a rented frontier provider (Claude, GPT, Gemini): every message sent to a frontier provider&#39;s API passes through that company&#39;s infrastructure, under that company&#39;s terms of service, subject to that company&#39;s data-retention and usage policies — policies VoltSol doesn&#39;t control and that can change. Four concrete concerns this creates, worth naming plainly rather than treating as abstract risk:</p>
+<ul>
+<li><strong>Legal discovery exposure.</strong> If VoltSol (or a future vertical&#39;s business) is ever party to a lawsuit where sales conversations become relevant evidence, every place a copy of those conversations exists is a place discovery requests can reach — including a third-party AI provider&#39;s servers, if that provider retained the traffic. <strong>To be precise about what this actually buys VoltSol:</strong> VoltSol&#39;s own logs and training corpus remain fully discoverable either way — owning the model doesn&#39;t make VoltSol&#39;s own records disappear from discovery, nor should it. What owning the adapter <em>does</em> remove is the extra, avoidable copy sitting on a third party&#39;s servers under that third party&#39;s retention policy — and, if a future vertical&#39;s requirements justify it, <em>preserves the option</em> of running inference on infrastructure VoltSol fully controls instead of a vendor&#39;s, which a permanent frontier-API dependency would foreclose. A signed zero-retention/DPA commitment from any third-party host (Section 7) closes most of this gap even without full self-hosting; owning the adapter is what makes full self-hosting possible if that&#39;s ever not enough.</li>
+<li><strong>IP and methodology protection.</strong> The sales doctrine this plan is built on (Section 5) is genuinely valuable, hard-won intellectual property. Every conversation that routes through a third-party frontier API passes through that provider&#39;s infrastructure under that provider&#39;s terms — terms that, to be fair, the major providers&#39; commercial API agreements typically already commit to not training on by default, and that can include zero-retention arrangements (the same mechanism Section 7 demands from any managed host). The honest framing of the risk isn&#39;t that these providers say nothing about data use — it&#39;s that those protections exist only as the provider&#39;s own revisable contractual terms, not as a structural guarantee, and can be renegotiated or changed unilaterally in a way an owned model&#39;s data handling can&#39;t be. An owned model shifts the routine majority of conversations off that dependency entirely; it does not eliminate the exposure altogether, since the codified doctrine itself still transits frontier infrastructure elsewhere in this plan by design — the synthetic-data-generation step (Section 5.1) and the failover path (Section 7) both deliberately put the doctrine in front of a frontier model. That&#39;s a bounded, accepted cost, not an oversight, and it&#39;s covered by the same retention-terms requirement described below, not a separate exposure.</li>
+<li><strong>Regulatory and contractual data-residency requirements.</strong> This doesn&#39;t bind solar today, but it matters directly for future verticals (see below): some industries — healthcare, financial services, legal services, government contracting — have explicit rules or contractual obligations about where customer data can be processed and by whom. A platform architecture that depends on routing every conversation through an external frontier API may be blocked outright by some of these requirements, or forced into expensive, vendor-specific compliance offerings on that vendor&#39;s own timeline and terms, rather than being blocked categorically in every case. A platform that can run its Behavior and Knowledge layers on infrastructure VoltSol controls avoids being at any single vendor&#39;s mercy for that compliance path.</li>
+<li><strong>Vendor policy and pricing risk.</strong> Frontier providers can and do change their terms of service, pricing, rate limits, and model availability unilaterally — a real risk for any business building durable, long-term infrastructure on top of a rented dependency. An owned adapter, portable across hosting providers (Section 7), is structurally insulated from any single vendor&#39;s policy shifts in a way a permanently-rented frontier model is not.</li>
+</ul>
+<p><strong>This is not a case for abandoning frontier models entirely</strong> — the Judgment layer (Section 4) stays rented deliberately, because no small owned model currently matches frontier reasoning for genuinely novel situations, and that tradeoff is worth accepting for the minority of conversations that need it. It <em>is</em> a case for making sure the routine majority of customer-facing conversation, and the underlying methodology that makes VoltSol good at selling, doesn&#39;t depend on a third party&#39;s infrastructure and policies by default. <strong>One tradeoff worth naming plainly, not glossing over:</strong> the routing logic in Section 4 sends exactly the highest-stakes conversations — legal/contractual questions, high-value or high-risk situations — to the rented frontier Judgment layer, not away from it. The data-control case above applies most cleanly to the routine majority of traffic; the escalated minority still depends on the frontier provider&#39;s own data-handling terms, which is precisely why confirming those terms in writing (Section 7) matters for that path too, not just the primary managed host.</p>
+<p><strong>Solar is the first vertical, not the last.</strong> This plan is written and built for solar because solar is VoltSol&#39;s current business and the fastest place to prove a working sales AI against real leads and real financing conversations already in flight. But the underlying architecture — a Knowledge layer of current facts, a Behavior layer trained on real closing methodology, and a Judgment layer for genuine edge cases (Section 4) — is deliberately built around &quot;how a sales conversation gets won,&quot; not hard-wired to solar-specific logic. As VoltSol expands into additional verticals down the road, each new vertical is expected to mean: a new Knowledge/RAG corpus of that vertical&#39;s facts, a new (or extended) Behavior-layer corpus of that vertical&#39;s objection-handling and closing patterns — while the same Judgment layer, routing logic, and hosting architecture get reused rather than rebuilt from scratch. Solar proves the model works before the same investment is asked to carry a second or third vertical.</p>
+<p><strong>Where this fits the bigger picture.</strong> This connects directly to the leads-business thesis already in <code>/admin/strategy</code> (see &quot;The Leads-Business Vision&quot;): a proprietary sales AI, trained on real closing methodology across both residential and enterprise deals, is exactly the kind of &quot;recursive learning&quot; moat described there — every VoltSol conversation makes the next one better, in a way a rented frontier model never will, and in a way that compounds further as more verticals feed the same underlying platform.</p>
+<hr>
+<h2>4. The What</h2>
+<p>Not one model doing everything — three layers, each doing the job it&#39;s actually good at, designed so most of it is reusable across future verticals:</p>
+<ol>
+<li><strong>Knowledge layer (RAG — the searchable binder).</strong> Facts that change: current pricing tiers, equipment specs, tax credit rules, utility rate schedules, financing program terms, contractor-licensing requirements. Lives in a live, editable database — always current, never &quot;trained in&quot; and then stale. <strong>Vertical-specific by design:</strong> this is the layer that gets swapped out (not rebuilt) when a new vertical is added — a new fact set, same lookup mechanism.</li>
+<li><strong>Behavior layer (the fine-tuned model — the trained sales instinct).</strong> How VoltSol actually talks: tone, objection-handling patterns, qualification flow, when to push and when to back off, how a residential pitch differs from a C&amp;I (commercial/industrial) pitch. This is the part that gets fine-tuned on VoltSol&#39;s real sales corpus. <strong>Partially vertical-specific:</strong> the underlying sales instinct (reading hesitation, structuring a close) generalizes; the concrete objection content is retrained per vertical.</li>
+<li><strong>Judgment layer (the frontier model — stays rented, on purpose).</strong> Genuinely novel situations, edge cases, anything the fine-tuned model hasn&#39;t seen before. No small, cheaply-trained model beats a frontier model here, so this plan doesn&#39;t try. Claude (via OpenRouter) keeps this job permanently — the plan is never to replace this layer, only to make the Behavior layer good enough that it handles the bulk of routine conversation, with Judgment as the fallback for anything unusual. <strong>Fully vertical-agnostic:</strong> this layer, the routing logic around it, and the hosting architecture (Section 7) are the parts explicitly built to be reused unchanged as new verticals are added.</li>
+</ol>
+<p><strong>How routing actually decides which layer answers — an honest note.</strong> It would be convenient if the fine-tuned model could just &quot;know&quot; when it&#39;s unsure and hand off automatically. It can&#39;t, reliably — small fine-tuned models are not good at accurately judging their own confidence, and treating that as solved would be dishonest. At launch, routing is <strong>rule-based, not self-assessed</strong>: fixed triggers (specific topics like financing-term specifics, legal/contractual questions, anything the qualification flow flags as high-value or high-risk) send the conversation straight to the Judgment layer or a human, regardless of what the fine-tuned model &quot;thinks.&quot; Designing and testing that rule set is itself a deliverable of Phases 4-5 (Section 9), not something that falls out of the fine-tune for free.</p>
+<p><strong>What this is not:</strong> not a chatbot personality gimmick, not a replacement for a live human closer on complex or high-value calls, not a system that operates without human oversight at launch (see Section 9, Rollout, for the trust-building sequence before this touches real customers unsupervised).</p>
+<p><strong>The baseline this has to beat.</strong> Before committing further budget past Phase 2, there&#39;s a cheaper alternative that has to be tested and ruled out first: once the sales doctrine is codified (Phase 0), simply feeding that doctrine into the existing rented frontier model (Claude) as instructions, paired with the same RAG fact layer, costs almost nothing extra and may already capture most of the value this whole project is chasing. <strong>This &quot;prompted-frontier baseline&quot; is now a required comparison arm in the Phase 2 evaluation (Section 6, item 4) — if the fine-tuned model can&#39;t beat it, the project stops at Phase 2 rather than continuing to burn budget on a fine-tune that isn&#39;t earning its cost.</strong></p>
+<hr>
+<h2>5. The How — Building the Corpus (this is the actual project)</h2>
+<p>The honest starting point: <strong>VoltSol has zero training data for this today.</strong> The base model technology (Section 6) is a solved, well-understood problem. The bottleneck — and therefore the actual multi-month project — is building a real corpus (training data) from scratch. This is &quot;greenfield&quot; work, meaning there is no existing dataset to inherit; every piece of it has to be deliberately built or captured, starting now.</p>
+<h3>5.1 What we train on, and where it comes from</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What it captures</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Codified sales doctrine</strong></td>
+<td>VoltSol&#39;s sales leadership sits down and explicitly writes out the methodology that currently lives mostly in the heads of the most experienced closers: qualification questions, objection responses, financing-conversation scripts, when to escalate to a human. This is the seed everything else builds on.</td>
+<td>Not started — first step</td>
+</tr>
+<tr>
+<td><strong>Nationwide field-research interviews</strong></td>
+<td>VoltSol is conducting field interviews with other solar company owners/operators across the country as a deliberate information-gathering effort. Every one of these conversations — different regional objections, different financing norms, different closing styles — is raw training material once recorded and transcribed. This is one of the richest, most unique sources in this entire plan, because it&#39;s real-world variation a single-market operation would never otherwise see.</td>
+<td><strong>In progress — highest priority to capture systematically</strong> (see 5.2)</td>
+</tr>
+<tr>
+<td><strong>Recorded strategy/sales calls</strong></td>
+<td>Any recorded conversation involving real sales reasoning, objection handling, or deal structuring — internal calls, partner/industry-contact calls, customer calls (with consent) — is usable raw material once transcribed and cleaned.</td>
+<td>1 call captured so far; ongoing as more happen</td>
+</tr>
+<tr>
+<td><strong>Synthetic bootstrap</strong></td>
+<td>Once the doctrine is codified, use a frontier model to generate large volumes of realistic practice conversations <em>following that doctrine</em> — simulated homeowner objections, simulated C&amp;I procurement conversations, with the doctrine as the &quot;ground truth&quot; the synthetic data must match. This inflates a small seed of real doctrine into enough volume to actually fine-tune on. <strong>Provider terms-of-service caveat:</strong> most frontier AI providers restrict using their outputs to train a competing or substitute model — this needs a check against the specific provider&#39;s terms before it&#39;s used this way (or a provider/open model whose terms explicitly permit it) before Phase 1 starts, not discovered after.</td>
+<td>Not started — depends on 5.1 doctrine step</td>
+</tr>
+<tr>
+<td><strong>Human grading pass</strong></td>
+<td>Every batch of synthetic data gets sampled and reviewed by VoltSol&#39;s sales leadership for accuracy and voice-match before it&#39;s used — bad synthetic data trains bad habits just as easily as good data trains good ones. <strong>Realistic workload:</strong> full manual review of every conversation doesn&#39;t survive a busy sales team&#39;s actual bandwidth. Plan is a random 10-15% sample per batch, scored against a fixed rubric (see Section 6, item 4), not exhaustive review — and this sampling rate itself is an open decision (Section 10) that needs sales leadership&#39;s input on realistic weekly review hours available.</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td><strong>Real production conversations</strong> (once the speed-to-lead bot from <code>LEADGEN-BOT-PLAN.md</code> is live)</td>
+<td>Once VoltSol&#39;s own AI is actually talking to real leads, every one of those conversations (with proper consent already baked into VoltSol&#39;s lead-capture forms, <strong>plus a PII-scrubbing pass — stripping names, addresses, phone numbers, account/financial details — before anything enters the training corpus</strong>) becomes future training data — the flywheel that keeps the model improving after launch.</td>
+<td>Depends on <code>LEADGEN-BOT-PLAN.md</code> Phase 1-3 shipping first</td>
+</tr>
+<tr>
+<td><strong>Financing/structuring reference material</strong></td>
+<td>The concrete financing programs already surfaced in prior conversations — how each one actually works, when to use which — becomes structured reference content, feeding the Knowledge/RAG layer more than the Behavior layer, since these are facts, not sales instinct.</td>
+<td>Needs to be formally documented once financing partnerships are finalized</td>
+</tr>
+<tr>
+<td><strong>Enterprise/C&amp;I-specific doctrine</strong></td>
+<td>PPA (power purchase agreement) vs. lease vs. cash structuring, demand charges, MACRS (an accelerated tax-depreciation schedule for business equipment), and prevailing-wage ITC (Investment Tax Credit) adders (extra tax-credit percentage available when a project pays prevailing/union-scale wages) — deliberately weighted higher (recommended 60/40 toward enterprise vs. residential) because this knowledge is rare and high-value, versus semi-commoditized residential solar knowledge that&#39;s everywhere online already.</td>
+<td>Not started — needs a dedicated doctrine-writing session focused specifically on VoltSol&#39;s enterprise/B2B sales trajectory</td>
+</tr>
+</tbody></table>
+<h3>5.2 Making the field-research interviews actually useful as training data</h3>
+<p>This only works as training data if it&#39;s captured deliberately, not just remembered anecdotally. Concrete recommendation:</p>
+<ol>
+<li><strong>Record every interview</strong> (with the other party&#39;s consent) — audio at minimum, video if practical.</li>
+<li><strong>Transcribe promptly</strong> using the same Whisper-based local transcription pipeline already proven on prior recorded calls (<code>openai-whisper</code> — no cloud dependency, no cost).</li>
+<li><strong>Tag each transcript</strong> with basic metadata: region, company size, residential vs. commercial focus, what was genuinely novel/useful vs. what was already known.</li>
+<li><strong>Route through the same human-grading pass</strong> as synthetic data before anything gets trained on it — a raw transcript is not automatically good training data; it needs a pass to extract the actual reusable insight from the surrounding conversation.</li>
+</ol>
+<p><strong>Recommendation: start this discipline immediately</strong>, even before the codified-doctrine step is finished — these interviews are happening in real time regardless of the AI project&#39;s timeline, and every uncaptured conversation is a permanently lost data point.</p>
+<p><strong>Consent — this is not optional, and recording consent is not the same as training consent.</strong> VoltSol representatives are recording other business owners describing their own sales methodology, and this plan proposes using that material to train a commercial product. Agreeing to be recorded is a different thing, legally and ethically, from agreeing to have that recording turned into training data for someone else&#39;s AI — and several states, including California (Penal Code §632), require all-party consent to record a conversation at all. <strong>Concrete fix, effective before the next interview:</strong> the interviewer states on-record, at the start of each interview, something like: <em>&quot;Just so it&#39;s on the record — I&#39;m recording this and may use parts of it to help train and improve VoltSol&#39;s own sales tools. Cool with you?&quot;</em> No verbal yes on the recording, no use of that interview in the corpus — full stop, no exceptions.</p>
+<p><strong>Contingency if field interviews don&#39;t deliver.</strong> This source is valuable, but the plan cannot depend on it. If these interviews yield little usable material — sparse consent, thin content, or the effort simply doesn&#39;t produce enough volume — <strong>the codified doctrine plus synthetic bootstrap plus VoltSol&#39;s own recorded calls are sufficient on their own to reach a testable v1 fine-tune.</strong> Field interviews are enrichment that make the model better across a wider range of regional/market variation; they are not a blocking dependency for Phase 1.</p>
+<hr>
+<h2>6. The How — Technical Path (once there&#39;s a real corpus to train on)</h2>
+<ol>
+<li><strong>Base model choice:</strong> an open-weights model (Section 2 glossary) in the 7-15B parameter range (&quot;B&quot; = billions of internal parameters — bigger generally means smarter but slower/more expensive to run). <strong>Deliberately not naming specific models here:</strong> open-weights releases move fast, and any model named today will likely be superseded before Phase 2 starts. The real selection criterion (Section 7) is choosing whichever current-generation model is well-supported for cheap serverless hosting by the inference provider selected — that constraint matters more than which specific model wins on paper benchmarks.</li>
+<li><strong>Fine-tuning method:</strong> LoRA (Section 2) — the efficient, low-cost approach. Typical run costs $20–200 using rented cloud GPU time (via a service like RunPod, using open-source tooling called Axolotl) — there is no need to buy specialized hardware to <em>train</em> this model.</li>
+<li><strong>Iteration loop:</strong> train → evaluate against real scenarios (does it sound like VoltSol? does it handle objections the way a top VoltSol closer would?) → identify gaps → add more corpus → retrain. Expect multiple rounds, not a single one-shot success.</li>
+<li><strong>Evaluation, not vibes:</strong> before this ever talks to a real lead, build a fixed test set of <strong>at least 50 realistic scenarios</strong>, drafted directly from the codified doctrine (ideally during Phase 0, since the doctrine&#39;s objection list plus ideal answers <em>is</em> the eval set with almost no extra work). Score every candidate — including the required prompted-frontier baseline described in Section 4 — against the same set, on a simple 1-5 rubric across three dimensions: factual accuracy, voice/tone match, and compliance (does it avoid overpromising, avoid disclosed-bot violations, etc.). Log every version&#39;s scores so later fine-tunes can be compared against earlier ones, not just against a feeling. This scored comparison is the gate that decides &quot;ready for shadow mode&quot; (Section 9) — including the go/no-go decision against the frontier baseline.</li>
+<li><strong>Integration:</strong> the fine-tuned model becomes a specialized skill inside VoltSol&#39;s existing OpenClaw agent setup, sitting alongside (not replacing) the frontier-model Judgment layer and the RAG Knowledge layer described in Section 4.</li>
+<li><strong>Versioning and rollback — what happens if a fine-tune ships bad.</strong> Every trained adapter is kept as a versioned, named artifact, not overwritten. Every new version has to pass the full eval set (item 4) as a regression gate before it&#39;s promoted — a new version that scores worse than the current live one on any dimension doesn&#39;t ship. The previous version stays hot and ready so a bad rollout can be reverted immediately rather than debugged live. New versions launch to a small percentage of real traffic first, not 100% on day one.</li>
+</ol>
+<hr>
+<h2>7. Long-Term Hosting &amp; High-Availability Plan</h2>
+<p><strong>Training vs. serving are two different problems, with two different answers.</strong></p>
+<p><strong>Training</strong> (the occasional, expensive step of teaching the model something new) always happens on rented cloud GPU time (RunPod, or similar) — this is a solved problem, doesn&#39;t need permanent infrastructure, and shouldn&#39;t be over-thought. Rent it, run the job, release it.</p>
+<p><strong>Serving/inference</strong> (the everyday act of the model actually answering real leads) is the part that needs a real availability plan, because by the time this launches, it&#39;s touching live customer conversations — the same reliability bar as the rest of VoltSol&#39;s stack (which already runs on fully-managed, always-on infrastructure: Vercel, Neon).</p>
+<ul>
+<li><strong>Local option (cheap, but a single point of failure):</strong> VoltSol&#39;s existing agent-host hardware (already confirmed capable: Apple M4 Pro chip, 24GB of memory — comfortably able to run a quantized 7-14B fine-tuned model locally via free tools like Ollama or MLX). Attractive because it&#39;s already-owned hardware and free to run. <strong>But:</strong> if that machine&#39;s home internet or power goes out, the AI goes dark — unacceptable for a system touching real leads in real time.</li>
+<li><strong>Recommendation for launch (Jan 1, 2027): don&#39;t rely on the home-hosted machine alone for production serving.</strong> Use it heavily during the build/test phase (Sections 5-6) where downtime costs nothing. For the actual production launch, pair it with (or fully move to) a <strong>managed cloud inference host</strong> — services like Fireworks, Together.ai, or a RunPod &quot;serverless&quot; endpoint can host a fine-tuned open-weights model with real uptime guarantees, for a predictable per-use cost, without a single location&#39;s home network being a dependency.</li>
+<li><strong>Recommended production architecture:</strong> managed cloud inference as the primary server for the fine-tuned model (real uptime, no home-network dependency), with the local machine kept as a <strong>fallback/cost-saver</strong> for lower-stakes internal testing and iteration.</li>
+<li><strong>The real failover — and it&#39;s already built.</strong> If the fine-tuned endpoint ever goes down, the system falls back to the existing frontier Judgment layer (Claude, with the codified doctrine loaded into its instructions) — the same model VoltSol already runs on today, degrading gracefully to &quot;generic-but-doctrine-aware&quot; rather than going dark. This is the actual high-availability answer, not the local machine: an unexercised local fallback sitting behind home internet isn&#39;t real failover. That machine is a dev/test tool, not a production safety net.</li>
+<li><strong>Data privacy of live conversations — a hard selection criterion, not a nice-to-have.</strong> Real customer conversations will flow through whichever inference provider is chosen. Before signing with any provider, confirm in writing: zero-retention inference (they don&#39;t store or train on VoltSol&#39;s traffic) and a signed Data Processing Agreement (DPA). If a provider won&#39;t commit to both, it&#39;s disqualified regardless of price. <strong>This requirement applies equally to the frontier/OpenRouter path, not just the fine-tuned model&#39;s host.</strong> The Judgment layer, the failover path, the prompted-frontier baseline, and the synthetic-data-generation step all route conversation data (including the codified doctrine itself) through Claude via OpenRouter today — and per Section 4&#39;s routing logic, this is exactly where the highest-stakes, most sensitive conversations end up. Confirming OpenRouter&#39;s own logging/retention configuration and the underlying frontier provider&#39;s data-use terms in writing is a Phase 3b deliverable (Section 9), to the same standard as the managed host, not an afterthought because that path was already in use before this plan existed.</li>
+<li><strong>Provider lock-in is genuinely low here — a real strength worth stating plainly.</strong> Because the fine-tuned adapter is a small, portable file (Section 2 glossary), VoltSol isn&#39;t locked into any one hosting provider the way a fully proprietary system would be. If pricing or reliability sours with one host, the same adapter moves to another provider supporting the same base model, with no retraining required.</li>
+<li><strong>Post-launch quality monitoring — not just &quot;is it up.&quot;</strong> An uptime health check catches the server going dark; it does not catch the model quietly getting worse (drifting off-voice, missing new financing terms, etc.). Add a lightweight ongoing check: a weekly human-sampled review of a handful of live transcripts, plus tracking the escalation rate (how often conversations route to the Judgment layer or a human) as a rough quality signal — a rising escalation rate is an early warning, not just an inconvenience.</li>
+<li><strong>Cost shape to expect — with the real caveat that makes or breaks this number.</strong> &quot;Tens of dollars per month&quot; is only realistic if the chosen base model is on the inference provider&#39;s <strong>supported list for serverless multi-adapter hosting</strong> (Fireworks and Together.ai both offer this, but only for base models they explicitly support). If the base model chosen isn&#39;t on that list, the alternative is a <strong>dedicated GPU endpoint at roughly $1–3/hour — $700–$2,000+/month</strong>, a very different number. <strong>This is now a hard constraint on model selection (Section 6, item 1): the base model must be chosen from what the target inference provider supports for cheap serverless hosting, not selected on capability alone.</strong></li>
+<li><strong>Cold-start latency — a real tradeoff for a speed-to-lead product.</strong> Serverless endpoints that sit idle between requests can take anywhere from several seconds to a couple of minutes to &quot;wake up&quot; on the next request. At VoltSol&#39;s current lead volume, the endpoint will often be cold when a new lead comes in. Mitigation options: pay for an always-warm tier (removes the delay, raises the cost baseline) or accept the occasional slow first response and route time-sensitive first-contact moments through the always-warm frontier Judgment layer instead. This tradeoff should be tested, not assumed away.</li>
+<li><strong>Full cost picture — line items this plan should track, not just training + hosting.</strong> Two real costs are otherwise invisible in this document: (1) frontier-model API usage for synthetic data generation (modest — likely $50–500 depending on volume — but a real line item), and (2) sales leadership&#39;s time spent grading corpus batches, which is very likely the single largest true cost of this entire project and deserves to be named as such, not treated as free.</li>
+<li><strong>Multi-vertical hosting note.</strong> Because the Judgment layer, routing logic, and hosting architecture described above are vertical-agnostic by design (Section 4), adding a second vertical later should mean training and deploying an additional adapter/RAG corpus pair on the same infrastructure — not standing up a parallel hosting stack from zero.</li>
+<li><strong>Data-control tradeoff, stated plainly.</strong> The managed-cloud-inference recommendation above is the right default for solar today — it&#39;s cheaper and more available than fully self-hosting, and solar carries no data-residency requirement forcing the issue. But it does mean live conversation traffic passes through a third-party host, which only partially addresses the IP/discovery concerns raised in Section 3 (a managed host with a signed DPA and zero-retention terms is a real improvement over a frontier provider&#39;s default terms, but it is not the same as VoltSol fully controlling the infrastructure). <strong>If a future vertical&#39;s legal, contractual, or regulatory requirements demand it, the same owned adapter can be deployed on fully VoltSol-controlled infrastructure instead of a third-party managed host</strong> — at the cost of taking on the uptime/HA engineering work a managed host otherwise handles. This is a real option preserved by owning the adapter outright, not a default recommendation for solar&#39;s launch.</li>
+</ul>
+<hr>
+<h2>8. The Who</h2>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Technical build owner</strong></td>
+<td>Infrastructure, fine-tuning runs, hosting decisions, integration into VoltSol&#39;s live system, evaluation harness</td>
+</tr>
+<tr>
+<td><strong>Sales leadership / doctrine authors</strong></td>
+<td>Codify the actual sales methodology; conduct and record the nationwide field-research interviews; grade synthetic and real training data for accuracy; final human check on model outputs before anything reaches a real customer unsupervised</td>
+</tr>
+<tr>
+<td><strong>Corpus curation / orchestration</strong></td>
+<td>VoltSol AI agent (this system) — transcribes interviews, organizes and tags the corpus, runs the synthetic-data generation step, manages the deployment pipeline, ongoing monitoring once live</td>
+</tr>
+<tr>
+<td><strong>Cloud GPU vendor</strong> (external)</td>
+<td>e.g. RunPod, or equivalent — rented compute for the training runs only — no ongoing relationship required beyond individual training jobs</td>
+</tr>
+<tr>
+<td><strong>Managed inference host</strong> (external, for production hosting)</td>
+<td>e.g. Fireworks, Together.ai, or RunPod serverless — ongoing hosting relationship for production serving once launched — the &quot;always-on&quot; answer described in Section 7</td>
+</tr>
+<tr>
+<td><strong>Legal/compliance review</strong> (recommended, not yet engaged)</td>
+<td>Before any AI-generated message reaches a real customer unsupervised, a compliance pass covers two concrete, named requirements, not just general caution: <strong>TCPA (Telephone Consumer Protection Act)</strong> — the federal telemarketing/texting consent law, already tracked elsewhere in VoltSol&#39;s compliance notes — and <strong>California&#39;s bot-disclosure law (SB 1001, Business &amp; Professions Code §17941)</strong> — as a California solar company selling to California customers, VoltSol is squarely covered by this law, which requires clearly disclosing to a customer that they&#39;re talking to an automated system in a sales context. This is a specific, named legal requirement for this exact use case, and it must be built into the launch plan (a disclosure line in the AI&#39;s opening message), not treated as a generic afterthought.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>9. Rollout Plan — Target: January 1, 2027</h2>
+<p>This is a corpus-bottlenecked project, not a technology-bottlenecked one — the schedule below assumes corpus work starts now (July 2026) and doesn&#39;t stall. If field-interview capture or the doctrine-codification step slips, the whole timeline slips with it; there&#39;s no way to shortcut this by throwing more compute at it.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Target window</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Phase 0 — Doctrine + capture discipline</strong></td>
+<td>July 2026</td>
+<td>VoltSol&#39;s sales leadership codifies the core sales doctrine, with a concrete deliverable target (not an open-ended conversation): a written doctrine document covering the qualification flow, the top ~20 real objections with ideal responses, and the financing-conversation structure, produced from dedicated recorded working sessions, targeted complete by <strong>July 31</strong>. This same objection list becomes the seed of the Phase 2 eval test set (Section 6, item 4) — draft that test set here, not later, since it&#39;s nearly the same document. Start systematically recording/transcribing the nationwide field-research interviews (Section 5.2), with the on-record consent line in place from the very next interview — this starts immediately regardless of anything else, since the interviews are already happening.</td>
+</tr>
+<tr>
+<td><strong>Phase 1 — Corpus factory v1</strong></td>
+<td>Aug 2026</td>
+<td>Synthetic bootstrap generation from the codified doctrine (with the provider-ToS check from Section 5.1 resolved first); human-grading pass at a realistic sampled rate (Section 5.1) rather than full manual review; RAG knowledge base v1 stood up (pricing, financing programs, tax credit rules, contractor-licensing requirements) — separate from the fine-tuning corpus, since this is the &quot;facts&quot; layer.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 — First fine-tune + eval harness + baseline test</strong></td>
+<td>Sept 2026</td>
+<td>First LoRA training run on the v1 corpus, using a base model already confirmed compatible with the target inference provider&#39;s cheap serverless hosting (Section 7). Run the full eval set (Section 6, item 4) against <strong>both</strong> the fine-tuned model <strong>and</strong> the prompted-frontier baseline (Section 4). If the fine-tune doesn&#39;t beat the baseline, this is the point to pause and make the extend/pivot-to-baseline-only/shelve call from Open Decision #6 rather than continue investing by default — expect this first pass to reveal real gaps either way, not to be launch-ready.</td>
+</tr>
+<tr>
+<td><strong>Phase 3 — Iterate</strong></td>
+<td>Oct 2026</td>
+<td>Expand corpus with more interview transcripts, more real call data, targeted synthetic data for whatever gaps Phase 2 revealed. Second (and likely third) fine-tune pass, each one scored against the same eval set and logged as a new version (Section 6, item 6).</td>
+</tr>
+<tr>
+<td><strong>Phase 3b — Legal/compliance engagement</strong></td>
+<td><strong>Oct 2026</strong> (deliberately scheduled alongside Phase 3, ahead of shadow mode and well clear of December — see risk note)</td>
+<td>Engage legal/compliance review (Section 8) — TCPA and California SB 1001 bot-disclosure requirements specifically. Also confirm and document, in writing, the OpenRouter/frontier-provider data-retention terms per Section 7&#39;s data-privacy requirement — this covers the Judgment layer, failover path, and baseline traffic, not just the managed inference host. This work is independent of corpus progress and should not compete with December&#39;s hosting hardening or the holidays.</td>
+</tr>
+<tr>
+<td><strong>Phase 4 — Shadow mode integration</strong></td>
+<td>Nov 2026</td>
+<td>Wire the fine-tuned model into VoltSol&#39;s live OpenClaw pipeline in <strong>shadow mode</strong>: it drafts responses to real leads, but a human reviewer reviews before anything sends. Build and test the rule-based routing logic (Section 4) that decides when a conversation escalates to the Judgment layer. This is the real-world proving ground before any unsupervised launch.</td>
+</tr>
+<tr>
+<td><strong>Phase 5 — Hardening + hosting decision</strong></td>
+<td>Dec 2026</td>
+<td>Execute the production hosting plan (Section 7) — <strong>re-confirm</strong> base-model/provider serverless compatibility (final check before production signing, following the initial confirmation in Phase 2), get zero-retention/DPA commitments in writing, add health-check and quality-drift monitoring. Final round of corpus/eval tightening based on shadow-mode learnings.</td>
+</tr>
+<tr>
+<td><strong>Phase 6 — Launch</strong></td>
+<td><strong>Jan 1, 2027 (target); mid-January is the honest fallback date</strong></td>
+<td>Move from shadow mode to live, with human spot-checking rather than full pre-send review — the model handles routine conversation directly; anything the rule-based router flags escalates to the frontier Judgment layer or straight to a human. Bot-disclosure line live in the opening message per SB 1001.</td>
+</tr>
+</tbody></table>
+<p><strong>Success metrics — what &quot;launch went well&quot; actually means.</strong> Before Phase 6, agree on 3-4 concrete targets, for example: average sales-leadership-graded quality score on the eval set (target ≥ X out of 5), escalation rate to the Judgment layer (target below Y%), lead response time, and any measurable lift in conversion versus the current frontier-only baseline. Without these, &quot;is it working&quot; stays a matter of opinion instead of a number everyone agreed to in advance.</p>
+<p><strong>Honest risk flag on the date.</strong> January 1, 2027 is achievable <em>if</em> Phase 0 starts now and field-interview capture becomes a consistent habit rather than an afterthought. The single biggest threat to this date is not the AI technology — it&#39;s whether there&#39;s enough real, <em>graded</em> corpus by October to make Phase 3 meaningful, since human grading (sales leadership&#39;s time, competing with travel and day-to-day sales work) is the real bottleneck, not corpus generation itself. December is also a genuinely bad month for anything requiring outside legal availability or sales leadership&#39;s attention, which is why legal engagement has been moved to October above. Recommend the checkpoint below as the honest go/no-go point, rather than forcing a January launch on a thin corpus.</p>
+<hr>
+<h2>10. Open Decisions for VoltSol Leadership</h2>
+<ol>
+<li><strong>Doctrine-writing session timing</strong> — when can sales leadership actually sit down and codify the sales methodology, targeting the July 31 deliverable in Phase 0? This blocks everything else.</li>
+<li><strong>Interview capture logistics</strong> — does the field-research effort have a reliable recording setup in place, and are the interviewers comfortable using the on-record consent line (Section 5.2) starting with the very next interview?</li>
+<li><strong>Realistic grading bandwidth</strong> — how many corpus conversations/week can sales leadership actually review given travel and day-to-day sales commitments? This sets the sampling rate (Section 5.1) and directly determines whether Phase 1-3 are realistic as scheduled.</li>
+<li><strong>Budget approval</strong> for: cloud GPU training runs ($20-200/run, likely multiple runs), synthetic-data generation API costs (~$50-500), and eventual managed inference hosting — confirmed cheap (tens of dollars/month) only if the base model lands on the provider&#39;s supported serverless list (Section 7); budget for the $700-2,000+/month dedicated-endpoint scenario as a contingency if it doesn&#39;t.</li>
+<li><strong>Legal/compliance engagement timing</strong> — confirm the October 2026 timing (Section 9, Phase 3b) works, covering TCPA, California&#39;s SB 1001 bot-disclosure requirement, and the OpenRouter/frontier-provider data-retention terms confirmation (Section 7) — all three land in the same phase.</li>
+<li><strong>September 2026 corpus + baseline checkpoint</strong> — commit to this now as the honest go/no-go/slip decision point: does the fine-tune beat the prompted-frontier baseline (Section 4) on the eval set, and is there enough graded corpus to continue? If either answer is no, decide whether to extend, pivot to baseline-only, or shelve.</li>
+<li><strong>Future-vertical sequencing</strong> — once solar proves the model out, which vertical is next, and on what timeline? Not a Phase 0-6 blocker, but worth an early directional answer since it affects how generically the Knowledge-layer tooling (Section 4) gets built the first time around.</li>
+</ol>
+<hr>
+<p><em>This document reflects a project plan, not a committed engineering spec. Costs, provider names, and specific model choices should be re-verified against current pricing/availability at each phase, not assumed fixed from this draft.</em></p>
+
+  </main>
+
+  <footer>
+    <p><strong>VoltSol Energy</strong> — Internal Strategy Document. Confidential. Not for external distribution.</p>
+    <p>Generated from the source markdown at <code>deliverables/VOLTSOL-SOLAR-AI-STRATEGY.md</code>. This document reflects a project plan, not a committed engineering spec — dates, costs, and technical choices are subject to revision as work begins.</p>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -95,14 +95,14 @@ export default async function StrategyPage() {
           </p>
         </div>
 
-        {/* Solar Sales AI strategy */}
+        {/* Sales AI strategy */}
         <div className="mb-12 rounded-2xl border border-blue-900/40 bg-navy-800/40 p-8">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-2xl">🤖</span>
-            <h2 className="text-2xl font-bold text-white">The VoltSol Solar AI</h2>
+            <h2 className="text-2xl font-bold text-white">The VoltSol Sales AI</h2>
           </div>
           <p className="text-blue-300 text-sm leading-relaxed mb-4">
-            Beyond renting a generic frontier model, an owned, fine-tuned &ldquo;solar sales AI&rdquo; trained on Wayne &amp; Hugo&apos;s actual closing methodology &mdash; residential and enterprise/C&amp;I. Glossary-first for mixed technical/non-technical readers, corpus-build plan (including Hugo&apos;s nationwide interview trip as training material), hosting/HA architecture, and a phased rollout targeting <strong className="text-white">January 1, 2027</strong>. Externally audited and revised by an independent AI reviewer (Fable 5) before publication &mdash; see Section 9&apos;s honest risk flags and Section 10&apos;s open decisions for Wayne.
+            Beyond renting a generic frontier model, an owned, fine-tuned sales AI trained on VoltSol&apos;s own closing methodology &mdash; residential and enterprise/C&amp;I. <strong className="text-white">Solar is the first vertical, not the only one</strong> &mdash; the architecture is built so additional verticals can be added later on the same platform. Glossary-first for mixed technical/non-technical readers, corpus-build plan (including nationwide field-research interviews as training material), hosting/HA architecture, and a phased rollout targeting <strong className="text-white">January 1, 2027</strong>. Externally audited and revised by an independent AI reviewer (Fable 5) before publication &mdash; see Section 9&apos;s honest risk flags and Section 10&apos;s open decisions.
           </p>
           <div className="flex flex-wrap gap-3">
             <a

@@ -210,7 +210,14 @@
       border-bottom: none;
       width: auto;
     }
-    main table td:first-child {
+    main table td:first-child,
+    main table tr:nth-child(even) td:first-child {
+      /* Higher specificity than tr:nth-child(even) td above — without the
+         second selector here, that zebra-stripe rule (used for desktop)
+         wins on every even glossary row and strips the navy background off
+         the term-header chip, leaving white text on white with nothing
+         visible. Bug reported 2026-07-03 (screenshot: mobile 'Legal
+         discovery' row had no header background at all). */
       background: var(--navy);
       color: #fff;
       font-weight: 700;

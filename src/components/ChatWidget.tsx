@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { MessageCircle, X } from 'lucide-react';
 import LeadChat from './LeadChat';
@@ -29,8 +29,6 @@ export function ChatWidget() {
   const [sessionId] = useState(
     () => `w-${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`
   );
-  const nudgeShownRef = useRef(false);
-  const [nudge, setNudge] = useState(false);
 
   const hidden =
     (pathname?.startsWith('/admin') ?? false) || pathname === '/start';
@@ -46,20 +44,8 @@ export function ChatWidget() {
     }
   }, [open]);
 
-  // One-time gentle nudge bubble after a few seconds so people know it answers
-  // questions (not just a CTA). Non-intrusive; disappears on open.
-  useEffect(() => {
-    if (hidden || hasOpened || nudgeShownRef.current) return;
-    const t = setTimeout(() => {
-      nudgeShownRef.current = true;
-      setNudge(true);
-    }, 6000);
-    return () => clearTimeout(t);
-  }, [hidden, hasOpened]);
-
   const handleOpen = useCallback(() => {
     setOpen(true);
-    setNudge(false);
     if (!hasOpened) {
       setHasOpened(true);
       track('chat_widget_open', { path: pathname });
@@ -79,16 +65,6 @@ export function ChatWidget() {
       {/* Launcher button — bottom-right, above the mobile StickyCTA bar (z-40). */}
       {!open && (
         <div className="fixed bottom-[5.25rem] right-4 z-50 flex flex-col items-end gap-2 md:bottom-6 md:right-6">
-          {nudge && (
-            <button
-              type="button"
-              onClick={handleOpen}
-              className="max-w-[14rem] animate-reveal-up rounded-2xl rounded-br-sm border border-gold/30 bg-navy-800 px-3.5 py-2.5 text-left text-[13px] leading-snug text-blue-50 shadow-xl"
-            >
-              👋 Questions about going solar? Ask me anything — or I can set up a
-              quick call with a pro.
-            </button>
-          )}
           <button
             type="button"
             onClick={handleOpen}

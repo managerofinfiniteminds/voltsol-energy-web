@@ -10,6 +10,7 @@ const DEFAULT_LINKS: FooterLink[] = [
   { label: "Pricing", href: "/#pricing" },
   { label: "About", href: "/#about" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Partners", href: "/partners" },
   { label: "Documents", href: "/documents" },
   { label: "Contact", href: "/contact" },
   { label: "Get My Free Estimate", href: "/start" },

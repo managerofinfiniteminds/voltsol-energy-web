@@ -245,6 +245,7 @@ const ARRAY_DEFAULTS = {
     { label: 'How It Works', href: '/#how' },
     { label: 'Technology', href: '/technology' },
     { label: 'Learn', href: '/learn' },
+    { label: 'Partners', href: '/partners' },
     { label: 'FAQ', href: '/#faq' },
     { label: 'Get My Free Estimate', href: '/book' },
     { label: 'Get a Quote', href: '/#quote' },

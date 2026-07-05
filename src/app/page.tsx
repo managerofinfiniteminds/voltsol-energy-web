@@ -107,6 +107,20 @@ export default async function HomePage() {
   const locale = getLocale();
   const cfg = await getHomeConfig(locale);
 
+  // Fetch visible partners for the partner logo strip (if ≥3 exist)
+  const visiblePartnersRows = await sql`
+    SELECT id, company_name, logo_url, website_url
+    FROM partners
+    WHERE visible = true
+    ORDER BY sort_order ASC, company_name ASC
+  `;
+  const visiblePartners = visiblePartnersRows as Array<{
+    id: number;
+    company_name: string;
+    logo_url: string | null;
+    website_url: string | null;
+  }>;
+
   // Prefer real, admin-curated Google reviews when any are featured;
   // otherwise fall back to the static testimonials from site_config so the
   // section never renders empty (e.g. before a Place ID is configured).
@@ -145,6 +159,16 @@ export default async function HomePage() {
           reviewCount: googleAggregateMap.google_business_review_count,
         }
       : null;
+
+  // Fetch visible partners for logo strip (only show if ≥3 partners)
+  const partnerRows = await sql`
+    SELECT id, company_name, logo_url, website_url
+    FROM partners
+    WHERE visible = true
+    ORDER BY sort_order ASC, id DESC
+    LIMIT 12
+  `;
+  const partners = partnerRows as { id: number; company_name: string; logo_url: string | null; website_url: string | null }[];
 
   const localBusinessJsonLd = buildLocalBusinessJsonLd(cfg.testimonials, googleAggregate);
 
@@ -454,6 +478,65 @@ export default async function HomePage() {
           </Reveal>
         </Container>
       </Section>
+
+      {/* ========== PARTNER LOGO STRIP (conditionally rendered) ========== */}
+      {visiblePartners.length >= 3 && (
+        <Section alt className="py-10 sm:py-12">
+          <Container>
+            <div className="text-center">
+              <p className="mb-6 text-sm font-semibold uppercase tracking-wider text-gold/70">
+                Trusted Partners
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+                {visiblePartners.slice(0, 6).map((partner) => (
+                  <a
+                    key={partner.id}
+                    href={partner.website_url || '#'}
+                    target={partner.website_url ? '_blank' : undefined}
+                    rel={partner.website_url ? 'noopener' : undefined}
+                    className="group relative h-16 w-32 transition sm:h-20 sm:w-40"
+                    title={partner.company_name}
+                  >
+                    {partner.logo_url ? (
+                      <Image
+                        src={partner.logo_url}
+                        alt={`${partner.company_name} logo`}
+                        fill
+                        className="object-contain opacity-60 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-sm font-semibold text-slate-500 group-hover:text-white">
+                        {partner.company_name}
+                      </div>
+                    )}
+                  </a>
+                ))}
+              </div>
+              <div className="mt-8">
+                <Link
+                  href="/partners"
+                  className="inline-flex items-center text-sm font-semibold text-gold transition hover:text-gold/80"
+                >
+                  See all our partners
+                  <svg
+                    className="ml-1 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      )}
 
       <div
         aria-hidden="true"

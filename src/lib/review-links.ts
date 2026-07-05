@@ -12,3 +12,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://voltsolenergy.com'
 export function buildReviewTrackingUrl(clickToken: string): string {
   return `${SITE_URL}/api/r/review?t=${clickToken}`;
 }
+
+export function buildPartnerClaimUrl(claimToken: string): string {
+  return `${SITE_URL}/partners/claim/${claimToken}`;
+}

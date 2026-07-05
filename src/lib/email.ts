@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 import type { LeadScore } from './lead-scoring';
-import { GOOGLE_REVIEW_URL, buildReviewTrackingUrl } from './review-links';
+import { GOOGLE_REVIEW_URL, buildReviewTrackingUrl, buildPartnerClaimUrl } from './review-links';
 
 let _resend: Resend | null = null;
 function getResend(): Resend {
@@ -327,6 +327,63 @@ export async function sendLegacyReviewEmail(params: {
 
   const result = await getResend().emails.send({
     from: 'Hugo <info@voltsolenergy.com>',
+    to: params.email,
+    subject: subjectText,
+    html,
+  });
+
+  return { id: result.data?.id || '' };
+}
+
+/**
+ * Send a partner outreach email with editable subject/body.
+ * Uses {name}, {companyName}, and {claim_link} token replacement.
+ */
+export async function sendPartnerOutreachEmail(params: {
+  email: string;
+  contactName?: string;
+  companyName: string;
+  subject: string;
+  body: string;
+  claim_token: string;
+}): Promise<{ id: string }> {
+  const safe = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const claimUrl = buildPartnerClaimUrl(params.claim_token);
+
+  // Replace tokens
+  const displayName = params.contactName?.trim() || 'there';
+  const bodyText = params.body
+    .replace(/\{name\}/g, displayName)
+    .replace(/\{companyName\}/g, params.companyName)
+    .replace(/\{claim_link\}/g, claimUrl);
+  const subjectText = params.subject
+    .replace(/\{name\}/g, displayName)
+    .replace(/\{companyName\}/g, params.companyName);
+
+  // Convert line breaks to paragraphs for HTML rendering
+  const paragraphs = bodyText.split('\n\n').filter(p => p.trim());
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;">
+  <div style="max-width:600px;margin:0 auto;padding:24px 16px;">
+    <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:32px 24px;">
+      ${paragraphs.map(p => `<p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">${safe(p)}</p>`).join('')}
+    </div>
+    <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
+      <span style="color:#0F172A;font-weight:700;">Volt</span><span style="color:#F49527;font-weight:700;">Sol</span><span style="color:#0F172A;font-weight:700;"> Energy</span><br/>
+      Northern California Solar Installation
+    </div>
+  </div>
+</body>
+</html>`;
+
+  const result = await getResend().emails.send({
+    from: 'Hugo at VoltSol <info@voltsolenergy.com>',
     to: params.email,
     subject: subjectText,
     html,

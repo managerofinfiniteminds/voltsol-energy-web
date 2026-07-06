@@ -584,12 +584,21 @@ export function extractFromText(
     const m = raw.match(/\b\d{5}\b/);
     if (m && !next.phone?.includes(m[0])) next.zip = m[0];
   }
-  // Explicit name patterns
+  // Explicit name patterns. Guard against false positives like "I am GOING TO
+  // have solar" or "I'm NOT sure" — "i am/i'm" is often followed by a verb or
+  // filler word, not a name. Skip the match entirely if the captured word is a
+  // common continuation rather than a plausible first name.
   if (!next.first_name || !next.last_name) {
+    const NAME_STOPWORDS = new Set([
+      'going', 'not', 'just', 'still', 'also', 'sorry', 'sure', 'trying',
+      'looking', 'wondering', 'curious', 'happy', 'thinking', 'hoping',
+      'planning', 'about', 'here', 'new', 'a', 'an', 'the', 'gonna',
+      'interested', 'excited', 'ready', 'done', 'good', 'fine', 'okay', 'ok',
+    ]);
     const nm = raw.match(/\b(?:my name is|i am|i'?m|this is|name'?s|it'?s)\s+([A-Za-z][A-Za-z'’-]+)(?:\s+([A-Za-z][A-Za-z'’-]+))?/i);
-    if (nm) {
+    if (nm && !NAME_STOPWORDS.has(nm[1].toLowerCase())) {
       if (!next.first_name && nm[1]) next.first_name = capitalize(nm[1]);
-      if (!next.last_name && nm[2]) next.last_name = capitalize(nm[2]);
+      if (!next.last_name && nm[2] && !NAME_STOPWORDS.has(nm[2].toLowerCase())) next.last_name = capitalize(nm[2]);
     }
   }
   // Consent — only when the conversation is at/after the consent ask, or the

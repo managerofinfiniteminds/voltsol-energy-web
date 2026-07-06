@@ -434,7 +434,7 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
+          <div className="-mx-4 mt-14 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:items-stretch lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
             {proofItems.map((p, i) => (
               <Reveal
                 key={p.key}

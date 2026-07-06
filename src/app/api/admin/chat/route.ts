@@ -24,7 +24,16 @@ export async function GET(req: NextRequest) {
   }
 
   const rows = await sql`
-    SELECT id, session_id, slots_json, status, engine_lead_id, model_used, created_at, updated_at
+    SELECT
+      id, session_id, slots_json, status, engine_lead_id, model_used, created_at, updated_at,
+      jsonb_array_length(COALESCE(transcript_json, '[]'::jsonb)) AS message_count,
+      (
+        SELECT elem->>'content'
+        FROM jsonb_array_elements(COALESCE(transcript_json, '[]'::jsonb)) WITH ORDINALITY AS t(elem, ord)
+        WHERE elem->>'role' = 'user' AND trim(elem->>'content') <> ''
+        ORDER BY ord DESC
+        LIMIT 1
+      ) AS last_message
     FROM chat_sessions
     ORDER BY updated_at DESC
     LIMIT 100

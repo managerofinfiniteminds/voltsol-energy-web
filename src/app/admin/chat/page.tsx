@@ -71,10 +71,23 @@ export default function AdminChatPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Let the phone's/browser's own back button close the detail view instead of
+  // navigating away from /admin/chat entirely — this is the "no back button"
+  // fix. Opening a session pushes a history entry; popping it closes the panel.
+  useEffect(() => {
+    function onPopState() {
+      setSelected(null);
+      setSelectedId(null);
+    }
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
   async function openDetail(id: number) {
     setSelectedId(id);
     setDetailLoading(true);
     setSelected(null);
+    window.history.pushState({ chatDetail: id }, '', window.location.href);
     try {
       const r = await fetch(`/api/admin/chat?id=${id}`);
       if (r.ok) setSelected(await r.json());
@@ -86,17 +99,18 @@ export default function AdminChatPage() {
   function closeDetail() {
     setSelected(null);
     setSelectedId(null);
+    if (window.history.state?.chatDetail) window.history.back();
   }
 
   function slotSummary(slots: Record<string, unknown> | null): string {
-    if (!slots) return '\u2014';
+    if (!slots) return '—';
     const parts: string[] = [];
     if (slots.first_name || slots.last_name)
       parts.push(`${slots.first_name ?? ''} ${slots.last_name ?? ''}`.trim());
     if (slots.email) parts.push(String(slots.email));
     if (slots.phone) parts.push(String(slots.phone));
-    if (slots.consent === true) parts.push('\u2713 consent');
-    return parts.length ? parts.join(' \u00b7 ') : '\u2014';
+    if (slots.consent === true) parts.push('✓ consent');
+    return parts.length ? parts.join(' · ') : '—';
   }
 
   function displayName(slots: Record<string, unknown> | null): string {
@@ -127,7 +141,7 @@ export default function AdminChatPage() {
         </p>
       </div>
 
-      {/* Status filter chips \u2014 horizontally scrollable on mobile, no cramped table headers */}
+      {/* Status filter chips — horizontally scrollable on mobile, no cramped table headers */}
       <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
         {filters.map((f) => (
           <button
@@ -145,12 +159,12 @@ export default function AdminChatPage() {
       </div>
 
       {loading ? (
-        <p className="text-slate-400">Loading\u2026</p>
+        <p className="text-slate-400">Loading…</p>
       ) : filteredRows.length === 0 ? (
         <p className="text-slate-400">No chat sessions{statusFilter !== 'all' ? ` with status "${statusFilter}"` : ''} yet.</p>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-          {/* List \u2014 stacked cards, not a squeezed table. Full content visible at any width. */}
+          {/* List — stacked cards, not a squeezed table. Full content visible at any width. */}
           <div className="space-y-2">
             {filteredRows.map((r) => (
               <button
@@ -191,25 +205,39 @@ export default function AdminChatPage() {
             ))}
           </div>
 
-          {/* Detail \u2014 renders as an overlay panel on mobile so it never gets squeezed
-              beside the list; sits inline on desktop (lg:) */}
-          {(selectedId !== null) && (
-            <div className="fixed inset-0 z-50 bg-black/60 lg:static lg:z-auto lg:bg-transparent">
-              <div className="flex h-full flex-col rounded-t-2xl border border-slate-700 bg-slate-900 p-4 lg:h-auto lg:rounded-xl lg:sticky lg:top-6"
-                   style={{ marginTop: '10vh' }}
-              >
-                <div className="mb-3 flex items-center justify-between lg:hidden">
-                  <span className="text-sm font-semibold text-white">Transcript</span>
-                  <button onClick={closeDetail} className="rounded-full p-1 text-slate-400 hover:text-white" aria-label="Close">
-                    \u2715
-                  </button>
-                </div>
+          {/* Detail — full-screen takeover on mobile (own scroll, sticky header with a
+              real Back button), sits inline as a sticky panel on desktop (lg:). */}
+          {selectedId !== null && (
+            <div className="fixed inset-0 z-50 flex flex-col bg-slate-950 lg:static lg:z-auto lg:h-auto lg:rounded-xl lg:border lg:border-slate-700 lg:bg-slate-900 lg:sticky lg:top-6">
+              {/* Sticky header — Back button always visible, never scrolls away */}
+              <div className="flex shrink-0 items-center gap-2 border-b border-slate-800 bg-slate-950/95 px-3 py-3 lg:rounded-t-xl lg:bg-slate-900 lg:px-4">
+                <button
+                  onClick={closeDetail}
+                  className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-sm font-medium text-amber-300 transition hover:bg-slate-800 lg:hidden"
+                  aria-label="Back to session list"
+                >
+                  <span aria-hidden="true">←</span> Back
+                </button>
+                <span className="truncate text-sm font-semibold text-white">
+                  {selected ? displayName(selected.slots_json) : 'Transcript'}
+                </span>
+                <button
+                  onClick={closeDetail}
+                  className="ml-auto hidden rounded-full p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-white lg:flex"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Scrollable body — the ONLY scroll container, so nothing gets clipped */}
+              <div className="min-h-0 flex-1 overflow-y-auto p-4">
                 {detailLoading ? (
-                  <p className="text-slate-400">Loading transcript\u2026</p>
+                  <p className="text-slate-400">Loading transcript…</p>
                 ) : !selected ? (
                   <p className="text-slate-500">Couldn&apos;t load this session.</p>
                 ) : (
-                  <div className="flex min-h-0 flex-1 flex-col">
+                  <>
                     <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-slate-400">
                       <span
                         className={`rounded border px-2 py-0.5 ${
@@ -219,13 +247,13 @@ export default function AdminChatPage() {
                         {STATUS_LABELS[selected.status] ?? selected.status}
                       </span>
                       {selected.engine_lead_id && <span>Lead #{selected.engine_lead_id}</span>}
-                      {selected.model_used && <span>\u00b7 {selected.model_used}</span>}
+                      {selected.model_used && <span>· {selected.model_used}</span>}
                     </div>
                     <div className="mb-3 rounded-lg bg-slate-800/60 p-3 text-xs text-slate-300">
                       <span className="font-semibold text-slate-200">Captured: </span>
                       {slotSummary(selected.slots_json)}
                     </div>
-                    <div className="min-h-0 flex-1 space-y-2 overflow-y-auto">
+                    <div className="space-y-2 pb-4">
                       {(selected.transcript_json ?? []).length === 0 ? (
                         <p className="text-sm text-slate-500">No messages recorded for this session.</p>
                       ) : (
@@ -249,7 +277,7 @@ export default function AdminChatPage() {
                         ))
                       )}
                     </div>
-                  </div>
+                  </>
                 )}
               </div>
             </div>

@@ -319,7 +319,7 @@ export async function sendLegacyReviewEmail(params: {
     </div>
     <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
       Hugo — Solar Installer<br/>
-      Northern California
+      VoltSol Energy
     </div>
   </div>
 </body>
@@ -376,7 +376,7 @@ export async function sendPartnerOutreachEmail(params: {
     </div>
     <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
       <span style="color:#0F172A;font-weight:700;">Volt</span><span style="color:#F49527;font-weight:700;">Sol</span><span style="color:#0F172A;font-weight:700;"> Energy</span><br/>
-      Northern California Solar Installation
+      Solar Installation &amp; Energy Independence
     </div>
   </div>
 </body>

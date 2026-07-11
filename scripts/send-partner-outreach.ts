@@ -34,7 +34,7 @@ import { sendPartnerOutreachEmail } from '@/lib/email';
 const DEFAULT_OUTREACH_SUBJECT = 'Partnership with VoltSol Energy?';
 const DEFAULT_OUTREACH_BODY = `Hi {name},
 
-I run VoltSol Energy — we do solar installs in Northern California. We've really valued working with {companyName}, and I'd love to feature you as a partner on our site (voltsolenergy.com/partners) with your logo, a short write-up, and a real link to your site.
+I run VoltSol Energy — we do solar installs. We've really valued working with {companyName}, and I'd love to feature you as a partner on our site (voltsolenergy.com/partners) with your logo, a short write-up, and a real link to your site.
 
 In return, if you'd be open to it, a simple link back to VoltSol from your site would mean a lot — helps other folks find us when they're looking to cut the cord on their utility.
 
@@ -45,8 +45,7 @@ It's fast — just one link to fill out a quick form, no login needed:
 Let me know if you're interested!
 
 — Hugo
-VoltSol Energy
-Northern California`;
+VoltSol Energy`;
 
 async function main() {
   const argIds = process.argv.slice(2).map((s) => parseInt(s, 10)).filter((n) => !isNaN(n));

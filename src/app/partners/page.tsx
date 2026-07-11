@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Our Partners | VoltSol Energy',
   description:
-    'VoltSol Energy partners with top Northern California contractors and businesses who share our commitment to quality solar installation and energy independence.',
+    'VoltSol Energy partners with top contractors and businesses who share our commitment to quality solar installation and energy independence.',
 };
 
 interface Partner {
@@ -43,7 +43,7 @@ export default async function PartnersPage() {
             <span className="text-amber-400">Partners</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-            VoltSol Energy works with the best contractors and businesses in Northern California. These partnerships help us deliver top-quality solar installations while supporting our local community.
+            VoltSol Energy works with the best contractors and businesses. These partnerships help us deliver top-quality solar installations while supporting the communities we serve.
           </p>
         </div>
       </div>
@@ -125,7 +125,7 @@ export default async function PartnersPage() {
             Interested in partnering with VoltSol?
           </h2>
           <p className="mt-3 text-slate-300">
-            We&apos;re always looking to build relationships with quality contractors and businesses in Northern California.
+            We&apos;re always looking to build relationships with quality contractors and businesses.
           </p>
           <a
             href="mailto:info@voltsolenergy.com"

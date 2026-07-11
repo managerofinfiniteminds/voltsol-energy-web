@@ -26,7 +26,8 @@ export async function GET(req: NextRequest, context: Context) {
   const partnerRows = await sql`
     SELECT id, company_name, category, contact_name, contact_email, website_url, status,
            logo_url, blurb, visible, sort_order, claim_token, claim_token_used_at,
-           link_target_url, link_verified, link_verified_at, created_at, last_contacted_at
+           link_target_url, link_verified, link_verified_at, link_last_checked_at,
+           link_check_error, created_at, last_contacted_at
     FROM partners
     WHERE id = ${partnerId}
   `;

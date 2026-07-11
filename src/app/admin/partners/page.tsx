@@ -20,6 +20,8 @@ interface Partner {
   link_target_url: string | null;
   link_verified: boolean;
   link_verified_at: string | null;
+  link_last_checked_at: string | null;
+  link_check_error: string | null;
   created_at: string;
   last_contacted_at: string | null;
 }
@@ -329,6 +331,33 @@ export default function PartnersPage() {
     loadPartners();
   }
 
+  const [checkingLink, setCheckingLink] = useState(false);
+
+  async function handleCheckLink() {
+    if (!expandedPartner) return;
+    if (!expandedPartner.link_target_url) {
+      alert('No backlink URL on file for this partner yet.');
+      return;
+    }
+    setCheckingLink(true);
+    const res = await fetch(`/api/admin/partners/${expandedPartner.id}/check-link`, {
+      method: 'POST',
+    });
+    const data = await res.json();
+    setCheckingLink(false);
+    if (!res.ok) {
+      alert(data.error || 'Failed to check backlink.');
+      return;
+    }
+    alert(
+      data.verified
+        ? `✓ Backlink verified at ${data.checkedUrl}`
+        : `✗ Not verified: ${data.error}`
+    );
+    loadPartnerDetail(expandedPartner.id);
+    loadPartners();
+  }
+
   async function handleAddNote() {
     if (!expandedPartner) return;
     if (!noteText.trim()) {
@@ -580,6 +609,32 @@ export default function PartnersPage() {
                               <div><span className="text-slate-400">Email:</span> <span className="text-white">{expandedPartner.contact_email || '—'}</span></div>
                               <div><span className="text-slate-400">Website:</span> <span className="text-white">{expandedPartner.website_url || '—'}</span></div>
                               <div><span className="text-slate-400">Backlink URL:</span> <span className="text-white">{expandedPartner.link_target_url || '—'}</span></div>
+                            </div>
+                            <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-slate-700 pt-3">
+                              <button
+                                onClick={handleCheckLink}
+                                disabled={checkingLink || !expandedPartner.link_target_url}
+                                className={`${buttonClass} bg-blue-600 text-white hover:bg-blue-500 disabled:bg-blue-900`}
+                                title={!expandedPartner.link_target_url ? 'No backlink URL on file' : ''}
+                              >
+                                {checkingLink ? 'Checking...' : 'Check Backlink'}
+                              </button>
+                              {expandedPartner.link_verified ? (
+                                <span className="rounded-full bg-blue-900/30 px-2 py-0.5 text-xs text-blue-400">
+                                  ✓ Verified{expandedPartner.link_verified_at ? ` — ${formatDate(expandedPartner.link_verified_at)}` : ''}
+                                </span>
+                              ) : expandedPartner.link_last_checked_at ? (
+                                <span className="rounded-full bg-red-900/30 px-2 py-0.5 text-xs text-red-400">
+                                  ✗ Not verified{expandedPartner.link_check_error ? ` — ${expandedPartner.link_check_error}` : ''}
+                                </span>
+                              ) : (
+                                <span className="text-xs text-slate-500">Never checked</span>
+                              )}
+                              {expandedPartner.link_last_checked_at && (
+                                <span className="text-xs text-slate-500">
+                                  Last checked: {formatDate(expandedPartner.link_last_checked_at)}
+                                </span>
+                              )}
                             </div>
                           </div>
 

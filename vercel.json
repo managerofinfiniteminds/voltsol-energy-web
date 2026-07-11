@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/admin/partners/check-links",
+      "schedule": "0 9 * * 1"
+    }
+  ]
+}

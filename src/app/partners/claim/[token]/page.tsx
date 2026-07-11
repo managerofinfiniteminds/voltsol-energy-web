@@ -15,6 +15,18 @@ interface Partner {
 const inputClass =
   'w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white focus:border-amber-400 focus:outline-none';
 
+// type="url" inputs require an absolute URL with a scheme. Prospect data
+// entered pre-launch (e.g. "rmeinnovations.com") lacks one, which makes the
+// browser's native validation silently block form submission with a
+// "Please include http:// or https://" tooltip. Normalize on load and again
+// before submit so a bare domain never breaks the form.
+function normalizeUrl(url: string | null | undefined): string {
+  const trimmed = (url || '').trim();
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export default function PartnerClaimPage({
   params,
 }: {
@@ -63,8 +75,8 @@ export default function PartnerClaimPage({
       setPartner(data.partner);
       setCompanyName(data.partner.company_name);
       setCategory(data.partner.category || '');
-      setWebsiteUrl(data.partner.website_url || '');
-      setLogoUrl(data.partner.logo_url || '');
+      setWebsiteUrl(normalizeUrl(data.partner.website_url));
+      setLogoUrl(normalizeUrl(data.partner.logo_url));
       setBlurb(data.partner.blurb || '');
       setLoading(false);
     }
@@ -85,10 +97,10 @@ export default function PartnerClaimPage({
       body: JSON.stringify({
         company_name: companyName,
         category,
-        website_url: websiteUrl,
-        logo_url: logoUrl,
+        website_url: normalizeUrl(websiteUrl),
+        logo_url: normalizeUrl(logoUrl),
         blurb,
-        link_target_url: linkTargetUrl,
+        link_target_url: normalizeUrl(linkTargetUrl),
         honeypot,
       }),
     });

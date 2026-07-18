@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { NORCAL_SOLAR_MARKETS, marketPageHref } from '@/lib/market-data';
+import { getLocale } from '@/lib/locale';
+import { getMarketDict } from '@/lib/market-i18n';
 import { MapPin, Zap, Shield, DollarSign } from 'lucide-react';
 
 // Generate static params for state hub (only solar/california currently)
@@ -69,6 +71,9 @@ export default function StatePage({ params }: PageProps) {
     return notFound();
   }
 
+  const locale = getLocale();
+  const t = getMarketDict(locale);
+
   // All cities for quick reference
   const allCities = NORCAL_SOLAR_MARKETS.flatMap(region =>
     region.cities.map(city => ({
@@ -89,9 +94,9 @@ export default function StatePage({ params }: PageProps) {
         {/* Breadcrumb */}
         <nav className="border-b border-gray-100 bg-gray-50 px-4 py-2 text-xs text-gray-500" aria-label="Breadcrumb">
           <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-1">
-            <li><Link href="/" className="hover:text-blue-600">Home</Link></li>
+            <li><Link href="/" className="hover:text-blue-600">{t.home}</Link></li>
             <li aria-hidden="true">/</li>
-            <li><Link href="/market" className="hover:text-blue-600">Solar Markets</Link></li>
+            <li><Link href="/market" className="hover:text-blue-600">{t.solarMarkets}</Link></li>
             <li aria-hidden="true">/</li>
             <li className="font-medium text-gray-800">California</li>
           </ol>
@@ -116,13 +121,10 @@ export default function StatePage({ params }: PageProps) {
               California
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Residential Solar &amp; Battery Storage in California
+              {t.stateH1}
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-blue-100">
-              VoltSol specializes in residential solar with EG4 battery storage across California —
-              systems from $8,700. Make your own power, store it, and run your home through blackouts and
-              PSPS shutoffs. Real energy independence, built for the NEM 3.0 era —
-              keep the power you make instead of exporting it for a fraction of what you paid.
+              {t.stateSub}
             </p>
           </div>
         </header>
@@ -131,44 +133,31 @@ export default function StatePage({ params }: PageProps) {
           {/* Why Solar + Battery Storage in California */}
           <section aria-labelledby="why-california-heading" className="mb-16">
             <h2 id="why-california-heading" className="text-2xl font-bold text-gray-900">
-              Why Solar + Battery Storage in California?
+              {t.whyCaliforniaHeading}
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <div className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-6">
                 <Zap className="h-8 w-8 text-blue-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">Sidestep NEM 3.0</h3>
-                <p className="text-sm text-gray-700">
-                  California&rsquo;s NEM 3.0 slashed solar export credits. Battery-first systems sidestep this entirely — you
-                  store and use your own power, no utility buyback needed.
-                </p>
+                <h3 className="font-bold text-gray-900">{t.card1Title}</h3>
+                <p className="text-sm text-gray-700">{t.card1Body}</p>
               </div>
 
               <div className="flex flex-col gap-3 rounded-lg border border-amber-200 bg-amber-50 p-6">
                 <DollarSign className="h-8 w-8 text-amber-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">Own It, Don&rsquo;t Rent It</h3>
-                <p className="text-sm text-gray-700">
-                  The big installers sell you a grid-tied system that still leaves you on the utility&rsquo;s meter.
-                  VoltSol builds you your own power plant — solar + EG4 battery — so you stop renting power
-                  from the grid for good.
-                </p>
+                <h3 className="font-bold text-gray-900">{t.card2Title}</h3>
+                <p className="text-sm text-gray-700">{t.card2Body}</p>
               </div>
 
               <div className="flex flex-col gap-3 rounded-lg border border-red-200 bg-red-50 p-6">
                 <Shield className="h-8 w-8 text-red-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">Blackout Resilience</h3>
-                <p className="text-sm text-gray-700">
-                  California&rsquo;s wildfire-driven PSPS shutoffs leave thousands in the dark each year. Solar +
-                  battery storage systems keep your lights and HVAC running.
-                </p>
+                <h3 className="font-bold text-gray-900">{t.card3Title}</h3>
+                <p className="text-sm text-gray-700">{t.card3Body}</p>
               </div>
 
               <div className="flex flex-col gap-3 rounded-lg border border-green-200 bg-green-50 p-6">
                 <MapPin className="h-8 w-8 text-green-600" aria-hidden="true" />
-                <h3 className="font-bold text-gray-900">Beat Rising Rates</h3>
-                <p className="text-sm text-gray-700">
-                  Utility rates keep climbing. When you make and store your own power, your local utility’s
-                  next rate hike stops being your problem — your energy cost is locked in at install.
-                </p>
+                <h3 className="font-bold text-gray-900">{t.card4Title}</h3>
+                <p className="text-sm text-gray-700">{t.card4Body}</p>
               </div>
             </div>
           </section>
@@ -176,7 +165,7 @@ export default function StatePage({ params }: PageProps) {
           {/* Counties Served */}
           <section aria-labelledby="counties-heading" className="mb-16">
             <h2 id="counties-heading" className="text-2xl font-bold text-gray-900">
-              Counties We Serve
+              {t.countiesHeading}
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {NORCAL_SOLAR_MARKETS.map(region => (
@@ -192,10 +181,10 @@ export default function StatePage({ params }: PageProps) {
                     </h3>
                   </div>
                   <p className="text-sm text-gray-600">
-                    {region.cities.length} {region.cities.length === 1 ? 'city' : 'cities'} served
+                    {t.citiesServed(region.cities.length)}
                   </p>
                   <div className="text-xs text-blue-600 group-hover:underline">
-                    View cities &rarr;
+                    {t.viewCities}
                   </div>
                 </Link>
               ))}
@@ -205,7 +194,7 @@ export default function StatePage({ params }: PageProps) {
           {/* All Cities */}
           <section aria-labelledby="cities-heading" className="mb-16">
             <h2 id="cities-heading" className="text-2xl font-bold text-gray-900">
-              All Cities We Serve
+              {t.allCitiesHeading}
             </h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {allCities
@@ -231,17 +220,17 @@ export default function StatePage({ params }: PageProps) {
           {/* Bottom CTA */}
           <section className="rounded-xl border border-blue-200 bg-blue-50 p-8 text-center">
             <h2 className="text-2xl font-bold text-gray-900">
-              Ready to go solar in California?
+              {t.bottomCtaHeading}
             </h2>
             <p className="mt-2 text-gray-600">
-              Get a free, no-obligation quote from a licensed installer serving your area.
+              {t.bottomCtaBody}
             </p>
             <div className="mt-6">
               <Link
                 href="/start"
                 className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
               >
-                Get My Free Estimate
+                {t.ctaButton}
               </Link>
             </div>
           </section>
@@ -250,8 +239,7 @@ export default function StatePage({ params }: PageProps) {
         {/* Footer note */}
         <footer className="border-t border-gray-100 bg-gray-50 px-4 py-6 text-center text-xs text-gray-400">
           <p>
-            VoltSol Energy operates a licensed contractor marketplace in California. All estimates
-            are regional approximations and do not constitute a savings guarantee.
+            {t.footerNoteState}
           </p>
         </footer>
       </div>

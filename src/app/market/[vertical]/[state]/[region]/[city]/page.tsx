@@ -6,9 +6,13 @@ import {
   ALL_MARKET_PARAMS,
   NORCAL_SOLAR_MARKETS,
   findMarket,
+  localizeRegion,
+  localizeCity,
   marketPageHref,
   marketSlug,
 } from '@/lib/market-data';
+import { getLocale } from '@/lib/locale';
+import { getMarketDict } from '@/lib/market-i18n';
 import { CalendarCheck, Check, Shield, Phone } from 'lucide-react';
 
 // Build all static paths from the market config — no DB needed at build time.
@@ -49,7 +53,10 @@ export default function MarketCityPage({ params }: PageProps) {
   const market = findMarket(params.vertical, params.state, params.region, params.city);
   if (!market) return notFound();
 
-  const { city: cityData, region: regionData } = market;
+  const locale = getLocale();
+  const t = getMarketDict(locale);
+  const cityData = localizeCity(market.city, locale);
+  const regionData = localizeRegion(market.region, locale);
   const slug = marketSlug(params);
 
   // Campaign code for attribution
@@ -126,9 +133,9 @@ export default function MarketCityPage({ params }: PageProps) {
         {/* Breadcrumb */}
         <nav className="border-b border-gray-100 bg-gray-50 px-4 py-2 text-xs text-gray-500" aria-label="Breadcrumb">
           <ol className="mx-auto flex max-w-5xl flex-wrap items-center gap-1">
-            <li><Link href="/" className="hover:text-blue-600">Home</Link></li>
+            <li><Link href="/" className="hover:text-blue-600">{t.home}</Link></li>
             <li aria-hidden="true">/</li>
-            <li><Link href="/market" className="hover:text-blue-600">Solar Markets</Link></li>
+            <li><Link href="/market" className="hover:text-blue-600">{t.solarMarkets}</Link></li>
             <li aria-hidden="true">/</li>
             <li><span>California</span></li>
             <li aria-hidden="true">/</li>
@@ -154,19 +161,16 @@ export default function MarketCityPage({ params }: PageProps) {
         <header className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-4 py-16 text-white">
           <div className="mx-auto max-w-5xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wide text-blue-200">
-              {cityData.utility} Service Area · {regionData.county}
+              {cityData.utility} {t.serviceAreaSuffix} · {regionData.county}
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Home Solar + Battery Storage in {cityData.city}, CA
+              {t.cityH1(cityData.city)}
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-blue-100">
-              Stop renting your power from the grid. VoltSol installs residential solar paired with
-              EG4 battery storage in {cityData.city} — so you make your own power, store it, and run your home
-              through blackouts and PSPS shutoffs. Systems start at <strong>$8,700</strong>, and {cityData.city}
-              {' '}is served by {cityData.utility} — homes here pay an estimated <strong>${cityData.localData.avgMonthlyBillEstimate}/mo</strong> today.
+              {t.citySub(cityData.city, cityData.utility, cityData.localData.avgMonthlyBillEstimate)}
             </p>
             <p className="mt-1 text-xs text-blue-300">
-              * Electricity bill figures are regional estimates only, not guarantees.
+              {t.billDisclaimer}
             </p>
           </div>
         </header>
@@ -178,18 +182,17 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Local stats */}
               <section aria-labelledby="local-stats-heading">
                 <h2 id="local-stats-heading" className="text-xl font-bold text-gray-900">
-                  Home Solar + Battery Storage in {cityData.city} — Local Estimates
+                  {t.localEstimatesHeading(cityData.city)}
                 </h2>
                 <p className="mt-1 text-xs text-gray-400">
-                  These are illustrative regional estimates — not guarantees. Your actual savings depend on
-                  usage, roof orientation, shading, system size, and future utility rate changes.
+                  {t.localEstimatesDisclaimer}
                 </p>
                 <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
                   {[
-                    { label: 'Avg monthly bill*', value: `$${cityData.localData.avgMonthlyBillEstimate}` },
-                    { label: 'Typical system size*', value: `${cityData.localData.avgSystemSizeKwEstimate} kW` },
-                    { label: 'Est. year-1 savings*', value: `$${cityData.localData.avgSavingsYear1Estimate}` },
-                    { label: 'Est. payback period*', value: `${cityData.localData.avgPaybackYearsEstimate} yrs` },
+                    { label: t.statAvgBill, value: `$${cityData.localData.avgMonthlyBillEstimate}` },
+                    { label: t.statSystemSize, value: `${cityData.localData.avgSystemSizeKwEstimate} kW` },
+                    { label: t.statYear1Savings, value: `$${cityData.localData.avgSavingsYear1Estimate}` },
+                    { label: t.statPayback, value: `${cityData.localData.avgPaybackYearsEstimate} yrs` },
                   ].map(stat => (
                     <div key={stat.label} className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center">
                       <dt className="text-xs text-gray-500">{stat.label}</dt>
@@ -202,44 +205,31 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Why solar in this city */}
               <section className="mt-10" aria-labelledby="why-solar-heading">
                 <h2 id="why-solar-heading" className="text-xl font-bold text-gray-900">
-                  Why Solar + Battery Storage in {cityData.city}?
+                  {t.whyCityHeading(cityData.city)}
                 </h2>
                 <ul className="mt-4 space-y-3 text-sm text-gray-700">
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
-                    <span>
-                      <strong>High sun exposure:</strong> {cityData.city} averages an estimated{' '}
-                      {cityData.localData.peakSunHoursEstimate} peak sun hours per day — strong solar
-                      production potential year-round.
-                    </span>
+                    <span>{t.whyCityBullet1(cityData.city, cityData.localData.peakSunHoursEstimate)}</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
                     <span>
-                      <strong>High local utility rates:</strong> {regionData.countyData.utilityRate.utility} customers in {cityData.city} pay an estimated{' '}
-                      ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh, making solar self-consumption economics strong.{' '}
-                      {regionData.countyData.utilityRate.note}
+                      {t.whyCityBullet2(
+                        regionData.countyData.utilityRate.utility,
+                        cityData.city,
+                        regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2),
+                        regionData.countyData.utilityRate.note,
+                      )}
                     </span>
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
-                    <span>
-                      <strong>Battery-first economics under NEM 3.0:</strong> Under California&rsquo;s current
-                      net-billing rules, many homeowners now receive only a fraction of the retail rate for
-                      power they export to the grid — so the value is now in
-                      <em> storing and using your own power</em> &mdash; exactly what a VoltSol solar + battery
-                      system delivers.
-                      The federal 30% residential solar tax credit ended for systems placed in service after
-                      Dec 31, 2025; ask about current state programs like SGIP battery rebates. Consult a tax
-                      professional for your situation.
-                    </span>
+                    <span>{t.whyCityBullet3}</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-blue-600">&#9679;</span>
-                    <span>
-                      <strong>Home value:</strong> Studies suggest homes with owned solar systems sell for
-                      more than comparable homes without — though results vary by market.
-                    </span>
+                    <span>{t.whyCityBullet4}</span>
                   </li>
                 </ul>
               </section>
@@ -257,12 +247,10 @@ export default function MarketCityPage({ params }: PageProps) {
                   />
                   <div className="bg-gradient-to-br from-blue-950 to-blue-900 p-5 sm:p-7">
                     <h2 id="psps-heading" className="text-xl font-bold text-white sm:text-2xl">
-                      When the grid goes down, your lights stay on
+                      {t.pspsHeading}
                     </h2>
                     <p className="mt-2 max-w-2xl text-sm text-blue-100 sm:text-base">
-                      Public Safety Power Shutoffs (PSPS) and wildfire-season outages can leave {cityData.city}
-                      {' '}homes dark for hours — sometimes days. A VoltSol solar + battery system keeps your fridge,
-                      lights, and Wi-Fi running while the grid is down. No generator, no fuel runs, no scramble.
+                      {t.pspsBody(cityData.city)}
                     </p>
                   </div>
                 </div>
@@ -271,11 +259,11 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* Local Details */}
               <section className="mt-10" aria-labelledby="local-details-heading">
                 <h2 id="local-details-heading" className="text-xl font-bold text-gray-900">
-                  Local Details for {cityData.city}
+                  {t.localDetailsHeading(cityData.city)}
                 </h2>
                 <div className="mt-4 space-y-4">
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                    <h3 className="text-sm font-semibold text-gray-900">Utility Rate</h3>
+                    <h3 className="text-sm font-semibold text-gray-900">{t.utilityRateLabel}</h3>
                     <p className="mt-1 text-sm text-gray-700">
                       <strong>{regionData.countyData.utilityRate.utility}:</strong> Estimated{' '}
                       ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh residential rate.{' '}
@@ -283,15 +271,15 @@ export default function MarketCityPage({ params }: PageProps) {
                     </p>
                   </div>
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                    <h3 className="text-sm font-semibold text-gray-900">Permit Office</h3>
+                    <h3 className="text-sm font-semibold text-gray-900">{t.permitOfficeLabel}</h3>
                     <p className="mt-1 text-sm text-gray-700">
                       <strong>{regionData.countyData.permitOffice.name}</strong> ({regionData.countyData.permitOffice.jurisdiction}).{' '}
-                      Typical turnaround: {regionData.countyData.permitOffice.typicalTurnaround}.{' '}
+                      {t.turnaroundLabel}: {regionData.countyData.permitOffice.typicalTurnaround}.{' '}
                       {regionData.countyData.permitOffice.note}
                     </p>
                   </div>
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-                    <h3 className="text-sm font-semibold text-gray-900">Climate Zone</h3>
+                    <h3 className="text-sm font-semibold text-gray-900">{t.climateZoneLabel}</h3>
                     <p className="mt-1 text-sm text-gray-700">
                       <strong>{regionData.countyData.climateZone.zone}:</strong> {regionData.countyData.climateZone.description}
                     </p>
@@ -302,7 +290,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* FAQ */}
               <section className="mt-10" aria-labelledby="faq-heading">
                 <h2 id="faq-heading" className="text-xl font-bold text-gray-900">
-                  Frequently Asked Questions — {cityData.city}
+                  {t.faqHeading(cityData.city)}
                 </h2>
                 <div className="mt-4 space-y-4">
                   {cityData.cityProfile.faq.map((item, i) => (
@@ -317,14 +305,14 @@ export default function MarketCityPage({ params }: PageProps) {
               {/* How the process works */}
               <section className="mt-10" aria-labelledby="process-heading">
                 <h2 id="process-heading" className="text-xl font-bold text-gray-900">
-                  How It Works
+                  {t.howItWorksHeading}
                 </h2>
                 <ol className="mt-4 space-y-3">
                   {[
-                    ['Submit your info', 'Fill out the quick form — takes under 2 minutes.'],
-                    ['Get matched', 'We share your request with one licensed solar contractor serving ' + cityData.city + '.'],
-                    ['Free consultation', 'Your contractor contacts you to assess your home and provide a no-obligation quote.'],
-                    ['Go solar', 'If the numbers work, move forward on your timeline — no pressure.'],
+                    [t.step1Title, t.step1Desc],
+                    [t.step2Title, t.step2Desc(cityData.city)],
+                    [t.step3Title, t.step3Desc],
+                    [t.step4Title, t.step4Desc],
                   ].map(([title, desc], i) => (
                     <li key={i} className="flex gap-3 text-sm">
                       <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 font-bold text-white text-xs">
@@ -343,7 +331,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {nearbyCities.length > 0 && (
                 <section className="mt-10" aria-labelledby="nearby-heading">
                   <h2 id="nearby-heading" className="text-lg font-bold text-gray-900">
-                    More {regionData.county} Solar Quotes
+                    {t.moreCountyQuotes(regionData.county)}
                   </h2>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {nearbyCities.map(c => (
@@ -352,7 +340,7 @@ export default function MarketCityPage({ params }: PageProps) {
                           href={marketPageHref({ vertical: 'solar', state: 'california', region: regionData.regionSlug, city: c.citySlug })}
                           className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm text-blue-700 hover:bg-blue-100"
                         >
-                          Solar in {c.city}
+                          {t.solarInCity(c.city)}
                         </Link>
                       </li>
                     ))}
@@ -364,7 +352,7 @@ export default function MarketCityPage({ params }: PageProps) {
               {otherRegions.length > 0 && (
                 <section className="mt-6" aria-labelledby="other-counties-heading">
                   <h2 id="other-counties-heading" className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    Other California Solar Markets
+                    {t.otherMarketsHeading}
                   </h2>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {otherRegions.map(r => (
@@ -386,21 +374,21 @@ export default function MarketCityPage({ params }: PageProps) {
             <aside className="lg:col-span-2" aria-label="Solar quote request">
               <div className="sticky top-6 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
                 <h2 className="text-lg font-bold text-gray-900">
-                  Free Solar Quote — {cityData.city}
+                  {t.freeSolarQuoteCity(cityData.city)}
                 </h2>
                 <p className="mt-1 text-sm text-gray-500">
-                  No cost. No obligation. One local contractor.
+                  {t.noObligationOneContractor}
                 </p>
 
                 {/* Trust signals */}
                 <ul className="mt-5 space-y-3">
                   <li className="flex items-center gap-2 text-sm text-gray-700">
                     <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                    Licensed installer
+                    {t.licensedInstaller}
                   </li>
                   <li className="flex items-center gap-2 text-sm text-gray-700">
                     <Shield className="h-4 w-4 text-blue-500" aria-hidden="true" />
-                    No pressure, no obligation
+                    {t.noPressureNoObligation}
                   </li>
                   {process.env.NEXT_PUBLIC_VOLTSOL_PHONE && (
                     <li className="flex items-center gap-2 text-sm text-gray-700">
@@ -412,7 +400,7 @@ export default function MarketCityPage({ params }: PageProps) {
                   )}
                   <li className="flex items-center gap-2 text-sm text-gray-700">
                     <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                    Local California team
+                    {t.localCaliforniaTeam}
                   </li>
                 </ul>
 
@@ -423,12 +411,12 @@ export default function MarketCityPage({ params }: PageProps) {
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
                   >
                     <CalendarCheck className="h-5 w-5" aria-hidden="true" />
-                    Get My Free Estimate
+                    {t.ctaButton}
                   </Link>
                 </div>
 
                 <p className="mt-4 text-center text-xs text-gray-400">
-                  Takes under 2 minutes. Your info is only shared with one local contractor.
+                  {t.takesUnder2Min}
                 </p>
               </div>
             </aside>
@@ -438,10 +426,9 @@ export default function MarketCityPage({ params }: PageProps) {
         {/* Footer note */}
         <footer className="border-t border-gray-100 bg-gray-50 px-4 py-6 text-center text-xs text-gray-400">
           <p>
-            VoltSol Energy operates a licensed contractor marketplace in California. All estimates
-            are regional approximations and do not constitute a savings guarantee. Subject to our{' '}
-            <Link href="/market/legal/terms" className="underline hover:text-gray-600">Terms</Link> and{' '}
-            <Link href="/market/legal/privacy" className="underline hover:text-gray-600">Privacy Policy</Link>.
+            {t.footerNoteCityPre}{' '}
+            <Link href="/market/legal/terms" className="underline hover:text-gray-600">{t.termsLink}</Link> {t.footerNoteCityMid}{' '}
+            <Link href="/market/legal/privacy" className="underline hover:text-gray-600">{t.privacyLink}</Link>.
           </p>
         </footer>
       </div>

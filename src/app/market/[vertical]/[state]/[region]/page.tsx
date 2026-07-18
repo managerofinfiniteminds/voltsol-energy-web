@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { NORCAL_SOLAR_MARKETS, findRegion, marketPageHref } from '@/lib/market-data';
+import { NORCAL_SOLAR_MARKETS, findRegion, localizeRegion, marketPageHref } from '@/lib/market-data';
+import { getLocale } from '@/lib/locale';
+import { getMarketDict } from '@/lib/market-i18n';
 import { MapPin, CalendarCheck } from 'lucide-react';
 
 // Generate static params for all county hubs
@@ -43,8 +45,12 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 export default function RegionPage({ params }: PageProps) {
-  const regionData = findRegion(params.vertical, params.state, params.region);
-  if (!regionData) return notFound();
+  const rawRegionData = findRegion(params.vertical, params.state, params.region);
+  if (!rawRegionData) return notFound();
+
+  const locale = getLocale();
+  const t = getMarketDict(locale);
+  const regionData = localizeRegion(rawRegionData, locale);
 
   // Other counties for cross-linking
   const otherCounties = NORCAL_SOLAR_MARKETS.filter(r => r.regionSlug !== regionData.regionSlug);
@@ -94,9 +100,9 @@ export default function RegionPage({ params }: PageProps) {
         {/* Breadcrumb */}
         <nav className="border-b border-gray-100 bg-gray-50 px-4 py-2 text-xs text-gray-500" aria-label="Breadcrumb">
           <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-1">
-            <li><Link href="/" className="hover:text-blue-600">Home</Link></li>
+            <li><Link href="/" className="hover:text-blue-600">{t.home}</Link></li>
             <li aria-hidden="true">/</li>
-            <li><Link href="/market" className="hover:text-blue-600">Solar Markets</Link></li>
+            <li><Link href="/market" className="hover:text-blue-600">{t.solarMarkets}</Link></li>
             <li aria-hidden="true">/</li>
             <li><Link href="/market/solar/california" className="hover:text-blue-600">California</Link></li>
             <li aria-hidden="true">/</li>
@@ -120,16 +126,13 @@ export default function RegionPage({ params }: PageProps) {
         <header className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-4 py-16 text-white">
           <div className="mx-auto max-w-7xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wide text-blue-200">
-              {primaryUtility} Service Area
+              {primaryUtility} {t.serviceAreaSuffix}
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              Solar + Battery Storage in {regionData.county}, CA
+              {t.regionH1(regionData.county)}
             </h1>
             <p className="mt-4 max-w-3xl text-lg text-blue-100">
-              VoltSol gives {regionData.cities.length} cities across {regionData.county} a way to energy
-              independence: residential solar paired with EG4 battery storage, from $8,700. Make your
-              own power, store it, and keep the lights on through blackouts and PSPS shutoffs — instead of
-              exporting it back to the grid for a fraction of what you paid under NEM 3.0.
+              {t.regionSub(regionData.cities.length, regionData.county)}
             </p>
           </div>
         </header>
@@ -141,11 +144,11 @@ export default function RegionPage({ params }: PageProps) {
               {/* County Snapshot */}
               <section aria-labelledby="county-snapshot-heading">
                 <h2 id="county-snapshot-heading" className="text-2xl font-bold text-gray-900">
-                  County Snapshot — {regionData.county}
+                  {t.countySnapshotHeading(regionData.county)}
                 </h2>
                 <div className="mt-4 space-y-4">
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
-                    <h3 className="text-base font-semibold text-gray-900">Utility Rate</h3>
+                    <h3 className="text-base font-semibold text-gray-900">{t.utilityRateLabel}</h3>
                     <p className="mt-2 text-sm text-gray-700">
                       <strong>{regionData.countyData.utilityRate.utility}:</strong> Estimated{' '}
                       ${regionData.countyData.utilityRate.avgResidentialRatePerKwh.toFixed(2)}/kWh residential rate.{' '}
@@ -153,21 +156,21 @@ export default function RegionPage({ params }: PageProps) {
                     </p>
                   </div>
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
-                    <h3 className="text-base font-semibold text-gray-900">Permit Office</h3>
+                    <h3 className="text-base font-semibold text-gray-900">{t.permitOfficeLabel}</h3>
                     <p className="mt-2 text-sm text-gray-700">
                       <strong>{regionData.countyData.permitOffice.name}</strong> ({regionData.countyData.permitOffice.jurisdiction}).{' '}
-                      Typical turnaround: {regionData.countyData.permitOffice.typicalTurnaround}.{' '}
+                      {t.turnaroundLabel}: {regionData.countyData.permitOffice.typicalTurnaround}.{' '}
                       {regionData.countyData.permitOffice.note}
                     </p>
                   </div>
                   <div className="rounded-lg border border-gray-200 bg-gray-50 p-5">
-                    <h3 className="text-base font-semibold text-gray-900">Climate Zone</h3>
+                    <h3 className="text-base font-semibold text-gray-900">{t.climateZoneLabel}</h3>
                     <p className="mt-2 text-sm text-gray-700">
                       <strong>{regionData.countyData.climateZone.zone}:</strong> {regionData.countyData.climateZone.description}
                     </p>
                   </div>
                   <div className="rounded-lg border border-blue-100 bg-blue-50 p-5">
-                    <h3 className="text-base font-semibold text-gray-900">County Context</h3>
+                    <h3 className="text-base font-semibold text-gray-900">{t.countyContextLabel}</h3>
                     <p className="mt-2 text-sm text-gray-700">
                       {regionData.countyData.countyContext}
                     </p>
@@ -178,36 +181,19 @@ export default function RegionPage({ params }: PageProps) {
               {/* Why solar */}
               <section className="mt-10" aria-labelledby="why-solar-heading">
                 <h2 id="why-solar-heading" className="text-2xl font-bold text-gray-900">
-                  Why Solar + Battery Storage in {regionData.county}?
+                  {t.whyCountyHeading(regionData.county)}
                 </h2>
                 <div className="mt-4 space-y-3 text-gray-700">
-                  <p>
-                    Homeowners in {regionData.county} are served by <strong>{primaryUtility}</strong>, which
-                    has seen significant residential rate increases in recent years. Residential solar + battery
-                    storage offers a way to lock in energy costs at installation prices and protect against
-                    future rate hikes.
-                  </p>
-                  <p>
-                    Our systems combine rooftop solar panels, EG4 battery storage, and inverters to power your
-                    home&rsquo;s most energy-intensive loads — like heating, cooling, and major appliances — while
-                    maximizing the power you keep and use yourself. That means no utility buyback complexity
-                    under NEM 3.0, and backup power during PSPS shutoffs or outages.
-                  </p>
-                  <p>
-                    Under California&rsquo;s current net-billing rules (NEM 3.0), the credit homeowners receive for
-                    solar energy they export is typically only a small fraction of the retail price they pay to
-                    buy electricity back. The smart economics in {regionData.county} shifted to storing and
-                    using your own power instead of selling it back. The federal 30% residential solar tax
-                    credit ended for systems placed in service after Dec 31, 2025, but California programs like
-                    SGIP battery rebates may still apply. Consult a tax professional to confirm your eligibility.
-                  </p>
+                  <p>{t.whyCountyP1(regionData.county, primaryUtility)}</p>
+                  <p>{t.whyCountyP2}</p>
+                  <p>{t.whyCountyP3(regionData.county)}</p>
                 </div>
               </section>
 
               {/* Cities in this county */}
               <section className="mt-10" aria-labelledby="cities-heading">
                 <h2 id="cities-heading" className="text-2xl font-bold text-gray-900">
-                  Cities We Serve in {regionData.county}
+                  {t.citiesInCountyHeading(regionData.county)}
                 </h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {regionData.cities.map(city => (
@@ -235,7 +221,7 @@ export default function RegionPage({ params }: PageProps) {
               {otherCounties.length > 0 && (
                 <section className="mt-10" aria-labelledby="other-counties-heading">
                   <h2 id="other-counties-heading" className="text-lg font-semibold text-gray-800">
-                    Other California Counties
+                    {t.otherCountiesHeading}
                   </h2>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {otherCounties.map(county => (
@@ -253,7 +239,7 @@ export default function RegionPage({ params }: PageProps) {
                       href="/market/solar/california"
                       className="text-sm text-blue-600 hover:underline"
                     >
-                      &larr; Back to all California markets
+                      {t.backToMarkets}
                     </Link>
                   </div>
                 </section>
@@ -264,10 +250,10 @@ export default function RegionPage({ params }: PageProps) {
             <aside className="lg:col-span-2" aria-label="Solar quote request">
               <div className="sticky top-6 rounded-xl border border-gray-200 bg-white p-6 shadow-md">
                 <h2 className="text-lg font-bold text-gray-900">
-                  Free Solar Quote — {regionData.county}
+                  {t.freeSolarQuote(regionData.county)}
                 </h2>
                 <p className="mt-1 text-sm text-gray-500">
-                  No cost. No obligation. Licensed local installer.
+                  {t.noObligationLicensed}
                 </p>
 
                 {/* Primary CTA */}
@@ -277,19 +263,18 @@ export default function RegionPage({ params }: PageProps) {
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
                   >
                     <CalendarCheck className="h-5 w-5" aria-hidden="true" />
-                    Get My Free Estimate
+                    {t.ctaButton}
                   </Link>
                 </div>
 
                 <p className="mt-4 text-center text-xs text-gray-400">
-                  Takes under 2 minutes. Your info is only shared with one local contractor.
+                  {t.takesUnder2Min}
                 </p>
 
                 {/* County-specific note */}
                 <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50 p-4">
                   <p className="text-xs text-gray-700">
-                    <strong>Serving {regionData.county}:</strong> We work with licensed contractors across{' '}
-                    {regionData.cities.map(c => c.city).join(', ')}. Get a customized quote for your home.
+                    {t.servingCountyNote(regionData.county, regionData.cities.map(c => c.city).join(', '))}
                   </p>
                 </div>
               </div>
@@ -300,8 +285,7 @@ export default function RegionPage({ params }: PageProps) {
         {/* Footer note */}
         <footer className="border-t border-gray-100 bg-gray-50 px-4 py-6 text-center text-xs text-gray-400">
           <p>
-            VoltSol Energy operates a licensed contractor marketplace in California. All estimates
-            are regional approximations and do not constitute a savings guarantee.
+            {t.footerNoteRegion}
           </p>
         </footer>
       </div>

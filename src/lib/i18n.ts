@@ -32,6 +32,7 @@ export interface Dict {
   nav_documents: string;
   nav_partners: string;
   nav_serve: string;
+  hero_service_area: string;
   lang_label_en: string;
   lang_label_es: string;
 
@@ -177,6 +178,7 @@ const en: Dict = {
   nav_documents: 'Documents',
   nav_partners: 'Partners',
   nav_serve: 'Where We Serve',
+  hero_service_area: 'Now serving California & Texas',
   contact_h1: 'Get in Touch',
   contact_intro: "Questions about going solar? Send us a message and we'll get back to you.",
   contact_label_name: 'Name',
@@ -312,6 +314,7 @@ const es: Dict = {
   nav_documents: 'Documentos',
   nav_partners: 'Socios',
   nav_serve: 'Dónde Servimos',
+  hero_service_area: 'Ahora en California y Texas',
   contact_h1: 'Contáctanos',
   contact_intro: '¿Tienes preguntas sobre la energía solar? Envíanos un mensaje y te responderemos.',
   contact_label_name: 'Nombre',

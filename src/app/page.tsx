@@ -105,6 +105,7 @@ interface ProofItem {
 
 export default async function HomePage() {
   const locale = getLocale();
+  const t = getDict(locale);
   const cfg = await getHomeConfig(locale);
 
   // Fetch visible partners for the partner logo strip (if ≥3 exist)
@@ -211,6 +212,13 @@ export default async function HomePage() {
         <Container className="relative">
           {/* immediate prop ensures opacity:1 base - no invisible hero trap */}
           <Reveal immediate>
+            <a
+              href="/market"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold transition-colors hover:bg-gold/20"
+            >
+              <Zap className="h-3.5 w-3.5" aria-hidden="true" />
+              {t.hero_service_area}
+            </a>
             <h1 className="font-display text-4xl font-bold uppercase leading-[1.1] tracking-tight sm:text-5xl lg:text-7xl">
               {cfg.hero_headline_line1}
               <br />

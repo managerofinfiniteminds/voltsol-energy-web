@@ -46,7 +46,7 @@ export interface MarketCountyData {
 export interface MarketRegion {
   county: string;
   regionSlug: string;
-  state: 'california';
+  state: 'california' | 'texas';
   cities: MarketCity[];
   countyData: MarketCountyData;
 }
@@ -8373,13 +8373,22 @@ export interface MarketParams {
   city: string;
 }
 
-export const ALL_MARKET_PARAMS: MarketParams[] = NORCAL_SOLAR_MARKETS.flatMap(r =>
-  r.cities.map(c => ({
-    vertical: 'solar',
-    state: 'california',
-    region: r.regionSlug,
-    city: c.citySlug,
-  }))
+// State-to-markets map (extensible for future states)
+export const MARKETS_BY_STATE: Record<string, MarketRegion[]> = {
+  california: NORCAL_SOLAR_MARKETS,
+  // texas: TEXAS_SOLAR_MARKETS,  // future addition
+};
+
+export const ALL_MARKET_PARAMS: MarketParams[] = Object.entries(MARKETS_BY_STATE).flatMap(
+  ([state, markets]) =>
+    markets.flatMap(r =>
+      r.cities.map(c => ({
+        vertical: 'solar',
+        state,
+        region: r.regionSlug,
+        city: c.citySlug,
+      }))
+    )
 );
 
 export function findMarket(
@@ -8388,8 +8397,10 @@ export function findMarket(
   region: string,
   city: string
 ): { region: MarketRegion; city: MarketCity } | null {
-  if (vertical !== 'solar' || state !== 'california') return null;
-  const regionData = NORCAL_SOLAR_MARKETS.find(r => r.regionSlug === region);
+  if (vertical !== 'solar') return null;
+  const markets = MARKETS_BY_STATE[state];
+  if (!markets) return null;
+  const regionData = markets.find(r => r.regionSlug === region);
   if (!regionData) return null;
   const cityData = regionData.cities.find(c => c.citySlug === city);
   if (!cityData) return null;
@@ -8410,8 +8421,10 @@ export function findRegion(
   state: string,
   regionSlug: string
 ): MarketRegion | null {
-  if (vertical !== 'solar' || state !== 'california') return null;
-  return NORCAL_SOLAR_MARKETS.find(r => r.regionSlug === regionSlug) || null;
+  if (vertical !== 'solar') return null;
+  const markets = MARKETS_BY_STATE[state];
+  if (!markets) return null;
+  return markets.find(r => r.regionSlug === regionSlug) || null;
 }
 
 // --- Locale-aware content overlays -----------------------------------------

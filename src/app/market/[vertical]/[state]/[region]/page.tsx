@@ -2,18 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { NORCAL_SOLAR_MARKETS, findRegion, localizeRegion, marketPageHref } from '@/lib/market-data';
+import { NORCAL_SOLAR_MARKETS, MARKETS_BY_STATE, findRegion, localizeRegion, marketPageHref } from '@/lib/market-data';
 import { getLocale } from '@/lib/locale';
 import { getMarketDict } from '@/lib/market-i18n';
 import { MapPin, CalendarCheck } from 'lucide-react';
 
 // Generate static params for all county hubs
 export function generateStaticParams() {
-  return NORCAL_SOLAR_MARKETS.map(region => ({
-    vertical: 'solar',
-    state: 'california',
-    region: region.regionSlug,
-  }));
+  return Object.entries(MARKETS_BY_STATE).flatMap(([state, markets]) =>
+    markets.map(region => ({
+      vertical: 'solar',
+      state,
+      region: region.regionSlug,
+    }))
+  );
 }
 
 interface PageProps {

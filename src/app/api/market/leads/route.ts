@@ -111,6 +111,10 @@ export async function POST(req: NextRequest) {
   const intent       = data.intent?.trim() || null;
   const marketSlug   = data.market_slug?.trim() || null;
 
+  // Extract state from market_slug (e.g. "solar/california/placer-county/roseville" -> "california")
+  // Fallback to 'california' for legacy leads without slug or malformed slug
+  const state = marketSlug?.split('/')[1] || 'california';
+
   // Score
   const { score, creditCost } = scoreMarketLead(data.owns_home, data.monthly_bill);
 
@@ -153,7 +157,7 @@ export async function POST(req: NextRequest) {
       ) VALUES (
         ${marketId}, ${vertical},
         ${firstName}, ${lastName}, ${email}, ${phone},
-        ${city}, 'california',
+        ${city}, ${state},
         ${data.owns_home}, ${data.monthly_bill},
         ${score}, ${creditCost},
         ${sourcePage}, ${intent},
@@ -171,7 +175,7 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       city,
-      state: 'california',
+      state,
       ownsHome: data.owns_home,
       monthlyBill: data.monthly_bill,
       timeline: data.timeline || null,

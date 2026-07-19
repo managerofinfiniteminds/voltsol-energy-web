@@ -2,14 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { NORCAL_SOLAR_MARKETS, marketPageHref } from '@/lib/market-data';
+import { NORCAL_SOLAR_MARKETS, MARKETS_BY_STATE, marketPageHref } from '@/lib/market-data';
 import { getLocale } from '@/lib/locale';
 import { getMarketDict } from '@/lib/market-i18n';
 import { MapPin, Zap, Shield, DollarSign } from 'lucide-react';
 
-// Generate static params for state hub (only solar/california currently)
+// Generate static params for state hub (derive from MARKETS_BY_STATE)
 export function generateStaticParams() {
-  return [{ vertical: 'solar', state: 'california' }];
+  return Object.keys(MARKETS_BY_STATE).map(state => ({
+    vertical: 'solar',
+    state,
+  }));
 }
 
 interface PageProps {
@@ -17,7 +20,7 @@ interface PageProps {
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  if (params.vertical !== 'solar' || params.state !== 'california') return {};
+  if (params.vertical !== 'solar' || !MARKETS_BY_STATE[params.state]) return {};
 
   const title = 'Residential Solar & Battery Storage in California';
   const description =
@@ -67,7 +70,7 @@ const jsonLd = {
 
 export default function StatePage({ params }: PageProps) {
   // Validate params
-  if (params.vertical !== 'solar' || params.state !== 'california') {
+  if (params.vertical !== 'solar' || !MARKETS_BY_STATE[params.state]) {
     return notFound();
   }
 

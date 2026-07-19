@@ -22,11 +22,14 @@ interface PageProps {
 export function generateMetadata({ params }: PageProps): Metadata {
   if (params.vertical !== 'solar' || !MARKETS_BY_STATE[params.state]) return {};
 
-  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
+  const isTX = params.state === 'texas';
+  const stateName = params.state === 'california' ? 'California' : isTX ? 'Texas' : '';
   const title = `Residential Solar & Battery Storage in ${stateName}`;
-  const description =
-    `Residential solar + EG4 battery storage across ${stateName}. Systems from $8,700. ` +
-    'Make your own power, store it, and run your home through blackouts — self-powered and blackout-ready. Free quote.';
+  const description = isTX
+    ? `Get connected with licensed local solar + battery installers across ${stateName}. ` +
+      'Make your own power, store it, and stay powered through outages. No cost, no obligation.'
+    : `Residential solar + EG4 battery storage across ${stateName}. Systems from $8,700. ` +
+      'Make your own power, store it, and run your home through blackouts — self-powered and blackout-ready. Free quote.';
 
   return {
     title,
@@ -39,6 +42,17 @@ export function generateMetadata({ params }: PageProps): Metadata {
     alternates: {
       canonical: `/market/solar/${params.state}`,
     },
+    ...(isTX
+      ? {
+          twitter: { title, description },
+          keywords: [
+            'Texas solar',
+            'solar installer Texas',
+            'residential solar battery storage',
+            'local solar installer',
+          ],
+        }
+      : {}),
   };
 }
 
@@ -49,9 +63,10 @@ export default function StatePage({ params }: PageProps) {
   }
 
   const locale = getLocale();
-  const t = getMarketDict(locale);
+  const isTX = params.state === 'texas';
+  const t = getMarketDict(locale, params.state);
   const markets = MARKETS_BY_STATE[params.state];
-  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
+  const stateName = params.state === 'california' ? 'California' : isTX ? 'Texas' : '';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -59,14 +74,16 @@ export default function StatePage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Residential solar and EG4 battery storage installation serving ${stateName} — make your own power, store it, and use it.`,
+        description: isTX
+          ? `Connects homeowners across ${stateName} with licensed local solar and battery storage installers.`
+          : `Residential solar and EG4 battery storage installation serving ${stateName} — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         areaServed: {
           '@type': 'State',
           name: stateName,
         },
-        serviceType: 'Residential Solar and Battery Storage Installation',
-        priceRange: '$8,700–$16,000',
+        serviceType: isTX ? 'Solar Installer Referral Service' : 'Residential Solar and Battery Storage Installation',
+        ...(isTX ? {} : { priceRange: '$8,700–$16,000' }),
       },
       {
         '@type': 'BreadcrumbList',
@@ -135,9 +152,9 @@ export default function StatePage({ params }: PageProps) {
         </header>
 
         <main className="mx-auto max-w-7xl px-4 py-12">
-          {/* Why Solar + Battery Storage in California */}
-          <section aria-labelledby="why-california-heading" className="mb-16">
-            <h2 id="why-california-heading" className="text-2xl font-bold text-gray-900">
+          {/* Why Solar + Battery Storage (state-aware) */}
+          <section aria-labelledby="why-state-heading" className="mb-16">
+            <h2 id="why-state-heading" className="text-2xl font-bold text-gray-900">
               {t.whyCaliforniaHeading}
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

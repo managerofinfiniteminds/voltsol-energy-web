@@ -27,12 +27,16 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const regionData = findRegion(params.vertical, params.state, params.region);
   if (!regionData) return {};
 
-  const stateAbbr = params.state === 'california' ? 'CA' : params.state === 'texas' ? 'TX' : '';
+  const isTX = params.state === 'texas';
+  const stateAbbr = params.state === 'california' ? 'CA' : isTX ? 'TX' : '';
   const title = `Solar + Battery Storage in ${regionData.county}, ${stateAbbr}`;
-  const description =
-    `Residential solar + EG4 battery storage across ${regionData.county}. ` +
-    `VoltSol gives ${regionData.cities.length} cities energy independence — systems from $8,700, ` +
-    `blackout-ready. Free quote.`;
+  const description = isTX
+    ? `Get connected with licensed local solar + battery installers across ${regionData.county}. ` +
+      `VoltSol matches homeowners in ${regionData.cities.length} cities with vetted local installers. ` +
+      `No cost, no obligation.`
+    : `Residential solar + EG4 battery storage across ${regionData.county}. ` +
+      `VoltSol gives ${regionData.cities.length} cities energy independence — systems from $8,700, ` +
+      `blackout-ready. Free quote.`;
 
   return {
     title,
@@ -45,6 +49,18 @@ export function generateMetadata({ params }: PageProps): Metadata {
     alternates: {
       canonical: `/market/solar/${params.state}/${regionData.regionSlug}`,
     },
+    ...(isTX
+      ? {
+          twitter: { title, description },
+          keywords: [
+            'Texas solar',
+            'solar installer Texas',
+            'residential solar battery storage',
+            'local solar installer',
+            `${regionData.county} solar`,
+          ],
+        }
+      : {}),
   };
 }
 
@@ -53,10 +69,11 @@ export default function RegionPage({ params }: PageProps) {
   if (!rawRegionData) return notFound();
 
   const locale = getLocale();
-  const t = getMarketDict(locale);
+  const isTX = params.state === 'texas';
+  const t = getMarketDict(locale, params.state);
   const regionData = localizeRegion(rawRegionData, locale);
   const markets = MARKETS_BY_STATE[params.state] || [];
-  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
+  const stateName = params.state === 'california' ? 'California' : isTX ? 'Texas' : '';
 
   // Other counties for cross-linking
   const otherCounties = markets.filter(r => r.regionSlug !== regionData.regionSlug);
@@ -75,13 +92,15 @@ export default function RegionPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Residential solar and EG4 battery storage installation serving ${regionData.county}, ${stateName} — make your own power, store it, and use it.`,
+        description: isTX
+          ? `Connects homeowners in ${regionData.county}, ${stateName} with licensed local solar and battery storage installers.`
+          : `Residential solar and EG4 battery storage installation serving ${regionData.county}, ${stateName} — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         areaServed: {
           '@type': 'AdministrativeArea',
           name: regionData.county,
         },
-        serviceType: 'Residential Solar and Battery Storage Installation',
+        serviceType: isTX ? 'Solar Installer Referral Service' : 'Residential Solar and Battery Storage Installation',
       },
       {
         '@type': 'BreadcrumbList',
@@ -276,6 +295,11 @@ export default function RegionPage({ params }: PageProps) {
                   </Link>
                 </div>
 
+                {t.dataConsentNote && (
+                  <p className="mt-4 text-center text-[11px] leading-snug text-gray-400">
+                    {t.dataConsentNote}
+                  </p>
+                )}
                 <p className="mt-4 text-center text-xs text-gray-400">
                   {t.takesUnder2Min}
                 </p>

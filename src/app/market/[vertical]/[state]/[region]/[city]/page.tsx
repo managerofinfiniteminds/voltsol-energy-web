@@ -30,12 +30,16 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!market) return {};
 
   const { city: cityData, region: regionData } = market;
-  const stateAbbr = params.state === 'california' ? 'CA' : params.state === 'texas' ? 'TX' : '';
+  const isTX = params.state === 'texas';
+  const stateAbbr = params.state === 'california' ? 'CA' : isTX ? 'TX' : '';
   const title = `Home Solar + Battery Storage in ${cityData.city}, ${stateAbbr}`;
-  const description =
-    `VoltSol Energy installs residential solar + EG4 battery storage in ` +
-    `${cityData.city} from $8,700 — power through blackouts and keep the ` +
-    `power you make. ${cityData.city} is served by ${cityData.utility}. Free quote.`;
+  const description = isTX
+    ? `Get connected with a licensed local solar + battery installer in ${cityData.city}. ` +
+      `Make your own power and stay powered through outages. ${cityData.city} is served by ` +
+      `${cityData.utility}. No cost, no obligation.`
+    : `VoltSol Energy installs residential solar + EG4 battery storage in ` +
+      `${cityData.city} from $8,700 — power through blackouts and keep the ` +
+      `power you make. ${cityData.city} is served by ${cityData.utility}. Free quote.`;
 
   return {
     title,
@@ -48,6 +52,20 @@ export function generateMetadata({ params }: PageProps): Metadata {
     alternates: {
       canonical: `/market/${marketSlug(params)}`,
     },
+    // TX pages override the site-wide twitter/keywords fallback so shared links
+    // don't carry California price ($8,700) / NEM 3.0 claims. CA emits nothing new.
+    ...(isTX
+      ? {
+          twitter: { title, description },
+          keywords: [
+            'Texas solar',
+            'solar installer Texas',
+            'residential solar battery storage',
+            'local solar installer',
+            `${cityData.city} solar`,
+          ],
+        }
+      : {}),
   };
 }
 
@@ -56,12 +74,13 @@ export default function MarketCityPage({ params }: PageProps) {
   if (!market) return notFound();
 
   const locale = getLocale();
-  const t = getMarketDict(locale);
+  const isTX = params.state === 'texas';
+  const t = getMarketDict(locale, params.state);
   const cityData = localizeCity(market.city, locale);
   const regionData = localizeRegion(market.region, locale);
   const slug = marketSlug(params);
   const markets = MARKETS_BY_STATE[params.state] || [];
-  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
+  const stateName = params.state === 'california' ? 'California' : isTX ? 'Texas' : '';
 
   // Campaign code for attribution
   const campaignCode = `market-${cityData.citySlug}`;
@@ -81,7 +100,9 @@ export default function MarketCityPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Residential solar and EG4 battery storage installation serving ${cityData.city}, ${regionData.county}, ${stateName} — make your own power, store it, and use it.`,
+        description: isTX
+          ? `Connects homeowners in ${cityData.city}, ${regionData.county}, ${stateName} with licensed local solar and battery storage installers.`
+          : `Residential solar and EG4 battery storage installation serving ${cityData.city}, ${regionData.county}, ${stateName} — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         telephone: process.env.NEXT_PUBLIC_VOLTSOL_PHONE || undefined,
         areaServed: {
@@ -96,11 +117,17 @@ export default function MarketCityPage({ params }: PageProps) {
       },
       {
         '@type': 'Service',
-        name: `Home Solar + Battery Storage Installation in ${cityData.city}`,
-        serviceType: 'Residential Solar and Battery Storage Installation',
+        name: isTX
+          ? `Solar Installer Matching in ${cityData.city}`
+          : `Home Solar + Battery Storage Installation in ${cityData.city}`,
+        serviceType: isTX
+          ? 'Solar Installer Referral Service'
+          : 'Residential Solar and Battery Storage Installation',
         provider: { '@type': 'LocalBusiness', name: 'VoltSol Energy' },
         areaServed: { '@type': 'City', name: cityData.city },
-        description: `VoltSol Energy installs residential solar with EG4 battery storage in ${cityData.city}, ${stateName} — blackout-ready power self-supplied from your own system.`,
+        description: isTX
+          ? `VoltSol Energy connects ${cityData.city}, ${stateName} homeowners with licensed local solar and battery storage installers.`
+          : `VoltSol Energy installs residential solar with EG4 battery storage in ${cityData.city}, ${stateName} — blackout-ready power self-supplied from your own system.`,
       },
       {
         '@type': 'BreadcrumbList',
@@ -153,7 +180,7 @@ export default function MarketCityPage({ params }: PageProps) {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${cityData.city}, California`}
+            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${cityData.city}, ${stateName}`}
             fill
             priority
             sizes="100vw"
@@ -191,13 +218,20 @@ export default function MarketCityPage({ params }: PageProps) {
                 <p className="mt-1 text-xs text-gray-400">
                   {t.localEstimatesDisclaimer}
                 </p>
-                <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                  {[
-                    { label: t.statAvgBill, value: `$${cityData.localData.avgMonthlyBillEstimate}` },
-                    { label: t.statSystemSize, value: `${cityData.localData.avgSystemSizeKwEstimate} kW` },
-                    { label: t.statYear1Savings, value: `$${cityData.localData.avgSavingsYear1Estimate}` },
-                    { label: t.statPayback, value: `${cityData.localData.avgPaybackYearsEstimate} yrs` },
-                  ].map(stat => (
+                <dl className={`mt-4 grid gap-4 ${isTX ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-4'}`}>
+                  {(isTX
+                    ? [
+                        { label: t.statAvgBill, value: `$${cityData.localData.avgMonthlyBillEstimate}` },
+                        { label: t.statSystemSize, value: `${cityData.localData.avgSystemSizeKwEstimate} kW` },
+                        { label: t.statPeakSun, value: `${cityData.localData.peakSunHoursEstimate}` },
+                      ]
+                    : [
+                        { label: t.statAvgBill, value: `$${cityData.localData.avgMonthlyBillEstimate}` },
+                        { label: t.statSystemSize, value: `${cityData.localData.avgSystemSizeKwEstimate} kW` },
+                        { label: t.statYear1Savings, value: `$${cityData.localData.avgSavingsYear1Estimate}` },
+                        { label: t.statPayback, value: `${cityData.localData.avgPaybackYearsEstimate} yrs` },
+                      ]
+                  ).map(stat => (
                     <div key={stat.label} className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center">
                       <dt className="text-xs text-gray-500">{stat.label}</dt>
                       <dd className="mt-1 text-2xl font-bold text-blue-700">{stat.value}</dd>
@@ -243,7 +277,7 @@ export default function MarketCityPage({ params }: PageProps) {
                 <div className="overflow-hidden rounded-2xl border border-gray-200">
                   <Image
                     src="/images/psps-alert-moment.png"
-                    alt={`PSPS power shutoff alert on a phone while a solar-battery home stays powered in ${cityData.city}, California`}
+                    alt={`Power outage alert on a phone while a solar-battery home stays powered in ${cityData.city}, ${stateName}`}
                     width={1200}
                     height={675}
                     sizes="(min-width: 1024px) 60vw, 100vw"
@@ -425,6 +459,11 @@ export default function MarketCityPage({ params }: PageProps) {
                 <p className="mt-4 text-center text-xs text-gray-400">
                   {t.takesUnder2Min}
                 </p>
+                {t.dataConsentNote && (
+                  <p className="mt-3 text-center text-[11px] leading-snug text-gray-400">
+                    {t.dataConsentNote}
+                  </p>
+                )}
               </div>
             </aside>
           </div>

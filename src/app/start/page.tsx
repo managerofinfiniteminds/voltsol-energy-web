@@ -20,6 +20,9 @@ interface StartPageProps {
 export default async function StartPage({ searchParams }: StartPageProps) {
   const campaignCode = searchParams.campaign;
   const initialBill = searchParams.bill;
+  // Texas market campaigns route to a lead-broker funnel (no VoltSol price claim).
+  const isTexasLead = /^(county-|market-)/.test(campaignCode ?? '') &&
+    /(harris|dallas|tarrant|bexar|travis|collin|denton|fort-bend|hidalgo|el-paso|montgomery|williamson)/.test(campaignCode ?? '');
   const locale = getLocale();
   const t = getDict(locale);
   const cfg = await getHomeConfig(locale);
@@ -55,7 +58,7 @@ export default async function StartPage({ searchParams }: StartPageProps) {
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/40" />
             <span>{t.trust_no_pressure}</span>
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold/40" />
-            <span>Solar from $8,700</span>
+            <span>{isTexasLead ? 'Licensed local installers' : 'Solar from $8,700'}</span>
           </div>
         </div>
       </Container>

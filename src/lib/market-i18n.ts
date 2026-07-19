@@ -70,6 +70,7 @@ export interface MarketDict {
   statSystemSize: string;
   statYear1Savings: string;
   statPayback: string;
+  statPeakSun: string;
   whyCityHeading: (city: string) => string;
   whyCityBullet1: (city: string, hours: number) => string;
   whyCityBullet2: (utility: string, city: string, rate: string, note: string) => string;
@@ -100,6 +101,9 @@ export interface MarketDict {
   footerNoteCityMid: string;
   termsLink: string;
   privacyLink: string;
+
+  // Optional: data-sale / consent disclosure (rendered for lead-broker states like TX)
+  dataConsentNote?: string;
 }
 
 const en: MarketDict = {
@@ -190,6 +194,7 @@ const en: MarketDict = {
   statSystemSize: 'Typical system size*',
   statYear1Savings: 'Est. year-1 savings*',
   statPayback: 'Est. payback period*',
+  statPeakSun: 'Peak sun hrs/day*',
   whyCityHeading: (city) => `Why Solar + Battery Storage in ${city}?`,
   whyCityBullet1: (city, hours) =>
     `High sun exposure: ${city} averages an estimated ${hours} peak sun hours per day — strong solar production potential year-round.`,
@@ -321,6 +326,7 @@ const es: MarketDict = {
   statSystemSize: 'Tamaño típico del sistema*',
   statYear1Savings: 'Ahorro estimado año 1*',
   statPayback: 'Período de recuperación est.*',
+  statPeakSun: 'Horas de sol pico/día*',
   whyCityHeading: (city) => `¿Por qué Solar + Batería en ${city}?`,
   whyCityBullet1: (city, hours) =>
     `Alta exposición solar: ${city} promedia un estimado de ${hours} horas de sol pico al día — un fuerte potencial de producción solar durante todo el año.`,
@@ -364,6 +370,207 @@ const es: MarketDict = {
 
 const DICTS: Record<Locale, MarketDict> = { en, es };
 
-export function getMarketDict(locale: Locale): MarketDict {
-  return DICTS[locale] ?? en;
+/**
+ * Texas overrides. VoltSol's Texas model is a lead-generation / lead-SALE broker:
+ * homeowners submit an inquiry, VoltSol connects/sells the lead to a licensed local
+ * installer who does the actual sale, contract, and installation. To stay outside
+ * Texas Occupations Code Ch. 1806 (solar retailer registration) and clean under the
+ * DTPA, Texas copy must NOT: quote system prices, claim "VoltSol installs," promise
+ * specific savings, or use California-only framing (NEM 3.0 / PSPS). These overrides
+ * replace only the CA-baked strings; anything not overridden falls back to the base
+ * dict. California rendering is unchanged (getMarketDict called without state='texas').
+ */
+const enTX: Partial<MarketDict> = {
+  stateH1: 'Residential Solar & Battery Storage in Texas',
+  stateSub:
+    'Get connected with licensed local solar installers across Texas. Make your own power, ' +
+    'store it in battery backup, and keep your home running through grid outages and summer ' +
+    'heat events. VoltSol matches Texas homeowners with vetted local installers who handle ' +
+    'the quote, the contract, and the installation.',
+  whyCaliforniaHeading: 'Why Solar + Battery Storage in Texas?',
+  card1Title: 'Choose Your Own Rate',
+  card1Body:
+    "Most of Texas is a deregulated ERCOT market — you pick your Retail Electric Provider (REP), " +
+    "and solar buyback rates vary widely by plan. Solar self-consumption lets you rely less on " +
+    "whichever plan you're on.",
+  card2Title: 'Own It, Don\'t Rent It',
+  card2Body:
+    'A solar + battery system lets you make and store your own power instead of buying every ' +
+    'kilowatt from the grid. Licensed local installers design a system sized to your home.',
+  card3Title: 'Blackout Resilience',
+  card3Body:
+    'Winter Storm Uri and hurricane-season outages have left Texas homes dark for days. Solar ' +
+    'paired with battery storage keeps your lights, fridge, and A/C running when the grid goes down.',
+  card4Title: 'Beat the Texas Heat',
+  card4Body:
+    'Long, hot summers drive very high cooling costs across Texas. Solar production peaks exactly ' +
+    'when your air conditioning demand — and your bill — is highest.',
+  bottomCtaHeading: 'Ready to explore solar in Texas?',
+  bottomCtaBody: 'Get connected with a licensed local installer serving your area — no cost, no obligation.',
+  footerNoteState:
+    'VoltSol Energy connects Texas homeowners with licensed local solar installers. VoltSol does not ' +
+    'sell, install, or finance solar systems. All estimates are regional approximations and do not ' +
+    'constitute a savings guarantee.',
+
+  regionH1: (county) => `Solar + Battery Storage in ${county}, TX`,
+  regionSub: (cities, county) =>
+    `Get connected with licensed local solar installers across ${cities} cities in ${county}. ` +
+    `Make your own power, store it in battery backup, and stay powered through grid outages and ` +
+    `summer heat events. VoltSol matches you with vetted local installers who handle the rest.`,
+  whyCountyP2:
+    'A solar + battery system combines rooftop panels, battery storage, and inverters to power your ' +
+    "home's biggest loads — heating, cooling, and major appliances — while maximizing the power you " +
+    'make and use yourself, plus backup power during grid outages. A licensed local installer sizes ' +
+    'and installs the system.',
+  whyCountyP3: (county) =>
+    `Most of Texas is a deregulated ERCOT market, so solar export (buyback) rates depend on the ` +
+    `Retail Electric Provider and plan you choose — they can vary widely. In ${county}, the reliable ` +
+    `value is in storing and using your own power rather than depending on a favorable buyback rate. ` +
+    `Ask your local installer about current interconnection and buyback options for your utility.`,
+  citiesInCountyHeading: (county) => `Cities We Serve in ${county}`,
+  otherCountiesHeading: 'Other Texas Counties',
+  backToMarkets: '\u2190 Back to all Texas markets',
+  freeSolarQuote: (place) => `Connect With a Local Installer \u2014 ${place}`,
+  servingCountyNote: (county, cities) =>
+    `Serving ${county}: We connect homeowners across ${cities} with licensed local installers. Get matched for your home.`,
+  footerNoteRegion:
+    'VoltSol Energy connects Texas homeowners with licensed local solar installers. VoltSol does not ' +
+    'sell, install, or finance solar systems. All estimates are regional approximations and do not ' +
+    'constitute a savings guarantee.',
+
+  cityH1: (city) => `Home Solar + Battery Storage in ${city}, TX`,
+  citySub: (city, utility, bill) =>
+    `Make your own power, store it in battery backup, and keep your home running through grid ` +
+    `outages and Texas summer heat. ${city} is served by ${utility} \u2014 homes here pay an ` +
+    `estimated $${bill}/mo today. VoltSol connects you with a licensed local installer who handles ` +
+    `your quote, contract, and installation.`,
+  whyCityBullet3:
+    'Deregulated market choice: across most of Texas you pick your Retail Electric Provider, and ' +
+    'solar buyback rates vary widely by plan — so the reliable value is in storing and using your own ' +
+    'power. Ask your local installer about current federal and state incentives; consult a tax ' +
+    'professional for your situation.',
+  pspsHeading: 'When the grid goes down, your lights stay on',
+  pspsBody: (city) =>
+    `Winter Storm Uri and hurricane-season outages have left ${city}-area homes without power for ` +
+    `hours \u2014 sometimes days. A solar + battery system keeps your fridge, lights, and Wi-Fi ` +
+    `running while the grid is down. No generator, no fuel runs, no scramble.`,
+  otherMarketsHeading: 'Other Texas Solar Markets',
+  freeSolarQuoteCity: (city) => `Connect With a Local Installer \u2014 ${city}`,
+  noObligationOneContractor: 'No cost. No obligation. Licensed local installer.',
+  takesUnder2Min: 'Takes under 2 minutes. We connect you with a licensed local installer.',
+  footerNoteCityPre:
+    'VoltSol Energy connects Texas homeowners with licensed local solar installers. VoltSol does not ' +
+    'sell, install, or finance solar systems. All estimates are regional approximations and do not ' +
+    'constitute a savings guarantee. Subject to our',
+  dataConsentNote:
+    'By requesting a match, you agree that VoltSol may share or sell your contact information to one ' +
+    'or more licensed local solar installers, who may contact you about your project by phone, text, ' +
+    'or email. See our Privacy Policy.',
+};
+
+const esTX: Partial<MarketDict> = {
+  stateH1: 'Energ\u00eda Solar Residencial y Almacenamiento en Bater\u00eda en Texas',
+  stateSub:
+    'Con\u00e9ctate con instaladores solares locales licenciados en todo Texas. Produce tu propia ' +
+    'energ\u00eda, alm\u00e1cenala en bater\u00eda de respaldo y mant\u00e9n tu casa funcionando durante ' +
+    'apagones y eventos de calor. VoltSol conecta a los propietarios de Texas con instaladores locales ' +
+    'verificados que se encargan del estimado, el contrato y la instalaci\u00f3n.',
+  whyCaliforniaHeading: '\u00bfPor qu\u00e9 Solar + Bater\u00eda en Texas?',
+  card1Title: 'Elige Tu Propia Tarifa',
+  card1Body:
+    'La mayor parte de Texas es un mercado desregulado de ERCOT: eliges tu Proveedor de Electricidad ' +
+    'Minorista (REP), y las tarifas de recompra solar var\u00edan mucho seg\u00fan el plan. El ' +
+    'autoconsumo solar reduce tu dependencia del plan que tengas.',
+  card2Title: 'Que Sea Tuyo, No Rentado',
+  card2Body:
+    'Un sistema solar + bater\u00eda te permite producir y almacenar tu propia energ\u00eda en lugar de ' +
+    'comprar cada kilovatio de la red. Instaladores locales licenciados dise\u00f1an un sistema del ' +
+    'tama\u00f1o de tu hogar.',
+  card3Title: 'Resiliencia ante Apagones',
+  card3Body:
+    'La tormenta invernal Uri y los apagones en temporada de huracanes han dejado hogares de Texas sin ' +
+    'luz por d\u00edas. La energ\u00eda solar con bater\u00eda mantiene tus luces, refrigerador y aire ' +
+    'acondicionado funcionando cuando la red se cae.',
+  card4Title: 'Vence el Calor de Texas',
+  card4Body:
+    'Los veranos largos y calurosos generan costos de enfriamiento muy altos en todo Texas. La ' +
+    'producci\u00f3n solar alcanza su pico justo cuando tu demanda de aire acondicionado \u2014 y tu ' +
+    'factura \u2014 es m\u00e1s alta.',
+  bottomCtaHeading: '\u00bfListo para explorar la energ\u00eda solar en Texas?',
+  bottomCtaBody: 'Con\u00e9ctate con un instalador local licenciado que atiende tu \u00e1rea \u2014 sin costo, sin compromiso.',
+  footerNoteState:
+    'VoltSol Energy conecta a los propietarios de Texas con instaladores solares locales licenciados. ' +
+    'VoltSol no vende, instala ni financia sistemas solares. Todos los estimados son aproximaciones ' +
+    'regionales y no constituyen una garant\u00eda de ahorro.',
+
+  regionH1: (county) => `Solar + Bater\u00eda en ${county}, TX`,
+  regionSub: (cities, county) =>
+    `Con\u00e9ctate con instaladores solares locales licenciados en ${cities} ciudades de ${county}. ` +
+    `Produce tu propia energ\u00eda, alm\u00e1cenala en bater\u00eda de respaldo y mant\u00e9n tu casa ` +
+    `con energ\u00eda durante apagones y eventos de calor. VoltSol te conecta con instaladores locales ` +
+    `verificados que se encargan del resto.`,
+  whyCountyP2:
+    'Un sistema solar + bater\u00eda combina paneles en el techo, almacenamiento en bater\u00eda e ' +
+    'inversores para alimentar las cargas m\u00e1s grandes de tu hogar \u2014 calefacci\u00f3n, ' +
+    'enfriamiento y electrodom\u00e9sticos grandes \u2014 maximizando la energ\u00eda que produces y ' +
+    'usas t\u00fa mismo, m\u00e1s energ\u00eda de respaldo durante apagones. Un instalador local ' +
+    'licenciado dise\u00f1a e instala el sistema.',
+  whyCountyP3: (county) =>
+    `La mayor parte de Texas es un mercado desregulado de ERCOT, as\u00ed que las tarifas de ` +
+    `exportaci\u00f3n solar (recompra) dependen del Proveedor de Electricidad Minorista y el plan que ` +
+    `elijas \u2014 pueden variar mucho. En ${county}, el valor confiable est\u00e1 en almacenar y usar ` +
+    `tu propia energ\u00eda en lugar de depender de una tarifa de recompra favorable. Preg\u00fantale a ` +
+    `tu instalador local sobre las opciones actuales de interconexi\u00f3n y recompra para tu ` +
+    `compa\u00f1\u00eda el\u00e9ctrica.`,
+  citiesInCountyHeading: (county) => `Ciudades que Atendemos en ${county}`,
+  otherCountiesHeading: 'Otros Condados de Texas',
+  backToMarkets: '\u2190 Volver a todos los mercados de Texas',
+  freeSolarQuote: (place) => `Con\u00e9ctate con un Instalador Local \u2014 ${place}`,
+  servingCountyNote: (county, cities) =>
+    `Atendiendo ${county}: Conectamos a propietarios en ${cities} con instaladores locales licenciados. Encuentra el tuyo para tu hogar.`,
+  footerNoteRegion:
+    'VoltSol Energy conecta a los propietarios de Texas con instaladores solares locales licenciados. ' +
+    'VoltSol no vende, instala ni financia sistemas solares. Todos los estimados son aproximaciones ' +
+    'regionales y no constituyen una garant\u00eda de ahorro.',
+
+  cityH1: (city) => `Solar Residencial + Almacenamiento en Bater\u00eda en ${city}, TX`,
+  citySub: (city, utility, bill) =>
+    `Produce tu propia energ\u00eda, alm\u00e1cenala en bater\u00eda de respaldo y mant\u00e9n tu casa ` +
+    `funcionando durante apagones y el calor del verano en Texas. ${city} es atendida por ${utility} ` +
+    `\u2014 los hogares aqu\u00ed pagan un estimado de $${bill}/mes hoy. VoltSol te conecta con un ` +
+    `instalador local licenciado que se encarga de tu estimado, contrato e instalaci\u00f3n.`,
+  whyCityBullet3:
+    'Elecci\u00f3n en el mercado desregulado: en la mayor parte de Texas eliges tu Proveedor de ' +
+    'Electricidad Minorista, y las tarifas de recompra solar var\u00edan mucho seg\u00fan el plan \u2014 ' +
+    'as\u00ed que el valor confiable est\u00e1 en almacenar y usar tu propia energ\u00eda. Preg\u00fantale ' +
+    'a tu instalador local sobre los incentivos federales y estatales actuales; consulta a un ' +
+    'profesional de impuestos para tu situaci\u00f3n.',
+  pspsHeading: 'Cuando la red se cae, tus luces siguen encendidas',
+  pspsBody: (city) =>
+    `La tormenta invernal Uri y los apagones en temporada de huracanes han dejado a hogares del ` +
+    `\u00e1rea de ${city} sin energ\u00eda por horas \u2014 a veces d\u00edas. Un sistema solar + ` +
+    `bater\u00eda mantiene tu refrigerador, luces y Wi-Fi funcionando mientras la red est\u00e1 ca\u00edda. ` +
+    `Sin generador, sin ir por combustible, sin apuros.`,
+  otherMarketsHeading: 'Otros Mercados Solares de Texas',
+  freeSolarQuoteCity: (city) => `Con\u00e9ctate con un Instalador Local \u2014 ${city}`,
+  noObligationOneContractor: 'Sin costo. Sin compromiso. Instalador local licenciado.',
+  takesUnder2Min: 'Toma menos de 2 minutos. Te conectamos con un instalador local licenciado.',
+  footerNoteCityPre:
+    'VoltSol Energy conecta a los propietarios de Texas con instaladores solares locales licenciados. ' +
+    'VoltSol no vende, instala ni financia sistemas solares. Todos los estimados son aproximaciones ' +
+    'regionales y no constituyen una garant\u00eda de ahorro. Sujeto a nuestros',
+  dataConsentNote:
+    'Al solicitar una conexi\u00f3n, aceptas que VoltSol puede compartir o vender tu informaci\u00f3n de ' +
+    'contacto a uno o m\u00e1s instaladores solares locales licenciados, quienes pueden contactarte ' +
+    'sobre tu proyecto por tel\u00e9fono, texto o correo. Consulta nuestra Pol\u00edtica de Privacidad.',
+};
+
+const DICTS_TX: Record<Locale, Partial<MarketDict>> = { en: enTX, es: esTX };
+
+export function getMarketDict(locale: Locale, state?: string): MarketDict {
+  const base = DICTS[locale] ?? en;
+  if (state === 'texas') {
+    return { ...base, ...(DICTS_TX[locale] ?? enTX) };
+  }
+  return base;
 }

@@ -223,7 +223,7 @@ export async function sendContactMessageEmail(msg: ContactMessage): Promise<void
 
 /**
  * Send a Google review request to a VoltSol customer (post-install).
- * Simple, personal note from Hugo with one link to the review page.
+ * Simple, personal note from VoltSol with one link to the review page.
  */
 export async function sendReviewRequestEmail(customer: {
   first_name: string;
@@ -244,7 +244,7 @@ export async function sendReviewRequestEmail(customer: {
     <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:32px 24px;">
       <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">Hi ${safe(customer.first_name)},</p>
       <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">
-        Thanks for trusting VoltSol with your solar install. I hope you're loving the independence of making your own power.
+        Thanks for trusting VoltSol with your solar install. We hope you're loving the independence of making your own power.
       </p>
       <p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">
         Quick favor — if you have a minute, would you mind leaving us a Google review? It helps other families find us when they're looking to cut the cord on their utility.
@@ -256,7 +256,7 @@ export async function sendReviewRequestEmail(customer: {
         Thanks for your time.
       </p>
       <p style="margin:0;color:#0F172A;font-size:16px;">
-        — Hugo
+        — The VoltSol Team
       </p>
     </div>
     <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
@@ -268,7 +268,7 @@ export async function sendReviewRequestEmail(customer: {
 </html>`;
 
   const result = await getResend().emails.send({
-    from: 'Hugo at VoltSol <info@voltsolenergy.com>',
+    from: 'VoltSol Energy <info@voltsolenergy.com>',
     to: customer.email,
     subject: `${customer.first_name}, quick favor?`,
     html,
@@ -318,7 +318,7 @@ export async function sendLegacyReviewEmail(params: {
       ${paragraphs.map(p => `<p style="margin:0 0 16px 0;color:#0F172A;font-size:16px;">${safe(p)}</p>`).join('')}
     </div>
     <div style="text-align:center;padding:16px;color:#94a3b8;font-size:12px;">
-      Hugo — Solar Installer<br/>
+      The VoltSol Team<br/>
       VoltSol Energy
     </div>
   </div>
@@ -326,7 +326,7 @@ export async function sendLegacyReviewEmail(params: {
 </html>`;
 
   const result = await getResend().emails.send({
-    from: 'Hugo <info@voltsolenergy.com>',
+    from: 'VoltSol Energy <info@voltsolenergy.com>',
     to: params.email,
     subject: subjectText,
     html,
@@ -383,7 +383,7 @@ export async function sendPartnerOutreachEmail(params: {
 </html>`;
 
   const result = await getResend().emails.send({
-    from: 'Hugo at VoltSol <info@voltsolenergy.com>',
+    from: 'VoltSol Energy <info@voltsolenergy.com>',
     to: params.email,
     subject: subjectText,
     html,

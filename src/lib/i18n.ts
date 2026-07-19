@@ -103,7 +103,10 @@ export interface Dict {
   // Step 4 (utility)
   q_utility: string;
   q_utility_sub: string;
+  q_utility_state: string;
   utility_placeholder: string;
+  utility_loading: string;
+  utility_change_state: string;
 
   // Step 5 (estimate reveal) — mostly dynamic; static labels only
   estimate_eyebrow: string;
@@ -137,6 +140,7 @@ export interface Dict {
   err_phone: string;
   err_select: string;
   err_utility: string;
+  err_utility_state: string;
   err_network: string;
   err_generic: string;
   err_bill: string;
@@ -235,7 +239,10 @@ const en: Dict = {
 
   q_utility: "Who's your electric utility?",
   q_utility_sub: 'Whoever sends your monthly power bill.',
+  q_utility_state: 'First, which state is your home in?',
   utility_placeholder: 'e.g. your power company',
+  utility_loading: 'Loading providers…',
+  utility_change_state: 'change state',
 
   estimate_eyebrow: 'Your Estimate',
   estimate_disclaimer_lead: 'This is an estimate, not a quote.',
@@ -267,6 +274,7 @@ const en: Dict = {
   err_phone: 'Please enter a valid phone number',
   err_select: 'Please select an option',
   err_utility: 'Please enter your electric utility',
+  err_utility_state: 'Please select your state',
   err_network: 'Network error. Please check your connection and try again.',
   err_generic: 'Something went wrong. Please try again.',
   err_bill: 'Please select your bill range',
@@ -365,7 +373,10 @@ const es: Dict = {
 
   q_utility: '¿Cuál es tu compañía eléctrica?',
   q_utility_sub: 'La que te envía tu factura de electricidad cada mes.',
+  q_utility_state: 'Primero, ¿en qué estado está tu hogar?',
   utility_placeholder: 'ej. tu compañía de electricidad',
+  utility_loading: 'Cargando proveedores…',
+  utility_change_state: 'cambiar estado',
 
   estimate_eyebrow: 'Tu Estimado',
   estimate_disclaimer_lead: 'Esto es un estimado, no una cotización.',
@@ -397,6 +408,7 @@ const es: Dict = {
   err_phone: 'Ingresa un número de teléfono válido',
   err_select: 'Selecciona una opción',
   err_utility: 'Ingresa tu compañía eléctrica',
+  err_utility_state: 'Selecciona tu estado',
   err_network: 'Error de conexión. Revisa tu internet e inténtalo de nuevo.',
   err_generic: 'Algo salió mal. Inténtalo de nuevo.',
   err_bill: 'Selecciona tu rango de factura',

@@ -287,7 +287,7 @@ export default function RegionPage({ params }: PageProps) {
                 {/* Primary CTA */}
                 <div className="mt-6">
                   <Link
-                    href={`/start?campaign=${encodeURIComponent(campaignCode)}`}
+                    href={`/start?campaign=${encodeURIComponent(campaignCode)}&state=${encodeURIComponent(params.state)}`}
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
                   >
                     <CalendarCheck className="h-5 w-5" aria-hidden="true" />

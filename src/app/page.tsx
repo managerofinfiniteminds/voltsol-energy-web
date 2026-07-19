@@ -696,7 +696,7 @@ export default async function HomePage() {
                 <div className="mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-2xl border border-navy-500/40">
                   <Image
                     src="/images/hugo-portrait.jpg"
-                    alt="Hugo, VoltSol Energy founder and installer"
+                    alt="VoltSol Energy — solar and storage installed across Northern California"
                     width={600}
                     height={800}
                     className="h-full w-full object-cover object-top"

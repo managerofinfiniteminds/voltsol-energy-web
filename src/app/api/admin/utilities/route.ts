@@ -3,13 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { sql } from '@/lib/db';
 import { isAdmin } from '@/lib/admin-auth';
-import { getAllUtilities } from '@/lib/utilities';
+import { getAllUtilities, normalizeState } from '@/lib/utilities';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const utilities = await getAllUtilities();
+  const { searchParams } = new URL(req.url);
+  const stateParam = searchParams.get('state');
+  const utilities = await getAllUtilities(stateParam || undefined);
   return NextResponse.json(utilities);
 }
 
@@ -17,6 +19,7 @@ const createSchema = z.object({
   name: z.string().trim().min(2, 'Name too short').max(120),
   sort_order: z.number().int().min(0).max(99999).optional(),
   is_active: z.boolean().optional(),
+  state: z.string().trim().min(2).max(20).optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -39,12 +42,13 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { name, sort_order, is_active } = parsed.data;
+  const { name, sort_order, is_active, state } = parsed.data;
+  const st = normalizeState(state);
   try {
     const rows = await sql`
-      INSERT INTO utilities (name, sort_order, is_active)
-      VALUES (${name}, ${sort_order ?? 100}, ${is_active ?? true})
-      RETURNING id, name, sort_order, is_active
+      INSERT INTO utilities (name, sort_order, is_active, state)
+      VALUES (${name}, ${sort_order ?? 100}, ${is_active ?? true}, ${st})
+      RETURNING id, name, sort_order, is_active, state
     `;
     return NextResponse.json({ success: true, utility: rows[0] });
   } catch (err: unknown) {
@@ -61,6 +65,7 @@ const updateSchema = z.object({
   name: z.string().trim().min(2).max(120).optional(),
   sort_order: z.number().int().min(0).max(99999).optional(),
   is_active: z.boolean().optional(),
+  state: z.string().trim().min(2).max(20).optional(),
 });
 
 export async function PATCH(req: NextRequest) {
@@ -83,16 +88,18 @@ export async function PATCH(req: NextRequest) {
     );
   }
 
-  const { id, name, sort_order, is_active } = parsed.data;
+  const { id, name, sort_order, is_active, state } = parsed.data;
+  const st = state ? normalizeState(state) : null;
   try {
     const rows = await sql`
       UPDATE utilities SET
         name       = COALESCE(${name ?? null}, name),
         sort_order = COALESCE(${sort_order ?? null}, sort_order),
         is_active  = COALESCE(${is_active ?? null}, is_active),
+        state      = COALESCE(${st}, state),
         updated_at = now()
       WHERE id = ${id}
-      RETURNING id, name, sort_order, is_active
+      RETURNING id, name, sort_order, is_active, state
     `;
     if (rows.length === 0) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });

@@ -861,9 +861,9 @@ export default function AdminConfigPage() {
             </div>
           </div>
 
-          {/* ========== SECTION 6: MEET HUGO ========== */}
+          {/* ========== SECTION 6: ABOUT VOLTSOL ========== */}
           <div className={sectionClass}>
-            <h2 className={sectionTitleClass}>Section 6: Meet Hugo</h2>
+            <h2 className={sectionTitleClass}>Section 6: About VoltSol</h2>
 
             <div className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">

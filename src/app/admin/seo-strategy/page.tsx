@@ -206,8 +206,8 @@ export default async function SeoStrategyPage() {
               },
               {
                 icon: "👤",
-                title: "Hugo as Brand",
-                desc: "Local founder personal branding is a trust signal national eCommerce sellers cannot match"
+                title: "Local Brand",
+                desc: "A licensed local installer with a real founder story is a trust signal national eCommerce sellers cannot match"
               }
             ].map((item, i) => (
               <div key={i} className="rounded-xl border border-blue-900/50 bg-navy-800/40 p-6">
@@ -404,7 +404,7 @@ export default async function SeoStrategyPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gold text-lg mb-4">Guest Posts</h3>
-                <p className="text-blue-300 text-sm">Publish articles positioning Hugo as an EG4 and off-grid expert.</p>
+                <p className="text-blue-300 text-sm">Publish articles positioning VoltSol as an EG4 and off-grid expert.</p>
               </div>
               <div>
                 <h3 className="font-bold text-gold text-lg mb-4">Media Mentions</h3>

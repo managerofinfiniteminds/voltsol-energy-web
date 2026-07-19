@@ -8,6 +8,12 @@ interface Utility {
   name: string;
   sort_order: number;
   is_active: boolean;
+  state: string;
+}
+
+const STATE_LABELS: Record<string, string> = { CA: 'California', TX: 'Texas' };
+function stateLabel(code: string): string {
+  return STATE_LABELS[code] || code;
 }
 
 export default function UtilitiesAdminPage() {
@@ -19,11 +25,13 @@ export default function UtilitiesAdminPage() {
 
   const [newName, setNewName] = useState('');
   const [newSort, setNewSort] = useState('100');
+  // State filter for the list + the state the "add" form targets.
+  const [stateFilter, setStateFilter] = useState('CA');
 
   const load = useCallback(async () => {
     setLoading(true);
     setError('');
-    const res = await fetch('/api/admin/utilities');
+    const res = await fetch(`/api/admin/utilities?state=${encodeURIComponent(stateFilter)}`);
     if (res.status === 401) {
       router.push('/admin/login');
       return;
@@ -35,7 +43,13 @@ export default function UtilitiesAdminPage() {
     }
     setUtilities(await res.json());
     setLoading(false);
-  }, [router]);
+  }, [router, stateFilter]);
+
+  // Known states to offer in the filter. Union of built-in labels + any state
+  // already present in the data, so new states appear automatically.
+  const knownStates = Array.from(
+    new Set([...Object.keys(STATE_LABELS), ...utilities.map(u => u.state)])
+  ).sort();
 
   useEffect(() => {
     load();
@@ -51,6 +65,7 @@ export default function UtilitiesAdminPage() {
       body: JSON.stringify({
         name: newName.trim(),
         sort_order: Number(newSort) || 100,
+        state: stateFilter,
       }),
     });
     const data = await res.json();
@@ -96,8 +111,27 @@ export default function UtilitiesAdminPage() {
         <h1 className="text-2xl font-bold text-white">Electric Utilities</h1>
         <p className="mt-1 text-sm text-slate-400">
           These appear in the estimate form&rsquo;s &ldquo;Who&rsquo;s your electric utility?&rdquo;
-          dropdown. Lower sort number shows first. Inactive items are hidden from the form but kept here.
+          dropdown. Each state has its own list &mdash; a lead only sees providers for their state.
+          Lower sort number shows first. Inactive items are hidden from the form but kept here.
         </p>
+      </div>
+
+      {/* State selector — scopes both the list below and the "add" form. */}
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">State:</span>
+        {knownStates.map(code => (
+          <button
+            key={code}
+            onClick={() => setStateFilter(code)}
+            className={`rounded-lg px-3 py-1.5 text-sm font-semibold transition ${
+              stateFilter === code
+                ? 'bg-amber-400 text-slate-900'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            }`}
+          >
+            {stateLabel(code)}
+          </button>
+        ))}
       </div>
 
       {error && (
@@ -109,7 +143,7 @@ export default function UtilitiesAdminPage() {
       {/* Add new */}
       <div className="mb-6 rounded-xl border border-slate-700 bg-slate-900 p-4">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">
-          Add a utility
+          Add a utility to {stateLabel(stateFilter)}
         </h2>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input

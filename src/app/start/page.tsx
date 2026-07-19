@@ -14,12 +14,13 @@ export const metadata: Metadata = {
 };
 
 interface StartPageProps {
-  searchParams: { campaign?: string; bill?: string };
+  searchParams: { campaign?: string; bill?: string; state?: string };
 }
 
 export default async function StartPage({ searchParams }: StartPageProps) {
   const campaignCode = searchParams.campaign;
   const initialBill = searchParams.bill;
+  const initialState = searchParams.state;
   // Texas market campaigns route to a lead-broker funnel (no VoltSol price claim).
   const isTexasLead = /^(county-|market-)/.test(campaignCode ?? '') &&
     /(harris|dallas|tarrant|bexar|travis|collin|denton|fort-bend|hidalgo|el-paso|montgomery|williamson)/.test(campaignCode ?? '');
@@ -49,7 +50,7 @@ export default async function StartPage({ searchParams }: StartPageProps) {
 
           {/* Flow container */}
           <div className="rounded-2xl border border-navy-500/40 bg-gradient-to-br from-navy-700 to-navy-800 p-6 sm:p-8">
-            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} tiers={cfg.pricing_tiers} locale={locale} />
+            <EstimateFlow campaignCode={campaignCode} initialBill={initialBill} tiers={cfg.pricing_tiers} locale={locale} initialState={initialState} />
           </div>
 
           {/* Trust bar */}

@@ -43,7 +43,7 @@ const timeline: TimelineDay[] = [
     items: [
       { label: 'Trust signals band (Licensed, Insured, 9 Years, Workman\'s Comp, General Liability)', done: false },
       { label: 'Google Reviews widget', done: false },
-      { label: 'About Hugo section (real photo, real story — since 2017, found EG4, shows up on install day)', done: false },
+      { label: 'About VoltSol section (founder photo + story, VoltSol-forward — since 2017, EG4, shows up on install day)', done: false },
       { label: 'Mobile optimization + performance pass', done: false },
     ],
   },
@@ -76,7 +76,7 @@ const storyboard = [
   { section: 'SAVINGS CALCULATOR', content: 'Enter monthly bill → 10-year savings + breakeven + payment estimate' },
   { section: 'PPA WARNING', content: '25-year cost comparison. Ownership wins, always.' },
   { section: 'TRUST BAND', content: 'Licensed, Insured, Workman\'s Comp, General Liability, 9 Years, Google Reviews' },
-  { section: 'ABOUT HUGO', content: 'Real photo, real story. In solar since 2017. Found EG4 when PG&E changed the rules again.' },
+  { section: 'ABOUT VOLTSOL', content: 'VoltSol-forward with a small founder blurb + photo. In solar since 2017. Found EG4 when PG&E changed the rules again.' },
   { section: 'LEAD CAPTURE', content: 'Qualify form, instant text, Hugo calls within 24hrs' },
 ];
 
@@ -92,7 +92,7 @@ const beats = [
   { num: '1', emotion: 'ANGER', desc: '"You\'re getting ripped off."', sub: 'PG&E rates, NEM 3.0, rigged game' },
   { num: '2', emotion: 'HOPE', desc: '"There\'s a smarter way."', sub: 'EG4 hybrid — nobody else in NorCal doing it' },
   { num: '3', emotion: 'PROOF', desc: '"This actually works."', sub: 'Savings calculator, real math, trust signals' },
-  { num: '4', emotion: 'TRUST', desc: '"Hugo is the guy."', sub: 'Founder story, hands-on, 9 years, mom-and-pop wins' },
+  { num: '4', emotion: 'TRUST', desc: '"VoltSol is the local team."', sub: 'Founder story, hands-on, 9 years, mom-and-pop wins' },
   { num: '5', emotion: 'ACTION', desc: '"See if your home qualifies."', sub: 'Lead form, text response, no pressure' },
 ];
 

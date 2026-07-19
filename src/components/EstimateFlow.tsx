@@ -125,6 +125,27 @@ interface EstimateFlowProps {
   initialBill?: string;
   tiers?: PricingTier[];
   locale?: Locale;
+  /** 2-letter state (or full name) of the landing market, when known. When
+   *  omitted, the utility step asks the lead which state they're in first so
+   *  they only ever see their own state's providers. */
+  initialState?: string;
+}
+
+// Human labels for the state picker shown when landing state is unknown.
+const STATE_LABELS: Record<string, string> = {
+  CA: 'California',
+  TX: 'Texas',
+};
+function stateLabel(code: string): string {
+  return STATE_LABELS[code] || code;
+}
+// Client mirror of lib/utilities normalizeState (kept tiny; server is source of truth).
+function normalizeStateClient(input?: string | null): string {
+  if (!input) return '';
+  const raw = input.trim();
+  if (!raw) return '';
+  const map: Record<string, string> = { california: 'CA', ca: 'CA', texas: 'TX', tx: 'TX' };
+  return map[raw.toLowerCase()] || raw.slice(0, 2).toUpperCase();
 }
 
 // ─── Helper functions ─────────────────────────────────────────────────────────
@@ -156,7 +177,7 @@ function calcPayback(monthlyBill: number, systemCost: number): number {
 const VALID_BILLS = ['lt_100', '100_200', '200_300', 'gt_300'] as const;
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function EstimateFlow({ campaignCode, initialBill, tiers, locale = 'en' }: EstimateFlowProps) {
+export default function EstimateFlow({ campaignCode, initialBill, tiers, locale = 'en', initialState }: EstimateFlowProps) {
   const t = getDict(locale);
   // Locale-aware option arrays (values stay constant; only labels translate).
   const BILL_OPTIONS_L: { value: MonthlyBill; label: string; sub: string }[] = [
@@ -199,7 +220,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
     phone: '',
     street_address: '',
     city: '',
-    state: '',
+    state: normalizeStateClient(initialState),
     zip: '',
     notes: '',
     consented: false,
@@ -256,24 +277,53 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
     return () => { cancelled = true; };
   }, []);
 
-  // Utility dropdown options (DB-backed, admin-editable)
+  // Utility dropdown options (DB-backed, admin-editable), scoped to the lead's state.
   const [utilityOptions, setUtilityOptions] = useState<{ id: number; name: string }[]>([]);
+  const [utilitiesLoading, setUtilitiesLoading] = useState(false);
+  // States VoltSol has utility lists for (drives the picker when state unknown).
+  const [supportedStates, setSupportedStates] = useState<string[]>([]);
+  // The state the utility list is currently scoped to. Seeded from the landing
+  // market when known; otherwise the lead picks it on the utility step.
+  const [utilityState, setUtilityState] = useState<string>(normalizeStateClient(initialState));
   // When the user selects "Other / Not sure", reveal a free-text field
   const [utilityOther, setUtilityOther] = useState('');
   const isOtherUtility = /^other\b|not sure/i.test(form.utility);
 
+  // Fetch the supported-states list once (so we can offer a picker if needed).
   useEffect(() => {
     let cancelled = false;
     fetch('/api/utilities')
-      .then(r => (r.ok ? r.json() : []))
-      .then((rows: { id: number; name: string }[]) => {
-        if (!cancelled && Array.isArray(rows)) setUtilityOptions(rows);
+      .then(r => (r.ok ? r.json() : null))
+      .then((data: { states?: string[] } | null) => {
+        if (!cancelled && data && Array.isArray(data.states)) setSupportedStates(data.states);
       })
       .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
+
+  // Fetch the utility list whenever the scoped state changes (and is known).
+  useEffect(() => {
+    if (!utilityState) { setUtilityOptions([]); return; }
+    let cancelled = false;
+    setUtilitiesLoading(true);
+    fetch(`/api/utilities?state=${encodeURIComponent(utilityState)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .then((data: { utilities?: { id: number; name: string }[] } | null) => {
+        if (cancelled) return;
+        setUtilityOptions(data && Array.isArray(data.utilities) ? data.utilities : []);
+      })
+      .catch(() => { if (!cancelled) setUtilityOptions([]); })
+      .finally(() => { if (!cancelled) setUtilitiesLoading(false); });
+    return () => { cancelled = true; };
+  }, [utilityState]);
+
+  // When the lead picks a state on the utility step, scope the list AND seed the
+  // address step's state field so we don't ask twice.
+  function handleUtilityStatePick(code: string) {
+    setUtilityState(code);
+    setForm(prev => ({ ...prev, state: code, utility: '' }));
+    setUtilityOther('');
+  }
 
   const stepRef = useRef<HTMLDivElement>(null);
 
@@ -352,7 +402,10 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
     if (s === 1 && !form.owns_home) errs.owns_home = t.err_select;
     if (s === 2 && !form.roof_shade) errs.roof_shade = t.err_select;
     if (s === 3 && !form.timeline) errs.timeline = t.err_when;
-    if (s === 4 && !form.utility.trim()) errs.utility = t.err_utility;
+    if (s === 4) {
+      if (!utilityState) errs.utility = t.err_utility_state;
+      else if (!form.utility.trim()) errs.utility = t.err_utility;
+    }
     if (s === 6) {
       if (!form.first_name.trim()) errs.first_name = t.err_first;
       if (!form.last_name.trim()) errs.last_name = t.err_last;
@@ -746,17 +799,47 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
         </div>
       )}
 
-      {/* ─── Step 4: Utility ─── */}
+      {/* ─── Step 4: Utility (state-segmented) ─── */}
       {step === 4 && (
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">{t.q_utility}</h2>
           <p className="text-blue-300 text-sm mb-6">{t.q_utility_sub}</p>
+
+          {/* If we don't yet know the lead's state, ask it first so they only
+              ever see their own state's providers. */}
+          {!utilityState ? (
+            <div>
+              <p className="text-white text-sm mb-3 font-medium">{t.q_utility_state}</p>
+              <div className="grid grid-cols-1 gap-3">
+                {supportedStates.map(code => (
+                  <button
+                    key={code}
+                    type="button"
+                    onClick={() => handleUtilityStatePick(code)}
+                    className="w-full text-left bg-navy-700 border border-blue-900 rounded-xl px-4 py-4 text-white hover:border-gold hover:bg-navy-600 transition font-medium"
+                  >
+                    {stateLabel(code)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
           <div className="relative">
+            {supportedStates.length > 1 && (
+              <button
+                type="button"
+                onClick={() => handleUtilityStatePick('')}
+                className="mb-3 text-xs text-blue-300 hover:text-gold transition"
+              >
+                {stateLabel(utilityState)} ▾ · {t.utility_change_state}
+              </button>
+            )}
             <select
               id="utility"
               name="utility"
               value={form.utility}
               onChange={handleChange}
+              disabled={utilitiesLoading}
               className={cn(
                 'w-full appearance-none bg-navy-700 border rounded-xl px-4 py-4 pr-10 text-base focus:outline-none focus:ring-2 focus:ring-gold transition',
                 form.utility ? 'text-white' : 'text-blue-300/40',
@@ -764,7 +847,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
               )}
             >
               <option value="" disabled>
-                {t.utility_placeholder}
+                {utilitiesLoading ? t.utility_loading : t.utility_placeholder}
               </option>
               {utilityOptions.map(u => (
                 <option key={u.id} value={u.name} className="text-navy bg-white">
@@ -776,6 +859,7 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
               ▾
             </span>
           </div>
+          )}
           {isOtherUtility && (
             <input
               type="text"

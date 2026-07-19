@@ -205,10 +205,10 @@ const SCALAR_DEFAULTS: Record<string, string> = {
   proof_headline_pre: 'Real homes. ',
   proof_headline_gold: 'Real numbers.',
 
-  // Section 6: Meet Hugo
-  about_headline_pre: 'Meet ',
-  about_headline_gold: 'The Owner',
-  about_body: 'VoltSol’s owner designs and installs every system personally. When you call, he picks up.',
+  // Section 6: About VoltSol
+  about_headline_pre: 'About ',
+  about_headline_gold: 'VoltSol',
+  about_body: 'VoltSol designs every system around your home and your bill — shopping the best equipment and pricing so you, the homeowner, keep the most savings. Real solar, installed right, backed by people who pick up the phone. Founded by Hugo Guardado, a CSLB-licensed installer who stands behind every job personally.',
   about_equipment_link: 'See how the technology works',
 
   // Section 7: FAQ + Bottom CTA
@@ -240,7 +240,7 @@ const ARRAY_DEFAULTS = {
     { quote: 'SunPower quoted $38,000. VoltSol did the whole thing for under ten grand.', name: 'David R.', city: 'Verified Customer' },
     { quote: 'First summer with no AC bill. First winter with no gas bill.', name: 'Carmen L.', city: 'Verified Customer' },
   ] as Testimonial[],
-  about_credentials: ['CSLB Licensed', 'Local & Owner-Operated', 'Every Install Done Personally', 'Answers His Phone'] as string[],
+  about_credentials: ['CSLB Licensed', 'Local & Owner-Operated', 'Every Install Done Right', 'Real People, Real Answers'] as string[],
   footer_links: [
     { label: 'How It Works', href: '/#how' },
     { label: 'Technology', href: '/technology' },

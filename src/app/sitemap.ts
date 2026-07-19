@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { ALL_MARKET_PARAMS, NORCAL_SOLAR_MARKETS, marketPageHref } from "@/lib/market-data";
+import { ALL_MARKET_PARAMS, MARKETS_BY_STATE, marketPageHref } from "@/lib/market-data";
 import { LEARN_ARTICLES } from "@/lib/learn-content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -60,20 +60,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
-    // State hub (California)
-    {
-      url: `${baseUrl}/market/solar/california`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    // County hubs
-    ...NORCAL_SOLAR_MARKETS.map(region => ({
-      url: `${baseUrl}/market/solar/california/${region.regionSlug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
+    // State hubs and county hubs (all states)
+    ...Object.entries(MARKETS_BY_STATE).flatMap(([state, markets]) => [
+      {
+        url: `${baseUrl}/market/solar/${state}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.9,
+      },
+      ...markets.map(region => ({
+        url: `${baseUrl}/market/solar/${state}/${region.regionSlug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      })),
+    ]),
   ];
 
   // City pages (existing)

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import {
   ALL_MARKET_PARAMS,
-  NORCAL_SOLAR_MARKETS,
+  MARKETS_BY_STATE,
   findMarket,
   localizeRegion,
   localizeCity,
@@ -14,6 +14,7 @@ import {
 import { getLocale } from '@/lib/locale';
 import { getMarketDict } from '@/lib/market-i18n';
 import { CalendarCheck, Check, Shield, Phone } from 'lucide-react';
+import TaxDisclaimer from '@/components/market/TaxDisclaimer';
 
 // Build all static paths from the market config — no DB needed at build time.
 export function generateStaticParams() {
@@ -29,11 +30,12 @@ export function generateMetadata({ params }: PageProps): Metadata {
   if (!market) return {};
 
   const { city: cityData, region: regionData } = market;
-  const title = `Home Solar + Battery Storage in ${cityData.city}, CA`;
+  const stateAbbr = params.state === 'california' ? 'CA' : params.state === 'texas' ? 'TX' : '';
+  const title = `Home Solar + Battery Storage in ${cityData.city}, ${stateAbbr}`;
   const description =
-    `VoltSol installs residential solar + EG4 battery storage in ` +
-    `${cityData.city} from $8,700 — power through blackouts, beat NEM 3.0 export cuts, and keep the ` +
-    `power you make instead of renting it back. ${cityData.city} is served by ${cityData.utility}. Free quote.`;
+    `VoltSol Energy installs residential solar + EG4 battery storage in ` +
+    `${cityData.city} from $8,700 — power through blackouts and keep the ` +
+    `power you make. ${cityData.city} is served by ${cityData.utility}. Free quote.`;
 
   return {
     title,
@@ -58,6 +60,8 @@ export default function MarketCityPage({ params }: PageProps) {
   const cityData = localizeCity(market.city, locale);
   const regionData = localizeRegion(market.region, locale);
   const slug = marketSlug(params);
+  const markets = MARKETS_BY_STATE[params.state] || [];
+  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
 
   // Campaign code for attribution
   const campaignCode = `market-${cityData.citySlug}`;
@@ -68,7 +72,7 @@ export default function MarketCityPage({ params }: PageProps) {
     .slice(0, 4);
 
   // Other counties for cross-mesh linking
-  const otherRegions = NORCAL_SOLAR_MARKETS.filter(r => r.regionSlug !== regionData.regionSlug).slice(0, 3);
+  const otherRegions = markets.filter(r => r.regionSlug !== regionData.regionSlug).slice(0, 3);
 
   // JSON-LD structured data
   const jsonLd = {
@@ -77,7 +81,7 @@ export default function MarketCityPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Residential solar and EG4 battery storage installation serving ${cityData.city}, ${regionData.county}, California — make your own power, store it, and use it.`,
+        description: `Residential solar and EG4 battery storage installation serving ${cityData.city}, ${regionData.county}, ${stateName} — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         telephone: process.env.NEXT_PUBLIC_VOLTSOL_PHONE || undefined,
         areaServed: {
@@ -96,15 +100,15 @@ export default function MarketCityPage({ params }: PageProps) {
         serviceType: 'Residential Solar and Battery Storage Installation',
         provider: { '@type': 'LocalBusiness', name: 'VoltSol Energy' },
         areaServed: { '@type': 'City', name: cityData.city },
-        description: `VoltSol Energy installs residential solar with EG4 battery storage in ${cityData.city}, California — blackout-ready power self-supplied from your own system, built for NEM 3.0.`,
+        description: `VoltSol Energy installs residential solar with EG4 battery storage in ${cityData.city}, ${stateName} — blackout-ready power self-supplied from your own system.`,
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://voltsolenergy.com' },
           { '@type': 'ListItem', position: 2, name: 'Solar Markets', item: 'https://voltsolenergy.com/market' },
-          { '@type': 'ListItem', position: 3, name: 'California', item: 'https://voltsolenergy.com/market/solar/california' },
-          { '@type': 'ListItem', position: 4, name: regionData.county, item: `https://voltsolenergy.com/market/solar/california/${regionData.regionSlug}` },
+          { '@type': 'ListItem', position: 3, name: stateName, item: `https://voltsolenergy.com/market/solar/${params.state}` },
+          { '@type': 'ListItem', position: 4, name: regionData.county, item: `https://voltsolenergy.com/market/solar/${params.state}/${regionData.regionSlug}` },
           { '@type': 'ListItem', position: 5, name: cityData.city, item: `https://voltsolenergy.com/market/${slug}` },
         ],
       },
@@ -137,7 +141,7 @@ export default function MarketCityPage({ params }: PageProps) {
             <li aria-hidden="true">/</li>
             <li><Link href="/market" className="hover:text-blue-600">{t.solarMarkets}</Link></li>
             <li aria-hidden="true">/</li>
-            <li><span>California</span></li>
+            <li><span>{stateName}</span></li>
             <li aria-hidden="true">/</li>
             <li><span>{regionData.county}</span></li>
             <li aria-hidden="true">/</li>
@@ -300,6 +304,9 @@ export default function MarketCityPage({ params }: PageProps) {
                     </div>
                   ))}
                 </div>
+                <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
+                  <TaxDisclaimer />
+                </div>
               </section>
 
               {/* How the process works */}
@@ -337,7 +344,7 @@ export default function MarketCityPage({ params }: PageProps) {
                     {nearbyCities.map(c => (
                       <li key={c.citySlug}>
                         <Link
-                          href={marketPageHref({ vertical: 'solar', state: 'california', region: regionData.regionSlug, city: c.citySlug })}
+                          href={marketPageHref({ vertical: 'solar', state: params.state, region: regionData.regionSlug, city: c.citySlug })}
                           className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm text-blue-700 hover:bg-blue-100"
                         >
                           {t.solarInCity(c.city)}
@@ -358,7 +365,7 @@ export default function MarketCityPage({ params }: PageProps) {
                     {otherRegions.map(r => (
                       <li key={r.regionSlug}>
                         <Link
-                          href={marketPageHref({ vertical: 'solar', state: 'california', region: r.regionSlug, city: r.cities[0].citySlug })}
+                          href={marketPageHref({ vertical: 'solar', state: params.state, region: r.regionSlug, city: r.cities[0].citySlug })}
                           className="text-sm text-blue-600 hover:underline"
                         >
                           {r.county}
@@ -400,7 +407,7 @@ export default function MarketCityPage({ params }: PageProps) {
                   )}
                   <li className="flex items-center gap-2 text-sm text-gray-700">
                     <Check className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                    {t.localCaliforniaTeam}
+                    {params.state === 'california' ? t.localCaliforniaTeam : 'VoltSol Energy team'}
                   </li>
                 </ul>
 

@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { NORCAL_SOLAR_MARKETS, MARKETS_BY_STATE, findRegion, localizeRegion, marketPageHref } from '@/lib/market-data';
+import { MARKETS_BY_STATE, findRegion, localizeRegion, marketPageHref } from '@/lib/market-data';
 import { getLocale } from '@/lib/locale';
 import { getMarketDict } from '@/lib/market-i18n';
 import { MapPin, CalendarCheck } from 'lucide-react';
+import TaxDisclaimer from '@/components/market/TaxDisclaimer';
 
 // Generate static params for all county hubs
 export function generateStaticParams() {
@@ -26,11 +27,12 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const regionData = findRegion(params.vertical, params.state, params.region);
   if (!regionData) return {};
 
-  const title = `Solar + Battery Storage in ${regionData.county}, CA`;
+  const stateAbbr = params.state === 'california' ? 'CA' : params.state === 'texas' ? 'TX' : '';
+  const title = `Solar + Battery Storage in ${regionData.county}, ${stateAbbr}`;
   const description =
     `Residential solar + EG4 battery storage across ${regionData.county}. ` +
     `VoltSol gives ${regionData.cities.length} cities energy independence — systems from $8,700, ` +
-    `blackout-ready, and built for NEM 3.0. Free quote.`;
+    `blackout-ready. Free quote.`;
 
   return {
     title,
@@ -41,7 +43,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
       type: 'website',
     },
     alternates: {
-      canonical: `/market/solar/california/${regionData.regionSlug}`,
+      canonical: `/market/solar/${params.state}/${regionData.regionSlug}`,
     },
   };
 }
@@ -53,9 +55,11 @@ export default function RegionPage({ params }: PageProps) {
   const locale = getLocale();
   const t = getMarketDict(locale);
   const regionData = localizeRegion(rawRegionData, locale);
+  const markets = MARKETS_BY_STATE[params.state] || [];
+  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
 
   // Other counties for cross-linking
-  const otherCounties = NORCAL_SOLAR_MARKETS.filter(r => r.regionSlug !== regionData.regionSlug);
+  const otherCounties = markets.filter(r => r.regionSlug !== regionData.regionSlug);
 
   // Determine primary utility serving this county
   const utilities = Array.from(new Set(regionData.cities.map(c => c.utility)));
@@ -71,7 +75,7 @@ export default function RegionPage({ params }: PageProps) {
       {
         '@type': 'LocalBusiness',
         name: 'VoltSol Energy',
-        description: `Residential solar and EG4 battery storage installation serving ${regionData.county}, California — make your own power, store it, and use it.`,
+        description: `Residential solar and EG4 battery storage installation serving ${regionData.county}, ${stateName} — make your own power, store it, and use it.`,
         url: 'https://voltsolenergy.com',
         areaServed: {
           '@type': 'AdministrativeArea',
@@ -84,8 +88,8 @@ export default function RegionPage({ params }: PageProps) {
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://voltsolenergy.com' },
           { '@type': 'ListItem', position: 2, name: 'Solar Markets', item: 'https://voltsolenergy.com/market' },
-          { '@type': 'ListItem', position: 3, name: 'California', item: 'https://voltsolenergy.com/market/solar/california' },
-          { '@type': 'ListItem', position: 4, name: regionData.county, item: `https://voltsolenergy.com/market/solar/california/${regionData.regionSlug}` },
+          { '@type': 'ListItem', position: 3, name: stateName, item: `https://voltsolenergy.com/market/solar/${params.state}` },
+          { '@type': 'ListItem', position: 4, name: regionData.county, item: `https://voltsolenergy.com/market/solar/${params.state}/${regionData.regionSlug}` },
         ],
       },
     ],
@@ -106,7 +110,7 @@ export default function RegionPage({ params }: PageProps) {
             <li aria-hidden="true">/</li>
             <li><Link href="/market" className="hover:text-blue-600">{t.solarMarkets}</Link></li>
             <li aria-hidden="true">/</li>
-            <li><Link href="/market/solar/california" className="hover:text-blue-600">California</Link></li>
+            <li><Link href={`/market/solar/${params.state}`} className="hover:text-blue-600">{stateName}</Link></li>
             <li aria-hidden="true">/</li>
             <li className="font-medium text-gray-800">{regionData.county}</li>
           </ol>
@@ -116,7 +120,7 @@ export default function RegionPage({ params }: PageProps) {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${regionData.county}, California`}
+            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${regionData.county}, ${stateName}`}
             fill
             priority
             sizes="100vw"
@@ -177,6 +181,9 @@ export default function RegionPage({ params }: PageProps) {
                       {regionData.countyData.countyContext}
                     </p>
                   </div>
+                  <div className="rounded-lg border border-amber-200 bg-amber-50 p-5">
+                    <TaxDisclaimer />
+                  </div>
                 </div>
               </section>
 
@@ -203,7 +210,7 @@ export default function RegionPage({ params }: PageProps) {
                       key={city.citySlug}
                       href={marketPageHref({
                         vertical: 'solar',
-                        state: 'california',
+                        state: params.state,
                         region: regionData.regionSlug,
                         city: city.citySlug,
                       })}
@@ -229,7 +236,7 @@ export default function RegionPage({ params }: PageProps) {
                     {otherCounties.map(county => (
                       <Link
                         key={county.regionSlug}
-                        href={`/market/solar/california/${county.regionSlug}`}
+                        href={`/market/solar/${params.state}/${county.regionSlug}`}
                         className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm text-blue-700 hover:bg-blue-100"
                       >
                         {county.county}
@@ -238,7 +245,7 @@ export default function RegionPage({ params }: PageProps) {
                   </div>
                   <div className="mt-3">
                     <Link
-                      href="/market/solar/california"
+                      href={`/market/solar/${params.state}`}
                       className="text-sm text-blue-600 hover:underline"
                     >
                       {t.backToMarkets}

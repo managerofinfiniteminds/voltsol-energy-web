@@ -8373,10 +8373,12 @@ export interface MarketParams {
   city: string;
 }
 
+import { TEXAS_SOLAR_MARKETS } from './market-data-texas';
+
 // State-to-markets map (extensible for future states)
 export const MARKETS_BY_STATE: Record<string, MarketRegion[]> = {
   california: NORCAL_SOLAR_MARKETS,
-  // texas: TEXAS_SOLAR_MARKETS,  // future addition
+  texas: TEXAS_SOLAR_MARKETS,
 };
 
 export const ALL_MARKET_PARAMS: MarketParams[] = Object.entries(MARKETS_BY_STATE).flatMap(
@@ -8431,8 +8433,9 @@ export function findRegion(
 // County/city prose (utility notes, permit notes, climate descriptions, county
 // context, local notes, FAQ) is hand-varied per entry for SEO — not templated —
 // so it needs real per-item translation rather than a shared UI dictionary.
-// See market-data-es.ts (translated 2026-07-18) and market-i18n.ts (UI chrome).
+// See market-data-es.ts (CA, translated 2026-07-18), market-data-texas-es.ts (TX, 2026-07-18), and market-i18n.ts (UI chrome).
 import { MARKET_COUNTY_CONTENT_ES, MARKET_CITY_CONTENT_ES } from './market-data-es';
+import { MARKET_COUNTY_CONTENT_ES as TX_COUNTY_ES, MARKET_CITY_CONTENT_ES as TX_CITY_ES } from './market-data-texas-es';
 import type { Locale } from './locale';
 
 /**
@@ -8440,11 +8443,11 @@ import type { Locale } from './locale';
  * climateZone.description, countyContext) swapped to Spanish when locale is 'es'
  * and a translation exists. Falls back to English content if no translation is
  * found for that slug (keeps pages functional for any newly-added county before
- * a translation pass runs).
+ * a translation pass runs). Checks both CA and TX ES maps.
  */
 export function localizeRegion(region: MarketRegion, locale: Locale): MarketRegion {
   if (locale !== 'es') return region;
-  const es = MARKET_COUNTY_CONTENT_ES[region.regionSlug];
+  const es = MARKET_COUNTY_CONTENT_ES[region.regionSlug] || TX_COUNTY_ES[region.regionSlug];
   if (!es) return region;
   return {
     ...region,
@@ -8461,10 +8464,11 @@ export function localizeRegion(region: MarketRegion, locale: Locale): MarketRegi
 /**
  * Return city data with cityProfile (localNote, faq) swapped to Spanish when
  * locale is 'es' and a translation exists. Falls back to English if missing.
+ * Checks both CA and TX ES maps.
  */
 export function localizeCity(city: MarketCity, locale: Locale): MarketCity {
   if (locale !== 'es') return city;
-  const es = MARKET_CITY_CONTENT_ES[city.citySlug];
+  const es = MARKET_CITY_CONTENT_ES[city.citySlug] || TX_CITY_ES[city.citySlug];
   if (!es) return city;
   return {
     ...city,

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { NORCAL_SOLAR_MARKETS, MARKETS_BY_STATE, marketPageHref } from '@/lib/market-data';
+import { MARKETS_BY_STATE, marketPageHref } from '@/lib/market-data';
 import { getLocale } from '@/lib/locale';
 import { getMarketDict } from '@/lib/market-i18n';
 import { MapPin, Zap, Shield, DollarSign } from 'lucide-react';
@@ -22,11 +22,11 @@ interface PageProps {
 export function generateMetadata({ params }: PageProps): Metadata {
   if (params.vertical !== 'solar' || !MARKETS_BY_STATE[params.state]) return {};
 
-  const title = 'Residential Solar & Battery Storage in California';
+  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
+  const title = `Residential Solar & Battery Storage in ${stateName}`;
   const description =
-    'Residential solar + EG4 battery storage across California. Systems from $8,700. ' +
-    'Make your own power, store it, and run your home through blackouts — self-powered and blackout-ready, ' +
-    'and built for NEM 3.0. Free quote.';
+    `Residential solar + EG4 battery storage across ${stateName}. Systems from $8,700. ` +
+    'Make your own power, store it, and run your home through blackouts — self-powered and blackout-ready. Free quote.';
 
   return {
     title,
@@ -37,36 +37,10 @@ export function generateMetadata({ params }: PageProps): Metadata {
       type: 'website',
     },
     alternates: {
-      canonical: '/market/solar/california',
+      canonical: `/market/solar/${params.state}`,
     },
   };
 }
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'LocalBusiness',
-      name: 'VoltSol Energy',
-      description: 'Residential solar and EG4 battery storage installation serving California — make your own power, store it, and use it.',
-      url: 'https://voltsolenergy.com',
-      areaServed: {
-        '@type': 'State',
-        name: 'California',
-      },
-      serviceType: 'Residential Solar and Battery Storage Installation',
-      priceRange: '$8,700–$16,000',
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://voltsolenergy.com' },
-        { '@type': 'ListItem', position: 2, name: 'Solar Markets', item: 'https://voltsolenergy.com/market' },
-        { '@type': 'ListItem', position: 3, name: 'California', item: 'https://voltsolenergy.com/market/solar/california' },
-      ],
-    },
-  ],
-};
 
 export default function StatePage({ params }: PageProps) {
   // Validate params
@@ -76,9 +50,37 @@ export default function StatePage({ params }: PageProps) {
 
   const locale = getLocale();
   const t = getMarketDict(locale);
+  const markets = MARKETS_BY_STATE[params.state];
+  const stateName = params.state === 'california' ? 'California' : params.state === 'texas' ? 'Texas' : '';
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        name: 'VoltSol Energy',
+        description: `Residential solar and EG4 battery storage installation serving ${stateName} — make your own power, store it, and use it.`,
+        url: 'https://voltsolenergy.com',
+        areaServed: {
+          '@type': 'State',
+          name: stateName,
+        },
+        serviceType: 'Residential Solar and Battery Storage Installation',
+        priceRange: '$8,700–$16,000',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://voltsolenergy.com' },
+          { '@type': 'ListItem', position: 2, name: 'Solar Markets', item: 'https://voltsolenergy.com/market' },
+          { '@type': 'ListItem', position: 3, name: stateName, item: `https://voltsolenergy.com/market/solar/${params.state}` },
+        ],
+      },
+    ],
+  };
 
   // All cities for quick reference
-  const allCities = NORCAL_SOLAR_MARKETS.flatMap(region =>
+  const allCities = markets.flatMap(region =>
     region.cities.map(city => ({
       ...city,
       countyName: region.county,
@@ -101,7 +103,7 @@ export default function StatePage({ params }: PageProps) {
             <li aria-hidden="true">/</li>
             <li><Link href="/market" className="hover:text-blue-600">{t.solarMarkets}</Link></li>
             <li aria-hidden="true">/</li>
-            <li className="font-medium text-gray-800">California</li>
+            <li className="font-medium text-gray-800">{stateName}</li>
           </ol>
         </nav>
 
@@ -109,7 +111,7 @@ export default function StatePage({ params }: PageProps) {
         <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-[420px]">
           <Image
             src="/images/hero-blackout-glow.jpg"
-            alt="Solar-powered home with battery backup keeping the lights on during a blackout in California"
+            alt={`Solar-powered home with battery backup keeping the lights on during a blackout in ${stateName}`}
             fill
             priority
             sizes="100vw"
@@ -121,7 +123,7 @@ export default function StatePage({ params }: PageProps) {
         <header className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 px-4 py-16 text-white">
           <div className="mx-auto max-w-7xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wide text-blue-200">
-              California
+              {stateName}
             </p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               {t.stateH1}
@@ -171,10 +173,10 @@ export default function StatePage({ params }: PageProps) {
               {t.countiesHeading}
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {NORCAL_SOLAR_MARKETS.map(region => (
+              {markets.map(region => (
                 <Link
                   key={region.regionSlug}
-                  href={`/market/solar/california/${region.regionSlug}`}
+                  href={`/market/solar/${params.state}/${region.regionSlug}`}
                   className="group flex flex-col gap-3 rounded-lg border border-blue-200 bg-white p-6 shadow-sm transition hover:border-blue-400 hover:shadow-md"
                 >
                   <div className="flex items-center gap-2">
@@ -207,7 +209,7 @@ export default function StatePage({ params }: PageProps) {
                     key={`${city.regionSlug}-${city.citySlug}`}
                     href={marketPageHref({
                       vertical: 'solar',
-                      state: 'california',
+                      state: params.state,
                       region: city.regionSlug,
                       city: city.citySlug,
                     })}

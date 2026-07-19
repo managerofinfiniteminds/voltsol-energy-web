@@ -16,6 +16,7 @@ export function Header({ ctaText, locale = "en" }: { ctaText?: string; locale?: 
   const navLinks = [
     { label: t.nav_how, href: "/technology" },
     { label: t.nav_pricing, href: "/#pricing" },
+    { label: t.nav_serve, href: "/market" },
     { label: t.nav_about, href: "/#about" },
     { label: t.nav_partners, href: "/partners" },
     { label: t.nav_documents, href: "/documents" },

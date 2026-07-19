@@ -244,6 +244,7 @@ const ARRAY_DEFAULTS = {
   footer_links: [
     { label: 'How It Works', href: '/#how' },
     { label: 'Technology', href: '/technology' },
+    { label: 'Where We Serve', href: '/market' },
     { label: 'Learn', href: '/learn' },
     { label: 'Partners', href: '/partners' },
     { label: 'FAQ', href: '/#faq' },

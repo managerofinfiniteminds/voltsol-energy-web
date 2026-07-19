@@ -58,10 +58,10 @@ function buildLocalBusinessJsonLd(
     telephone: "+1-530-228-1091",
     image: "https://voltsolenergy.com/og-image.png",
     priceRange: "$8,700-$16,000",
-    areaServed: {
-      "@type": "State",
-      name: "California",
-    },
+    areaServed: [
+      { "@type": "State", name: "California" },
+      { "@type": "State", name: "Texas" },
+    ],
     address: {
       "@type": "PostalAddress",
       addressRegion: "CA",

@@ -1321,7 +1321,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
         ],
       },
       {
-        heading: "What Was the 30% Federal Solar Tax Credit?",
+        heading: "What Was the 30% Federal Solar Tax Credit? (Ended 2026)",
         paragraphs: [
           "Section 25D was a non-refundable federal income tax credit equal to 30 percent of the total installed cost of a residential solar system -- panels, inverters, batteries, installation labor, and permits. A $10,000 system generated a $3,000 credit that directly reduced your federal tax liability dollar-for-dollar.",
           "The credit was valuable because it was not a deduction -- it reduced actual taxes owed, not just taxable income. Unused credit carried forward to future years. It covered grid-tie, self-consumption, and hybrid systems, and was a major reason solar payback periods were often quoted at 2 to 3 years.",
@@ -1372,7 +1372,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     faq: [
       {
         q: "Can I still claim the 30% federal solar tax credit in 2026?",
-        a: "No. The Section 25D residential solar tax credit ended for systems placed in service after December 31, 2025. If your system is installed and operational in 2026, the federal ITC does not apply. Verify your specific situation with a licensed tax professional.",
+        a: "No. The Section 25D residential solar tax credit ended for systems with qualifying expenditures made after December 31, 2025. If your system is installed and operational in 2026, the federal ITC does not apply. Verify your specific situation with a licensed tax professional.",
       },
       {
         q: "Does California still offer solar incentives?",

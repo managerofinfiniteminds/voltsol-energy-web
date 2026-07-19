@@ -490,6 +490,22 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
       });
       track('flow_step_complete', { step_index: 6, answer: { contact_captured: true } });
 
+      // Google Ads conversion tracking — fires on every successful lead submit.
+      // Enhanced conversions match on email/phone so Google can optimize
+      // campaign bidding against real leads, not just clicks. Conversion
+      // action ID: AW-18333275322/O0xpCI2hSt1cELqp_qVE (see CREDENTIALS.md).
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('set', 'user_data', {
+          email: form.email.trim().toLowerCase(),
+          phone_number: form.phone.trim(),
+        });
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18333275322/O0xpCI2hSt1cELqp_qVE',
+          value: 1.0,
+          currency: 'USD',
+        });
+      }
+
       setStep(7); // Move to confirmation — VoltSol follows up directly
     } catch {
       setServerError(t.err_network);

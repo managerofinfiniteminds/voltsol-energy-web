@@ -73,7 +73,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  const res = NextResponse.next();
+  // Expose the current pathname to Server Components (RSC can't read the URL
+  // directly). Used to suppress California-specific CSLB/schema on TX routes.
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set('x-pathname', pathname);
+
+  const res = NextResponse.next({ request: { headers: requestHeaders } });
   if (langToSet) {
     res.cookies.set('lang', langToSet, {
       path: '/',

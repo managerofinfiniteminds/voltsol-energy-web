@@ -100,7 +100,7 @@ export function Footer({
 
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-blue-900/40 pt-6 text-center text-xs text-slate-500 sm:flex-row sm:justify-between">
           <span>&copy; {copyrightYear} <span className="font-semibold"><span className="text-white">Volt</span><span className="text-gold">Sol</span><span className="text-white"> Energy</span></span>, {copyrightRights}</span>
-          <span>{legalLine}</span>
+          {legalLine ? <span>{legalLine}</span> : null}
         </div>
       </Container>
     </footer>

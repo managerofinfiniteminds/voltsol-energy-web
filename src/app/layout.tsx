@@ -11,6 +11,7 @@ const GOOGLE_ADS_ID = "AW-18333275322";
 import { SiteHeader, SiteFooter, SiteStickyCTA, SiteChatWidget } from "@/components/ui/SiteChrome";
 import { getHomeConfig } from "@/lib/site-config";
 import { getLocale } from "@/lib/locale";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const siteUrl = "https://voltsolenergy.com";
@@ -62,7 +63,10 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationJsonLd = {
+// California Organization schema: CSLB license + CA area (used everywhere
+// EXCEPT Texas routes, where VoltSol is a lead-referral broker, not a
+// CSLB-licensed installer — asserting the CA license there would be misleading).
+const organizationJsonLdCA = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "VoltSol Energy",
@@ -88,6 +92,23 @@ const organizationJsonLd = {
   },
 };
 
+// Texas-route Organization schema: no CSLB claim, broker/referral framing.
+const organizationJsonLdTX = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "VoltSol Energy",
+  url: siteUrl,
+  logo: `${siteUrl}/images/voltsol-mark.svg`,
+  email: "info@voltsolenergy.com",
+  telephone: "+1-530-228-1091",
+  description: "Connects Texas homeowners with licensed local solar and battery storage installers.",
+  areaServed: {
+    "@type": "State",
+    name: "Texas",
+  },
+  serviceType: "Solar Installer Referral Service",
+};
+
 export default async function RootLayout({
   children,
 }: {
@@ -96,6 +117,11 @@ export default async function RootLayout({
   const locale = getLocale();
   const cfg = await getHomeConfig(locale);
   const ctaText = cfg.cta_button_text;
+  // TX routes: VoltSol is a broker, not a CSLB installer — swap schema + hide
+  // the CA license line in the footer.
+  const pathname = headers().get("x-pathname") || "";
+  const isTexasRoute = pathname.startsWith("/market/solar/texas");
+  const organizationJsonLd = isTexasRoute ? organizationJsonLdTX : organizationJsonLdCA;
   return (
     <html
       lang={locale}
@@ -141,7 +167,7 @@ export default async function RootLayout({
           phone={cfg.contact_phone}
           copyrightYear={cfg.footer_copyright_year}
           copyrightRights={cfg.footer_copyright_rights}
-          legalLine={cfg.footer_legal_line}
+          legalLine={isTexasRoute ? "" : cfg.footer_legal_line}
           links={cfg.footer_links}
         />
         <SiteStickyCTA ctaText={ctaText} locale={locale} />

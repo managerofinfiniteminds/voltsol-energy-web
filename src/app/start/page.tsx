@@ -22,8 +22,12 @@ export default async function StartPage({ searchParams }: StartPageProps) {
   const initialBill = searchParams.bill;
   const initialState = searchParams.state;
   // Texas market campaigns route to a lead-broker funnel (no VoltSol price claim).
-  const isTexasLead = /^(county-|market-)/.test(campaignCode ?? '') &&
-    /(harris|dallas|tarrant|bexar|travis|collin|denton|fort-bend|hidalgo|el-paso|montgomery|williamson)/.test(campaignCode ?? '');
+  // Driven by the state param (carried from every TX market page CTA) so it stays
+  // correct as new TX counties are added — with a legacy campaign-code fallback.
+  const stateParam = (initialState ?? '').toLowerCase();
+  const isTexasLead = stateParam === 'texas' || stateParam === 'tx' ||
+    (/^(county-|market-)/.test(campaignCode ?? '') &&
+      /(harris|dallas|tarrant|bexar|travis|collin|denton|fort-bend|hidalgo|el-paso|montgomery|williamson)/.test(campaignCode ?? ''));
   const locale = getLocale();
   const t = getDict(locale);
   const cfg = await getHomeConfig(locale);

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import { Check, Mail, Zap } from 'lucide-react';
+import { Check, Mail, Zap, Phone } from 'lucide-react';
 import { formatPhoneInput, isValidUSPhone, isValidEmail } from '@/lib/form-validation';
 import AddressAutocomplete, { type AddressParts } from './AddressAutocomplete';
 import LeadChat from './LeadChat';
@@ -24,6 +24,7 @@ import type { Locale } from '@/lib/locale';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const TOTAL_STEPS = 8; // Steps 0-7 (0-6 input, 7 confirmation). Calendar/booking removed — VoltSol contacts the lead directly.
+const CONTACT_PHONE = process.env.NEXT_PUBLIC_VOLTSOL_PHONE; // human fast-lane; hidden until a phone is configured
 const UTILITY_ANNUAL_INCREASE = 0.05; // conservative, stated to the user
 const HORIZON_YEARS = 10;              // credible window for apples-to-apples comparison
 const SYSTEM_LIFE_YEARS = 25;          // panels last 25+ yrs (qualitative reference only)
@@ -581,6 +582,11 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
   const payback = calcPayback(monthlyValue, sysHigh);
   const ratePct = Math.round(UTILITY_ANNUAL_INCREASE * 100);
 
+  // Texas leads run a lead-broker funnel — VoltSol is NOT the licensed installer in TX,
+  // so we must NOT show the CA system price / savings guarantee. Show a connect-to-installer
+  // framing instead. Driven by the resolved form.state (from landing state or user pick).
+  const isTexasEstimate = normalizeStateClient(form.state) === 'TX';
+
   // Progress indicator
   const progress = ((step + 1) / TOTAL_STEPS) * 100;
 
@@ -886,7 +892,38 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
       )}
 
       {/* ─── Step 5: Value Reveal ─── */}
-      {step === 5 && (
+      {step === 5 && isTexasEstimate && (
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gold/15 mb-4">
+            <Zap className="h-8 w-8 text-gold" />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">You&apos;re a strong fit for solar</h2>
+          <p className="text-blue-300 text-sm mb-8">
+            Based on your answers, we&apos;ll connect you with a licensed local solar + battery installer serving your area. Texas is a deregulated market, so your exact pricing and solar buyback depend on your retail electric provider and installer &mdash; your match will walk you through the real numbers for your home.
+          </p>
+
+          <div className="rounded-xl border border-gold/30 bg-gold/5 p-6 mb-6 text-left">
+            <p className="text-sm text-blue-100 leading-relaxed">
+              <span className="text-gold font-semibold">What happens next:</span> a licensed installer in your area reviews your details, then reaches out with a free, no-obligation consultation and a quote built around your home, roof, and utility. No pressure, no cost to get matched.
+            </p>
+          </div>
+
+          <p className="text-xs text-blue-300/70 italic mb-6 leading-relaxed">
+            VoltSol connects Texas homeowners with licensed local installers. Pricing, incentives, and solar buyback rates vary by provider and are confirmed by your matched installer &mdash; nothing here is a quote or a guarantee.
+          </p>
+
+          <div className="flex gap-3">
+            <button type="button" onClick={handleBack} className="px-6 py-3 rounded-xl border border-blue-900 text-blue-100 hover:border-blue-400 hover:text-white transition font-medium">
+              {t.back}
+            </button>
+            <button type="button" onClick={handleNext} className="cta-glow flex-1 bg-gold hover:bg-gold-400 text-navy font-bold text-lg py-4 rounded-xl transition-colors">
+              Get Matched Free
+            </button>
+          </div>
+        </div>
+      )}
+
+      {step === 5 && !isTexasEstimate && (
         <div className="text-center">
           <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gold/15 mb-4">
             <Zap className="h-8 w-8 text-gold" />
@@ -958,8 +995,8 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
               utility:
                 (isOtherUtility && utilityOther.trim() ? utilityOther.trim() : form.utility) || undefined,
               city: form.city || undefined,
-              savings: `$${netSavings.toLocaleString()}`,
-              system_name: systemName,
+              savings: isTexasEstimate ? undefined : `$${netSavings.toLocaleString()}`,
+              system_name: isTexasEstimate ? undefined : systemName,
             }}
             onHandoff={() => setChatHandedOff(true)}
           />
@@ -1197,6 +1234,20 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
               </p>
             </div>
           </div>
+
+          {/* Human fast-lane: ready buyers can skip the wait and talk to a person now. */}
+          {CONTACT_PHONE && (
+            <div className="mx-auto mt-4 max-w-md">
+              <a
+                href={`tel:${CONTACT_PHONE.replace(/\D/g, '')}`}
+                onClick={() => track('confirm_call_click', { source: 'estimate_confirm' })}
+                className="flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-gold/10 px-6 py-4 text-base font-bold text-gold transition hover:bg-gold/20"
+              >
+                <Phone className="h-5 w-5" />
+                {locale === 'es' ? `¿Prefieres hablar ahora? Llama al ${CONTACT_PHONE}` : `Rather talk now? Call ${CONTACT_PHONE}`}
+              </a>
+            </div>
+          )}
 
           <a
             href="/"

@@ -5,6 +5,7 @@ import { Send, Check, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { track } from '@/lib/track';
 import type { QuizContext } from '@/lib/chat-agent';
+import type { Locale } from '@/lib/locale';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -18,6 +19,7 @@ interface LeadChatProps {
   onHandoff: () => void; // swap to classic Step-6 form
   hideHeader?: boolean; // host (e.g. ChatWidget) supplies its own header
   fill?: boolean; // fill parent height instead of the fixed estimate-flow height
+  locale?: Locale;
 }
 
 function getOrMakeSessionId(passed: string): string {
@@ -32,7 +34,7 @@ function getOrMakeSessionId(passed: string): string {
   return `s-${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
 }
 
-export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader, fill }: LeadChatProps) {
+export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader, fill, locale }: LeadChatProps) {
   const [sid] = useState(() => getOrMakeSessionId(sessionId));
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
@@ -74,6 +76,7 @@ export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader
             messages: history,
             quiz_context: quizContext,
             website,
+            locale: locale || 'en',
           }),
         });
 
@@ -197,8 +200,8 @@ export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader
             ☀️
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-white leading-tight">Ray — VoltSol</p>
-            <p className="text-[11px] text-blue-300/70 leading-tight">Here to answer questions &amp; help</p>
+            <p className="text-sm font-semibold text-white leading-tight">{locale === 'es' ? 'Leo — VoltSol' : 'Ray — VoltSol'}</p>
+            <p className="text-[11px] text-blue-300/70 leading-tight">{locale === 'es' ? 'Aquí para responder tus preguntas y ayudarte' : 'Here to answer questions & help'}</p>
           </div>
         </div>
       )}

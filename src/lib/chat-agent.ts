@@ -250,40 +250,42 @@ export function nextStep(slots: ChatSlots): NextStep {
 //   mode 'advance'  → normal: acknowledge, then warmly invite the next detail.
 export type SteerMode = 'answer' | 'backoff' | 'standdown' | 'advance';
 
-export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance'): string {
+export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance', locale: 'en' | 'es' = 'en'): string {
   const step = nextStep(slots);
   const fn = slots.first_name ? ` Address them by name (${slots.first_name}).` : '';
   const haveName = !!slots.first_name?.trim();
 
+  const langSuffix = locale === 'es' ? ' Write your reply to the customer in Spanish.' : '';
+
   if (mode === 'answer') {
     if (step === 'submit') {
-      return `NEXT ACTION: Answer their question helpfully and accurately using only the VOLTSOL FACTS. You already have everything you need — then call submit_lead.${fn}`;
+      return `NEXT ACTION: Answer their question helpfully and accurately using only the VOLTSOL FACTS. You already have everything you need — then call submit_lead.${fn}${langSuffix}`;
     }
-    return `NEXT ACTION: ANSWER THEIR QUESTION FIRST — helpfully, warmly, and accurately, using ONLY the VOLTSOL FACTS. For anything specific to their home (exact price, savings, system size, financing, dates), give the general picture then explain an installer will get them the exact number. AFTER answering, add ONE short, low-pressure invitation to take the next step — e.g. offer to have an installer follow up with ${humanField(step)} — framed as a help, not a demand. Do NOT interrogate. It is fine if they keep asking questions.${fn}`;
+    return `NEXT ACTION: ANSWER THEIR QUESTION FIRST — helpfully, warmly, and accurately, using ONLY the VOLTSOL FACTS. For anything specific to their home (exact price, savings, system size, financing, dates), give the general picture then explain an installer will get them the exact number. AFTER answering, add ONE short, low-pressure invitation to take the next step — e.g. offer to have an installer follow up with ${humanField(step)} — framed as a help, not a demand. Do NOT interrogate. It is fine if they keep asking questions.${fn}${langSuffix}`;
   }
 
   if (mode === 'standdown') {
-    return `NEXT ACTION: They have now declined to share contact details more than once. STAND DOWN COMPLETELY for the rest of this conversation: do NOT ask for their name, phone, email, or consent again, and do NOT hint at it — unless THEY bring it up first. Your ONLY job now is to be genuinely helpful: answer their questions from the VOLTSOL FACTS, be warm and useful, and make them glad they talked to you. If they later decide on their own to move forward, great — but the next move is entirely theirs. No pressure of any kind.${fn}`;
+    return `NEXT ACTION: They have now declined to share contact details more than once. STAND DOWN COMPLETELY for the rest of this conversation: do NOT ask for their name, phone, email, or consent again, and do NOT hint at it — unless THEY bring it up first. Your ONLY job now is to be genuinely helpful: answer their questions from the VOLTSOL FACTS, be warm and useful, and make them glad they talked to you. If they later decide on their own to move forward, great — but the next move is entirely theirs. No pressure of any kind.${fn}${langSuffix}`;
   }
 
   if (mode === 'backoff') {
-    return `NEXT ACTION: They're hesitant or not ready to share a detail — RESPECT IT COMPLETELY. Your reply MUST OPEN with a genuine reassurance, e.g. "No worries at all" / "Totally fine" / "No pressure" / "No rush" — and make clear it's optional and they can opt out anytime. Do NOT re-ask for the detail they just declined, and do NOT pivot straight into asking for a different detail this turn. Instead, answer anything they raised from the VOLTSOL FACTS and invite more questions ("happy to answer whatever you're curious about"). Leave the next move entirely to them. CRITICAL: write one flowing sentence — do NOT use "Going." or any gerund fragment as a standalone sentence. BAD: "Happy to help in the meantime, Going. What are you curious about?" GOOD: "Happy to just answer questions — what would you like to know?"${fn}`;
+    return `NEXT ACTION: They're hesitant or not ready to share a detail — RESPECT IT COMPLETELY. Your reply MUST OPEN with a genuine reassurance, e.g. "No worries at all" / "Totally fine" / "No pressure" / "No rush" — and make clear it's optional and they can opt out anytime. Do NOT re-ask for the detail they just declined, and do NOT pivot straight into asking for a different detail this turn. Instead, answer anything they raised from the VOLTSOL FACTS and invite more questions ("happy to answer whatever you're curious about"). Leave the next move entirely to them. CRITICAL: write one flowing sentence — do NOT use "Going." or any gerund fragment as a standalone sentence. BAD: "Happy to help in the meantime, Going. What are you curious about?" GOOD: "Happy to just answer questions — what would you like to know?"${fn}${langSuffix}`;
   }
 
   // advance (normal)
   switch (step) {
     case 'first_name':
-      return 'NEXT ACTION: Warmly introduce yourself and ask for their name in plain words — say "What\'s your name?" (NOT "what can I call you" or "what should I call you"). Conversational, like a helpful rep, not a form. One question.';
+      return `NEXT ACTION: Warmly introduce yourself and ask for their name in plain words — say "What's your name?" (NOT "what can I call you" or "what should I call you"). Conversational, like a helpful rep, not a form. One question.${langSuffix}`;
     case 'last_name':
-      return `NEXT ACTION: You have their first name.${fn} If it flows naturally, get their last name so an installer can put a name to the estimate. Keep it light — one question, no interrogation.`;
+      return `NEXT ACTION: You have their first name.${fn} If it flows naturally, get their last name so an installer can put a name to the estimate. Keep it light — one question, no interrogation.${langSuffix}`;
     case 'phone':
-      return `NEXT ACTION: Offer to have an installer follow up, and ask the best phone number — frame it as the fastest way they get answers and their exact numbers.${fn} A friendly offer, not a demand. One question.`;
+      return `NEXT ACTION: Offer to have an installer follow up, and ask the best phone number — frame it as the fastest way they get answers and their exact numbers.${fn} A friendly offer, not a demand. One question.${langSuffix}`;
     case 'email':
-      return `NEXT ACTION: Ask for an email so they get their estimate in writing.${fn} One question, low-key.`;
+      return `NEXT ACTION: Ask for an email so they get their estimate in writing.${fn} One question, low-key.${langSuffix}`;
     case 'consent':
-      return `NEXT ACTION: You have name, phone, and email. Naturally confirm it's OK for a VoltSol installer to reach out — e.g. "All good if our installer gives you a quick call or text with your exact numbers? You can opt out anytime."${fn}`;
+      return `NEXT ACTION: You have name, phone, and email. Naturally confirm it's OK for a VoltSol installer to reach out — e.g. "All good if our installer gives you a quick call or text with your exact numbers? You can opt out anytime."${fn}${langSuffix}`;
     case 'submit':
-      return 'NEXT ACTION: All required fields are captured WITH consent. Call submit_lead now, then give a short warm confirmation.';
+      return `NEXT ACTION: All required fields are captured WITH consent. Call submit_lead now, then give a short warm confirmation.${langSuffix}`;
     default:
       return '';
   }
@@ -291,9 +293,29 @@ export function steeringLine(slots: ChatSlots, mode: SteerMode = 'advance'): str
 
 // Deterministic next-question fallback. Used ONLY when the model returns a vague
 // or empty line mid-funnel, so the customer is always advanced, never stalled.
-export function nextQuestionFallback(slots: ChatSlots): string {
+export function nextQuestionFallback(slots: ChatSlots, locale: 'en' | 'es' = 'en'): string {
   const step = nextStep(slots);
   const name = slots.first_name ? `, ${slots.first_name}` : '';
+
+  if (locale === 'es') {
+    switch (step) {
+      case 'first_name':
+        return '¡Con gusto te ayudo! Para empezar, ¿cómo te llamas?';
+      case 'last_name':
+        return `¡Mucho gusto${name}! ¿Y tu apellido?`;
+      case 'phone':
+        return `¡Perfecto${name}! ¿Cuál es el mejor número de teléfono? Un mensaje de texto suele ser la forma más rápida de enviarte tu estimado.`;
+      case 'email':
+        return `¡Listo! ¿A qué correo te envío la copia por escrito?`;
+      case 'consent':
+        return `¡Ya casi${name}! ¿Está bien si un técnico de VoltSol te contacta por llamada o texto con tu estimado? Puedes cancelar cuando quieras.`;
+      case 'submit':
+      default:
+        return `¡Todo listo${name}! Un técnico de VoltSol te contactará pronto con tu estimado. ☀️`;
+    }
+  }
+
+  // English (default)
   switch (step) {
     case 'first_name':
       return "Happy to help! First off — what's your name?";
@@ -313,15 +335,21 @@ export function nextQuestionFallback(slots: ChatSlots): string {
 
 // Reassuring fallback for BACKOFF mode: used when the model returns empty/vague
 // text after the user declined a detail. Must reassure and NOT pump a field.
-export function backoffFallback(slots: ChatSlots): string {
+export function backoffFallback(slots: ChatSlots, locale: 'en' | 'es' = 'en'): string {
   const name = slots.first_name ? `, ${slots.first_name}` : '';
+  if (locale === 'es') {
+    return `Sin problema${name}, es totalmente opcional y sin ninguna presión. Con gusto respondo cualquier pregunta que tengas sobre la energía solar. ¿Qué te gustaría saber?`;
+  }
   return `No worries at all${name} — totally optional, and there's zero pressure. I'm happy to just answer any questions you've got about going solar. What would you like to know?`;
 }
 
 // Stand-down fallback (two-strike guardrail): used when the model returns
 // empty/vague text after the user has declined twice. Pure help, zero ask.
-export function standdownFallback(slots: ChatSlots): string {
+export function standdownFallback(slots: ChatSlots, locale: 'en' | 'es' = 'en'): string {
   const name = slots.first_name ? `, ${slots.first_name}` : '';
+  if (locale === 'es') {
+    return `Todo bien${name} — sin presión y no seguiré preguntando. Solo estoy aquí para ayudar. Pregúntame lo que quieras sobre la energía solar y te doy una respuesta clara. ☀️`;
+  }
   return `All good${name} — no pressure at all, and I won't keep asking. I'm just here to help. Ask me anything about going solar and I'll give you a straight answer. ☀️`;
 }
 
@@ -355,7 +383,7 @@ export async function getFaqBlock(): Promise<string> {
   }
 }
 
-export async function getSystemPrompt(): Promise<string> {
+export async function getSystemPrompt(locale: 'en' | 'es' = 'en'): Promise<string> {
   let base = FALLBACK_SYSTEM_PROMPT;
   try {
     const rows = await sql`SELECT value FROM site_config WHERE key = 'chatbot_system_prompt' LIMIT 1`;
@@ -379,6 +407,14 @@ export async function getSystemPrompt(): Promise<string> {
   // publishes. This is additive to the static facts above.
   const faq = await getFaqBlock();
   if (faq) base = `${base}\n\n${faq}`;
+
+  // Language directive: enforce Spanish output when locale='es'.
+  if (locale === 'es') {
+    base = `${base}\n\nIDIOMA (regla dura): El usuario está en el sitio en español. Responde SIEMPRE en español natural y cálido, con la misma personalidad. Usa los VOLTSOL FACTS igual. Nunca cambies a inglés a menos que el usuario te escriba en inglés primero. NOMBRE (importante): En español tu nombre es "Leo" (no "Ray"). Preséntate como Leo de VoltSol Energy.`;
+  } else {
+    base = `${base}\n\nLANGUAGE: Respond in English unless the user writes in another language, then mirror their language.`;
+  }
+
   return base;
 }
 

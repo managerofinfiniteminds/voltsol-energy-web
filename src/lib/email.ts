@@ -17,13 +17,13 @@ interface ContactDetails {
   last_name: string;
   email: string;
   phone: string;
-  street_address: string;
-  city: string;
-  state: string;
-  zip: string;
+  street_address?: string; // optional for QuickLeadForm
+  city?: string;
+  state?: string;
+  zip?: string;
   owns_home: string;
   monthly_bill: string;
-  best_contact_time: string;
+  best_contact_time?: string; // optional for QuickLeadForm
   notes?: string | null;
   lead_score: LeadScore;
   campaign_name?: string;
@@ -40,6 +40,28 @@ export async function sendConfirmationEmail(contact: ContactDetails): Promise<vo
   const phoneSection = process.env.VOLTSOL_PHONE
     ? `<p style="margin:0 0 8px 0;">Or call us: <a href="tel:${process.env.VOLTSOL_PHONE}" style="color:#F59E0B;">${process.env.VOLTSOL_PHONE}</a></p>`
     : '';
+
+  // State-aware body text: TX leads get broker-framed messaging
+  const isTX = contact.state?.toUpperCase() === 'TX';
+  const bodyText = isTX
+    ? `Thanks for reaching out. We'll match you with a licensed local solar installer in your area, who will contact you shortly about your project.`
+    : `Thanks for reaching out to VoltSol Energy. A VoltSol advisor will contact you within <strong>24 hours</strong> to discuss your free solar savings estimate.`;
+
+  // Build summary table rows only for fields that are present
+  const summaryRows: string[] = [
+    `<tr><td style="padding:4px 0;color:#64748b;font-size:14px;width:40%;">Name</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.first_name} ${contact.last_name}</td></tr>`,
+    `<tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Phone</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.phone}</td></tr>`,
+  ];
+  if (contact.street_address && contact.city && contact.state && contact.zip) {
+    summaryRows.push(
+      `<tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Address</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.street_address}, ${contact.city}, ${contact.state} ${contact.zip}</td></tr>`
+    );
+  }
+  if (contact.best_contact_time) {
+    summaryRows.push(
+      `<tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Best Time</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.best_contact_time}</td></tr>`
+    );
+  }
 
   const html = `
 <!DOCTYPE html>
@@ -58,17 +80,14 @@ export async function sendConfirmationEmail(contact: ContactDetails): Promise<vo
     <div style="background:#ffffff;padding:32px 24px;border:1px solid #e2e8f0;border-top:none;">
       <h1 style="margin:0 0 16px 0;font-size:22px;color:#0F172A;">Hi ${contact.first_name}, we received your request!</h1>
       <p style="margin:0 0 16px 0;color:#475569;line-height:1.6;">
-        Thanks for reaching out to VoltSol Energy. A VoltSol advisor will contact you within <strong>24 hours</strong> to discuss your free solar savings estimate.
+        ${bodyText}
       </p>
 
       <!-- Summary box -->
       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:24px 0;">
         <div style="font-size:13px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Your Submitted Information</div>
         <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;width:40%;">Name</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.first_name} ${contact.last_name}</td></tr>
-          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Address</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.street_address}, ${contact.city}, ${contact.state} ${contact.zip}</td></tr>
-          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Phone</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.phone}</td></tr>
-          <tr><td style="padding:4px 0;color:#64748b;font-size:14px;">Best Time</td><td style="padding:4px 0;color:#0F172A;font-size:14px;font-weight:500;">${contact.best_contact_time}</td></tr>
+          ${summaryRows.join('\n          ')}
         </table>
       </div>
 
@@ -128,10 +147,10 @@ export async function sendSalesAlertEmail(contact: ContactDetails): Promise<void
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;width:38%;">Name</td><td style="padding:6px 0;color:#0F172A;font-size:14px;font-weight:600;">${contact.first_name} ${contact.last_name}</td></tr>
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Phone</td><td style="padding:6px 0;font-size:14px;"><a href="tel:${contact.phone.replace(/\D/g, '')}" style="color:#F59E0B;font-weight:600;">${contact.phone}</a></td></tr>
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Email</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${contact.email}</td></tr>
-        <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Address</td><td style="padding:6px 0;font-size:14px;"><a href="${mapsUrl}" style="color:#F59E0B;">${contact.street_address}, ${contact.city}, ${contact.state} ${contact.zip}</a></td></tr>
+        ${contact.street_address && contact.city && contact.state && contact.zip ? `<tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Address</td><td style="padding:6px 0;font-size:14px;"><a href="${mapsUrl}" style="color:#F59E0B;">${contact.street_address}, ${contact.city}, ${contact.state} ${contact.zip}</a></td></tr>` : ''}
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Owns Home</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${contact.owns_home}</td></tr>
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Monthly Bill</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${contact.monthly_bill}</td></tr>
-        <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Best Time</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${contact.best_contact_time}</td></tr>
+        ${contact.best_contact_time ? `<tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Best Time</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${contact.best_contact_time}</td></tr>` : ''}
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Campaign</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${campaignLabel}</td></tr>
         <tr><td style="padding:6px 0;color:#64748b;font-size:14px;">Submitted</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${submittedAt} PT</td></tr>
         ${contact.notes ? `<tr><td style="padding:6px 0;color:#64748b;font-size:14px;vertical-align:top;">Notes</td><td style="padding:6px 0;color:#0F172A;font-size:14px;">${contact.notes}</td></tr>` : ''}

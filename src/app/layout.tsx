@@ -171,7 +171,7 @@ export default async function RootLayout({
           links={cfg.footer_links}
         />
         <SiteStickyCTA ctaText={ctaText} locale={locale} />
-        <SiteChatWidget />
+        <SiteChatWidget locale={locale} />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Section, Container } from "@/components/ui";
 import { Phone, MapPin, Mail, BadgeCheck } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import QuickLeadForm from "@/components/QuickLeadForm";
 import { getHomeConfig } from "@/lib/site-config";
 import { getLocale } from "@/lib/locale";
 import { getDict } from "@/lib/i18n";
@@ -42,6 +43,22 @@ export default async function ContactPage() {
           <p className="mx-auto mt-4 max-w-xl text-lg text-blue-200">{t.contact_intro}</p>
         </div>
 
+        {/* Quick Lead Form — primary CTA */}
+        <div className="mx-auto mt-12 max-w-2xl">
+          <div className="rounded-2xl border border-gold/30 bg-navy-700/50 p-6 sm:p-8">
+            <h2 className="font-display text-2xl font-bold text-white mb-2">
+              {locale === 'es' ? 'Solicita Tu Estimado Gratuito' : 'Request Your Free Estimate'}
+            </h2>
+            <p className="text-blue-200 mb-6">
+              {locale === 'es'
+                ? 'Recibe un estimado solar personalizado — sin costo, sin compromiso.'
+                : 'Get a personalized solar estimate — no cost, no obligation.'}
+            </p>
+            <QuickLeadForm locale={locale} sourcePage="/contact" />
+          </div>
+        </div>
+
+        {/* Traditional contact form + info */}
         <div className="mx-auto mt-12 grid max-w-4xl gap-10 lg:grid-cols-5 lg:gap-12">
           {/* Contact info */}
           <div className="lg:col-span-2">
@@ -80,8 +97,11 @@ export default async function ContactPage() {
             </ul>
           </div>
 
-          {/* Form */}
+          {/* Form — General message form */}
           <div className="lg:col-span-3">
+            <h3 className="font-display text-lg font-bold text-white mb-3">
+              {locale === 'es' ? 'O envíanos un mensaje' : 'Or send us a message'}
+            </h3>
             <div className="rounded-2xl border border-navy-500/40 bg-navy-700/40 p-6 sm:p-8">
               <ContactForm locale={locale} />
             </div>

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { MARKETS_BY_STATE, marketPageHref } from '@/lib/market-data';
 import { getLocale } from '@/lib/locale';
 import { getMarketDict } from '@/lib/market-i18n';
+import QuickLeadForm from '@/components/QuickLeadForm';
 import { MapPin, Zap, Shield, DollarSign } from 'lucide-react';
 
 // Generate static params for state hub (derive from MARKETS_BY_STATE)
@@ -239,23 +240,37 @@ export default function StatePage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* Bottom CTA */}
-          <section className="rounded-xl border border-blue-200 bg-blue-50 p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900">
-              {t.bottomCtaHeading}
-            </h2>
-            <p className="mt-2 text-gray-600">
-              {t.bottomCtaBody}
-            </p>
-            <div className="mt-6">
-              <Link
-                href="/start"
-                className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
-              >
-                {t.ctaButton}
-              </Link>
-            </div>
-          </section>
+          {/* Bottom CTA — TX gets inline QuickLeadForm, CA gets /start link */}
+          {isTX ? (
+            <section className="rounded-xl border border-blue-200 bg-white p-8">
+              <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
+                {t.bottomCtaHeading}
+              </h2>
+              <p className="mt-2 text-gray-600 text-center mb-6">
+                {t.bottomCtaBody}
+              </p>
+              <div className="mx-auto max-w-xl">
+                <QuickLeadForm locale={locale} initialState="TX" sourcePage={`/market/solar/${params.state}`} />
+              </div>
+            </section>
+          ) : (
+            <section className="rounded-xl border border-blue-200 bg-blue-50 p-8 text-center">
+              <h2 className="text-2xl font-bold text-gray-900">
+                {t.bottomCtaHeading}
+              </h2>
+              <p className="mt-2 text-gray-600">
+                {t.bottomCtaBody}
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/start"
+                  className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-base font-semibold text-white transition hover:bg-blue-700"
+                >
+                  {t.ctaButton}
+                </Link>
+              </div>
+            </section>
+          )}
         </main>
 
         {/* Footer note */}

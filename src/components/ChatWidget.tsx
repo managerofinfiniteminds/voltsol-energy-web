@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { MessageCircle, X } from 'lucide-react';
 import LeadChat from './LeadChat';
 import { track } from '@/lib/track';
+import type { Locale } from '@/lib/locale';
 
 /**
  * ChatWidget — always-on, site-wide floating chat launcher.
@@ -21,7 +22,7 @@ import { track } from '@/lib/track';
  * Hidden on /admin and on /start (that page already embeds the full estimate
  * flow + chat, so a second floating chat would be redundant/confusing).
  */
-export function ChatWidget() {
+export function ChatWidget({ locale }: { locale?: Locale }) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -101,8 +102,8 @@ export function ChatWidget() {
                   ☀️
                 </span>
                 <div className="leading-tight">
-                  <p className="text-sm font-semibold text-white">Ray — VoltSol</p>
-                  <p className="text-[11px] text-emerald-300/80">● Online — usually replies instantly</p>
+                  <p className="text-sm font-semibold text-white">{locale === 'es' ? 'Leo — VoltSol' : 'Ray — VoltSol'}</p>
+                  <p className="text-[11px] text-emerald-300/80">{locale === 'es' ? '● En línea — responde al instante' : '● Online — usually replies instantly'}</p>
                 </div>
               </div>
               <button
@@ -122,6 +123,7 @@ export function ChatWidget() {
                 onHandoff={handleHandoff}
                 hideHeader
                 fill
+                locale={locale}
               />
             </div>
           </div>

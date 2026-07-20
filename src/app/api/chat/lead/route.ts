@@ -252,6 +252,7 @@ export async function POST(req: NextRequest) {
     messages?: InMsg[];
     quiz_context?: QuizContext;
     website?: string;
+    locale?: string;
   };
   try {
     body = await req.json();
@@ -267,6 +268,7 @@ export async function POST(req: NextRequest) {
   const sessionId = (body.session_id || '').toString().slice(0, 80) || `anon-${Date.now()}`;
   const rawMessages = Array.isArray(body.messages) ? body.messages : [];
   const quiz = body.quiz_context;
+  const locale: 'en' | 'es' = body.locale === 'es' ? 'es' : 'en';
 
   // Sanitize + cap incoming messages.
   const userMessages: InMsg[] = rawMessages
@@ -277,18 +279,18 @@ export async function POST(req: NextRequest) {
   const userTurnCount = userMessages.filter((m) => m.role === 'user').length;
 
   if (!rateOk(ip)) {
-    return sseStream(
-      "I'm getting a lot of messages right now — give it a minute and try again, or use the form below. 🙏",
-      { completed: false, handoff: true, lead_id: null }
-    );
+    const msg = locale === 'es'
+      ? 'Estoy recibiendo muchos mensajes ahora mismo — espera un minuto y vuelve a intentar, o usa el formulario de abajo. 🙏'
+      : "I'm getting a lot of messages right now — give it a minute and try again, or use the form below. 🙏";
+    return sseStream(msg, { completed: false, handoff: true, lead_id: null });
   }
 
   // Max turns guard.
   if (userTurnCount > MAX_TURNS) {
-    return sseStream(
-      "Let's get you over to the quick form so a tech can follow up — it's just below. Thanks for chatting! ☀️",
-      { completed: false, handoff: true, lead_id: null }
-    );
+    const msg = locale === 'es'
+      ? 'Te paso al formulario rápido para que un técnico te contacte — está justo abajo. ¡Gracias por conversar! ☀️'
+      : "Let's get you over to the quick form so a tech can follow up — it's just below. Thanks for chatting! ☀️";
+    return sseStream(msg, { completed: false, handoff: true, lead_id: null });
   }
 
   // Load persisted state for this session.
@@ -314,13 +316,13 @@ export async function POST(req: NextRequest) {
 
   // If already completed, acknowledge gracefully without re-submitting.
   if (prevStatus === 'completed' && engineLeadId) {
-    return sseStream(
-      "You're all set — a VoltSol tech will reach out shortly with your estimate. ☀️",
-      { completed: true, handoff: false, lead_id: engineLeadId }
-    );
+    const msg = locale === 'es'
+      ? 'Ya estás listo — un técnico de VoltSol te contactará pronto con tu estimado. ☀️'
+      : "You're all set — a VoltSol tech will reach out shortly with your estimate. ☀️";
+    return sseStream(msg, { completed: true, handoff: false, lead_id: engineLeadId });
   }
 
-  const systemPrompt = await getSystemPrompt();
+  const systemPrompt = await getSystemPrompt(locale);
   const preamble = buildContextPreamble(quiz);
   const knownSlots = JSON.stringify({
     captured: Object.keys(slots).filter((k) => (slots as Record<string, unknown>)[k] !== undefined),
@@ -344,7 +346,7 @@ export async function POST(req: NextRequest) {
   if (refusalCount >= 2) steerMode = 'standdown';
   else if (looksLikeRefusal(latestUser)) steerMode = 'backoff';
   else if (looksLikeQuestion(latestUser)) steerMode = 'answer';
-  const steer = steeringLine(slots, steerMode);
+  const steer = steeringLine(slots, steerMode, locale);
 
   // Deterministic accuracy guardrail: pricing/tax questions get an explicit, hard
   // directive the model can't miss (it won't reliably obey a buried KB rule).
@@ -363,11 +365,13 @@ export async function POST(req: NextRequest) {
   // they may be brand new. Tailor only if quiz_context is actually present.
   if (userMessages.length === 0) {
     const hasQuiz = !!quiz && Object.keys(quiz).length > 0;
+    const greetInstruction = hasQuiz
+      ? '(the user just landed in the chat after using the estimate tool — greet them warmly, you may reference their results)'
+      : '(the user just opened the chat from the website — greet them warmly and openly. Do NOT assume they used any tool, saw any numbers, or know anything yet. Invite their questions and offer to help. Keep it short.)';
+    const langNote = locale === 'es' ? ' Saluda en español.' : '';
     orMessages.push({
       role: 'user',
-      content: hasQuiz
-        ? '(the user just landed in the chat after using the estimate tool — greet them warmly, you may reference their results)'
-        : '(the user just opened the chat from the website — greet them warmly and openly. Do NOT assume they used any tool, saw any numbers, or know anything yet. Invite their questions and offer to help. Keep it short.)',
+      content: greetInstruction + langNote,
     });
   }
 
@@ -381,8 +385,9 @@ export async function POST(req: NextRequest) {
     const result = await callOpenRouter(orMessages);
     if (!result) {
       // Graceful model failure — never throw to client.
-      assistantText =
-        "I'm having a hiccup on my end — mind dropping your details in the quick form just below? A tech will follow up fast. 🙏";
+      assistantText = locale === 'es'
+        ? 'Tengo un problema técnico — ¿puedes poner tus datos en el formulario rápido de abajo? Un técnico te responderá rápido. 🙏'
+        : "I'm having a hiccup on my end — mind dropping your details in the quick form just below? A tech will follow up fast. 🙏";
       handoff = true;
       break;
     }
@@ -448,7 +453,10 @@ export async function POST(req: NextRequest) {
       engineLeadId = id;
       completed = true;
       // Override whatever the model said — guarantee an accurate confirmation.
-      assistantText = `You're all set${slots.first_name ? `, ${slots.first_name}` : ''}! A VoltSol tech will reach out shortly with your estimate. ☀️`;
+      const name = slots.first_name ? `, ${slots.first_name}` : '';
+      assistantText = locale === 'es'
+        ? `¡Todo listo${name}! Un técnico de VoltSol te contactará pronto con tu estimado. ☀️`
+        : `You're all set${name}! A VoltSol tech will reach out shortly with your estimate. ☀️`;
     }
   }
 
@@ -457,12 +465,11 @@ export async function POST(req: NextRequest) {
   // legitimately says things like "an installer will reach out" while ANSWERING a
   // question, and we must not clobber a good answer. Only fire when it falsely
   // asserts the lead is finished.
-  if (
-    !engineLeadId &&
-    !handoff &&
-    /\b(you'?re all set|you are all set|all set!|all done|got everything i need|you'?re submitted|i'?ve submitted|lead (is )?submitted|you'?re all set)\b/i.test(assistantText)
-  ) {
-    assistantText = nextQuestionFallback(slots);
+  const completionClaimPattern = locale === 'es'
+    ? /\b(ya est[áa]s listo|ya estás lista|todo listo|ya est[áa] todo|ya termin[ée]|todo completo|ya te envi[ée]|ya lo envi[ée])\b/i
+    : /\b(you'?re all set|you are all set|all set!|all done|got everything i need|you'?re submitted|i'?ve submitted|lead (is )?submitted|you'?re all set)\b/i;
+  if (!engineLeadId && !handoff && completionClaimPattern.test(assistantText)) {
+    assistantText = nextQuestionFallback(slots, locale);
   }
 
   // ── Anti-dead-end guard: if the model produced an empty or VAGUE line, replace it
@@ -471,20 +478,22 @@ export async function POST(req: NextRequest) {
   // Standdown is excluded too — we must never pump a field after a two-strike
   // back-off; standdownFallback (below) handles empty text instead.
   if (!completed && !handoff && steerMode !== 'answer' && steerMode !== 'backoff' && steerMode !== 'standdown' && isVagueLine(assistantText)) {
-    assistantText = nextQuestionFallback(slots);
+    assistantText = nextQuestionFallback(slots, locale);
   }
 
   if (!assistantText) {
     if (completed) {
-      assistantText = "You're all set — a tech will be in touch shortly. ☀️";
+      assistantText = locale === 'es'
+        ? 'Ya estás listo — un técnico te contactará pronto. ☀️'
+        : "You're all set — a tech will be in touch shortly. ☀️";
     } else if (steerMode === 'standdown') {
       // Two strikes: pure help, never pump a field.
-      assistantText = standdownFallback(slots);
+      assistantText = standdownFallback(slots, locale);
     } else if (steerMode === 'backoff') {
       // Respect the refusal: reassure, never pump the next field.
-      assistantText = backoffFallback(slots);
+      assistantText = backoffFallback(slots, locale);
     } else {
-      assistantText = nextQuestionFallback(slots);
+      assistantText = nextQuestionFallback(slots, locale);
     }
   }
 
@@ -493,18 +502,25 @@ export async function POST(req: NextRequest) {
   // reads like a field-pump with no reassurance, replace with a reassurance.
   if (!completed && !handoff && (steerMode === 'backoff' || steerMode === 'standdown')) {
     const t = assistantText.toLowerCase();
-    const reassures = /(no (pressure|problem|worries|rush)|totally (fine|ok|optional)|that'?s (fine|ok|totally fine)|of course|whenever you'?re ready|happy to (just )?answer|opt out|don'?t have to|no obligation|won'?t (keep )?ask)/i.test(t);
-    const pumps = /(what'?s|whats|share|give me|can i (get|have)|may i (get|have)|your)\b[^.?!]{0,30}\b(last name|phone|number|cell|email|address)/i.test(t);
-    if (pumps && !reassures) assistantText = steerMode === 'standdown' ? standdownFallback(slots) : backoffFallback(slots);
+    const reassures = locale === 'es'
+      ? /(sin (problema|presión|apuro)|totalmente opcional|claro|cuando (quieras|gustes)|con gusto|puedes cancelar|no (es necesario|tienes que)|sin obligación)/i.test(t)
+      : /(no (pressure|problem|worries|rush)|totally (fine|ok|optional)|that'?s (fine|ok|totally fine)|of course|whenever you'?re ready|happy to (just )?answer|opt out|don'?t have to|no obligation|won'?t (keep )?ask)/i.test(t);
+    const pumps = locale === 'es'
+      ? /(cuál|cual|dime|dame|comparte|tu)\b[^.?!]{0,30}\b(apellido|teléfono|número|celular|correo|email|dirección)/i.test(t)
+      : /(what'?s|whats|share|give me|can i (get|have)|may i (get|have)|your)\b[^.?!]{0,30}\b(last name|phone|number|cell|email|address)/i.test(t);
+    if (pumps && !reassures) assistantText = steerMode === 'standdown' ? standdownFallback(slots, locale) : backoffFallback(slots, locale);
   }
 
   // Strip robotic fragment openers the model occasionally emits (e.g. "Going. What..." or "Noted. Here's...").
   // These read as broken non-sentences to users. Replace with natural prose.
+  const fragmentPattern = locale === 'es'
+    ? /^(Listo|Entendido|Perfecto|De acuerdo|Claro|Vale|Bueno|Por supuesto)\.\s+/i
+    : /^(Going|Noted|Understood|Sounds good|Got it|Sure|Okay|Alright|Certainly|Absolutely|Of course)\.\s+/i;
   assistantText = assistantText
-    .replace(/^(Going|Noted|Understood|Sounds good|Got it|Sure|Okay|Alright|Certainly|Absolutely|Of course)\.\s+/i, '')
-    .replace(/,\s*(Going|Noted|Understood)\b\.?\s*/gi, ' — ')
+    .replace(fragmentPattern, '')
+    .replace(/,\s*(Going|Noted|Understood|Listo|Entendido)\b\.?\s*/gi, ' — ')
     .trim();
-  if (!assistantText) assistantText = backoffFallback(slots);
+  if (!assistantText) assistantText = backoffFallback(slots, locale);
 
   const status = completed ? 'completed' : handoff ? 'handed_off' : 'active';
   const transcript: InMsg[] = [...userMessages, { role: 'assistant', content: assistantText }];

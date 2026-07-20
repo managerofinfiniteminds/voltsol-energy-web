@@ -11,6 +11,7 @@ import { getFeaturedGoogleReviews } from "@/lib/google-reviews";
 import { sql } from "@/lib/db";
 import { getLocale } from "@/lib/locale";
 import InlineEstimateEntry from "@/components/InlineEstimateEntry";
+import QuickLeadForm from "@/components/QuickLeadForm";
 import PageTracker from "@/components/PageTracker";
 import ScrollDepthTracker from "@/components/ScrollDepthTracker";
 import Image from "next/image";
@@ -787,6 +788,30 @@ export default async function HomePage() {
           <Reveal delay={0.1} immediate>
             <div className="mt-8">
               <InlineEstimateEntry locale={locale} />
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <div
+        aria-hidden="true"
+        className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+      />
+
+      {/* ========== QUICK LEAD FORM (COMPACT) ========== */}
+      <Section>
+        <Container className="mx-auto max-w-2xl">
+          <Reveal>
+            <div className="rounded-2xl border border-gold/30 bg-navy-700/50 p-6 sm:p-8">
+              <h2 className="font-display text-2xl font-bold text-white mb-2 text-center">
+                {locale === 'es' ? 'Solicita Tu Estimado Gratuito' : 'Get Your Free Estimate'}
+              </h2>
+              <p className="text-blue-200 mb-6 text-center">
+                {locale === 'es'
+                  ? 'Responde unas preguntas rápidas — sin costo, sin compromiso.'
+                  : 'Answer a few quick questions — no cost, no obligation.'}
+              </p>
+              <QuickLeadForm locale={locale} compact sourcePage="/" />
             </div>
           </Reveal>
         </Container>

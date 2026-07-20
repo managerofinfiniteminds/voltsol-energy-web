@@ -214,6 +214,68 @@ export async function POST(req: NextRequest) {
       }
     : null;
 
+  // ── Lightweight dedupe: check for same phone OR email within last 24h ──────
+  const normalizedPhone = phone.replace(/\D/g, ''); // strip formatting for comparison
+  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
+  let existingLead: { id: number; notes: string | null } | null = null;
+  try {
+    const dupes = await sql`
+      SELECT id, notes
+      FROM engine_leads
+      WHERE tenant_id = ${tenantId}
+        AND created_at >= ${oneDayAgo}
+        AND (
+          phone SIMILAR TO ${`%${normalizedPhone}%`}
+          OR LOWER(email) = ${email.toLowerCase()}
+        )
+      LIMIT 1
+    `;
+    if (dupes.length > 0) {
+      existingLead = dupes[0] as { id: number; notes: string | null };
+    }
+  } catch (err) {
+    console.error('[engine/v1/leads] Dedupe check failed:', err);
+    // Non-fatal; proceed with insert
+  }
+
+  // If duplicate found, update notes and return existing ID (skip sales alert)
+  if (existingLead) {
+    const dupNote = `[dup submit via quickform ${new Date().toISOString()}]`;
+    const updatedNotes = existingLead.notes ? `${existingLead.notes}\n${dupNote}` : dupNote;
+    try {
+      await sql`
+        UPDATE engine_leads
+        SET notes = ${updatedNotes}, updated_at = NOW()
+        WHERE id = ${existingLead.id}
+      `;
+    } catch (err) {
+      console.error('[engine/v1/leads] Dedupe update failed:', err);
+    }
+    // Send confirmation email to the lead (they re-submitted, so acknowledge it)
+    const contactForEmail = {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      phone,
+      street_address: streetAddress || '',
+      city: city || '',
+      state: state || '',
+      zip: zip || '',
+      owns_home: ownsHome === 'own' ? 'Yes' : ownsHome === 'rent' ? 'No (renting)' : '—',
+      monthly_bill: monthlyBill
+        ? (MONTHLY_BILL_LABELS as Record<string, string>)[monthlyBill] ?? monthlyBill
+        : '—',
+      best_contact_time: '—', // QuickForm doesn't collect this
+      notes: notes,
+      lead_score: score,
+    };
+    sendConfirmationEmail(contactForEmail).catch((err) =>
+      console.error('[engine/v1/leads] Confirmation email failed:', err)
+    );
+    return NextResponse.json({ ok: true, id: existingLead.id, score, duplicate: true });
+  }
+
   // Insert into engine_leads
   let insertedId: number;
   try {

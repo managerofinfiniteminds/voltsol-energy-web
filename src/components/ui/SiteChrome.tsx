@@ -48,6 +48,6 @@ export function SiteStickyCTA({ ctaText }: { ctaText?: string; locale?: Locale }
 }
 
 // Always-on floating chat — site-wide; self-gates (hidden on /admin and /start).
-export function SiteChatWidget() {
-  return <ChatWidget />;
+export function SiteChatWidget({ locale }: { locale?: Locale }) {
+  return <ChatWidget locale={locale} />;
 }

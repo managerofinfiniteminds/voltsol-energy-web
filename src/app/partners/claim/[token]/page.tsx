@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -30,9 +30,13 @@ function normalizeUrl(url: string | null | undefined): string {
 export default function PartnerClaimPage({
   params,
 }: {
-  params: Promise<{ token: string }>;
+  params: { token: string };
 }) {
-  const resolvedParams = use(params);
+  // NOTE: This site runs Next 14.2.5, where `params` in a Client Component is a
+  // plain object — NOT a promise. Do not wrap it in React's `use()` hook (that
+  // is the Next 15 pattern) or it throws React error #438 and the whole page
+  // crashes to the root error boundary before the form renders.
+  const { token } = params;
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
@@ -55,7 +59,7 @@ export default function PartnerClaimPage({
     async function loadPartner() {
       setLoading(true);
       setError('');
-      const res = await fetch(`/api/partners/claim/${resolvedParams.token}`);
+      const res = await fetch(`/api/partners/claim/${token}`);
       if (res.status === 404) {
         setError('This claim link is not valid. Please check the link or contact VoltSol Energy.');
         setLoading(false);
@@ -81,7 +85,7 @@ export default function PartnerClaimPage({
       setLoading(false);
     }
     loadPartner();
-  }, [resolvedParams.token]);
+  }, [token]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -91,7 +95,7 @@ export default function PartnerClaimPage({
     }
 
     setSubmitting(true);
-    const res = await fetch(`/api/partners/claim/${resolvedParams.token}`, {
+    const res = await fetch(`/api/partners/claim/${token}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

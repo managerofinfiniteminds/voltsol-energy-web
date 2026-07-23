@@ -547,14 +547,17 @@ export default function EstimateFlow({ campaignCode, initialBill, tiers, locale 
       // Google Ads conversion tracking — fires on every successful lead submit.
       // Enhanced conversions match on email/phone so Google can optimize
       // campaign bidding against real leads, not just clicks. Conversion
-      // action ID: AW-18333275322/O0xpCI2hSt1cELqp_qVE (see CREDENTIALS.md).
+      // action: "Lead Submitted" (SUBMIT_LEAD_FORM, primary_for_goal=true),
+      // AW-18333275322/Zdu9CIWWi9UcELqp_qVE — created + verified via Google
+      // Ads API 2026-07-22 to replace mistyped label pointing at a
+      // nonexistent action (see CREDENTIALS.md).
       if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
         window.gtag('set', 'user_data', {
           email: form.email.trim().toLowerCase(),
           phone_number: form.phone.trim(),
         });
         window.gtag('event', 'conversion', {
-          send_to: 'AW-18333275322/O0xpCI2hSt1cELqp_qVE',
+          send_to: 'AW-18333275322/Zdu9CIWWi9UcELqp_qVE',
           value: 1.0,
           currency: 'USD',
         });

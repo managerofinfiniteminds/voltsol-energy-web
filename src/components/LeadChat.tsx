@@ -106,6 +106,8 @@ export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader
               completed?: boolean;
               handoff?: boolean;
               lead_id?: number | null;
+              email?: string;
+              phone?: string;
             };
             try {
               evt = JSON.parse(payload);
@@ -133,6 +135,40 @@ export default function LeadChat({ sessionId, quizContext, onHandoff, hideHeader
                 setCompleted(true);
                 setLeadId(evt.lead_id);
                 track('chat_complete', { lead_id: evt.lead_id });
+                // Google Ads conversion tracking — fires ONCE on chat-agent
+                // lead completion, mirroring EstimateFlow.tsx. Same "Lead
+                // Submitted" conversion action (SUBMIT_LEAD_FORM,
+                // primary_for_goal=true), AW-18333275322/Zdu9CIWWi9UcELqp_qVE.
+                // Added 2026-07-22 — this path previously never fired a
+                // conversion event at all. Deduped per session_id via
+                // sessionStorage so a page reload after completion (server
+                // re-reports completed:true from persisted status) never
+                // double-fires the conversion.
+                const convFiredKey = `vs_conv_fired_${sid}`;
+                let alreadyFired = false;
+                try {
+                  alreadyFired = sessionStorage.getItem(convFiredKey) === '1';
+                } catch {
+                  /* ignore */
+                }
+                if (!alreadyFired && typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                  if (evt.email || evt.phone) {
+                    window.gtag('set', 'user_data', {
+                      email: evt.email?.trim().toLowerCase(),
+                      phone_number: evt.phone?.trim(),
+                    });
+                  }
+                  window.gtag('event', 'conversion', {
+                    send_to: 'AW-18333275322/Zdu9CIWWi9UcELqp_qVE',
+                    value: 1.0,
+                    currency: 'USD',
+                  });
+                  try {
+                    sessionStorage.setItem(convFiredKey, '1');
+                  } catch {
+                    /* ignore */
+                  }
+                }
               }
             }
           }

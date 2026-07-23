@@ -56,7 +56,7 @@ interface InMsg {
 // ── SSE helpers ──────────────────────────────────────────────────────────────
 function sseStream(
   text: string,
-  meta: { completed: boolean; handoff: boolean; lead_id: number | null }
+  meta: { completed: boolean; handoff: boolean; lead_id: number | null; email?: string; phone?: string }
 ): Response {
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
@@ -314,7 +314,11 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // If already completed, acknowledge gracefully without re-submitting.
+  // If already completed (from a PRIOR turn/session reload), acknowledge
+  // gracefully without re-submitting. Still reports completed:true so the
+  // client UI renders the completed state correctly — the client itself
+  // dedupes the Ads conversion fire per session_id so reloads never
+  // double-fire (see LeadChat.tsx firedConversionRef).
   if (prevStatus === 'completed' && engineLeadId) {
     const msg = locale === 'es'
       ? 'Ya estás listo — un técnico de VoltSol te contactará pronto con tu estimado. ☀️'
@@ -526,5 +530,11 @@ export async function POST(req: NextRequest) {
   const transcript: InMsg[] = [...userMessages, { role: 'assistant', content: assistantText }];
   await saveSession(sessionId, transcript, slots, status, modelUsed, engineLeadId);
 
-  return sseStream(assistantText, { completed, handoff, lead_id: engineLeadId });
+  return sseStream(assistantText, {
+    completed,
+    handoff,
+    lead_id: engineLeadId,
+    email: completed ? slots.email : undefined,
+    phone: completed ? slots.phone : undefined,
+  });
 }

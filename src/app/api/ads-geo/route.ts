@@ -18,6 +18,10 @@ import { NextRequest, NextResponse } from 'next/server';
  * just county, so we map both county-level and known high-volume city-level
  * geo-target-constant IDs to their parent county page.
  *
+ * Also supports the Tri-Valley & Fremont campaign (added 2026-07-23),
+ * mapping Livermore/Pleasanton/Dublin/Sunol/Fremont -> alameda-county and
+ * San Ramon/Danville/Alamo/Blackhawk/Diablo -> contra-costa-county.
+ *
  * Unmapped / missing gtc always falls back to the generic /start funnel —
  * a broken or unrecognized geo param must never block the lead.
  */
@@ -52,6 +56,20 @@ const GEO_TO_COUNTY_SLUG: Record<string, string> = {
   '1014404': 'glenn-county',   // Willows
   '1013721': 'yolo-county',    // Davis
   '1014415': 'yolo-county',    // Woodland
+
+  // Tri-Valley & Fremont campaign (added 2026-07-23)
+  '9057119': 'alameda-county',      // Alameda County
+  '9057125': 'contra-costa-county', // Contra Costa County
+  '1013950': 'alameda-county',      // Livermore
+  '1014149': 'alameda-county',      // Pleasanton
+  '1013740': 'alameda-county',      // Dublin
+  '1014316': 'alameda-county',      // Sunol
+  '1013802': 'alameda-county',      // Fremont
+  '1014243': 'contra-costa-county', // San Ramon
+  '1013720': 'contra-costa-county', // Danville
+  '1013528': 'contra-costa-county', // Alamo
+  '9051601': 'contra-costa-county', // Blackhawk
+  '1013730': 'contra-costa-county', // Diablo
 };
 
 export async function GET(req: NextRequest) {
